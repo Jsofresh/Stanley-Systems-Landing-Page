@@ -74,15 +74,15 @@ export function TestimonialsSection() {
   ]
 
   return (
-    <section id="testimonials" ref={sectionRef} className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" ref={sectionRef} className="relative pt-16 pb-16 px-4 sm:px-6 lg:px-8 bg-[#f6f6f3]">
       {/* Grid Background */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-40">
         <div
           className="h-full w-full"
           style={{
             backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            linear-gradient(rgba(15,23,42,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(15,23,42,0.06) 1px, transparent 1px)
           `,
             backgroundSize: "80px 80px",
           }}
@@ -92,15 +92,15 @@ export function TestimonialsSection() {
       <div className="relative max-w-7xl mx-auto">
         {/* Header Section - Keep as user loves it */}
         <div className="text-center mb-16 md:mb-32">
-          <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 ease-out inline-flex items-center gap-2 text-white/60 text-sm font-medium tracking-wider uppercase mb-6">
-            <div className="w-8 h-px bg-white/30"></div>
+          <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 ease-out inline-flex items-center gap-2 text-slate-500 text-sm font-medium tracking-wider uppercase mb-6">
+            <div className="w-8 h-px bg-slate-300"></div>
             Success Stories
-            <div className="w-8 h-px bg-white/30"></div>
+            <div className="w-8 h-px bg-slate-300"></div>
           </div>
-          <h2 className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 ease-out text-5xl md:text-6xl lg:text-7xl font-light text-white mb-8 tracking-tight text-balance">
+          <h2 className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 ease-out text-5xl md:text-6xl lg:text-7xl font-light text-slate-900 mb-8 tracking-tight text-balance">
             The businesses we <span className="font-medium italic">empower</span>
           </h2>
-          <p className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 ease-out text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 ease-out text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Discover how leading businesses are transforming their customer engagement with AI-powered chat solutions
           </p>
         </div>

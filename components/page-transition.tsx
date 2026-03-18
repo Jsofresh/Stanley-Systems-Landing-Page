@@ -10,8 +10,6 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
-    console.log("[v0] Page changed to:", pathname)
-    // Fade in when page loads
     setIsAnimating(true)
     const timer = setTimeout(() => {
       setIsAnimating(false)
@@ -20,9 +18,5 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     return () => clearTimeout(timer)
   }, [pathname])
 
-  return (
-    <div className={`transition-opacity duration-500 ease-in-out ${isAnimating ? "opacity-0" : "opacity-100"}`}>
-      {children}
-    </div>
-  )
+  return <div className={`transition-opacity duration-500 ease-in-out ${isAnimating ? "opacity-0" : "opacity-100"}`}>{children}</div>
 }

@@ -73,14 +73,14 @@ export function ProblemSolutionSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-700 text-sm font-medium mb-6 shadow-sm">
             <span className="w-2 h-2 bg-red-400 rounded-full mr-2 animate-pulse"></span>
             The Problem Every Business Faces
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 text-balance mb-4 sm:mb-6">
             <span className="text-red-400">60-70%</span> of Your Leads Are Slipping Away
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed">
             While you're busy serving customers, your online inquiries are going unanswered. Here's how we fix it.
           </p>
         </div>
@@ -93,7 +93,7 @@ export function ProblemSolutionSection() {
         >
           {/* Problem Card */}
           <div className="group">
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 h-full hover:bg-white/10 transition-all duration-500 hover:border-red-400/30">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 h-full hover:bg-slate-50 transition-all duration-500 hover:border-red-300 shadow-lg">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 rounded-lg bg-red-500/20">
                   <AlertTriangle />
@@ -133,7 +133,7 @@ export function ProblemSolutionSection() {
 
           {/* Solution Card */}
           <div className="group">
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 h-full hover:bg-white/10 transition-all duration-500 hover:border-green-400/30">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 h-full hover:bg-slate-50 transition-all duration-500 hover:border-green-300 shadow-lg">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 rounded-lg bg-green-500/20">
                   <CheckCircle />
@@ -153,7 +153,7 @@ export function ProblemSolutionSection() {
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <CheckCircle />
-                  <p className="text-white/70 text-sm sm:text-base">Instantly qualifies leads and books appointments</p>
+                  <p className="text-slate-600 text-sm sm:text-base">Instantly qualifies leads and books appointments</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle />

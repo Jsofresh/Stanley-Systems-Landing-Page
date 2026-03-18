@@ -91,19 +91,19 @@ export function ROICalculatorSection() {
         <div
           className={`text-center mb-12 md:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 backdrop-blur-sm mb-6 shadow-sm">
             <TrendingUp className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-white/80">ROI Calculator</span>
+            <span className="text-sm font-medium text-slate-700">ROI Calculator</span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 text-balance">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 md:mb-6 text-balance">
             See your potential{" "}
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-slate-900 to-slate-500 bg-clip-text text-transparent">
               revenue growth
             </span>
           </h2>
 
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto text-balance">
+          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto text-balance">
             Calculate how much additional revenue your business could generate with AI-powered customer engagement
           </p>
         </div>
@@ -113,8 +113,8 @@ export function ROICalculatorSection() {
           <div
             className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
           >
-            <Card className="p-6 md:p-8 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/15%),theme(backgroundColor.white/5%))] border-white/20 backdrop-blur-sm shadow-2xl h-full flex flex-col">
-              <h3 className="text-xl md:text-2xl font-semibold text-white mb-6 md:mb-8">Your Business Metrics</h3>
+            <Card className="p-6 md:p-8 bg-white border-slate-200 shadow-xl h-full flex flex-col">
+              <h3 className="text-xl md:text-2xl font-semibold text-slate-900 mb-6 md:mb-8">Your Business Metrics</h3>
 
               <div className="space-y-8 flex-1">
                 {/* Business Type */}

@@ -2,14 +2,13 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Menu, X, ArrowRight } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
-  const navigation = [
-  { name: "Mechanics", href: "#features" },
-  { name: "Barbers & Salons", href: "#ai-team" },
-  { name: "Restaurants", href: "#testimonials" },
-  { name: "Car Dealerships", href: "/car-dealerships" },
+const navigation = [
+  { name: "How it works", href: "#how-it-works" },
+  { name: "Pricing", href: "#pricing" },
+  { name: "FAQ", href: "#faq" },
+  { name: "Contact", href: "/contact" },
 ]
 
 export function GlassmorphismNav() {
@@ -64,38 +63,23 @@ export function GlassmorphismNav() {
     return () => clearTimeout(timer)
   }, []) // Removed lastScrollY dependency to prevent infinite re-renders
 
-  const scrollToTop = () => {
-    console.log("[v0] Scrolling to top")
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
   const scrollToSection = (href: string) => {
     if (href.startsWith("/")) {
       return
     }
 
-    console.log("[v0] Attempting to scroll to:", href)
     const element = document.querySelector(href)
     if (element) {
-      console.log("[v0] Found element:", element)
-
       const rect = element.getBoundingClientRect()
       const currentScrollY = window.pageYOffset || document.documentElement.scrollTop
       const elementAbsoluteTop = rect.top + currentScrollY
       const navbarHeight = 100
       const targetPosition = Math.max(0, elementAbsoluteTop - navbarHeight)
 
-      console.log("[v0] Element rect.top:", rect.top)
-      console.log("[v0] Current scroll position:", currentScrollY)
-      console.log("[v0] Element absolute top:", elementAbsoluteTop)
-      console.log("[v0] Target scroll position:", targetPosition)
-
       window.scrollTo({
         top: targetPosition,
         behavior: "smooth",
       })
-    } else {
-      console.log("[v0] Element not found for:", href)
     }
     setIsOpen(false)
   }
@@ -103,7 +87,7 @@ export function GlassmorphismNav() {
   return (
     <>
       <nav
-        className={`fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+        className={`fixed top-2 md:top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
           isVisible ? "translate-y-0 opacity-100" : "-translate-y-20 md:-translate-y-24 opacity-0"
         } ${hasLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         style={{
@@ -112,23 +96,9 @@ export function GlassmorphismNav() {
       >
         {/* Main Navigation */}
         <div className="w-[90vw] max-w-xs md:max-w-4xl mx-auto">
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-3 md:px-6 md:py-2">
+          <div className="bg-white/85 backdrop-blur-md border border-black/10 shadow-[0_12px_36px_rgba(15,23,42,0.10)] rounded-full px-4 py-4 md:px-6 md:py-3">
             <div className="flex items-center justify-between">
-              {/* Logo */}
-              <Link
-                href="/"
-                className="flex items-center hover:scale-105 transition-transform duration-200 cursor-pointer"
-              >
-                <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
-                  <Image
-                    src="/images/cliste-logo.png"
-                    alt="Cliste"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </Link>
+              <div className="hidden md:block w-10 md:w-12" aria-hidden="true" />
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-8">
@@ -137,7 +107,7 @@ export function GlassmorphismNav() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="text-white/80 hover:text-white hover:scale-105 transition-all duration-200 font-medium cursor-pointer"
+                      className="text-base lg:text-lg text-slate-600 hover:text-slate-900 hover:scale-105 transition-all duration-200 font-semibold cursor-pointer"
                     >
                       {item.name}
                     </Link>
@@ -145,7 +115,7 @@ export function GlassmorphismNav() {
                     <button
                       key={item.name}
                       onClick={() => scrollToSection(item.href)}
-                      className="text-white/80 hover:text-white hover:scale-105 transition-all duration-200 font-medium cursor-pointer"
+                      className="text-base lg:text-lg text-slate-600 hover:text-slate-900 hover:scale-105 transition-all duration-200 font-semibold cursor-pointer"
                     >
                       {item.name}
                     </button>
@@ -156,28 +126,28 @@ export function GlassmorphismNav() {
               {/* Desktop CTA Button */}
               <div className="hidden md:block">
                 <button
-                  className="relative bg-white hover:bg-gray-50 text-black font-medium px-6 py-2 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group"
-                  onClick={() => scrollToSection("#contact")}
+                  className="relative bg-white hover:bg-gray-50 text-black font-semibold px-7 py-3 lg:px-8 lg:py-3.5 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group text-base lg:text-lg"
+                  onClick={() => window.open("https://calendly.com/jadenodorczuk24/30min", "_blank", "noopener,noreferrer")}
                 >
-                  <span className="mr-2">Get Started</span>
-                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <span className="mr-2">Book a Call</span>
+                  <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
 
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden text-white hover:scale-110 transition-transform duration-200 cursor-pointer"
+                className="md:hidden text-slate-800 hover:scale-110 transition-transform duration-200 cursor-pointer p-2"
               >
-                <div className="relative w-6 h-6">
+                <div className="relative w-7 h-7">
                   <Menu
-                    size={24}
+                    size={28}
                     className={`absolute inset-0 transition-all duration-300 ${
                       isOpen ? "opacity-0 rotate-180 scale-75" : "opacity-100 rotate-0 scale-100"
                     }`}
                   />
                   <X
-                    size={24}
+                    size={28}
                     className={`absolute inset-0 transition-all duration-300 ${
                       isOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-180 scale-75"
                     }`}
@@ -200,18 +170,18 @@ export function GlassmorphismNav() {
 
           {/* Menu container */}
           <div
-            className={`mt-2 w-[90vw] max-w-xs mx-auto transition-all duration-500 ease-out transform-gpu ${
+            className={`mt-3 w-[90vw] max-w-xs mx-auto transition-all duration-500 ease-out transform-gpu ${
               isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-8 scale-95 pointer-events-none"
             }`}
           >
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl">
-              <div className="flex flex-col space-y-1">
+            <div className="bg-white/95 backdrop-blur-md border border-black/10 rounded-3xl p-5 shadow-2xl">
+              <div className="flex flex-col space-y-2">
                 {navigation.map((item, index) =>
                   item.href.startsWith("/") ? (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`text-white/80 hover:text-white hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${
+                      className={`text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl px-4 py-4 text-base font-semibold text-left transition-all duration-300 cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${
                         isOpen ? "animate-mobile-menu-item" : ""
                       }`}
                       style={{
@@ -225,7 +195,7 @@ export function GlassmorphismNav() {
                     <button
                       key={item.name}
                       onClick={() => scrollToSection(item.href)}
-                      className={`text-white/80 hover:text-white hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${
+                      className={`text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl px-4 py-4 text-base font-semibold text-left transition-all duration-300 cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${
                         isOpen ? "animate-mobile-menu-item" : ""
                       }`}
                       style={{
@@ -236,18 +206,18 @@ export function GlassmorphismNav() {
                     </button>
                   ),
                 )}
-                <div className="h-px bg-white/10 my-2" />
+                <div className="h-px bg-slate-200 my-3" />
                 <button
-                  className={`relative bg-white hover:bg-gray-50 text-black font-medium px-6 py-3 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group transform ${
+                  className={`relative bg-white hover:bg-gray-50 text-black font-semibold px-6 py-4 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group transform text-base w-full ${
                     isOpen ? "animate-mobile-menu-item" : ""
                   }`}
                   style={{
                     animationDelay: isOpen ? `${navigation.length * 80 + 150}ms` : "0ms",
                   }}
-                  onClick={() => scrollToSection("#contact")}
+                  onClick={() => window.open("https://calendly.com/jadenodorczuk24/30min", "_blank", "noopener,noreferrer")}
                 >
-                  <span className="mr-2">Get Started</span>
-                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <span className="mr-2">Book a Call</span>
+                  <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </div>
             </div>
