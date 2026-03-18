@@ -221,7 +221,7 @@ export function PricingSection() {
         </div>
 
         <div className="mt-7 rounded-[2rem] border border-[#e8e1d3] bg-[#f8f6f1] px-5 py-5 text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.07)] sm:px-7 sm:py-6">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-4xl">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-[#d9e7d1] bg-[linear-gradient(180deg,#f8fbf4_0%,#edf6e7_100%)] shadow-[0_8px_18px_rgba(21,128,61,0.08)]">
@@ -236,11 +236,11 @@ export function PricingSection() {
                   <div className="inline-flex rounded-full bg-[#eef6e8] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#15803D] ring-1 ring-inset ring-[#cfe0c5]">
                     Add-on
                   </div>
-                  <h3 className="mt-3 text-[1.65rem] font-semibold leading-tight text-slate-900 sm:text-[2rem]">
+                  <h3 className="mt-3 whitespace-nowrap text-[1.55rem] font-semibold leading-tight text-slate-900 sm:text-[1.85rem] lg:text-[1.95rem]">
                     Stop Losing Customers to Competitors Who Show Up First
                   </h3>
                   <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-700 sm:text-base sm:leading-7">
-                    If local buyers can’t find you first, they call the company they do find first. This add-on helps you show up where homeowners and operators are already searching.
+                    If local buyers can’t find your business first, they usually call the company they see first. This add-on helps Stanley Systems improve visibility across search, maps, and AI-driven discovery so more ready-to-buy customers find you before they find a competitor.
                   </p>
                 </div>
               </div>
@@ -262,7 +262,7 @@ export function PricingSection() {
               </div>
             </div>
 
-            <div className="flex min-w-[240px] flex-col gap-3 lg:items-end lg:pl-6">
+            <div className="flex min-w-[240px] flex-col items-center justify-center gap-3 text-center lg:pl-6">
               <div>
                 <div className="text-4xl font-semibold leading-none text-slate-900 sm:text-[3.1rem]">$397<span className="ml-1 text-lg font-medium text-slate-500">/mo</span></div>
                 <div className="mt-2 text-sm font-medium text-slate-600 sm:text-base">Included in Enterprise</div>

@@ -4,11 +4,14 @@ import { useState, useEffect, useRef } from "react"
 import { Menu, X, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
+
 const navigation = [
   { name: "How it works", href: "#how-it-works" },
   { name: "Pricing", href: "#pricing" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Contact", href: "/contact" },
+  { name: "FAQ", href: "#before-you-book" },
+  { name: "Blog", href: `${basePath}/blog` },
+  { name: "Contact", href: `${basePath}/contact` },
 ]
 
 export function GlassmorphismNav() {
@@ -26,22 +29,13 @@ export function GlassmorphismNav() {
       if (typeof window !== "undefined") {
         const currentScrollY = window.scrollY
 
-        console.log("[v0] Scroll event - currentScrollY:", currentScrollY, "lastScrollY:", lastScrollY.current)
-
-        // Only hide/show after scrolling past 50px to avoid flickering at top
         if (currentScrollY > 50) {
           if (currentScrollY > lastScrollY.current && currentScrollY - lastScrollY.current > 5) {
-            // Scrolling down - hide navbar
-            console.log("[v0] Hiding navbar - scrolling down")
             setIsVisible(false)
           } else if (lastScrollY.current - currentScrollY > 5) {
-            // Scrolling up - show navbar
-            console.log("[v0] Showing navbar - scrolling up")
             setIsVisible(true)
           }
         } else {
-          // Always show navbar when near top
-          console.log("[v0] Showing navbar - near top")
           setIsVisible(true)
         }
 
@@ -51,17 +45,15 @@ export function GlassmorphismNav() {
 
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", controlNavbar, { passive: true })
-      console.log("[v0] Scroll listener added")
 
       return () => {
         window.removeEventListener("scroll", controlNavbar)
         clearTimeout(timer)
-        console.log("[v0] Scroll listener removed")
       }
     }
 
     return () => clearTimeout(timer)
-  }, []) // Removed lastScrollY dependency to prevent infinite re-renders
+  }, [])
 
   const scrollToSection = (href: string) => {
     if (href.startsWith("/")) {
@@ -94,20 +86,22 @@ export function GlassmorphismNav() {
           transition: hasLoaded ? "all 0.5s ease-out" : "opacity 0.8s ease-out, transform 0.8s ease-out",
         }}
       >
-        {/* Main Navigation */}
-        <div className="w-[90vw] max-w-xs md:max-w-4xl mx-auto">
-          <div className="bg-white/85 backdrop-blur-md border border-black/10 shadow-[0_12px_36px_rgba(15,23,42,0.10)] rounded-full px-4 py-4 md:px-6 md:py-3">
-            <div className="flex items-center justify-between">
-              <div className="hidden md:block w-10 md:w-12" aria-hidden="true" />
+        <div className="w-[92vw] max-w-sm md:max-w-5xl mx-auto">
+          <div className="rounded-full border border-[#e7e1d6] bg-white/92 px-3 py-3 shadow-[0_18px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl md:px-4 md:py-3">
+            <div className="flex items-center justify-between gap-3">
+              <div className="hidden md:block min-w-[140px]">
+                <Link href={`${basePath || "/"}`} className="text-[15px] font-semibold tracking-[-0.02em] text-slate-900">
+                  Stanley Systems
+                </Link>
+              </div>
 
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center space-x-8">
+              <div className="hidden md:flex flex-1 items-center justify-center gap-1">
                 {navigation.map((item) =>
                   item.href.startsWith("/") ? (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="text-base lg:text-lg text-slate-600 hover:text-slate-900 hover:scale-105 transition-all duration-200 font-semibold cursor-pointer"
+                      className="rounded-full px-4 py-2.5 text-[15px] font-medium text-slate-600 transition-colors duration-200 hover:bg-[#f6f3ed] hover:text-slate-900"
                     >
                       {item.name}
                     </Link>
@@ -115,7 +109,7 @@ export function GlassmorphismNav() {
                     <button
                       key={item.name}
                       onClick={() => scrollToSection(item.href)}
-                      className="text-base lg:text-lg text-slate-600 hover:text-slate-900 hover:scale-105 transition-all duration-200 font-semibold cursor-pointer"
+                      className="rounded-full px-4 py-2.5 text-[15px] font-medium text-slate-600 transition-colors duration-200 hover:bg-[#f6f3ed] hover:text-slate-900"
                     >
                       {item.name}
                     </button>
@@ -123,31 +117,29 @@ export function GlassmorphismNav() {
                 )}
               </div>
 
-              {/* Desktop CTA Button */}
-              <div className="hidden md:block">
+              <div className="hidden md:flex min-w-[140px] justify-end">
                 <button
-                  className="relative bg-white hover:bg-gray-50 text-black font-semibold px-7 py-3 lg:px-8 lg:py-3.5 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group text-base lg:text-lg"
+                  className="group inline-flex items-center rounded-full bg-slate-950 px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-800"
                   onClick={() => window.open("https://calendly.com/jadenodorczuk24/30min", "_blank", "noopener,noreferrer")}
                 >
-                  <span className="mr-2">Book a Call</span>
-                  <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <span>Book a Call</span>
+                  <ArrowRight size={16} className="ml-2 transition-transform duration-200 group-hover:translate-x-0.5" />
                 </button>
               </div>
 
-              {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden text-slate-800 hover:scale-110 transition-transform duration-200 cursor-pointer p-2"
+                className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#e7e1d6] bg-white text-slate-800 transition-transform duration-200 hover:scale-105"
               >
-                <div className="relative w-7 h-7">
+                <div className="relative h-6 w-6">
                   <Menu
-                    size={28}
+                    size={24}
                     className={`absolute inset-0 transition-all duration-300 ${
                       isOpen ? "opacity-0 rotate-180 scale-75" : "opacity-100 rotate-0 scale-100"
                     }`}
                   />
                   <X
-                    size={28}
+                    size={24}
                     className={`absolute inset-0 transition-all duration-300 ${
                       isOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-180 scale-75"
                     }`}
@@ -159,7 +151,6 @@ export function GlassmorphismNav() {
         </div>
 
         <div className="md:hidden relative">
-          {/* Backdrop overlay */}
           <div
             className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-all duration-300 ${
               isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -168,25 +159,19 @@ export function GlassmorphismNav() {
             style={{ top: "0", left: "0", right: "0", bottom: "0", zIndex: -1 }}
           />
 
-          {/* Menu container */}
           <div
-            className={`mt-3 w-[90vw] max-w-xs mx-auto transition-all duration-500 ease-out transform-gpu ${
-              isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-8 scale-95 pointer-events-none"
+            className={`mt-3 w-[92vw] max-w-sm mx-auto transition-all duration-300 ${
+              isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-4 scale-95 pointer-events-none"
             }`}
           >
-            <div className="bg-white/95 backdrop-blur-md border border-black/10 rounded-3xl p-5 shadow-2xl">
-              <div className="flex flex-col space-y-2">
-                {navigation.map((item, index) =>
+            <div className="rounded-[1.75rem] border border-[#e7e1d6] bg-white/96 p-4 shadow-[0_22px_50px_rgba(15,23,42,0.12)] backdrop-blur-xl">
+              <div className="flex flex-col gap-1.5">
+                {navigation.map((item) =>
                   item.href.startsWith("/") ? (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl px-4 py-4 text-base font-semibold text-left transition-all duration-300 cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${
-                        isOpen ? "animate-mobile-menu-item" : ""
-                      }`}
-                      style={{
-                        animationDelay: isOpen ? `${index * 80 + 100}ms` : "0ms",
-                      }}
+                      className="rounded-2xl px-4 py-3.5 text-base font-medium text-slate-700 transition-colors duration-200 hover:bg-[#f6f3ed] hover:text-slate-900"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}
@@ -195,29 +180,19 @@ export function GlassmorphismNav() {
                     <button
                       key={item.name}
                       onClick={() => scrollToSection(item.href)}
-                      className={`text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl px-4 py-4 text-base font-semibold text-left transition-all duration-300 cursor-pointer transform hover:scale-[1.02] hover:translate-x-1 ${
-                        isOpen ? "animate-mobile-menu-item" : ""
-                      }`}
-                      style={{
-                        animationDelay: isOpen ? `${index * 80 + 100}ms` : "0ms",
-                      }}
+                      className="rounded-2xl px-4 py-3.5 text-left text-base font-medium text-slate-700 transition-colors duration-200 hover:bg-[#f6f3ed] hover:text-slate-900"
                     >
                       {item.name}
                     </button>
                   ),
                 )}
-                <div className="h-px bg-slate-200 my-3" />
+                <div className="my-2 h-px bg-[#ebe5db]" />
                 <button
-                  className={`relative bg-white hover:bg-gray-50 text-black font-semibold px-6 py-4 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group transform text-base w-full ${
-                    isOpen ? "animate-mobile-menu-item" : ""
-                  }`}
-                  style={{
-                    animationDelay: isOpen ? `${navigation.length * 80 + 150}ms` : "0ms",
-                  }}
+                  className="group inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-5 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-slate-800"
                   onClick={() => window.open("https://calendly.com/jadenodorczuk24/30min", "_blank", "noopener,noreferrer")}
                 >
-                  <span className="mr-2">Book a Call</span>
-                  <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <span>Book a Call</span>
+                  <ArrowRight size={17} className="ml-2 transition-transform duration-200 group-hover:translate-x-0.5" />
                 </button>
               </div>
             </div>

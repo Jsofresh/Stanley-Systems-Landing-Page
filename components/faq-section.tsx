@@ -69,7 +69,7 @@ export function FAQSection() {
   }
 
   return (
-    <section className="relative z-10 px-4 py-12 sm:py-16 lg:py-20">
+    <section id="before-you-book" className="relative z-10 px-4 py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">

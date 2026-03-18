@@ -58,18 +58,20 @@ export function HeroSection() {
               </div>
 
               <div className="mt-8 border-t border-[#e7e0d5] pt-6">
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-slate-700">
-                  <div className="flex items-center gap-1.5 text-[#15803D] text-xl sm:text-2xl leading-none">
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
+                <div className="flex flex-col gap-2 text-slate-700">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    <div className="flex items-center gap-1.5 text-[#15803D] text-xl sm:text-2xl leading-none">
+                      <span>★</span>
+                      <span>★</span>
+                      <span>★</span>
+                      <span>★</span>
+                      <span>★</span>
+                    </div>
+                    <span className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-900 sm:text-[0.95rem]">
+                      “30-day satisfaction guarantee”
+                    </span>
                   </div>
                   <span className="text-base font-semibold sm:text-lg">Trusted service. Clear communication. Professional systems.</span>
-                  <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-400 sm:text-xs">
-                    “30-day satisfaction guarantee”
-                  </span>
                 </div>
               </div>
             </div>
