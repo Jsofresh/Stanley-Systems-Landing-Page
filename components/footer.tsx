@@ -18,7 +18,7 @@ interface FooterSection {
   links: FooterLink[]
 }
 
-const STANLEY_FACEBOOK_URL = "https://www.facebook.com/stanleysystems"
+const STANLEY_FACEBOOK_URL = "https://www.facebook.com/stanleysystems/"
 const STANLEY_LINKEDIN_URL = "https://www.linkedin.com/company/stanley-systems"
 
 const footerLinks: FooterSection[] = [

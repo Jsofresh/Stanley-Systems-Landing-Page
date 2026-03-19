@@ -1,92 +1,158 @@
-import { Mail, Phone, Clock, ArrowRight } from "lucide-react"
+"use client"
+
+import { useState } from "react"
+import { Mail, Phone, Clock, ArrowRight, CheckCircle2, CalendarCheck } from "lucide-react"
 
 const contactCards = [
   {
     icon: Mail,
-    title: "Reach out to us",
-    description: "Send over what is slowing the business down, and we’ll tell you where we’d start.",
+    title: "Email us",
+    description: "Send over what is slowing the business down, and Stanley Systems will tell you where to start.",
     value: "hello@stanley-systems.com",
     href: "mailto:hello@stanley-systems.com",
   },
   {
     icon: Phone,
     title: "Call us",
-    description: "If you want to talk through the bottlenecks live, we can do that too.",
+    description: "Call this number to schedule a call with Stanley Systems. Phone or Zoom both work.",
+    compact: true,
     value: "+1 (781) 913-7585",
     href: "tel:+17819137585",
   },
 ]
 
-const faqsHours = [
-  "Mon – Fri · 8:00am–5:00pm",
-  "Sat · By appointment",
-  "Sun · Closed",
-]
+const faqsHours = ["Calls can be scheduled 24/7", "Meetings available around your workday", "Phone or Zoom, whichever is easier"]
 
 export function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    location: "",
+    problem: "",
+  })
+  const [showSubmitted, setShowSubmitted] = useState(false)
+
+  function updateField(field: keyof typeof formData, value: string) {
+    setFormData((current) => ({ ...current, [field]: value }))
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const subject = `New Stanley Systems inquiry from ${formData.name || "Website visitor"}`
+    const body = [
+      `Name: ${formData.name || "Not provided"}`,
+      `Email: ${formData.email || "Not provided"}`,
+      `Phone: ${formData.phone || "Not provided"}`,
+      `Company: ${formData.company || "Not provided"}`,
+      `Location: ${formData.location || "Not provided"}`,
+      "",
+      "What's breaking down?",
+      formData.problem || "Not provided",
+    ].join("\n")
+
+    window.location.href = `mailto:hello@stanley-systems.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setShowSubmitted(true)
+    window.setTimeout(() => setShowSubmitted(false), 2600)
+  }
+
   return (
-    <section id="contact" className="relative px-4 py-12 sm:py-16 z-10">
-      <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-        <div className="rounded-[2rem] border border-[#ece4d6] bg-[linear-gradient(180deg,#f9f6ef_0%,#ffffff_100%)] p-7 sm:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-slate-900">
-            Get in touch with Stanley.
+    <section id="contact" className="relative z-10 px-4 py-12 sm:py-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div className="rounded-[2rem] border border-[#ece4d6] bg-[linear-gradient(180deg,#f9f6ef_0%,#ffffff_100%)] p-7 shadow-[0_20px_60px_rgba(15,23,42,0.06)] sm:p-8">
+          <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+            Get in touch with Stanley Systems.
           </h2>
-          <p className="mt-4 text-lg leading-8 text-slate-600 max-w-xl">
-            Whether you need clarity, a second set of eyes, or a workflow audit, we can help you figure out where the real operational drag is coming from.
+          <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
+            Whether you need clarity, a second set of eyes, or a workflow audit, Stanley Systems can help figure out where the real operational drag is coming from.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {contactCards.map((card) => (
-              <div key={card.title} className="rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
-                  <card.icon className="h-5 w-5" />
+              <div
+                key={card.title}
+                className="flex rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] lg:min-h-[15.5rem]"
+              >
+                <div className="flex w-full flex-col">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-xl font-semibold leading-tight text-slate-900">{card.title}</h3>
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
+                      <card.icon className="h-5 w-5" />
+                    </div>
+                  </div>
+                  <p className={card.compact ? "mt-2 max-w-[15rem] text-sm leading-6 text-slate-600 sm:text-[15px]" : "mt-3 text-sm leading-6 text-slate-600 sm:text-[15px]"}>{card.description}</p>
+                  <a
+                    href={card.href}
+                    className={card.compact ? "mt-3 block whitespace-nowrap text-center text-[13px] font-semibold text-slate-900 underline underline-offset-4 sm:text-[14px]" : "mt-4 block whitespace-nowrap text-center text-[13px] font-semibold text-slate-900 underline underline-offset-4 sm:text-[14px]"}
+                  >
+                    {card.value}
+                  </a>
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-slate-900">{card.title}</h3>
-                <p className="mt-2 text-sm sm:text-[15px] leading-6 text-slate-600">{card.description}</p>
-                <a href={card.href} className="mt-4 inline-block text-sm sm:text-[15px] font-semibold text-slate-900 underline underline-offset-4">
-                  {card.value}
-                </a>
               </div>
             ))}
           </div>
 
-          <div className="mt-4 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
-                <Clock className="h-5 w-5" />
+          <div className="mt-4 grid gap-4 lg:grid-cols-2 lg:items-stretch">
+            <div className="rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] lg:min-h-[15.5rem]">
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-xl font-semibold text-slate-900">Scheduling</h3>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
+                  <Clock className="h-5 w-5" />
+                </div>
               </div>
-              <h3 className="mt-5 text-xl font-semibold text-slate-900">Business hours</h3>
-              <div className="mt-4 space-y-3 text-sm sm:text-[15px] leading-6 text-slate-600">
+              <div className="mt-4 space-y-2.5 text-[13px] leading-5 text-slate-600 sm:text-[14px]">
                 {faqsHours.map((row) => (
-                  <div key={row} className="rounded-xl bg-[#f8f5ee] px-4 py-3">{row}</div>
+                  <div key={row} className="rounded-xl bg-[#f8f5ee] px-4 py-2.5">
+                    {row}
+                  </div>
                 ))}
               </div>
             </div>
 
-            <div className="rounded-[1.5rem] border border-[#e8dfd0] bg-[linear-gradient(180deg,#f5f9f1_0%,#ffffff_100%)] p-6 shadow-[0_12px_30px_rgba(15,23,42,0.05)] flex flex-col justify-between">
-              <div>
-                <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Best fit</div>
-                <h3 className="mt-4 text-2xl font-semibold text-slate-900">You know something is leaking time or cash — you just want it fixed cleanly.</h3>
-                <p className="mt-4 text-sm sm:text-[15px] leading-6 text-slate-600">
-                  If your follow-up is slow, your billing lags, or your office keeps re-entering the same information, that is exactly the kind of workflow Stanley is built to clean up.
-                </p>
+            <div className="rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] lg:min-h-[15.5rem]">
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="text-xl font-semibold text-slate-900">What happens next</h3>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
+                  <CalendarCheck className="h-5 w-5" />
+                </div>
+              </div>
+              <p className="mt-3 text-[13px] leading-5 text-slate-600 sm:text-[14px]">
+                Stanley Systems reviews the issue, spots the bottlenecks, and replies with the clearest next step.
+              </p>
+              <div className="mt-4 space-y-2.5 text-[13px] leading-5 text-slate-600 sm:text-[14px]">
+                <div className="rounded-xl bg-[#f8f5ee] px-4 py-2.5">Fast first reply with real direction</div>
+                <div className="rounded-xl bg-[#f8f5ee] px-4 py-2.5">Clear answer on next steps</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-[#e8dfd0] bg-[#f5f1e8] p-6 sm:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
-          <div className="grid gap-5">
+        <div className="rounded-[2rem] border border-[#e8dfd0] bg-[#f5f1e8] p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] sm:p-8">
+          {showSubmitted ? (
+            <div className="mb-5 flex items-center gap-3 rounded-2xl border border-[#cfe6d5] bg-[#eef9f1] px-4 py-3 text-sm font-medium text-[#166534]">
+              <CheckCircle2 className="h-5 w-5" />
+              Submitted
+            </div>
+          ) : null}
+
+          <form onSubmit={handleSubmit} className="grid gap-5">
             {[
-              { label: "Name*", placeholder: "Jane Smith" },
-              { label: "Email*", placeholder: "jane@company.com" },
-              { label: "Phone", placeholder: "+1 (555) 123-4567" },
-              { label: "Company", placeholder: "Your business name" },
+              { key: "name", label: "Name*", placeholder: "Jane Smith" },
+              { key: "email", label: "Email*", placeholder: "jane@company.com" },
+              { key: "phone", label: "Phone", placeholder: "+1 (555) 123-4567" },
+              { key: "company", label: "Company", placeholder: "Your business name" },
+              { key: "location", label: "Location", placeholder: "City, State" },
             ].map((field) => (
-              <label key={field.label} className="block">
+              <label key={field.key} className="block">
                 <span className="mb-2 block text-sm font-medium text-slate-700">{field.label}</span>
                 <input
                   type="text"
+                  required={field.key === "name" || field.key === "email"}
+                  value={formData[field.key as keyof typeof formData]}
+                  onChange={(event) => updateField(field.key as keyof typeof formData, event.target.value)}
                   placeholder={field.placeholder}
                   className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
                 />
@@ -97,7 +163,10 @@ export function ContactSection() {
               <span className="mb-2 block text-sm font-medium text-slate-700">What’s breaking down?*</span>
               <textarea
                 rows={6}
-                placeholder="Tell us where follow-up, billing, or admin is getting stuck."
+                required
+                value={formData.problem}
+                onChange={(event) => updateField("problem", event.target.value)}
+                placeholder="Tell Stanley Systems where follow-up, billing, or admin is getting stuck."
                 className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
               />
             </label>
@@ -106,6 +175,19 @@ export function ContactSection() {
               Submit
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </button>
+          </form>
+        </div>
+        </div>
+
+        <div className="mt-6 rounded-[1.5rem] border border-[#dfe8d9] bg-[linear-gradient(180deg,#f5f9f1_0%,#ffffff_100%)] p-6 shadow-[0_12px_30px_rgba(15,23,42,0.05)] sm:p-7">
+          <div>
+            <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Best fit</div>
+            <h3 className="mt-4 text-[1.8rem] font-semibold leading-[1.18] text-slate-900 lg:text-[1.72rem]">
+              You know something is leaking time or cash — you just want it fixed cleanly.
+            </h3>
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-[15px]">
+              If follow-up is slow, billing lags, or the office keeps re-entering the same information, Stanley Systems is built for exactly that kind of operational cleanup. The goal is not to force new complexity into the business. The goal is to remove drag, tighten the handoff, and make the workflow easier for the owner and team to trust.
+            </p>
           </div>
         </div>
       </div>

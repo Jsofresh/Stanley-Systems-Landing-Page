@@ -30,9 +30,19 @@ const faqs = [
       "Yes. Your team stays in control, and you own what gets built. We are not trying to trap you in a black box or make the business depend on mystery systems.",
   },
   {
+    question: "Do I need to stop operations while this gets set up?",
+    answer:
+      "No. The goal is to improve how the business runs without creating a long disruption. Stanley Systems works around the current operation, then rolls out improvements in a way the team can absorb.",
+  },
+  {
     question: "What kinds of problems do you usually fix first?",
     answer:
       "The usual first targets are slow lead follow-up, late invoices, manual double entry, and messy handoffs between intake, operations, and billing. In other words: the stuff that quietly bleeds time and cash every week.",
+  },
+  {
+    question: "How do I know this will fit my business?",
+    answer:
+      "The starting point is never a generic automation package. Stanley Systems looks at how your office, field work, billing, and customer handoffs already operate, then builds around that reality. If a workflow will not fit the business, it should not be forced in.",
   },
 ]
 

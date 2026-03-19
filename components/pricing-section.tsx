@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { Search } from "lucide-react"
 import { useMemo, useState } from "react"
 
 const plans = [
@@ -225,12 +226,7 @@ export function PricingSection() {
             <div className="max-w-4xl">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-[#d9e7d1] bg-[linear-gradient(180deg,#f8fbf4_0%,#edf6e7_100%)] shadow-[0_8px_18px_rgba(21,128,61,0.08)]">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#15803D]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 4.5a7.5 7.5 0 1 1 0 15a7.5 7.5 0 0 1 0-15Z" />
-                    <path d="M9.25 12h3.1c1.5 0 2.4-.8 2.4-2.1c0-1.45-1.02-2.4-2.6-2.4c-1.42 0-2.44.7-2.86 1.93" />
-                    <path d="M12 12v4" />
-                    <path d="M10.2 14.2L12 16l1.8-1.8" />
-                  </svg>
+                  <Search className="h-6 w-6 text-[#15803D]" strokeWidth={2.2} />
                 </div>
                 <div>
                   <div className="inline-flex rounded-full bg-[#eef6e8] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#15803D] ring-1 ring-inset ring-[#cfe0c5]">
@@ -240,7 +236,7 @@ export function PricingSection() {
                     Stop Losing Customers to Competitors Who Show Up First
                   </h3>
                   <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-700 sm:text-base sm:leading-7">
-                    If local buyers can’t find your business first, they usually call the company they see first. This add-on helps Stanley Systems improve visibility across search, maps, and AI-driven discovery so more ready-to-buy customers find you before they find a competitor.
+                    If local buyers can’t find your business first, they usually call the company they see first. This add-on is Search engine optimization for Stanley Systems customers, improving visibility across search, maps, and AI-driven discovery so more ready-to-buy customers find you before they find a competitor.
                   </p>
                 </div>
               </div>

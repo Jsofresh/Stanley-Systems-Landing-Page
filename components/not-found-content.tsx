@@ -28,7 +28,7 @@ export function NotFoundContent() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-full border border-[#e8dfd0] bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-[#faf7f2]"
             >
-              Contact Stanley
+              Contact Stanley Systems
             </Link>
             <Link
               href="/blog"

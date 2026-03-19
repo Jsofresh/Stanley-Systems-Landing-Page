@@ -1,4 +1,4 @@
-import { ArrowLeftRight, Brain, FileText, MessagesSquare } from "lucide-react"
+import { AlertTriangle, ArrowLeftRight, Brain, FileText, MessagesSquare } from "lucide-react"
 
 const pairs = [
   {
@@ -91,16 +91,22 @@ export function ProblemSolutionMapSection() {
                   <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9f1239] lg:hidden">
                     Where your business is leaking time and money
                   </div>
-                  <div className="grid gap-4 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
-                    <div>
-                      <span className="flex h-10 w-10 items-center justify-center rounded-[0.95rem] border border-[#f2d7dc] bg-white text-[#9f1239] shadow-sm">
-                        <Icon className="h-4 w-4" strokeWidth={2} />
-                      </span>
-                      <h3 className="mt-4 text-[1.08rem] font-semibold leading-6 text-slate-900 sm:text-[1.16rem] sm:leading-7 lg:text-[1.22rem]">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="max-w-[18rem] text-[1.08rem] font-semibold leading-6 text-slate-900 sm:text-[1.16rem] sm:leading-7 lg:text-[1.22rem]">
                         {pair.painTitle}
                       </h3>
+                      <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.95rem] border border-[#f2d7dc] bg-white text-[#9f1239] shadow-sm">
+                        <Icon className="h-4 w-4 opacity-60" strokeWidth={2} />
+                        <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                          <span className="h-[1.5px] w-6 -rotate-12 rounded-full bg-[#dc2626]" />
+                        </span>
+                        <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#fee2e2] text-[#dc2626] ring-2 ring-white">
+                          <AlertTriangle className="h-2.5 w-2.5" strokeWidth={2.4} />
+                        </span>
+                      </span>
                     </div>
-                    <ul className="space-y-2 lg:pt-1">
+                    <ul className="space-y-2">
                       {pair.painPoints.map((point) => (
                         <li key={point} className="flex items-start gap-2 text-[14px] leading-6 text-slate-700 sm:text-[15px]">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#be123c]" />
@@ -115,13 +121,16 @@ export function ProblemSolutionMapSection() {
                   <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#166534] lg:hidden">
                     Stanley Systems fix + return
                   </div>
-                  <div className="grid gap-4 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
-                    <div>
-                      <h3 className="text-[1.08rem] font-semibold leading-6 text-slate-900 sm:text-[1.16rem] sm:leading-7 lg:text-[1.22rem]">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="max-w-[18rem] text-[1.08rem] font-semibold leading-6 text-slate-900 sm:text-[1.16rem] sm:leading-7 lg:text-[1.22rem]">
                         {pair.fixTitle}
                       </h3>
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.95rem] border border-[#d7e7d5] bg-white text-[#15803d] shadow-sm">
+                        <Icon className="h-4 w-4" strokeWidth={2} />
+                      </span>
                     </div>
-                    <ul className="space-y-2 lg:pt-1">
+                    <ul className="space-y-2">
                       {pair.returnPoints.map((point) => (
                         <li key={point} className="flex items-start gap-2 text-[14px] leading-6 text-slate-700 sm:text-[15px]">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />
