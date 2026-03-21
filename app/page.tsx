@@ -4,12 +4,15 @@ import { PainPointsSection } from "@/components/pain-points-section"
 import { ProblemSolutionMapSection } from "@/components/problem-solution-map-section"
 import { HowItWorksSection } from "@/components/how-it-works-section"
 import { MarineExampleSection } from "@/components/marine-example-section"
+import { ProofStripSection } from "@/components/proof-strip-section"
 import { TrustOwnershipSection } from "@/components/trust-ownership-section"
+import { ReachOutSection } from "@/components/reach-out-section"
 import { PricingSection } from "@/components/pricing-section"
 import { FAQSection } from "@/components/faq-section"
 import { FinalCTASection } from "@/components/final-cta-section"
 import Aurora from "@/components/Aurora"
 import { Footer } from "@/components/footer"
+import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
 
 export default function HomePage() {
   return (
@@ -24,12 +27,15 @@ export default function HomePage() {
           <PainPointsSection />
           <ProblemSolutionMapSection />
           <HowItWorksSection />
+          <ProofStripSection />
           <MarineExampleSection />
           <TrustOwnershipSection />
+          <ReachOutSection />
           <PricingSection />
           <FAQSection />
           <FinalCTASection />
           <Footer />
+          <MobileStickyCTA />
         </div>
       </main>
     </div>

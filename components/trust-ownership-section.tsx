@@ -2,11 +2,11 @@ import { BookOpenText, FolderCog, ShieldCheck, Wrench } from "lucide-react"
 
 const trustPoints = [
   {
-    text: "Stanley Systems works inside the tools you already use.",
+    text: "Stanley Systems works inside the tools your team already uses.",
     icon: Wrench,
   },
   {
-    text: "Your team stays in control of the workflow.",
+    text: "The team does not have to learn a whole new system just to keep the business moving.",
     icon: ShieldCheck,
   },
   {
@@ -21,14 +21,14 @@ const trustPoints = [
 
 export function TrustOwnershipSection() {
   return (
-    <section className="px-4 py-12 sm:py-16 relative z-10">
-      <div className="max-w-6xl mx-auto grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+    <section className="relative z-10 px-4 py-12 sm:py-16">
+      <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="rounded-[2rem] border border-[#ece7dc] bg-[#f8f6f1] p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-          <h2 className="text-3xl sm:text-4xl lg:text-[3.1rem] font-semibold tracking-tight text-slate-900">
+          <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-[3rem]">
             You own everything. Full stop.
           </h2>
-          <p className="mt-5 text-xl leading-9 text-slate-600 sm:text-[1.38rem]">
-            Stanley Systems is not building a confusing system around your business. The systems stay yours, the documentation stays yours, and your team is not left guessing how anything works.
+          <p className="mt-5 text-xl leading-9 text-slate-600 sm:text-[1.28rem]">
+            Stanley Systems is not trying to wrap your business in another confusing layer. The setup stays yours, the documentation stays yours, and the team is not left guessing how the handoff works.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ export function TrustOwnershipSection() {
             return (
               <div
                 key={point.text}
-                className="rounded-[1.5rem] border border-[#e8e1d3] bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.05)] text-slate-700 text-lg leading-8 sm:text-[1.22rem]"
+                className="rounded-[1.5rem] border border-[#e8e1d3] bg-white p-6 text-lg leading-8 text-slate-700 shadow-[0_12px_30px_rgba(15,23,42,0.05)] sm:text-[1.1rem]"
               >
                 <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-[0.95rem] border border-[#e5dfd2] bg-[#f8f6f1] text-slate-700">
                   <Icon className="h-5 w-5" strokeWidth={2} />

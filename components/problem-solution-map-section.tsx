@@ -2,62 +2,62 @@ import { AlertTriangle, ArrowLeftRight, Brain, FileText, MessagesSquare } from "
 
 const pairs = [
   {
-    painTitle: "Slow follow-up lets good leads cool off",
+    painTitle: "Missed follow-up",
     painPoints: [
-      "1–3 missed quotes each month",
-      "Good leads go with the first company that replies",
-      "Office time gets pulled into constant follow-up",
+      "10–20% of good estimates can go cold when nobody follows up fast",
+      "Quotes can sit for days without a clear next step",
+      "Office staff lose hours each week chasing people back down",
     ],
-    fixTitle: "Lead follow-up automation",
+    fixTitle: "Automated follow-up",
     returnPoints: [
-      "More jobs quoted before the lead goes cold",
-      "Revenue that stops slipping to faster competitors",
-      "A steadier flow of booked work each month",
+      "Follow-up can happen almost instantly instead of sitting in the queue",
+      "Up to 95% of estimate follow-up can happen automatically and on time",
+      "More good leads stay warm long enough to turn into booked work",
     ],
     icon: MessagesSquare,
   },
   {
-    painTitle: "Late billing slows money back into the business",
+    painTitle: "Slow invoicing",
     painPoints: [
-      "Invoices go out days later than they should",
-      "Cash sits longer before it comes back in",
-      "Billing has to chase missing job details",
+      "Completed work can sit 3–7 extra days before billing gets it",
+      "Cash can come in a week or more later than it should",
+      "The office keeps losing time chasing missing job details",
     ],
-    fixTitle: "Invoice workflow automation",
+    fixTitle: "Faster billing handoff",
     returnPoints: [
-      "Money comes back into the business faster",
-      "Less cash stuck in unfinished admin",
-      "A smoother billing cycle without constant chasing",
+      "Job details can move into billing almost instantly after the work is done",
+      "95%+ of the handoff can happen automatically instead of by hand",
+      "Invoices can go out same day or next day instead of sitting in backlog",
     ],
     icon: FileText,
   },
   {
-    painTitle: "Double entry eats the day",
+    painTitle: "Office overload",
     painPoints: [
-      "5–10+ admin hours lost every week",
-      "The same details get copied between tools",
-      "Manual re-entry creates avoidable mistakes",
+      "Teams can lose 5–10+ hours a week retyping and checking",
+      "The same customer details keep living in too many places",
+      "Small mistakes keep turning into callbacks, fixes, and extra admin",
     ],
-    fixTitle: "Connected admin systems",
+    fixTitle: "Cleaner office workflow",
     returnPoints: [
-      "Thousands saved in payroll over the course of a year",
-      "Less office time burned on repeat admin work",
-      "Cleaner handoffs with fewer avoidable mistakes",
+      "Most repeat admin can be handled automatically instead of manually",
+      "Customer details can move through the workflow with 95% less retyping",
+      "The office gets cleaner handoffs and far fewer avoidable mistakes",
     ],
     icon: ArrowLeftRight,
   },
   {
-    painTitle: "The business keeps coming back to you",
+    painTitle: "Owner bottleneck",
     painPoints: [
-      "The owner becomes the bottleneck every week",
-      "Important handoffs depend on memory",
-      "Small misses keep stacking up across the team",
+      "Important steps still depend too much on memory",
+      "The owner keeps getting pulled back into routine questions",
+      "The team cannot move certain work forward without checking first",
     ],
-    fixTitle: "Repeatable workflow systems",
+    fixTitle: "Less owner dependence",
     returnPoints: [
-      "Fewer day-to-day interruptions landing on the owner",
-      "A team that can run the process more consistently",
-      "Less confusion, less chasing, and fewer dropped details",
+      "The team gets the next step instantly instead of waiting on the owner",
+      "Most routine decisions can move forward without needing another call or text",
+      "The owner can get pulled back in far less often while the process keeps moving",
     ],
     icon: Brain,
   },
@@ -68,18 +68,21 @@ export function ProblemSolutionMapSection() {
     <section className="relative z-10 px-4 py-10 sm:py-12 lg:py-12">
       <div className="mx-auto max-w-7xl rounded-[2rem] border border-[#ece7dc] bg-[#fbfaf7]/95 px-6 py-7 shadow-[0_22px_60px_rgba(15,23,42,0.06)] sm:px-8 sm:py-8 lg:px-10 lg:py-9">
         <div className="max-w-none text-center">
-          <h2 className="whitespace-nowrap text-[2.05rem] font-semibold tracking-tight text-slate-900 sm:text-[2.45rem] lg:text-[2.95rem] lg:leading-[1.06]">
-            What this is costing you — and what Stanley Systems fixes
+          <h2 className="text-[2rem] font-semibold tracking-tight text-slate-900 sm:text-[2.4rem] lg:text-[2.9rem] lg:leading-[1.06]">
+            What Stanley Systems fixes first
           </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
+            Stanley Systems starts with the bottlenecks that usually cost the most time, cash, and attention.
+          </p>
         </div>
 
         <div className="mt-6 grid gap-3 lg:gap-4">
           <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4">
             <div className="flex items-center justify-center rounded-[1.25rem] border border-[#f1d4d8] bg-[linear-gradient(180deg,#fff8f8_0%,#fff2f3_100%)] px-5 py-3 text-center shadow-[0_14px_32px_rgba(127,29,29,0.05)]">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#9f1239]">Where your business is leaking time and money</div>
+              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#9f1239]">What is breaking down</div>
             </div>
             <div className="flex items-center justify-center rounded-[1.25rem] border border-[#d7e7d5] bg-[linear-gradient(180deg,#f9fcf7_0%,#eff7ea_100%)] px-5 py-3 text-center shadow-[0_14px_32px_rgba(21,128,61,0.05)]">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#166534]">Stanley Systems fix + return</div>
+              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#166534]">What Stanley fixes</div>
             </div>
           </div>
 
@@ -87,29 +90,27 @@ export function ProblemSolutionMapSection() {
             const Icon = pair.icon
             return (
               <div key={pair.painTitle} className="grid gap-3 lg:grid-cols-2 lg:gap-4">
-                <div className="rounded-[1.35rem] border border-[#efd9dc] bg-[linear-gradient(180deg,#fffafa_0%,#fff4f5_100%)] p-5 shadow-sm">
-                  <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9f1239] lg:hidden">
-                    Where your business is leaking time and money
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-start justify-between gap-4">
-                      <h3 className="max-w-[18rem] text-[1.08rem] font-semibold leading-6 text-slate-900 sm:text-[1.16rem] sm:leading-7 lg:text-[1.22rem]">
-                        {pair.painTitle}
-                      </h3>
-                      <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.95rem] border border-[#f2d7dc] bg-white text-[#9f1239] shadow-sm">
-                        <Icon className="h-4 w-4 opacity-60" strokeWidth={2} />
+                <div className="rounded-[1.35rem] border border-[#efd9dc] bg-[linear-gradient(180deg,#fffafa_0%,#fff4f5_100%)] p-4 shadow-sm sm:p-[1.05rem]">
+                  <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9f1239] lg:hidden">What is breaking down</div>
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-start gap-3">
+                      <span className="relative mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.8rem] border border-[#f2d7dc] bg-white text-[#9f1239] shadow-sm">
+                        <Icon className="h-3.5 w-3.5 opacity-60" strokeWidth={2} />
                         <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                          <span className="h-[1.5px] w-6 -rotate-12 rounded-full bg-[#dc2626]" />
+                          <span className="h-[1.5px] w-5 -rotate-12 rounded-full bg-[#dc2626]" />
                         </span>
-                        <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#fee2e2] text-[#dc2626] ring-2 ring-white">
-                          <AlertTriangle className="h-2.5 w-2.5" strokeWidth={2.4} />
+                        <span className="absolute -right-1 -top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#fee2e2] text-[#dc2626] ring-2 ring-white">
+                          <AlertTriangle className="h-2 w-2" strokeWidth={2.4} />
                         </span>
                       </span>
+                      <h3 className="max-w-[14rem] text-[1.05rem] font-semibold leading-6 text-slate-900 sm:text-[1.12rem] sm:leading-7 lg:max-w-[15rem] lg:text-[1.18rem]">
+                        {pair.painTitle}
+                      </h3>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {pair.painPoints.map((point) => (
-                        <li key={point} className="flex items-start gap-2 text-[14px] leading-6 text-slate-700 sm:text-[15px]">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#be123c]" />
+                        <li key={point} className="flex items-start gap-3 text-[15px] leading-7 text-slate-700 sm:text-[16px] sm:leading-7">
+                          <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#be123c]" />
                           <span>{point}</span>
                         </li>
                       ))}
@@ -117,23 +118,21 @@ export function ProblemSolutionMapSection() {
                   </div>
                 </div>
 
-                <div className="rounded-[1.35rem] border border-[#dfead9] bg-[linear-gradient(180deg,#ffffff_0%,#f7fbf4_100%)] p-5 shadow-sm">
-                  <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#166534] lg:hidden">
-                    Stanley Systems fix + return
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-start justify-between gap-4">
-                      <h3 className="max-w-[18rem] text-[1.08rem] font-semibold leading-6 text-slate-900 sm:text-[1.16rem] sm:leading-7 lg:text-[1.22rem]">
+                <div className="rounded-[1.35rem] border border-[#dfead9] bg-[linear-gradient(180deg,#ffffff_0%,#f7fbf4_100%)] p-4 shadow-sm sm:p-[1.05rem]">
+                  <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#166534] lg:hidden">What Stanley fixes</div>
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-start gap-3">
+                      <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.8rem] border border-[#d7e7d5] bg-white text-[#15803d] shadow-sm">
+                        <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+                      </span>
+                      <h3 className="max-w-[14rem] text-[1.05rem] font-semibold leading-6 text-slate-900 sm:text-[1.12rem] sm:leading-7 lg:max-w-[15rem] lg:text-[1.18rem]">
                         {pair.fixTitle}
                       </h3>
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.95rem] border border-[#d7e7d5] bg-white text-[#15803d] shadow-sm">
-                        <Icon className="h-4 w-4" strokeWidth={2} />
-                      </span>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {pair.returnPoints.map((point) => (
-                        <li key={point} className="flex items-start gap-2 text-[14px] leading-6 text-slate-700 sm:text-[15px]">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />
+                        <li key={point} className="flex items-start gap-3 text-[15px] leading-7 text-slate-700 sm:text-[16px] sm:leading-7">
+                          <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#15803D]" />
                           <span>{point}</span>
                         </li>
                       ))}

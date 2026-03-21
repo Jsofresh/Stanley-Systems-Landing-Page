@@ -3,32 +3,35 @@ import { ArrowRight } from "lucide-react"
 const steps = [
   {
     number: "01",
-    title: "Walk through how work moves today",
-    description: "Stanley Systems looks at how work actually moves through the business today, so the fix matches real day-to-day operations instead of sounding good on paper. That gives the owner a clear picture of what is costing time, money, and avoidable stress before anything gets built.",
+    title: "See where the work is getting stuck",
+    description:
+      "Stanley Systems looks at how jobs, billing, follow-up, and office handoffs actually move through the business now. That makes it easier to spot where time, cash, and attention are getting lost.",
     points: [
-      "Review where billing slows down, where follow-up gets missed, and where the same details get entered twice",
-      "Map the handoffs between the owner, office, and field so weak spots are obvious",
-      "Keep the starting point practical for the way the business already runs",
+      "Review where billing slows down",
+      "See where follow-up is being missed",
+      "Find where the same information is getting entered twice",
     ],
   },
   {
     number: "02",
-    title: "Stanley Systems identifies 2–3 high-impact automations",
-    description: "The first recommendations are chosen based on what will make the biggest operational difference fastest, not what is most flashy. The business gets a short list of improvements with obvious value instead of a vague long-term tech plan.",
+    title: "Stanley Systems shows you the first few fixes worth making",
+    description:
+      "The first fixes are picked based on what will make the clearest difference fastest. The goal is not to create a big project. The goal is to fix the first few leaks that are hurting the business most.",
     points: [
-      "Prioritize bottlenecks that affect cash flow, response speed, and admin time first",
-      "Focus on changes the team can actually use without adding confusion",
-      "Keep the rollout narrow enough to be noticed, measured, and trusted",
+      "Start with cash flow, follow-up, and admin drag",
+      "Keep the rollout narrow enough to be easy to trust",
+      "Focus on fixes the team can actually use",
     ],
   },
   {
     number: "03",
-    title: "Stanley Systems builds the automation in your systems",
-    description: "The workflow is built inside the tools already in place, documented clearly, and handed off so the team can run it without depending on memory. The result is a system the business can keep using reliably, with less chasing, less double entry, and fewer missed steps.",
+    title: "Stanley Systems fixes the workflow inside the tools you already use",
+    description:
+      "Stanley Systems puts the fix into the tools your team already works in, tests the handoff, and documents it clearly so the business is not left depending on memory.",
     points: [
-      "Build inside the systems already being used whenever possible",
-      "Test the handoff so the team knows what happens, when it happens, and what to do next",
-      "Document the workflow clearly so it does not turn into another owner-only process",
+      "Use the systems already in place whenever possible",
+      "Make the next step clear for the office and field",
+      "Document what happens so the team can keep using it",
     ],
   },
 ]
@@ -53,7 +56,7 @@ export function HowItWorksSection() {
       <div className="mx-auto max-w-[1480px]">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            How Stanley Systems works
+            How Stanley Systems fixes the problem
           </h2>
         </div>
 
@@ -63,7 +66,7 @@ export function HowItWorksSection() {
               <div className="h-full">
                 <div className="flex h-full min-h-[29rem] flex-col rounded-[1rem] border border-[#e7e1d6] bg-white p-7 shadow-[0_18px_42px_rgba(15,23,42,0.07)] sm:min-h-[30rem] sm:p-8">
                   <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563eb]">Step {step.number}</div>
-                  <h3 className="mt-5 text-2xl font-semibold leading-9 text-slate-900 sm:text-[1.95rem] sm:leading-[1.25]">
+                  <h3 className="mt-5 text-2xl font-semibold leading-9 text-slate-900 sm:text-[1.85rem] sm:leading-[1.25]">
                     {step.title}
                   </h3>
                   <p className="mt-5 text-base leading-8 text-slate-700 sm:text-lg">
@@ -81,7 +84,7 @@ export function HowItWorksSection() {
               </div>
 
               {index < steps.length - 1 && (
-                <div className="hidden lg:flex items-center justify-center">
+                <div className="hidden items-center justify-center lg:flex">
                   <StepConnector />
                 </div>
               )}

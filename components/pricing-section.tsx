@@ -8,57 +8,60 @@ const plans = [
   {
     name: "Starter",
     monthlyPrice: 497,
-    description: "For businesses that need one high-friction workflow cleaned up first.",
+    description: "Best fit when one major office or billing problem needs to be fixed first.",
     points: [
-      "One core bottleneck addressed",
-      "Done-for-you setup",
-      "Basic follow-up / admin automation",
-      "Monthly review",
+      "Fix one major office or billing problem first",
+      "Stanley Systems handles setup for you",
+      "Basic estimate follow-up and admin cleanup",
+      "Simple monthly review",
     ],
-    missingOut: [
-      "Multi-step handoffs between multiple tools",
-      "Deeper reporting and review",
-      "Priority support",
-      "Broader process cleanup across the business",
+    missedUpside: [
+      "Invoices can still sit longer than they should",
+      "Good leads can still cool off without follow-up",
+      "Simple admin work can keep chewing up office time",
     ],
-    cta: "Book a Call",
+    cta: "Book a meeting",
   },
   {
-    name: "Professional",
+    name: "Growth",
     monthlyPrice: 997,
-    description: "For businesses that need multiple workflow handoffs fixed across ops and follow-up.",
+    description: "Best fit when billing, follow-up, and office handoffs are all creating drag.",
     points: [
-      "Multiple workflow bottlenecks addressed",
-      "Cross-tool automation",
-      "Stronger reporting and review",
-      "Priority support",
+      "Fix multiple breakdowns across billing, follow-up, and office handoffs",
+      "Make your tools pass information cleanly without retyping",
+      "Clearer visibility into what is getting done and what is still stuck",
+      "Faster help when something needs attention",
     ],
-    missingOut: [
-      "Full workflow coverage across the business",
-      "Deeper implementation support",
-      "Operational advisory",
-      "Custom integration planning",
+    missedUpside: [
+      "More estimates can slip through without a next step",
+      "The team can keep retyping the same information",
+      "Office bottlenecks can keep slowing booked work down",
     ],
-    cta: "Book a Call",
+    cta: "Book a meeting",
     featured: true,
-    badge: "Most Popular",
+    badge: "Best place to start",
   },
   {
-    name: "Enterprise",
+    name: "Broader cleanup",
     monthlyPrice: 1997,
-    description: "For teams that need broader process cleanup, implementation depth, and more ownership support.",
+    description: "Best fit when the business has multiple bottlenecks and needs more hands-on support.",
     points: [
-      "Full workflow coverage",
-      "Deeper implementation support",
-      "Operational advisory",
-      "Custom integration planning",
+      "Broader cleanup across the business",
+      "More hands-on help getting the fixes in place",
+      "Ongoing help deciding what to fix next",
+      "Planning for tool handoffs that need custom work",
     ],
     highlights: [
       "Best fit when admin drag is showing up in multiple places at once",
       "Built for owners who want cleaner handoffs, faster invoicing, and less dependence on memory",
       "Ideal when the cheaper plans would leave too many bottlenecks untouched",
     ],
-    cta: "Book a Call",
+    prevention: [
+      "Multiple admin leaks continuing across the business",
+      "Too much falling back onto the owner",
+      "Cheaper fixes solving one issue while bigger bottlenecks remain",
+    ],
+    cta: "Book a meeting",
   },
 ] as const
 
@@ -77,15 +80,7 @@ function getDisplayPrice(monthlyPrice: number, yearly: boolean) {
 }
 
 function CheckBullet() {
-  return <span className="mt-3 h-2.5 w-2.5 rounded-full bg-[#16a34a] flex-shrink-0" />
-}
-
-function XBullet() {
-  return (
-    <span className="mt-1.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#fff1f2] text-[#dc2626] text-lg font-semibold leading-none">
-      ×
-    </span>
-  )
+  return <span className="mt-3 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#16a34a]" />
 }
 
 export function PricingSection() {
@@ -101,28 +96,26 @@ export function PricingSection() {
   )
 
   return (
-    <section id="pricing" className="px-4 py-12 sm:py-16 lg:py-20 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl lg:text-[4rem] lg:leading-[1.02] font-semibold tracking-tight text-slate-900">
-            Workflow automation that fits your budget
+    <section id="pricing" className="relative z-10 px-4 py-12 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02]">
+            Simple pricing based on how much needs to be fixed
           </h2>
-          <p className="mt-6 max-w-4xl mx-auto text-xl leading-9 text-slate-700 sm:text-[1.45rem] lg:text-[1.55rem] lg:leading-10">
-            Start with the workflow costing you the most. Every plan includes setup, onboarding, and a 30-day money-back guarantee.
+          <p className="mx-auto mt-6 max-w-4xl text-xl leading-9 text-slate-700 sm:text-[1.3rem] lg:text-[1.4rem] lg:leading-10">
+            Most businesses start with one major bottleneck: invoicing, follow-up, or office handoffs. Stanley Systems can start narrow or go broader depending on how much is breaking at once.
           </p>
 
           <div className="mt-8 flex justify-center">
             <div className="inline-flex items-center gap-4 rounded-full border border-[#e8e1d3] bg-white px-4 py-3 shadow-[0_12px_30px_rgba(15,23,42,0.06)]">
-              <span className={`text-sm sm:text-base font-semibold transition-colors ${!yearly ? "text-slate-900" : "text-slate-500"}`}>
+              <span className={`text-sm font-semibold transition-colors sm:text-base ${!yearly ? "text-slate-900" : "text-slate-500"}`}>
                 Monthly
               </span>
               <button
                 type="button"
                 aria-pressed={yearly}
                 onClick={() => setYearly((value) => !value)}
-                className={`relative flex h-8 w-16 items-center rounded-full transition-colors duration-200 ${
-                  yearly ? "bg-[#15803D]" : "bg-[#d9ddcf]"
-                }`}
+                className={`relative flex h-8 w-16 items-center rounded-full transition-colors duration-200 ${yearly ? "bg-[#15803D]" : "bg-[#d9ddcf]"}`}
               >
                 <span
                   className={`absolute h-6 w-6 rounded-full bg-white shadow-md transition-transform duration-200 ${
@@ -130,36 +123,28 @@ export function PricingSection() {
                   }`}
                 />
               </button>
-              <span className={`text-sm sm:text-base font-semibold transition-colors ${yearly ? "text-slate-900" : "text-slate-500"}`}>
+              <span className={`text-sm font-semibold transition-colors sm:text-base ${yearly ? "text-slate-900" : "text-slate-500"}`}>
                 Yearly
               </span>
-              <span className="rounded-full bg-[#eef6e8] px-3 py-1 text-sm font-semibold text-[#15803D]">
-                Save 20%
-              </span>
+              <span className="rounded-full bg-[#eef6e8] px-3 py-1 text-sm font-semibold text-[#15803D]">Save 20%</span>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 grid gap-5 xl:grid-cols-3 xl:gap-6 items-stretch">
+        <div className="mt-12 grid items-stretch gap-5 xl:grid-cols-3 xl:gap-6">
           {pricedPlans.map((plan) => (
             <div
               key={plan.name}
-              className={`flex h-full flex-col rounded-[1.75rem] border p-6 sm:p-7 shadow-[0_18px_40px_rgba(15,23,42,0.07)] ${
+              className={`flex h-full flex-col rounded-[1.75rem] border p-6 shadow-[0_18px_40px_rgba(15,23,42,0.07)] sm:p-7 ${
                 plan.featured ? "border-[#cfe0c5] bg-[#f5f9f1]" : "border-[#e8e1d3] bg-white"
               }`}
             >
               <div className="min-h-[130px]">
                 <div className="flex items-center justify-between gap-3">
-                  <div className="text-sm sm:text-base font-semibold uppercase tracking-[0.14em] text-slate-500">{plan.name}</div>
-                  {plan.badge && (
-                    <span className="rounded-full bg-[#15803D] px-3 py-1 text-xs sm:text-sm font-semibold text-white">
-                      {plan.badge}
-                    </span>
-                  )}
+                  <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-base">{plan.name}</div>
+                  {plan.badge && <span className="rounded-full bg-[#15803D] px-3 py-1 text-xs font-semibold text-white sm:text-sm">{plan.badge}</span>}
                 </div>
-                <div className="mt-4 text-4xl font-semibold text-slate-900 sm:text-5xl xl:text-[3.2rem] leading-none">
-                  {formatPrice(plan.displayPrice)}
-                </div>
+                <div className="mt-4 text-4xl font-semibold leading-none text-slate-900 sm:text-5xl xl:text-[3.2rem]">{formatPrice(plan.displayPrice)}</div>
                 <p className="mt-4 text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">{plan.description}</p>
               </div>
 
@@ -172,27 +157,9 @@ export function PricingSection() {
                 ))}
               </ul>
 
-              {plan.missingOut && plan.missingOut.length > 0 && (
-                <div className="mt-7 border-t border-[#ebe5d9] pt-5">
-                  <div className="text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] text-[#dc2626]">
-                    What you’re missing out on
-                  </div>
-                  <ul className="mt-4 space-y-3.5">
-                    {plan.missingOut.map((point) => (
-                      <li key={point} className="flex items-start gap-3.5 text-[15px] leading-7 text-slate-600 sm:text-base xl:text-lg xl:leading-8">
-                        <XBullet />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
               {plan.highlights && (
                 <div className="mt-7 rounded-[1.25rem] border border-[#e8e1d3] bg-[#f8f6f1] p-5">
-                  <div className="text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
-                    Why teams choose this
-                  </div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-sm">Best fit when...</div>
                   <ul className="mt-4 space-y-3">
                     {plan.highlights.map((point) => (
                       <li key={point} className="text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">
@@ -209,19 +176,33 @@ export function PricingSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-base font-semibold transition-all duration-200 sm:text-lg ${
-                    plan.featured
-                      ? "bg-[#15803D] text-white hover:bg-[#166534]"
-                      : "border border-[#d8d1c4] bg-[#f8f6f1] text-slate-900 hover:bg-[#efe9dc]"
+                    plan.featured ? "bg-[#15803D] text-white hover:bg-[#166534]" : "border border-[#d8d1c4] bg-[#f8f6f1] text-slate-900 hover:bg-[#efe9dc]"
                   }`}
                 >
                   {plan.cta}
                 </Link>
+
+                {plan.missedUpside && (
+                  <div className="mt-4 rounded-[1.25rem] border border-[#e8e1d3] bg-[#fbfaf7] p-5">
+                    <div className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-sm">What you're missing out on</div>
+                    <ul className="mt-4 space-y-3">
+                      {plan.missedUpside.map((point) => (
+                        <li key={point} className="flex items-start gap-3 text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">
+                          <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#fee2e2] text-[#dc2626] text-[13px] font-semibold leading-none">
+                            ×
+                          </span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-7 rounded-[2rem] border border-[#e8e1d3] bg-[#f8f6f1] px-5 py-5 text-slate-900 shadow-[0_18px_40px_rgba(15,23,42,0.07)] sm:px-7 sm:py-6">
+        <div className="mt-7 rounded-[2rem] border border-[#ebe6da] bg-[#f9f7f2] px-5 py-5 text-slate-900 shadow-[0_10px_26px_rgba(15,23,42,0.05)] sm:px-7 sm:py-6 lg:opacity-90">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-4xl">
               <div className="flex items-start gap-4">
@@ -230,23 +211,23 @@ export function PricingSection() {
                 </div>
                 <div>
                   <div className="inline-flex rounded-full bg-[#eef6e8] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#15803D] ring-1 ring-inset ring-[#cfe0c5]">
-                    Add-on
+                    Optional visibility add-on
                   </div>
-                  <h3 className="mt-3 whitespace-nowrap text-[1.55rem] font-semibold leading-tight text-slate-900 sm:text-[1.85rem] lg:text-[1.95rem]">
-                    Stop Losing Customers to Competitors Who Show Up First
+                  <h3 className="mt-3 text-[1.45rem] font-semibold leading-tight text-slate-900 sm:text-[1.7rem] lg:text-[1.8rem]">
+                    Show up better in Google, maps, and AI search
                   </h3>
                   <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-700 sm:text-base sm:leading-7">
-                    If local buyers can’t find your business first, they usually call the company they see first. This add-on is Search engine optimization for Stanley Systems customers, improving visibility across search, maps, and AI-driven discovery so more ready-to-buy customers find you before they find a competitor.
+                    If you already want Stanley Systems handling backend workflow fixes, this optional add-on helps your business show up better in Google, maps, and AI search.
                   </p>
                 </div>
               </div>
 
               <div className="mt-5 grid gap-2.5 text-sm text-slate-700 sm:grid-cols-2 sm:text-[15px]">
                 {[
-                  "Schema markup for local / FAQ / service pages",
-                  "AI search-targeted content updates",
+                  "Content updates to help your business show up in Google and AI search",
                   "Google Business Profile optimization",
-                  "Monthly visibility + ranking report",
+                  "Local page and FAQ markup cleanup",
+                  "Simple monthly report showing where you are showing up and where you are not",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3 rounded-[1.1rem] border border-[#e3dccf] bg-white px-3.5 py-3">
                     <span className="mt-0.5 flex h-5.5 w-5.5 flex-shrink-0 items-center justify-center rounded-full bg-[#eef6e8] text-[12px] font-semibold text-[#15803D]">
@@ -261,15 +242,15 @@ export function PricingSection() {
             <div className="flex min-w-[240px] flex-col items-center justify-center gap-3 text-center lg:pl-6">
               <div>
                 <div className="text-4xl font-semibold leading-none text-slate-900 sm:text-[3.1rem]">$397<span className="ml-1 text-lg font-medium text-slate-500">/mo</span></div>
-                <div className="mt-2 text-sm font-medium text-slate-600 sm:text-base">Included in Enterprise</div>
+                <div className="mt-2 text-sm font-medium text-slate-600 sm:text-base">Included in Broader cleanup</div>
               </div>
               <Link
                 href="https://calendly.com/jadenodorczuk24/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:bg-[#166534] sm:text-lg"
+                className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-7 py-3.5 text-base font-semibold text-slate-900 transition-all duration-200 hover:bg-[#efe9dc] sm:text-lg"
               >
-                Add to my plan
+                Ask about the add-on
               </Link>
             </div>
           </div>

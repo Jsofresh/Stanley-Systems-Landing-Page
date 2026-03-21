@@ -16,8 +16,8 @@ const contactCards = [
     title: "Call us",
     description: "Call this number to schedule a call with Stanley Systems. Phone or Zoom both work.",
     compact: true,
-    value: "+1 (781) 913-7585",
-    href: "tel:+17819137585",
+    value: "+1 (617) 958-6372",
+    href: "tel:+16179586372",
   },
 ]
 
