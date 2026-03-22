@@ -9,9 +9,7 @@ export function MobileStickyCTA() {
           Call now
         </a>
         <a
-          href="https://calendly.com/jadenodorczuk24/30min"
-          target="_blank"
-          rel="noreferrer"
+          href="/contact"
           className="inline-flex flex-1 items-center justify-center rounded-full bg-[#15803D] px-4 py-3 text-sm font-semibold text-white"
         >
           Book a meeting

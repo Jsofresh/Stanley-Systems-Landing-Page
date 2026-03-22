@@ -37,7 +37,7 @@ const footerLinks: FooterSection[] = [
       { title: "Slow invoicing", href: "#pricing" },
       { title: "Missed follow-up", href: "#pricing" },
       { title: "Office handoff problems", href: "#pricing" },
-      { title: "Book a meeting", href: "https://calendly.com/jadenodorczuk24/30min", external: true },
+      { title: "Book a meeting", href: "/contact" },
     ],
   },
   {
@@ -69,7 +69,7 @@ export function Footer() {
             <Phone className="mr-2 h-4 w-4" />
             Call now
           </a>
-          <a href="https://calendly.com/jadenodorczuk24/30min" target="_blank" rel="noreferrer" className="inline-flex items-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#166534] sm:text-base">
+          <a href="/contact" className="inline-flex items-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#166534] sm:text-base">
             Book a meeting
           </a>
         </div>

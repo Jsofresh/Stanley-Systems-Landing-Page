@@ -96,7 +96,7 @@ export function PricingSection() {
   )
 
   return (
-    <section id="pricing" className="relative z-10 px-4 py-12 sm:py-16 lg:py-20">
+    <section id="pricing" className="relative z-10 scroll-mt-28 px-4 py-12 sm:scroll-mt-32 sm:py-16 lg:scroll-mt-36 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02]">
@@ -107,25 +107,36 @@ export function PricingSection() {
           </p>
 
           <div className="mt-8 flex justify-center">
-            <div className="inline-flex items-center gap-4 rounded-full border border-[#e8e1d3] bg-white px-4 py-3 shadow-[0_12px_30px_rgba(15,23,42,0.06)]">
-              <span className={`text-sm font-semibold transition-colors sm:text-base ${!yearly ? "text-slate-900" : "text-slate-500"}`}>
-                Monthly
-              </span>
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[#e8e1d3] bg-white px-4 py-3 shadow-[0_12px_30px_rgba(15,23,42,0.06)]">
               <button
                 type="button"
-                aria-pressed={yearly}
+                onClick={() => setYearly(false)}
+                className={`text-sm font-semibold transition-colors sm:text-base ${!yearly ? "text-slate-900" : "text-slate-500"}`}
+              >
+                Monthly
+              </button>
+
+              <button
+                type="button"
+                role="switch"
+                aria-checked={yearly}
+                aria-label="Toggle yearly pricing"
                 onClick={() => setYearly((value) => !value)}
-                className={`relative flex h-8 w-16 items-center rounded-full transition-colors duration-200 ${yearly ? "bg-[#15803D]" : "bg-[#d9ddcf]"}`}
+                className={`relative inline-flex h-9 w-[4.25rem] touch-manipulation items-center rounded-full transition-colors duration-200 ${yearly ? "bg-[#15803D]" : "bg-[#d9ddcf]"}`}
               >
                 <span
-                  className={`absolute h-6 w-6 rounded-full bg-white shadow-md transition-transform duration-200 ${
-                    yearly ? "translate-x-9" : "translate-x-1"
-                  }`}
+                  className={`absolute left-1 h-7 w-7 rounded-full bg-white shadow-md transition-transform duration-200 ${yearly ? "translate-x-[2rem]" : "translate-x-0"}`}
                 />
               </button>
-              <span className={`text-sm font-semibold transition-colors sm:text-base ${yearly ? "text-slate-900" : "text-slate-500"}`}>
+
+              <button
+                type="button"
+                onClick={() => setYearly(true)}
+                className={`text-sm font-semibold transition-colors sm:text-base ${yearly ? "text-slate-900" : "text-slate-500"}`}
+              >
                 Yearly
-              </span>
+              </button>
+
               <span className="rounded-full bg-[#eef6e8] px-3 py-1 text-sm font-semibold text-[#15803D]">Save 20%</span>
             </div>
           </div>
@@ -172,9 +183,7 @@ export function PricingSection() {
 
               <div className="mt-7 pt-1">
                 <Link
-                  href="https://calendly.com/jadenodorczuk24/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/contact"
                   className={`inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-base font-semibold transition-all duration-200 sm:text-lg ${
                     plan.featured ? "bg-[#15803D] text-white hover:bg-[#166534]" : "border border-[#d8d1c4] bg-[#f8f6f1] text-slate-900 hover:bg-[#efe9dc]"
                   }`}
@@ -245,7 +254,7 @@ export function PricingSection() {
                 <div className="mt-2 text-sm font-medium text-slate-600 sm:text-base">Included in Broader cleanup</div>
               </div>
               <Link
-                href="https://calendly.com/jadenodorczuk24/30min"
+                href="/contact"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-7 py-3.5 text-base font-semibold text-slate-900 transition-all duration-200 hover:bg-[#efe9dc] sm:text-lg"
@@ -259,3 +268,4 @@ export function PricingSection() {
     </section>
   )
 }
+

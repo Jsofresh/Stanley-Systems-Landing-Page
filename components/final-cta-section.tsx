@@ -15,9 +15,7 @@ export function FinalCTASection() {
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row">
           <a
-            href="https://calendly.com/jadenodorczuk24/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contact"
             className="group inline-flex items-center gap-3 rounded-full bg-[#15803D] px-8 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-[#166534] sm:text-xl lg:px-10 lg:py-5"
           >
             Book a meeting

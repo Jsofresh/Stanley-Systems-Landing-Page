@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#f7f7f4] overflow-hidden">
       <main className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#f8f8f5] via-white to-[#f4f4f1]">
-        <div className="fixed inset-0 w-full h-full opacity-35">
+        <div className="pointer-events-none fixed inset-0 h-full w-full opacity-35">
           <Aurora colorStops={["#e5e7eb", "#dbeafe", "#f1f5f9"]} amplitude={0.8} blend={0.35} speed={0.5} />
         </div>
         <div className="relative z-10">

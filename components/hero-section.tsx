@@ -27,13 +27,13 @@ export function HeroSection() {
                 Built for businesses where too much still runs on calls, texts, memory, spreadsheets, and overloaded office staff.
               </p>
 
-              <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <div className="mt-8 hidden items-start gap-4 sm:flex-row sm:items-center md:flex">
                 <Button
                   asChild
                   size="lg"
                   className="rounded-full bg-[#15803D] px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#166534] hover:shadow-lg"
                 >
-                  <a href="https://calendly.com/jadenodorczuk24/30min" target="_blank" rel="noopener noreferrer">
+                  <a href="/contact">
                     Book a meeting
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
@@ -52,29 +52,9 @@ export function HeroSection() {
                 </Button>
               </div>
 
-              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-600 sm:text-base">
+              <p className="mt-5 max-w-xl text-sm leading-6 text-slate-600 sm:mt-4 sm:text-base">
                 We will tell you what looks worth fixing first — and if it is not a fit, we will say that upfront.
               </p>
-
-              <div className="mt-6 rounded-[1.6rem] border border-[#e8e1d3] bg-[linear-gradient(180deg,#ffffff_0%,#f3efe6_100%)] p-5 shadow-[0_15px_40px_rgba(15,23,42,0.08)]">
-                <div className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">What changes</div>
-                <div className="mt-4 space-y-3">
-                  {[
-                    "Billing gets what it needs faster",
-                    "Leads stop sitting without a next step",
-                    "The team depends less on memory",
-                  ].map((item) => (
-                    <div key={item} className="flex min-h-[64px] items-center gap-3 rounded-[1.1rem] border border-[#e6e2d7] bg-white/90 px-5 py-4 text-sm leading-6 text-slate-700 sm:text-[15px]">
-                      <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#15803D]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-
-                  <div className="flex min-h-[64px] items-center rounded-[1.1rem] border border-[#ebe5d9] bg-white/90 px-5 py-4 text-sm leading-6 text-slate-600 shadow-sm">
-                    Works inside the tools your team already uses.
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="grid gap-4 lg:-ml-6 lg:mt-0 lg:gap-5 xl:-ml-8 xl:mt-0">
@@ -95,24 +75,6 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <div className="grid gap-4">
-                <div className="rounded-[1.6rem] border border-[#e8e1d3] bg-white p-5 shadow-[0_15px_40px_rgba(15,23,42,0.08)]">
-                  <div className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">What this usually looks like</div>
-                  <div className="mt-4 grid gap-3 sm:grid-cols-1 lg:grid-cols-3">
-                    {[
-                      "Invoices waiting on missing details",
-                      "Quotes sent but not followed up",
-                      "Calls and messages piling up in the office",
-                    ].map((item) => (
-                      <div key={item} className="flex min-h-[72px] items-center gap-3 rounded-[1.1rem] border border-[#ece6d9] bg-[#fbfaf7] px-4 py-4 text-sm leading-6 text-slate-700 sm:text-[15px]">
-                        <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#b91c1c]" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-              </div>
             </div>
           </div>
         </div>
