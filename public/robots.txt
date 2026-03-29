@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /car-dealerships
+
+Sitemap: https://stanley-systems.com/sitemap.xml

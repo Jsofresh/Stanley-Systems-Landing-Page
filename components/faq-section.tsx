@@ -55,6 +55,21 @@ const faqs = [
     answer:
       "Yes. Most clients do not start with perfect systems. The work is usually to clean up the handoffs, repeat tasks, and follow-up that are still being done manually. In a lot of cases, that is exactly why Stanley Systems helps in the first place. The goal is to reduce the office drag without forcing the team into a completely different way of operating overnight.",
   },
+  {
+    question: "Why not just use ServiceTitan, Jobber, or Housecall Pro for this?",
+    answer:
+      "If your software already solves the problem cleanly, that is great. In a lot of businesses, the bottleneck is not the software feature list. It is the handoff between systems, the way the office actually uses them, or the work that still happens outside the platform in texts, inboxes, spreadsheets, and memory. Stanley Systems is there to clean up that gap instead of pretending one tool setting solves everything.",
+  },
+  {
+    question: "Why not just hire another office person?",
+    answer:
+      "Sometimes hiring is the right move. But a lot of owners hire into a messy process and end up paying someone new to chase the same missing information. Stanley Systems is meant to make the workflow cleaner first, so the team you already have can work better and any future hire walks into a process that actually makes sense.",
+  },
+  {
+    question: "I have been burned by consultants before. Why is this different?",
+    answer:
+      "That is common. A lot of owners have paid for advice, documents, or big promises and still ended up doing the hard part themselves. Stanley Systems is built to be more practical than that. The work is to fix the bottleneck inside the real tools and handoffs your business already uses, keep it grounded, and be direct if something is not worth building.",
+  },
 ]
 
 const leftColumn = faqs.filter((_, index) => index % 2 === 0)

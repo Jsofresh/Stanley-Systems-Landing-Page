@@ -2,19 +2,19 @@ import { BookOpenText, FolderCog, ShieldCheck, Wrench } from "lucide-react"
 
 const trustPoints = [
   {
-    text: "Stanley Systems works inside the tools your team already uses.",
+    text: "Stanley Systems works inside the tools your team already uses, instead of forcing a whole new operating layer onto the business.",
     icon: Wrench,
   },
   {
-    text: "The team does not have to learn a whole new system just to keep the business moving.",
+    text: "If something is not worth building yet, you should hear that directly before spending time or money on it.",
     icon: ShieldCheck,
   },
   {
-    text: "You own 100% of what gets built.",
+    text: "You own the workflows, documentation, and operating logic that get built. Nothing is held hostage behind a black box.",
     icon: FolderCog,
   },
   {
-    text: "No confusing setup and no mystery handoff.",
+    text: "The goal is practical control: fewer owner rescues, cleaner office handoffs, and clearer next steps for the team.",
     icon: BookOpenText,
   },
 ] as const
@@ -29,6 +29,9 @@ export function TrustOwnershipSection() {
           </h2>
           <p className="mt-5 text-xl leading-9 text-slate-600 sm:text-[1.28rem]">
             Stanley Systems is not trying to wrap your business in another confusing layer. The setup stays yours, the documentation stays yours, and the team is not left guessing how the handoff works.
+          </p>
+          <p className="mt-5 text-base leading-7 text-slate-600">
+            The practical standard is simple: make the workflow easier to run, easier to inspect, and easier to hand off without creating a dependency that traps the business later.
           </p>
         </div>
 

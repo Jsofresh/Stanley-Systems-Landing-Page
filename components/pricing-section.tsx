@@ -216,8 +216,26 @@ export function PricingSection() {
           ))}
         </div>
 
-        <div className="mt-7 rounded-[2rem] border border-[#ebe6da] bg-[#f9f7f2] px-5 py-5 text-slate-900 shadow-[0_10px_26px_rgba(15,23,42,0.05)] sm:px-7 sm:py-6 lg:opacity-90">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-7 rounded-[2rem] border border-[#dfe8d9] bg-[linear-gradient(180deg,#f5f9f1_0%,#ffffff_100%)] px-5 py-6 text-slate-900 shadow-[0_10px_26px_rgba(15,23,42,0.05)] sm:px-7 sm:py-7 lg:opacity-90">
+          <div className="rounded-[1.5rem] border border-[#dfe8d9] bg-white px-5 py-5 shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:px-6">
+            <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Quick ROI reality check</div>
+            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 sm:text-[1.95rem]">
+              This usually makes financial sense long before it feels like a big project.
+            </h3>
+            <div className="mt-5 grid gap-4 lg:grid-cols-3">
+              {[
+                "If one missed follow-up costs a decent job, a cleanup that prevents that can pay for itself quickly.",
+                "If billing moves a few days faster across the month, the cash-flow improvement can matter more than the fee.",
+                "If this replaces part of the owner rescue work or delays the need for another admin hire, the math gets easier fast.",
+              ].map((item) => (
+                <div key={item} className="rounded-[1.2rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-4 text-sm leading-7 text-slate-700 sm:text-[15px]">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 flex flex-col gap-5 lg:mt-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-4xl">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-[#d9e7d1] bg-[linear-gradient(180deg,#f8fbf4_0%,#edf6e7_100%)] shadow-[0_8px_18px_rgba(21,128,61,0.08)]">

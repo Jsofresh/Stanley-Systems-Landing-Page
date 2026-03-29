@@ -1,6 +1,8 @@
 import SlideIn from "@/components/SlideIn"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone } from "lucide-react"
+import { CTALink } from "@/components/cta-link"
+import { CTAPhoneLink } from "@/components/cta-phone-link"
 
 export function HeroSection() {
   return (
@@ -25,11 +27,11 @@ export function HeroSection() {
               <SlideIn direction="up" delay={150} duration={800}>
                 <div>
                   <p className="max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl">
-                    Stanley Systems helps service businesses get invoices out faster, stay on top of estimates, and clean up the handoffs between the field, office, and billing — without forcing the team into a whole new system.
+                    Stanley Systems helps service businesses get invoices out faster, stay on top of estimates, and clean up the handoffs between the field, office, and billing without forcing the team into a whole new system.
                   </p>
 
-                  <p className="mt-4 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-                    Built for businesses where too much still runs on calls, texts, memory, spreadsheets, and overloaded office staff.
+                  <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+                    Best fit for owner-led service businesses where completed work, estimate follow-up, or office handoff still depends on calls, texts, memory, spreadsheets, and overloaded admin time.
                   </p>
                 </div>
               </SlideIn>
@@ -41,10 +43,10 @@ export function HeroSection() {
                   size="lg"
                   className="rounded-full bg-[#15803D] px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#166534] hover:shadow-lg"
                 >
-                  <a href="/contact">
+                  <CTALink href="/contact" kind="book_meeting" location="hero_primary">
                     Book a meeting
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
+                  </CTALink>
                 </Button>
 
                 <Button
@@ -53,16 +55,16 @@ export function HeroSection() {
                   size="lg"
                   className="rounded-full border-[#d8d1c4] bg-white px-8 py-4 text-base font-semibold text-slate-900 transition-all duration-200 hover:border-[#cfc7b9] hover:bg-[#f4efe6]"
                 >
-                  <a href="tel:+16179586372" className="inline-flex items-center justify-center text-center">
+                  <CTAPhoneLink href="tel:+16179586372" location="hero_secondary" className="inline-flex items-center justify-center text-center">
                     <Phone className="mr-2 h-5 w-5" />
                     Talk to the front desk
-                  </a>
+                  </CTAPhoneLink>
                 </Button>
                 </div>
               </SlideIn>
 
-              <p className="mt-5 max-w-xl text-sm leading-6 text-slate-600 sm:mt-4 sm:text-base">
-                We will tell you what looks worth fixing first, and if it is not a fit, we will say that upfront.
+              <p className="mt-5 max-w-2xl text-sm leading-6 text-slate-600 sm:mt-4 sm:text-base">
+                We will tell you what looks worth fixing first, what is probably not worth building yet, and whether the bottleneck is really costing enough to matter.
               </p>
 
             </div>

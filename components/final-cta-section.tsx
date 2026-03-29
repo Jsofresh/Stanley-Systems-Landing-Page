@@ -1,5 +1,7 @@
 import SlideIn from "@/components/SlideIn"
 import { ArrowRight, Phone } from "lucide-react"
+import { CTALink } from "@/components/cta-link"
+import { CTAPhoneLink } from "@/components/cta-phone-link"
 
 export function FinalCTASection() {
   return (
@@ -19,21 +21,24 @@ export function FinalCTASection() {
           No pressure. No software pitch. Just a clear look at what is slowing the business down.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row">
-          <a
+          <CTALink
             href="/contact"
+            kind="book_meeting"
+            location="final_cta_primary"
             className="group inline-flex items-center gap-3 rounded-full bg-[#15803D] px-8 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-[#166534] sm:text-xl lg:px-10 lg:py-5"
           >
             Let's talk about your workflow
             <ArrowRight className="h-6 w-6 transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
+          </CTALink>
 
-          <a
+          <CTAPhoneLink
             href="tel:+16179586372"
+            location="final_cta_secondary"
             className="inline-flex items-center gap-3 rounded-full border border-[#d8d1c4] bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f3eee2] sm:text-xl lg:px-10 lg:py-5"
           >
             <Phone className="h-5 w-5" />
             Call now
-          </a>
+          </CTAPhoneLink>
         </div>
       </div>
     </section>

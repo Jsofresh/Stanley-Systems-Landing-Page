@@ -83,13 +83,16 @@ export default function StanleySystemsCaseStudyPage() {
           </div>
 
           <section className="mt-12 rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Current proof posture</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What has already been clarified</p>
             <div className="mt-6 space-y-5 text-base leading-7 text-slate-600">
               <p>
-                Coastline Marine Service is the strongest real operating example Stanley Systems can point to right now. The proof is not framed as a giant transformation story. It is framed around specific workflow bottlenecks that matter to a service business: where information gets stuck, where billing slows down, and where the handoff between systems creates extra admin drag.
+                Coastline Marine Service is the clearest live example of how Stanley Systems works in practice. The point of this page is not to inflate it into a giant transformation story. The point is to show the kind of operational bottleneck Stanley actually steps into: billing handoffs, intake handoffs, and the office-side drag that starts after the work itself is already done.
               </p>
               <p>
-                The current public posture should stay practical and honest. The story is that Stanley Systems is helping define and clean up the highest-value handoffs first, starting with Wallace to QuickBooks and then the intake path into Wallace. That is stronger and more trustworthy than pretending the business already has a stack of inflated before-and-after claims.
+                The real proof here is specific, not flashy. Wallace to QuickBooks was identified as the top priority. Intake into Wallace was identified as the next handoff to tighten. That is already more trustworthy than generic automation language because it shows where the drag actually lives.
+              </p>
+              <p>
+                As stronger measured outcomes become available, they should be added. Until then, the strongest honest version of the case study is: here is the workflow problem, here is the priority order, and here is why fixing those handoffs matters to cash flow and office control.
               </p>
             </div>
           </section>
