@@ -11,6 +11,13 @@ export function MarineExampleSection() {
               Coastline Marine is proof this works in a real service business. Billing, handoffs, and follow-up moved faster without forcing the team into a whole new system.
             </p>
 
+            <a
+              href="/contact"
+              className="mt-7 inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-[#166534]"
+            >
+              Get the same audit for your business
+            </a>
+
             <div className="mt-8 rounded-[1.5rem] border border-[#e8e1d3] bg-[#fbfaf7] p-5 shadow-[0_10px_24px_rgba(15,23,42,0.04)] sm:p-6">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-1.5 text-lg leading-none text-[#15803D]">
@@ -27,7 +34,7 @@ export function MarineExampleSection() {
               <p className="mt-4 text-[1.02rem] leading-7 text-slate-700 sm:text-[1.08rem]">
                 “Stanley Systems helped us save 10+ hours a week of manual data entry and cut down the kind of human errors that were slowing the business down. The workflow is cleaner, billing moves faster, and the team is not stuck retyping the same information all day.”
               </p>
-              <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Coastline Marine</div>
+              <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Jessica — Coastline Marine</div>
             </div>
           </div>
 

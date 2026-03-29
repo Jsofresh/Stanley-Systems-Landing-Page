@@ -19,25 +19,37 @@ interface FooterSection {
 }
 
 const STANLEY_FACEBOOK_URL = "https://www.facebook.com/stanleysystems/"
-const STANLEY_LINKEDIN_URL = "https://www.linkedin.com/company/stanley-systems"
+const STANLEY_LINKEDIN_URL = "https://www.linkedin.com/company/stanley-systems/"
 
 const footerLinks: FooterSection[] = [
   {
     label: "Explore",
     links: [
       { title: "Home", href: "/" },
+      { title: "About", href: "/about" },
+      { title: "Who Stanley helps", href: "/who-stanley-systems-helps" },
+      { title: "How Stanley works", href: "/how-stanley-systems-works" },
+      { title: "Case study", href: "/stanley-systems-case-study" },
       { title: "Contact", href: "/contact" },
       { title: "Blog", href: "/blog" },
-      { title: "Privacy Policy", href: "/privacy-policy" },
     ],
   },
   {
     label: "What Stanley fixes",
     links: [
-      { title: "Slow invoicing", href: "#pricing" },
-      { title: "Missed follow-up", href: "#pricing" },
-      { title: "Office handoff problems", href: "#pricing" },
+      { title: "Slow invoicing", href: "/blog/real-cost-of-slow-invoicing-service-business" },
+      { title: "Missed estimate follow-up", href: "/missed-estimate-follow-up-for-service-businesses" },
+      { title: "Office handoff problems", href: "/office-handoff-problems-in-field-service-businesses" },
       { title: "Book a meeting", href: "/contact" },
+    ],
+  },
+  {
+    label: "Industries",
+    links: [
+      { title: "Marine service automation", href: "/marine-service-automation" },
+      { title: "Field service automation", href: "/field-service-automation" },
+      { title: "Who Stanley helps", href: "/who-stanley-systems-helps" },
+      { title: "How Stanley works", href: "/how-stanley-systems-works" },
     ],
   },
   {
@@ -77,13 +89,14 @@ export function Footer() {
 
       <div className="grid w-full gap-8 xl:grid-cols-[1.1fr_3.4fr] xl:gap-12">
         <AnimatedContainer className="space-y-4">
-          <div className="flex size-16 items-center justify-center rounded-2xl border border-[#e8e1d3] bg-[#f8f6f1] shadow-sm">
+          <div className="flex size-32 items-center justify-center">
             <Image
-              src="/generated-logo-icon/001-create-an-icon-only-professional-logo-ma.png"
+              src="/stanley-logo-new.jpg"
               alt="Stanley Systems logo"
-              width={44}
-              height={44}
-              className="h-11 w-11 object-contain"
+              width={128}
+              height={128}
+              className="h-32 w-32 object-contain"
+              priority
             />
           </div>
           <div className="hidden text-sm text-slate-500 md:block">

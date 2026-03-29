@@ -1,5 +1,6 @@
 "use client"
 
+import SlideIn from "@/components/SlideIn"
 import Link from "next/link"
 import { Search } from "lucide-react"
 import { useMemo, useState } from "react"
@@ -7,7 +8,7 @@ import { useMemo, useState } from "react"
 const plans = [
   {
     name: "Starter",
-    monthlyPrice: 497,
+    monthlyPrice: 337,
     description: "Best fit when one major office or billing problem needs to be fixed first.",
     points: [
       "Fix one major office or billing problem first",
@@ -16,15 +17,15 @@ const plans = [
       "Simple monthly review",
     ],
     missedUpside: [
-      "Invoices can still sit longer than they should",
-      "Good leads can still cool off without follow-up",
-      "Simple admin work can keep chewing up office time",
+      "A complete billing + follow-up + office handoff fix that removes multiple bottlenecks at once",
+      "Clean data handoffs between your tools so the team stops retyping the same details",
+      "Clear visibility into what is done, what is stuck, and what needs attention (so nothing silently slips)",
     ],
     cta: "Book a meeting",
   },
   {
     name: "Growth",
-    monthlyPrice: 997,
+    monthlyPrice: 667,
     description: "Best fit when billing, follow-up, and office handoffs are all creating drag.",
     points: [
       "Fix multiple breakdowns across billing, follow-up, and office handoffs",
@@ -33,9 +34,9 @@ const plans = [
       "Faster help when something needs attention",
     ],
     missedUpside: [
-      "More estimates can slip through without a next step",
-      "The team can keep retyping the same information",
-      "Office bottlenecks can keep slowing booked work down",
+      "Broader cleanup across the business (not just the first few bottlenecks)",
+      "More hands-on support getting fixes implemented and adopted by the team",
+      "Planning and build-out for tougher tool handoffs that need custom work",
     ],
     cta: "Book a meeting",
     featured: true,
@@ -43,7 +44,7 @@ const plans = [
   },
   {
     name: "Broader cleanup",
-    monthlyPrice: 1997,
+    monthlyPrice: 1337,
     description: "Best fit when the business has multiple bottlenecks and needs more hands-on support.",
     points: [
       "Broader cleanup across the business",
@@ -72,9 +73,9 @@ function formatPrice(price: number) {
 function getDisplayPrice(monthlyPrice: number, yearly: boolean) {
   if (!yearly) return monthlyPrice
 
-  if (monthlyPrice === 497) return 397
-  if (monthlyPrice === 997) return 797
-  if (monthlyPrice === 1997) return 1597
+  if (monthlyPrice === 337) return 269
+  if (monthlyPrice === 667) return 529
+  if (monthlyPrice === 1337) return 1059
 
   return Math.round(monthlyPrice * 0.8)
 }
@@ -99,12 +100,16 @@ export function PricingSection() {
     <section id="pricing" className="relative z-10 scroll-mt-28 px-4 py-12 sm:scroll-mt-32 sm:py-16 lg:scroll-mt-36 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02]">
-            Simple pricing based on how much needs to be fixed
-          </h2>
-          <p className="mx-auto mt-6 max-w-4xl text-xl leading-9 text-slate-700 sm:text-[1.3rem] lg:text-[1.4rem] lg:leading-10">
-            Most businesses start with one major bottleneck: invoicing, follow-up, or office handoffs. Stanley Systems can start narrow or go broader depending on how much is breaking at once.
-          </p>
+          <SlideIn direction="up">
+            <h2 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02]">
+              Simple pricing based on how much needs to be fixed
+            </h2>
+          </SlideIn>
+          <SlideIn direction="up" delay={120}>
+            <p className="mx-auto mt-6 max-w-4xl text-xl leading-9 text-slate-700 sm:text-[1.3rem] lg:text-[1.4rem] lg:leading-10">
+              Most businesses start with one major bottleneck: invoicing, follow-up, or office handoffs. Stanley Systems can start narrow or go broader depending on how much is breaking at once. If this helps you save or win just one decent job, it can easily pay for itself.
+            </p>
+          </SlideIn>
 
           <div className="mt-8 flex justify-center">
             <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[#e8e1d3] bg-white px-4 py-3 shadow-[0_12px_30px_rgba(15,23,42,0.06)]">
@@ -137,77 +142,77 @@ export function PricingSection() {
                 Yearly
               </button>
 
-              <span className="rounded-full bg-[#eef6e8] px-3 py-1 text-sm font-semibold text-[#15803D]">Save 20%</span>
             </div>
           </div>
         </div>
 
         <div className="mt-12 grid items-stretch gap-5 xl:grid-cols-3 xl:gap-6">
-          {pricedPlans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`flex h-full flex-col rounded-[1.75rem] border p-6 shadow-[0_18px_40px_rgba(15,23,42,0.07)] sm:p-7 ${
-                plan.featured ? "border-[#cfe0c5] bg-[#f5f9f1]" : "border-[#e8e1d3] bg-white"
-              }`}
-            >
-              <div className="min-h-[130px]">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-base">{plan.name}</div>
-                  {plan.badge && <span className="rounded-full bg-[#15803D] px-3 py-1 text-xs font-semibold text-white sm:text-sm">{plan.badge}</span>}
+          {pricedPlans.map((plan, index) => (
+            <SlideIn key={plan.name} direction="up" delay={index * 110}>
+              <div
+                className={`flex h-full flex-col rounded-[1.75rem] border p-6 shadow-[0_18px_40px_rgba(15,23,42,0.07)] sm:p-7 ${
+                  plan.featured ? "border-[#cfe0c5] bg-[#f5f9f1]" : "border-[#e8e1d3] bg-white"
+                }`}
+              >
+                <div className="min-h-[130px]">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-base">{plan.name}</div>
+                    {plan.badge && <span className="rounded-full bg-[#15803D] px-3 py-1 text-xs font-semibold text-white sm:text-sm">{plan.badge}</span>}
+                  </div>
+                  <div className="mt-4 text-4xl font-semibold leading-none text-slate-900 sm:text-5xl xl:text-[3.2rem]">{formatPrice(plan.displayPrice)}</div>
+                  <p className="mt-4 text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">{plan.description}</p>
                 </div>
-                <div className="mt-4 text-4xl font-semibold leading-none text-slate-900 sm:text-5xl xl:text-[3.2rem]">{formatPrice(plan.displayPrice)}</div>
-                <p className="mt-4 text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">{plan.description}</p>
-              </div>
 
-              <ul className="mt-6 space-y-3.5">
-                {plan.points.map((point) => (
-                  <li key={point} className="flex items-start gap-3.5 text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">
-                    <CheckBullet />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+                <ul className="mt-6 space-y-3.5">
+                  {plan.points.map((point) => (
+                    <li key={point} className="flex items-start gap-3.5 text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">
+                      <CheckBullet />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              {plan.highlights && (
-                <div className="mt-7 rounded-[1.25rem] border border-[#e8e1d3] bg-[#f8f6f1] p-5">
-                  <div className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-sm">Best fit when...</div>
-                  <ul className="mt-4 space-y-3">
-                    {plan.highlights.map((point) => (
-                      <li key={point} className="text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="mt-7 pt-1">
-                <Link
-                  href="/contact"
-                  className={`inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-base font-semibold transition-all duration-200 sm:text-lg ${
-                    plan.featured ? "bg-[#15803D] text-white hover:bg-[#166534]" : "border border-[#d8d1c4] bg-[#f8f6f1] text-slate-900 hover:bg-[#efe9dc]"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
-
-                {plan.missedUpside && (
-                  <div className="mt-4 rounded-[1.25rem] border border-[#e8e1d3] bg-[#fbfaf7] p-5">
-                    <div className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-sm">What you're missing out on</div>
+                {plan.highlights && (
+                  <div className="mt-7 rounded-[1.25rem] border border-[#e8e1d3] bg-[#f8f6f1] p-5">
+                    <div className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-sm">Best fit when...</div>
                     <ul className="mt-4 space-y-3">
-                      {plan.missedUpside.map((point) => (
-                        <li key={point} className="flex items-start gap-3 text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">
-                          <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#fee2e2] text-[#dc2626] text-[13px] font-semibold leading-none">
-                            ×
-                          </span>
-                          <span>{point}</span>
+                      {plan.highlights.map((point) => (
+                        <li key={point} className="text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">
+                          {point}
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
+
+                <div className="mt-7 pt-1">
+                  <Link
+                    href="/contact"
+                    className={`inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-base font-semibold transition-all duration-200 sm:text-lg ${
+                      plan.featured ? "bg-[#15803D] text-white hover:bg-[#166534]" : "border border-[#d8d1c4] bg-[#f8f6f1] text-slate-900 hover:bg-[#efe9dc]"
+                    }`}
+                  >
+                    {plan.cta}
+                  </Link>
+
+                  {plan.missedUpside && (
+                    <div className="mt-4 rounded-[1.25rem] border border-[#e8e1d3] bg-[#fbfaf7] p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-sm">What you're missing out on</div>
+                      <ul className="mt-4 space-y-3">
+                        {plan.missedUpside.map((point) => (
+                          <li key={point} className="flex items-start gap-3 text-[15px] leading-7 text-slate-700 sm:text-base xl:text-lg xl:leading-8">
+                            <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#fee2e2] text-[#dc2626] text-[13px] font-semibold leading-none">
+                              ×
+                            </span>
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            </SlideIn>
           ))}
         </div>
 
@@ -226,7 +231,7 @@ export function PricingSection() {
                     Show up better in Google, maps, and AI search
                   </h3>
                   <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-700 sm:text-base sm:leading-7">
-                    If you already want Stanley Systems handling backend workflow fixes, this optional add-on helps your business show up better in Google, maps, and AI search.
+                    If you already want Stanley Systems handling backend workflow fixes, this optional add-on helps your business show up better in Google, maps, and AI search. If it brings in one solid job you would not have gotten otherwise, it can pay for itself.
                   </p>
                 </div>
               </div>
@@ -268,4 +273,3 @@ export function PricingSection() {
     </section>
   )
 }
-

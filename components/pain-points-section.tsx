@@ -59,6 +59,15 @@ export function PainPointsSection() {
               )
             })}
           </div>
+
+          <div className="mt-8 flex justify-center">
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-[#166534]"
+            >
+              Show us where you're getting stuck
+            </a>
+          </div>
         </div>
       </div>
     </section>

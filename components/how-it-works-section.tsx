@@ -1,3 +1,4 @@
+import SlideIn from "@/components/SlideIn"
 import { ArrowRight } from "lucide-react"
 
 const steps = [
@@ -55,15 +56,17 @@ export function HowItWorksSection() {
     <section id="how-it-works" className="relative z-10 px-4 py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-[1480px]">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            How Stanley Systems fixes the problem
-          </h2>
+          <SlideIn direction="up">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+              How Stanley Systems fixes the problem
+            </h2>
+          </SlideIn>
         </div>
 
         <div className="mt-12 grid gap-5 lg:grid-cols-[minmax(0,1.22fr)_auto_minmax(0,1.22fr)_auto_minmax(0,1.22fr)] lg:items-stretch lg:gap-3">
           {steps.map((step, index) => (
             <div key={step.number} className="contents">
-              <div className="h-full">
+              <SlideIn direction="up" delay={index * 110} className="h-full">
                 <div className="flex h-full min-h-[29rem] flex-col rounded-[1rem] border border-[#e7e1d6] bg-white p-7 shadow-[0_18px_42px_rgba(15,23,42,0.07)] sm:min-h-[30rem] sm:p-8">
                   <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563eb]">Step {step.number}</div>
                   <h3 className="mt-5 text-2xl font-semibold leading-9 text-slate-900 sm:text-[1.85rem] sm:leading-[1.25]">
@@ -81,7 +84,7 @@ export function HowItWorksSection() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </SlideIn>
 
               {index < steps.length - 1 && (
                 <div className="hidden items-center justify-center lg:flex">
@@ -91,6 +94,15 @@ export function HowItWorksSection() {
             </div>
           ))}
         </div>
+
+      <div className="mt-10 flex justify-center">
+        <a
+          href="/contact"
+          className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-[#166534]"
+        >
+          See what's worth fixing first
+        </a>
+      </div>
       </div>
     </section>
   )

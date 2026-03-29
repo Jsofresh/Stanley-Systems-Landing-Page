@@ -13,8 +13,8 @@ const contactCards = [
   },
   {
     icon: Phone,
-    title: "Call us",
-    description: "Call this number to schedule a call with Stanley Systems. Phone or Zoom both work.",
+    title: "Talk to the front desk",
+    description: "Call the front desk line to talk through what is slowing the business down and get pointed in the right direction.",
     compact: true,
     value: "+1 (617) 958-6372",
     href: "tel:+16179586372",

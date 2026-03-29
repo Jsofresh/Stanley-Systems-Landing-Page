@@ -7,9 +7,10 @@ import Link from "next/link"
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
 
 const navigation = [
+  { name: "About", href: `${basePath}/about` },
   { name: "How it works", href: `${basePath || ""}/#how-it-works` },
-  { name: "Pricing", href: `${basePath || ""}/#pricing` },
-  { name: "FAQ", href: `${basePath || ""}/#before-you-book` },
+  { name: "Who we help", href: `${basePath}/who-stanley-systems-helps` },
+  { name: "Proof", href: `${basePath}/stanley-systems-case-study` },
   { name: "Blog", href: `${basePath}/blog` },
   { name: "Contact", href: `${basePath}/contact` },
 ]
@@ -135,7 +136,7 @@ export function GlassmorphismNav() {
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3.5 text-base font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6]"
                 >
                   <Phone size={17} className="mr-2" />
-                  Call now
+                  Talk to the front desk
                 </a>
                 <button
                   className="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-5 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-slate-800"

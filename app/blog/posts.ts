@@ -19,6 +19,135 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "why-the-plumber-waits-3-weeks-to-get-paid",
+    title: "Why the plumber who does great work still waits 3 weeks to get paid",
+    excerpt:
+      "The job is done and the customer is happy. But the invoice is still sitting in a note, waiting for a quiet moment that never comes. Here is why the gap happens, and how to fix it operationally.",
+    category: "Operations",
+    readTime: "6 min read",
+    seoTitle: "Why Plumbers Wait Weeks to Get Paid | Stanley Systems",
+    metaDescription:
+      "A story-driven look at why great trade contractors still wait weeks to get paid, plus the simple workflow fixes that get invoices out faster.",
+    publishedLabel: "March 24, 2026",
+    intro:
+      "The job is finished. The customer is satisfied. The crew is already on the next call. Then three weeks pass before the invoice goes out. Most owners assume this is a customer problem. Most of the time, it is not. It is a handoff problem.",
+    sections: [
+      {
+        heading: "A day that looks normal until you do the billing math",
+        paragraphs: [
+          "It is 7:10 a.m. The first call is already on the calendar and the phone is buzzing. Someone needs an ETA. A supplier is asking about a part. A tech is sending a photo and asking if the customer approved the change order.",
+          "By noon, you have done real work. You also have a growing pile of small decisions that live in texts, call logs, and half-written notes. Nothing is broken. But nothing is captured cleanly either.",
+          "By the end of the day, the only quiet moment is the one you do not have. You tell yourself you will invoice tomorrow. Tomorrow turns into next week."
+        ],
+      },
+      {
+        heading: "Why it is almost never the customer’s fault",
+        paragraphs: [
+          "When invoices go out late, owners often assume the customer is slow. But in most trade businesses, the delay starts before the invoice is even created.",
+          "The real issue is that billing needs a complete story of the job. What was done. What changed. What materials were used. What the customer approved. If those details are split across devices and people, invoicing becomes reconstruction work.",
+          "That is how a company can do great work and still get paid late. The work is clean. The handoff is not."
+        ],
+        bullets: [
+          "job details live in texts and calls instead of one billing-ready place",
+          "change orders are approved verbally but not recorded cleanly",
+          "materials and labor notes arrive late or in inconsistent formats",
+          "the office has to chase the field team to fill in gaps",
+          "owners end up acting as the backup system"
+        ],
+      },
+      {
+        heading: "What the fix actually looks like",
+        paragraphs: [
+          "The fix is not a bigger accounting tool. It is a cleaner closeout.",
+          "A good workflow makes it hard to finish a job without producing invoice-ready information. It captures the few details billing always needs, and it routes exceptions to a human quickly instead of letting them sit in the dark.",
+          "When the closeout is clean, invoicing becomes a simple next step. Not a nightly project."
+        ],
+        bullets: [
+          "a clear trigger for job completion",
+          "a short checklist for the few fields billing always needs",
+          "photos, approvals, and notes attached to the job record",
+          "automatic handoff to billing when the job is marked complete",
+          "exceptions flagged the same day"
+        ],
+      },
+      {
+        heading: "The outcome owners actually feel",
+        paragraphs: [
+          "Faster invoicing is not just cash flow. It is fewer interruptions, fewer follow up calls, and fewer nights doing detective work.",
+          "You stop carrying finished work like a silent liability. The office gets a rhythm again. The owner gets breathing room."
+        ],
+      },
+    ],
+    ctaTitle: "Want invoices to stop depending on memory?",
+    ctaBody:
+      "Stanley Systems helps trade and service businesses fix the exact problems above inside the tools you already use, without a big software switch. If any of this sounds familiar, we are easy to reach at /contact.",
+  },
+  {
+    slug: "the-estimate-that-went-cold-and-the-4000-job",
+    title: "The estimate that went cold (and the $4,000 job that went with it)",
+    excerpt:
+      "A quote goes out on Friday. Monday gets slammed. By Wednesday, the lead has hired someone else. This is rarely a sales problem. It is a follow-up system problem.",
+    category: "Follow-up",
+    readTime: "6 min read",
+    seoTitle: "The Estimate That Went Cold and the $4,000 Job | Stanley Systems",
+    metaDescription:
+      "A narrative-first look at how trade estimates go cold and what automated follow-up looks like when it still feels human.",
+    publishedLabel: "March 24, 2026",
+    intro:
+      "Most trade owners have a few leads they still remember. Not because the job was complicated. Because it should have been easy. A clean quote. A fair price. A good fit. Then silence."
+    ,
+    sections: [
+      {
+        heading: "How a good lead slips away",
+        paragraphs: [
+          "Friday afternoon, a homeowner requests an estimate. You squeeze it in between jobs, send the quote, and move on.",
+          "By Monday, you are dealing with an urgent call, a late supplier, and a tech who needs help. The quote is still sitting in a sent email with no next step.",
+          "By Wednesday, the customer has picked someone else. Not because you were expensive. Because you were quiet."
+        ],
+      },
+      {
+        heading: "Why this is a system problem, not a sales problem",
+        paragraphs: [
+          "Owners blame themselves for not following up. But the real issue is that follow-up is treated like a personal habit instead of an operational step.",
+          "If the next step is not scheduled, tracked, and triggered, it will get crowded out by the next urgent thing. That is not a character flaw. That is how the day works.",
+          "The fix is to make follow-up a default behavior of the system, not a heroic effort by one person."
+        ],
+        bullets: [
+          "follow-up has no owner or timeline",
+          "quotes are sent without an automatic next step",
+          "replies arrive in different channels and get missed",
+          "busy days erase good intentions",
+          "leads go cold quietly"
+        ],
+      },
+      {
+        heading: "What automated follow-up looks like when it still feels human",
+        paragraphs: [
+          "Good follow-up automation is not spam. It is a simple, timely nudge that sounds like the business and gives the customer an easy reply path.",
+          "Most of the follow-up can run automatically. The few replies that need a real person get routed fast, with context, so the team can respond without digging through old messages.",
+          "That is how you keep good leads warm without living in your inbox."
+        ],
+        bullets: [
+          "a short sequence that stops when the customer replies",
+          "messages that reference the job and make it easy to answer",
+          "handoff to a human for the exceptions",
+          "visibility into what is pending and what is done",
+          "one place to see the status"
+        ],
+      },
+      {
+        heading: "A softer way to measure what you are losing",
+        paragraphs: [
+          "If one $4,000 job slips away each month, that is $48,000 a year. Most owners never count it because it does not show up as an expense line.",
+          "But it is real. And it is fixable."
+        ],
+      },
+    ],
+    ctaTitle: "Want follow-up to happen without chasing it?",
+    ctaBody:
+      "Stanley Systems helps trade and service businesses fix the exact problems above inside the tools you already use, without a big software switch. If any of this sounds familiar, we are easy to reach at /contact.",
+  },
+  {
     slug: "real-cost-of-slow-invoicing-service-business",
     title: "The real cost of slow invoicing in a service business",
     excerpt:
