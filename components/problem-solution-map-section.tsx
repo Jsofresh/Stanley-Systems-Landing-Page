@@ -92,7 +92,7 @@ export function ProblemSolutionMapSection() {
               <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#9f1239]">What is breaking down</div>
             </div>
             <div className="flex items-center justify-center rounded-[1.25rem] border border-[#d7e7d5] bg-[linear-gradient(180deg,#f9fcf7_0%,#eff7ea_100%)] px-5 py-3 text-center shadow-[0_14px_32px_rgba(21,128,61,0.05)]">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#166534]">What Stanley fixes</div>
+              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#166534]">What Stanley Systems fixes</div>
             </div>
           </div>
 
@@ -133,7 +133,7 @@ export function ProblemSolutionMapSection() {
 
                 <SlideIn direction="right" delay={index * 90} className="h-full">
                   <div className="flex h-full flex-col rounded-[1.35rem] border border-[#dfead9] bg-[linear-gradient(180deg,#ffffff_0%,#f7fbf4_100%)] p-4 shadow-sm sm:p-[1.05rem]">
-                    <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#166534] lg:hidden">What Stanley fixes</div>
+                    <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#166534] lg:hidden">What Stanley Systems fixes</div>
                     <div className="flex flex-col gap-3">
                       <div className="flex items-start gap-3">
                         <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.8rem] border border-[#d7e7d5] bg-white text-[#15803d] shadow-sm">

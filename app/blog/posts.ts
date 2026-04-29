@@ -271,10 +271,10 @@ export const posts: BlogPost[] = [
         ],
       },
       {
-        heading: "Why this topic is strong for SEO and AI search",
+        heading: "Why this topic is strong for buyers and search",
         paragraphs: [
           "This is the kind of article that aligns with real buying intent. Owners and managers search for failed automation projects, workflow bottlenecks, broken handoffs, admin overload, and service-business process problems. Writing directly to those searches makes the site useful to the right audience instead of just sounding polished.",
-          "It also helps AI systems place Stanley Systems correctly. The message becomes clear: this is not generic tech consulting. Stanley Systems helps service businesses clean up the workflow first and automate the version the team can actually follow."
+          "It also helps public search surfaces place Stanley Systems correctly. The message becomes clear: this is not generic tech consulting. Stanley Systems helps service businesses clean up the workflow first and automate the version the team can actually follow."
         ],
       },
     ],

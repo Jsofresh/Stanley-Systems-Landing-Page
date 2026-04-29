@@ -95,7 +95,7 @@ export default function FieldServiceAutomationPage() {
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley does</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems does</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Fix the bottleneck before automating it harder</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems starts with the real handoff problem, tightens the workflow in plain English, and then automates the version the team can actually use without creating more confusion.

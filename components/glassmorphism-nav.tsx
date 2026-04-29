@@ -8,17 +8,19 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
 
 const navigation = [
   { name: "About", href: `${basePath}/about` },
-  { name: "How it works", href: `${basePath || ""}/#how-it-works` },
+  { name: "Calculator", href: `${basePath || ""}/#calculator` },
+  { name: "Systems", href: `${basePath || ""}/#systems` },
   { name: "Who we help", href: `${basePath}/who-stanley-systems-helps` },
-  { name: "Proof", href: `${basePath}/stanley-systems-case-study` },
+  { name: "Proof", href: `${basePath || ""}/#proof` },
   { name: "Blog", href: `${basePath}/blog` },
-  { name: "Contact", href: `${basePath}/contact` },
 ]
 
 export function GlassmorphismNav() {
   const [isOpen, setIsOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [hasLoaded, setHasLoaded] = useState(false)
+  const [auditInView, setAuditInView] = useState(false)
+  const [systemsInView, setSystemsInView] = useState(false)
   const lastScrollY = useRef(0)
 
   useEffect(() => {
@@ -56,11 +58,43 @@ export function GlassmorphismNav() {
     return () => clearTimeout(timer)
   }, [])
 
+  useEffect(() => {
+    const sections = [
+      { element: document.getElementById("audit"), setter: setAuditInView },
+      { element: document.getElementById("systems"), setter: setSystemsInView },
+    ].filter((item): item is { element: HTMLElement; setter: (value: boolean) => void } => Boolean(item.element))
+
+    if (!sections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const section = sections.find((item) => item.element === entry.target)
+          section?.setter(entry.isIntersecting)
+        })
+      },
+      {
+        rootMargin: "-12% 0px -28% 0px",
+        threshold: 0.01,
+      },
+    )
+
+    sections.forEach(({ element }) => observer.observe(element))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const hideForDenseSection = (auditInView || systemsInView) && !isOpen
+  const navReadyState = hasLoaded ? "" : "translate-y-4 opacity-0"
+  const navVisibilityState = hideForDenseSection
+    ? "pointer-events-none -translate-y-16 opacity-0 md:-translate-y-24"
+    : isVisible
+      ? "translate-y-0 opacity-100"
+      : "-translate-y-20 opacity-0 md:-translate-y-24"
+
   return (
     <nav
-      className={`pointer-events-none fixed left-1/2 top-2 z-40 -translate-x-1/2 transition-all duration-500 md:top-4 ${
-        isVisible ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0 md:-translate-y-24"
-      } ${hasLoaded ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+      className={`pointer-events-none fixed left-1/2 top-2 z-40 -translate-x-1/2 transition-all duration-500 md:top-4 ${navVisibilityState} ${navReadyState}`}
       style={{ transition: hasLoaded ? "all 0.5s ease-out" : "opacity 0.8s ease-out, transform 0.8s ease-out" }}
     >
       <div className="pointer-events-auto mx-auto w-[92vw] max-w-sm md:max-w-6xl">
@@ -77,7 +111,7 @@ export function GlassmorphismNav() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="rounded-full px-4 py-2.5 text-[15px] font-medium text-slate-600 transition-colors duration-200 hover:bg-[#f6f3ed] hover:text-slate-900"
+                  className="whitespace-nowrap rounded-full px-4 py-2.5 text-[15px] font-medium text-slate-600 transition-colors duration-200 hover:bg-[#f6f3ed] hover:text-slate-900"
                 >
                   {item.name}
                 </Link>
@@ -87,7 +121,7 @@ export function GlassmorphismNav() {
             <div className="hidden min-w-[270px] items-center justify-end gap-2 md:flex">
               <a
                 href="tel:+16179586372"
-                className="inline-flex items-center rounded-full border border-[#d8d1c4] bg-white px-4 py-2.5 text-[14px] font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6]"
+                className="inline-flex whitespace-nowrap items-center rounded-full border border-[#d8d1c4] bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6]"
               >
                 <Phone size={15} className="mr-2" />
                 Call: +1 (617) 958-6372
@@ -96,7 +130,7 @@ export function GlassmorphismNav() {
                 className="inline-flex items-center rounded-full bg-slate-950 px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-800"
                 onClick={() => (window.location.href = "/contact")}
               >
-                Book a meeting
+                Workflow Audit
               </button>
             </div>
           </div>
@@ -136,7 +170,7 @@ export function GlassmorphismNav() {
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3.5 text-base font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6]"
                 >
                   <Phone size={17} className="mr-2" />
-                  Talk to the front desk
+                  Call now
                 </a>
                 <button
                   className="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-5 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-slate-800"
@@ -145,7 +179,7 @@ export function GlassmorphismNav() {
                     window.location.href = "/contact"
                   }}
                 >
-                  Book a meeting
+                  Workflow Audit
                 </button>
               </div>
             </div>

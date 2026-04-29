@@ -20,8 +20,8 @@ export default function BlogPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-slate-700">
               <Link href="/about" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">About Stanley Systems</Link>
-              <Link href="/who-stanley-systems-helps" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Who Stanley helps</Link>
-              <Link href="/how-stanley-systems-works" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">How Stanley works</Link>
+              <Link href="/who-stanley-systems-helps" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Who Stanley Systems helps</Link>
+              <Link href="/how-stanley-systems-works" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">How Stanley Systems works</Link>
               <Link href="/stanley-systems-case-study" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Stanley proof</Link>
               <Link href="/missed-estimate-follow-up-for-service-businesses" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Missed estimate follow-up</Link>
               <Link href="/office-handoff-problems-in-field-service-businesses" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Office handoff problems</Link>

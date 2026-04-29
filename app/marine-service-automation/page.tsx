@@ -121,7 +121,7 @@ export default function MarineServiceAutomationPage() {
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
                   ...internalPageLinks,
-                  { title: "Coastline proof direction", href: "/stanley-systems-case-study" },
+                  { title: "Marine shop proof direction", href: "/stanley-systems-case-study" },
                   { title: "Office handoff problems", href: "/office-handoff-problems-in-field-service-businesses" },
                 ].map((page) => (
                   <Link

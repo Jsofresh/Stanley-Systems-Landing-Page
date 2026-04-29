@@ -49,8 +49,8 @@ const relatedPages = [
     href: "/missed-estimate-follow-up-for-service-businesses",
   },
   {
-    title: "Coastline case study",
-    description: "Read the clearest live operating example Stanley Systems can point to right now.",
+    title: "Marine shop case study",
+    description: "Read how a marine shop can find money sitting in office workflow.",
     href: "/stanley-systems-case-study",
   },
 ]
@@ -131,14 +131,14 @@ export default function SpeedUpInvoicingPage() {
           <section className="mt-12 rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">A real operating reference</p>
             <p className="mt-5 text-base leading-7 text-slate-600">
-              This is the same kind of billing-handoff problem Stanley Systems is working through with Coastline Marine Service: clean up what happens between the work getting done and the office getting what it needs to move billing forward.
+              This is the same kind of billing-handoff problem Stanley Systems helps a marine shop clean up: what happens between the work getting done and the office getting what it needs to move billing forward.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/stanley-systems-case-study"
                 className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-[#f8f6f1] px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-[#efe9dc]"
               >
-                Read the Coastline case study
+                Read the marine shop case study
               </Link>
               <Link
                 href="/contact"

@@ -1,110 +1,69 @@
-import SlideIn from "@/components/SlideIn"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Phone } from "lucide-react"
-import { CTALink } from "@/components/cta-link"
-import { CTAPhoneLink } from "@/components/cta-phone-link"
+"use client"
+
+import { motion, useReducedMotion } from "framer-motion"
+import { ChevronDown } from "lucide-react"
+
+const headline = "Make your business more money with less office work."
+const scrollPrompt = "Scroll down to find out how."
+
+const headlineLines = ["Make your business", "more money", "with less office work."]
+const premiumEase = [0.22, 1, 0.36, 1] as const
 
 export function HeroSection() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
-    <section className="relative px-4 pb-16 pt-24 sm:pb-20 sm:pt-28 lg:pb-24 lg:pt-32">
-      <div className="relative z-10 mx-auto max-w-7xl animate-fade-in-hero">
-        <div className="rounded-[2rem] border border-[#ece7dc] bg-[#f8f6f1]/95 px-6 py-8 shadow-[0_20px_70px_rgba(15,23,42,0.08)] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
-          <div className="max-w-none text-left">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#e8e1d3] bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-[#15803D]" />
-              FOR OWNER-LED SERVICE BUSINESSES
-            </div>
+    <section
+      data-audit-page="/"
+      data-audit-section="home.hero"
+      data-audit-priority="5"
+      data-audit-offer="Workflow Audit"
+      data-audit-purpose="Make the owner understand that Stanley Systems helps make more money with less office work."
+      className="relative isolate min-h-svh overflow-hidden bg-transparent"
+    >
+      <svg className="pointer-events-none absolute h-0 w-0" aria-hidden="true" focusable="false">
+        <filter id="hero-liquid-glass-distortion">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="8" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
+      <div className="mx-auto flex min-h-svh max-w-[96rem] flex-col items-center justify-center px-4 pb-20 pt-24 text-center sm:px-6 sm:pb-24 sm:pt-28 lg:px-8 lg:pb-28 lg:pt-32">
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? undefined : { duration: 0.9, ease: premiumEase }}
+          className="relative flex min-h-[56svh] w-full max-w-[90rem] items-center justify-center overflow-hidden rounded-[2.4rem] border border-white/55 bg-white/[0.03] px-4 py-10 shadow-[0_34px_110px_rgba(27,42,74,0.13),0_2px_8px_rgba(255,255,255,0.6)_inset,0_-18px_42px_rgba(15,23,42,0.04)_inset] backdrop-blur-[18px] backdrop-brightness-110 backdrop-contrast-125 backdrop-saturate-200 sm:min-h-[50svh] sm:rounded-[3.25rem] sm:px-7 sm:py-12 lg:min-h-[48svh] lg:rounded-[4.5rem] lg:px-10 lg:py-16"
+        >
+          <div className="pointer-events-none absolute -inset-10 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_28%,rgba(148,163,184,0.22),transparent_34%),radial-gradient(ellipse_at_84%_36%,rgba(219,234,254,0.26),transparent_36%),radial-gradient(ellipse_at_48%_82%,rgba(203,213,225,0.18),transparent_38%)] blur-2xl [filter:url(#hero-liquid-glass-distortion)]" />
+          <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(102deg,transparent_0%,rgba(100,116,139,0.14)_13%,transparent_28%,rgba(219,234,254,0.24)_46%,transparent_62%,rgba(100,116,139,0.12)_82%,transparent_100%)] opacity-80 [filter:url(#hero-liquid-glass-distortion)]" />
+          <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(135deg,rgba(255,255,255,0.24)_0%,rgba(255,255,255,0.06)_34%,rgba(255,255,255,0.02)_58%,rgba(248,246,240,0.08)_100%)] [filter:url(#hero-liquid-glass-distortion)]" />
+          <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_10%,rgba(255,255,255,0.46),transparent_20%),radial-gradient(ellipse_at_80%_4%,rgba(255,255,255,0.28),transparent_28%),radial-gradient(ellipse_at_50%_108%,rgba(255,255,255,0.2),transparent_30%),linear-gradient(118deg,rgba(255,255,255,0.22)_0%,transparent_28%,rgba(255,255,255,0.12)_52%,transparent_74%)] mix-blend-screen" />
+          <div className="pointer-events-none absolute -inset-px rounded-[inherit] border border-white/75 shadow-[0_0_0_1px_rgba(255,255,255,0.36)_inset,0_24px_60px_rgba(255,255,255,0.14)_inset]" />
+          <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-white lg:inset-x-20" />
+          <div className="pointer-events-none absolute inset-x-12 bottom-0 h-px bg-white/55 lg:inset-x-24" />
+          <div className="pointer-events-none absolute inset-y-8 left-0 w-px bg-white/70" />
+          <div className="pointer-events-none absolute inset-y-8 right-0 w-px bg-slate-400/20" />
+          <div className="relative w-full">
+            <h1
+              aria-label={headline}
+              className="text-balance text-[3rem] font-semibold leading-[0.92] tracking-normal text-[#101b2f] min-[390px]:text-[3.35rem] sm:text-[4.9rem] sm:leading-[0.9] md:text-[6.25rem] lg:text-[7.05rem] xl:text-[7.25rem]"
+            >
+              {headlineLines.map((line, index) => (
+                <span key={line} className="block md:whitespace-nowrap">
+                  {line}
+                  {index < headlineLines.length - 1 ? <span className="sr-only"> </span> : null}
+                </span>
+              ))}
+            </h1>
 
-            <SlideIn direction="up" duration={800}>
-              <h1 className="mt-6 max-w-none text-4xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-[4.2rem] lg:leading-[1.03] xl:text-[4.35rem]">
-                Fix the office bottlenecks slowing your service business down.
-              </h1>
-            </SlideIn>
-          </div>
-
-          <div className="mt-8 grid items-start gap-10 lg:mt-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8 xl:gap-10">
-            <div className="max-w-2xl text-left">
-              <SlideIn direction="up" delay={150} duration={800}>
-                <div>
-                  <p className="max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl">
-                    Stanley Systems helps service businesses get invoices out faster, stay on top of estimates, and clean up the handoffs between the field, office, and billing without forcing the team into a whole new system.
-                  </p>
-
-                  <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-                    Best fit for owner-led service businesses where completed work, estimate follow-up, or office handoff still depends on calls, texts, memory, spreadsheets, and overloaded admin time.
-                  </p>
-                </div>
-              </SlideIn>
-
-              <SlideIn direction="up" delay={300} duration={800}>
-                <div className="mt-8 hidden items-start gap-4 sm:flex-row sm:items-center md:flex">
-                <Button
-                  asChild
-                  size="lg"
-                  className="rounded-full bg-[#15803D] px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#166534] hover:shadow-lg"
-                >
-                  <CTALink href="/contact" kind="book_meeting" location="hero_primary">
-                    Book a meeting
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </CTALink>
-                </Button>
-
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="rounded-full border-[#d8d1c4] bg-white px-8 py-4 text-base font-semibold text-slate-900 transition-all duration-200 hover:border-[#cfc7b9] hover:bg-[#f4efe6]"
-                >
-                  <CTAPhoneLink href="tel:+16179586372" location="hero_secondary" className="inline-flex items-center justify-center text-center">
-                    <Phone className="mr-2 h-5 w-5" />
-                    Talk to the front desk
-                  </CTAPhoneLink>
-                </Button>
-                </div>
-              </SlideIn>
-
-              <p className="mt-5 max-w-2xl text-sm leading-6 text-slate-600 sm:mt-4 sm:text-base">
-                We will tell you what looks worth fixing first, what is probably not worth building yet, and whether the bottleneck is really costing enough to matter.
+            <div className="mt-7 flex flex-col items-center gap-2 text-slate-700 sm:mt-10">
+              <p className="whitespace-nowrap text-xs font-bold uppercase tracking-[0.18em] text-[#0F7B3F] sm:text-sm">
+                {scrollPrompt}
               </p>
-
-            </div>
-
-            <div className="grid gap-4 lg:-ml-6 lg:mt-0 lg:gap-5 xl:-ml-8 xl:mt-0">
-              <div className="rounded-[1.6rem] border border-[#e8e1d3] bg-white p-6 shadow-[0_15px_40px_rgba(15,23,42,0.08)]">
-                <div className="text-xs font-medium uppercase tracking-[0.14em] text-slate-500">What improves first</div>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {[
-                    {
-                      title: "Faster invoicing",
-                      desc: "Jobs close → invoices go out the same day",
-                    },
-                    {
-                      title: "Fewer dropped leads",
-                      desc: "No more leads lost in a text thread",
-                    },
-                    {
-                      title: "Less office admin",
-                      desc: "Stop re-typing the same info into 3 systems",
-                    },
-                    {
-                      title: "Less owner bottleneck",
-                      desc: "Jobs keep moving even when you're in the field",
-                    },
-                  ].map(({ title, desc }) => (
-                    <div key={title} className="flex min-h-[84px] items-start gap-4 rounded-[1.1rem] border border-[#ece6d9] bg-[#fbfaf7] px-4 py-4 text-slate-800">
-                      <span className="mt-2 h-3 w-3 shrink-0 rounded-full bg-[#15803D]" />
-                      <div className="min-w-0">
-                        <div className="text-base font-semibold leading-6">{title}</div>
-                        <div className="mt-1 text-sm font-medium leading-5 text-slate-600">{desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
+              <ChevronDown className="h-7 w-7 text-[#0F7B3F] sm:h-6 sm:w-6" aria-hidden="true" strokeWidth={1.8} />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

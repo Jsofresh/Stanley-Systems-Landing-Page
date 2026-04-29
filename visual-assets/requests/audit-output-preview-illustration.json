@@ -1,0 +1,54 @@
+{
+  "slug": "audit-output-preview-illustration",
+  "section": "Workflow Audit homepage section below calculator",
+  "intended_component": "components/how-it-works-section.tsx right-side Audit Output Preview card",
+  "created_at": "2026-04-29T15:54:46+00:00",
+  "generator": "Higgsfield",
+  "target_output_path": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/public/images/generated/audit-output-preview-illustration.webp",
+  "metadata_path": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/visual-assets/generated/audit-output-preview-illustration.meta.json",
+  "brief": {
+    "target": "A clean diagram-style audit-output visual for the right-side Audit Output Preview card on the Stanley Systems homepage.",
+    "job_to_be_done": "Show that the Workflow Audit finds the business leak points behind the calculator number.",
+    "style": [
+      "crisp product illustration",
+      "structured audit board or workflow diagram",
+      "UI-adjacent supporting artwork, not a full UI mockup",
+      "simple vector shapes with clean margins",
+      "premium light-mode website asset",
+      "off-white or white background",
+      "navy outlines",
+      "Stanley green accents",
+      "subtle pale green fills only"
+    ],
+    "must_show": [
+      "central structured audit board or diagram",
+      "four business leak-point nodes for delayed invoice, open estimate, missed call, and inactive customer or follow-up gap",
+      "one leak point clearly highlighted with Stanley green emphasis",
+      "a small green money-leak indicator that feels like a business-process leak, not plumbing",
+      "optional small magnifying glass as a supporting cue only, not the dominant object"
+    ],
+    "must_avoid": [
+      "literal cash leaking from a pipe",
+      "generic magnifying-glass-over-random-icons image",
+      "random orbiting symbols",
+      "faux texture",
+      "painterly shading",
+      "noisy surfaces",
+      "people",
+      "robots",
+      "AI motifs",
+      "orange, amber, tan, yellow, gold, sepia, black, dark backgrounds, purple glow",
+      "important readable text, metric cards, CTA buttons, full website mockup"
+    ],
+    "approval_criteria": [
+      "does not look like AI slop",
+      "does not look like a random metaphor",
+      "feels like a designed website asset",
+      "clearly connects to invoices, estimates, calls, and follow-up",
+      "uses Stanley Systems palette",
+      "contains no important text baked in",
+      "clean enough to sit next to sharp UI cards"
+    ]
+  },
+  "prompt": "Wide 16:9 clean product illustration for a premium light-mode website card. Create a crisp diagram-style audit-output visual, not a metaphor poster. White/off-white background, navy outline strokes, Stanley green accents, very pale mint fills. Composition: central structured audit board / workflow diagram with four clean rounded nodes arranged in a simple 2x2 or flow layout. The four nodes represent delayed invoice, open estimate, missed call, and inactive customer / missed follow-up using simple abstract icons only, no words or letters. One node is highlighted with a Stanley green outline and a small green leak indicator flowing out of a workflow connector, showing a business-process leak, not plumbing. A small magnifying glass may point at the highlighted node but must not dominate. Use simple geometric connectors, check/alert dots, clean whitespace, no clutter. Designed Figma-style vector asset, crisp edges, no texture, no noise, no painterly shading, no stock illustration feel. No people, no robots, no AI motifs. No readable labels, no numbers, no metric cards, no CTA buttons, no full website screenshot. Strict palette only: white, off-white, navy, slate gray, Stanley green, pale mint. No orange, no amber, no yellow, no gold, no tan, no beige wash, no sepia, no black background, no dark-mode scene, no purple glow."
+}

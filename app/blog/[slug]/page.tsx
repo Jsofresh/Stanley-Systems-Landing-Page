@@ -95,7 +95,7 @@ export default function BlogArticlePage({ params }: { params: { slug: string } }
               href="/contact"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
             >
-              Talk to Stanley
+              Contact Stanley Systems
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

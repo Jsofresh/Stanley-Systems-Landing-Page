@@ -31,9 +31,9 @@ const faqs = [
       "Yes. Your team stays in control, and you own what gets built. Stanley Systems is there to remove drag and make the next step clearer, not to lock your team into a black box. The process should be easier for your office and field staff to follow, not harder.",
   },
   {
-    question: "Which plan do most clients start with?",
+    question: "Which system do most businesses start with?",
     answer:
-      "Most start with Growth because it covers billing and follow-up together, which are usually the two biggest cash flow leaks. It is often the right middle ground for businesses that already know more than one part of the office workflow is breaking, but do not need a giant cleanup all at once.",
+      "The Workflow Audit decides that. If finished work is not turning into collected cash fast enough, Stanley Systems usually recommends Cashflow Control System first. If past customers, reviews, referrals, or missed calls are the bigger leak, Stanley Systems usually recommends Customer Revenue System first.",
   },
   {
     question: "What if it is not a fit?",
@@ -139,7 +139,15 @@ export function FAQSection() {
   }
 
   return (
-    <section id="before-you-book" className="relative z-10 scroll-mt-28 px-4 py-12 sm:scroll-mt-32 sm:py-16 lg:scroll-mt-36 lg:py-20">
+    <section
+      id="before-you-book"
+      data-audit-page="/"
+      data-audit-section="home.faq"
+      data-audit-priority="2"
+      data-audit-offer="Workflow Audit"
+      data-audit-purpose="Answer buying objections before the visitor books the Workflow Audit."
+      className="relative z-10 scroll-mt-28 px-4 py-12 sm:scroll-mt-32 sm:py-16 lg:scroll-mt-36 lg:py-20"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">

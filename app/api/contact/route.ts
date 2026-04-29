@@ -7,6 +7,10 @@ function clean(value: unknown) {
   return typeof value === "string" ? value.trim() : ""
 }
 
+function cleanBoolean(value: unknown) {
+  return value === true
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -17,13 +21,18 @@ export async function POST(request: Request) {
       phone: clean(body?.phone),
       company: clean(body?.company),
       location: clean(body?.location),
+      businessType: clean(body?.businessType),
+      bottleneck: clean(body?.bottleneck),
+      invoiceDelay: clean(body?.invoiceDelay),
+      currentProcess: clean(body?.currentProcess),
       problem: clean(body?.problem),
+      smsConsent: cleanBoolean(body?.smsConsent),
       source: clean(body?.source) || "website-contact-form",
       page: clean(body?.page) || "/contact",
       submittedAt: new Date().toISOString(),
     }
 
-    if (!payload.name || !payload.email || !payload.problem) {
+    if (!payload.name || !payload.email || !payload.company || !payload.businessType || !payload.bottleneck || !payload.currentProcess || !payload.problem) {
       return NextResponse.json(
         { ok: false, error: "Missing required fields." },
         { status: 400 },

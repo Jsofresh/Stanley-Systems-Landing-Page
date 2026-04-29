@@ -5,10 +5,10 @@ export function MarineExampleSection() {
         <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
           <div className="lg:pt-2">
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-[3.2rem] lg:leading-[1.04]">
-              What this looked like for Coastline Marine
+              What this can look like for a marine shop
             </h2>
             <p className="mt-4 max-w-xl text-xl leading-9 text-slate-600 sm:text-[1.24rem] lg:text-[1.32rem] lg:leading-10">
-              Coastline Marine is proof this works in a real service business. Billing, handoffs, and follow-up moved faster without forcing the team into a whole new system.
+              A marine shop does not need a whole new system to get cleaner billing, handoffs, and follow-up. It needs the tools it already has to pass the right work to the next step faster.
             </p>
 
             <a
@@ -34,7 +34,7 @@ export function MarineExampleSection() {
               <p className="mt-4 text-[1.02rem] leading-7 text-slate-700 sm:text-[1.08rem]">
                 “Stanley Systems helped us save 10+ hours a week of manual data entry and cut down the kind of human errors that were slowing the business down. The workflow is cleaner, billing moves faster, and the team is not stuck retyping the same information all day.”
               </p>
-              <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Jessica — Coastline Marine</div>
+              <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Marine shop office workflow</div>
             </div>
           </div>
 
@@ -56,7 +56,7 @@ export function MarineExampleSection() {
               </ul>
             </div>
             <div className="flex h-full flex-col rounded-[1.5rem] border border-[#e8e1d3] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:col-span-2">
-              <div className="text-base font-semibold uppercase tracking-[0.12em] text-slate-900 sm:text-[1.02rem]">Coastline Marine results</div>
+              <div className="text-base font-semibold uppercase tracking-[0.12em] text-slate-900 sm:text-[1.02rem]">Marine shop impact</div>
               <div className="mt-4 grid flex-1 gap-3 sm:grid-cols-3">
                 <div className="flex h-full flex-col rounded-2xl border border-[#e8e1d3] bg-[#fbfaf7] px-4 py-5">
                   <div className="text-xl font-semibold text-slate-900">10+ hours/week</div>

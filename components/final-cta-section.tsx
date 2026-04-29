@@ -5,20 +5,27 @@ import { CTAPhoneLink } from "@/components/cta-phone-link"
 
 export function FinalCTASection() {
   return (
-    <section className="relative mb-24 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+    <section
+      data-audit-page="/"
+      data-audit-section="home.final-cta"
+      data-audit-priority="4"
+      data-audit-offer="Workflow Audit"
+      data-audit-purpose="Give qualified service businesses a clear final path to book the Workflow Audit."
+      className="relative mb-24 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+    >
       <div className="mx-auto max-w-5xl rounded-[2.25rem] border border-[#dbe7cf] bg-[linear-gradient(180deg,#f7fbf2_0%,#ffffff_100%)] p-8 text-center shadow-[0_24px_70px_rgba(15,23,42,0.09)] sm:p-10 lg:p-14">
         <SlideIn direction="up">
           <h3 className="text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Show us where the office is getting stuck
+            Find the revenue problem worth fixing first.
           </h3>
         </SlideIn>
         <SlideIn direction="up" delay={120}>
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-700 sm:text-xl lg:text-[1.35rem] lg:leading-9">
-            Book a meeting. Stanley Systems will tell you what looks worth fixing first — and if it is not a fit, we will say that upfront.
+            Book the Workflow Audit. Stanley Systems will show what is costing money, what to fix first, and which system should come next.
           </p>
         </SlideIn>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
-          No pressure. No software pitch. Just a clear look at what is slowing the business down.
+          No fake proof. No forced build. If the leak is not real enough to fix, Stanley Systems will say that upfront.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row">
           <CTALink
@@ -27,7 +34,7 @@ export function FinalCTASection() {
             location="final_cta_primary"
             className="group inline-flex items-center gap-3 rounded-full bg-[#15803D] px-8 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-[#166534] sm:text-xl lg:px-10 lg:py-5"
           >
-            Let's talk about your workflow
+            Book the Workflow Audit
             <ArrowRight className="h-6 w-6 transition-transform duration-200 group-hover:translate-x-1" />
           </CTALink>
 

@@ -95,7 +95,7 @@ export default function MissedEstimateFollowUpPage() {
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley fixes</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems fixes</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The gap between sent quote and real next action</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems focuses on the handoff itself. The goal is a simple follow-up workflow that still sounds like the business, still routes real replies to a human, and does not depend on somebody remembering tomorrow.
@@ -121,7 +121,7 @@ export default function MissedEstimateFollowUpPage() {
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
                   ...internalPageLinks,
-                  { title: "How Stanley helps service businesses", href: "/who-stanley-systems-helps" },
+                  { title: "How Stanley Systems helps service businesses", href: "/who-stanley-systems-helps" },
                   { title: "Read the estimate follow-up article", href: "/blog/the-estimate-that-went-cold-and-the-4000-job" },
                 ].map((page) => (
                   <Link

@@ -95,7 +95,7 @@ export default function OfficeHandoffProblemsPage() {
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley fixes</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems fixes</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The workflow between done in the field and ready in the office</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems helps make the handoff clear enough that the next step can happen without guesswork. That usually means defining what must be captured, what triggers the next step, and what should get flagged early.
@@ -121,7 +121,7 @@ export default function OfficeHandoffProblemsPage() {
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
                   ...internalPageLinks,
-                  { title: "How Stanley works", href: "/how-stanley-systems-works" },
+                  { title: "How Stanley Systems works", href: "/how-stanley-systems-works" },
                   { title: "Read the slow invoicing article", href: "/blog/real-cost-of-slow-invoicing-service-business" },
                 ].map((page) => (
                   <Link

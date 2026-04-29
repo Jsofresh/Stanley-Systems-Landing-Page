@@ -3,7 +3,7 @@
 import Link from "next/link"
 import type { ComponentProps, MouseEvent, ReactNode } from "react"
 
-type CTAKind = "book_meeting" | "call_front_desk" | "case_study" | "internal_page"
+type CTAKind = "book_meeting" | "call_front_desk" | "case_study" | "internal_page" | "calculator" | "systems"
 
 type CTALinkProps = {
   href: string

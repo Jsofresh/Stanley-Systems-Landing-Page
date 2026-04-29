@@ -23,47 +23,45 @@ const STANLEY_LINKEDIN_URL = "https://www.linkedin.com/company/stanley-systems/"
 
 const footerLinks: FooterSection[] = [
   {
-    label: "Explore",
+    label: "Solutions",
     links: [
-      { title: "Home", href: "/" },
-      { title: "About", href: "/about" },
-      { title: "Who Stanley helps", href: "/who-stanley-systems-helps" },
-      { title: "How Stanley works", href: "/how-stanley-systems-works" },
-      { title: "Case study", href: "/stanley-systems-case-study" },
-      { title: "Contact", href: "/contact" },
-      { title: "Blog", href: "/blog" },
-    ],
-  },
-  {
-    label: "What Stanley fixes",
-    links: [
-      { title: "Slow invoicing", href: "/blog/real-cost-of-slow-invoicing-service-business" },
+      { title: "Speed up invoicing", href: "/speed-up-invoicing-for-service-businesses" },
       { title: "Missed estimate follow-up", href: "/missed-estimate-follow-up-for-service-businesses" },
       { title: "Office handoff problems", href: "/office-handoff-problems-in-field-service-businesses" },
-      { title: "Book a meeting", href: "/contact" },
     ],
   },
   {
     label: "Industries",
     links: [
-      { title: "Marine service automation", href: "/marine-service-automation" },
-      { title: "Field service automation", href: "/field-service-automation" },
-      { title: "Who Stanley helps", href: "/who-stanley-systems-helps" },
-      { title: "How Stanley works", href: "/how-stanley-systems-works" },
+      { title: "Marine service businesses", href: "/marine-service-automation" },
+      { title: "Field service businesses", href: "/field-service-automation" },
+      { title: "Who we help", href: "/who-stanley-systems-helps" },
     ],
   },
   {
-    label: "Get in touch",
+    label: "Company",
+    links: [
+      { title: "About", href: "/about" },
+      { title: "How we work", href: "/how-stanley-systems-works" },
+      { title: "Proof", href: "/stanley-systems-case-study" },
+      { title: "Blog", href: "/blog" },
+      { title: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    label: "Legal",
+    links: [
+      { title: "Privacy Policy", href: "/privacy-policy" },
+      { title: "Terms and Conditions", href: "/terms-and-conditions" },
+      { title: "Safety", href: "/safety" },
+      { title: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    label: "Connect",
     links: [
       { title: "Call: +1 (617) 958-6372", href: "tel:+16179586372", external: true, icon: Phone },
       { title: "hello@stanley-systems.com", href: "mailto:hello@stanley-systems.com", external: true },
-      { title: "Boston, MA", href: "/contact" },
-      { title: "Privacy Policy", href: "/privacy-policy" },
-    ],
-  },
-  {
-    label: "Social",
-    links: [
       { title: "Facebook", href: STANLEY_FACEBOOK_URL, icon: FacebookIcon, external: true },
       { title: "LinkedIn", href: STANLEY_LINKEDIN_URL, icon: LinkedinIcon, external: true },
     ],
@@ -82,7 +80,7 @@ export function Footer() {
             Call now
           </a>
           <a href="/contact" className="inline-flex items-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#166534] sm:text-base">
-            Book a meeting
+            Book the Workflow Audit
           </a>
         </div>
       </div>
@@ -137,7 +135,7 @@ export function Footer() {
       </div>
 
       <div className="mt-8 hidden w-full border-t border-slate-200 pt-6 md:block">
-        <p className="text-center text-xs text-slate-400">Book a meeting or tap the phone number if you want the fastest answer.</p>
+        <p className="text-center text-xs text-slate-400">Book the Workflow Audit or tap the phone number if you want the fastest answer.</p>
       </div>
     </footer>
   )
