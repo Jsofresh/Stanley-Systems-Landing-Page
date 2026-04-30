@@ -441,7 +441,9 @@ printf 'Hermes fixture preface\\n'
 printf '%s\\n' '${fixtureReviewJson.replace(/'/g, "'\\''")}'
 `)
   const previousHermesBin = process.env.HERMES_CRITICAL_VISUAL_REVIEW_HERMES_BIN
+  const previousFixtureMode = process.env.HERMES_CRITICAL_VISUAL_REVIEW_FIXTURE_MODE
   process.env.HERMES_CRITICAL_VISUAL_REVIEW_HERMES_BIN = fakeHermes
+  process.env.HERMES_CRITICAL_VISUAL_REVIEW_FIXTURE_MODE = "1"
   try {
     const ok = runHermesCriticalVisualReviewCommand([packetPath])
     assert(ok.ok, `wrapper fixture should pass: ${ok.ok ? "" : ok.error}`)
@@ -501,6 +503,11 @@ printf '%s\\n' '${fixtureReviewJson.replace(/'/g, "'\\''")}'
       delete process.env.HERMES_CRITICAL_VISUAL_REVIEW_HERMES_BIN
     } else {
       process.env.HERMES_CRITICAL_VISUAL_REVIEW_HERMES_BIN = previousHermesBin
+    }
+    if (previousFixtureMode === undefined) {
+      delete process.env.HERMES_CRITICAL_VISUAL_REVIEW_FIXTURE_MODE
+    } else {
+      process.env.HERMES_CRITICAL_VISUAL_REVIEW_FIXTURE_MODE = previousFixtureMode
     }
   }
 }

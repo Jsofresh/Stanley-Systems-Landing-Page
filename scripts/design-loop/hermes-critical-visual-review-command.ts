@@ -1,6 +1,8 @@
 import { spawnSync } from "node:child_process"
 import { createHash } from "node:crypto"
-import { existsSync, readFileSync, statSync } from "node:fs"
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs"
+import { tmpdir } from "node:os"
+import { join } from "node:path"
 import { pathToFileURL } from "node:url"
 import {
   CRITICAL_VISUAL_REVIEW_CONFIG,
@@ -10,6 +12,81 @@ import {
 } from "./critical-visual-review-gate.ts"
 
 const REQUIRED_PACKET_VERSION = "critical-visual-review-v1"
+const HERMES_AGENT_ROOT = process.env.HERMES_AGENT_ROOT || "/home/jaden/.hermes/hermes-agent"
+const STANLEY_CONTEXT_ROOT = process.env.STANLEY_CONTEXT_ROOT || "/home/jaden/.openclaw/workspace/project/stanley-context"
+const SOFTWARE_FACTORY_ROOT = process.env.SOFTWARE_FACTORY_ROOT || "/home/jaden/.openclaw/workspace/project/software-factory"
+const GENERATED_REVIEW_CONTEXT_PATH = process.env.STANLEY_WEBSITE_REVIEW_CONTEXT_PATH || join(process.cwd(), "scripts", "design-loop", "generated", "stanley-website-review-context.md")
+
+const STANLEY_WEBSITE_REVIEW_CONTEXT_FILES = [
+  "00_START_HERE.md",
+  "01_CORE_FOUNDATION.md",
+  "02_WRITING_AND_LANGUAGE_RULES.md",
+  "03_BUSINESS_AND_GTM_STATE.md",
+  "05_DEMO_AND_AUTOMATION_STATE.md",
+  "STANLEY-SYSTEMS-OFFER-ARCHITECTURE-AND-PACKAGE-1-V3.md",
+  "STANLEY-SYSTEMS-—-THE-FOLLOW-UP-SYSTEM-V2.txt",
+  "STANLEY-SYSTEMS-—-THE-FOLLOW-UP-SYSTEM-V2.md",
+  "09_FOLLOW_UP_SYSTEM_BUNDLE.md",
+  "MOTION-GRAPHICS-AND-VIDEO-RENDERING-STANDARD.txt",
+  "08_MOTION_GRAPHICS_AND_VIDEO_RENDERING_STANDARD.md",
+] as const
+
+type HermesVisionResult = {
+  provider: string
+  model: string
+  content: string
+}
+
+type ImageVisibilityProbe = {
+  reviewer_model: string
+  reviewer_provider: string
+  attached_screenshot_files: string[]
+  answers: {
+    top_visible_headline: string
+    primary_links_purple_underlined: string
+    typography_serif_or_sans: string
+    duplicated_headline: string
+    raw_unstyled_icon_stacks: string
+    default_browser_html: string
+    horizontal_overflow_or_awkward_mobile_spacing: string
+  }
+  confidence: "pass" | "fail"
+  failure_reason: string
+}
+
+type StanleyWebsiteReviewContext = {
+  path: string
+  loaded_files: string[]
+  missing_requested_files: string[]
+  markdown: string
+}
+
+type ContextProof = {
+  answers: {
+    icp: string
+    public_first_step: string
+    package_1: string
+    package_2: string
+    main_copy_standard: string
+    public_language_rule: string
+  }
+  confidence: "pass" | "fail"
+  failure_reason: string
+  reviewer_provider: string
+  reviewer_model: string
+}
+
+type SmartReviewJson = {
+  pass: boolean
+  final_decision: "pass" | "fail_patch_needed" | "fail_major_redesign_needed" | "blocked_image_not_seen" | "blocked_context_missing"
+  trust_score: number
+  visual_quality_score: number
+  clarity_score: number
+  mobile_score: number
+  stanley_context_alignment_score: number
+  blockers: string[]
+  patch_brief: string
+}
 
 if (import.meta.url === pathToFileURL(process.argv[1] || "").href) {
   const result = runHermesCriticalVisualReviewCommand(process.argv.slice(2))
@@ -26,31 +103,69 @@ export function runHermesCriticalVisualReviewCommand(argv: string[]): { ok: true
     if (argv.length !== 1 || !argv[0]) throw new Error("Expected exactly one positional argument: review packet JSON path.")
     const packetPath = argv[0]
     const packet = readAndValidatePacket(packetPath)
-    const prompt = buildHermesPrompt(packet)
-    const hermesBin = process.env.HERMES_CRITICAL_VISUAL_REVIEW_HERMES_BIN || "hermes"
-    const hermesArgs = ["chat", "-Q", "--source", "critical-visual-review", "-t", "vision,file", "-q", prompt]
-    const result = spawnSync(hermesBin, hermesArgs, {
-      cwd: process.cwd(),
-      encoding: "utf8",
-      env: process.env,
-      shell: false,
-      maxBuffer: 20 * 1024 * 1024,
-    })
+    const context = loadStanleyWebsiteReviewContext()
+    const prompt = buildHermesPrompt(packet, context.markdown)
+    if (process.env.HERMES_CRITICAL_VISUAL_REVIEW_FIXTURE_MODE === "1" && process.env.HERMES_CRITICAL_VISUAL_REVIEW_HERMES_BIN) {
+      return runFixtureHermesTextReview(packet, prompt)
+    }
+    const screenshotFiles = getAttachedScreenshotFiles(packet)
+    const probe = runImageVisibilityProbe(packet, screenshotFiles)
+    const contextProof = runContextProof(context)
+    if (probe.confidence !== "pass") {
+      const blocked = blockedSmartReview("blocked_image_not_seen", `Image visibility probe failed: ${probe.failure_reason}`)
+      const markdown = blockedMarkdownCritique(blocked.patch_brief)
+      const visionResult = { provider: probe.reviewer_provider, model: probe.reviewer_model, content: `${markdown}\n${JSON.stringify(blocked, null, 2)}` }
+      writeSmartReviewArtifacts(packet, context, probe, contextProof, markdown, blocked, visionResult)
+      return { ok: true, review: normalizeSmartReviewForGate(packet, blocked, visionResult, markdown) }
+    }
+    if (contextProof.confidence !== "pass") {
+      const blocked = blockedSmartReview("blocked_context_missing", `Stanley Systems context proof failed: ${contextProof.failure_reason}`)
+      const markdown = blockedMarkdownCritique(blocked.patch_brief)
+      const visionResult = { provider: contextProof.reviewer_provider, model: contextProof.reviewer_model, content: `${markdown}\n${JSON.stringify(blocked, null, 2)}` }
+      writeSmartReviewArtifacts(packet, context, probe, contextProof, markdown, blocked, visionResult)
+      return { ok: true, review: normalizeSmartReviewForGate(packet, blocked, visionResult, markdown) }
+    }
+    process.stderr.write(`critical_visual_review_model=${probe.reviewer_provider}/${probe.reviewer_model}\n`)
+    process.stderr.write(`critical_visual_review_attached_screenshots=${screenshotFiles.join(",")}\n`)
+    process.stderr.write(`critical_visual_review_loaded_context=${context.loaded_files.join(",")}\n`)
+    if (context.missing_requested_files.length) process.stderr.write(`critical_visual_review_missing_context_aliases=${context.missing_requested_files.join(",")}\n`)
+    process.stderr.write(`critical_visual_review_context_proof=${JSON.stringify(contextProof.answers)}\n`)
+    process.stderr.write(`critical_visual_review_probe=${JSON.stringify(probe.answers)}\n`)
 
-    if ((result.status ?? 1) !== 0) {
-      throw new Error(`Hermes critical visual review failed: ${result.stderr || result.stdout || result.error?.message || "no output"}`)
-    }
-    const jsonText = extractJsonObject(result.stdout || "")
-    if (!jsonText) throw new Error("Hermes returned no parseable JSON object.")
-    const parsed = JSON.parse(jsonText)
-    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
-      delete (parsed as Record<string, unknown>).required_fields
-    }
-    const review = validateCriticalSectionReview(parsed, packet)
+    const fullPrompt = `${prompt}\n\nImage visibility probe result that MUST be treated as pixel evidence from the attached screenshots:\n${JSON.stringify(probe, null, 2)}\n\nStanley Systems context proof that MUST be treated as loaded context evidence:\n${JSON.stringify(contextProof, null, 2)}`
+    const visionResult = callHermesVisionModel(fullPrompt, screenshotFiles)
+    const jsonText = extractJsonObject(visionResult.content || "")
+    if (!jsonText) throw new Error("Hermes vision model returned no parseable Smart Vision Review JSON object.")
+    const smartJson = validateSmartReviewJson(JSON.parse(jsonText), contextProof, probe)
+    const markdownCritique = extractMarkdownCritique(visionResult.content || "")
+    writeSmartReviewArtifacts(packet, context, probe, contextProof, markdownCritique, smartJson, visionResult)
+    const review = normalizeSmartReviewForGate(packet, smartJson, visionResult, markdownCritique)
     return { ok: true, review }
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : String(error) }
   }
+}
+
+function runFixtureHermesTextReview(packet: CriticalReviewPacket, prompt: string): { ok: true; review: CriticalSectionReview } | { ok: false; error: string } {
+  const hermesBin = process.env.HERMES_CRITICAL_VISUAL_REVIEW_HERMES_BIN || "hermes"
+  const hermesArgs = ["chat", "-Q", "--source", "critical-visual-review", "-t", "vision,file", "-q", prompt]
+  const result = spawnSync(hermesBin, hermesArgs, {
+    cwd: process.cwd(),
+    encoding: "utf8",
+    env: process.env,
+    shell: false,
+    maxBuffer: 20 * 1024 * 1024,
+  })
+  if ((result.status ?? 1) !== 0) {
+    throw new Error(`Hermes fixture critical visual review failed: ${result.stderr || result.stdout || result.error?.message || "no output"}`)
+  }
+  const jsonText = extractJsonObject(result.stdout || "")
+  if (!jsonText) throw new Error("Hermes fixture returned no parseable JSON object.")
+  const parsed = JSON.parse(jsonText)
+  if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+    delete (parsed as Record<string, unknown>).required_fields
+  }
+  return { ok: true, review: validateCriticalSectionReview(parsed, packet) }
 }
 
 export function readAndValidatePacket(packetPath: string): CriticalReviewPacket {
@@ -88,10 +203,11 @@ export function readAndValidatePacket(packetPath: string): CriticalReviewPacket 
   if (!packet.metadata.screenshot_modified_times || typeof packet.metadata.screenshot_modified_times !== "object" || Array.isArray(packet.metadata.screenshot_modified_times)) {
     throw new Error("Review packet metadata.screenshot_modified_times must be an object.")
   }
-  validateScreenshotEvidence(packet, "desktop_after")
-  validateScreenshotEvidence(packet, "mobile_after")
-  if (packet.screenshots.desktop_before) validateScreenshotEvidence(packet, "desktop_before")
-  if (packet.screenshots.mobile_before) validateScreenshotEvidence(packet, "mobile_before")
+  const typedPacket = packet as CriticalReviewPacket
+  validateScreenshotEvidence(typedPacket, "desktop_after")
+  validateScreenshotEvidence(typedPacket, "mobile_after")
+  if (packet.screenshots.desktop_before) validateScreenshotEvidence(typedPacket, "desktop_before")
+  if (packet.screenshots.mobile_before) validateScreenshotEvidence(typedPacket, "mobile_before")
   if (!packet.review_prompt || typeof packet.review_prompt !== "object" || Array.isArray(packet.review_prompt)) {
     throw new Error("Review packet review_prompt must be an object.")
   }
@@ -103,56 +219,38 @@ export function readAndValidatePacket(packetPath: string): CriticalReviewPacket 
   return packet as CriticalReviewPacket
 }
 
-export function buildHermesPrompt(packet: CriticalReviewPacket): string {
-  const reviewerContract = {
-    required_fields: [
-      "section_id",
-      "reviewer_version",
-      "reviewed_screenshot_paths",
-      "reviewed_screenshot_hashes",
-      "section_match",
-      "desktop_pass",
-      "mobile_pass",
-      "visual_quality_score",
-      "ai_slop_score",
-      "clarity_score",
-      "mobile_score",
-      "asset_strategy",
-      "blockers",
-      "warnings",
-      "exact_fix_recommendation",
-      "final_decision",
-    ],
-    reviewer_version: `non-empty string, use ${CRITICAL_VISUAL_REVIEW_CONFIG.reviewer_version} or Hermes command version`,
-    reviewed_screenshot_paths: "must exactly echo packet.screenshots paths for every supplied screenshot",
-    reviewed_screenshot_hashes: "must exactly echo packet.metadata.screenshot_hashes for every supplied screenshot",
-    section_match: ["yes", "no", "unclear"],
-    asset_strategy: ["code_only", "code_plus_generated_asset", "generated_asset_primary", "blocked_missing_required_asset"],
-    final_decision: [
-      "pass",
-      "fail_codex_patch_needed",
-      "fail_generated_asset_needed",
-      "fail_revert_recommended",
-      "blocked_missing_screenshot",
-      "blocked_missing_required_asset",
-    ],
-    score_range: "numbers from 1 to 10 inclusive",
+export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteReviewContext?: string): string {
+  const strictJsonContract = {
+    pass: "boolean",
+    final_decision: ["pass", "fail_patch_needed", "fail_major_redesign_needed", "blocked_image_not_seen", "blocked_context_missing"],
+    trust_score: "number 1-10",
+    visual_quality_score: "number 1-10",
+    clarity_score: "number 1-10",
+    mobile_score: "number 1-10",
+    stanley_context_alignment_score: "number 1-10",
+    blockers: "string[]",
+    patch_brief: "string: Codex-ready patch brief scoped to the failed page/section, no self-approval",
   }
 
   return [
-    "You are Hermes running a harsh Critical Visual Review for Stanley Systems.",
+    "You are the Full-Context Smart Vision Reviewer for Stanley Systems website work.",
+    "You are harsh, screenshot-first, context-first, and skeptical. You are reviewing for a real service-business owner, not a SaaS buyer.",
     "",
     "Verification-only boundaries:",
     "- Do not edit files.",
     "- Do not deploy.",
     "- Do not restart PM2.",
-    "- Do not run live smoke.",
+    "- Do not run production live smoke.",
     "- Do not touch n8n, QBO, HCP, Telegram config, OpenClaw config, secrets, credentials, PM2, or live workflow files.",
-    "- Judge only screenshot/context evidence in this prompt and the referenced local screenshots.",
-    "- Ignore Codex reasoning, build history, self-evaluation, and implementation debate. None is supplied.",
-    "- Return only strict JSON with exactly the required schema. No markdown, no prose, no code fences.",
+    "- Judge only attached screenshot pixels plus the full Stanley Systems context below.",
+    "- Ignore Codex reasoning, build history, self-evaluation, and implementation debate.",
     "",
-    "Screenshot evidence:",
+    "Stanley Systems canonical project context. This is the main review context, not a tiny summary:",
+    "<<<STANLEY_WEBSITE_REVIEW_CONTEXT_BEGIN>>>",
+    stanleyWebsiteReviewContext || "BLOCKED: Stanley Systems context was not loaded.",
+    "<<<STANLEY_WEBSITE_REVIEW_CONTEXT_END>>>",
+    "",
+    "Screenshot evidence. The actual image bytes are attached as vision inputs. These paths/hashes are for proof only:",
     `- desktop_after: ${packet.screenshots.desktop_after}`,
     `- desktop_after_hash: ${packet.metadata.screenshot_hashes.desktop_after}`,
     `- mobile_after: ${packet.screenshots.mobile_after}`,
@@ -162,31 +260,427 @@ export function buildHermesPrompt(packet: CriticalReviewPacket): string {
     packet.screenshots.mobile_before ? `- mobile_before: ${packet.screenshots.mobile_before}` : "- mobile_before: not supplied",
     packet.screenshots.mobile_before ? `- mobile_before_hash: ${packet.metadata.screenshot_hashes.mobile_before}` : "- mobile_before_hash: not supplied",
     `- run_id: ${packet.run_id}`,
+    `- section_id: ${packet.section_id}`,
+    `- section_purpose: ${packet.section_purpose}`,
     `- build_id: ${packet.metadata.build_id}`,
     `- captured_at: ${packet.metadata.captured_at}`,
     "",
-    "You must verify whether these screenshots show the intended section. If the section is mismatched or unclear, return section_match no or unclear and do not pass.",
-    "You must include reviewed_screenshot_paths and reviewed_screenshot_hashes copied from the packet, so the gate can prove exactly which files were reviewed.",
+    "Harsh website critique standard:",
+    "- Ask first: would a skeptical HVAC, plumbing, electrical, marine, landscaping, or field-service owner trust Stanley Systems after seeing this on a phone? If no, fail.",
+    "- The site must lead with money, time, owner relief, collected revenue, repeat customers, reviews, referrals, captured calls, missed work, fewer delayed invoices, and less office rescue work.",
+    "- The public first step is the Workflow Audit. Package 1 is Cashflow Control System. Package 2 is Customer Revenue System.",
+    "- The buyer is a skeptical service-business owner, not a SaaS buyer.",
+    "- Copy must be clear, not clever. Use Stanley Systems publicly, not Stanley shorthand.",
+    "- Public copy must not make AI, Hermes, Codex, OpenClaw, Twilio, n8n, QBO API, or HCP API the star.",
+    "- Generic SaaS filler, fake dashboards, weak cards, card/pill clutter, default browser styling, raw icons, purple underlined links, default serif typography, duplicated headlines, horizontal overflow, and unfinished mobile layouts fail.",
+    "- Do not pass because the site is merely better than before. Pass only if it is credible as a premium service-business homepage.",
+    "- If you provide any material Codex patch brief beyond 'no patch needed', JSON pass must be false and final_decision must be fail_patch_needed or fail_major_redesign_needed.",
+    "- Passing means blockers is empty and patch_brief is exactly 'no patch needed'.",
     "",
-    "Mobile-first hard-fail standard:",
-    "- Ask first: would a skeptical HVAC, plumbing, electrical, marine, or landscaping owner trust Stanley Systems after seeing this on their phone? If no, final_decision must not be pass.",
-    "- Hard-fail browser-default or nearly unstyled HTML appearance.",
-    "- Hard-fail purple underlined browser-default links, especially CTA-like links.",
-    "- Hard-fail default serif typography or missing Stanley Systems brand typography.",
-    "- Hard-fail duplicated major headlines or hero headings.",
-    "- Hard-fail raw stacked icons unless they are intentionally designed into a clear layout or card system.",
-    "- Hard-fail horizontal overflow, broken mobile spacing, accidental-looking mobile layout, clipped CTAs, or CTA links that do not look actionable.",
-    "- Hard-fail isolated abstract visuals, generic AI/SaaS filler visuals, fake dashboards, card/pill clutter, and unclear hierarchy.",
-    "- Hard-fail public copy typos or visible spacing mistakes such as number,not.",
-    "- Hard-fail revenue calculators or conversion sections that look like content dumps.",
-    "- Section match is not enough to pass if route/mobile styling or continuity looks broken.",
+    "Required markdown critique before JSON. Write these exact section headings:",
+    "## First impression",
+    "## What a service-business owner would think",
+    "## Visual trust problems",
+    "## Copy and messaging problems",
+    "## Offer clarity problems",
+    "## Mobile UX problems",
+    "## Stanley Systems positioning violations",
+    "## Exact highest-leverage fixes",
+    "## Codex-ready patch brief",
     "",
-    "Strict output contract:",
-    JSON.stringify(reviewerContract, null, 2),
+    "After the markdown critique, output one strict JSON object and no second JSON object. The JSON must match this contract:",
+    JSON.stringify(strictJsonContract, null, 2),
+    "",
+    "If the image visibility proof says image pixels were not seen, final_decision must be blocked_image_not_seen.",
+    "If the Stanley Systems context proof is missing/incorrect, final_decision must be blocked_context_missing.",
+    "If major structure/positioning is wrong, use fail_major_redesign_needed. For scoped code/layout/copy fixes, use fail_patch_needed.",
     "",
     "Review packet context:",
     JSON.stringify(packet, null, 2),
   ].join("\n")
+}
+
+function getAttachedScreenshotFiles(packet: CriticalReviewPacket): string[] {
+  const orderedKeys: Array<keyof CriticalReviewPacket["screenshots"]> = ["mobile_after", "desktop_after", "mobile_before", "desktop_before"]
+  const files: string[] = []
+  const seen = new Set<string>()
+  for (const key of orderedKeys) {
+    const path = packet.screenshots[key]
+    if (!path || seen.has(path)) continue
+    validateScreenshotEvidence(packet, key)
+    files.push(path)
+    seen.add(path)
+  }
+  if (!files.length) throw new Error("No screenshot files available to attach to the Hermes vision model.")
+  return files
+}
+
+function runImageVisibilityProbe(packet: CriticalReviewPacket, screenshotFiles: string[]): ImageVisibilityProbe {
+  const prompt = [
+    "You are the pre-review image visibility probe for Stanley Systems Critical Visual Review.",
+    "You are receiving the actual screenshot image bytes as vision inputs, not just file paths.",
+    "Answer from the pixels only. If a question cannot be answered from the attached screenshots, say so and set confidence to fail.",
+    "Return only strict JSON with this shape:",
+    JSON.stringify({
+      answers: {
+        top_visible_headline: "exact top visible headline text, or cannot determine",
+        primary_links_purple_underlined: "yes/no + visual evidence",
+        typography_serif_or_sans: "serif/sans-serif/mixed + visual evidence",
+        duplicated_headline: "yes/no + duplicated text if present",
+        raw_unstyled_icon_stacks: "yes/no + visual evidence",
+        default_browser_html: "yes/no + visual evidence",
+        horizontal_overflow_or_awkward_mobile_spacing: "yes/no + visual evidence",
+      },
+      confidence: "pass or fail",
+      failure_reason: "empty if pass, otherwise why the attached image pixels were not visible enough",
+    }, null, 2),
+    "",
+    `section_id: ${packet.section_id}`,
+    `section_purpose: ${packet.section_purpose}`,
+    "Attached screenshot file labels, in order:",
+    ...screenshotFiles.map((file, index) => `${index + 1}. ${file}`),
+  ].join("\n")
+
+  const result = callHermesVisionModel(prompt, screenshotFiles)
+  const jsonText = extractJsonObject(result.content || "")
+  if (!jsonText) throw new Error(`Image visibility probe returned no parseable JSON. Raw output: ${result.content}`)
+  const parsed = JSON.parse(jsonText) as Partial<ImageVisibilityProbe>
+  const answers = parsed.answers as ImageVisibilityProbe["answers"] | undefined
+  const requiredAnswerKeys: Array<keyof ImageVisibilityProbe["answers"]> = [
+    "top_visible_headline",
+    "primary_links_purple_underlined",
+    "typography_serif_or_sans",
+    "duplicated_headline",
+    "raw_unstyled_icon_stacks",
+    "default_browser_html",
+    "horizontal_overflow_or_awkward_mobile_spacing",
+  ]
+  if (!answers || typeof answers !== "object") throw new Error("Image visibility probe missing answers object.")
+  for (const key of requiredAnswerKeys) {
+    if (typeof answers[key] !== "string" || !answers[key].trim()) throw new Error(`Image visibility probe missing answer: ${key}`)
+  }
+  const failureText = [parsed.failure_reason, ...requiredAnswerKeys.map((key) => answers[key])].join(" ").toLowerCase()
+  const cannotSee = /cannot (determine|answer|see)|can't (determine|answer|see)|unable to (determine|answer|see)|no image|not visible|only metadata|only path/.test(failureText)
+  return {
+    reviewer_model: result.model,
+    reviewer_provider: result.provider,
+    attached_screenshot_files: screenshotFiles,
+    answers,
+    confidence: parsed.confidence === "pass" && !cannotSee ? "pass" : "fail",
+    failure_reason: parsed.confidence === "pass" && !cannotSee ? "" : String(parsed.failure_reason || "probe did not prove image visibility"),
+  }
+}
+
+function callHermesVisionModel(prompt: string, imagePaths: string[]): HermesVisionResult {
+  const tempDir = mkdtempSync(join(tmpdir(), "stanley-critical-vision-"))
+  const payloadPath = join(tempDir, "payload.json")
+  const scriptPath = join(tempDir, "call_hermes_vision.py")
+  try {
+    writeFileSync(payloadPath, JSON.stringify({ prompt, image_paths: imagePaths }, null, 2))
+    writeFileSync(scriptPath, hermesVisionPython())
+    const pythonBin = process.env.HERMES_CRITICAL_VISUAL_REVIEW_PYTHON || join(HERMES_AGENT_ROOT, "venv", "bin", "python3")
+    const result = spawnSync(pythonBin, [scriptPath, payloadPath], {
+      cwd: process.cwd(),
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        PYTHONPATH: [HERMES_AGENT_ROOT, process.env.PYTHONPATH].filter(Boolean).join(":"),
+      },
+      shell: false,
+      maxBuffer: 40 * 1024 * 1024,
+    })
+    if ((result.status ?? 1) !== 0) {
+      throw new Error(`Hermes vision model call failed: ${result.stderr || result.stdout || result.error?.message || "no output"}`)
+    }
+    return JSON.parse(result.stdout) as HermesVisionResult
+  } finally {
+    rmSync(tempDir, { recursive: true, force: true })
+  }
+}
+
+function hermesVisionPython(): string {
+  return String.raw`
+import asyncio
+import base64
+import json
+import mimetypes
+import sys
+from pathlib import Path
+
+from agent.auxiliary_client import async_call_llm, resolve_vision_provider_client
+
+payload = json.loads(Path(sys.argv[1]).read_text())
+prompt = payload["prompt"]
+image_paths = payload["image_paths"]
+
+content = [{"type": "text", "text": prompt}]
+for raw_path in image_paths:
+    path = Path(raw_path)
+    if not path.exists() or not path.is_file():
+        raise SystemExit(f"missing image file: {path}")
+    mime = mimetypes.guess_type(str(path))[0] or "image/png"
+    if not mime.startswith("image/"):
+        mime = "image/png"
+    data = base64.b64encode(path.read_bytes()).decode("ascii")
+    content.append({"type": "image_url", "image_url": {"url": f"data:{mime};base64,{data}"}})
+
+provider, _client, model = resolve_vision_provider_client()
+if _client is None:
+    raise SystemExit("no Hermes vision provider/client resolved")
+
+async def main():
+    response = await async_call_llm(
+        task="vision",
+        messages=[{"role": "user", "content": content}],
+        temperature=0,
+        max_tokens=8000,
+        timeout=180,
+    )
+    choice = response.choices[0]
+    message = choice.message
+    text = getattr(message, "content", None) or ""
+    if isinstance(text, list):
+        text = "".join(part.get("text", "") if isinstance(part, dict) else str(part) for part in text)
+    print(json.dumps({"provider": provider, "model": model, "content": text}, ensure_ascii=False))
+
+asyncio.run(main())
+`
+}
+
+function loadStanleyWebsiteReviewContext(): StanleyWebsiteReviewContext {
+  const loadedFiles: string[] = []
+  const missingRequestedFiles: string[] = []
+  const chunks: string[] = [
+    "# Stanley Website Review Context",
+    "",
+    "Generated for Full-Context Smart Vision Reviewer. This file is compiled from canonical Stanley Systems context files and is intentionally not a tiny summary.",
+    `Generated at: ${new Date().toISOString()}`,
+    "",
+  ]
+  const seen = new Set<string>()
+  for (const relativePath of STANLEY_WEBSITE_REVIEW_CONTEXT_FILES) {
+    const fullPath = join(STANLEY_CONTEXT_ROOT, relativePath)
+    if (!existsSync(fullPath)) {
+      if (relativePath.endsWith(".txt") || relativePath.includes("—-THE-FOLLOW-UP-SYSTEM") || relativePath.includes("MOTION-GRAPHICS")) missingRequestedFiles.push(fullPath)
+      continue
+    }
+    if (seen.has(fullPath)) continue
+    seen.add(fullPath)
+    const text = readFileSync(fullPath, "utf8")
+    loadedFiles.push(fullPath)
+    chunks.push(`\n---\n\n## Source file: ${fullPath}\n\n${text.trim()}\n`)
+  }
+  if (!loadedFiles.length) throw new Error(`No Stanley Systems context files loaded from ${STANLEY_CONTEXT_ROOT}`)
+  const markdown = chunks.join("\n")
+  mkdirSync(join(process.cwd(), "scripts", "design-loop", "generated"), { recursive: true })
+  writeFileSync(GENERATED_REVIEW_CONTEXT_PATH, markdown)
+  return { path: GENERATED_REVIEW_CONTEXT_PATH, loaded_files: loadedFiles, missing_requested_files: missingRequestedFiles, markdown }
+}
+
+function runContextProof(context: StanleyWebsiteReviewContext): ContextProof {
+  const prompt = [
+    "You are the Stanley Systems context proof step for Critical Visual Review.",
+    "Answer only from the loaded Stanley Systems project context below. If the context is not present or cannot answer these items, set confidence to fail.",
+    "Return only strict JSON with this shape:",
+    JSON.stringify({
+      answers: {
+        icp: "the ideal customer profile",
+        public_first_step: "the public first step",
+        package_1: "Package 1 name",
+        package_2: "Package 2 name",
+        main_copy_standard: "main copy standard",
+        public_language_rule: "one public-language rule",
+      },
+      confidence: "pass or fail",
+      failure_reason: "empty if pass, otherwise what context was missing",
+    }, null, 2),
+    "",
+    "Loaded context files:",
+    ...context.loaded_files.map((file) => `- ${file}`),
+    "",
+    "<<<STANLEY_WEBSITE_REVIEW_CONTEXT_BEGIN>>>",
+    context.markdown,
+    "<<<STANLEY_WEBSITE_REVIEW_CONTEXT_END>>>",
+  ].join("\n")
+  const result = callHermesVisionModel(prompt, [])
+  const jsonText = extractJsonObject(result.content || "")
+  if (!jsonText) throw new Error(`Context proof returned no parseable JSON. Raw output: ${result.content}`)
+  const parsed = JSON.parse(jsonText) as Partial<ContextProof>
+  const answers = parsed.answers as ContextProof["answers"] | undefined
+  const required: Array<keyof ContextProof["answers"]> = ["icp", "public_first_step", "package_1", "package_2", "main_copy_standard", "public_language_rule"]
+  if (!answers || typeof answers !== "object") throw new Error("Context proof missing answers object.")
+  for (const key of required) {
+    if (typeof answers[key] !== "string" || !answers[key].trim()) throw new Error(`Context proof missing answer: ${key}`)
+  }
+  const proofText = [parsed.failure_reason, ...required.map((key) => answers[key])].join(" ").toLowerCase()
+  const expectedSignals = ["workflow audit", "cashflow control system", "customer revenue system"]
+  const missingSignal = expectedSignals.find((signal) => !proofText.includes(signal))
+  const publicRuleText = answers.public_language_rule.toLowerCase()
+  const hasRecognizedPublicLanguageRule = ["stanley systems", "not stanley", "ai", "automation", "hermes", "codex", "openclaw", "twilio", "n8n", "qbo", "hcp", "clear", "clever", "business result", "result", "stack", "money", "owner", "plain"].some((signal) => publicRuleText.includes(signal))
+  const cannotAnswer = /cannot (determine|answer)|can't (determine|answer)|unable to (determine|answer)|missing context|not provided/.test(proofText)
+  return {
+    reviewer_model: result.model,
+    reviewer_provider: result.provider,
+    answers,
+    confidence: parsed.confidence === "pass" && !missingSignal && hasRecognizedPublicLanguageRule && !cannotAnswer ? "pass" : "fail",
+    failure_reason: parsed.confidence === "pass" && !missingSignal && hasRecognizedPublicLanguageRule && !cannotAnswer ? "" : String(parsed.failure_reason || `context proof missing required signal: ${missingSignal || "recognized public-language rule"}`),
+  }
+}
+
+function validateSmartReviewJson(value: unknown, contextProof: ContextProof, probe: ImageVisibilityProbe): SmartReviewJson {
+  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Smart Vision Review JSON must be an object.")
+  const json = value as Record<string, unknown>
+  const allowedDecisions = ["pass", "fail_patch_needed", "fail_major_redesign_needed", "blocked_image_not_seen", "blocked_context_missing"]
+  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "blockers", "patch_brief"] as const) {
+    if (!(field in json)) throw new Error(`Smart Vision Review JSON missing required field: ${field}`)
+  }
+  if (typeof json.pass !== "boolean") throw new Error("Smart Vision Review pass must be boolean.")
+  if (!allowedDecisions.includes(String(json.final_decision))) throw new Error(`Smart Vision Review final_decision must be one of ${allowedDecisions.join(", ")}`)
+  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score"] as const) {
+    if (typeof json[field] !== "number" || !Number.isFinite(json[field]) || (json[field] as number) < 1 || (json[field] as number) > 10) {
+      throw new Error(`Smart Vision Review ${field} must be a number from 1 to 10.`)
+    }
+  }
+  if (!Array.isArray(json.blockers) || json.blockers.some((item) => typeof item !== "string")) throw new Error("Smart Vision Review blockers must be string[].")
+  if (typeof json.patch_brief !== "string" || !json.patch_brief.trim()) throw new Error("Smart Vision Review patch_brief must be a non-empty string.")
+  if (probe.confidence !== "pass" && json.final_decision !== "blocked_image_not_seen") throw new Error("Smart Vision Review must block as blocked_image_not_seen when image proof fails.")
+  if (contextProof.confidence !== "pass" && json.final_decision !== "blocked_context_missing") throw new Error("Smart Vision Review must block as blocked_context_missing when context proof fails.")
+  const review = json as SmartReviewJson
+  const patchBrief = review.patch_brief.trim()
+  const noPatchNeeded = /^(none|no patch needed|no changes needed|pass)$/i.test(patchBrief)
+  if (review.pass && !noPatchNeeded) {
+    review.pass = false
+    review.final_decision = "fail_patch_needed"
+    review.blockers = review.blockers.length ? review.blockers : ["Smart Vision Reviewer returned a pass while also providing a Codex patch brief; harsh review requires patch-needed until no material fixes remain."]
+  }
+  return review
+}
+
+function extractMarkdownCritique(content: string): string {
+  const firstJson = content.indexOf("{")
+  const markdown = firstJson >= 0 ? content.slice(0, firstJson).trim() : content.trim()
+  const requiredHeadings = [
+    "## First impression",
+    "## What a service-business owner would think",
+    "## Visual trust problems",
+    "## Copy and messaging problems",
+    "## Offer clarity problems",
+    "## Mobile UX problems",
+    "## Stanley Systems positioning violations",
+    "## Exact highest-leverage fixes",
+    "## Codex-ready patch brief",
+  ]
+  const missing = requiredHeadings.filter((heading) => !markdown.includes(heading))
+  if (missing.length) throw new Error(`Smart Vision Review markdown critique missing required heading(s): ${missing.join(", ")}`)
+  return markdown
+}
+
+function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartReviewJson, visionResult: HermesVisionResult, markdownCritique: string): CriticalSectionReview {
+  const decisionMap: Record<SmartReviewJson["final_decision"], CriticalSectionReview["final_decision"]> = {
+    pass: "pass",
+    fail_patch_needed: "fail_codex_patch_needed",
+    fail_major_redesign_needed: "fail_revert_recommended",
+    blocked_image_not_seen: "blocked_missing_screenshot",
+    blocked_context_missing: "fail_revert_recommended",
+  }
+  const blockers = [...smart.blockers]
+  if (!smart.pass && !blockers.length) blockers.push("Smart Vision Reviewer failed the page but returned no blocker details.")
+  if (smart.stanley_context_alignment_score < 7) blockers.push(`stanley_context_alignment_score ${smart.stanley_context_alignment_score} is below 7`)
+  return {
+    section_id: packet.section_id,
+    reviewer_version: `smart-vision-context-reviewer-v1:${visionResult.provider}/${visionResult.model}`,
+    reviewed_screenshot_paths: packet.screenshots,
+    reviewed_screenshot_hashes: packet.metadata.screenshot_hashes,
+    section_match: "yes",
+    desktop_pass: smart.pass,
+    mobile_pass: smart.pass && smart.mobile_score >= 7,
+    visual_quality_score: smart.visual_quality_score,
+    ai_slop_score: Math.max(1, Math.min(10, 11 - smart.trust_score)),
+    clarity_score: smart.clarity_score,
+    mobile_score: smart.mobile_score,
+    asset_strategy: smart.final_decision === "fail_major_redesign_needed" ? "code_plus_generated_asset" : "code_only",
+    blockers,
+    warnings: [
+      `trust_score=${smart.trust_score}`,
+      `stanley_context_alignment_score=${smart.stanley_context_alignment_score}`,
+      `smart_final_decision=${smart.final_decision}`,
+      `markdown_critique_chars=${markdownCritique.length}`,
+    ],
+    exact_fix_recommendation: smart.patch_brief,
+    final_decision: decisionMap[smart.final_decision],
+  }
+}
+
+function blockedSmartReview(finalDecision: "blocked_image_not_seen" | "blocked_context_missing", reason: string): SmartReviewJson {
+  return {
+    pass: false,
+    final_decision: finalDecision,
+    trust_score: 1,
+    visual_quality_score: 1,
+    clarity_score: 1,
+    mobile_score: 1,
+    stanley_context_alignment_score: finalDecision === "blocked_context_missing" ? 1 : 5,
+    blockers: [reason],
+    patch_brief: reason,
+  }
+}
+
+function blockedMarkdownCritique(reason: string): string {
+  return [
+    "## First impression",
+    reason,
+    "",
+    "## What a service-business owner would think",
+    "Review blocked before owner-trust critique because required review proof failed.",
+    "",
+    "## Visual trust problems",
+    "Review blocked before a valid visual critique could be trusted.",
+    "",
+    "## Copy and messaging problems",
+    "Review blocked before copy critique could be trusted.",
+    "",
+    "## Offer clarity problems",
+    "Review blocked before offer clarity critique could be trusted.",
+    "",
+    "## Mobile UX problems",
+    "Review blocked before mobile UX critique could be trusted.",
+    "",
+    "## Stanley Systems positioning violations",
+    "Review blocked before positioning critique could be trusted.",
+    "",
+    "## Exact highest-leverage fixes",
+    reason,
+    "",
+    "## Codex-ready patch brief",
+    reason,
+  ].join("\n")
+}
+
+function writeSmartReviewArtifacts(
+  packet: CriticalReviewPacket,
+  context: StanleyWebsiteReviewContext,
+  probe: ImageVisibilityProbe,
+  contextProof: ContextProof,
+  markdownCritique: string,
+  smartJson: SmartReviewJson,
+  visionResult: HermesVisionResult,
+): void {
+  const artifactDir = join(SOFTWARE_FACTORY_ROOT, "artifacts", "critical-visual-review", `${packet.run_id}-smart-vision-context-review`)
+  mkdirSync(artifactDir, { recursive: true })
+  writeFileSync(join(artifactDir, "stanley-website-review-context.md"), context.markdown)
+  writeFileSync(join(artifactDir, "markdown-critique.md"), markdownCritique)
+  writeFileSync(join(artifactDir, "smart-review-decision.json"), JSON.stringify(smartJson, null, 2))
+  writeFileSync(join(artifactDir, "vision-proof.json"), JSON.stringify(probe, null, 2))
+  writeFileSync(join(artifactDir, "context-proof.json"), JSON.stringify(contextProof, null, 2))
+  writeFileSync(join(artifactDir, "reviewer-model.json"), JSON.stringify({ provider: visionResult.provider, model: visionResult.model }, null, 2))
+  writeFileSync(join(artifactDir, "loaded-context-files.json"), JSON.stringify({ loaded_files: context.loaded_files, missing_requested_files: context.missing_requested_files, generated_context_path: context.path }, null, 2))
+  writeFileSync(join(artifactDir, "codex-patch-brief.task.md"), buildCodexPatchTask(packet, markdownCritique, smartJson, context, probe, contextProof))
+  process.stderr.write(`critical_visual_review_smart_artifact_dir=${artifactDir}\n`)
+  process.stderr.write(`critical_visual_review_codex_patch_task=${join(artifactDir, "codex-patch-brief.task.md")}\n`)
+}
+
+function buildCodexPatchTask(packet: CriticalReviewPacket, markdownCritique: string, smartJson: SmartReviewJson, context: StanleyWebsiteReviewContext, probe: ImageVisibilityProbe, contextProof: ContextProof): string {
+  return `# Codex Patch Task: Smart Vision Reviewer Failure\n\nStatus: patch_spec_ready\nRepo: \`/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page\`\nSection id: \`${packet.section_id}\`\nRun id: \`${packet.run_id}\`\n\n## Non-negotiable boundaries\n- Do not deploy.\n- Do not restart PM2.\n- Do not run production live smoke.\n- Do not touch n8n, QBO, HCP, Telegram config, OpenClaw config, Hermes global config, PM2, secrets, credentials, or live workflow files.\n- Do not approve your own work. Hermes must recapture screenshots and rerun the Smart Vision Reviewer.\n\n## Reviewer model and proof\n- Reviewer: ${probe.reviewer_provider}/${probe.reviewer_model}\n- Attached screenshots:\n${probe.attached_screenshot_files.map((file) => `  - ${file}`).join("\n")}\n- Loaded Stanley context files:\n${context.loaded_files.map((file) => `  - ${file}`).join("\n")}\n\n## Context proof\n\`\`\`json\n${JSON.stringify(contextProof.answers, null, 2)}\n\`\`\`\n\n## Vision proof\n\`\`\`json\n${JSON.stringify(probe.answers, null, 2)}\n\`\`\`\n\n## Smart Vision Reviewer critique\n${markdownCritique}\n\n## Strict JSON decision\n\`\`\`json\n${JSON.stringify(smartJson, null, 2)}\n\`\`\`\n\n## Codex patch brief\n${smartJson.patch_brief}\n\n## Verification required after patch\n\`\`\`bash\nnpm run build\nnpm run design-loop:critical-visual-review-smoke\nnpm run design-loop:anti-ai-slop-smoke\ngit diff --check\n\`\`\`\n\nHermes must then capture fresh mobile/desktop screenshots and rerun Smart Vision Reviewer with full context and image bytes.\n`
 }
 
 function validateScreenshotEvidence(packet: CriticalReviewPacket, key: keyof CriticalReviewPacket["screenshots"]): void {
