@@ -43,6 +43,9 @@ export function runHermesCriticalVisualReviewCommand(argv: string[]): { ok: true
     const jsonText = extractJsonObject(result.stdout || "")
     if (!jsonText) throw new Error("Hermes returned no parseable JSON object.")
     const parsed = JSON.parse(jsonText)
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+      delete (parsed as Record<string, unknown>).required_fields
+    }
     const review = validateCriticalSectionReview(parsed, packet)
     return { ok: true, review }
   } catch (error) {
@@ -164,6 +167,19 @@ export function buildHermesPrompt(packet: CriticalReviewPacket): string {
     "",
     "You must verify whether these screenshots show the intended section. If the section is mismatched or unclear, return section_match no or unclear and do not pass.",
     "You must include reviewed_screenshot_paths and reviewed_screenshot_hashes copied from the packet, so the gate can prove exactly which files were reviewed.",
+    "",
+    "Mobile-first hard-fail standard:",
+    "- Ask first: would a skeptical HVAC, plumbing, electrical, marine, or landscaping owner trust Stanley Systems after seeing this on their phone? If no, final_decision must not be pass.",
+    "- Hard-fail browser-default or nearly unstyled HTML appearance.",
+    "- Hard-fail purple underlined browser-default links, especially CTA-like links.",
+    "- Hard-fail default serif typography or missing Stanley Systems brand typography.",
+    "- Hard-fail duplicated major headlines or hero headings.",
+    "- Hard-fail raw stacked icons unless they are intentionally designed into a clear layout or card system.",
+    "- Hard-fail horizontal overflow, broken mobile spacing, accidental-looking mobile layout, clipped CTAs, or CTA links that do not look actionable.",
+    "- Hard-fail isolated abstract visuals, generic AI/SaaS filler visuals, fake dashboards, card/pill clutter, and unclear hierarchy.",
+    "- Hard-fail public copy typos or visible spacing mistakes such as number,not.",
+    "- Hard-fail revenue calculators or conversion sections that look like content dumps.",
+    "- Section match is not enough to pass if route/mobile styling or continuity looks broken.",
     "",
     "Strict output contract:",
     JSON.stringify(reviewerContract, null, 2),

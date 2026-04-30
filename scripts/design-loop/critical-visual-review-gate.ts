@@ -83,6 +83,25 @@ export type CriticalReviewPacket = {
   }
 }
 
+export type CriticalScreenshotQaFinding = {
+  severity: "blocker"
+  category: "missing_evidence" | "mobile_visual"
+  message: string
+  evidence: string
+  final_decision: CriticalFinalDecision
+}
+
+export type CriticalScreenshotQaPrecheck = {
+  section_id: string
+  status: "pass" | "fail"
+  checked_at: string
+  route: string
+  mobile_screenshot: string
+  mobile_metadata_path: string
+  mobile_viewport: { width: number; height: number } | null
+  findings: CriticalScreenshotQaFinding[]
+}
+
 export type PublicCopyGuardrailFinding = {
   severity: "blocker" | "warning"
   term_or_issue: string
@@ -115,12 +134,14 @@ export type CriticalReviewAggregate = {
     packet_dir: string
     response_dir: string
     copy_guardrail_json: string
+    screenshot_qa_json: string
   }
   command_mode: "safe_allowlisted" | "legacy_shell" | "fixture_callback"
   thresholds: typeof DEFAULT_THRESHOLDS
   max_visual_patch_attempts: number
   visual_patch_attempt: number
   copy_guardrail_scans: PublicCopyGuardrailScan[]
+  screenshot_qa_prechecks: CriticalScreenshotQaPrecheck[]
   sections: CriticalSectionReview[]
   validation_failures: Array<{ section_id: string; error: string }>
   write_errors: Array<{ path: string; error: string }>
@@ -128,6 +149,7 @@ export type CriticalReviewAggregate = {
 }
 
 type SectionRegistryEntry = {
+  route?: string
   section_id?: string
   purpose?: string
   offer?: string
@@ -137,7 +159,52 @@ type SectionRegistryEntry = {
   visual_summary?: string
   text_path?: string
   screenshots?: Record<string, string>
+  viewport_metadata?: Record<string, ScreenshotQaMetadata>
+  mobile_metadata?: ScreenshotQaMetadata
   asset_strategy_hint?: CriticalAssetStrategy
+}
+
+type ScreenshotQaMetadata = {
+  captured_at?: string
+  route?: string
+  phase?: string
+  viewport?: { name?: string; width?: number; height?: number }
+  page?: {
+    body_scroll_width?: number
+    body_client_width?: number
+    document_scroll_width?: number
+    document_client_width?: number
+    body_font_family?: string
+    body_color?: string
+    body_background_color?: string
+    body_class_name?: string
+    html_class_name?: string
+    stylesheet_count?: number
+  }
+  section?: {
+    class_name?: string
+    element_count?: number
+    classed_element_count?: number
+    anchor_count?: number
+    h1_texts?: string[]
+    h2_texts?: string[]
+  }
+  links?: Array<{
+    text?: string
+    href?: string
+    color?: string
+    text_decoration_line?: string
+    display?: string
+    class_name?: string
+    role?: string
+    width?: number
+    height?: number
+  }>
+  copy?: {
+    text?: string
+    h1_texts?: string[]
+    major_headlines?: string[]
+  }
 }
 
 type ReviewOptions = {
@@ -210,7 +277,7 @@ const SEVERE_PUBLIC_COPY_PATTERNS: Array<{ label: string; pattern: RegExp; fix: 
   { label: "Twilio", pattern: /\bTwilio\b/i, fix: "Do not make third-party plumbing public-facing unless explicitly approved." },
   { label: "AI as public hero", pattern: /\bAI(?:-|\s)?(?:powered|first|driven|automation)\b/i, fix: "Lead with business outcomes, not AI." },
   { label: "backend automation", pattern: /\bbackend automation\b/i, fix: "Replace backend/process phrasing with owner outcome language." },
-  { label: "public Stanley shorthand", pattern: /\bStanley\b(?!\s+Systems\b)/i, fix: "Use Stanley Systems in public-facing copy." },
+  { label: "public Stanley shorthand", pattern: /\bStanley\b(?!\s+Systems\b)(?!-)/i, fix: "Use Stanley Systems in public-facing copy." },
 ]
 
 const WEAK_PUBLIC_COPY_PATTERNS = [
@@ -264,13 +331,6 @@ export function runCriticalVisualReviewGate(manifest: Manifest, options: ReviewO
   }
 
   for (const entry of sections) {
-    const scan = scanPublicCopyGuardrails(entry)
-    report.copy_guardrail_scans.push(scan)
-    if (scan.status === "fail") {
-      report.sections.push(publicCopyFailureReview(String(entry.section_id || "section"), scan))
-      continue
-    }
-
     const packet = buildPacket(manifest, entry)
     const packetPath = join(packetDir, `${slugify(packet.section_id || "section")}.json`)
     writeJson(packetPath, packet)
@@ -278,6 +338,20 @@ export function runCriticalVisualReviewGate(manifest: Manifest, options: ReviewO
     const screenshotFailure = validatePacketScreenshots(packet, manifest)
     if (screenshotFailure) {
       report.sections.push(missingScreenshotReview(packet.section_id, screenshotFailure))
+      continue
+    }
+
+    const screenshotQa = runMobileScreenshotQaPrecheck(entry, packet, manifest)
+    report.screenshot_qa_prechecks.push(screenshotQa)
+    if (screenshotQa.status === "fail") {
+      report.sections.push(screenshotQaFailureReview(packet.section_id, packet, screenshotQa))
+      continue
+    }
+
+    const scan = scanPublicCopyGuardrails(entry)
+    report.copy_guardrail_scans.push(scan)
+    if (scan.status === "fail") {
+      report.sections.push(publicCopyFailureReview(String(entry.section_id || "section"), scan))
       continue
     }
 
@@ -363,7 +437,6 @@ export function scanPublicCopyGuardrails(entry: SectionRegistryEntry): PublicCop
     ["purpose", String(entry.purpose || "")],
     ["offer", String(entry.offer || "")],
     ["text", String(entry.text || "")],
-    ["html", String(entry.html || "")],
     ["dom_preview", String(entry.dom_preview || "")],
     ["visual_summary", String(entry.visual_summary || "")],
   ]
@@ -371,7 +444,6 @@ export function scanPublicCopyGuardrails(entry: SectionRegistryEntry): PublicCop
     try {
       const payload = JSON.parse(readFileSync(entry.text_path, "utf8"))
       fields.push(["text_path.text", String(payload.text || "")])
-      fields.push(["text_path.html", String(payload.html || "")])
       fields.push(["text_path.visual_summary", String(payload.visual_summary || "")])
     } catch {
       fields.push(["text_path", readFileSync(entry.text_path, "utf8").slice(0, 5000)])
@@ -457,7 +529,9 @@ function buildPacket(manifest: Manifest, entry: SectionRegistryEntry): CriticalR
       output_contract:
         "Return only strict JSON with exactly the required section-level fields, including reviewer_version, reviewed_screenshot_paths, reviewed_screenshot_hashes, and section_match. No markdown, no prose outside JSON.",
       mandatory_questions: [
+        "Mobile-first trust test: would a skeptical HVAC, plumbing, electrical, marine, or landscaping owner trust Stanley Systems after seeing this on their phone? If no, final_decision must not be pass.",
         "Do the screenshots show the intended section described by section_id and section_purpose? Return section_match as yes, no, or unclear.",
+        "Does the mobile evidence include the full route/continuity a real user sees, not only a polished fragment?",
         "Does this look like a real premium service-business website section, or AI-generated SaaS filler?",
         "Would a service business owner understand the point in 10 seconds?",
         "Are there unnecessary pills, chips, badges, support boxes, fake dashboards, simple icon clutter, or generic card walls?",
@@ -472,6 +546,15 @@ function buildPacket(manifest: Manifest, entry: SectionRegistryEntry): CriticalR
       visual_rules: [
         "Stanley Systems is practical, premium, trustworthy, and service-business focused.",
         "Homepage sections must lead with money, time, owner relief, collected revenue, repeat customers, reviews, referrals, captured calls, or missed work.",
+        "Hard-fail browser-default or nearly unstyled HTML appearance.",
+        "Hard-fail purple underlined browser-default links, especially CTA-like links.",
+        "Hard-fail default serif typography or missing Stanley Systems brand typography.",
+        "Hard-fail duplicated major headlines, duplicated hero headings, visible public copy typos, and spacing mistakes such as number,not.",
+        "Hard-fail horizontal overflow, broken mobile spacing, accidental-looking mobile layout, clipped CTAs, or CTA links that do not look actionable.",
+        "Hard-fail raw stacked icons unless they are clearly arranged as an intentional designed layout or card system.",
+        "Hard-fail isolated abstract visuals, generic AI/SaaS filler visuals, fake dashboards, cluttered card/pill walls, and unclear hierarchy.",
+        "Hard-fail any revenue calculator or conversion section that looks like a content dump instead of a designed conversion surface.",
+        "Hard-fail any mobile page or section that looks unfinished to a skeptical service-business owner.",
         "Avoid AI-looking metaphor imagery, robots, generic humans, noisy textures, and dark/orange/amber/tan/yellow/gold/sepia palettes.",
         "Prefer clean designed diagram/product-style support artwork over AI-looking metaphor images.",
         "Generated imagery must not contain baked-in critical headlines, CTAs, offer labels, metric cards, or business logic unless explicitly approved.",
@@ -631,6 +714,163 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   return failures
 }
 
+function runMobileScreenshotQaPrecheck(
+  entry: SectionRegistryEntry,
+  packet: CriticalReviewPacket,
+  manifest: Manifest,
+): CriticalScreenshotQaPrecheck {
+  const metadata = loadMobileScreenshotQaMetadata(entry)
+  const metadataPath = String(entry.text_path || "")
+  const findings: CriticalScreenshotQaFinding[] = []
+
+  const pushMissing = (message: string, evidence: string) => {
+    findings.push({ severity: "blocker", category: "missing_evidence", message, evidence, final_decision: "blocked_missing_screenshot" })
+  }
+  const pushVisual = (message: string, evidence: string) => {
+    findings.push({ severity: "blocker", category: "mobile_visual", message, evidence, final_decision: "fail_codex_patch_needed" })
+  }
+
+  if (!metadata) {
+    pushMissing("Mobile screenshot QA failed: mobile route/style metadata missing", metadataPath || "section registry has no mobile viewport metadata")
+  } else {
+    const viewport = metadata.viewport
+    if (viewport?.name && viewport.name !== "mobile") {
+      pushMissing("Mobile screenshot QA failed: mobile route/viewport metadata mismatched", `viewport.name=${viewport.name}`)
+    }
+    if (!Number.isFinite(Number(viewport?.width)) || !Number.isFinite(Number(viewport?.height)) || Number(viewport?.width) > 520) {
+      pushMissing("Mobile screenshot QA failed: mobile route/viewport metadata missing or not mobile", `viewport=${JSON.stringify(viewport || null)}`)
+    }
+
+    const capturedAt = Date.parse(String(metadata.captured_at || ""))
+    if (!Number.isFinite(capturedAt)) {
+      pushMissing("Mobile screenshot QA failed: mobile route metadata is missing captured_at", metadataPath || "inline metadata")
+    } else {
+      const runCreated = Date.parse(manifest.created_at)
+      if (Number.isFinite(runCreated) && capturedAt < runCreated - 60_000) {
+        pushMissing("Mobile screenshot QA failed: mobile route metadata is stale for this run", `metadata captured_at=${metadata.captured_at}, run created_at=${manifest.created_at}`)
+      }
+      const screenshotMtime = statSync(packet.screenshots.mobile_after).mtimeMs
+      if (Math.abs(screenshotMtime - capturedAt) > 5 * 60_000) {
+        pushMissing("Mobile screenshot QA failed: mobile route metadata is stale or mismatched with screenshot", `metadata captured_at=${metadata.captured_at}, screenshot mtime=${new Date(screenshotMtime).toISOString()}`)
+      }
+    }
+
+    const page = metadata.page || {}
+    const bodyWidth = Number(page.body_scroll_width || 0)
+    const docWidth = Number(page.document_scroll_width || 0)
+    const bodyClient = Number(page.body_client_width || 0)
+    const docClient = Number(page.document_client_width || 0)
+    const scrollWidth = Math.max(bodyWidth, docWidth)
+    const clientWidth = Math.max(bodyClient, docClient, Number(viewport?.width || 0))
+    if (scrollWidth && clientWidth && scrollWidth > clientWidth + 2) {
+      pushVisual("Mobile screenshot QA failed: horizontal overflow detected", `scrollWidth=${scrollWidth}, clientWidth=${clientWidth}`)
+    }
+
+    if (looksLikeUnloadedCss(metadata)) {
+      pushVisual(
+        "Mobile screenshot QA failed: CSS/brand styling appears unloaded",
+        `font=${page.body_font_family || "unknown"}, stylesheets=${page.stylesheet_count ?? "unknown"}, section_classed=${metadata.section?.classed_element_count ?? "unknown"}`,
+      )
+    }
+
+    const defaultLink = (metadata.links || []).find((link) => isDefaultPurpleUnderlinedLink(link))
+    if (defaultLink) {
+      pushVisual(
+        "Mobile screenshot QA failed: default purple underlined CTA/link styling detected",
+        `text=${defaultLink.text || ""}, color=${defaultLink.color || ""}, decoration=${defaultLink.text_decoration_line || ""}, class=${defaultLink.class_name || ""}`,
+      )
+    }
+
+    const duplicateHeadline = duplicatedMajorHeadline(metadata)
+    if (duplicateHeadline) {
+      pushVisual("Mobile screenshot QA failed: duplicated major headline detected", duplicateHeadline)
+    }
+
+    const typo = obviousCopyTypo(metadata)
+    if (typo) {
+      pushVisual("Mobile screenshot QA failed: public copy typo or spacing mistake detected", typo)
+    }
+  }
+
+  return {
+    section_id: packet.section_id,
+    status: findings.length ? "fail" : "pass",
+    checked_at: new Date().toISOString(),
+    route: String(metadata?.route || entry.route || "/"),
+    mobile_screenshot: packet.screenshots.mobile_after,
+    mobile_metadata_path: metadataPath,
+    mobile_viewport: metadata?.viewport && Number.isFinite(Number(metadata.viewport.width)) && Number.isFinite(Number(metadata.viewport.height))
+      ? { width: Number(metadata.viewport.width), height: Number(metadata.viewport.height) }
+      : null,
+    findings,
+  }
+}
+
+function loadMobileScreenshotQaMetadata(entry: SectionRegistryEntry): ScreenshotQaMetadata | null {
+  if (entry.viewport_metadata?.mobile) return entry.viewport_metadata.mobile
+  if (entry.mobile_metadata) return entry.mobile_metadata
+  if (!entry.text_path || !existsSync(entry.text_path)) return null
+  try {
+    const payload = JSON.parse(readFileSync(entry.text_path, "utf8")) as Record<string, unknown>
+    const viewportMetadata = payload.viewport_metadata as Record<string, ScreenshotQaMetadata> | undefined
+    if (viewportMetadata?.mobile) return viewportMetadata.mobile
+    const mobileMetadata = payload.mobile_metadata as ScreenshotQaMetadata | undefined
+    if (mobileMetadata) return mobileMetadata
+    if ((payload.viewport as ScreenshotQaMetadata["viewport"] | undefined)?.name === "mobile") return payload as ScreenshotQaMetadata
+  } catch {
+    return null
+  }
+  return null
+}
+
+function looksLikeUnloadedCss(metadata: ScreenshotQaMetadata): boolean {
+  const page = metadata.page || {}
+  const section = metadata.section || {}
+  const font = String(page.body_font_family || "").toLowerCase()
+  const bodyClass = String(page.body_class_name || "")
+  const htmlClass = String(page.html_class_name || "")
+  const sectionClass = String(section.class_name || "")
+  const classedCount = Number(section.classed_element_count || 0)
+  const elementCount = Number(section.element_count || 0)
+  const stylesheetCount = Number(page.stylesheet_count || 0)
+  const fontFamilies = font.split(",").map((item) => item.trim().replace(/^["']|["']$/g, ""))
+  const defaultSerif = fontFamilies.some((family) => family === "times" || family === "times new roman" || family === "serif")
+  const noClassEvidence = !bodyClass && !htmlClass && !sectionClass && elementCount > 0 && classedCount <= 1
+  return defaultSerif || (stylesheetCount === 0 && noClassEvidence)
+}
+
+function isDefaultPurpleUnderlinedLink(link: NonNullable<ScreenshotQaMetadata["links"]>[number]): boolean {
+  const color = normalizeCssColor(String(link.color || ""))
+  const decoration = String(link.text_decoration_line || "").toLowerCase()
+  const className = String(link.class_name || "")
+  const text = String(link.text || "").trim()
+  const height = Number(link.height || 0)
+  const defaultPurple = color === "rgb(0,0,238)" || color === "rgb(85,26,139)" || color === "#0000ee" || color === "#551a8b"
+  const ctaLike = /audit|call|book|get|start|revenue|workflow|cash|learn|contact/i.test(text) || height >= 28
+  return defaultPurple && decoration.includes("underline") && !className.trim() && ctaLike
+}
+
+function duplicatedMajorHeadline(metadata: ScreenshotQaMetadata): string {
+  const h1s = metadata.copy?.h1_texts?.length ? metadata.copy.h1_texts : metadata.section?.h1_texts || []
+  const headlines = (h1s.length ? h1s : metadata.copy?.major_headlines || [])
+    .map((item) => item.trim().replace(/\s+/g, " ").toLowerCase())
+    .filter((item) => item.length >= 12)
+  const counts = new Map<string, number>()
+  for (const headline of headlines) counts.set(headline, (counts.get(headline) || 0) + 1)
+  const duplicate = [...counts.entries()].find(([, count]) => count > 1)
+  return duplicate ? `"${duplicate[0]}" appeared ${duplicate[1]} times` : ""
+}
+
+function obviousCopyTypo(metadata: ScreenshotQaMetadata): string {
+  const text = String(metadata.copy?.text || "").replace(/\s+/g, " ")
+  const match = text.match(/\b[\w]+,(?:not|and|but|or|then|the|to|from|with)\b/i)
+  return match ? match[0] : ""
+}
+
+function normalizeCssColor(value: string): string {
+  return value.replace(/\s+/g, "").toLowerCase()
+}
+
 function missingScreenshotReview(sectionId: string, reason: string): CriticalSectionReview {
   return baseFailureReview(sectionId, reason, "Capture readable, fresh desktop and mobile after screenshots before requesting critical visual review.", "blocked_missing_screenshot")
 }
@@ -646,6 +886,24 @@ function publicCopyFailureReview(sectionId: string, scan: PublicCopyGuardrailSca
     "Remove internal/tool-first public copy and rerun capture before visual review.",
     "fail_codex_patch_needed",
   )
+}
+
+function screenshotQaFailureReview(sectionId: string, packet: CriticalReviewPacket, qa: CriticalScreenshotQaPrecheck): CriticalSectionReview {
+  const missingEvidence = qa.findings.some((finding) => finding.final_decision === "blocked_missing_screenshot")
+  return {
+    ...baseFailureReview(
+      sectionId,
+      qa.findings.map((finding) => finding.message).join("; "),
+      missingEvidence
+        ? "Recapture fresh full mobile route evidence with QA metadata before requesting critical visual review."
+        : "Fix the mobile visual output, recapture full mobile route evidence, and rerun Critical Visual Review.",
+      missingEvidence ? "blocked_missing_screenshot" : "fail_codex_patch_needed",
+    ),
+    reviewed_screenshot_paths: packet.screenshots,
+    reviewed_screenshot_hashes: packet.metadata.screenshot_hashes,
+    section_match: missingEvidence ? "unclear" : "yes",
+    blockers: qa.findings.map((finding) => `${finding.message}: ${finding.evidence}`),
+  }
 }
 
 function baseFailureReview(sectionId: string, reason: string, recommendation: string, finalDecision: CriticalFinalDecision): CriticalSectionReview {
@@ -690,12 +948,14 @@ function makeEmptyReport(
       packet_dir: packetDir,
       response_dir: responseDir,
       copy_guardrail_json: join(manifest.run_dir, "verification", "critical-visual-review-copy-guardrails.json"),
+      screenshot_qa_json: join(manifest.run_dir, "verification", "critical-visual-review-screenshot-qa.json"),
     },
     command_mode: commandModeValue,
     thresholds: DEFAULT_THRESHOLDS,
     max_visual_patch_attempts: DEFAULT_THRESHOLDS.max_visual_patch_attempts,
     visual_patch_attempt: visualPatchAttempt(manifest),
     copy_guardrail_scans: [],
+    screenshot_qa_prechecks: [],
     sections: [],
     validation_failures: [],
     write_errors: [],
@@ -722,6 +982,7 @@ function finalizeReport(report: CriticalReviewAggregate) {
 
 function writeCriticalReviewReports(manifest: Manifest, report: CriticalReviewAggregate): CriticalReviewAggregate {
   writeJson(report.report_paths.copy_guardrail_json, report.copy_guardrail_scans)
+  writeJson(report.report_paths.screenshot_qa_json, report.screenshot_qa_prechecks)
   writeJson(report.report_paths.run_json, report)
   writeText(report.report_paths.run_markdown, renderMarkdown(report))
   tryWriteJson(report.report_paths.artifact_json, report, report)
@@ -730,6 +991,7 @@ function writeCriticalReviewReports(manifest: Manifest, report: CriticalReviewAg
     report.report_paths.run_json,
     report.report_paths.run_markdown,
     report.report_paths.copy_guardrail_json,
+    report.report_paths.screenshot_qa_json,
     report.report_paths.artifact_json,
     report.report_paths.artifact_markdown,
   )
@@ -766,6 +1028,7 @@ function renderMarkdown(report: CriticalReviewAggregate): string {
     `Packet dir: ${report.report_paths.packet_dir}`,
     `Response dir: ${report.report_paths.response_dir}`,
     `Copy guardrail report: ${report.report_paths.copy_guardrail_json}`,
+    `Screenshot QA report: ${report.report_paths.screenshot_qa_json}`,
     "",
     ...report.sections.flatMap((section) => [
       `## ${section.section_id || basename(section.exact_fix_recommendation)}`,
@@ -786,6 +1049,11 @@ function renderMarkdown(report: CriticalReviewAggregate): string {
     "## Copy Guardrails",
     ...(report.copy_guardrail_scans.length
       ? report.copy_guardrail_scans.map((scan) => `- ${scan.section_id}: ${scan.status} (${scan.findings.length} finding(s))`)
+      : ["- none"]),
+    "",
+    "## Screenshot QA Prechecks",
+    ...(report.screenshot_qa_prechecks.length
+      ? report.screenshot_qa_prechecks.map((qa) => `- ${qa.section_id}: ${qa.status} (${qa.findings.map((finding) => finding.message).join("; ") || "no findings"})`)
       : ["- none"]),
     "",
     "## Validation Failures",

@@ -23,6 +23,52 @@ The gate blocks on missing, unreadable, stale, or hash-mismatched screenshots; m
 
 Each packet includes `git_sha`, `build_id`, `run_id`, `captured_at`, screenshot paths, screenshot hashes, and screenshot modified times. The reviewer must echo reviewed screenshot paths and hashes.
 
+The intelligent review standard is mobile-first:
+
+> Would a skeptical HVAC, plumbing, electrical, marine, or landscaping owner trust Stanley Systems after seeing this on their phone?
+
+If the answer is no, the reviewer must fail the section or route evidence. Section match alone is not enough to pass.
+
+## Mobile Hard Fails
+
+The reviewer prompt and gate treat these as hard failures:
+
+- browser-default or nearly unstyled HTML
+- purple underlined default links, especially CTA-like links
+- missing brand typography or default serif typography
+- duplicated major headlines or hero headings
+- raw stacked icons unless intentionally designed
+- horizontal overflow
+- broken mobile spacing or accidental-looking mobile layout
+- CTA links that do not look actionable
+- visual assets that do not communicate the offer
+- generic AI/SaaS filler visuals
+- cluttered card/pill walls and unclear hierarchy
+- visible public copy typos or spacing mistakes such as `number,not`
+- conversion sections or calculators that look like content dumps
+- any mobile section a real service-business owner would see as unfinished
+
+## Screenshot QA Precheck
+
+Before Hermes review, the gate runs deterministic mobile screenshot QA from the section registry or DOM metadata. Capture writes per-viewport metadata under `viewport_metadata`, including route, viewport, capture time, page widths, computed body font, stylesheet count, section class evidence, links, and major headline text.
+
+The precheck fails closed before reviewer invocation when evidence shows:
+
+- missing, stale, or mismatched mobile route/viewport metadata
+- CSS or Stanley Systems brand styling appears unloaded
+- default purple underlined CTA/link styling
+- horizontal overflow
+- duplicated major headline text
+- obvious public copy spacing typos
+
+Missing, stale, or mismatched evidence maps to `blocked_missing_screenshot` / `blocked`. Website-fixable mobile visual failures map to `fail_codex_patch_needed` / `needs_patch_2`, even if a reviewer fixture or Hermes response would otherwise say `pass`.
+
+Reports include:
+
+- `critical-visual-review-screenshot-qa.json`
+- `screenshot_qa_prechecks` in the main JSON report
+- precheck findings rendered in the markdown report
+
 ## Score Thresholds
 
 Passing requires:
@@ -59,3 +105,5 @@ The reason is required. The artifact is written under the run verification direc
 ## Protected Surfaces
 
 This gate must not touch `.env*`, secrets, credentials, PM2 or ecosystem config, proxy config, n8n, QBO, HCP, Telegram config, OpenClaw config/runtime, live workflow files, or production runtime configuration.
+
+This gate does not deploy, restart PM2, run production live smoke, or mark a section `verified_pending_deploy` when the gate fails.

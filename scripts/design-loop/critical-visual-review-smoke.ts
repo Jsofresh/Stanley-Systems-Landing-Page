@@ -19,6 +19,7 @@ type SmokeCase = {
   withDesktop?: boolean
   withMobile?: boolean
   mutateAfterPacket?: boolean
+  mobileQaScenario?: "css_unloaded" | "default_purple_link" | "horizontal_overflow" | "duplicated_headline"
   reviewer?: (packet: CriticalReviewPacket) => string | CriticalSectionReview
   expectedStatus: "pass" | "fail"
   expectedDecision: CriticalFinalDecision
@@ -48,6 +49,61 @@ const cases: SmokeCase[] = [
     withDesktop: true,
     withMobile: true,
     reviewer: (packet) => review(packet, "fail_codex_patch_needed"),
+    expectedStatus: "fail",
+    expectedDecision: "fail_codex_patch_needed",
+    expectedNextStatus: "needs_patch_2",
+  },
+  {
+    name: "css_brand_unloaded_precheck_blocks_reviewer_pass",
+    withDesktop: true,
+    withMobile: true,
+    mobileQaScenario: "css_unloaded",
+    reviewer: (packet) => review(packet, "pass"),
+    expectedStatus: "fail",
+    expectedDecision: "fail_codex_patch_needed",
+    expectedNextStatus: "needs_patch_2",
+  },
+  {
+    name: "default_purple_cta_link_precheck_blocks",
+    withDesktop: true,
+    withMobile: true,
+    mobileQaScenario: "default_purple_link",
+    reviewer: (packet) => review(packet, "pass"),
+    expectedStatus: "fail",
+    expectedDecision: "fail_codex_patch_needed",
+    expectedNextStatus: "needs_patch_2",
+  },
+  {
+    name: "horizontal_overflow_precheck_blocks",
+    withDesktop: true,
+    withMobile: true,
+    mobileQaScenario: "horizontal_overflow",
+    reviewer: (packet) => review(packet, "pass"),
+    expectedStatus: "fail",
+    expectedDecision: "fail_codex_patch_needed",
+    expectedNextStatus: "needs_patch_2",
+  },
+  {
+    name: "duplicated_major_headline_precheck_blocks",
+    withDesktop: true,
+    withMobile: true,
+    mobileQaScenario: "duplicated_headline",
+    reviewer: (packet) => review(packet, "pass"),
+    expectedStatus: "fail",
+    expectedDecision: "fail_codex_patch_needed",
+    expectedNextStatus: "needs_patch_2",
+  },
+  {
+    name: "raw_default_unfinished_mobile_rubric_blocks",
+    withDesktop: true,
+    withMobile: true,
+    reviewer: (packet) => ({
+      ...review(packet, "fail_codex_patch_needed"),
+      blockers: [
+        "Mobile layout looks unfinished to a skeptical service-business owner: raw stacked icons, browser-default link treatment, and no actionable CTA hierarchy.",
+      ],
+      exact_fix_recommendation: "Redesign the mobile route evidence so CTAs, icons, hierarchy, and conversion sections look intentional before review can pass.",
+    }),
     expectedStatus: "fail",
     expectedDecision: "fail_codex_patch_needed",
     expectedNextStatus: "needs_patch_2",
@@ -218,6 +274,17 @@ assert(
   results.some((item) => item.name === "invalid_json_blocks_validation" && item.report.validation_failures.length > 0),
   "invalid JSON must create validation failure",
 )
+for (const name of [
+  "css_brand_unloaded_precheck_blocks_reviewer_pass",
+  "default_purple_cta_link_precheck_blocks",
+  "horizontal_overflow_precheck_blocks",
+  "duplicated_major_headline_precheck_blocks",
+]) {
+  assert(
+    results.some((item) => item.name === name && item.report.screenshot_qa_prechecks[0]?.status === "fail"),
+    `${name} must produce a failing screenshot QA precheck artifact`,
+  )
+}
 
 const smokeReportPath = join(tmpdir(), "stanley-design-loop-fixtures", `critical-visual-review-smoke-${Date.now()}.json`)
 writeJson(smokeReportPath, {
@@ -228,6 +295,7 @@ writeJson(smokeReportPath, {
     next_status: item.report.next_status,
     final_decision: item.report.sections[0]?.final_decision,
     validation_failures: item.report.validation_failures,
+    screenshot_qa_prechecks: item.report.screenshot_qa_prechecks,
     packet_path: item.report.report_paths.packet_dir,
     report_path: item.report.report_paths.run_json,
   })),
@@ -245,6 +313,11 @@ function runCase(item: SmokeCase) {
   }
   if (item.withDesktop) writeFixturePng(screenshots.desktop)
   if (item.withMobile) writeFixturePng(screenshots.mobile)
+  const textPath = join(manifest.run_dir, "dom", "after", `${sectionId}.json`)
+  const viewportMetadata = {
+    desktop: mobileQa("default", manifest.created_at),
+    mobile: mobileQa(item.mobileQaScenario || "default", manifest.created_at),
+  }
   writeJson(join(manifest.run_dir, "section-registry.json"), {
     run_id: manifest.run_id,
     phase: "after",
@@ -253,9 +326,17 @@ function runCase(item: SmokeCase) {
         section_id: sectionId,
         purpose: item.name === "public_copy_guardrail_blocks" ? "Hermes Workflow Audit copy focused on collected revenue." : "Workflow Audit section focused on collected revenue and owner relief.",
         offer: "Workflow Audit",
+        route: "/",
+        text_path: textPath,
         screenshots,
+        viewport_metadata: viewportMetadata,
       },
     ],
+  })
+  writeJson(textPath, {
+    section_id: sectionId,
+    text: "Workflow Audit section focused on collected revenue and owner relief.",
+    viewport_metadata: viewportMetadata,
   })
 
   const report = runCriticalVisualReviewGate(manifest, {
@@ -422,6 +503,125 @@ printf '%s\\n' '${fixtureReviewJson.replace(/'/g, "'\\''")}'
       process.env.HERMES_CRITICAL_VISUAL_REVIEW_HERMES_BIN = previousHermesBin
     }
   }
+}
+
+function mobileQa(
+  scenario: "default" | "css_unloaded" | "default_purple_link" | "horizontal_overflow" | "duplicated_headline",
+  capturedAt: string,
+) {
+  const base = {
+    captured_at: capturedAt,
+    route: "/",
+    phase: "after",
+    viewport: { name: "mobile", width: 390, height: 1200 },
+    page: {
+      body_scroll_width: 390,
+      body_client_width: 390,
+      document_scroll_width: 390,
+      document_client_width: 390,
+      body_font_family: "Geist, Arial, sans-serif",
+      body_color: "rgb(15, 23, 42)",
+      body_background_color: "rgb(250, 248, 244)",
+      body_class_name: "font-sans antialiased",
+      html_class_name: "",
+      stylesheet_count: 3,
+    },
+    section: {
+      class_name: "rounded-lg border bg-white p-6 text-slate-950",
+      element_count: 24,
+      classed_element_count: 21,
+      anchor_count: 1,
+      h1_texts: ["Find the money leaks hiding inside your office workflow."],
+      h2_texts: ["Workflow Audit"],
+    },
+    links: [
+      {
+        text: "Book a Workflow Audit",
+        href: "/contact",
+        color: "rgb(255, 255, 255)",
+        text_decoration_line: "none",
+        display: "inline-flex",
+        class_name: "inline-flex rounded-md bg-green-700 px-4 py-3 text-white",
+        role: "",
+        width: 190,
+        height: 44,
+      },
+    ],
+    copy: {
+      text: "Workflow Audit. Find the money leaks hiding inside your office workflow. Book a Workflow Audit.",
+      h1_texts: ["Find the money leaks hiding inside your office workflow."],
+      major_headlines: ["Find the money leaks hiding inside your office workflow.", "Workflow Audit"],
+    },
+  }
+
+  if (scenario === "css_unloaded") {
+    return {
+      ...base,
+      page: {
+        ...base.page,
+        body_font_family: "\"Times New Roman\"",
+        body_class_name: "",
+        stylesheet_count: 0,
+      },
+      section: {
+        ...base.section,
+        class_name: "",
+        classed_element_count: 0,
+      },
+    }
+  }
+  if (scenario === "default_purple_link") {
+    return {
+      ...base,
+      links: [
+        {
+          text: "Book a Workflow Audit",
+          href: "/contact",
+          color: "rgb(0, 0, 238)",
+          text_decoration_line: "underline",
+          display: "inline",
+          class_name: "",
+          role: "",
+          width: 142,
+          height: 18,
+        },
+      ],
+    }
+  }
+  if (scenario === "horizontal_overflow") {
+    return {
+      ...base,
+      page: {
+        ...base.page,
+        body_scroll_width: 476,
+        document_scroll_width: 476,
+      },
+    }
+  }
+  if (scenario === "duplicated_headline") {
+    return {
+      ...base,
+      copy: {
+        ...base.copy,
+        h1_texts: [
+          "Find the money leaks hiding inside your office workflow.",
+          "Find the money leaks hiding inside your office workflow.",
+        ],
+        major_headlines: [
+          "Find the money leaks hiding inside your office workflow.",
+          "Find the money leaks hiding inside your office workflow.",
+        ],
+      },
+      section: {
+        ...base.section,
+        h1_texts: [
+          "Find the money leaks hiding inside your office workflow.",
+          "Find the money leaks hiding inside your office workflow.",
+        ],
+      },
+    }
+  }
+  return base
 }
 
 function review(

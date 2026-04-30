@@ -12,6 +12,7 @@ type SectionEntry = {
   text_path?: string
   screenshots: Record<string, string>
   dom_preview?: string
+  viewport_metadata?: Record<string, unknown>
 }
 
 await main(async (args) => {
@@ -61,6 +62,63 @@ await main(async (args) => {
         const id = slugify(section.section_id)
         const screenshotPath = join(manifest.run_dir, "screenshots", phase, viewport.name, `${id}.png`)
         await page.locator(selector).screenshot({ path: screenshotPath })
+        const viewportMetadata = await page.locator(selector).evaluate((node, args) => {
+          const element = node as HTMLElement
+          const viewport = args.viewport as { name: string; width: number; height: number }
+          const phase = args.phase as string
+          const computedBody = window.getComputedStyle(document.body)
+          const links = Array.from(element.querySelectorAll("a")).slice(0, 20).map((anchor) => {
+            const computed = window.getComputedStyle(anchor)
+            const rect = anchor.getBoundingClientRect()
+            return {
+              text: (anchor.textContent || "").trim().replace(/\s+/g, " "),
+              href: anchor.getAttribute("href") || "",
+              color: computed.color,
+              text_decoration_line: computed.textDecorationLine,
+              display: computed.display,
+              class_name: anchor.className || "",
+              role: anchor.getAttribute("role") || "",
+              width: Math.round(rect.width),
+              height: Math.round(rect.height),
+            }
+          })
+          const classedElementCount = element.querySelectorAll("[class]").length + (element.className ? 1 : 0)
+          const h1Texts = Array.from(document.querySelectorAll("h1")).map((item) => (item.innerText || item.textContent || "").trim().replace(/\s+/g, " ")).filter(Boolean)
+          const h2Texts = Array.from(element.querySelectorAll("h2")).map((item) => (item.innerText || item.textContent || "").trim().replace(/\s+/g, " ")).filter(Boolean)
+          const sectionText = (element.innerText || "").trim().replace(/\s+/g, " ")
+          return {
+            captured_at: new Date().toISOString(),
+            route: window.location.pathname || "/",
+            phase,
+            viewport,
+            page: {
+              body_scroll_width: document.body.scrollWidth,
+              body_client_width: document.body.clientWidth,
+              document_scroll_width: document.documentElement.scrollWidth,
+              document_client_width: document.documentElement.clientWidth,
+              body_font_family: computedBody.fontFamily,
+              body_color: computedBody.color,
+              body_background_color: computedBody.backgroundColor,
+              body_class_name: document.body.className || "",
+              html_class_name: document.documentElement.className || "",
+              stylesheet_count: document.styleSheets.length,
+            },
+            section: {
+              class_name: element.className || "",
+              element_count: element.querySelectorAll("*").length + 1,
+              classed_element_count: classedElementCount,
+              anchor_count: links.length,
+              h1_texts: h1Texts,
+              h2_texts: h2Texts,
+            },
+            links,
+            copy: {
+              text: sectionText,
+              h1_texts: h1Texts,
+              major_headlines: [...h1Texts, ...h2Texts].filter((text) => text.length >= 12),
+            },
+          }
+        }, { viewport, phase })
 
         let entry = registry.find((item) => item.section_id === section.section_id)
         if (!entry) {
@@ -75,11 +133,17 @@ await main(async (args) => {
             text_path: textPath,
             screenshots: {},
             dom_preview: section.text.slice(0, 600),
+            viewport_metadata: {},
           }
           registry.push(entry)
-          writeJson(textPath, section)
         }
         entry.screenshots[viewport.name] = screenshotPath
+        entry.viewport_metadata = entry.viewport_metadata || {}
+        entry.viewport_metadata[viewport.name] = viewportMetadata
+        writeJson(entry.text_path || join(manifest.run_dir, "dom", phase, `${id}.json`), {
+          ...section,
+          viewport_metadata: entry.viewport_metadata,
+        })
       }
       await page.close()
     }
