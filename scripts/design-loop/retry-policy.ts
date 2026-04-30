@@ -3,6 +3,8 @@ export type VerificationDecision = {
   finalGateDecision: string
   reason: string
   inScopeFindings: unknown[]
+  criticalVisualReviewNextStatus?: string
+  criticalVisualReviewSections?: Array<{ final_decision?: string }>
 }
 
 export const NON_RETRYABLE_FAILURE_CLASSES = [
@@ -25,5 +27,19 @@ export function shouldRetryCodexPatch(decision: VerificationDecision): boolean {
   if (decision.failureClass === "copy_guardrail_failed" || decision.failureClass === "offer_guardrail_failed") {
     return decision.inScopeFindings.length > 0 || decision.failureClass === "offer_guardrail_failed"
   }
-  return decision.failureClass === "design_verification_failed" || decision.failureClass === "anti_ai_slop_failed"
+  return (
+    decision.failureClass === "design_verification_failed" ||
+    decision.failureClass === "anti_ai_slop_failed" ||
+    isRetryableCriticalVisualReviewFailure(decision)
+  )
+}
+
+function isRetryableCriticalVisualReviewFailure(decision: VerificationDecision): boolean {
+  if (decision.failureClass !== "critical_visual_review_failed") return false
+  return (
+    decision.criticalVisualReviewNextStatus === "needs_patch_2" &&
+    (decision.criticalVisualReviewSections ?? []).some(
+      (section) => section.final_decision === "fail_codex_patch_needed",
+    )
+  )
 }

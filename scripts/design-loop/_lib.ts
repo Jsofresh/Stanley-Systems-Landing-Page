@@ -19,6 +19,7 @@ export type LoopStatus =
   | "anti_ai_slop_gate_running"
   | "anti_ai_slop_failed"
   | "anti_ai_slop_passed"
+  | "critical_visual_review_passed"
   | "higgsfield_generating"
   | "asset_qa_running"
   | "patch_spec_ready"

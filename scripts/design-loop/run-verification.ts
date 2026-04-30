@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
 import { join, relative } from "node:path"
 import { git, loadManifest, main, protectedPathCheck, runCmd, SITE_REPO, toBool, updateStatus, writeJson, writeText } from "./_lib.ts"
 import { runVisualAssetGate, writeGateReports, type SectionEvidence } from "./anti-ai-slop-gate.ts"
+import { runCriticalVisualReviewGate } from "./critical-visual-review-gate.ts"
 
 type FailureClass =
   | "design_verification_failed"
@@ -14,6 +15,7 @@ type FailureClass =
   | "capture_failed"
   | "live_smoke_failed"
   | "anti_ai_slop_failed"
+  | "critical_visual_review_failed"
   | "blocked_missing_required_asset"
   | "downgraded_visual_strategy"
   | null
@@ -43,6 +45,7 @@ await main(async (args) => {
   const scope = collectVerificationScope(manifest)
   const visualAssetGate = runVisualAssetGate(manifest, scope.visualAssetSections)
   writeGateReports(manifest, visualAssetGate)
+  const criticalVisualReview = runCriticalVisualReviewGate(manifest, { dryRun, updateManifest: false })
 
   writeText(join(manifest.run_dir, "build-reports", dryRun ? "verification-build.dry-run.stdout.txt" : "verification-build.stdout.txt"), build.stdout)
   writeText(join(manifest.run_dir, "build-reports", dryRun ? "verification-build.dry-run.stderr.txt" : "verification-build.stderr.txt"), build.stderr)
@@ -72,6 +75,8 @@ await main(async (args) => {
     captureFailure,
     visualAssetGateStatus: visualAssetGate.status,
     visualAssetNextStatus: visualAssetGate.next_status,
+    criticalVisualReviewStatus: criticalVisualReview.status,
+    criticalVisualReviewNextStatus: criticalVisualReview.next_status,
   })
   const finalGateDecision = failureClass ? "blocked" : "verified_pending_deploy"
   const reasonForBlock = reasonForFailure(failureClass, captureFailure)
@@ -89,6 +94,11 @@ await main(async (args) => {
     visual_asset_strategy_next_status: visualAssetGate.next_status,
     visual_asset_strategy_report: visualAssetGate.report_paths.run_json,
     anti_ai_slop_sections: visualAssetGate.sections,
+    critical_visual_review_gate: criticalVisualReview.status,
+    critical_visual_review_next_status: criticalVisualReview.next_status,
+    critical_visual_review_report: criticalVisualReview.report_paths.run_json,
+    critical_visual_review_aggregate_decision: criticalVisualReview.aggregate_decision,
+    critical_visual_review_sections: criticalVisualReview.sections,
     changed_files_checked: scope.changedFilesChecked,
     dom_files_checked: scope.domFilesChecked,
     explicit_section_files_checked: scope.explicitSectionFilesChecked,
@@ -108,9 +118,14 @@ await main(async (args) => {
     updateStatus(
       manifest,
       failureClass === "anti_ai_slop_failed" ||
-        failureClass === "blocked_missing_required_asset" ||
         failureClass === "downgraded_visual_strategy"
         ? visualAssetGate.next_status
+        : failureClass === "blocked_missing_required_asset"
+          ? criticalVisualReview.status === "fail"
+            ? criticalVisualReview.next_status
+            : visualAssetGate.next_status
+        : failureClass === "critical_visual_review_failed"
+          ? criticalVisualReview.next_status
         : failureClass
           ? "blocked"
           : "verified_pending_deploy",
@@ -320,6 +335,8 @@ function classifyFailure(input: {
   captureFailure: string
   visualAssetGateStatus: "pass" | "fail"
   visualAssetNextStatus: string
+  criticalVisualReviewStatus: "pass" | "fail"
+  criticalVisualReviewNextStatus: string
 }): FailureClass {
   if (!input.buildPass) return "build_failed"
   if (!input.diffPass) return "infrastructure_verification_bug"
@@ -332,6 +349,10 @@ function classifyFailure(input: {
     if (input.visualAssetNextStatus === "downgraded_visual_strategy") return "downgraded_visual_strategy"
     return "anti_ai_slop_failed"
   }
+  if (input.criticalVisualReviewStatus === "fail") {
+    if (input.criticalVisualReviewNextStatus === "blocked_missing_required_asset") return "blocked_missing_required_asset"
+    return "critical_visual_review_failed"
+  }
   return null
 }
 
@@ -341,6 +362,7 @@ function reasonForFailure(failureClass: FailureClass, captureFailure: string): s
   if (failureClass === "copy_guardrail_failed") return "In-scope public website copy contains banned internal or AI-first terms."
   if (failureClass === "offer_guardrail_failed") return "In-scope evidence does not contain an approved Stanley Systems offer name."
   if (failureClass === "anti_ai_slop_failed") return "The visual asset strategy and anti-AI-slop gate found blocker section patterns."
+  if (failureClass === "critical_visual_review_failed") return "The Critical Visual Review gate found a blocker section decision."
   if (failureClass === "blocked_missing_required_asset") return "A section requires a generated/custom visual asset that is missing or rejected."
   if (failureClass === "downgraded_visual_strategy") return "The generated image route is unavailable and the downgrade is not approved for deploy."
   if (failureClass === "build_failed") return "npm run build failed."

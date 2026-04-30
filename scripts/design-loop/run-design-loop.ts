@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { pathToFileURL } from "node:url"
-import { createManifest, loadManifest, main, toBool, updateStatus, writeJson, writeText } from "./_lib.ts"
+import { createManifest, loadManifest, main, toBool, updateStatus, writeJson, writeManifest, writeText } from "./_lib.ts"
 import { shouldRetryCodexPatch, type VerificationDecision } from "./retry-policy.ts"
 
 async function runStep(script: string, args: string[]) {
@@ -111,7 +111,10 @@ await main(async (args) => {
     return
   }
 
-  for (let attempt = 1; attempt <= manifest.max_iterations; attempt += 1) {
+  const maxVisualPatchAttempts = Math.min(manifest.max_iterations, 2)
+  for (let attempt = 1; attempt <= maxVisualPatchAttempts; attempt += 1) {
+    ;(manifest as unknown as Record<string, unknown>).critical_visual_review_attempt = attempt
+    writeManifest(manifest)
     saveStep(manifest.run_dir, `codex-attempt-${attempt}`, await runStep("apply-patch-or-run-codex.ts", baseArgs))
     saveStep(manifest.run_dir, `capture-after-${attempt}`, await runStep("capture-sections.ts", [...baseArgs, "--phase", "after", ...urlArgs]))
     saveStep(manifest.run_dir, `verify-${attempt}`, await runStep("run-verification.ts", baseArgs))
@@ -123,7 +126,7 @@ await main(async (args) => {
       updateStatus(manifest, "blocked")
       break
     }
-    if (attempt < manifest.max_iterations) updateStatus(manifest, "needs_patch_2")
+    if (attempt < maxVisualPatchAttempts) updateStatus(manifest, "needs_patch_2")
   }
 
   manifest = loadManifest(manifest.run_id)
@@ -157,6 +160,8 @@ function readVerificationDecision(runDir: string): {
   finalGateDecision: string
   reason: string
   inScopeFindings: unknown[]
+  criticalVisualReviewNextStatus?: string
+  criticalVisualReviewSections?: Array<{ final_decision?: string }>
 } & VerificationDecision {
   const reportPath = join(runDir, "verification", "verification-report.json")
   if (!existsSync(reportPath)) {
@@ -173,6 +178,10 @@ function readVerificationDecision(runDir: string): {
     finalGateDecision: report.final_gate_decision || report.next_status || "blocked",
     reason: report.reason_for_block_if_blocked || report.blocker_reason || "",
     inScopeFindings: report.in_scope_findings || [],
+    criticalVisualReviewNextStatus: report.critical_visual_review_next_status,
+    criticalVisualReviewSections: Array.isArray(report.critical_visual_review_sections)
+      ? report.critical_visual_review_sections
+      : [],
   }
 }
 
@@ -189,7 +198,7 @@ function writeControllerBlockerReport(
     final_gate_decision: decision.finalGateDecision,
     blocker_reason: decision.reason || "Controller stopped because the failure is not a retryable section patch failure.",
     retry_policy:
-      "Retry only design_verification_failed, in-scope copy_guardrail_failed, or in-scope offer_guardrail_failed. Do not retry infrastructure, bridge, capture, backup, deploy, live smoke, protected path, or build failures.",
+      "Retry only design_verification_failed, critical_visual_review_failed with fail_codex_patch_needed, in-scope copy_guardrail_failed, or in-scope offer_guardrail_failed. Do not retry infrastructure, bridge, capture, backup, deploy, live smoke, protected path, missing asset, revert, missing screenshot, validation, or build failures.",
     written_at: new Date().toISOString(),
   })
 }
