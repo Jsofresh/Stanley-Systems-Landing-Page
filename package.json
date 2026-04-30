@@ -17,10 +17,15 @@
     "design-loop:apply-codex": "node --experimental-strip-types scripts/design-loop/apply-patch-or-run-codex.ts",
     "design-loop:capture-after": "node --experimental-strip-types scripts/design-loop/capture-after.ts --phase after",
     "design-loop:verify": "node --experimental-strip-types scripts/design-loop/run-verification.ts",
+    "design-loop:visual-asset-gate": "node --experimental-strip-types scripts/design-loop/visual-asset-strategy-gate.ts",
+    "design-loop:anti-ai-slop-smoke": "node --experimental-strip-types scripts/design-loop/visual-asset-strategy-smoke.ts",
     "design-loop:deploy": "node --experimental-strip-types scripts/design-loop/deploy-if-verified.ts",
     "design-loop:live-smoke": "node --experimental-strip-types scripts/design-loop/live-smoke-check.ts",
     "design-loop:rollback": "node --experimental-strip-types scripts/design-loop/rollback-site.ts",
     "design-loop:log": "node --experimental-strip-types scripts/design-loop/log-to-stanley-os.ts",
+    "design-loop:verification-smoke": "node --experimental-strip-types scripts/design-loop/verification-scope-smoke.ts",
+    "design-loop:handoff-bridge": "node --experimental-strip-types scripts/design-loop/agent-handoff-bridge.ts",
+    "design-loop:handoff-bridge:smoke": "node --experimental-strip-types scripts/design-loop/agent-handoff-bridge-smoke.ts",
     "design-loop:run": "node --experimental-strip-types scripts/design-loop/run-design-loop.ts"
   },
   "dependencies": {

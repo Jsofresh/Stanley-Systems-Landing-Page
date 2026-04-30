@@ -1,7 +1,8 @@
-import { existsSync } from "node:fs"
+import { existsSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { pathToFileURL } from "node:url"
 import { createManifest, loadManifest, main, toBool, updateStatus, writeJson, writeText } from "./_lib.ts"
+import { shouldRetryCodexPatch, type VerificationDecision } from "./retry-policy.ts"
 
 async function runStep(script: string, args: string[]) {
   const originalArgv = process.argv
@@ -115,8 +116,14 @@ await main(async (args) => {
     saveStep(manifest.run_dir, `capture-after-${attempt}`, await runStep("capture-sections.ts", [...baseArgs, "--phase", "after", ...urlArgs]))
     saveStep(manifest.run_dir, `verify-${attempt}`, await runStep("run-verification.ts", baseArgs))
     manifest = loadManifest(manifest.run_id)
-    if (manifest.status === "verified_pending_deploy") break
-    if (attempt < manifest.max_iterations) updateStatus(manifest, `needs_patch_2`)
+    const verificationDecision = readVerificationDecision(manifest.run_dir)
+    if (verificationDecision.finalGateDecision === "verified_pending_deploy") break
+    if (!shouldRetryCodexPatch(verificationDecision)) {
+      writeControllerBlockerReport(manifest.run_dir, attempt, verificationDecision)
+      updateStatus(manifest, "blocked")
+      break
+    }
+    if (attempt < manifest.max_iterations) updateStatus(manifest, "needs_patch_2")
   }
 
   manifest = loadManifest(manifest.run_id)
@@ -143,4 +150,46 @@ function ensureEmptyAfterFolders(runDir: string) {
       writeJson(join(runDir, dir, ".keep.json"), { created: true })
     }
   }
+}
+
+function readVerificationDecision(runDir: string): {
+  failureClass: string | null
+  finalGateDecision: string
+  reason: string
+  inScopeFindings: unknown[]
+} & VerificationDecision {
+  const reportPath = join(runDir, "verification", "verification-report.json")
+  if (!existsSync(reportPath)) {
+    return {
+      failureClass: "infrastructure_verification_bug",
+      finalGateDecision: "blocked",
+      reason: `Missing verification report at ${reportPath}`,
+      inScopeFindings: [],
+    }
+  }
+  const report = JSON.parse(readFileSync(reportPath, "utf8"))
+  return {
+    failureClass: report.failure_class || null,
+    finalGateDecision: report.final_gate_decision || report.next_status || "blocked",
+    reason: report.reason_for_block_if_blocked || report.blocker_reason || "",
+    inScopeFindings: report.in_scope_findings || [],
+  }
+}
+
+function writeControllerBlockerReport(
+  runDir: string,
+  attempt: number,
+  decision: ReturnType<typeof readVerificationDecision>,
+) {
+  writeJson(join(runDir, "verification", "controller-blocker-report.json"), {
+    attempt,
+    status: "blocked",
+    retry_stopped: true,
+    failure_class: decision.failureClass,
+    final_gate_decision: decision.finalGateDecision,
+    blocker_reason: decision.reason || "Controller stopped because the failure is not a retryable section patch failure.",
+    retry_policy:
+      "Retry only design_verification_failed, in-scope copy_guardrail_failed, or in-scope offer_guardrail_failed. Do not retry infrastructure, bridge, capture, backup, deploy, live smoke, protected path, or build failures.",
+    written_at: new Date().toISOString(),
+  })
 }
