@@ -229,8 +229,8 @@ function RevenueMomentCard({ step, index }: { step: (typeof revenueLoopSteps)[nu
   const Icon = step.icon
 
   return (
-    <div className="relative min-h-[154px] rounded-[1.15rem] border border-[#dce9dc] bg-white p-4 text-center shadow-[0_18px_42px_rgba(16,32,51,0.08)]">
-      <div className="absolute -top-5 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border-[6px] border-[#f7fbf7] bg-[#15803D] text-white shadow-[0_12px_24px_rgba(21,128,61,0.22)]">
+    <div className="relative min-h-[154px] rounded-[1.15rem] bg-white/92 p-4 text-center shadow-[0_16px_38px_rgba(16,32,51,0.07)]">
+      <div className="absolute -top-5 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-[#15803D] text-white shadow-[0_12px_24px_rgba(21,128,61,0.22)] ring-[6px] ring-[#f7fbf7]">
         <Icon className="h-4 w-4" strokeWidth={2} />
       </div>
       <div className="pt-5">
@@ -245,7 +245,7 @@ function RevenueMomentCard({ step, index }: { step: (typeof revenueLoopSteps)[nu
 
 function CustomerRevenueDesktopJourney() {
   return (
-    <div className="relative hidden min-h-[575px] overflow-hidden rounded-[1.25rem] border border-[#e5ded3] bg-[#f7fbf7] p-7 lg:block">
+    <div className="relative hidden min-h-[575px] overflow-hidden rounded-[1.4rem] bg-[#f4faf5] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] lg:block">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18px_18px,rgba(21,128,61,0.08)_1.3px,transparent_1.5px)] bg-[length:34px_34px] opacity-60" />
       <div className="pointer-events-none absolute left-10 top-14 h-52 w-52 rounded-full bg-white/90 blur-2xl" />
       <div className="pointer-events-none absolute bottom-8 right-8 h-64 w-64 rounded-full bg-[#dff5e5] blur-3xl" />
@@ -287,8 +287,8 @@ function CustomerRevenueDesktopJourney() {
         />
       </svg>
 
-      <div className="absolute left-[58px] top-[84px] w-[150px] rotate-[-5deg] rounded-[1.35rem] border border-[#dce9dc] bg-[#102033] p-3 text-white shadow-[0_22px_45px_rgba(16,32,51,0.2)]">
-        <div className="rounded-[1rem] border border-white/10 bg-[#142b45] p-3">
+      <div className="absolute left-[58px] top-[84px] w-[150px] rotate-[-5deg] rounded-[1.35rem] bg-[#102033] p-3 text-white shadow-[0_22px_45px_rgba(16,32,51,0.2)]">
+        <div className="rounded-[1rem] bg-[#142b45] p-3">
           <p className="text-[0.68rem] font-bold tracking-[0.14em] text-[#9ee6b4]">MISSED CALL</p>
           <p className="mt-3 text-sm font-bold leading-5">Still winnable</p>
           <div className="mt-4 flex gap-2">
@@ -302,7 +302,7 @@ function CustomerRevenueDesktopJourney() {
         </div>
       </div>
 
-      <div className="absolute left-[265px] top-[76px] w-[180px] rounded-[1.15rem] border border-[#dce9dc] bg-white p-4 shadow-[0_18px_42px_rgba(16,32,51,0.08)]">
+      <div className="absolute left-[265px] top-[76px] w-[180px] rounded-[1.15rem] bg-white/94 p-4 shadow-[0_16px_36px_rgba(16,32,51,0.08)]">
         <div className="flex items-center gap-2 text-xs font-bold tracking-[0.12em] text-[#15803D]">
           <Mail className="h-4 w-4" />
           FOLLOW-UP
@@ -314,7 +314,7 @@ function CustomerRevenueDesktopJourney() {
         </div>
       </div>
 
-      <div className="absolute left-[530px] top-[60px] w-[170px] rotate-[4deg] rounded-[1.15rem] border border-[#dce9dc] bg-white p-4 shadow-[0_18px_42px_rgba(16,32,51,0.08)]">
+      <div className="absolute left-[530px] top-[60px] w-[170px] rotate-[4deg] rounded-[1.15rem] bg-white/94 p-4 shadow-[0_16px_36px_rgba(16,32,51,0.08)]">
         <div className="flex gap-1 text-[#15803D]" aria-hidden="true">
           {[0, 1, 2, 3, 4].map((star) => (
             <Star key={star} className="h-4 w-4 fill-current" strokeWidth={1.6} />
@@ -324,10 +324,10 @@ function CustomerRevenueDesktopJourney() {
         <p className="mt-1 text-xs leading-5 text-[#5b6875]">Sent after the job lands well.</p>
       </div>
 
-      <div className="absolute right-[226px] top-[96px] w-[150px] rounded-[1.15rem] border border-[#dce9dc] bg-white p-4 shadow-[0_18px_42px_rgba(16,32,51,0.08)]">
+      <div className="absolute right-[226px] top-[96px] w-[150px] rounded-[1.15rem] bg-white/94 p-4 shadow-[0_16px_36px_rgba(16,32,51,0.08)]">
         <div className="flex -space-x-2" aria-hidden="true">
           {[0, 1, 2].map((avatar) => (
-            <span key={avatar} className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-[#e7f7eb] text-[#15803D]">
+            <span key={avatar} className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e7f7eb] text-[#15803D] ring-2 ring-white">
               <UsersRound className="h-4 w-4" />
             </span>
           ))}
@@ -335,7 +335,7 @@ function CustomerRevenueDesktopJourney() {
         <p className="mt-4 text-sm font-bold leading-5 text-[#102033]">Referral prompt ready</p>
       </div>
 
-      <div className="absolute right-[86px] bottom-[86px] w-[142px] rotate-[3deg] rounded-[1.15rem] border border-[#dce9dc] bg-white p-4 shadow-[0_18px_42px_rgba(16,32,51,0.08)]">
+      <div className="absolute right-[86px] bottom-[86px] w-[142px] rotate-[3deg] rounded-[1.15rem] bg-white/94 p-4 shadow-[0_16px_36px_rgba(16,32,51,0.08)]">
         <div className="grid grid-cols-3 gap-1" aria-hidden="true">
           {[0, 1, 2, 3, 4, 5].map((cell) => (
             <span key={cell} className={`h-7 rounded-lg ${cell === 4 ? "bg-[#15803D]" : "bg-[#edf5ee]"}`} />
@@ -344,8 +344,7 @@ function CustomerRevenueDesktopJourney() {
         <p className="mt-3 text-sm font-bold leading-5 text-[#102033]">Booked slot</p>
       </div>
 
-      <div className="absolute right-[20px] top-[180px] flex h-[196px] w-[196px] items-center justify-center rounded-full border border-[#bfe6c9] bg-[#116832] p-4 text-center text-white shadow-[0_28px_70px_rgba(21,128,61,0.22)]">
-        <div className="absolute inset-3 rounded-full border border-white/25" aria-hidden="true" />
+      <div className="absolute right-[20px] top-[180px] flex h-[196px] w-[196px] items-center justify-center rounded-full bg-[#116832] p-4 text-center text-white shadow-[0_28px_70px_rgba(21,128,61,0.24)] ring-[12px] ring-[#dff5e5]/70">
         <div>
           <TrendingUp className="mx-auto h-9 w-9" strokeWidth={1.9} />
           <p className="mt-4 text-[2rem] font-semibold leading-none tracking-tight">Steady repeat revenue</p>
@@ -358,7 +357,7 @@ function CustomerRevenueDesktopJourney() {
         ))}
       </div>
 
-      <div className="absolute left-8 top-[246px] flex items-center gap-2 rounded-full border border-[#dce9dc] bg-white/90 px-3 py-2 text-xs font-bold tracking-[0.12em] text-[#15803D] shadow-[0_12px_24px_rgba(16,32,51,0.06)]">
+      <div className="absolute left-8 top-[246px] flex items-center gap-2 rounded-full bg-white/88 px-3 py-2 text-xs font-bold tracking-[0.12em] text-[#15803D] shadow-[0_10px_22px_rgba(16,32,51,0.05)]">
         <MapPin className="h-4 w-4" />
         CUSTOMER MOMENTS
       </div>
@@ -368,7 +367,7 @@ function CustomerRevenueDesktopJourney() {
 
 function CustomerRevenueMobilePath() {
   return (
-    <div className="relative min-h-[690px] overflow-hidden rounded-[1.05rem] border border-[#d6e6d7] bg-[#f7fbf7] p-2 sm:min-h-[650px] lg:hidden">
+    <div className="relative min-h-[690px] overflow-hidden rounded-[1.25rem] bg-[#f4faf5] p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] sm:min-h-[650px] lg:hidden">
       <div className="pointer-events-none absolute -left-20 top-24 h-72 w-72 rounded-full bg-white blur-3xl" />
       <div className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#dff5e5] blur-3xl" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14px_14px,rgba(21,128,61,0.08)_1.1px,transparent_1.3px)] bg-[length:26px_26px] opacity-70" />
@@ -413,7 +412,7 @@ function CustomerRevenueMobilePath() {
       </svg>
 
       <div className="relative z-10 min-h-[674px] sm:min-h-[634px]">
-        <div className="rounded-[1rem] border border-[#dce9dc] bg-white/92 p-3 shadow-[0_14px_34px_rgba(16,32,51,0.06)]">
+        <div className="rounded-[1rem] bg-white/88 p-3 shadow-[0_12px_28px_rgba(16,32,51,0.05)]">
           <div className="flex items-center gap-2 text-[0.68rem] font-bold tracking-[0.12em] text-[#15803D]">
             <MapPin className="h-3.5 w-3.5" />
             CUSTOMER REVENUE PATH
@@ -426,15 +425,14 @@ function CustomerRevenueMobilePath() {
           </p>
         </div>
 
-        <div className="absolute right-1 top-[112px] flex h-[120px] w-[120px] items-center justify-center rounded-full border border-[#bfe6c9] bg-[#116832] p-3 text-center text-white shadow-[0_24px_54px_rgba(21,128,61,0.24)] sm:right-3 sm:h-[132px] sm:w-[132px]">
-          <div className="absolute inset-2 rounded-full border border-white/25" aria-hidden="true" />
+        <div className="absolute right-1 top-[112px] flex h-[120px] w-[120px] items-center justify-center rounded-full bg-[#116832] p-3 text-center text-white shadow-[0_24px_54px_rgba(21,128,61,0.24)] ring-[8px] ring-[#dff5e5]/70 sm:right-3 sm:h-[132px] sm:w-[132px]">
           <div>
             <TrendingUp className="mx-auto h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.9} />
             <p className="mt-2 text-[1.18rem] font-semibold leading-[1.02] tracking-tight sm:text-[1.35rem]">Steady repeat revenue</p>
           </div>
         </div>
 
-        <div className="absolute left-1 top-[170px] w-[106px] rotate-[-5deg] rounded-[1.05rem] border border-[#24405c]/10 bg-[#102033] p-2.5 text-white shadow-[0_18px_40px_rgba(16,32,51,0.2)] sm:left-5 sm:top-[142px] sm:w-[128px] sm:p-3">
+        <div className="absolute left-1 top-[170px] w-[106px] rotate-[-5deg] rounded-[1.05rem] bg-[#102033] p-2.5 text-white shadow-[0_18px_40px_rgba(16,32,51,0.2)] sm:left-5 sm:top-[142px] sm:w-[128px] sm:p-3">
           <div className="flex items-center gap-2 text-[0.66rem] font-bold tracking-[0.13em] text-[#9ee6b4]">
             <PhoneCall className="h-3.5 w-3.5" />
             MISSED CALL
@@ -442,12 +440,12 @@ function CustomerRevenueMobilePath() {
           <p className="mt-2 text-xs font-bold leading-4 sm:text-sm sm:leading-5">Follow up while it is still winnable.</p>
         </div>
 
-        <div className="absolute right-1 top-[260px] w-[108px] rotate-[4deg] rounded-full border border-[#dce9dc] bg-white px-3 py-3 text-center shadow-[0_16px_34px_rgba(16,32,51,0.08)] sm:right-5 sm:top-[248px] sm:w-[120px] sm:px-4">
+        <div className="absolute right-1 top-[260px] w-[108px] rotate-[4deg] rounded-full bg-white/94 px-3 py-3 text-center shadow-[0_14px_30px_rgba(16,32,51,0.07)] sm:right-5 sm:top-[248px] sm:w-[120px] sm:px-4">
           <RefreshCw className="mx-auto h-5 w-5 text-[#15803D]" strokeWidth={1.9} />
           <p className="mt-1 text-xs font-bold leading-4 text-[#102033]">Past customer returns</p>
         </div>
 
-        <div className="absolute left-[50px] top-[334px] w-[132px] rounded-[1rem] border border-[#dce9dc] bg-white p-3 shadow-[0_16px_34px_rgba(16,32,51,0.08)] sm:left-[96px] sm:top-[300px] sm:w-[154px]">
+        <div className="absolute left-[50px] top-[334px] w-[132px] rounded-[1rem] bg-white/94 p-3 shadow-[0_14px_30px_rgba(16,32,51,0.07)] sm:left-[96px] sm:top-[300px] sm:w-[154px]">
           <div className="flex gap-0.5 text-[#15803D]" aria-hidden="true">
             {[0, 1, 2, 3, 4].map((star) => (
               <Star key={star} className="h-3.5 w-3.5 fill-current" strokeWidth={1.5} />
@@ -456,10 +454,10 @@ function CustomerRevenueMobilePath() {
           <p className="mt-2 text-xs font-bold leading-4 text-[#102033]">Review request lands after a good job.</p>
         </div>
 
-        <div className="absolute left-1 top-[436px] w-[112px] rounded-[1.2rem] border border-[#dce9dc] bg-white p-2.5 shadow-[0_16px_34px_rgba(16,32,51,0.08)] sm:left-4 sm:top-[394px] sm:w-[136px] sm:p-3">
+        <div className="absolute left-1 top-[436px] w-[112px] rounded-[1.2rem] bg-white/94 p-2.5 shadow-[0_14px_30px_rgba(16,32,51,0.07)] sm:left-4 sm:top-[394px] sm:w-[136px] sm:p-3">
           <div className="flex -space-x-2" aria-hidden="true">
             {[0, 1, 2].map((avatar) => (
-              <span key={avatar} className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#e7f7eb] text-[#15803D]">
+              <span key={avatar} className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e7f7eb] text-[#15803D] ring-2 ring-white">
                 <UsersRound className="h-3.5 w-3.5" />
               </span>
             ))}
@@ -467,7 +465,7 @@ function CustomerRevenueMobilePath() {
           <p className="mt-2 text-xs font-bold leading-4 text-[#102033]">Referral prompt stays easy.</p>
         </div>
 
-        <div className="absolute right-1 top-[446px] w-[112px] rotate-[3deg] rounded-[1rem] border border-[#dce9dc] bg-white p-2.5 shadow-[0_16px_34px_rgba(16,32,51,0.08)] sm:right-5 sm:top-[404px] sm:w-[136px] sm:p-3">
+        <div className="absolute right-1 top-[446px] w-[112px] rotate-[3deg] rounded-[1rem] bg-white/94 p-2.5 shadow-[0_14px_30px_rgba(16,32,51,0.07)] sm:right-5 sm:top-[404px] sm:w-[136px] sm:p-3">
           <div className="grid grid-cols-3 gap-1" aria-hidden="true">
             {[0, 1, 2, 3, 4, 5].map((cell) => (
               <span key={cell} className={`h-5 rounded-md ${cell === 4 ? "bg-[#15803D]" : "bg-[#edf5ee]"}`} />
@@ -476,7 +474,7 @@ function CustomerRevenueMobilePath() {
           <p className="mt-2 text-xs font-bold leading-4 text-[#102033]">Booked work has more ways in.</p>
         </div>
 
-        <div className="absolute bottom-1 left-1 right-1 rounded-[1rem] border border-[#cfe6d1] bg-white/90 px-4 py-3 shadow-[0_14px_34px_rgba(16,32,51,0.06)] sm:bottom-3 sm:left-3 sm:right-3">
+        <div className="absolute bottom-1 left-1 right-1 rounded-[1rem] bg-white/88 px-4 py-3 shadow-[0_12px_28px_rgba(16,32,51,0.05)] sm:bottom-3 sm:left-3 sm:right-3">
           <div className="flex items-start gap-3">
             <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-white">
               <MessageSquareText className="h-4 w-4" strokeWidth={1.9} />
@@ -491,15 +489,15 @@ function CustomerRevenueMobilePath() {
 
 function CustomerRevenueProcessVisual() {
   return (
-    <div className="relative overflow-hidden rounded-[1.35rem] border border-[#e0d8cc] bg-[linear-gradient(180deg,#ffffff_0%,#fbfaf7_100%)] p-2.5 shadow-[0_22px_60px_rgba(16,32,51,0.1)] ring-1 ring-white/80 sm:rounded-[2rem] sm:p-7 lg:p-8">
+    <div className="relative overflow-hidden rounded-[1.7rem] border border-[#e7dfd3] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbf7_100%)] p-3 shadow-[0_24px_70px_rgba(16,32,51,0.1)] sm:rounded-[2rem] sm:p-6 lg:p-7">
       <div className="pointer-events-none absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#e9f8ed] blur-3xl" />
       <div className="pointer-events-none absolute -right-20 bottom-8 h-64 w-64 rounded-full bg-[#edf8ef] blur-3xl" />
-      <div className="relative z-10 overflow-hidden rounded-[1.1rem] border border-[#e8e1d6] bg-white/88 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] sm:rounded-[1.55rem] sm:p-5 lg:p-7">
+      <div className="relative z-10 overflow-hidden rounded-[1.35rem] bg-white/60 p-2 sm:rounded-[1.7rem] sm:p-3 lg:p-4">
         <CustomerRevenueDesktopJourney />
         <CustomerRevenueMobilePath />
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 hidden gap-2.5 sm:grid sm:grid-cols-2 lg:grid-cols-4">
           {revenueOutcomeItems.map((item) => (
-            <div key={item} className="flex items-center gap-3 rounded-2xl border border-[#e2dbcf] bg-white px-4 py-3 text-sm font-bold text-[#102033] shadow-[0_10px_24px_rgba(16,32,51,0.05)]">
+            <div key={item} className="flex items-center gap-3 rounded-2xl bg-[#f4faf5]/85 px-4 py-3 text-sm font-bold text-[#102033] shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
               <CheckCircle2 className="h-4 w-4 shrink-0 text-[#15803D]" />
               <span>{item}</span>
             </div>
@@ -545,7 +543,7 @@ function CustomerRevenueAuditBridge() {
 
 function CustomerRevenueSystemSection() {
   return (
-    <div id="customer-revenue-system" className="scroll-mt-40 pt-24 -mt-24 sm:scroll-mt-44 lg:scroll-mt-48">
+    <div id="customer-revenue-system" className="scroll-mt-40 sm:scroll-mt-44 lg:scroll-mt-48">
       <SectionHeader
         eyebrow="Customer Revenue System"
         headline="Get more money from the customers you already earned."
