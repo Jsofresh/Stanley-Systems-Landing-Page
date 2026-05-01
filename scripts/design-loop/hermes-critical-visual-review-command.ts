@@ -95,6 +95,13 @@ type SmartReviewJson = {
   visual_anchor_overpowers_card_stack: boolean
   repetitive_icon_card_pattern: boolean
   underdesigned_plain_section: boolean
+  over_framed_section: boolean
+  too_many_nested_borders: boolean
+  border_noise_dominates_visual: boolean
+  support_cards_repeat_border_language: boolean
+  boxed_in_visual_anchor: boolean
+  actual_ui_clipping_or_overflow: boolean
+  screenshot_crop_only_not_layout_failure: boolean
   blockers: string[]
   patch_brief: string
 }
@@ -250,6 +257,13 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     visual_anchor_overpowers_card_stack: "boolean: true only if the dominant visual anchor is stronger than any repeated card stack",
     repetitive_icon_card_pattern: "legacy boolean: mirror repeated_card_pattern_dominates for backward compatibility",
     underdesigned_plain_section: "boolean: true if clean/mobile-safe but too plain, icon-heavy, underpowered, or forgettable",
+    over_framed_section: "boolean: true if boxes-inside-boxes, excessive outline chrome, or concentric rounded containers make the section feel busy or stiff",
+    too_many_nested_borders: "boolean: true if nested rounded containers or outline layers are visually noticeable as a dominant pattern",
+    border_noise_dominates_visual: "boolean: true if border styling/chrome becomes more noticeable than the message or business outcome",
+    support_cards_repeat_border_language: "boolean: true if support cards/checklist pills repeat heavy border language and compete with the main visual",
+    boxed_in_visual_anchor: "boolean: true if the main loop/path/outcome visual is trapped inside unnecessary frame levels",
+    actual_ui_clipping_or_overflow: "boolean: true only for real in-browser clipping, overflow, unreadable cut-off UI, or broken layout evidence",
+    screenshot_crop_only_not_layout_failure: "boolean: true if an apparent cut-off is only incomplete screenshot framing or section crop, not actual live UI clipping",
     blockers: "string[]",
     patch_brief: "string: Codex-ready patch brief scoped to the failed page/section, no self-approval",
   }
@@ -294,13 +308,17 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     "- The buyer is a skeptical service-business owner, not a SaaS buyer.",
     "- Copy must be clear, not clever. Use Stanley Systems publicly, not Stanley shorthand.",
     "- Public copy must not make AI, Hermes, Codex, OpenClaw, Twilio, n8n, QBO API, or HCP API the star.",
-    "- Generic SaaS filler, fake dashboards, weak cards, card/pill clutter, default browser styling, raw icons, purple underlined links, default serif typography, duplicated headlines, horizontal overflow, and unfinished mobile layouts fail.",
+    "- Generic SaaS filler, fake dashboards, weak cards, card/pill clutter, excessive outline chrome, boxes-inside-boxes layouts, default browser styling, raw icons, purple underlined links, default serif typography, duplicated headlines, horizontal overflow, and unfinished mobile layouts fail.",
     "- A Stanley Systems section cannot pass only because it is clean, readable, mobile-safe, and strategy-aligned. Clean is table stakes, not approval.",
     "- It must also have a strong visual anchor, enough imagery or visual communication, a memorable section-level visual idea, varied visual rhythm, clear process-to-outcome motion where relevant, and a design that sells rather than merely explains.",
     "- The visuals must reduce explanation load and feel service-business relevant. A plain repeated icon-card stack cannot be the entire section.",
     "- Fail or require patch if the section is too icon-heavy, too plain, visually safe but forgettable, a vertical list instead of a designed system, dependent on the same card pattern for every step, lacking a dominant visual centerpiece, requiring text to do nearly all explanation, technically mobile-safe but boring, or clean but not persuasive.",
+    "- New over-framing bad pattern labels: over_framed_section, too_many_nested_borders, concentric_container_overload, excessive_outline_chrome, border_noise_dominates_visual, support_cards_repeat_border_language, premium_by_border_stack, boxed_in_visual_anchor.",
+    "- Fail or require patch when a section relies on too many nested rounded containers or outline layers, when border styling becomes more noticeable than the message, when the main visual is boxed in by unnecessary frame levels, when support cards or checklist pills repeat the same border treatment too many times, when framing makes the section feel busy even if spacing is correct, or when mobile feels like boxes inside boxes inside boxes.",
+    "- Premium cannot be achieved by adding border stacks. Premium should come from hierarchy, spacing, proportion, contrast, soft tint, shadow, whitespace, and one strong visual idea.",
+    "- Distinguish actual UI clipping from screenshot crop. Do not fail a screenshot because the captured crop does not include the full section. Fail only when the real UI is cut off, overflowing, unreadable, or broken in-browser.",
     "- Answer these positive visual quality questions in the critique: What is the dominant visual idea? Is there a clear visual anchor or mostly repeated cards? Does the visual reduce explanation load? Would a service-business owner remember it? Does it feel designed or assembled from icon cards? Is it visually persuasive enough to sell the idea? Is there enough imagery, movement, scale variation, and hierarchy? Does it preserve Taste Library direction while avoiding bad patterns? Would it feel premium and memorable on a phone?",
-    "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, underdesigned_plain_section is true, repeated_card_pattern_dominates is true, or no primary_visual_anchor_description is provided.",
+    "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, underdesigned_plain_section is true, repeated_card_pattern_dominates is true, over_framed_section is true, too_many_nested_borders is true, border_noise_dominates_visual is true, boxed_in_visual_anchor is true, actual_ui_clipping_or_overflow is true, or no primary_visual_anchor_description is provided.",
     "- If repeated_card_pattern_present is true but secondary, final pass may be true only if visual_anchor_score >= 8, imagery_strength_score >= 8, visual_anchor_overpowers_card_stack is true, and you explain why repeated cards are not dominant through primary_visual_anchor_description and markdown critique.",
     "- If the section is mostly repeated cards plus icons, stacked icon cards, equal-weight repeated steps, same-shaped cards with small icons, lacks a dominant loop/path/outcome visual, or has no memorable system picture, final pass cannot be true.",
     "- For Customer Revenue specifically, pass may be true only if repeated cards are supporting details and the dominant visual anchor is a loop, path, journey, or outcome panel that clearly sells customer moments feeding the next job.",
@@ -563,7 +581,7 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Smart Vision Review JSON must be an object.")
   const json = value as Record<string, unknown>
   const allowedDecisions = ["pass", "fail_patch_needed", "fail_major_redesign_needed", "blocked_image_not_seen", "blocked_context_missing"]
-  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "primary_visual_anchor_description", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "blockers", "patch_brief"] as const) {
+  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "primary_visual_anchor_description", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "blockers", "patch_brief"] as const) {
     if (!(field in json)) throw new Error(`Smart Vision Review JSON missing required field: ${field}`)
   }
   if (typeof json.pass !== "boolean") throw new Error("Smart Vision Review pass must be boolean.")
@@ -573,7 +591,7 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
       throw new Error(`Smart Vision Review ${field} must be a number from 1 to 10.`)
     }
   }
-  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section"] as const) {
+  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure"] as const) {
     if (typeof json[field] !== "boolean") throw new Error(`Smart Vision Review ${field} must be boolean.`)
   }
   if (typeof json.primary_visual_anchor_description !== "string" || !json.primary_visual_anchor_description.trim()) throw new Error("Smart Vision Review primary_visual_anchor_description must be a non-empty string.")
@@ -592,12 +610,17 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
   if (review.repeated_card_pattern_present && !review.repeated_card_pattern_is_secondary_support) positiveVisualFailures.push("repeated_card_pattern_present is true but not marked as secondary support")
   if (review.repeated_card_pattern_present && review.repeated_card_pattern_is_secondary_support && (review.visual_anchor_score < 8 || review.imagery_strength_score < 8 || !review.visual_anchor_overpowers_card_stack || !review.primary_visual_anchor_description.trim())) positiveVisualFailures.push("repeated cards are present but not justified by a strong described visual anchor overpowering the card stack")
   if (review.underdesigned_plain_section) positiveVisualFailures.push("underdesigned_plain_section is true")
+  if (review.over_framed_section) positiveVisualFailures.push("over_framed_section is true")
+  if (review.too_many_nested_borders) positiveVisualFailures.push("too_many_nested_borders is true")
+  if (review.border_noise_dominates_visual) positiveVisualFailures.push("border_noise_dominates_visual is true")
+  if (review.boxed_in_visual_anchor) positiveVisualFailures.push("boxed_in_visual_anchor is true")
+  if (review.actual_ui_clipping_or_overflow) positiveVisualFailures.push("actual_ui_clipping_or_overflow is true")
   if (positiveVisualFailures.length) {
     review.pass = false
     if (review.final_decision === "pass") review.final_decision = "fail_patch_needed"
     review.blockers = [...review.blockers, ...positiveVisualFailures]
     if (/^(no patch needed|none|no changes needed)$/i.test(review.patch_brief.trim())) {
-      review.patch_brief = `Patch required by positive visual quality gate: ${positiveVisualFailures.join("; ")}. Add a stronger visual anchor, more imagery or SVG communication, less repetitive icon-card rhythm, and a more persuasive section-level visual idea while preserving mobile safety.`
+      review.patch_brief = `Patch required by positive visual quality gate: ${positiveVisualFailures.join("; ")}. Add a stronger visual anchor, more imagery or SVG communication, less repetitive icon-card rhythm, fewer nested borders, quieter support items, and a more persuasive section-level visual idea while preserving mobile safety.`
     }
   }
   if (review.pass && !noPatchNeeded) {
@@ -646,6 +669,11 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
   if (smart.repeated_card_pattern_present && !smart.repeated_card_pattern_is_secondary_support) blockers.push("repeated_card_pattern_present is true but not marked as secondary support")
   if (smart.repeated_card_pattern_present && smart.repeated_card_pattern_is_secondary_support && (smart.visual_anchor_score < 8 || smart.imagery_strength_score < 8 || !smart.visual_anchor_overpowers_card_stack || !smart.primary_visual_anchor_description.trim())) blockers.push("repeated cards are present but not justified by a strong described visual anchor overpowering the card stack")
   if (smart.underdesigned_plain_section) blockers.push("underdesigned_plain_section is true")
+  if (smart.over_framed_section) blockers.push("over_framed_section is true")
+  if (smart.too_many_nested_borders) blockers.push("too_many_nested_borders is true")
+  if (smart.border_noise_dominates_visual) blockers.push("border_noise_dominates_visual is true")
+  if (smart.boxed_in_visual_anchor) blockers.push("boxed_in_visual_anchor is true")
+  if (smart.actual_ui_clipping_or_overflow) blockers.push("actual_ui_clipping_or_overflow is true")
   return {
     section_id: packet.section_id,
     reviewer_version: `smart-vision-context-reviewer-v1:${visionResult.provider}/${visionResult.model}`,
@@ -669,6 +697,13 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
     visual_anchor_overpowers_card_stack: smart.visual_anchor_overpowers_card_stack,
     repetitive_icon_card_pattern: smart.repetitive_icon_card_pattern,
     underdesigned_plain_section: smart.underdesigned_plain_section,
+    over_framed_section: smart.over_framed_section,
+    too_many_nested_borders: smart.too_many_nested_borders,
+    border_noise_dominates_visual: smart.border_noise_dominates_visual,
+    support_cards_repeat_border_language: smart.support_cards_repeat_border_language,
+    boxed_in_visual_anchor: smart.boxed_in_visual_anchor,
+    actual_ui_clipping_or_overflow: smart.actual_ui_clipping_or_overflow,
+    screenshot_crop_only_not_layout_failure: smart.screenshot_crop_only_not_layout_failure,
     asset_strategy: smart.final_decision === "fail_major_redesign_needed" ? "code_plus_generated_asset" : "code_only",
     blockers,
     warnings: [
@@ -685,6 +720,13 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
       `visual_anchor_overpowers_card_stack=${smart.visual_anchor_overpowers_card_stack}`,
       `repetitive_icon_card_pattern=${smart.repetitive_icon_card_pattern}`,
       `underdesigned_plain_section=${smart.underdesigned_plain_section}`,
+      `over_framed_section=${smart.over_framed_section}`,
+      `too_many_nested_borders=${smart.too_many_nested_borders}`,
+      `border_noise_dominates_visual=${smart.border_noise_dominates_visual}`,
+      `support_cards_repeat_border_language=${smart.support_cards_repeat_border_language}`,
+      `boxed_in_visual_anchor=${smart.boxed_in_visual_anchor}`,
+      `actual_ui_clipping_or_overflow=${smart.actual_ui_clipping_or_overflow}`,
+      `screenshot_crop_only_not_layout_failure=${smart.screenshot_crop_only_not_layout_failure}`,
       `smart_final_decision=${smart.final_decision}`,
       `markdown_critique_chars=${markdownCritique.length}`,
     ],
@@ -713,6 +755,13 @@ function blockedSmartReview(finalDecision: "blocked_image_not_seen" | "blocked_c
     visual_anchor_overpowers_card_stack: false,
     repetitive_icon_card_pattern: false,
     underdesigned_plain_section: true,
+    over_framed_section: false,
+    too_many_nested_borders: false,
+    border_noise_dominates_visual: false,
+    support_cards_repeat_border_language: false,
+    boxed_in_visual_anchor: false,
+    actual_ui_clipping_or_overflow: false,
+    screenshot_crop_only_not_layout_failure: false,
     blockers: [reason],
     patch_brief: reason,
   }

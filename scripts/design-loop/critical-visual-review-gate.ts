@@ -63,6 +63,13 @@ export type CriticalSectionReview = {
   visual_anchor_overpowers_card_stack?: boolean
   repetitive_icon_card_pattern?: boolean
   underdesigned_plain_section?: boolean
+  over_framed_section?: boolean
+  too_many_nested_borders?: boolean
+  border_noise_dominates_visual?: boolean
+  support_cards_repeat_border_language?: boolean
+  boxed_in_visual_anchor?: boolean
+  actual_ui_clipping_or_overflow?: boolean
+  screenshot_crop_only_not_layout_failure?: boolean
   asset_strategy: CriticalAssetStrategy
   blockers: string[]
   warnings: string[]
@@ -269,6 +276,13 @@ const REQUIRED_FIELDS = [
   "visual_anchor_overpowers_card_stack",
   "repetitive_icon_card_pattern",
   "underdesigned_plain_section",
+  "over_framed_section",
+  "too_many_nested_borders",
+  "border_noise_dominates_visual",
+  "support_cards_repeat_border_language",
+  "boxed_in_visual_anchor",
+  "actual_ui_clipping_or_overflow",
+  "screenshot_crop_only_not_layout_failure",
   "asset_strategy",
   "blockers",
   "warnings",
@@ -438,7 +452,7 @@ export function validateCriticalSectionReview(value: unknown, expectedSectionIdO
     if (typeof review[field] !== "number" || !Number.isFinite(review[field])) throw new Error(`${field} must be a finite number`)
     if (review[field] < 1 || review[field] > 10) throw new Error(`${field} must be between 1 and 10`)
   }
-  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section"] as const) {
+  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
   if (typeof review.primary_visual_anchor_description !== "string" || !review.primary_visual_anchor_description.trim()) {
@@ -747,6 +761,11 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   if (review.repeated_card_pattern_present === true && review.repeated_card_pattern_is_secondary_support === true && (typeof review.visual_anchor_score !== "number" || typeof review.imagery_strength_score !== "number" || review.visual_anchor_score < 8 || review.imagery_strength_score < 8 || review.visual_anchor_overpowers_card_stack !== true || !review.primary_visual_anchor_description?.trim())) failures.push("repeated card pattern is present but not justified by a strong described visual anchor overpowering the card stack")
   if (!review.primary_visual_anchor_description?.trim()) failures.push("primary_visual_anchor_description is missing")
   if (review.underdesigned_plain_section === true) failures.push("underdesigned_plain_section is true")
+  if (review.over_framed_section === true) failures.push("over_framed_section is true")
+  if (review.too_many_nested_borders === true) failures.push("too_many_nested_borders is true")
+  if (review.border_noise_dominates_visual === true) failures.push("border_noise_dominates_visual is true")
+  if (review.boxed_in_visual_anchor === true) failures.push("boxed_in_visual_anchor is true")
+  if (review.actual_ui_clipping_or_overflow === true) failures.push("actual_ui_clipping_or_overflow is true")
   if (!review.desktop_pass) failures.push("desktop_pass was false")
   if (!review.mobile_pass) failures.push("mobile_pass was false")
   if (review.final_decision !== "pass") failures.push(`final_decision was ${review.final_decision}`)
