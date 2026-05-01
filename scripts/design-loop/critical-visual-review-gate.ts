@@ -52,6 +52,12 @@ export type CriticalSectionReview = {
   ai_slop_score: number
   clarity_score: number
   mobile_score: number
+  visual_richness_score?: number
+  imagery_strength_score?: number
+  visual_anchor_score?: number
+  memorability_score?: number
+  repetitive_icon_card_pattern?: boolean
+  underdesigned_plain_section?: boolean
   asset_strategy: CriticalAssetStrategy
   blockers: string[]
   warnings: string[]
@@ -220,6 +226,9 @@ export const DEFAULT_THRESHOLDS = {
   clarity_score: 7,
   mobile_score: 7,
   ai_slop_score_max: 3,
+  visual_richness_score: 7,
+  imagery_strength_score: 7,
+  visual_anchor_score: 7,
   max_visual_patch_attempts: 2,
 } as const
 
@@ -708,6 +717,11 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   if (review.clarity_score < DEFAULT_THRESHOLDS.clarity_score) failures.push(`clarity_score ${review.clarity_score} is below ${DEFAULT_THRESHOLDS.clarity_score}`)
   if (review.mobile_score < DEFAULT_THRESHOLDS.mobile_score) failures.push(`mobile_score ${review.mobile_score} is below ${DEFAULT_THRESHOLDS.mobile_score}`)
   if (review.ai_slop_score > DEFAULT_THRESHOLDS.ai_slop_score_max) failures.push(`ai_slop_score ${review.ai_slop_score} is above ${DEFAULT_THRESHOLDS.ai_slop_score_max}`)
+  if (typeof review.visual_richness_score === "number" && review.visual_richness_score < DEFAULT_THRESHOLDS.visual_richness_score) failures.push(`visual_richness_score ${review.visual_richness_score} is below ${DEFAULT_THRESHOLDS.visual_richness_score}`)
+  if (typeof review.imagery_strength_score === "number" && review.imagery_strength_score < DEFAULT_THRESHOLDS.imagery_strength_score) failures.push(`imagery_strength_score ${review.imagery_strength_score} is below ${DEFAULT_THRESHOLDS.imagery_strength_score}`)
+  if (typeof review.visual_anchor_score === "number" && review.visual_anchor_score < DEFAULT_THRESHOLDS.visual_anchor_score) failures.push(`visual_anchor_score ${review.visual_anchor_score} is below ${DEFAULT_THRESHOLDS.visual_anchor_score}`)
+  if (review.repetitive_icon_card_pattern === true && (typeof review.visual_anchor_score !== "number" || typeof review.visual_richness_score !== "number" || typeof review.imagery_strength_score !== "number" || review.visual_anchor_score < 8 || review.visual_richness_score < 8 || review.imagery_strength_score < 8)) failures.push("repetitive_icon_card_pattern is true without a strong enough visual centerpiece, visual richness, and imagery strength")
+  if (review.underdesigned_plain_section === true) failures.push("underdesigned_plain_section is true")
   if (!review.desktop_pass) failures.push("desktop_pass was false")
   if (!review.mobile_pass) failures.push("mobile_pass was false")
   if (review.final_decision !== "pass") failures.push(`final_decision was ${review.final_decision}`)

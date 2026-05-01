@@ -84,6 +84,12 @@ type SmartReviewJson = {
   clarity_score: number
   mobile_score: number
   stanley_context_alignment_score: number
+  visual_richness_score: number
+  imagery_strength_score: number
+  visual_anchor_score: number
+  memorability_score: number
+  repetitive_icon_card_pattern: boolean
+  underdesigned_plain_section: boolean
   blockers: string[]
   patch_brief: string
 }
@@ -228,6 +234,12 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     clarity_score: "number 1-10",
     mobile_score: "number 1-10",
     stanley_context_alignment_score: "number 1-10",
+    visual_richness_score: "number 1-10: richness, scale variation, visual rhythm, and non-plainness",
+    imagery_strength_score: "number 1-10: imagery/visual communication strength, not just icons",
+    visual_anchor_score: "number 1-10: dominant visual centerpiece strength",
+    memorability_score: "number 1-10: whether a service-business owner would remember it after scrolling",
+    repetitive_icon_card_pattern: "boolean: true if repeated icon cards/list patterns are doing most visual work",
+    underdesigned_plain_section: "boolean: true if clean/mobile-safe but too plain, icon-heavy, underpowered, or forgettable",
     blockers: "string[]",
     patch_brief: "string: Codex-ready patch brief scoped to the failed page/section, no self-approval",
   }
@@ -273,6 +285,12 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     "- Copy must be clear, not clever. Use Stanley Systems publicly, not Stanley shorthand.",
     "- Public copy must not make AI, Hermes, Codex, OpenClaw, Twilio, n8n, QBO API, or HCP API the star.",
     "- Generic SaaS filler, fake dashboards, weak cards, card/pill clutter, default browser styling, raw icons, purple underlined links, default serif typography, duplicated headlines, horizontal overflow, and unfinished mobile layouts fail.",
+    "- A Stanley Systems section cannot pass only because it is clean, readable, mobile-safe, and strategy-aligned. Clean is table stakes, not approval.",
+    "- It must also have a strong visual anchor, enough imagery or visual communication, a memorable section-level visual idea, varied visual rhythm, clear process-to-outcome motion where relevant, and a design that sells rather than merely explains.",
+    "- The visuals must reduce explanation load and feel service-business relevant. A plain repeated icon-card stack cannot be the entire section.",
+    "- Fail or require patch if the section is too icon-heavy, too plain, visually safe but forgettable, a vertical list instead of a designed system, dependent on the same card pattern for every step, lacking a dominant visual centerpiece, requiring text to do nearly all explanation, technically mobile-safe but boring, or clean but not persuasive.",
+    "- Answer these positive visual quality questions in the critique: What is the dominant visual idea? Is there a clear visual anchor or mostly repeated cards? Does the visual reduce explanation load? Would a service-business owner remember it? Does it feel designed or assembled from icon cards? Is it visually persuasive enough to sell the idea? Is there enough imagery, movement, scale variation, and hierarchy? Does it preserve Taste Library direction while avoiding bad patterns? Would it feel premium and memorable on a phone?",
+    "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, underdesigned_plain_section is true, or repetitive_icon_card_pattern is true without visual_anchor_score >= 8, visual_richness_score >= 8, and imagery_strength_score >= 8.",
     "- Do not pass because the site is merely better than before. Pass only if it is credible as a premium service-business homepage.",
     "- If you provide any material Codex patch brief beyond 'no patch needed', JSON pass must be false and final_decision must be fail_patch_needed or fail_major_redesign_needed.",
     "- Passing means blockers is empty and patch_brief is exactly 'no patch needed'.",
@@ -281,6 +299,7 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     "## First impression",
     "## What a service-business owner would think",
     "## Visual trust problems",
+    "## Positive visual quality",
     "## Copy and messaging problems",
     "## Offer clarity problems",
     "## Mobile UX problems",
@@ -531,16 +550,18 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Smart Vision Review JSON must be an object.")
   const json = value as Record<string, unknown>
   const allowedDecisions = ["pass", "fail_patch_needed", "fail_major_redesign_needed", "blocked_image_not_seen", "blocked_context_missing"]
-  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "blockers", "patch_brief"] as const) {
+  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "repetitive_icon_card_pattern", "underdesigned_plain_section", "blockers", "patch_brief"] as const) {
     if (!(field in json)) throw new Error(`Smart Vision Review JSON missing required field: ${field}`)
   }
   if (typeof json.pass !== "boolean") throw new Error("Smart Vision Review pass must be boolean.")
   if (!allowedDecisions.includes(String(json.final_decision))) throw new Error(`Smart Vision Review final_decision must be one of ${allowedDecisions.join(", ")}`)
-  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score"] as const) {
+  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score"] as const) {
     if (typeof json[field] !== "number" || !Number.isFinite(json[field]) || (json[field] as number) < 1 || (json[field] as number) > 10) {
       throw new Error(`Smart Vision Review ${field} must be a number from 1 to 10.`)
     }
   }
+  if (typeof json.repetitive_icon_card_pattern !== "boolean") throw new Error("Smart Vision Review repetitive_icon_card_pattern must be boolean.")
+  if (typeof json.underdesigned_plain_section !== "boolean") throw new Error("Smart Vision Review underdesigned_plain_section must be boolean.")
   if (!Array.isArray(json.blockers) || json.blockers.some((item) => typeof item !== "string")) throw new Error("Smart Vision Review blockers must be string[].")
   if (typeof json.patch_brief !== "string" || !json.patch_brief.trim()) throw new Error("Smart Vision Review patch_brief must be a non-empty string.")
   if (probe.confidence !== "pass" && json.final_decision !== "blocked_image_not_seen") throw new Error("Smart Vision Review must block as blocked_image_not_seen when image proof fails.")
@@ -548,6 +569,20 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
   const review = json as SmartReviewJson
   const patchBrief = review.patch_brief.trim()
   const noPatchNeeded = /^(none|no patch needed|no changes needed|pass)$/i.test(patchBrief)
+  const positiveVisualFailures: string[] = []
+  if (review.visual_richness_score < 7) positiveVisualFailures.push(`visual_richness_score ${review.visual_richness_score} is below 7`)
+  if (review.imagery_strength_score < 7) positiveVisualFailures.push(`imagery_strength_score ${review.imagery_strength_score} is below 7`)
+  if (review.visual_anchor_score < 7) positiveVisualFailures.push(`visual_anchor_score ${review.visual_anchor_score} is below 7`)
+  if (review.repetitive_icon_card_pattern && (review.visual_anchor_score < 8 || review.visual_richness_score < 8 || review.imagery_strength_score < 8)) positiveVisualFailures.push("repetitive_icon_card_pattern is true without a strong enough visual centerpiece, visual richness, and imagery strength")
+  if (review.underdesigned_plain_section) positiveVisualFailures.push("underdesigned_plain_section is true")
+  if (positiveVisualFailures.length) {
+    review.pass = false
+    if (review.final_decision === "pass") review.final_decision = "fail_patch_needed"
+    review.blockers = [...review.blockers, ...positiveVisualFailures]
+    if (/^(no patch needed|none|no changes needed)$/i.test(review.patch_brief.trim())) {
+      review.patch_brief = `Patch required by positive visual quality gate: ${positiveVisualFailures.join("; ")}. Add a stronger visual anchor, more imagery or SVG communication, less repetitive icon-card rhythm, and a more persuasive section-level visual idea while preserving mobile safety.`
+    }
+  }
   if (review.pass && !noPatchNeeded) {
     review.pass = false
     review.final_decision = "fail_patch_needed"
@@ -563,6 +598,7 @@ function extractMarkdownCritique(content: string): string {
     "## First impression",
     "## What a service-business owner would think",
     "## Visual trust problems",
+    "## Positive visual quality",
     "## Copy and messaging problems",
     "## Offer clarity problems",
     "## Mobile UX problems",
@@ -586,6 +622,11 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
   const blockers = [...smart.blockers]
   if (!smart.pass && !blockers.length) blockers.push("Smart Vision Reviewer failed the page but returned no blocker details.")
   if (smart.stanley_context_alignment_score < 7) blockers.push(`stanley_context_alignment_score ${smart.stanley_context_alignment_score} is below 7`)
+  if (smart.visual_richness_score < 7) blockers.push(`visual_richness_score ${smart.visual_richness_score} is below 7`)
+  if (smart.imagery_strength_score < 7) blockers.push(`imagery_strength_score ${smart.imagery_strength_score} is below 7`)
+  if (smart.visual_anchor_score < 7) blockers.push(`visual_anchor_score ${smart.visual_anchor_score} is below 7`)
+  if (smart.repetitive_icon_card_pattern && (smart.visual_anchor_score < 8 || smart.visual_richness_score < 8 || smart.imagery_strength_score < 8)) blockers.push("repetitive_icon_card_pattern is true without a strong enough visual centerpiece, visual richness, and imagery strength")
+  if (smart.underdesigned_plain_section) blockers.push("underdesigned_plain_section is true")
   return {
     section_id: packet.section_id,
     reviewer_version: `smart-vision-context-reviewer-v1:${visionResult.provider}/${visionResult.model}`,
@@ -598,11 +639,23 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
     ai_slop_score: Math.max(1, Math.min(10, 11 - smart.trust_score)),
     clarity_score: smart.clarity_score,
     mobile_score: smart.mobile_score,
+    visual_richness_score: smart.visual_richness_score,
+    imagery_strength_score: smart.imagery_strength_score,
+    visual_anchor_score: smart.visual_anchor_score,
+    memorability_score: smart.memorability_score,
+    repetitive_icon_card_pattern: smart.repetitive_icon_card_pattern,
+    underdesigned_plain_section: smart.underdesigned_plain_section,
     asset_strategy: smart.final_decision === "fail_major_redesign_needed" ? "code_plus_generated_asset" : "code_only",
     blockers,
     warnings: [
       `trust_score=${smart.trust_score}`,
       `stanley_context_alignment_score=${smart.stanley_context_alignment_score}`,
+      `visual_richness_score=${smart.visual_richness_score}`,
+      `imagery_strength_score=${smart.imagery_strength_score}`,
+      `visual_anchor_score=${smart.visual_anchor_score}`,
+      `memorability_score=${smart.memorability_score}`,
+      `repetitive_icon_card_pattern=${smart.repetitive_icon_card_pattern}`,
+      `underdesigned_plain_section=${smart.underdesigned_plain_section}`,
       `smart_final_decision=${smart.final_decision}`,
       `markdown_critique_chars=${markdownCritique.length}`,
     ],
@@ -620,6 +673,12 @@ function blockedSmartReview(finalDecision: "blocked_image_not_seen" | "blocked_c
     clarity_score: 1,
     mobile_score: 1,
     stanley_context_alignment_score: finalDecision === "blocked_context_missing" ? 1 : 5,
+    visual_richness_score: 1,
+    imagery_strength_score: 1,
+    visual_anchor_score: 1,
+    memorability_score: 1,
+    repetitive_icon_card_pattern: false,
+    underdesigned_plain_section: true,
     blockers: [reason],
     patch_brief: reason,
   }
@@ -634,6 +693,7 @@ function blockedMarkdownCritique(reason: string): string {
     "Review blocked before owner-trust critique because required review proof failed.",
     "",
     "## Visual trust problems",
+    "## Positive visual quality",
     "Review blocked before a valid visual critique could be trusted.",
     "",
     "## Copy and messaging problems",

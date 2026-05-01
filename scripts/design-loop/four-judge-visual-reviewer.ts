@@ -53,6 +53,12 @@ type FinalDecision = {
   clarity_score: number
   mobile_score: number
   stanley_context_alignment_score: number
+  visual_richness_score: number
+  imagery_strength_score: number
+  visual_anchor_score: number
+  memorability_score: number
+  repetitive_icon_card_pattern: boolean
+  underdesigned_plain_section: boolean
   blockers: string[]
   patch_brief: string
 }
@@ -280,6 +286,12 @@ function buildFinalGatekeeperPrompt(packet: ReviewPacket, route: string, visible
     clarity_score: "number 1-10",
     mobile_score: "number 1-10",
     stanley_context_alignment_score: "number 1-10",
+    visual_richness_score: "number 1-10: richness, scale variation, visual rhythm, and non-plainness",
+    imagery_strength_score: "number 1-10: imagery/visual communication strength, not just icons",
+    visual_anchor_score: "number 1-10: dominant visual centerpiece strength",
+    memorability_score: "number 1-10: whether a service-business owner would remember it after scrolling",
+    repetitive_icon_card_pattern: "boolean: true if repeated icon cards/list patterns are doing most of the visual work",
+    underdesigned_plain_section: "boolean: true if clean/mobile-safe but too plain, icon-heavy, underpowered, or visually forgettable",
     blockers: "string[]",
     patch_brief: "Codex-ready patch brief, or exactly no patch needed if pass",
   }
@@ -310,12 +322,18 @@ function buildFinalGatekeeperPrompt(packet: ReviewPacket, route: string, visible
     "Validated Stanley Systems Strategy Judge gate signal, derived from raw output for machine enforcement:",
     JSON.stringify(strategy, null, 2),
     "Final rules:",
+    "- A Stanley Systems section cannot pass only because it is clean, readable, mobile-safe, and strategy-aligned. Clean is table stakes, not approval.",
+    "- It must also have a strong visual anchor, enough imagery or visual communication, a memorable section-level visual idea, varied visual rhythm, clear process-to-outcome motion where relevant, and a design that sells rather than merely explains.",
+    "- The visuals must reduce explanation load and feel service-business relevant. A plain repeated icon-card stack cannot be the entire section.",
+    "- Fail or require patch if the section is too icon-heavy, too plain, visually safe but forgettable, a vertical list instead of a designed system, dependent on the same card pattern for every step, lacking a dominant visual centerpiece, requiring text to do nearly all explanation, technically mobile-safe but boring, or clean but not persuasive.",
+    "- Answer these positive visual quality questions in the markdown critique: What is the dominant visual idea? Is there a clear visual anchor or mostly repeated cards? Does the visual reduce explanation load? Would a service-business owner remember it? Does it feel designed or assembled from icon cards? Is it visually persuasive enough to sell the idea? Is there enough imagery, movement, scale variation, and hierarchy? Does it preserve Taste Library direction while avoiding bad patterns? Would it feel premium and memorable on a phone?",
+    "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, underdesigned_plain_section is true, or repetitive_icon_card_pattern is true without visual_anchor_score >= 8, visual_richness_score >= 8, and imagery_strength_score >= 8.",
     "- If Fresh Client Judge fails trust, final cannot pass.",
     "- If Mobile Trust Judge fails mobile usability, final cannot pass.",
     "- If Stanley Systems Strategy Judge says the page violates core positioning, final cannot pass.",
     "- If any judge did not prove image bytes were seen, final_decision must be blocked_image_not_seen.",
     "- If context is missing for strategy/final, final_decision must be blocked_context_missing.",
-    "- Write markdown critique first using headings: ## First impression, ## Trust and clarity, ## Mobile UX, ## Stanley Systems strategy, ## Highest-leverage fixes, ## Image byte proof, ## Codex-ready patch brief.",
+    "- Write markdown critique first using headings: ## First impression, ## Trust and clarity, ## Positive visual quality, ## Mobile UX, ## Stanley Systems strategy, ## Highest-leverage fixes, ## Image byte proof, ## Codex-ready patch brief.",
     "- After markdown, output exactly one strict JSON object matching this contract:",
     JSON.stringify(finalContract, null, 2),
     "- In ## Image byte proof, name specific visible pixel details from the mobile screenshot and the desktop screenshot. If you cannot see pixels, final_decision must be blocked_image_not_seen. The strict JSON must still only contain the required final fields.",
@@ -437,14 +455,16 @@ function validateFinalDecision(value: unknown, fresh: JudgeDecision, mobile: Jud
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Final decision must be an object")
   const item = value as Record<string, unknown>
   const allowed = ["pass", "fail_patch_needed", "fail_generated_asset_needed", "fail_major_redesign_needed", "blocked_image_not_seen", "blocked_context_missing"]
-  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "blockers", "patch_brief"] as const) {
+  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "repetitive_icon_card_pattern", "underdesigned_plain_section", "blockers", "patch_brief"] as const) {
     if (!(field in item)) throw new Error(`Final decision missing ${field}`)
   }
   if (typeof item.pass !== "boolean") throw new Error("Final pass must be boolean")
   if (!allowed.includes(String(item.final_decision))) throw new Error("Invalid final_decision")
-  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score"] as const) {
+  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score"] as const) {
     if (typeof item[field] !== "number" || (item[field] as number) < 1 || (item[field] as number) > 10) throw new Error(`${field} must be 1-10`)
   }
+  if (typeof item.repetitive_icon_card_pattern !== "boolean") throw new Error("repetitive_icon_card_pattern must be boolean")
+  if (typeof item.underdesigned_plain_section !== "boolean") throw new Error("underdesigned_plain_section must be boolean")
   if (!Array.isArray(item.blockers) || item.blockers.some((blocker) => typeof blocker !== "string")) throw new Error("Final blockers must be string[]")
   if (typeof item.patch_brief !== "string" || !item.patch_brief.trim()) throw new Error("Final patch_brief required")
   const decision = item as FinalDecision
@@ -461,6 +481,20 @@ function validateFinalDecision(value: unknown, fresh: JudgeDecision, mobile: Jud
     decision.pass = false
     if (decision.final_decision === "pass") decision.final_decision = strategy.score <= 3 || fresh.score <= 3 || mobile.score <= 3 ? "fail_major_redesign_needed" : "fail_patch_needed"
   }
+  const positiveVisualFailures: string[] = []
+  if (decision.visual_richness_score < 7) positiveVisualFailures.push(`visual_richness_score ${decision.visual_richness_score} is below 7`)
+  if (decision.imagery_strength_score < 7) positiveVisualFailures.push(`imagery_strength_score ${decision.imagery_strength_score} is below 7`)
+  if (decision.visual_anchor_score < 7) positiveVisualFailures.push(`visual_anchor_score ${decision.visual_anchor_score} is below 7`)
+  if (decision.repetitive_icon_card_pattern && (decision.visual_anchor_score < 8 || decision.visual_richness_score < 8 || decision.imagery_strength_score < 8)) positiveVisualFailures.push("repetitive_icon_card_pattern is true without a strong enough visual centerpiece, visual richness, and imagery strength")
+  if (decision.underdesigned_plain_section) positiveVisualFailures.push("underdesigned_plain_section is true")
+  if (positiveVisualFailures.length) {
+    decision.pass = false
+    if (decision.final_decision === "pass") decision.final_decision = "fail_patch_needed"
+    decision.blockers = [...decision.blockers, ...positiveVisualFailures]
+    if (/^(no patch needed|none|no changes needed)$/i.test(decision.patch_brief.trim())) {
+      decision.patch_brief = `Patch required by positive visual quality gate: ${positiveVisualFailures.join("; ")}. Add a stronger visual anchor, more imagery or SVG communication, less repetitive icon-card rhythm, and a more persuasive section-level visual idea while preserving mobile safety.`
+    }
+  }
   if (decision.pass && decision.blockers.length) {
     decision.pass = false
     decision.final_decision = "fail_patch_needed"
@@ -475,7 +509,7 @@ function validateFinalDecision(value: unknown, fresh: JudgeDecision, mobile: Jud
 function extractMarkdown(content: string): string {
   const firstJson = content.indexOf("{")
   const markdown = firstJson >= 0 ? content.slice(0, firstJson).trim() : content.trim()
-  if (!markdown.includes("## First impression") || !markdown.includes("## Codex-ready patch brief") || !markdown.includes("## Image byte proof")) throw new Error("Final gatekeeper markdown critique missing required headings")
+  if (!markdown.includes("## First impression") || !markdown.includes("## Positive visual quality") || !markdown.includes("## Codex-ready patch brief") || !markdown.includes("## Image byte proof")) throw new Error("Final gatekeeper markdown critique missing required headings")
   const proof = markdown.slice(markdown.indexOf("## Image byte proof"), markdown.includes("## Codex-ready patch brief") ? markdown.indexOf("## Codex-ready patch brief") : undefined).toLowerCase()
   if (proof.length < 120 || /cannot see|can't see|unable to see|no image|only metadata|only path/.test(proof) || !/mobile/.test(proof) || !/desktop/.test(proof)) {
     throw new Error("Final gatekeeper markdown does not prove it saw both mobile and desktop screenshot pixels.")
