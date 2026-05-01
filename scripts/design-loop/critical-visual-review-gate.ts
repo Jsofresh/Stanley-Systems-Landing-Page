@@ -56,6 +56,11 @@ export type CriticalSectionReview = {
   imagery_strength_score?: number
   visual_anchor_score?: number
   memorability_score?: number
+  repeated_card_pattern_present?: boolean
+  repeated_card_pattern_dominates?: boolean
+  repeated_card_pattern_is_secondary_support?: boolean
+  primary_visual_anchor_description?: string
+  visual_anchor_overpowers_card_stack?: boolean
   repetitive_icon_card_pattern?: boolean
   underdesigned_plain_section?: boolean
   asset_strategy: CriticalAssetStrategy
@@ -253,6 +258,17 @@ const REQUIRED_FIELDS = [
   "ai_slop_score",
   "clarity_score",
   "mobile_score",
+  "visual_richness_score",
+  "imagery_strength_score",
+  "visual_anchor_score",
+  "memorability_score",
+  "repeated_card_pattern_present",
+  "repeated_card_pattern_dominates",
+  "repeated_card_pattern_is_secondary_support",
+  "primary_visual_anchor_description",
+  "visual_anchor_overpowers_card_stack",
+  "repetitive_icon_card_pattern",
+  "underdesigned_plain_section",
   "asset_strategy",
   "blockers",
   "warnings",
@@ -418,9 +434,15 @@ export function validateCriticalSectionReview(value: unknown, expectedSectionIdO
   for (const field of ["desktop_pass", "mobile_pass"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
-  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score"] as const) {
+  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score"] as const) {
     if (typeof review[field] !== "number" || !Number.isFinite(review[field])) throw new Error(`${field} must be a finite number`)
     if (review[field] < 1 || review[field] > 10) throw new Error(`${field} must be between 1 and 10`)
+  }
+  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section"] as const) {
+    if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
+  }
+  if (typeof review.primary_visual_anchor_description !== "string" || !review.primary_visual_anchor_description.trim()) {
+    throw new Error("primary_visual_anchor_description must be a non-empty string")
   }
   if (!ALLOWED_ASSET_STRATEGIES.includes(review.asset_strategy as CriticalAssetStrategy)) {
     throw new Error(`asset_strategy must be one of ${ALLOWED_ASSET_STRATEGIES.join(", ")}`)
@@ -720,7 +742,10 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   if (typeof review.visual_richness_score === "number" && review.visual_richness_score < DEFAULT_THRESHOLDS.visual_richness_score) failures.push(`visual_richness_score ${review.visual_richness_score} is below ${DEFAULT_THRESHOLDS.visual_richness_score}`)
   if (typeof review.imagery_strength_score === "number" && review.imagery_strength_score < DEFAULT_THRESHOLDS.imagery_strength_score) failures.push(`imagery_strength_score ${review.imagery_strength_score} is below ${DEFAULT_THRESHOLDS.imagery_strength_score}`)
   if (typeof review.visual_anchor_score === "number" && review.visual_anchor_score < DEFAULT_THRESHOLDS.visual_anchor_score) failures.push(`visual_anchor_score ${review.visual_anchor_score} is below ${DEFAULT_THRESHOLDS.visual_anchor_score}`)
-  if (review.repetitive_icon_card_pattern === true && (typeof review.visual_anchor_score !== "number" || typeof review.visual_richness_score !== "number" || typeof review.imagery_strength_score !== "number" || review.visual_anchor_score < 8 || review.visual_richness_score < 8 || review.imagery_strength_score < 8)) failures.push("repetitive_icon_card_pattern is true without a strong enough visual centerpiece, visual richness, and imagery strength")
+  if (review.repeated_card_pattern_dominates === true) failures.push("repeated_card_pattern_dominates is true")
+  if (review.repeated_card_pattern_present === true && review.repeated_card_pattern_is_secondary_support !== true) failures.push("repeated_card_pattern_present is true but repeated_card_pattern_is_secondary_support is not true")
+  if (review.repeated_card_pattern_present === true && review.repeated_card_pattern_is_secondary_support === true && (typeof review.visual_anchor_score !== "number" || typeof review.imagery_strength_score !== "number" || review.visual_anchor_score < 8 || review.imagery_strength_score < 8 || review.visual_anchor_overpowers_card_stack !== true || !review.primary_visual_anchor_description?.trim())) failures.push("repeated card pattern is present but not justified by a strong described visual anchor overpowering the card stack")
+  if (!review.primary_visual_anchor_description?.trim()) failures.push("primary_visual_anchor_description is missing")
   if (review.underdesigned_plain_section === true) failures.push("underdesigned_plain_section is true")
   if (!review.desktop_pass) failures.push("desktop_pass was false")
   if (!review.mobile_pass) failures.push("mobile_pass was false")

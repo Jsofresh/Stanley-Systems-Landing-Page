@@ -112,6 +112,20 @@ function buildPrompt(args: Args): string {
     2,
   )
 
+  const sectionType = requireArg(args, "section_type")
+  const customerRevenueSingleConceptRules = /customer revenue/i.test(sectionType)
+    ? [
+        "## Customer Revenue per-image direction rules",
+        "This run should generate one output image per direction, never several directions inside one image.",
+        "If this is a 3-image run, use exactly one single-section direction per image:",
+        "- Output image 1: Concept A, Central Revenue Loop. One central loop shows old customers, fresh reviews, referrals, captured calls, and booked work feeding repeat revenue.",
+        "- Output image 2: Concept B, Path-to-Outcome System. One clear service-business path moves from customer moments to the next booked job and revenue outcome.",
+        "- Output image 3: Concept C, Service-Business Scene plus System Overlay. One grounded service-business scene has a clean system overlay showing how customer moments become revenue.",
+        "Do not put Concept A, Concept B, and Concept C together inside any single image.",
+        "",
+      ]
+    : []
+
   return [
     "You are generating Stanley Systems website section concept art for a design loop.",
     "Generated concepts are reference artifacts only. They must not be pasted into production UI.",
@@ -120,6 +134,20 @@ function buildPrompt(args: Args): string {
     "Use light mode, Stanley Systems deep navy/forest green/white/neutral palette, premium practical service-business feel.",
     "Avoid generic SaaS dashboards, repeated simple icon-card stacks, robots, AI motifs, fake testimonials, clutter, dark mode, orange, gold, amber, sepia, and visually empty centers.",
     "",
+    "## Hard single-concept output rules",
+    "Generate one single website section concept only per output image.",
+    "Do not create a moodboard.",
+    "Do not create a grid of multiple options.",
+    "Do not create a comparison board.",
+    "Do not create Concept 1 / Concept 2 / Concept 3 inside one image.",
+    "Do not create multiple mini-layouts inside one image.",
+    "Do not create a presentation slide of options.",
+    "The output should look like one finished website section direction.",
+    "The section concept must have one dominant visual idea.",
+    "The concept must be suitable for Design Translator as a single visual source without cropping.",
+    "If multiple concept directions are requested by the run count, spread them across separate output images only.",
+    "",
+    ...customerRevenueSingleConceptRules,
     "## Run metadata",
     metadata,
     "",

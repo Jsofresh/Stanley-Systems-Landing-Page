@@ -88,6 +88,11 @@ type SmartReviewJson = {
   imagery_strength_score: number
   visual_anchor_score: number
   memorability_score: number
+  repeated_card_pattern_present: boolean
+  repeated_card_pattern_dominates: boolean
+  repeated_card_pattern_is_secondary_support: boolean
+  primary_visual_anchor_description: string
+  visual_anchor_overpowers_card_stack: boolean
   repetitive_icon_card_pattern: boolean
   underdesigned_plain_section: boolean
   blockers: string[]
@@ -238,7 +243,12 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     imagery_strength_score: "number 1-10: imagery/visual communication strength, not just icons",
     visual_anchor_score: "number 1-10: dominant visual centerpiece strength",
     memorability_score: "number 1-10: whether a service-business owner would remember it after scrolling",
-    repetitive_icon_card_pattern: "boolean: true if repeated icon cards/list patterns are doing most visual work",
+    repeated_card_pattern_present: "boolean: true if repeated same-shaped cards, icon cards, equal-weight step cards, or support cards are visible",
+    repeated_card_pattern_dominates: "boolean: true if repeated cards/icons are the dominant design pattern or primary visual system",
+    repeated_card_pattern_is_secondary_support: "boolean: true only if repeated cards exist but are clearly secondary support details",
+    primary_visual_anchor_description: "string: concrete description of the dominant loop/path/journey/outcome/scene visual anchor; cannot be empty",
+    visual_anchor_overpowers_card_stack: "boolean: true only if the dominant visual anchor is stronger than any repeated card stack",
+    repetitive_icon_card_pattern: "legacy boolean: mirror repeated_card_pattern_dominates for backward compatibility",
     underdesigned_plain_section: "boolean: true if clean/mobile-safe but too plain, icon-heavy, underpowered, or forgettable",
     blockers: "string[]",
     patch_brief: "string: Codex-ready patch brief scoped to the failed page/section, no self-approval",
@@ -290,7 +300,10 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     "- The visuals must reduce explanation load and feel service-business relevant. A plain repeated icon-card stack cannot be the entire section.",
     "- Fail or require patch if the section is too icon-heavy, too plain, visually safe but forgettable, a vertical list instead of a designed system, dependent on the same card pattern for every step, lacking a dominant visual centerpiece, requiring text to do nearly all explanation, technically mobile-safe but boring, or clean but not persuasive.",
     "- Answer these positive visual quality questions in the critique: What is the dominant visual idea? Is there a clear visual anchor or mostly repeated cards? Does the visual reduce explanation load? Would a service-business owner remember it? Does it feel designed or assembled from icon cards? Is it visually persuasive enough to sell the idea? Is there enough imagery, movement, scale variation, and hierarchy? Does it preserve Taste Library direction while avoiding bad patterns? Would it feel premium and memorable on a phone?",
-    "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, underdesigned_plain_section is true, or repetitive_icon_card_pattern is true without visual_anchor_score >= 8, visual_richness_score >= 8, and imagery_strength_score >= 8.",
+    "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, underdesigned_plain_section is true, repeated_card_pattern_dominates is true, or no primary_visual_anchor_description is provided.",
+    "- If repeated_card_pattern_present is true but secondary, final pass may be true only if visual_anchor_score >= 8, imagery_strength_score >= 8, visual_anchor_overpowers_card_stack is true, and you explain why repeated cards are not dominant through primary_visual_anchor_description and markdown critique.",
+    "- If the section is mostly repeated cards plus icons, stacked icon cards, equal-weight repeated steps, same-shaped cards with small icons, lacks a dominant loop/path/outcome visual, or has no memorable system picture, final pass cannot be true.",
+    "- For Customer Revenue specifically, pass may be true only if repeated cards are supporting details and the dominant visual anchor is a loop, path, journey, or outcome panel that clearly sells customer moments feeding the next job.",
     "- Do not pass because the site is merely better than before. Pass only if it is credible as a premium service-business homepage.",
     "- If you provide any material Codex patch brief beyond 'no patch needed', JSON pass must be false and final_decision must be fail_patch_needed or fail_major_redesign_needed.",
     "- Passing means blockers is empty and patch_brief is exactly 'no patch needed'.",
@@ -550,7 +563,7 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Smart Vision Review JSON must be an object.")
   const json = value as Record<string, unknown>
   const allowedDecisions = ["pass", "fail_patch_needed", "fail_major_redesign_needed", "blocked_image_not_seen", "blocked_context_missing"]
-  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "repetitive_icon_card_pattern", "underdesigned_plain_section", "blockers", "patch_brief"] as const) {
+  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "primary_visual_anchor_description", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "blockers", "patch_brief"] as const) {
     if (!(field in json)) throw new Error(`Smart Vision Review JSON missing required field: ${field}`)
   }
   if (typeof json.pass !== "boolean") throw new Error("Smart Vision Review pass must be boolean.")
@@ -560,8 +573,10 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
       throw new Error(`Smart Vision Review ${field} must be a number from 1 to 10.`)
     }
   }
-  if (typeof json.repetitive_icon_card_pattern !== "boolean") throw new Error("Smart Vision Review repetitive_icon_card_pattern must be boolean.")
-  if (typeof json.underdesigned_plain_section !== "boolean") throw new Error("Smart Vision Review underdesigned_plain_section must be boolean.")
+  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section"] as const) {
+    if (typeof json[field] !== "boolean") throw new Error(`Smart Vision Review ${field} must be boolean.`)
+  }
+  if (typeof json.primary_visual_anchor_description !== "string" || !json.primary_visual_anchor_description.trim()) throw new Error("Smart Vision Review primary_visual_anchor_description must be a non-empty string.")
   if (!Array.isArray(json.blockers) || json.blockers.some((item) => typeof item !== "string")) throw new Error("Smart Vision Review blockers must be string[].")
   if (typeof json.patch_brief !== "string" || !json.patch_brief.trim()) throw new Error("Smart Vision Review patch_brief must be a non-empty string.")
   if (probe.confidence !== "pass" && json.final_decision !== "blocked_image_not_seen") throw new Error("Smart Vision Review must block as blocked_image_not_seen when image proof fails.")
@@ -573,7 +588,9 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
   if (review.visual_richness_score < 7) positiveVisualFailures.push(`visual_richness_score ${review.visual_richness_score} is below 7`)
   if (review.imagery_strength_score < 7) positiveVisualFailures.push(`imagery_strength_score ${review.imagery_strength_score} is below 7`)
   if (review.visual_anchor_score < 7) positiveVisualFailures.push(`visual_anchor_score ${review.visual_anchor_score} is below 7`)
-  if (review.repetitive_icon_card_pattern && (review.visual_anchor_score < 8 || review.visual_richness_score < 8 || review.imagery_strength_score < 8)) positiveVisualFailures.push("repetitive_icon_card_pattern is true without a strong enough visual centerpiece, visual richness, and imagery strength")
+  if (review.repeated_card_pattern_dominates) positiveVisualFailures.push("repeated_card_pattern_dominates is true")
+  if (review.repeated_card_pattern_present && !review.repeated_card_pattern_is_secondary_support) positiveVisualFailures.push("repeated_card_pattern_present is true but not marked as secondary support")
+  if (review.repeated_card_pattern_present && review.repeated_card_pattern_is_secondary_support && (review.visual_anchor_score < 8 || review.imagery_strength_score < 8 || !review.visual_anchor_overpowers_card_stack || !review.primary_visual_anchor_description.trim())) positiveVisualFailures.push("repeated cards are present but not justified by a strong described visual anchor overpowering the card stack")
   if (review.underdesigned_plain_section) positiveVisualFailures.push("underdesigned_plain_section is true")
   if (positiveVisualFailures.length) {
     review.pass = false
@@ -625,7 +642,9 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
   if (smart.visual_richness_score < 7) blockers.push(`visual_richness_score ${smart.visual_richness_score} is below 7`)
   if (smart.imagery_strength_score < 7) blockers.push(`imagery_strength_score ${smart.imagery_strength_score} is below 7`)
   if (smart.visual_anchor_score < 7) blockers.push(`visual_anchor_score ${smart.visual_anchor_score} is below 7`)
-  if (smart.repetitive_icon_card_pattern && (smart.visual_anchor_score < 8 || smart.visual_richness_score < 8 || smart.imagery_strength_score < 8)) blockers.push("repetitive_icon_card_pattern is true without a strong enough visual centerpiece, visual richness, and imagery strength")
+  if (smart.repeated_card_pattern_dominates) blockers.push("repeated_card_pattern_dominates is true")
+  if (smart.repeated_card_pattern_present && !smart.repeated_card_pattern_is_secondary_support) blockers.push("repeated_card_pattern_present is true but not marked as secondary support")
+  if (smart.repeated_card_pattern_present && smart.repeated_card_pattern_is_secondary_support && (smart.visual_anchor_score < 8 || smart.imagery_strength_score < 8 || !smart.visual_anchor_overpowers_card_stack || !smart.primary_visual_anchor_description.trim())) blockers.push("repeated cards are present but not justified by a strong described visual anchor overpowering the card stack")
   if (smart.underdesigned_plain_section) blockers.push("underdesigned_plain_section is true")
   return {
     section_id: packet.section_id,
@@ -643,6 +662,11 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
     imagery_strength_score: smart.imagery_strength_score,
     visual_anchor_score: smart.visual_anchor_score,
     memorability_score: smart.memorability_score,
+    repeated_card_pattern_present: smart.repeated_card_pattern_present,
+    repeated_card_pattern_dominates: smart.repeated_card_pattern_dominates,
+    repeated_card_pattern_is_secondary_support: smart.repeated_card_pattern_is_secondary_support,
+    primary_visual_anchor_description: smart.primary_visual_anchor_description,
+    visual_anchor_overpowers_card_stack: smart.visual_anchor_overpowers_card_stack,
     repetitive_icon_card_pattern: smart.repetitive_icon_card_pattern,
     underdesigned_plain_section: smart.underdesigned_plain_section,
     asset_strategy: smart.final_decision === "fail_major_redesign_needed" ? "code_plus_generated_asset" : "code_only",
@@ -654,6 +678,11 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
       `imagery_strength_score=${smart.imagery_strength_score}`,
       `visual_anchor_score=${smart.visual_anchor_score}`,
       `memorability_score=${smart.memorability_score}`,
+      `repeated_card_pattern_present=${smart.repeated_card_pattern_present}`,
+      `repeated_card_pattern_dominates=${smart.repeated_card_pattern_dominates}`,
+      `repeated_card_pattern_is_secondary_support=${smart.repeated_card_pattern_is_secondary_support}`,
+      `primary_visual_anchor_description=${smart.primary_visual_anchor_description}`,
+      `visual_anchor_overpowers_card_stack=${smart.visual_anchor_overpowers_card_stack}`,
       `repetitive_icon_card_pattern=${smart.repetitive_icon_card_pattern}`,
       `underdesigned_plain_section=${smart.underdesigned_plain_section}`,
       `smart_final_decision=${smart.final_decision}`,
@@ -677,6 +706,11 @@ function blockedSmartReview(finalDecision: "blocked_image_not_seen" | "blocked_c
     imagery_strength_score: 1,
     visual_anchor_score: 1,
     memorability_score: 1,
+    repeated_card_pattern_present: false,
+    repeated_card_pattern_dominates: false,
+    repeated_card_pattern_is_secondary_support: false,
+    primary_visual_anchor_description: "blocked before visual anchor could be reviewed",
+    visual_anchor_overpowers_card_stack: false,
     repetitive_icon_card_pattern: false,
     underdesigned_plain_section: true,
     blockers: [reason],
