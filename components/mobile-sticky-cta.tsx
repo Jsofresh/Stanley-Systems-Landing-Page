@@ -8,6 +8,7 @@ export function MobileStickyCTA() {
   const [showStickyCta, setShowStickyCta] = useState(false)
   const [auditInView, setAuditInView] = useState(false)
   const [systemsInView, setSystemsInView] = useState(false)
+  const [proofInView, setProofInView] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +25,7 @@ export function MobileStickyCTA() {
     const sections = [
       { element: document.getElementById("audit"), setter: setAuditInView },
       { element: document.getElementById("systems"), setter: setSystemsInView },
+      { element: document.getElementById("proof"), setter: setProofInView },
     ].filter((item): item is { element: HTMLElement; setter: (value: boolean) => void } => Boolean(item.element))
 
     if (!sections.length) return
@@ -46,7 +48,7 @@ export function MobileStickyCTA() {
     return () => observer.disconnect()
   }, [])
 
-  if (!showStickyCta || auditInView || systemsInView) return null
+  if (!showStickyCta || auditInView || systemsInView || proofInView) return null
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#e8e1d3] bg-white/96 px-4 py-3 shadow-[0_-10px_30px_rgba(15,23,42,0.12)] backdrop-blur md:hidden">
