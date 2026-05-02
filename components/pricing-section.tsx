@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Clock3,
   FilePenLine,
-  MessageSquareText,
   PhoneCall,
   RefreshCw,
   ShieldCheck,
@@ -48,83 +47,52 @@ const cashflowResultCards = [
 
 const revenueLoopSteps = [
   {
-    label: "Bring Customers Back",
-    detail: "Past customers get a timely reason to book again.",
+    label: "Old customers",
+    detail: "Past buyers hear from you before your shop becomes the last option.",
     icon: RefreshCw,
   },
   {
-    label: "Get Fresh Reviews",
-    detail: "Happy jobs turn into public trust for the next buyer.",
+    label: "Fresh reviews",
+    detail: "Happy customers are asked the right way, at the right time.",
     icon: Star,
   },
   {
-    label: "Create Referrals",
-    detail: "Good work becomes an easier next introduction.",
+    label: "Referrals",
+    detail: "Good work becomes a simple path to the next introduction.",
     icon: UsersRound,
   },
   {
-    label: "Recover Missed Calls",
-    detail: "Every missed call gets a clean follow-up.",
+    label: "Missed calls captured",
+    detail: "Missed calls are caught, answered, and turned into real chances.",
     icon: PhoneCall,
   },
-] as const
-
-const revenueOutcomeItems = [
   {
-    title: "Repeat jobs",
-    detail: "Old customers hear from you before they drift.",
-    icon: RefreshCw,
-  },
-  {
-    title: "Fresh reviews",
-    detail: "Good jobs become visible trust.",
-    icon: Star,
-  },
-  {
-    title: "More referrals",
-    detail: "Happy customers get an easy next step.",
-    icon: UsersRound,
-  },
-  {
-    title: "Captured calls",
-    detail: "Missed inbound work gets followed up.",
-    icon: PhoneCall,
+    label: "More booked work",
+    detail: "More conversations, estimates, and jobs land on the calendar.",
+    icon: CalendarClock,
   },
 ] as const
 
 const revenueBusinessSignals = [
-  "Old customers feed repeat jobs",
-  "Happy customers feed reviews",
-  "Reviews and referrals feed the next buyer",
-  "Missed calls feed recovered work",
+  "More money in",
+  "Time back",
+  "Stronger reputation",
+  "Repeat revenue",
 ] as const
 
 const desktopNodePositions = [
-  "left-[5%] top-[9%]",
-  "right-[5%] top-[9%]",
-  "right-[5%] bottom-[9%]",
-  "left-[5%] bottom-[9%]",
-] as const
-
-const mobileNodePositions = [
-  "left-0 top-0",
-  "right-0 top-0",
-  "right-0 bottom-0",
-  "left-0 bottom-0",
+  "left-[1%] top-[26%]",
+  "left-[49%] top-[2%] -translate-x-1/2",
+  "right-[1%] top-[30%]",
+  "right-[28%] bottom-[3%]",
+  "left-[3%] bottom-[18%]",
 ] as const
 
 const loopArrowPaths = [
-  "M225 96 C306 56 414 56 495 96",
-  "M565 165 C607 240 607 334 565 409",
-  "M495 478 C414 518 306 518 225 478",
-  "M155 409 C113 334 113 240 155 165",
-] as const
-
-const loopArrowMobilePaths = [
-  "M122 76 C164 54 216 54 258 76",
-  "M303 122 C324 164 324 216 303 258",
-  "M258 303 C216 326 164 326 122 303",
-  "M76 258 C54 216 54 164 76 122",
+  "M250 192 C330 112 454 104 544 170",
+  "M602 228 C650 332 610 448 512 510",
+  "M452 540 C330 570 224 510 184 404",
+  "M166 342 C150 258 178 214 228 178",
 ] as const
 
 const cashflowVisualAsset =
@@ -277,165 +245,207 @@ function CashflowControlSystemSection() {
 function RevenueNode({
   step,
   index,
-  mobile = false,
 }: {
   step: (typeof revenueLoopSteps)[number]
   index: number
-  mobile?: boolean
 }) {
   const Icon = step.icon
 
   return (
     <div
-      className={`absolute ${mobile ? mobileNodePositions[index] : desktopNodePositions[index]} z-20 flex w-[42%] flex-col items-center rounded-[1.2rem] border border-[#dcefe2] bg-white px-3 py-3 text-center shadow-[0_14px_34px_rgba(16,32,51,0.07)] sm:px-4 sm:py-4 lg:w-[190px]`}
+      className={`absolute ${desktopNodePositions[index]} z-20 flex w-[168px] flex-col rounded-[1.05rem] border border-[#dcefe2] bg-white px-4 py-4 text-left shadow-[0_18px_42px_rgba(16,32,51,0.08)]`}
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f5fbf6] text-[#15803D] shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] sm:h-14 sm:w-14">
-        <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.9} />
+      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f5fbf6] text-[#15803D] shadow-[inset_0_1px_0_rgba(255,255,255,0.95)]">
+        <Icon className="h-5 w-5" strokeWidth={1.9} />
       </div>
-      <p className="mt-2 text-[0.68rem] font-bold tracking-[0.14em] text-[#15803D]">0{index + 1}</p>
-      <p className="mt-1 text-sm font-bold leading-5 text-[#102033] sm:text-[0.95rem]">{step.label}</p>
-      <p className="mt-1 hidden text-xs leading-5 text-[#5b6875] sm:block">{step.detail}</p>
+      <p className="mt-3 text-[0.95rem] font-bold leading-5 text-[#102033]">{step.label}</p>
+      <p className="mt-1 text-xs leading-5 text-[#5b6875]">{step.detail}</p>
     </div>
   )
 }
 
-function CustomerRevenueHub({ mobile = false }: { mobile?: boolean }) {
+function CustomerRevenueHub() {
   return (
     <div
-      className={`absolute left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#d6e9dc] bg-white text-center shadow-[0_20px_50px_rgba(16,32,51,0.1),inset_0_1px_0_rgba(255,255,255,0.95)] ${mobile ? "h-[154px] w-[154px]" : "h-[210px] w-[210px]"}`}
+      className="absolute left-1/2 top-1/2 z-30 flex min-h-[190px] w-[236px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[8px] border-white bg-[radial-gradient(circle_at_30%_20%,#1fa454_0%,#0d7137_48%,#064823_100%)] text-center text-white shadow-[0_24px_60px_rgba(16,32,51,0.14),inset_0_1px_0_rgba(255,255,255,0.22)]"
     >
-      <div className="px-4">
-        <TrendingUp className="mx-auto h-8 w-8 text-[#15803D] sm:h-9 sm:w-9" strokeWidth={1.9} />
-        <p className="mt-3 text-xl font-bold leading-[1.02] tracking-tight text-[#071421] sm:text-2xl">
-          Customer Revenue System
+      <div className="px-6">
+        <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/14 text-white ring-1 ring-white/25">
+          <TrendingUp className="h-6 w-6" strokeWidth={1.9} />
+        </span>
+        <p className="mt-3 text-xs font-extrabold uppercase leading-4 tracking-[0.12em] text-white/85">
+          More booked work
         </p>
-        <p className="mt-2 text-xs font-semibold leading-5 text-[#5b6875]">
-          Customer moments feed the next job.
+        <p className="mt-1 text-3xl font-bold leading-[1.02] text-white">
+          Repeat revenue
+        </p>
+        <p className="mt-2 text-xs font-semibold leading-5 text-white/82">
+          Higher profit. Less owner rescue.
         </p>
       </div>
     </div>
   )
 }
 
-function RevenueLoopArrows({ mobile = false }: { mobile?: boolean }) {
-  const paths = mobile ? loopArrowMobilePaths : loopArrowPaths
-  const viewBox = mobile ? "0 0 380 380" : "0 0 720 575"
-
+function RevenueLoopArrows() {
   return (
     <svg
       className="pointer-events-none absolute inset-0 z-10 h-full w-full"
-      viewBox={viewBox}
+      viewBox="0 0 760 560"
       fill="none"
       aria-hidden="true"
       preserveAspectRatio="none"
     >
       <defs>
-        <marker id={mobile ? "revenue-loop-arrow-mobile" : "revenue-loop-arrow"} markerHeight="10" markerWidth="10" orient="auto" refX="9" refY="5">
+        <marker id="revenue-loop-arrow" markerHeight="10" markerWidth="10" orient="auto" refX="9" refY="5">
           <path d="M0 0L10 5L0 10Z" fill="#15803D" />
         </marker>
       </defs>
-      {paths.map((path, index) => (
+      {loopArrowPaths.map((path, index) => (
         <path
           key={path}
           d={path}
           stroke={index % 2 === 0 ? "#15803D" : "#41a65f"}
-          strokeWidth={mobile ? 3.5 : 4}
+          strokeWidth="5"
           strokeLinecap="round"
-          markerEnd={`url(#${mobile ? "revenue-loop-arrow-mobile" : "revenue-loop-arrow"})`}
+          markerEnd="url(#revenue-loop-arrow)"
         />
       ))}
+      <path d="M382 170V235" stroke="#b6c2cd" strokeLinecap="round" strokeWidth="4" />
+      <path d="M552 312L472 330" stroke="#b6c2cd" strokeLinecap="round" strokeWidth="4" />
+      <path d="M277 392L344 356" stroke="#b6c2cd" strokeLinecap="round" strokeWidth="4" />
+      <path d="M322 418L370 382" stroke="#b6c2cd" strokeLinecap="round" strokeWidth="4" />
     </svg>
   )
 }
 
 function CustomerRevenueDesktopLoop() {
   return (
-    <div className="relative hidden min-h-[575px] lg:block">
-      <RevenueLoopArrows />
-      <CustomerRevenueHub />
-      {revenueLoopSteps.map((step, index) => (
-        <RevenueNode key={step.label} step={step} index={index} />
-      ))}
+    <div className="hidden lg:block">
+      <div className="relative min-h-[430px] rounded-[2rem] bg-[linear-gradient(135deg,#f7fbf5_0%,#ffffff_55%,#f2f8ef_100%)] px-8 py-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)]">
+        <svg className="pointer-events-none absolute inset-x-10 top-24 h-44 w-[calc(100%-5rem)]" viewBox="0 0 900 180" fill="none" aria-hidden="true" preserveAspectRatio="none">
+          <defs>
+            <marker id="customer-revenue-path-arrow" markerHeight="9" markerWidth="9" orient="auto" refX="8" refY="4.5">
+              <path d="M0 0L9 4.5L0 9Z" fill="#15803D" />
+            </marker>
+          </defs>
+          <path d="M40 126 C190 34 330 28 450 92 C570 156 704 156 852 62" stroke="#bddfc5" strokeWidth="14" strokeLinecap="round" opacity="0.55" />
+          <path d="M40 126 C190 34 330 28 450 92 C570 156 704 156 852 62" stroke="#15803D" strokeWidth="5" strokeLinecap="round" markerEnd="url(#customer-revenue-path-arrow)" />
+        </svg>
+
+        <div className="relative z-10 grid grid-cols-5 gap-4">
+          {revenueLoopSteps.map((step, index) => {
+            const Icon = step.icon
+            const offset = ["mt-24", "mt-3", "mt-16", "mt-24", "mt-6"][index]
+
+            return (
+              <div key={step.label} className={`${offset} text-center`}>
+                <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-[#15803D] shadow-[0_18px_36px_rgba(16,32,51,0.12)] ring-1 ring-[#cfe8d5]">
+                  <Icon className="h-7 w-7" strokeWidth={1.9} />
+                </span>
+                <p className="mt-4 text-base font-bold leading-5 text-[#102033]">{step.label}</p>
+                <p className="mx-auto mt-2 max-w-[150px] text-xs leading-5 text-[#5b6875]">{step.detail}</p>
+              </div>
+            )
+          })}
+        </div>
+
+        <div className="relative z-20 mx-auto mt-5 flex max-w-2xl items-center justify-between rounded-full bg-[#0b5a33] px-6 py-4 text-white shadow-[0_22px_50px_rgba(11,90,51,0.18)]">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/78">Outcome</p>
+            <p className="mt-1 text-2xl font-bold leading-none">Repeat revenue without owner rescue</p>
+          </div>
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/14 ring-1 ring-white/25">
+            <TrendingUp className="h-7 w-7" strokeWidth={1.9} />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
-function CustomerRevenueMobileLoop() {
+function CustomerRevenueMobileSequence() {
   return (
-    <div className="relative min-h-[420px] sm:min-h-[470px] lg:hidden">
-      <RevenueLoopArrows mobile />
-      <CustomerRevenueHub mobile />
-      {revenueLoopSteps.map((step, index) => (
-        <RevenueNode key={step.label} step={step} index={index} mobile />
-      ))}
+    <div className="lg:hidden">
+      <div className="rounded-[1.4rem] bg-[radial-gradient(circle_at_30%_20%,#1fa454_0%,#0d7137_50%,#064823_100%)] p-6 text-center text-white shadow-[0_16px_38px_rgba(16,32,51,0.12)]">
+        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white/14 text-white ring-1 ring-white/25">
+          <TrendingUp className="h-6 w-6" strokeWidth={1.9} />
+        </span>
+        <p className="mt-4 text-xs font-extrabold uppercase leading-4 tracking-[0.12em] text-white/85">Outcome</p>
+        <p className="mt-1 text-3xl font-bold leading-tight text-white">Repeat revenue</p>
+        <p className="mt-2 text-sm leading-6 text-white/82">Old customers, reviews, referrals, and captured calls feed more booked work.</p>
+      </div>
+      <div className="relative mt-6 space-y-5 pl-5">
+        <div className="absolute bottom-10 left-[2.15rem] top-8 w-[3px] rounded-full bg-[#bddfc5]" aria-hidden="true" />
+        {revenueLoopSteps.map((step, index) => {
+          const Icon = step.icon
+
+          return (
+            <div key={step.label} className="relative flex gap-4">
+              <span className="z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-[#15803D] shadow-[0_14px_30px_rgba(16,32,51,0.1)] ring-1 ring-[#cfe8d5]">
+                <Icon className="h-6 w-6" strokeWidth={1.9} />
+              </span>
+              <span className="pt-1">
+                <span className="block text-[0.68rem] font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Step 0{index + 1}</span>
+                <span className="mt-1 block text-base font-bold leading-5 text-[#102033]">{step.label}</span>
+                <span className="mt-1 block text-sm leading-6 text-[#5b6875]">{step.detail}</span>
+              </span>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
 
 function CustomerRevenueOutcomePanel() {
   return (
-    <aside className="rounded-[1.35rem] border border-[#dcefe2] bg-white p-5 shadow-[0_18px_48px_rgba(16,32,51,0.07)] lg:p-6">
-      <p className="text-xs font-bold tracking-[0.16em] text-[#15803D]">OUTCOMES</p>
-      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-        <div className="rounded-[1.15rem] bg-[#15803D] p-4 text-white shadow-[0_16px_36px_rgba(21,128,61,0.18)]">
-          <CalendarClock className="h-6 w-6" strokeWidth={1.9} />
-          <p className="mt-3 text-2xl font-semibold leading-none tracking-tight">More booked work</p>
+    <div className="rounded-[1.45rem] border border-[#dfe9dc] bg-[#fbfefb] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)] sm:p-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex items-start gap-3 border-b border-[#dfe9dc] pb-4 sm:border-b-0 sm:border-r sm:pb-0 sm:pr-4">
+          <Banknote className="mt-1 h-6 w-6 shrink-0 text-[#0b6f35]" strokeWidth={1.9} />
+          <span>
+            <span className="block text-sm font-bold leading-5 text-[#102033]">More money in</span>
+            <span className="mt-1 block text-xs leading-5 text-[#5b6875]">Past customers feed repeat jobs and new revenue.</span>
+          </span>
         </div>
-        <div className="rounded-[1.15rem] border border-[#cfe8d5] bg-[#f5fbf6] p-4">
-          <TrendingUp className="h-6 w-6 text-[#15803D]" strokeWidth={1.9} />
-          <p className="mt-3 text-2xl font-semibold leading-none tracking-tight text-[#071421]">Steady repeat revenue</p>
+        <div className="flex items-start gap-3 border-b border-[#dfe9dc] pb-4 sm:border-b-0 lg:border-r lg:pb-0 lg:pr-4">
+          <Clock3 className="mt-1 h-6 w-6 shrink-0 text-[#0b6f35]" strokeWidth={1.9} />
+          <span>
+            <span className="block text-sm font-bold leading-5 text-[#102033]">Time back</span>
+            <span className="mt-1 block text-xs leading-5 text-[#5b6875]">Clear follow-up means fewer dropped balls and less owner rescue.</span>
+          </span>
+        </div>
+        <div className="flex items-start gap-3 border-b border-[#dfe9dc] pb-4 sm:border-b-0 sm:border-r sm:pb-0 sm:pr-4">
+          <ShieldCheck className="mt-1 h-6 w-6 shrink-0 text-[#0b6f35]" strokeWidth={1.9} />
+          <span>
+            <span className="block text-sm font-bold leading-5 text-[#102033]">Stronger reputation</span>
+            <span className="mt-1 block text-xs leading-5 text-[#5b6875]">Fresh reviews and referrals build trust before the first call.</span>
+          </span>
+        </div>
+        <div className="flex items-start gap-3">
+          <TrendingUp className="mt-1 h-6 w-6 shrink-0 text-[#0b6f35]" strokeWidth={1.9} />
+          <span>
+            <span className="block text-sm font-bold leading-5 text-[#102033]">Repeat revenue</span>
+            <span className="mt-1 block text-xs leading-5 text-[#5b6875]">More calls, conversations, and booked work you can count on.</span>
+          </span>
         </div>
       </div>
-      <div className="mt-5 space-y-3">
-        {revenueOutcomeItems.map((item) => {
-          const Icon = item.icon
-
-          return (
-            <div key={item.title} className="flex gap-3">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ecf8ef] text-[#15803D]">
-                <Icon className="h-4 w-4" strokeWidth={1.9} />
-              </span>
-              <span>
-                <span className="block text-sm font-bold leading-5 text-[#102033]">{item.title}</span>
-                <span className="block text-xs leading-5 text-[#5b6875]">{item.detail}</span>
-              </span>
-            </div>
-          )
-        })}
-      </div>
-    </aside>
+    </div>
   )
 }
 
 function CustomerRevenueProcessVisual() {
   return (
-    <div className="relative overflow-hidden rounded-[1.7rem] border border-[#e7dfd3] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbf7_100%)] p-4 shadow-[0_24px_70px_rgba(16,32,51,0.1)] sm:rounded-[2rem] sm:p-6 lg:p-7">
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-stretch">
-        <div className="rounded-[1.35rem] bg-[#f4faf5] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] sm:p-5">
-          <CustomerRevenueDesktopLoop />
-          <CustomerRevenueMobileLoop />
-        </div>
-        <CustomerRevenueOutcomePanel />
+    <div className="relative overflow-hidden rounded-[1.7rem] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbf7_100%)] p-4 shadow-[0_24px_70px_rgba(16,32,51,0.1)] sm:rounded-[2rem] sm:p-6 lg:p-7">
+      <div className="pointer-events-none absolute -right-24 top-12 h-72 w-72 rounded-full bg-[#e9f8ed] blur-3xl" />
+      <div className="pointer-events-none absolute -left-20 bottom-10 h-56 w-56 rounded-full bg-[#f2f7ef] blur-3xl" />
+      <div className="relative rounded-[1.35rem] bg-[#f4faf5] p-3 sm:p-5 lg:p-6">
+        <CustomerRevenueDesktopLoop />
+        <CustomerRevenueMobileSequence />
       </div>
-      <div className="mt-5 rounded-2xl border border-[#d7ebdd] bg-[#f5fbf6] px-4 py-4 sm:px-5">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-start gap-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-white shadow-[0_10px_22px_rgba(21,128,61,0.18)]">
-              <MessageSquareText className="h-5 w-5" strokeWidth={1.9} />
-            </span>
-            <p className="text-sm font-bold leading-6 text-[#102033] sm:text-base">
-              Each customer moment feeds the next. Together, they create repeat revenue.
-            </p>
-          </div>
-          <div className="grid gap-2 text-xs font-semibold leading-5 text-[#506070] sm:grid-cols-2 lg:w-[46%]">
-            {revenueBusinessSignals.map((signal) => (
-              <span key={signal} className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 shrink-0 text-[#15803D]" />
-                {signal}
-              </span>
-            ))}
-          </div>
-        </div>
+      <div className="relative mt-5">
+        <CustomerRevenueOutcomePanel />
       </div>
     </div>
   )
@@ -443,7 +453,7 @@ function CustomerRevenueProcessVisual() {
 
 function CustomerRevenueCTACluster() {
   return (
-    <div className="mt-6 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
+    <div className="mt-8 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
       <CTALink
         href="/contact"
         kind="book_meeting"
@@ -454,42 +464,53 @@ function CustomerRevenueCTACluster() {
         <ArrowRight className="ml-2 h-4 w-4" />
       </CTALink>
       <CTALink
-        href="/#systems"
+        href="/contact"
         kind="systems"
         location="customer_revenue_system_section"
-        className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#cbd8c7] bg-white px-8 py-4 text-base font-bold text-[#116832] shadow-[0_12px_28px_rgba(16,32,51,0.06)] transition hover:border-[#15803D] hover:bg-[#f7fcf7]"
+        className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#cbd8c7] bg-white px-8 py-4 text-base font-bold text-[#102033] shadow-[0_12px_28px_rgba(16,32,51,0.06)] transition hover:border-[#15803D] hover:bg-[#f7fcf7]"
       >
-        Find Missed Customer Revenue
+        See how the system works
         <ArrowRight className="ml-2 h-4 w-4" />
       </CTALink>
     </div>
   )
 }
 
-function CustomerRevenueAuditBridge() {
-  return (
-    <p className="mx-auto mt-7 max-w-3xl text-center text-base font-semibold leading-7 text-[#102033] sm:text-lg">
-      The Workflow Audit shows which customer revenue gap is costing you money first: old customers, reviews, referrals, or missed calls.
-    </p>
-  )
-}
-
 function CustomerRevenueSystemSection() {
   return (
-    <div id="customer-revenue-system" className="scroll-mt-40 sm:scroll-mt-44 lg:scroll-mt-48">
-      <SectionHeader
-        eyebrow="Customer Revenue System"
-        headline="Get more money from the customers you already earned."
-        subheadline="Old customers, happy customers, reviews, referrals, and missed calls should feed the next job. Stanley Systems turns those moments into a simple repeat-revenue loop your office can actually run."
-      />
-      <div className="mt-8 sm:mt-10">
+    <div id="customer-revenue-system" className="scroll-mt-40 px-3 sm:scroll-mt-44 sm:px-4 lg:scroll-mt-48 lg:px-5">
+      <div className="mx-auto max-w-5xl text-center">
+        <div className="text-sm font-bold uppercase tracking-[0.28em] text-[#0b5a33]">Customer Revenue System</div>
+        <div className="mx-auto mt-4 h-1 w-24 rounded-full bg-[#0b5a33]" />
+        <h2 className="mx-auto mt-7 max-w-5xl text-4xl font-semibold text-[#071421] sm:text-5xl lg:text-[4.7rem] lg:leading-[0.96]">
+          Get more money from the customers you already earned.
+        </h2>
+        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#344455] sm:text-xl">
+          Old customers, happy customers, reviews, referrals, and missed calls should feed the next job instead of getting lost after the first sale.
+        </p>
+      </div>
+      <div className="mx-auto mt-8 max-w-6xl lg:mt-10">
         <CustomerRevenueProcessVisual />
       </div>
-      <CustomerRevenueAuditBridge />
       <CustomerRevenueCTACluster />
-      <TrustLine>
-        Built for service businesses that want more repeat work, more reviews, more referrals, and fewer missed opportunities.
-      </TrustLine>
+      <div className="mt-7 flex flex-col gap-5 border-t border-[#e5ded3] pt-7 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex items-start gap-4">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0b5a33] text-white">
+            <ShieldCheck className="h-5 w-5" strokeWidth={1.9} />
+          </span>
+          <p className="max-w-xl text-sm font-semibold leading-6 text-[#102033] sm:text-base">
+            Practical systems for service businesses that turn good jobs, good customers, and missed calls into more booked work.
+          </p>
+        </div>
+        <div className="grid gap-2 text-xs font-semibold leading-5 text-[#506070] sm:grid-cols-2 lg:w-[360px]">
+          {revenueBusinessSignals.map((signal) => (
+            <span key={signal} className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-[#15803D]" />
+              {signal}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
