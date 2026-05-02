@@ -56,6 +56,9 @@ export type CriticalSectionReview = {
   imagery_strength_score?: number
   visual_anchor_score?: number
   memorability_score?: number
+  visual_semantic_clarity_score?: number
+  visual_metaphor_coherence_score?: number
+  path_traceability_score?: number
   repeated_card_pattern_present?: boolean
   repeated_card_pattern_dominates?: boolean
   repeated_card_pattern_is_secondary_support?: boolean
@@ -70,6 +73,11 @@ export type CriticalSectionReview = {
   boxed_in_visual_anchor?: boolean
   actual_ui_clipping_or_overflow?: boolean
   screenshot_crop_only_not_layout_failure?: boolean
+  every_visual_element_has_business_role?: boolean
+  arbitrary_decorative_elements_present?: boolean
+  visually_rich_but_semantically_confusing?: boolean
+  viewer_can_explain_visual_in_5_seconds?: boolean
+  follows_approved_reference_structure?: boolean
   asset_strategy: CriticalAssetStrategy
   blockers: string[]
   warnings: string[]
@@ -241,6 +249,9 @@ export const DEFAULT_THRESHOLDS = {
   visual_richness_score: 7,
   imagery_strength_score: 7,
   visual_anchor_score: 7,
+  visual_semantic_clarity_score: 8,
+  visual_metaphor_coherence_score: 8,
+  path_traceability_score: 8,
   max_visual_patch_attempts: 2,
 } as const
 
@@ -269,6 +280,9 @@ const REQUIRED_FIELDS = [
   "imagery_strength_score",
   "visual_anchor_score",
   "memorability_score",
+  "visual_semantic_clarity_score",
+  "visual_metaphor_coherence_score",
+  "path_traceability_score",
   "repeated_card_pattern_present",
   "repeated_card_pattern_dominates",
   "repeated_card_pattern_is_secondary_support",
@@ -283,6 +297,11 @@ const REQUIRED_FIELDS = [
   "boxed_in_visual_anchor",
   "actual_ui_clipping_or_overflow",
   "screenshot_crop_only_not_layout_failure",
+  "every_visual_element_has_business_role",
+  "arbitrary_decorative_elements_present",
+  "visually_rich_but_semantically_confusing",
+  "viewer_can_explain_visual_in_5_seconds",
+  "follows_approved_reference_structure",
   "asset_strategy",
   "blockers",
   "warnings",
@@ -448,11 +467,11 @@ export function validateCriticalSectionReview(value: unknown, expectedSectionIdO
   for (const field of ["desktop_pass", "mobile_pass"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
-  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score"] as const) {
+  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score"] as const) {
     if (typeof review[field] !== "number" || !Number.isFinite(review[field])) throw new Error(`${field} must be a finite number`)
     if (review[field] < 1 || review[field] > 10) throw new Error(`${field} must be between 1 and 10`)
   }
-  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure"] as const) {
+  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
   if (typeof review.primary_visual_anchor_description !== "string" || !review.primary_visual_anchor_description.trim()) {
@@ -577,6 +596,9 @@ function buildPacket(manifest: Manifest, entry: SectionRegistryEntry): CriticalR
         "Mobile-first trust test: would a skeptical HVAC, plumbing, electrical, marine, or landscaping owner trust Stanley Systems after seeing this on their phone? If no, final_decision must not be pass.",
         "Do the screenshots show the intended section described by section_id and section_purpose? Return section_match as yes, no, or unclear.",
         "Does the mobile evidence include the full route/continuity a real user sees, not only a polished fragment?",
+        "Does the visual make the business logic clearer, or is it just visually rich?",
+        "Can a visitor trace the customer journey from first step to outcome in 5 seconds?",
+        "For Customer Revenue, does the built section follow the approved central hub, four-node loop, and outcomes reference structure?",
         "Does this look like a real premium service-business website section, or AI-generated SaaS filler?",
         "Would a service business owner understand the point in 10 seconds?",
         "Are there unnecessary pills, chips, badges, support boxes, fake dashboards, simple icon clutter, or generic card walls?",
@@ -756,6 +778,9 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   if (typeof review.visual_richness_score === "number" && review.visual_richness_score < DEFAULT_THRESHOLDS.visual_richness_score) failures.push(`visual_richness_score ${review.visual_richness_score} is below ${DEFAULT_THRESHOLDS.visual_richness_score}`)
   if (typeof review.imagery_strength_score === "number" && review.imagery_strength_score < DEFAULT_THRESHOLDS.imagery_strength_score) failures.push(`imagery_strength_score ${review.imagery_strength_score} is below ${DEFAULT_THRESHOLDS.imagery_strength_score}`)
   if (typeof review.visual_anchor_score === "number" && review.visual_anchor_score < DEFAULT_THRESHOLDS.visual_anchor_score) failures.push(`visual_anchor_score ${review.visual_anchor_score} is below ${DEFAULT_THRESHOLDS.visual_anchor_score}`)
+  if (typeof review.visual_semantic_clarity_score === "number" && review.visual_semantic_clarity_score < DEFAULT_THRESHOLDS.visual_semantic_clarity_score) failures.push(`visual_semantic_clarity_score ${review.visual_semantic_clarity_score} is below ${DEFAULT_THRESHOLDS.visual_semantic_clarity_score}`)
+  if (typeof review.visual_metaphor_coherence_score === "number" && review.visual_metaphor_coherence_score < DEFAULT_THRESHOLDS.visual_metaphor_coherence_score) failures.push(`visual_metaphor_coherence_score ${review.visual_metaphor_coherence_score} is below ${DEFAULT_THRESHOLDS.visual_metaphor_coherence_score}`)
+  if (typeof review.path_traceability_score === "number" && review.path_traceability_score < DEFAULT_THRESHOLDS.path_traceability_score) failures.push(`path_traceability_score ${review.path_traceability_score} is below ${DEFAULT_THRESHOLDS.path_traceability_score}`)
   if (review.repeated_card_pattern_dominates === true) failures.push("repeated_card_pattern_dominates is true")
   if (review.repeated_card_pattern_present === true && review.repeated_card_pattern_is_secondary_support !== true) failures.push("repeated_card_pattern_present is true but repeated_card_pattern_is_secondary_support is not true")
   if (review.repeated_card_pattern_present === true && review.repeated_card_pattern_is_secondary_support === true && (typeof review.visual_anchor_score !== "number" || typeof review.imagery_strength_score !== "number" || review.visual_anchor_score < 8 || review.imagery_strength_score < 8 || review.visual_anchor_overpowers_card_stack !== true || !review.primary_visual_anchor_description?.trim())) failures.push("repeated card pattern is present but not justified by a strong described visual anchor overpowering the card stack")
@@ -766,6 +791,11 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   if (review.border_noise_dominates_visual === true) failures.push("border_noise_dominates_visual is true")
   if (review.boxed_in_visual_anchor === true) failures.push("boxed_in_visual_anchor is true")
   if (review.actual_ui_clipping_or_overflow === true) failures.push("actual_ui_clipping_or_overflow is true")
+  if (review.every_visual_element_has_business_role === false) failures.push("every_visual_element_has_business_role is false")
+  if (review.arbitrary_decorative_elements_present === true) failures.push("arbitrary_decorative_elements_present is true")
+  if (review.visually_rich_but_semantically_confusing === true) failures.push("visually_rich_but_semantically_confusing is true")
+  if (review.viewer_can_explain_visual_in_5_seconds === false) failures.push("viewer_can_explain_visual_in_5_seconds is false")
+  if (review.follows_approved_reference_structure === false) failures.push("follows_approved_reference_structure is false")
   if (!review.desktop_pass) failures.push("desktop_pass was false")
   if (!review.mobile_pass) failures.push("mobile_pass was false")
   if (review.final_decision !== "pass") failures.push(`final_decision was ${review.final_decision}`)

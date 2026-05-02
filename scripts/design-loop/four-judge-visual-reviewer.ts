@@ -60,6 +60,9 @@ type FinalDecision = {
   imagery_strength_score: number
   visual_anchor_score: number
   memorability_score: number
+  visual_semantic_clarity_score: number
+  visual_metaphor_coherence_score: number
+  path_traceability_score: number
   repeated_card_pattern_present: boolean
   repeated_card_pattern_dominates: boolean
   repeated_card_pattern_is_secondary_support: boolean
@@ -74,6 +77,11 @@ type FinalDecision = {
   boxed_in_visual_anchor: boolean
   actual_ui_clipping_or_overflow: boolean
   screenshot_crop_only_not_layout_failure: boolean
+  every_visual_element_has_business_role: boolean
+  arbitrary_decorative_elements_present: boolean
+  visually_rich_but_semantically_confusing: boolean
+  viewer_can_explain_visual_in_5_seconds: boolean
+  follows_approved_reference_structure: boolean
   blockers: string[]
   patch_brief: string
 }
@@ -344,6 +352,7 @@ function buildFinalGatekeeperPrompt(packet: ReviewPacket, route: string, visible
     "Final rules:",
     "- A Stanley Systems section cannot pass only because it is clean, readable, mobile-safe, and strategy-aligned. Clean is table stakes, not approval.",
     "- It must also have a strong visual anchor, enough imagery or visual communication, a memorable section-level visual idea, varied visual rhythm, clear process-to-outcome motion where relevant, and a design that sells rather than merely explains.",
+    "- Visual richness is not enough. The visual must make the business logic clearer. Fail visual_richness_without_meaning, visually_rich_but_semantically_confusing, unclear_visual_metaphor, decorative_path_without_clear_sequence, untraceable_customer_journey, floating_cards_without_system_logic, generated_concept_artifacts, visual_anchor_present_but_unclear, metaphor_over_meaning, and road_metaphor_without_traceable_steps.",
     "- The visuals must reduce explanation load and feel service-business relevant. A plain repeated icon-card stack cannot be the entire section.",
     "- Fail or require patch if the section is too icon-heavy, too plain, visually safe but forgettable, a vertical list instead of a designed system, dependent on the same card pattern for every step, lacking a dominant visual centerpiece, requiring text to do nearly all explanation, technically mobile-safe but boring, or clean but not persuasive.",
     "- New over-framing bad pattern labels: over_framed_section, too_many_nested_borders, concentric_container_overload, excessive_outline_chrome, border_noise_dominates_visual, support_cards_repeat_border_language, premium_by_border_stack, boxed_in_visual_anchor.",
@@ -351,7 +360,7 @@ function buildFinalGatekeeperPrompt(packet: ReviewPacket, route: string, visible
     "- Premium cannot be achieved by adding border stacks. Premium should come from hierarchy, spacing, proportion, contrast, soft tint, shadow, whitespace, and one strong visual idea.",
     "- Distinguish actual UI clipping from screenshot crop. Do not fail a screenshot because the captured crop does not include the full section. Fail only when the real UI is cut off, overflowing, unreadable, or broken in-browser.",
     "- Answer these positive visual quality questions in the markdown critique: What is the dominant visual idea? Is there a clear visual anchor or mostly repeated cards? Does the visual reduce explanation load? Would a service-business owner remember it? Does it feel designed or assembled from icon cards? Is it visually persuasive enough to sell the idea? Is there enough imagery, movement, scale variation, and hierarchy? Does it preserve Taste Library direction while avoiding bad patterns? Would it feel premium and memorable on a phone?",
-    "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, underdesigned_plain_section is true, repeated_card_pattern_dominates is true, over_framed_section is true, too_many_nested_borders is true, border_noise_dominates_visual is true, boxed_in_visual_anchor is true, actual_ui_clipping_or_overflow is true, or no primary_visual_anchor_description is provided.",
+    "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, visual_semantic_clarity_score < 8, visual_metaphor_coherence_score < 8, path_traceability_score < 8 for loop/path sections, underdesigned_plain_section is true, repeated_card_pattern_dominates is true, over_framed_section is true, too_many_nested_borders is true, border_noise_dominates_visual is true, boxed_in_visual_anchor is true, actual_ui_clipping_or_overflow is true, arbitrary_decorative_elements_present is true, visually_rich_but_semantically_confusing is true, viewer_can_explain_visual_in_5_seconds is false, follows_approved_reference_structure is false for approved-reference patches, or no primary_visual_anchor_description is provided.",
     "- If repeated_card_pattern_present is true but secondary, final pass may be true only if visual_anchor_score >= 8, imagery_strength_score >= 8, visual_anchor_overpowers_card_stack is true, and you explain why repeated cards are not dominant through primary_visual_anchor_description and markdown critique.",
     "- If the section is mostly repeated cards plus icons, stacked icon cards, equal-weight repeated steps, same-shaped cards with small icons, lacks a dominant loop/path/outcome visual, or has no memorable system picture, final pass cannot be true.",
     "- For Customer Revenue specifically, pass may be true only if repeated cards are supporting details and the dominant visual anchor is a loop, path, journey, or outcome panel that clearly sells customer moments feeding the next job.",
@@ -482,15 +491,15 @@ function validateFinalDecision(value: unknown, fresh: JudgeDecision, mobile: Jud
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Final decision must be an object")
   const item = value as Record<string, unknown>
   const allowed = ["pass", "fail_patch_needed", "fail_generated_asset_needed", "fail_major_redesign_needed", "blocked_image_not_seen", "blocked_context_missing"]
-  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "primary_visual_anchor_description", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "blockers", "patch_brief"] as const) {
+  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "primary_visual_anchor_description", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure", "blockers", "patch_brief"] as const) {
     if (!(field in item)) throw new Error(`Final decision missing ${field}`)
   }
   if (typeof item.pass !== "boolean") throw new Error("Final pass must be boolean")
   if (!allowed.includes(String(item.final_decision))) throw new Error("Invalid final_decision")
-  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score"] as const) {
+  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score"] as const) {
     if (typeof item[field] !== "number" || (item[field] as number) < 1 || (item[field] as number) > 10) throw new Error(`${field} must be 1-10`)
   }
-  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure"] as const) {
+  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure"] as const) {
     if (typeof item[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
   if (typeof item.primary_visual_anchor_description !== "string" || !item.primary_visual_anchor_description.trim()) throw new Error("primary_visual_anchor_description must be a non-empty string")
