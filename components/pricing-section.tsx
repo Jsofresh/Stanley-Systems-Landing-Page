@@ -8,8 +8,6 @@ import {
   CheckCircle2,
   Clock3,
   FilePenLine,
-  Mail,
-  MapPin,
   MessageSquareText,
   PhoneCall,
   RefreshCw,
@@ -50,33 +48,84 @@ const cashflowResultCards = [
 
 const revenueLoopSteps = [
   {
-    label: "Recover missed calls",
-    detail: "Every missed call gets a clean follow-up path.",
-    icon: PhoneCall,
-  },
-  {
-    label: "Bring customers back",
+    label: "Bring Customers Back",
     detail: "Past customers get a timely reason to book again.",
     icon: RefreshCw,
   },
   {
-    label: "Get fresh reviews",
+    label: "Get Fresh Reviews",
     detail: "Happy jobs turn into public trust for the next buyer.",
     icon: Star,
   },
   {
-    label: "Create referrals",
+    label: "Create Referrals",
     detail: "Good work becomes an easier next introduction.",
     icon: UsersRound,
   },
   {
-    label: "More booked work",
-    detail: "More paths turn into booked work.",
-    icon: CalendarClock,
+    label: "Recover Missed Calls",
+    detail: "Every missed call gets a clean follow-up.",
+    icon: PhoneCall,
   },
 ] as const
 
-const revenueOutcomeItems = ["Past customers return", "Reviews build trust", "Referrals stay easy", "Missed calls get recovered"] as const
+const revenueOutcomeItems = [
+  {
+    title: "Repeat jobs",
+    detail: "Old customers hear from you before they drift.",
+    icon: RefreshCw,
+  },
+  {
+    title: "Fresh reviews",
+    detail: "Good jobs become visible trust.",
+    icon: Star,
+  },
+  {
+    title: "More referrals",
+    detail: "Happy customers get an easy next step.",
+    icon: UsersRound,
+  },
+  {
+    title: "Captured calls",
+    detail: "Missed inbound work gets followed up.",
+    icon: PhoneCall,
+  },
+] as const
+
+const revenueBusinessSignals = [
+  "Old customers feed repeat jobs",
+  "Happy customers feed reviews",
+  "Reviews and referrals feed the next buyer",
+  "Missed calls feed recovered work",
+] as const
+
+const desktopNodePositions = [
+  "left-[5%] top-[9%]",
+  "right-[5%] top-[9%]",
+  "right-[5%] bottom-[9%]",
+  "left-[5%] bottom-[9%]",
+] as const
+
+const mobileNodePositions = [
+  "left-0 top-0",
+  "right-0 top-0",
+  "right-0 bottom-0",
+  "left-0 bottom-0",
+] as const
+
+const loopArrowPaths = [
+  "M225 96 C306 56 414 56 495 96",
+  "M565 165 C607 240 607 334 565 409",
+  "M495 478 C414 518 306 518 225 478",
+  "M155 409 C113 334 113 240 155 165",
+] as const
+
+const loopArrowMobilePaths = [
+  "M122 76 C164 54 216 54 258 76",
+  "M303 122 C324 164 324 216 303 258",
+  "M258 303 C216 326 164 326 122 303",
+  "M76 258 C54 216 54 164 76 122",
+] as const
 
 const cashflowVisualAsset =
   "/images/generated/design-loop/homepage-anti-slop-current-diffs-20260430T130608Z/cashflow-pipeline-approved.png"
@@ -225,283 +274,167 @@ function CashflowControlSystemSection() {
   )
 }
 
-function RevenueMomentCard({ step, index }: { step: (typeof revenueLoopSteps)[number]; index: number }) {
+function RevenueNode({
+  step,
+  index,
+  mobile = false,
+}: {
+  step: (typeof revenueLoopSteps)[number]
+  index: number
+  mobile?: boolean
+}) {
   const Icon = step.icon
 
   return (
-    <div className="relative min-h-[154px] rounded-[1.15rem] bg-white/92 p-4 text-center shadow-[0_16px_38px_rgba(16,32,51,0.07)]">
-      <div className="absolute -top-5 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-[#15803D] text-white shadow-[0_12px_24px_rgba(21,128,61,0.22)] ring-[6px] ring-[#f7fbf7]">
-        <Icon className="h-4 w-4" strokeWidth={2} />
+    <div
+      className={`absolute ${mobile ? mobileNodePositions[index] : desktopNodePositions[index]} z-20 flex w-[42%] flex-col items-center rounded-[1.2rem] border border-[#dcefe2] bg-white px-3 py-3 text-center shadow-[0_14px_34px_rgba(16,32,51,0.07)] sm:px-4 sm:py-4 lg:w-[190px]`}
+    >
+      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f5fbf6] text-[#15803D] shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] sm:h-14 sm:w-14">
+        <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.9} />
       </div>
-      <div className="pt-5">
-        <div className="mx-auto mb-3 h-1.5 w-8 rounded-full bg-[#d6ecdc]" aria-hidden="true" />
-        <p className="text-[0.7rem] font-bold tracking-[0.16em] text-[#15803D]">0{index + 1}</p>
-        <p className="mt-2 text-sm font-bold leading-5 text-[#102033]">{step.label}</p>
-        <p className="mt-2 text-xs leading-5 text-[#5b6875]">{step.detail}</p>
+      <p className="mt-2 text-[0.68rem] font-bold tracking-[0.14em] text-[#15803D]">0{index + 1}</p>
+      <p className="mt-1 text-sm font-bold leading-5 text-[#102033] sm:text-[0.95rem]">{step.label}</p>
+      <p className="mt-1 hidden text-xs leading-5 text-[#5b6875] sm:block">{step.detail}</p>
+    </div>
+  )
+}
+
+function CustomerRevenueHub({ mobile = false }: { mobile?: boolean }) {
+  return (
+    <div
+      className={`absolute left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#d6e9dc] bg-white text-center shadow-[0_20px_50px_rgba(16,32,51,0.1),inset_0_1px_0_rgba(255,255,255,0.95)] ${mobile ? "h-[154px] w-[154px]" : "h-[210px] w-[210px]"}`}
+    >
+      <div className="px-4">
+        <TrendingUp className="mx-auto h-8 w-8 text-[#15803D] sm:h-9 sm:w-9" strokeWidth={1.9} />
+        <p className="mt-3 text-xl font-bold leading-[1.02] tracking-tight text-[#071421] sm:text-2xl">
+          Customer Revenue System
+        </p>
+        <p className="mt-2 text-xs font-semibold leading-5 text-[#5b6875]">
+          Customer moments feed the next job.
+        </p>
       </div>
     </div>
   )
 }
 
-function CustomerRevenueDesktopJourney() {
+function RevenueLoopArrows({ mobile = false }: { mobile?: boolean }) {
+  const paths = mobile ? loopArrowMobilePaths : loopArrowPaths
+  const viewBox = mobile ? "0 0 380 380" : "0 0 720 575"
+
   return (
-    <div className="relative hidden min-h-[575px] overflow-hidden rounded-[1.4rem] bg-[#f4faf5] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] lg:block">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18px_18px,rgba(21,128,61,0.08)_1.3px,transparent_1.5px)] bg-[length:34px_34px] opacity-60" />
-      <div className="pointer-events-none absolute left-10 top-14 h-52 w-52 rounded-full bg-white/90 blur-2xl" />
-      <div className="pointer-events-none absolute bottom-8 right-8 h-64 w-64 rounded-full bg-[#dff5e5] blur-3xl" />
-      <svg
-        className="pointer-events-none absolute inset-0 h-full w-full"
-        viewBox="0 0 1030 575"
-        fill="none"
-        aria-hidden="true"
-      >
-        <defs>
-          <marker id="revenue-journey-arrow" markerHeight="10" markerWidth="10" orient="auto" refX="9" refY="5">
-            <path d="M0 0L10 5L0 10Z" fill="#116832" />
-          </marker>
-          <linearGradient id="revenue-journey-ribbon" x1="46" x2="900" y1="280" y2="280" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#116832" />
-            <stop offset="0.48" stopColor="#15803D" />
-            <stop offset="1" stopColor="#0f6d35" />
-          </linearGradient>
-        </defs>
+    <svg
+      className="pointer-events-none absolute inset-0 z-10 h-full w-full"
+      viewBox={viewBox}
+      fill="none"
+      aria-hidden="true"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <marker id={mobile ? "revenue-loop-arrow-mobile" : "revenue-loop-arrow"} markerHeight="10" markerWidth="10" orient="auto" refX="9" refY="5">
+          <path d="M0 0L10 5L0 10Z" fill="#15803D" />
+        </marker>
+      </defs>
+      {paths.map((path, index) => (
         <path
-          d="M44 303 C136 247 190 350 279 288 C365 228 414 337 500 290 C590 240 654 335 744 286 C810 250 848 277 900 288"
-          stroke="#d5ecda"
-          strokeWidth="44"
+          key={path}
+          d={path}
+          stroke={index % 2 === 0 ? "#15803D" : "#41a65f"}
+          strokeWidth={mobile ? 3.5 : 4}
           strokeLinecap="round"
+          markerEnd={`url(#${mobile ? "revenue-loop-arrow-mobile" : "revenue-loop-arrow"})`}
         />
-        <path
-          d="M44 303 C136 247 190 350 279 288 C365 228 414 337 500 290 C590 240 654 335 744 286 C810 250 848 277 900 288"
-          stroke="url(#revenue-journey-ribbon)"
-          strokeWidth="28"
-          strokeLinecap="round"
-          markerEnd="url(#revenue-journey-arrow)"
-        />
-        <path
-          d="M58 303 C150 249 199 342 281 289 C364 236 417 329 499 291 C588 248 655 326 743 288 C806 260 845 280 884 289"
-          stroke="rgba(255,255,255,0.58)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeDasharray="10 12"
-        />
-      </svg>
+      ))}
+    </svg>
+  )
+}
 
-      <div className="absolute left-[58px] top-[84px] w-[150px] rotate-[-5deg] rounded-[1.35rem] bg-[#102033] p-3 text-white shadow-[0_22px_45px_rgba(16,32,51,0.2)]">
-        <div className="rounded-[1rem] bg-[#142b45] p-3">
-          <p className="text-[0.68rem] font-bold tracking-[0.14em] text-[#9ee6b4]">MISSED CALL</p>
-          <p className="mt-3 text-sm font-bold leading-5">Still winnable</p>
-          <div className="mt-4 flex gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#15803D]">
-              <PhoneCall className="h-4 w-4" />
-            </span>
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10">
-              <MessageSquareText className="h-4 w-4" />
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute left-[265px] top-[76px] w-[180px] rounded-[1.15rem] bg-white/94 p-4 shadow-[0_16px_36px_rgba(16,32,51,0.08)]">
-        <div className="flex items-center gap-2 text-xs font-bold tracking-[0.12em] text-[#15803D]">
-          <Mail className="h-4 w-4" />
-          FOLLOW-UP
-        </div>
-        <p className="mt-3 text-sm font-bold leading-5 text-[#102033]">A useful reason to return</p>
-        <div className="mt-4 space-y-2">
-          <div className="h-2 rounded-full bg-[#dce9dc]" />
-          <div className="h-2 w-3/4 rounded-full bg-[#edf5ee]" />
-        </div>
-      </div>
-
-      <div className="absolute left-[530px] top-[60px] w-[170px] rotate-[4deg] rounded-[1.15rem] bg-white/94 p-4 shadow-[0_16px_36px_rgba(16,32,51,0.08)]">
-        <div className="flex gap-1 text-[#15803D]" aria-hidden="true">
-          {[0, 1, 2, 3, 4].map((star) => (
-            <Star key={star} className="h-4 w-4 fill-current" strokeWidth={1.6} />
-          ))}
-        </div>
-        <p className="mt-3 text-sm font-bold leading-5 text-[#102033]">Fresh review request</p>
-        <p className="mt-1 text-xs leading-5 text-[#5b6875]">Sent after the job lands well.</p>
-      </div>
-
-      <div className="absolute right-[226px] top-[96px] w-[150px] rounded-[1.15rem] bg-white/94 p-4 shadow-[0_16px_36px_rgba(16,32,51,0.08)]">
-        <div className="flex -space-x-2" aria-hidden="true">
-          {[0, 1, 2].map((avatar) => (
-            <span key={avatar} className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e7f7eb] text-[#15803D] ring-2 ring-white">
-              <UsersRound className="h-4 w-4" />
-            </span>
-          ))}
-        </div>
-        <p className="mt-4 text-sm font-bold leading-5 text-[#102033]">Referral prompt ready</p>
-      </div>
-
-      <div className="absolute right-[86px] bottom-[86px] w-[142px] rotate-[3deg] rounded-[1.15rem] bg-white/94 p-4 shadow-[0_16px_36px_rgba(16,32,51,0.08)]">
-        <div className="grid grid-cols-3 gap-1" aria-hidden="true">
-          {[0, 1, 2, 3, 4, 5].map((cell) => (
-            <span key={cell} className={`h-7 rounded-lg ${cell === 4 ? "bg-[#15803D]" : "bg-[#edf5ee]"}`} />
-          ))}
-        </div>
-        <p className="mt-3 text-sm font-bold leading-5 text-[#102033]">Booked slot</p>
-      </div>
-
-      <div className="absolute right-[20px] top-[180px] flex h-[196px] w-[196px] items-center justify-center rounded-full bg-[#116832] p-4 text-center text-white shadow-[0_28px_70px_rgba(21,128,61,0.24)] ring-[12px] ring-[#dff5e5]/70">
-        <div>
-          <TrendingUp className="mx-auto h-9 w-9" strokeWidth={1.9} />
-          <p className="mt-4 text-[2rem] font-semibold leading-none tracking-tight">Steady repeat revenue</p>
-        </div>
-      </div>
-
-      <div className="absolute bottom-8 left-7 right-[230px] grid grid-cols-5 gap-4">
-        {revenueLoopSteps.map((step, index) => (
-          <RevenueMomentCard key={step.label} step={step} index={index} />
-        ))}
-      </div>
-
-      <div className="absolute left-8 top-[246px] flex items-center gap-2 rounded-full bg-white/88 px-3 py-2 text-xs font-bold tracking-[0.12em] text-[#15803D] shadow-[0_10px_22px_rgba(16,32,51,0.05)]">
-        <MapPin className="h-4 w-4" />
-        CUSTOMER MOMENTS
-      </div>
+function CustomerRevenueDesktopLoop() {
+  return (
+    <div className="relative hidden min-h-[575px] lg:block">
+      <RevenueLoopArrows />
+      <CustomerRevenueHub />
+      {revenueLoopSteps.map((step, index) => (
+        <RevenueNode key={step.label} step={step} index={index} />
+      ))}
     </div>
   )
 }
 
-function CustomerRevenueMobilePath() {
+function CustomerRevenueMobileLoop() {
   return (
-    <div className="relative min-h-[690px] overflow-hidden rounded-[1.25rem] bg-[#f4faf5] p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] sm:min-h-[650px] lg:hidden">
-      <div className="pointer-events-none absolute -left-20 top-24 h-72 w-72 rounded-full bg-white blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#dff5e5] blur-3xl" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14px_14px,rgba(21,128,61,0.08)_1.1px,transparent_1.3px)] bg-[length:26px_26px] opacity-70" />
+    <div className="relative min-h-[420px] sm:min-h-[470px] lg:hidden">
+      <RevenueLoopArrows mobile />
+      <CustomerRevenueHub mobile />
+      {revenueLoopSteps.map((step, index) => (
+        <RevenueNode key={step.label} step={step} index={index} mobile />
+      ))}
+    </div>
+  )
+}
 
-      <svg
-        className="pointer-events-none absolute inset-x-0 top-[106px] h-[355px] w-full"
-        viewBox="0 0 360 355"
-        fill="none"
-        aria-hidden="true"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <marker id="revenue-mobile-arrow" markerHeight="9" markerWidth="9" orient="auto" refX="8" refY="4.5">
-            <path d="M0 0L9 4.5L0 9Z" fill="#116832" />
-          </marker>
-          <linearGradient id="revenue-mobile-road" x1="48" x2="290" y1="302" y2="68" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#116832" />
-            <stop offset="0.5" stopColor="#15803D" />
-            <stop offset="1" stopColor="#0f6d35" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M65 44 C28 96 46 166 110 178 C196 194 225 76 159 58 C89 39 42 131 84 227 C123 314 246 326 292 238 C326 172 281 111 235 96"
-          stroke="#d5ecda"
-          strokeWidth="34"
-          strokeLinecap="round"
-        />
-        <path
-          d="M65 44 C28 96 46 166 110 178 C196 194 225 76 159 58 C89 39 42 131 84 227 C123 314 246 326 292 238 C326 172 281 111 235 96"
-          stroke="url(#revenue-mobile-road)"
-          strokeWidth="21"
-          strokeLinecap="round"
-          markerEnd="url(#revenue-mobile-arrow)"
-        />
-        <path
-          d="M65 44 C28 96 46 166 110 178 C196 194 225 76 159 58 C89 39 42 131 84 227 C123 314 246 326 292 238 C326 172 281 111 235 96"
-          stroke="rgba(255,255,255,0.62)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeDasharray="9 11"
-        />
-      </svg>
-
-      <div className="relative z-10 min-h-[674px] sm:min-h-[634px]">
-        <div className="rounded-[1rem] bg-white/88 p-3 shadow-[0_12px_28px_rgba(16,32,51,0.05)]">
-          <div className="flex items-center gap-2 text-[0.68rem] font-bold tracking-[0.12em] text-[#15803D]">
-            <MapPin className="h-3.5 w-3.5" />
-            CUSTOMER REVENUE PATH
-          </div>
-          <p className="mt-2 text-base font-bold leading-6 text-[#071421]">
-            Calls, customers, reviews, and referrals.
-          </p>
-          <p className="mt-1 text-xs leading-5 text-[#5b6875]">
-            Already-earned trust feeds the next booked job.
-          </p>
+function CustomerRevenueOutcomePanel() {
+  return (
+    <aside className="rounded-[1.35rem] border border-[#dcefe2] bg-white p-5 shadow-[0_18px_48px_rgba(16,32,51,0.07)] lg:p-6">
+      <p className="text-xs font-bold tracking-[0.16em] text-[#15803D]">OUTCOMES</p>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="rounded-[1.15rem] bg-[#15803D] p-4 text-white shadow-[0_16px_36px_rgba(21,128,61,0.18)]">
+          <CalendarClock className="h-6 w-6" strokeWidth={1.9} />
+          <p className="mt-3 text-2xl font-semibold leading-none tracking-tight">More booked work</p>
         </div>
-
-        <div className="absolute right-1 top-[112px] flex h-[120px] w-[120px] items-center justify-center rounded-full bg-[#116832] p-3 text-center text-white shadow-[0_24px_54px_rgba(21,128,61,0.24)] ring-[8px] ring-[#dff5e5]/70 sm:right-3 sm:h-[132px] sm:w-[132px]">
-          <div>
-            <TrendingUp className="mx-auto h-6 w-6 sm:h-7 sm:w-7" strokeWidth={1.9} />
-            <p className="mt-2 text-[1.18rem] font-semibold leading-[1.02] tracking-tight sm:text-[1.35rem]">Steady repeat revenue</p>
-          </div>
+        <div className="rounded-[1.15rem] border border-[#cfe8d5] bg-[#f5fbf6] p-4">
+          <TrendingUp className="h-6 w-6 text-[#15803D]" strokeWidth={1.9} />
+          <p className="mt-3 text-2xl font-semibold leading-none tracking-tight text-[#071421]">Steady repeat revenue</p>
         </div>
+      </div>
+      <div className="mt-5 space-y-3">
+        {revenueOutcomeItems.map((item) => {
+          const Icon = item.icon
 
-        <div className="absolute left-1 top-[170px] w-[106px] rotate-[-5deg] rounded-[1.05rem] bg-[#102033] p-2.5 text-white shadow-[0_18px_40px_rgba(16,32,51,0.2)] sm:left-5 sm:top-[142px] sm:w-[128px] sm:p-3">
-          <div className="flex items-center gap-2 text-[0.66rem] font-bold tracking-[0.13em] text-[#9ee6b4]">
-            <PhoneCall className="h-3.5 w-3.5" />
-            MISSED CALL
-          </div>
-          <p className="mt-2 text-xs font-bold leading-4 sm:text-sm sm:leading-5">Follow up while it is still winnable.</p>
-        </div>
-
-        <div className="absolute right-1 top-[260px] w-[108px] rotate-[4deg] rounded-full bg-white/94 px-3 py-3 text-center shadow-[0_14px_30px_rgba(16,32,51,0.07)] sm:right-5 sm:top-[248px] sm:w-[120px] sm:px-4">
-          <RefreshCw className="mx-auto h-5 w-5 text-[#15803D]" strokeWidth={1.9} />
-          <p className="mt-1 text-xs font-bold leading-4 text-[#102033]">Past customer returns</p>
-        </div>
-
-        <div className="absolute left-[50px] top-[334px] w-[132px] rounded-[1rem] bg-white/94 p-3 shadow-[0_14px_30px_rgba(16,32,51,0.07)] sm:left-[96px] sm:top-[300px] sm:w-[154px]">
-          <div className="flex gap-0.5 text-[#15803D]" aria-hidden="true">
-            {[0, 1, 2, 3, 4].map((star) => (
-              <Star key={star} className="h-3.5 w-3.5 fill-current" strokeWidth={1.5} />
-            ))}
-          </div>
-          <p className="mt-2 text-xs font-bold leading-4 text-[#102033]">Review request lands after a good job.</p>
-        </div>
-
-        <div className="absolute left-1 top-[436px] w-[112px] rounded-[1.2rem] bg-white/94 p-2.5 shadow-[0_14px_30px_rgba(16,32,51,0.07)] sm:left-4 sm:top-[394px] sm:w-[136px] sm:p-3">
-          <div className="flex -space-x-2" aria-hidden="true">
-            {[0, 1, 2].map((avatar) => (
-              <span key={avatar} className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e7f7eb] text-[#15803D] ring-2 ring-white">
-                <UsersRound className="h-3.5 w-3.5" />
+          return (
+            <div key={item.title} className="flex gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ecf8ef] text-[#15803D]">
+                <Icon className="h-4 w-4" strokeWidth={1.9} />
               </span>
-            ))}
-          </div>
-          <p className="mt-2 text-xs font-bold leading-4 text-[#102033]">Referral prompt stays easy.</p>
-        </div>
-
-        <div className="absolute right-1 top-[446px] w-[112px] rotate-[3deg] rounded-[1rem] bg-white/94 p-2.5 shadow-[0_14px_30px_rgba(16,32,51,0.07)] sm:right-5 sm:top-[404px] sm:w-[136px] sm:p-3">
-          <div className="grid grid-cols-3 gap-1" aria-hidden="true">
-            {[0, 1, 2, 3, 4, 5].map((cell) => (
-              <span key={cell} className={`h-5 rounded-md ${cell === 4 ? "bg-[#15803D]" : "bg-[#edf5ee]"}`} />
-            ))}
-          </div>
-          <p className="mt-2 text-xs font-bold leading-4 text-[#102033]">Booked work has more ways in.</p>
-        </div>
-
-        <div className="absolute bottom-1 left-1 right-1 rounded-[1rem] bg-white/88 px-4 py-3 shadow-[0_12px_28px_rgba(16,32,51,0.05)] sm:bottom-3 sm:left-3 sm:right-3">
-          <div className="flex items-start gap-3">
-            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-white">
-              <MessageSquareText className="h-4 w-4" strokeWidth={1.9} />
-            </span>
-            <p className="text-sm font-bold leading-5 text-[#102033]">More paths turn into booked work.</p>
-          </div>
-        </div>
+              <span>
+                <span className="block text-sm font-bold leading-5 text-[#102033]">{item.title}</span>
+                <span className="block text-xs leading-5 text-[#5b6875]">{item.detail}</span>
+              </span>
+            </div>
+          )
+        })}
       </div>
-    </div>
+    </aside>
   )
 }
 
 function CustomerRevenueProcessVisual() {
   return (
-    <div className="relative overflow-hidden rounded-[1.7rem] border border-[#e7dfd3] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbf7_100%)] p-3 shadow-[0_24px_70px_rgba(16,32,51,0.1)] sm:rounded-[2rem] sm:p-6 lg:p-7">
-      <div className="pointer-events-none absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#e9f8ed] blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 bottom-8 h-64 w-64 rounded-full bg-[#edf8ef] blur-3xl" />
-      <div className="relative z-10 overflow-hidden rounded-[1.35rem] bg-white/60 p-2 sm:rounded-[1.7rem] sm:p-3 lg:p-4">
-        <CustomerRevenueDesktopJourney />
-        <CustomerRevenueMobilePath />
-        <div className="mt-5 hidden gap-2.5 sm:grid sm:grid-cols-2 lg:grid-cols-4">
-          {revenueOutcomeItems.map((item) => (
-            <div key={item} className="flex items-center gap-3 rounded-2xl bg-[#f4faf5]/85 px-4 py-3 text-sm font-bold text-[#102033] shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-[#15803D]" />
-              <span>{item}</span>
-            </div>
-          ))}
+    <div className="relative overflow-hidden rounded-[1.7rem] border border-[#e7dfd3] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbf7_100%)] p-4 shadow-[0_24px_70px_rgba(16,32,51,0.1)] sm:rounded-[2rem] sm:p-6 lg:p-7">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-stretch">
+        <div className="rounded-[1.35rem] bg-[#f4faf5] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] sm:p-5">
+          <CustomerRevenueDesktopLoop />
+          <CustomerRevenueMobileLoop />
+        </div>
+        <CustomerRevenueOutcomePanel />
+      </div>
+      <div className="mt-5 rounded-2xl border border-[#d7ebdd] bg-[#f5fbf6] px-4 py-4 sm:px-5">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex items-start gap-3">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-white shadow-[0_10px_22px_rgba(21,128,61,0.18)]">
+              <MessageSquareText className="h-5 w-5" strokeWidth={1.9} />
+            </span>
+            <p className="text-sm font-bold leading-6 text-[#102033] sm:text-base">
+              Each customer moment feeds the next. Together, they create repeat revenue.
+            </p>
+          </div>
+          <div className="grid gap-2 text-xs font-semibold leading-5 text-[#506070] sm:grid-cols-2 lg:w-[46%]">
+            {revenueBusinessSignals.map((signal) => (
+              <span key={signal} className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-[#15803D]" />
+                {signal}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -536,7 +469,7 @@ function CustomerRevenueCTACluster() {
 function CustomerRevenueAuditBridge() {
   return (
     <p className="mx-auto mt-7 max-w-3xl text-center text-base font-semibold leading-7 text-[#102033] sm:text-lg">
-      The Workflow Audit shows which customer revenue path is costing you money first: old customers, reviews, referrals, or missed calls.
+      The Workflow Audit shows which customer revenue gap is costing you money first: old customers, reviews, referrals, or missed calls.
     </p>
   )
 }
@@ -547,7 +480,7 @@ function CustomerRevenueSystemSection() {
       <SectionHeader
         eyebrow="Customer Revenue System"
         headline="Get more money from the customers you already earned."
-        subheadline="Old customers, happy customers, reviews, referrals, and missed calls should feed the next job. Stanley Systems turns those moments into a simple repeat-revenue path your office can actually run."
+        subheadline="Old customers, happy customers, reviews, referrals, and missed calls should feed the next job. Stanley Systems turns those moments into a simple repeat-revenue loop your office can actually run."
       />
       <div className="mt-8 sm:mt-10">
         <CustomerRevenueProcessVisual />
