@@ -59,6 +59,15 @@ export type CriticalSectionReview = {
   visual_semantic_clarity_score?: number
   visual_metaphor_coherence_score?: number
   path_traceability_score?: number
+  approved_reference_fidelity_score?: number
+  stanley_specificity_score?: number
+  diagram_aesthetic_quality_score?: number
+  diagram_geometry_quality_score?: number
+  diagram_spacing_quality_score?: number
+  main_visual_premium_quality_score?: number
+  main_visual_hero_worthiness_score?: number
+  mobile_diagram_quality_score?: number
+  generated_asset_scaling_quality?: number
   repeated_card_pattern_present?: boolean
   repeated_card_pattern_dominates?: boolean
   repeated_card_pattern_is_secondary_support?: boolean
@@ -78,6 +87,18 @@ export type CriticalSectionReview = {
   visually_rich_but_semantically_confusing?: boolean
   viewer_can_explain_visual_in_5_seconds?: boolean
   follows_approved_reference_structure?: boolean
+  matches_selected_mockup_direction?: boolean
+  could_belong_to_generic_saas_company?: boolean
+  depends_on_designer_explanation?: boolean
+  generated_asset_feels_raw_or_ai?: boolean
+  central_visual_asset_is_ugly?: boolean
+  diagram_has_awkward_proportions?: boolean
+  diagram_has_cramped_or_forced_layout?: boolean
+  main_visual_looks_intentionally_designed?: boolean
+  main_visual_supports_section_hierarchy?: boolean
+  generated_asset_text_is_baked_in?: boolean
+  generated_asset_has_unreadable_text?: boolean
+  visual_asset_ready_for_production_use?: boolean
   asset_strategy: CriticalAssetStrategy
   blockers: string[]
   warnings: string[]
@@ -252,6 +273,12 @@ export const DEFAULT_THRESHOLDS = {
   visual_semantic_clarity_score: 8,
   visual_metaphor_coherence_score: 8,
   path_traceability_score: 8,
+  diagram_aesthetic_quality_score: 8.5,
+  diagram_geometry_quality_score: 8.5,
+  diagram_spacing_quality_score: 8.5,
+  main_visual_premium_quality_score: 8.5,
+  main_visual_hero_worthiness_score: 8.5,
+  mobile_diagram_quality_score: 8.5,
   max_visual_patch_attempts: 2,
 } as const
 
@@ -283,6 +310,15 @@ const REQUIRED_FIELDS = [
   "visual_semantic_clarity_score",
   "visual_metaphor_coherence_score",
   "path_traceability_score",
+  "approved_reference_fidelity_score",
+  "stanley_specificity_score",
+  "diagram_aesthetic_quality_score",
+  "diagram_geometry_quality_score",
+  "diagram_spacing_quality_score",
+  "main_visual_premium_quality_score",
+  "main_visual_hero_worthiness_score",
+  "mobile_diagram_quality_score",
+  "generated_asset_scaling_quality",
   "repeated_card_pattern_present",
   "repeated_card_pattern_dominates",
   "repeated_card_pattern_is_secondary_support",
@@ -302,6 +338,18 @@ const REQUIRED_FIELDS = [
   "visually_rich_but_semantically_confusing",
   "viewer_can_explain_visual_in_5_seconds",
   "follows_approved_reference_structure",
+  "matches_selected_mockup_direction",
+  "could_belong_to_generic_saas_company",
+  "depends_on_designer_explanation",
+  "generated_asset_feels_raw_or_ai",
+  "central_visual_asset_is_ugly",
+  "diagram_has_awkward_proportions",
+  "diagram_has_cramped_or_forced_layout",
+  "main_visual_looks_intentionally_designed",
+  "main_visual_supports_section_hierarchy",
+  "generated_asset_text_is_baked_in",
+  "generated_asset_has_unreadable_text",
+  "visual_asset_ready_for_production_use",
   "asset_strategy",
   "blockers",
   "warnings",
@@ -467,11 +515,11 @@ export function validateCriticalSectionReview(value: unknown, expectedSectionIdO
   for (const field of ["desktop_pass", "mobile_pass"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
-  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score"] as const) {
+  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality"] as const) {
     if (typeof review[field] !== "number" || !Number.isFinite(review[field])) throw new Error(`${field} must be a finite number`)
     if (review[field] < 1 || review[field] > 10) throw new Error(`${field} must be between 1 and 10`)
   }
-  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure"] as const) {
+  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "matches_selected_mockup_direction", "could_belong_to_generic_saas_company", "depends_on_designer_explanation", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure", "generated_asset_feels_raw_or_ai", "central_visual_asset_is_ugly", "diagram_has_awkward_proportions", "diagram_has_cramped_or_forced_layout", "main_visual_looks_intentionally_designed", "main_visual_supports_section_hierarchy", "generated_asset_text_is_baked_in", "generated_asset_has_unreadable_text", "visual_asset_ready_for_production_use"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
   if (typeof review.primary_visual_anchor_description !== "string" || !review.primary_visual_anchor_description.trim()) {
@@ -781,6 +829,19 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   if (typeof review.visual_semantic_clarity_score === "number" && review.visual_semantic_clarity_score < DEFAULT_THRESHOLDS.visual_semantic_clarity_score) failures.push(`visual_semantic_clarity_score ${review.visual_semantic_clarity_score} is below ${DEFAULT_THRESHOLDS.visual_semantic_clarity_score}`)
   if (typeof review.visual_metaphor_coherence_score === "number" && review.visual_metaphor_coherence_score < DEFAULT_THRESHOLDS.visual_metaphor_coherence_score) failures.push(`visual_metaphor_coherence_score ${review.visual_metaphor_coherence_score} is below ${DEFAULT_THRESHOLDS.visual_metaphor_coherence_score}`)
   if (typeof review.path_traceability_score === "number" && review.path_traceability_score < DEFAULT_THRESHOLDS.path_traceability_score) failures.push(`path_traceability_score ${review.path_traceability_score} is below ${DEFAULT_THRESHOLDS.path_traceability_score}`)
+  if (typeof review.diagram_aesthetic_quality_score === "number" && review.diagram_aesthetic_quality_score < DEFAULT_THRESHOLDS.diagram_aesthetic_quality_score) failures.push(`diagram_aesthetic_quality_score ${review.diagram_aesthetic_quality_score} is below ${DEFAULT_THRESHOLDS.diagram_aesthetic_quality_score}`)
+  if (typeof review.diagram_geometry_quality_score === "number" && review.diagram_geometry_quality_score < DEFAULT_THRESHOLDS.diagram_geometry_quality_score) failures.push(`diagram_geometry_quality_score ${review.diagram_geometry_quality_score} is below ${DEFAULT_THRESHOLDS.diagram_geometry_quality_score}`)
+  if (typeof review.diagram_spacing_quality_score === "number" && review.diagram_spacing_quality_score < DEFAULT_THRESHOLDS.diagram_spacing_quality_score) failures.push(`diagram_spacing_quality_score ${review.diagram_spacing_quality_score} is below ${DEFAULT_THRESHOLDS.diagram_spacing_quality_score}`)
+  if (typeof review.main_visual_premium_quality_score === "number" && review.main_visual_premium_quality_score < DEFAULT_THRESHOLDS.main_visual_premium_quality_score) failures.push(`main_visual_premium_quality_score ${review.main_visual_premium_quality_score} is below ${DEFAULT_THRESHOLDS.main_visual_premium_quality_score}`)
+  if (typeof review.main_visual_hero_worthiness_score === "number" && review.main_visual_hero_worthiness_score < DEFAULT_THRESHOLDS.main_visual_hero_worthiness_score) failures.push(`main_visual_hero_worthiness_score ${review.main_visual_hero_worthiness_score} is below ${DEFAULT_THRESHOLDS.main_visual_hero_worthiness_score}`)
+  if (typeof review.mobile_diagram_quality_score === "number" && review.mobile_diagram_quality_score < DEFAULT_THRESHOLDS.mobile_diagram_quality_score) failures.push(`mobile_diagram_quality_score ${review.mobile_diagram_quality_score} is below ${DEFAULT_THRESHOLDS.mobile_diagram_quality_score}`)
+  if (review.central_visual_asset_is_ugly) failures.push("central_visual_asset_is_ugly is true")
+  if (review.generated_asset_feels_raw_or_ai) failures.push("generated_asset_feels_raw_or_ai is true")
+  if (review.generated_asset_text_is_baked_in) failures.push("generated_asset_text_is_baked_in is true")
+  if (review.generated_asset_has_unreadable_text) failures.push("generated_asset_has_unreadable_text is true")
+  if (review.diagram_has_awkward_proportions) failures.push("diagram_has_awkward_proportions is true")
+  if (review.diagram_has_cramped_or_forced_layout) failures.push("diagram_has_cramped_or_forced_layout is true")
+  if (review.visual_asset_ready_for_production_use === false) failures.push("visual_asset_ready_for_production_use is false")
   if (review.repeated_card_pattern_dominates === true) failures.push("repeated_card_pattern_dominates is true")
   if (review.repeated_card_pattern_present === true && review.repeated_card_pattern_is_secondary_support !== true) failures.push("repeated_card_pattern_present is true but repeated_card_pattern_is_secondary_support is not true")
   if (review.repeated_card_pattern_present === true && review.repeated_card_pattern_is_secondary_support === true && (typeof review.visual_anchor_score !== "number" || typeof review.imagery_strength_score !== "number" || review.visual_anchor_score < 8 || review.imagery_strength_score < 8 || review.visual_anchor_overpowers_card_stack !== true || !review.primary_visual_anchor_description?.trim())) failures.push("repeated card pattern is present but not justified by a strong described visual anchor overpowering the card stack")
