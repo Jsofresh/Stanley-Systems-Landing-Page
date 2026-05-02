@@ -92,6 +92,15 @@ type SmartReviewJson = {
   visual_metaphor_coherence_score: number
   path_traceability_score: number
   approved_reference_fidelity_score: number
+  mockup_fidelity_score: number
+  refero_style_alignment_score: number
+  codex_translation_quality_score: number
+  real_product_design_quality_score: number
+  generic_ai_ui_risk_score: number
+  visual_taste_preservation_score: number
+  design_research_used_correctly: boolean
+  codex_inspected_approved_mockup: boolean
+  codex_prebuild_interpretation_present: boolean
   stanley_specificity_score: number
   diagram_aesthetic_quality_score: number
   diagram_geometry_quality_score: number
@@ -283,6 +292,15 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     visual_metaphor_coherence_score: "number 1-10: whether the metaphor is explanatory and coherent; pass requires 8+",
     path_traceability_score: "number 1-10: whether a loop/path journey can be traced from first step to outcome in 5 seconds; pass requires 8+ for loop/path sections",
     approved_reference_fidelity_score: "number 1-10: whether the built section follows the selected approved reference mockup/taste direction; pass requires 8.5+",
+    mockup_fidelity_score: "number 1-10: whether final screenshot preserves the approved GPT Image mockup visual intent; hard pass requires 8+",
+    refero_style_alignment_score: "number 1-10: whether final screenshot applies Refero/DESIGN.md style principles from the research pack; hard pass requires 8+",
+    codex_translation_quality_score: "number 1-10: whether Codex preserved taste while translating mockup to real UI; hard pass requires 8+",
+    real_product_design_quality_score: "number 1-10: whether this looks like real product-quality design, not generic AI UI; hard pass requires 8+",
+    generic_ai_ui_risk_score: "number 1-10: risk that final section looks generic AI/SaaS UI; hard pass requires <=3",
+    visual_taste_preservation_score: "number 1-10: whether the approved mockup taste survived implementation; hard pass requires 8+",
+    design_research_used_correctly: "boolean: true only if Codex cited and correctly applied the Stanley Refero style synthesis plus section-specific research in the pre-build interpretation",
+    codex_inspected_approved_mockup: "boolean: true only if the packet/evidence shows Codex visually inspected the approved mockup image before building",
+    codex_prebuild_interpretation_present: "boolean: true only if the Codex pre-build design interpretation artifact exists and was considered",
     stanley_specificity_score: "number 1-10: whether the section feels specific to Stanley Systems/service businesses rather than generic SaaS; pass requires 8.5+",
     diagram_aesthetic_quality_score: "number 1-10: taste and beauty of the main diagram/visual module; pass requires 8.5+",
     diagram_geometry_quality_score: "number 1-10: balance, proportions, node placement, arrow/loop elegance; pass requires 8.5+",
@@ -328,6 +346,7 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
 
   return [
     "You are the Full-Context Smart Vision Reviewer for Stanley Systems website work.",
+    "You are a concrete failure detector, not the final taste authority. Final visual approval belongs to Jaden.",
     "You are harsh, screenshot-first, context-first, and skeptical. You are reviewing for a real service-business owner, not a SaaS buyer.",
     "",
     "Verification-only boundaries:",
@@ -337,7 +356,8 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     "- Do not run production live smoke.",
     "- Do not touch n8n, QBO, HCP, Telegram config, OpenClaw config, secrets, credentials, PM2, or live workflow files.",
     "- Judge only attached screenshot pixels plus the full Stanley Systems context below.",
-    "- Ignore Codex reasoning, build history, self-evaluation, and implementation debate.",
+    "- Ignore Codex reasoning, build history, self-evaluation, and implementation debate unless the packet explicitly provides a pre-build artifact for mockup-fidelity checks.",
+    "- Do not claim final taste approval, Jaden approval, deploy approval, or production readiness. A pass means no configured concrete blocker found and ready for Jaden screenshot checkpoint.",
     "",
     "Stanley Systems canonical project context. This is the main review context, not a tiny summary:",
     "<<<STANLEY_WEBSITE_REVIEW_CONTEXT_BEGIN>>>",
@@ -381,13 +401,15 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     "- Premium cannot be achieved by adding border stacks. Premium should come from hierarchy, spacing, proportion, contrast, soft tint, shadow, whitespace, and one strong visual idea.",
     "- Distinguish actual UI clipping from screenshot crop. Do not fail a screenshot because the captured crop does not include the full section. Fail only when the real UI is cut off, overflowing, unreadable, or broken in-browser.",
     "- Answer these positive visual quality questions in the critique: What is the dominant visual idea? Is there a clear visual anchor or mostly repeated cards? Does the visual reduce explanation load? Would a service-business owner remember it? Does it feel designed or assembled from icon cards? Is it visually persuasive enough to sell the idea? Is there enough imagery, movement, scale variation, and hierarchy? Does it preserve Taste Library direction while avoiding bad patterns? Would it feel premium and memorable on a phone?",
+    "- Additional Codex translation hard gates: final pass cannot be true if an approved mockup is provided and Codex did not inspect it, Codex pre-build interpretation is missing, mockup_fidelity_score < 8, codex_translation_quality_score < 8, real_product_design_quality_score < 8, generic_ai_ui_risk_score > 3, visual_taste_preservation_score < 8, or provided Refero/DESIGN.md style principles were ignored. If design research was not provided for the task, judge the concrete screenshot failures and do not invent a research requirement.",
+    "- Review questions: Did Codex preserve the Jaden-approved mockup’s visual intent? Did Codex cite/use provided style principles correctly in the pre-build interpretation? Did Codex lose taste during implementation? Does the final section look designed, not generic AI UI? Does it feel Stanley-specific? Does it still lead with money, time, owner relief, reviews, referrals, captured calls, or booked work? Would this section be credible beside selected style references when provided?",
     "- Hard gates: final pass cannot be true if visual_richness_score < 7, imagery_strength_score < 7, visual_anchor_score < 7, visual_semantic_clarity_score < 8, visual_metaphor_coherence_score < 8, path_traceability_score < 8 for loop/path sections, approved_reference_fidelity_score < 8.5, stanley_specificity_score < 8.5, diagram_aesthetic_quality_score < 8.5, diagram_geometry_quality_score < 8.5, diagram_spacing_quality_score < 8.5, main_visual_premium_quality_score < 8.5, main_visual_hero_worthiness_score < 8.5, mobile_diagram_quality_score < 8.5, underdesigned_plain_section is true, repeated_card_pattern_dominates is true, over_framed_section is true, too_many_nested_borders is true, border_noise_dominates_visual is true, boxed_in_visual_anchor is true, actual_ui_clipping_or_overflow is true, arbitrary_decorative_elements_present is true, visually_rich_but_semantically_confusing is true, generated_asset_feels_raw_or_ai is true, central_visual_asset_is_ugly is true, generated_asset_text_is_baked_in is true for important copy, generated_asset_has_unreadable_text is true, diagram_has_awkward_proportions is true, diagram_has_cramped_or_forced_layout is true, visual_asset_ready_for_production_use is false, viewer_can_explain_visual_in_5_seconds is false, follows_approved_reference_structure is false for this Customer Revenue approved-reference patch, or no primary_visual_anchor_description is provided.",
     "- If repeated_card_pattern_present is true but secondary, final pass may be true only if visual_anchor_score >= 8, imagery_strength_score >= 8, visual_anchor_overpowers_card_stack is true, and you explain why repeated cards are not dominant through primary_visual_anchor_description and markdown critique.",
     "- If the section is mostly repeated cards plus icons, stacked icon cards, equal-weight repeated steps, same-shaped cards with small icons, lacks a dominant loop/path/outcome visual, or has no memorable system picture, final pass cannot be true.",
     "- For Customer Revenue specifically, pass may be true only if repeated cards are supporting details and the dominant visual anchor is a loop, path, journey, or outcome panel that clearly sells customer moments feeding the next job.",
     "- Do not pass because the site is merely better than before. Pass only if it is credible as a premium service-business homepage.",
     "- If you provide any material Codex patch brief beyond 'no patch needed', JSON pass must be false and final_decision must be fail_patch_needed or fail_major_redesign_needed.",
-    "- Passing means blockers is empty and patch_brief is exactly 'no patch needed'.",
+    "- Passing means blockers is empty and patch_brief is exactly 'no patch needed'. It does not mean final taste approval; it means ready for Jaden screenshot checkpoint.",
     "",
     "Required markdown critique before JSON. Write these exact section headings:",
     "## First impression",
@@ -644,17 +666,17 @@ function validateSmartReviewJson(value: unknown, contextProof: ContextProof, pro
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Smart Vision Review JSON must be an object.")
   const json = value as Record<string, unknown>
   const allowedDecisions = ["pass", "fail_patch_needed", "fail_major_redesign_needed", "blocked_image_not_seen", "blocked_context_missing"]
-  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality", "repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "primary_visual_anchor_description", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "matches_selected_mockup_direction", "could_belong_to_generic_saas_company", "depends_on_designer_explanation", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure", "blockers", "patch_brief"] as const) {
+  for (const field of ["pass", "final_decision", "trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "mockup_fidelity_score", "refero_style_alignment_score", "codex_translation_quality_score", "real_product_design_quality_score", "generic_ai_ui_risk_score", "visual_taste_preservation_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality", "repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "primary_visual_anchor_description", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "codex_inspected_approved_mockup", "codex_prebuild_interpretation_present", "matches_selected_mockup_direction", "could_belong_to_generic_saas_company", "depends_on_designer_explanation", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure", "blockers", "patch_brief"] as const) {
     if (!(field in json)) throw new Error(`Smart Vision Review JSON missing required field: ${field}`)
   }
   if (typeof json.pass !== "boolean") throw new Error("Smart Vision Review pass must be boolean.")
   if (!allowedDecisions.includes(String(json.final_decision))) throw new Error(`Smart Vision Review final_decision must be one of ${allowedDecisions.join(", ")}`)
-  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality"] as const) {
+  for (const field of ["trust_score", "visual_quality_score", "clarity_score", "mobile_score", "stanley_context_alignment_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "mockup_fidelity_score", "refero_style_alignment_score", "codex_translation_quality_score", "real_product_design_quality_score", "generic_ai_ui_risk_score", "visual_taste_preservation_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality"] as const) {
     if (typeof json[field] !== "number" || !Number.isFinite(json[field]) || (json[field] as number) < 1 || (json[field] as number) > 10) {
       throw new Error(`Smart Vision Review ${field} must be a number from 1 to 10.`)
     }
   }
-  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "matches_selected_mockup_direction", "could_belong_to_generic_saas_company", "depends_on_designer_explanation", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure", "generated_asset_feels_raw_or_ai", "central_visual_asset_is_ugly", "diagram_has_awkward_proportions", "diagram_has_cramped_or_forced_layout", "main_visual_looks_intentionally_designed", "main_visual_supports_section_hierarchy", "generated_asset_text_is_baked_in", "generated_asset_has_unreadable_text", "visual_asset_ready_for_production_use"] as const) {
+  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "codex_inspected_approved_mockup", "codex_prebuild_interpretation_present", "matches_selected_mockup_direction", "could_belong_to_generic_saas_company", "depends_on_designer_explanation", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure", "generated_asset_feels_raw_or_ai", "central_visual_asset_is_ugly", "diagram_has_awkward_proportions", "diagram_has_cramped_or_forced_layout", "main_visual_looks_intentionally_designed", "main_visual_supports_section_hierarchy", "generated_asset_text_is_baked_in", "generated_asset_has_unreadable_text", "visual_asset_ready_for_production_use"] as const) {
     if (typeof json[field] !== "boolean") throw new Error(`Smart Vision Review ${field} must be boolean.`)
   }
   if (typeof json.primary_visual_anchor_description !== "string" || !json.primary_visual_anchor_description.trim()) throw new Error("Smart Vision Review primary_visual_anchor_description must be a non-empty string.")
@@ -758,6 +780,15 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
   if (smart.visual_metaphor_coherence_score < 8) blockers.push(`visual_metaphor_coherence_score ${smart.visual_metaphor_coherence_score} is below 8`)
   if (smart.path_traceability_score < 8) blockers.push(`path_traceability_score ${smart.path_traceability_score} is below 8`)
   if (smart.approved_reference_fidelity_score < 8.5) blockers.push(`approved_reference_fidelity_score ${smart.approved_reference_fidelity_score} is below 8.5`)
+  if (smart.mockup_fidelity_score < 8) blockers.push(`mockup_fidelity_score ${smart.mockup_fidelity_score} is below 8`)
+  if (smart.refero_style_alignment_score < 8) blockers.push(`refero_style_alignment_score ${smart.refero_style_alignment_score} is below 8`)
+  if (smart.codex_translation_quality_score < 8) blockers.push(`codex_translation_quality_score ${smart.codex_translation_quality_score} is below 8`)
+  if (smart.real_product_design_quality_score < 8) blockers.push(`real_product_design_quality_score ${smart.real_product_design_quality_score} is below 8`)
+  if (smart.generic_ai_ui_risk_score > 3) blockers.push(`generic_ai_ui_risk_score ${smart.generic_ai_ui_risk_score} is above 3`)
+  if (smart.visual_taste_preservation_score < 8) blockers.push(`visual_taste_preservation_score ${smart.visual_taste_preservation_score} is below 8`)
+  if (smart.design_research_used_correctly !== true) blockers.push("design_research_used_correctly is false")
+  if (!smart.codex_inspected_approved_mockup) blockers.push("codex_inspected_approved_mockup is false")
+  if (!smart.codex_prebuild_interpretation_present) blockers.push("codex_prebuild_interpretation_present is false")
   if (smart.stanley_specificity_score < 8.5) blockers.push(`stanley_specificity_score ${smart.stanley_specificity_score} is below 8.5`)
   if (!smart.matches_selected_mockup_direction) blockers.push("matches_selected_mockup_direction is false")
   if (smart.could_belong_to_generic_saas_company) blockers.push("could_belong_to_generic_saas_company is true")
@@ -796,6 +827,15 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
     visual_metaphor_coherence_score: smart.visual_metaphor_coherence_score,
     path_traceability_score: smart.path_traceability_score,
     approved_reference_fidelity_score: smart.approved_reference_fidelity_score,
+    mockup_fidelity_score: smart.mockup_fidelity_score,
+    refero_style_alignment_score: smart.refero_style_alignment_score,
+    codex_translation_quality_score: smart.codex_translation_quality_score,
+    real_product_design_quality_score: smart.real_product_design_quality_score,
+    generic_ai_ui_risk_score: smart.generic_ai_ui_risk_score,
+    visual_taste_preservation_score: smart.visual_taste_preservation_score,
+    design_research_used_correctly: smart.design_research_used_correctly,
+    codex_inspected_approved_mockup: smart.codex_inspected_approved_mockup,
+    codex_prebuild_interpretation_present: smart.codex_prebuild_interpretation_present,
     stanley_specificity_score: smart.stanley_specificity_score,
     diagram_aesthetic_quality_score: smart.diagram_aesthetic_quality_score,
     diagram_geometry_quality_score: smart.diagram_geometry_quality_score,
@@ -848,6 +888,15 @@ function normalizeSmartReviewForGate(packet: CriticalReviewPacket, smart: SmartR
       `visual_metaphor_coherence_score=${smart.visual_metaphor_coherence_score}`,
       `path_traceability_score=${smart.path_traceability_score}`,
       `approved_reference_fidelity_score=${smart.approved_reference_fidelity_score}`,
+      `mockup_fidelity_score=${smart.mockup_fidelity_score}`,
+      `refero_style_alignment_score=${smart.refero_style_alignment_score}`,
+      `codex_translation_quality_score=${smart.codex_translation_quality_score}`,
+      `real_product_design_quality_score=${smart.real_product_design_quality_score}`,
+      `generic_ai_ui_risk_score=${smart.generic_ai_ui_risk_score}`,
+      `visual_taste_preservation_score=${smart.visual_taste_preservation_score}`,
+      `design_research_used_correctly=${smart.design_research_used_correctly}`,
+      `codex_inspected_approved_mockup=${smart.codex_inspected_approved_mockup}`,
+      `codex_prebuild_interpretation_present=${smart.codex_prebuild_interpretation_present}`,
       `stanley_specificity_score=${smart.stanley_specificity_score}`,
       `repeated_card_pattern_present=${smart.repeated_card_pattern_present}`,
       `repeated_card_pattern_dominates=${smart.repeated_card_pattern_dominates}`,
@@ -912,6 +961,15 @@ function blockedSmartReview(finalDecision: "blocked_image_not_seen" | "blocked_c
     visual_metaphor_coherence_score: 1,
     path_traceability_score: 1,
     approved_reference_fidelity_score: 1,
+    mockup_fidelity_score: 1,
+    refero_style_alignment_score: 1,
+    codex_translation_quality_score: 1,
+    real_product_design_quality_score: 1,
+    generic_ai_ui_risk_score: 10,
+    visual_taste_preservation_score: 1,
+    design_research_used_correctly: false,
+    codex_inspected_approved_mockup: false,
+    codex_prebuild_interpretation_present: false,
     stanley_specificity_score: 1,
     diagram_aesthetic_quality_score: 1,
     diagram_geometry_quality_score: 1,

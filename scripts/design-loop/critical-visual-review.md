@@ -107,3 +107,9 @@ The reason is required. The artifact is written under the run verification direc
 This gate must not touch `.env*`, secrets, credentials, PM2 or ecosystem config, proxy config, n8n, QBO, HCP, Telegram config, OpenClaw config/runtime, live workflow files, or production runtime configuration.
 
 This gate does not deploy, restart PM2, run production live smoke, or mark a section `verified_pending_deploy` when the gate fails.
+
+## Human-directed workflow framing
+
+Critical Visual Review is a concrete failure detector, not a final taste authority. It checks for broken mobile, full-section PNG paste-ins, generic SaaS/dashboard drift, repeated card dominance, over-framing, fake testimonials/logos/analytics, bad CTA hierarchy, mismatch with the approved mockup, semantic confusion, clumsy diagrams, ugly generated visuals, and text baked into production images.
+
+A pass means no configured concrete blocker was found and the section can be surfaced to Jaden for screenshot approval. It does not mean Jaden approved the design, it does not authorize deployment, and it must not trigger automatic deploy. Final visual approval and deploy approval belong to Jaden.

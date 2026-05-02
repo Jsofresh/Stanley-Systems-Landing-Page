@@ -60,6 +60,15 @@ export type CriticalSectionReview = {
   visual_metaphor_coherence_score?: number
   path_traceability_score?: number
   approved_reference_fidelity_score?: number
+  mockup_fidelity_score?: number
+  refero_style_alignment_score?: number
+  codex_translation_quality_score?: number
+  real_product_design_quality_score?: number
+  generic_ai_ui_risk_score?: number
+  visual_taste_preservation_score?: number
+  design_research_used_correctly?: boolean
+  codex_inspected_approved_mockup?: boolean
+  codex_prebuild_interpretation_present?: boolean
   stanley_specificity_score?: number
   diagram_aesthetic_quality_score?: number
   diagram_geometry_quality_score?: number
@@ -273,6 +282,12 @@ export const DEFAULT_THRESHOLDS = {
   visual_semantic_clarity_score: 8,
   visual_metaphor_coherence_score: 8,
   path_traceability_score: 8,
+  mockup_fidelity_score: 8,
+  refero_style_alignment_score: 8,
+  codex_translation_quality_score: 8,
+  real_product_design_quality_score: 8,
+  generic_ai_ui_risk_score_max: 3,
+  visual_taste_preservation_score: 8,
   diagram_aesthetic_quality_score: 8.5,
   diagram_geometry_quality_score: 8.5,
   diagram_spacing_quality_score: 8.5,
@@ -311,6 +326,15 @@ const REQUIRED_FIELDS = [
   "visual_metaphor_coherence_score",
   "path_traceability_score",
   "approved_reference_fidelity_score",
+  "mockup_fidelity_score",
+  "refero_style_alignment_score",
+  "codex_translation_quality_score",
+  "real_product_design_quality_score",
+  "generic_ai_ui_risk_score",
+  "visual_taste_preservation_score",
+  "design_research_used_correctly",
+  "codex_inspected_approved_mockup",
+  "codex_prebuild_interpretation_present",
   "stanley_specificity_score",
   "diagram_aesthetic_quality_score",
   "diagram_geometry_quality_score",
@@ -515,11 +539,11 @@ export function validateCriticalSectionReview(value: unknown, expectedSectionIdO
   for (const field of ["desktop_pass", "mobile_pass"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
-  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality"] as const) {
+  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "mockup_fidelity_score", "refero_style_alignment_score", "codex_translation_quality_score", "real_product_design_quality_score", "generic_ai_ui_risk_score", "visual_taste_preservation_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality"] as const) {
     if (typeof review[field] !== "number" || !Number.isFinite(review[field])) throw new Error(`${field} must be a finite number`)
     if (review[field] < 1 || review[field] > 10) throw new Error(`${field} must be between 1 and 10`)
   }
-  for (const field of ["repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "matches_selected_mockup_direction", "could_belong_to_generic_saas_company", "depends_on_designer_explanation", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure", "generated_asset_feels_raw_or_ai", "central_visual_asset_is_ugly", "diagram_has_awkward_proportions", "diagram_has_cramped_or_forced_layout", "main_visual_looks_intentionally_designed", "main_visual_supports_section_hierarchy", "generated_asset_text_is_baked_in", "generated_asset_has_unreadable_text", "visual_asset_ready_for_production_use"] as const) {
+  for (const field of ["design_research_used_correctly", "repeated_card_pattern_present", "repeated_card_pattern_dominates", "repeated_card_pattern_is_secondary_support", "visual_anchor_overpowers_card_stack", "repetitive_icon_card_pattern", "underdesigned_plain_section", "over_framed_section", "too_many_nested_borders", "border_noise_dominates_visual", "support_cards_repeat_border_language", "boxed_in_visual_anchor", "actual_ui_clipping_or_overflow", "screenshot_crop_only_not_layout_failure", "every_visual_element_has_business_role", "arbitrary_decorative_elements_present", "codex_inspected_approved_mockup", "codex_prebuild_interpretation_present", "matches_selected_mockup_direction", "could_belong_to_generic_saas_company", "depends_on_designer_explanation", "visually_rich_but_semantically_confusing", "viewer_can_explain_visual_in_5_seconds", "follows_approved_reference_structure", "generated_asset_feels_raw_or_ai", "central_visual_asset_is_ugly", "diagram_has_awkward_proportions", "diagram_has_cramped_or_forced_layout", "main_visual_looks_intentionally_designed", "main_visual_supports_section_hierarchy", "generated_asset_text_is_baked_in", "generated_asset_has_unreadable_text", "visual_asset_ready_for_production_use"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
   if (typeof review.primary_visual_anchor_description !== "string" || !review.primary_visual_anchor_description.trim()) {
@@ -829,6 +853,15 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   if (typeof review.visual_semantic_clarity_score === "number" && review.visual_semantic_clarity_score < DEFAULT_THRESHOLDS.visual_semantic_clarity_score) failures.push(`visual_semantic_clarity_score ${review.visual_semantic_clarity_score} is below ${DEFAULT_THRESHOLDS.visual_semantic_clarity_score}`)
   if (typeof review.visual_metaphor_coherence_score === "number" && review.visual_metaphor_coherence_score < DEFAULT_THRESHOLDS.visual_metaphor_coherence_score) failures.push(`visual_metaphor_coherence_score ${review.visual_metaphor_coherence_score} is below ${DEFAULT_THRESHOLDS.visual_metaphor_coherence_score}`)
   if (typeof review.path_traceability_score === "number" && review.path_traceability_score < DEFAULT_THRESHOLDS.path_traceability_score) failures.push(`path_traceability_score ${review.path_traceability_score} is below ${DEFAULT_THRESHOLDS.path_traceability_score}`)
+  if (typeof review.mockup_fidelity_score === "number" && review.mockup_fidelity_score < DEFAULT_THRESHOLDS.mockup_fidelity_score) failures.push(`mockup_fidelity_score ${review.mockup_fidelity_score} is below ${DEFAULT_THRESHOLDS.mockup_fidelity_score}`)
+  if (typeof review.refero_style_alignment_score === "number" && review.refero_style_alignment_score < DEFAULT_THRESHOLDS.refero_style_alignment_score) failures.push(`refero_style_alignment_score ${review.refero_style_alignment_score} is below ${DEFAULT_THRESHOLDS.refero_style_alignment_score}`)
+  if (typeof review.codex_translation_quality_score === "number" && review.codex_translation_quality_score < DEFAULT_THRESHOLDS.codex_translation_quality_score) failures.push(`codex_translation_quality_score ${review.codex_translation_quality_score} is below ${DEFAULT_THRESHOLDS.codex_translation_quality_score}`)
+  if (typeof review.real_product_design_quality_score === "number" && review.real_product_design_quality_score < DEFAULT_THRESHOLDS.real_product_design_quality_score) failures.push(`real_product_design_quality_score ${review.real_product_design_quality_score} is below ${DEFAULT_THRESHOLDS.real_product_design_quality_score}`)
+  if (typeof review.generic_ai_ui_risk_score === "number" && review.generic_ai_ui_risk_score > DEFAULT_THRESHOLDS.generic_ai_ui_risk_score_max) failures.push(`generic_ai_ui_risk_score ${review.generic_ai_ui_risk_score} is above ${DEFAULT_THRESHOLDS.generic_ai_ui_risk_score_max}`)
+  if (typeof review.visual_taste_preservation_score === "number" && review.visual_taste_preservation_score < DEFAULT_THRESHOLDS.visual_taste_preservation_score) failures.push(`visual_taste_preservation_score ${review.visual_taste_preservation_score} is below ${DEFAULT_THRESHOLDS.visual_taste_preservation_score}`)
+  if (review.design_research_used_correctly === false) failures.push("design_research_used_correctly is false")
+  if (review.codex_inspected_approved_mockup === false) failures.push("codex_inspected_approved_mockup is false")
+  if (review.codex_prebuild_interpretation_present === false) failures.push("codex_prebuild_interpretation_present is false")
   if (typeof review.diagram_aesthetic_quality_score === "number" && review.diagram_aesthetic_quality_score < DEFAULT_THRESHOLDS.diagram_aesthetic_quality_score) failures.push(`diagram_aesthetic_quality_score ${review.diagram_aesthetic_quality_score} is below ${DEFAULT_THRESHOLDS.diagram_aesthetic_quality_score}`)
   if (typeof review.diagram_geometry_quality_score === "number" && review.diagram_geometry_quality_score < DEFAULT_THRESHOLDS.diagram_geometry_quality_score) failures.push(`diagram_geometry_quality_score ${review.diagram_geometry_quality_score} is below ${DEFAULT_THRESHOLDS.diagram_geometry_quality_score}`)
   if (typeof review.diagram_spacing_quality_score === "number" && review.diagram_spacing_quality_score < DEFAULT_THRESHOLDS.diagram_spacing_quality_score) failures.push(`diagram_spacing_quality_score ${review.diagram_spacing_quality_score} is below ${DEFAULT_THRESHOLDS.diagram_spacing_quality_score}`)
@@ -1172,6 +1205,7 @@ function renderMarkdown(report: CriticalReviewAggregate): string {
     `Aggregate decision: ${report.aggregate_decision}`,
     `Next status: ${report.next_status}`,
     `Final gate decision: ${report.final_gate_decision}`,
+    report.status === "pass" ? "Review framing: no configured concrete blocker found; final visual approval and deploy approval still belong to Jaden." : "Review framing: concrete blocker found or evidence missing; do not treat as taste approval.",
     `Command mode: ${report.command_mode}`,
     `Visual patch attempt: ${report.visual_patch_attempt}/${report.max_visual_patch_attempts}`,
     `Packet dir: ${report.report_paths.packet_dir}`,
