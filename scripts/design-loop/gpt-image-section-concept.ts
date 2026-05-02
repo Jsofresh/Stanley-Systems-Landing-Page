@@ -4,8 +4,8 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs"
 import { basename, join, resolve } from "path"
 
 const DEFAULT_MODEL = "gpt-image-2"
-const DEFAULT_QUALITY = "medium"
-const MODEL_ALIAS = "GPT-Image2Medium"
+const DEFAULT_QUALITY = "high"
+const MODEL_ALIAS = "GPT-Image2High"
 const DEFAULT_SIZE = "1024x1024"
 const DEFAULT_ENV_PATH = "/home/jaden/.openclaw/gateway.systemd.env"
 const DEFAULT_ARTIFACT_ROOT = "/home/jaden/.openclaw/workspace/project/software-factory/artifacts/gpt-image-section-concepts"
@@ -80,11 +80,37 @@ function readPathSnippets(paths: string[], maxCharsPerFile = 2400): string {
     .join("\n")
 }
 
+function readContextPack(args: Args): string {
+  const contextPackPath = one(args, "context_pack_path")
+  const allowMissing = one(args, "allow_missing_context_pack") === "true"
+  if (!contextPackPath) {
+    if (allowMissing) return ""
+    throw new Error("Missing --context_pack_path. Build the Stanley Systems Image Generation Context Pack first with npm run design-loop:image-context-pack. Use --allow_missing_context_pack true only for explicit fixture/debug runs.")
+  }
+  const resolved = resolve(contextPackPath)
+  if (!existsSync(resolved)) throw new Error(`Context pack not found: ${resolved}`)
+  const text = readFileSync(resolved, "utf8")
+  const requiredHeadings = [
+    "# Stanley Systems Image Generation Context Pack",
+    "## 1. Run metadata",
+    "## 15. Final GPT Image prompt draft",
+    "## 16. Prompt Critic checklist",
+  ]
+  for (const heading of requiredHeadings) {
+    if (!text.includes(heading)) throw new Error(`Context pack missing required heading: ${heading}`)
+  }
+  if (!/Prompt Critic result:\s*PASS/i.test(text) && !/Decision:\s*PASS/i.test(text)) {
+    throw new Error("Context pack Prompt Critic did not pass. Do not call GPT Image.")
+  }
+  return text
+}
+
 function buildPrompt(args: Args): string {
+  const contextPack = readContextPack(args)
   const promptText = one(args, "prompt_text")
   const promptFile = one(args, "prompt_file")
   const basePrompt = promptFile ? readFileSync(resolve(promptFile), "utf8") : promptText
-  if (!basePrompt.trim()) throw new Error("Provide --prompt_text or --prompt_file")
+  if (!basePrompt.trim() && !contextPack.trim()) throw new Error("Provide --context_pack_path, --prompt_text, or --prompt_file")
 
   const tasteReferencePaths = many(args, "taste_reference_paths")
   const badPatternPaths = many(args, "bad_pattern_paths")
@@ -99,6 +125,7 @@ function buildPrompt(args: Args): string {
     `Model alias: ${MODEL_ALIAS}`,
     `Model: ${DEFAULT_MODEL}`,
     `Quality: ${DEFAULT_QUALITY}`,
+    `Primary model path: GPT Image 2 HIGH full-section reference mockups`,
   ].join("\n")
 
   const pathManifest = JSON.stringify(
@@ -136,6 +163,12 @@ function buildPrompt(args: Args): string {
     "Do not create concentric rounded containers, stacked bordered shells, every element as a bordered card or pill, border outlines as the main premium device, or edge-heavy chrome that compensates for weak hierarchy.",
     "Use one dominant visual anchor, fewer but stronger containers, open composition, soft background tint, shadow, scale, contrast, and whitespace instead of repeated outlines.",
     "Keep support items visually quiet. Do not generate repeated checklist pills below a visual if the visual already says the same thing.",
+    "For the next-generation loop, generate full website section reference mockups, not isolated decorative assets, unless the run explicitly says sub-visual only.",
+    "Full section mockups may and should include meaningful website text, hierarchy, labels, CTA placement, outcome language, and section layout so Codex has a strong visual target.",
+    "The generated full section image is a reference only. It must never be pasted into production as a full-section PNG; Codex rebuilds headline, copy, labels, CTA, cards, diagrams, and layout as real React/Tailwind/SVG/DOM.",
+    "Do not under-specify copy. Include section label/eyebrow, exact or near-exact headline, short support copy, CTA language, outcome labels, and visual-explanation labels when the section needs them.",
+    "Reference mockups must be Stanley Systems-specific: service-business revenue/workflow pain, money, time, owner relief, missed calls, stale follow-up, reviews, referrals, billing drag, and booked work.",
+    "A section can be polished and still fail if it is generic, ugly, clumsy, semantically weak, decorative, over-framed, confusing on mobile, or dependent on verbal explanation.",
     "",
     "## Hard single-concept output rules",
     "Generate one single website section concept only per output image.",
@@ -158,10 +191,15 @@ function buildPrompt(args: Args): string {
     pathManifest,
     "",
     "## Context excerpts",
-    readPathSnippets([...tasteReferencePaths, ...badPatternPaths, ...contextPaths].slice(0, 8)),
+    contextPack.trim()
+      ? "[Context excerpts omitted because the validated Stanley Systems Image Generation Context Pack is included below. This prevents duplicating context and keeps the GPT Image prompt within provider limits.]"
+      : readPathSnippets([...tasteReferencePaths, ...badPatternPaths, ...contextPaths].slice(0, 8)),
+    "",
+    "## Stanley Systems Image Generation Context Pack",
+    contextPack.trim() || "[No context pack loaded: explicit fixture/debug override only]",
     "",
     "## User/director prompt",
-    basePrompt.trim(),
+    basePrompt.trim() || "Use the Final GPT Image prompt draft from the context pack above.",
   ].join("\n")
 }
 
@@ -173,13 +211,14 @@ async function main() {
   --route / \\
   --section_type "Customer Revenue System" \\
   --generation_goal "Generate 2-3 stronger concept images" \\
-  --prompt_text "..." \\
+  --context_pack_path /path/to/image-generation-context-pack.md \
+  --prompt_text "optional extra direction" \\
   --taste_reference_paths path1,path2 \\
   --bad_pattern_paths path1 \\
   --context_paths path1,path2 \\
   --current_screenshot_paths path1,path2 \\
   --output_dir /path/to/output \\
-  --count 3\n\nDefault model/profile: ${MODEL_ALIAS} (${DEFAULT_MODEL}, quality=${DEFAULT_QUALITY})`)
+  --count 3\n\nRequires --context_pack_path unless --allow_missing_context_pack true is explicitly set. Default model/profile: ${MODEL_ALIAS} (${DEFAULT_MODEL}, quality=${DEFAULT_QUALITY})`)
     return
   }
 
@@ -188,7 +227,7 @@ async function main() {
   requireArg(args, "section_type")
   requireArg(args, "generation_goal")
   const count = Number(one(args, "count", "3"))
-  if (!Number.isInteger(count) || count < 1 || count > 3) throw new Error("--count must be an integer from 1 to 3")
+  if (!Number.isInteger(count) || count < 1 || count > 4) throw new Error("--count must be an integer from 1 to 4")
   const size = one(args, "size", DEFAULT_SIZE)
   const envPath = one(args, "openai_env_path", DEFAULT_ENV_PATH)
   const timestamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z")
@@ -224,7 +263,7 @@ async function main() {
     prompt_path: promptPath,
     requested_count: count,
     openai_api_key_present: true,
-    openai_api_key_source: source,
+    openai_api_key_source: "[REDACTED_CONFIG_SOURCE]",
     secret_value_exposed: false,
     fallback_model_used: false,
     hard_rule: "Do not fall back to older image models or Higgsfield for this loop unless explicitly re-run with a different wrapper.",

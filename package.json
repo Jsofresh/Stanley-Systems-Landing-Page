@@ -13,6 +13,7 @@
     "design-loop:audit": "node --experimental-strip-types scripts/design-loop/run-hermes-audit.ts",
     "design-loop:assets": "node --experimental-strip-types scripts/design-loop/run-higgsfield-assets.ts",
     "design-loop:concept-gpt-image": "node --experimental-strip-types scripts/design-loop/gpt-image-section-concept.ts",
+    "design-loop:image-context-pack": "node --experimental-strip-types scripts/design-loop/build-stanley-image-context-pack.ts",
     "design-loop:ingest-assets": "node --experimental-strip-types scripts/design-loop/ingest-assets.ts",
     "design-loop:dispatch-codex": "node --experimental-strip-types scripts/design-loop/dispatch-codex-patch.ts",
     "design-loop:apply-codex": "node --experimental-strip-types scripts/design-loop/apply-patch-or-run-codex.ts",
