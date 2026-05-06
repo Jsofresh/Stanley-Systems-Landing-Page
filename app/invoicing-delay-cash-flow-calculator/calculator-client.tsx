@@ -1011,7 +1011,7 @@ export function InvoicingDelayCalculatorClient() {
       return (
         <StepFrame {...frameProps}
           title="What happens when a new customer call is missed?"
-          body="Missed calls are counted inside Customer Revenue with a conservative booked-job estimate."
+          body="Missed calls are counted inside Repeat Revenue with a conservative booked-job estimate."
           continueLabel="See the result"
         >
           <ChoiceGrid<MissedCallRecovery>
@@ -1359,7 +1359,7 @@ export function InvoicingDelayCalculatorClient() {
             <div className="mt-8 grid w-full gap-3 md:grid-cols-3 lg:mt-10">
               {[
                 ["Fix 1", "Use the Workflow Audit to choose the first system"],
-                ["Fix 2", "Cashflow Control System collects more money already earned"],
+                ["Fix 2", "Cashflow Control System moves earned money toward collection"],
                 ["Fix 3", "Repeat Revenue brings back customers you already earned"],
               ].map(([label, copy]) => (
                 <div key={label} className="box-border w-full rounded-[1.35rem] border border-[#e8dfd0] bg-white px-5 py-5 text-left">
@@ -1383,7 +1383,7 @@ export function InvoicingDelayCalculatorClient() {
                 {resultSummary.hasMeaningfulLeak ? `Find Where ${resultSummary.formattedCTAValue}/month Is Stuck` : "Check the Workflow"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-              <a href="tel:+16172745391" className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">
+              <a href="tel:+16179586372" className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">
                 <Phone className="mr-2 h-4 w-4" />
                 Call now
               </a>

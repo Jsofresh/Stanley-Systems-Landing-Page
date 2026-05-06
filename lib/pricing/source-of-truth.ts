@@ -153,9 +153,6 @@ export const pricingPackages: PricingPackage[] = [
     },
     packageRoute: "/systems/both-systems",
     analyticsPackageId: "both_systems_monthly",
-    notes: [
-      "Launch blocker from Stripe spot-check: this Payment Link currently shows a $495 install line, while the approved model is $449 installation.",
-    ],
   },
   {
     id: "cashflow_control_yearly",
@@ -267,8 +264,7 @@ export const yearlyPricingPackages = pricingPackages.filter(
 export const workflowAuditPricingPackage = pricingPackageById.workflow_audit
 
 export const pricingSourceOfTruthNotes = [
-  "Public Package 2 name changed from Customer Revenue System to Repeat Revenue System.",
-  "Do not use Customer Revenue System, Follow-Up System, or Cash Collection System as public package names.",
+  "Approved public package names are Cashflow Control System and Repeat Revenue System.",
   "Bought the Workflow Audit first? Use your audit credit code at checkout.",
   "$97 audit credit applies to monthly plans; $194 audit credit applies to yearly plans; credit is valid for 24 hours after the audit call and applies once.",
   "Use Stripe Payment Links v1 only; do not add Stripe secret keys or custom Checkout Sessions for this rework phase.",

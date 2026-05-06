@@ -1,7 +1,6 @@
 import type { ComponentType } from "react"
 import { CTALink } from "@/components/cta-link"
 import { IconArrowRight, IconShieldCheck } from "@tabler/icons-react"
-import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 import {
   DelayedInvoiceDisplayAsset,
   FirstFixWrenchDisplayAsset,
@@ -13,7 +12,7 @@ import {
 
 type DisplayPrimitive = ComponentType<DisplayAssetProps>
 
-const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
+const calculatorHref = "/invoicing-delay-cash-flow-calculator"
 
 const auditSteps: Array<{
   number: string
@@ -69,7 +68,7 @@ export function HowItWorksSection() {
             </h2>
 
             <p className="mt-3 max-w-[35rem] text-base leading-7 text-[#48576C] sm:text-[1.05rem] sm:leading-7">
-              Buy the Workflow Audit when you want Stanley Systems to turn the calculator range into a clear action report: which invoices, estimates, calls, and follow-ups are holding money back, and what to fix first.
+              The Workflow Audit turns the calculator range into a clear action report: which invoices, estimates, calls, and follow-ups are holding money back, and what to fix first.
             </p>
 
             <div className="mt-4 grid gap-2.5">
@@ -87,23 +86,31 @@ export function HowItWorksSection() {
             </div>
 
             <div className="mt-5">
+              <div className="flex flex-col gap-3 sm:flex-row">
               <CTALink
-                href={auditHref}
-                kind="checkout"
+                href={calculatorHref}
+                kind="calculator"
                 location="workflow_audit_section"
-                analyticsEvent="audit_checkout_clicked"
+                analyticsEvent="calculator_cta_clicked"
                 analyticsSource="homepage_workflow_audit_section"
-                packageId="workflow_audit"
-                packageName="Workflow Audit"
-                billingPeriod="one_time"
-                ctaLabel="Buy the Workflow Audit"
-                target="_blank"
-                rel="noopener noreferrer"
+                ctaLabel="Calculate my revenue leak"
                 className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24)] ring-1 ring-[#15803D]/15 transition hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:w-auto"
               >
-                Buy the Workflow Audit
+                Calculate my revenue leak
                 <IconArrowRight className="h-4 w-4" stroke={2} aria-hidden />
               </CTALink>
+              <CTALink
+                href="#systems"
+                kind="systems"
+                location="workflow_audit_section_secondary"
+                analyticsEvent="package_compare_clicked"
+                analyticsSource="homepage_workflow_audit_section"
+                ctaLabel="See the two systems"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#CFE0C5] bg-white px-6 py-3 text-sm font-semibold text-[#102033] shadow-[0_10px_22px_rgba(16,32,51,0.05)] transition hover:border-[#15803D]/40 hover:bg-[#F2FBF5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:w-auto"
+              >
+                See the two systems
+              </CTALink>
+              </div>
 
               <p className="mt-3 flex max-w-[34rem] items-start gap-2.5 rounded-[1rem] border border-[#cfe8d5] bg-[#edf9f1] px-3.5 py-2.5 text-sm leading-6 text-[#34465B] shadow-[0_10px_24px_rgba(21,128,61,0.07)]">
                 <IconShieldCheck className="mt-0.5 h-4.5 w-4.5 shrink-0 text-[#15803D]" stroke={2} aria-hidden />
@@ -124,7 +131,7 @@ export function HowItWorksSection() {
                   Money Leak Map
                 </h3>
                 <p className="mt-1 text-sm leading-6 text-[#667085]">
-                  A practical owner report showing where money is stuck and which fix should move first.
+                  Example audit snapshot: where money is stuck and which fix should move first.
                 </p>
               </div>
             </div>

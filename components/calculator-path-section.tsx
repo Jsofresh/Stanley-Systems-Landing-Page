@@ -5,7 +5,6 @@ import {
 } from "@tabler/icons-react"
 import type { ComponentType } from "react"
 import { CTALink } from "@/components/cta-link"
-import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 import {
   BillingCheckDisplayAsset,
   CashApprovedDisplayAsset,
@@ -17,7 +16,6 @@ import {
 } from "@/components/visual-kit/display-assets"
 
 const calculatorHref = "/invoicing-delay-cash-flow-calculator"
-const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
 type SummaryIcon = ComponentType<DisplayAssetProps>
 
@@ -46,10 +44,27 @@ const diagnosticTargets: Array<{
 const signalCards: Array<{
   Icon: SummaryIcon
   label: string
+  cost: string
+  fix: string
 }> = [
-  { Icon: CashApprovedDisplayAsset, label: "Open invoices and estimates" },
-  { Icon: PhoneMissedTransparentDisplayAsset, label: "Missed calls and unworked leads" },
-  { Icon: InactiveCustomersDisplayAsset, label: "Past customers sitting idle" },
+  {
+    Icon: CashApprovedDisplayAsset,
+    label: "Finished work waits before billing",
+    cost: "Growth cash sits in admin drag.",
+    fix: "Cashflow Control moves the job toward invoice, follow-up, and visibility.",
+  },
+  {
+    Icon: PhoneMissedTransparentDisplayAsset,
+    label: "Missed calls turn cold",
+    cost: "Paid demand becomes forgotten callbacks.",
+    fix: "Repeat Revenue routes missed volume back into follow-up.",
+  },
+  {
+    Icon: InactiveCustomersDisplayAsset,
+    label: "Past customers go untouched",
+    cost: "$50K-$300K may be sitting in customers you already paid to acquire.",
+    fix: "Repeat Revenue checks old buyers, estimates, reviews, referrals, and seasonal work.",
+  },
 ]
 
 export function CalculatorPathSection() {
@@ -70,20 +85,24 @@ export function CalculatorPathSection() {
         <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,0.47fr)_minmax(0,0.53fr)] lg:gap-10 xl:gap-12">
           <div className="min-w-0">
             <h2 className="max-w-[40rem] text-[2.1rem] font-semibold leading-[1.03] text-[#102033] sm:text-[2.55rem] lg:text-[2.85rem] xl:text-[3.05rem]">
-              Find the money leak before you buy the system.
+              The hidden problem is not lead volume. It is money already stuck.
             </h2>
 
             <p className="mt-5 max-w-[35rem] text-base leading-7 text-[#47566C] sm:text-lg sm:leading-8">
-              The calculator checks the plain places service businesses lose revenue after the lead, job, or customer already exists: invoices, estimates, missed calls, and past customers that never get a next step.
+              $50K-$300K may be sitting in customers you already paid to acquire. Late cash steals growth money, weak follow-up lets competitors outpace you, and the owner becomes the backup system.
             </p>
 
-            <div className="mt-6 grid max-w-[35rem] gap-3 sm:grid-cols-3">
-              {signalCards.map(({ Icon, label }) => (
-                <div key={label} className="flex min-h-[5.25rem] items-start gap-3 rounded-2xl border border-[#DCE7DD] bg-white px-4 py-3 shadow-[0_10px_24px_rgba(16,32,51,0.04)]">
+            <div className="mt-6 grid max-w-[42rem] gap-3">
+              {signalCards.map(({ Icon, label, cost, fix }) => (
+                <div key={label} className="grid gap-3 rounded-2xl border border-[#DCE7DD] bg-white px-4 py-3 shadow-[0_10px_24px_rgba(16,32,51,0.04)] sm:grid-cols-[auto_1fr]">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#E4F7EA] text-[#15803D] ring-1 ring-[#CBEED8]">
                     <Icon size={34} decorative />
                   </span>
-                  <span className="text-sm font-semibold leading-5 text-[#102033]">{label}</span>
+                  <span className="min-w-0 text-sm leading-5 text-[#102033]">
+                    <span className="block font-extrabold">{label}</span>
+                    <span className="mt-1 block font-semibold text-[#B42318]">{cost}</span>
+                    <span className="mt-1 block text-[#536174]">{fix}</span>
+                  </span>
                 </div>
               ))}
             </div>
@@ -95,37 +114,32 @@ export function CalculatorPathSection() {
                 location="homepage_calculator_primary"
                 analyticsEvent="calculator_cta_clicked"
                 analyticsSource="homepage_calculator_section"
-                ctaLabel="Use the Revenue Calculator"
+                ctaLabel="Calculate my revenue leak"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:whitespace-nowrap"
               >
-                Use the Revenue Calculator
+                Calculate my revenue leak
                 <IconArrowRight className="h-4 w-4" stroke={2} aria-hidden />
               </CTALink>
               <CTALink
-                href={auditHref}
-                kind="book_meeting"
+                href="#audit"
+                kind="systems"
                 location="homepage_calculator_secondary"
-                analyticsEvent="audit_checkout_clicked"
+                analyticsEvent="package_compare_clicked"
                 analyticsSource="homepage_calculator_section"
-                packageId="workflow_audit"
-                packageName="Workflow Audit"
-                billingPeriod="one_time"
-                ctaLabel="Buy the Workflow Audit"
-                target="_blank"
-                rel="noopener noreferrer"
+                ctaLabel="See how the audit works"
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE0C5] bg-white px-6 py-3 text-sm font-semibold text-[#102033] shadow-[0_10px_22px_rgba(16,32,51,0.05)] transition hover:border-[#15803D]/40 hover:bg-[#F2FBF5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:whitespace-nowrap"
               >
-                Buy the Workflow Audit
+                See how the audit works
               </CTALink>
             </div>
           </div>
 
           <div className="min-w-0 rounded-[1.5rem] border border-[#DCE7DD] bg-white p-5 shadow-[0_22px_55px_rgba(16,32,51,0.08)] sm:p-6 lg:p-7">
             <h3 className="text-2xl font-bold leading-tight text-[#102033] sm:text-[1.75rem] lg:text-[1.9rem]">
-              The calculator points to the right next move.
+              Diagnose the leak, then choose the right system.
             </h3>
             <p className="mt-3 max-w-[38rem] text-sm leading-6 text-[#59687A] sm:text-base sm:leading-7">
-              See which system should make money move first: Cashflow Control, Repeat Revenue, or Both Systems.
+              See which system should make money move first: Cashflow Control, Repeat Revenue, or both.
             </p>
 
             <div className="mt-6 grid gap-3">
@@ -143,7 +157,7 @@ export function CalculatorPathSection() {
             </div>
 
             <div className="mt-5 rounded-2xl border border-[#CBEED8] bg-[#EEF9F2] p-4 text-sm font-semibold leading-6 text-[#102033]">
-              Use the calculator to pick the money path. Buy the Workflow Audit when you want Stanley Systems to map the leak with you before you buy a system.
+              Use the calculator to pick the money path. The Workflow Audit turns the range into a practical action map before you buy a system.
             </div>
           </div>
         </div>

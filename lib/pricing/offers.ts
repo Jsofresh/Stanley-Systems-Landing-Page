@@ -82,30 +82,30 @@ export type PricingCalculatorContext = {
 }
 
 const directPurchasePromises: Record<PricingPackageId, string> = {
-  workflow_audit: "Find the money leak before buying the system.",
+  workflow_audit: "Buy the diagnostic before you buy the build.",
   cashflow_control_monthly: "Turn finished work into collected cash faster.",
   repeat_revenue_monthly: "Get more money from the customers you already earned.",
   both_systems_monthly: "Fix the billing stall and the repeat-revenue gap together.",
-  cashflow_control_yearly: "Run the Cashflow Control System for the year with installation waived.",
-  repeat_revenue_yearly: "Run the Repeat Revenue System for the year with installation waived.",
-  both_systems_yearly: "Run both systems for the year with installation waived.",
+  cashflow_control_yearly: "Buy the year and remove the installation charge.",
+  repeat_revenue_yearly: "Buy the year and remove the installation charge.",
+  both_systems_yearly: "Fix both leaks with the best first-year price.",
 }
 
 const directPurchaseDescriptions: Record<PricingPackageId, string> = {
   workflow_audit:
-    "Stanley Systems reviews the office path where money usually gets stuck and gives you a plain-English money leak map.",
+    "Stanley Systems checks where cash, customers, and office time are stuck, then tells you which system should move first.",
   cashflow_control_monthly:
-    "A monthly implementation path for billing checks, invoice follow-up, and office handoffs inside the tools your team already uses.",
+    "For finished work that waits on billing checks, invoice follow-up, open balances, and office handoffs.",
   repeat_revenue_monthly:
-    "A monthly implementation path for bringing past customers, reviews, referrals, and missed calls back into view without promising rankings or guaranteed reviews.",
+    "For past customers, reviews, referrals, old estimates, seasonal buyers, and missed calls that are not getting a next step.",
   both_systems_monthly:
-    "A combined monthly implementation path for Cashflow Control and Repeat Revenue. Checkout is paused until the Stripe install amount matches the approved price.",
+    "For owners who can already see both leaks and want one onboarding path without paying yearly upfront.",
   cashflow_control_yearly:
-    "A yearly Cashflow Control implementation path with installation waived and the yearly audit credit available if you bought the audit first.",
+    "Same Cashflow Control implementation, lower first-year cost, installation waived.",
   repeat_revenue_yearly:
-    "A yearly Repeat Revenue implementation path with installation waived and the yearly audit credit available if you bought the audit first.",
+    "Same Repeat Revenue implementation, lower first-year cost, installation waived.",
   both_systems_yearly:
-    "A yearly combined implementation path for Cashflow Control and Repeat Revenue with installation waived.",
+    "The combined billing and repeat-revenue rollout with installation waived.",
 }
 
 const directPurchaseChecklists: Record<PricingPackageId, string[]> = {
@@ -182,14 +182,10 @@ function priceNoteFor(pricingPackage: PricingPackage) {
 }
 
 function checkoutHrefFor(pricingPackage: PricingPackage) {
-  if (pricingPackage.id === "both_systems_monthly") return null
   return pricingPackage.stripePaymentLink.url || null
 }
 
 function disabledReasonFor(pricingPackage: PricingPackage) {
-  if (pricingPackage.id === "both_systems_monthly") {
-    return "Monthly checkout is temporarily unavailable. Choose yearly checkout or compare the systems before buying."
-  }
   if (!pricingPackage.stripePaymentLink.url) return "Checkout paused: Payment Link is missing."
   return undefined
 }

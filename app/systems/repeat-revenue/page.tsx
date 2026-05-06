@@ -35,17 +35,71 @@ export const metadata: Metadata = {
 }
 
 const fixes = [
+  "Every good job should create the next one.",
+  "1-3 star private ratings need manager follow-up before they become public problems.",
+  "4-5 star customers should be routed toward Google reviews and referral asks.",
+  "Past customers, old estimates, seasonal buyers, and dormant customers should be reactivated.",
   "Past customers nobody has reached back out to after the first job.",
   "Happy customers who are never asked for a review while the work is still fresh.",
   "Referral opportunities that depend on the owner remembering to ask.",
   "Missed or after-hours inquiries that turn into forgotten callbacks and cold leads.",
 ]
 
+const beforeAfter = [
+  ["Before", "Good jobs end quietly. Ratings, reviews, referrals, old estimates, seasonal buyers, and missed calls all depend on memory.", "#B42318", "#fff5f5", "#edd6d8"],
+  ["After", "Completed jobs feed a repeat revenue cycle: private rating, review routing, referral asks, reactivation, and missed-call recovery.", "#116832", "#eef9f2", "#bfe4c8"],
+]
+
+const flywheelSteps = [
+  "Job complete",
+  "Private 1-5 rating",
+  "1-3 stars to managers",
+  "4-5 stars to Google review path",
+  "Best customers get referral asks",
+  "Past buyers and missed calls reactivated",
+]
+
+function RepeatRevenueMechanismVisual() {
+  return (
+    <section className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
+      <SectionHeader
+        title="Every good job should create the next one."
+        copy="Repeat Revenue System turns completed jobs, happy customers, referrals, reviews, missed calls, and past buyers into a cycle."
+      />
+      <div className="mt-7 grid gap-4 lg:grid-cols-2">
+        {beforeAfter.map(([label, copy, color, bg, border]) => (
+          <article key={label} className="rounded-[1.35rem] border p-5" style={{ borderColor: border, backgroundColor: bg }}>
+            <p className="text-sm font-extrabold uppercase tracking-[0.14em]" style={{ color }}>{label}</p>
+            <p className="mt-3 text-lg font-semibold leading-7 text-[#102033]">{copy}</p>
+          </article>
+        ))}
+      </div>
+      <div className="mt-6 rounded-[1.35rem] border border-[#cfe8d5] bg-[#f4fbf5] p-4">
+        <p className="text-sm font-bold text-[#116832]">Mechanism</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {flywheelSteps.map((step, index) => (
+            <div key={step} className="rounded-2xl border border-[#dfe7ee] bg-white p-4 shadow-[0_10px_24px_rgba(16,32,51,0.04)]">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#15803D] text-xs font-black text-white">{index + 1}</span>
+              <p className="mt-3 text-sm font-extrabold leading-5 text-[#102033]">{step}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 rounded-2xl border border-[#bfe4c8] bg-white p-4 text-sm font-semibold leading-6 text-[#102033]">
+          Reviews and referrals improve trust and Google visibility. More visibility creates more inbound volume. Missed-call recovery turns that volume back into follow-up and booked work, then the cycle repeats.
+        </p>
+      </div>
+      <p className="mt-5 rounded-2xl border border-[#e4ded3] bg-[#fbfaf7] p-4 text-sm font-semibold leading-6 text-[#536173]">
+        Scenario math, not a guarantee: if 500 past customers include 25 ready buyers at a $1,200 average job, that is a $30,000 opportunity worth checking before buying more cold leads.
+      </p>
+    </section>
+  )
+}
+
 const baseAutomations = [
-  ["A", "Smart Re-Engagement", "A practical follow-up path for past customers who may be ready for repeat work."],
-  ["B", "Review Booster", "A steady review-request step after good work is complete, without promising review volume or ratings."],
-  ["C", "Referral Engine", "A simple referral ask that helps customer goodwill become visible opportunities."],
-  ["D", "After-Hours Intake Assistant", "A customer-friendly intake path for missed and after-hours inquiries that keeps the main number unchanged."],
+  ["A", "Private 1-5 Rating", "A private post-job rating routes 1-3 stars to managers and 4-5 stars toward review and referral paths."],
+  ["B", "Review Booster", "A steady Google review-request step after good work is complete, without promising review volume or ratings."],
+  ["C", "Referral Engine", "A simple referral ask for the best customers while the job is still fresh."],
+  ["D", "Reactivation and Missed-Call Recovery", "Past customers, old estimates, seasonal buyers, dormant records, and missed inquiries get brought back into follow-up."],
 ]
 
 const setupItems = [
@@ -199,6 +253,8 @@ export default function RepeatRevenuePage() {
         </section>
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 sm:px-6 lg:px-8">
+          <RepeatRevenueMechanismVisual />
+
           <section className="rounded-[2rem] border border-[#e4ded3] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
             <SectionHeader title="The repeat revenue leaks it is built to fix." copy="Repeat Revenue System is for follow-up opportunities after the business has already earned attention, trust, or a customer record." />
             <div className="mt-7 grid gap-4 md:grid-cols-2">

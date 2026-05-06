@@ -3,17 +3,15 @@
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight, Calculator } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
-import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
-const headline = "Make your business more money with less office work."
+const headline = "The work gets done. The cash still gets stuck."
 const subheadline =
-  "Stanley Systems helps service-business owners get paid faster, recover office time, and stop revenue from slipping through missed calls and delayed follow-up."
-const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
-const primaryCta = "Buy the Workflow Audit"
-const secondaryCta = "Calculate your revenue leak"
+  "For trade contractors, Stanley Systems finds the leaks in billing, handoffs, follow-up, missed calls, and repeat revenue."
+const primaryCta = "Calculate my revenue leak"
+const secondaryCta = "See how the audit works"
 
-const mobileHeadlineLines = ["Make your", "business more", "money with", "less office work."]
-const headlineLines = ["Make your business", "more money", "with less office work."]
+const mobileHeadlineLines = ["The work gets done.", "The cash still", "gets stuck."]
+const headlineLines = ["The work gets done.", "The cash still", "gets stuck."]
 const premiumEase = [0.22, 1, 0.36, 1] as const
 
 export function HeroSection() {
@@ -26,7 +24,7 @@ export function HeroSection() {
       data-audit-priority="5"
       data-audit-offer="Workflow Audit"
       data-audit-purpose="Make the owner understand that Stanley Systems helps make more money with less office work."
-      className="relative isolate overflow-hidden bg-transparent sm:min-h-svh"
+      className="relative isolate overflow-hidden bg-transparent"
     >
       <svg className="pointer-events-none absolute h-0 w-0" aria-hidden="true" focusable="false">
         <filter id="hero-liquid-glass-distortion">
@@ -34,12 +32,12 @@ export function HeroSection() {
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
         </filter>
       </svg>
-      <div className="mx-auto flex max-w-[96rem] flex-col items-center justify-center px-4 pb-7 pt-14 text-center sm:min-h-svh sm:px-6 sm:pb-16 sm:pt-24 lg:px-8 lg:pb-20 lg:pt-28">
+      <div className="mx-auto flex max-w-[96rem] flex-col items-center justify-center px-4 pb-7 pt-14 text-center sm:px-6 sm:pb-10 sm:pt-24 lg:px-8 lg:pb-12 lg:pt-28">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={shouldReduceMotion ? undefined : { duration: 0.9, ease: premiumEase }}
-          className="relative flex w-full max-w-[90rem] items-center justify-center overflow-hidden rounded-[1.65rem] border border-white/55 bg-white/[0.06] px-4 py-7 shadow-[0_34px_110px_rgba(27,42,74,0.13),0_2px_8px_rgba(255,255,255,0.6)_inset,0_-18px_42px_rgba(15,23,42,0.04)_inset] backdrop-blur-[18px] backdrop-brightness-110 backdrop-contrast-125 backdrop-saturate-200 min-[390px]:py-8 sm:min-h-[70svh] sm:rounded-[3.25rem] sm:px-7 sm:py-12 lg:min-h-[68svh] lg:rounded-[4.5rem] lg:px-10 lg:py-16"
+          className="relative flex w-full max-w-[90rem] items-center justify-center overflow-hidden rounded-[1.65rem] border border-white/55 bg-white/[0.06] px-4 py-7 shadow-[0_34px_110px_rgba(27,42,74,0.13),0_2px_8px_rgba(255,255,255,0.6)_inset,0_-18px_42px_rgba(15,23,42,0.04)_inset] backdrop-blur-[18px] backdrop-brightness-110 backdrop-contrast-125 backdrop-saturate-200 min-[390px]:py-8 sm:min-h-[56svh] sm:rounded-[3.25rem] sm:px-7 sm:py-12 lg:min-h-[56svh] lg:rounded-[4.5rem] lg:px-10 lg:py-14"
         >
           <div className="pointer-events-none absolute -inset-10 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_28%,rgba(148,163,184,0.22),transparent_34%),radial-gradient(ellipse_at_84%_36%,rgba(219,234,254,0.26),transparent_36%),radial-gradient(ellipse_at_48%_82%,rgba(203,213,225,0.18),transparent_38%)] blur-2xl [filter:url(#hero-liquid-glass-distortion)]" />
           <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(102deg,transparent_0%,rgba(100,116,139,0.14)_13%,transparent_28%,rgba(219,234,254,0.24)_46%,transparent_62%,rgba(100,116,139,0.12)_82%,transparent_100%)] opacity-80 [filter:url(#hero-liquid-glass-distortion)]" />
@@ -64,7 +62,7 @@ export function HeroSection() {
             </h1>
             <h1
               aria-hidden="true"
-              className="hidden text-balance font-semibold leading-[0.9] tracking-normal text-[#101b2f] sm:block sm:text-[4.9rem] md:text-[5.85rem] lg:text-[6.35rem] xl:text-[6.8rem] 2xl:text-[7.05rem]"
+              className="hidden text-balance font-semibold leading-[0.9] tracking-normal text-[#101b2f] sm:block sm:text-[4.45rem] md:text-[5.15rem] lg:text-[5.85rem] xl:text-[6.2rem] 2xl:text-[6.45rem]"
             >
               {headlineLines.map((line, index) => (
                 <span key={line} className="block md:whitespace-nowrap">
@@ -80,29 +78,24 @@ export function HeroSection() {
 
             <div className="mt-5 flex w-full max-w-[47rem] flex-col items-stretch gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-3">
               <CTALink
-                href={auditHref}
-                kind="checkout"
+                href="/invoicing-delay-cash-flow-calculator"
+                kind="calculator"
                 location="home_hero_primary"
-                analyticsEvent="audit_checkout_clicked"
+                analyticsEvent="calculator_cta_clicked"
                 analyticsSource="homepage_hero"
-                packageId="workflow_audit"
-                packageName="Workflow Audit"
-                billingPeriod="one_time"
                 ctaLabel={primaryCta}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-5 py-2.5 text-[0.94rem] font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#116832] focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2 focus:ring-offset-white sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
               >
+                <Calculator className="mr-2 h-4 w-4" aria-hidden="true" />
                 {primaryCta}
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
               <CTALink
-                href="/invoicing-delay-cash-flow-calculator"
-                kind="calculator"
+                href="#audit"
+                kind="systems"
                 location="home_hero_secondary"
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#d8d1c4] bg-white/78 px-5 py-2.5 text-[0.94rem] font-semibold text-[#102033] shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2 focus:ring-offset-white sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
               >
-                <Calculator className="mr-2 h-4 w-4 text-[#15803D]" aria-hidden="true" />
                 {secondaryCta}
               </CTALink>
             </div>

@@ -5,16 +5,16 @@ import type { PricingCalculatorContext, WorkflowAuditOffer } from "@/lib/pricing
 
 export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAuditOffer; calculatorContext?: PricingCalculatorContext | null }) {
   return (
-    <section className="px-4 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pt-36">
-      <div className="mx-auto max-w-6xl rounded-[2.25rem] border border-[#e7e1d6] bg-white px-5 py-10 text-center shadow-[0_28px_90px_rgba(15,23,42,0.08)] sm:rounded-[3rem] sm:px-8 sm:py-14 lg:px-14 lg:py-16">
-        <h1 className="mx-auto max-w-5xl text-balance text-[2.55rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-6xl lg:text-[5.2rem]">
-          Find where cash, customers, and office time are leaking.
+    <section className="px-4 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pt-34">
+      <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#e7e1d6] bg-white px-5 py-8 text-center shadow-[0_24px_70px_rgba(15,23,42,0.075)] sm:rounded-[2.5rem] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+        <h1 className="mx-auto max-w-5xl text-balance text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[4.25rem]">
+          Pick the money leak worth fixing first.
         </h1>
-        <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-[#536173] sm:text-xl sm:leading-9">
-          The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System opportunities that bring past customers, reviews, referrals, and missed calls back into view.
+        <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-[#536173] sm:text-lg sm:leading-8">
+          Start with the Workflow Audit when you are unsure, or buy the system that matches the leak you can already see.
         </p>
-        <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#102033] sm:text-lg">
-          You leave with a clear money leak map, the first fix to make, and a straight answer on whether Stanley Systems should build the Cashflow Control System, the Repeat Revenue System, Both Systems, or neither.
+        <p className="mx-auto mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#102033] sm:text-base">
+          Cash stuck after finished work. Past customers and missed calls left idle. Or both.
         </p>
         <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <CTALink

@@ -81,6 +81,15 @@ function PlanGrid({ plans }: { plans: PricingPlan[] }) {
   )
 }
 
+function CheckoutScopeNote({ copy }: { copy?: string }) {
+  return (
+    <p className="mx-auto mt-5 max-w-3xl rounded-2xl border border-[#dbe7dd] bg-[#f6fbf7] px-4 py-3 text-center text-sm font-semibold leading-6 text-[#4d5f55]">
+      {copy ||
+        "Package checkout starts onboarding. Stanley Systems reviews fit, access, and scope before implementation begins. If it is not the right fit, Stanley Systems may refund, redirect, or pause before work begins."}
+    </p>
+  )
+}
+
 function CompareSystems() {
   const systems = [
     {
@@ -154,6 +163,7 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
             copy="Lower upfront commitment. Installation is charged at checkout, and audit buyers can use the monthly audit credit."
           />
           <PlanGrid plans={monthlyPlans} />
+          <CheckoutScopeNote />
         </section>
 
         <section aria-labelledby="yearly-plans-heading">
@@ -163,6 +173,7 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
             copy="Best first-year pricing. Installation is waived, and audit buyers can use the yearly audit credit."
           />
           <PlanGrid plans={yearlyPlans} />
+          <CheckoutScopeNote copy="Yearly checkout starts onboarding and fit/access/scope review before implementation begins. The Workflow Audit credit only applies under the stated audit-credit terms." />
         </section>
 
         <CompareSystems />

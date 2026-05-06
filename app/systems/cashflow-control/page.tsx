@@ -35,12 +35,64 @@ export const metadata: Metadata = {
 }
 
 const fixes = [
+  "Late cash is growth money the owner cannot use.",
+  "Best competitors collect faster, reinvest faster, and outpace slow operators.",
+  "Staff chasing billing, status, and follow-up burns payroll and steals output from the business.",
   "Finished jobs that wait days before billing sees them.",
   "Invoices that cannot go out because job details are missing.",
   "Invoice-to-final-bill follow-up that depends on manual reminders.",
   "Open balances that depend on somebody remembering to follow up.",
   "Office handoffs that live in texts, notes, and memory instead of one visible path.",
 ]
+
+const beforeAfter = [
+  ["Before", "Job is done, but billing waits on memory, messages, missing notes, and somebody checking open balances.", "#B42318", "#fff5f5", "#edd6d8"],
+  ["After", "Job complete moves to billing-ready, invoice or follow-up, open balance visibility, and collected cash.", "#116832", "#eef9f2", "#bfe4c8"],
+]
+
+const mechanismSteps = [
+  "Job complete",
+  "Billing-ready",
+  "Invoice/follow-up",
+  "Open balance visibility",
+  "Collected cash",
+]
+
+function CashflowMechanismVisual() {
+  return (
+    <section className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
+      <SectionHeader
+        title="Late cash is growth money you cannot use."
+        copy="Cashflow Control System moves repeat admin work out of memory and into a visible path from finished work to collected cash."
+      />
+      <div className="mt-7 grid gap-4 lg:grid-cols-2">
+        {beforeAfter.map(([label, copy, color, bg, border]) => (
+          <article key={label} className="rounded-[1.35rem] border p-5" style={{ borderColor: border, backgroundColor: bg }}>
+            <p className="text-sm font-extrabold uppercase tracking-[0.14em]" style={{ color }}>{label}</p>
+            <p className="mt-3 text-lg font-semibold leading-7 text-[#102033]">{copy}</p>
+          </article>
+        ))}
+      </div>
+      <div className="mt-6 overflow-hidden rounded-[1.35rem] border border-[#cfe8d5] bg-[#f4fbf5] p-4">
+        <p className="text-sm font-bold text-[#116832]">Mechanism</p>
+        <div className="mt-4 grid gap-3 md:grid-cols-5">
+          {mechanismSteps.map((step, index) => (
+            <div key={step} className="relative rounded-2xl border border-[#dfe7ee] bg-white p-4 shadow-[0_10px_24px_rgba(16,32,51,0.04)]">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#15803D] text-xs font-black text-white">{index + 1}</span>
+              <p className="mt-3 text-sm font-extrabold leading-5 text-[#102033]">{step}</p>
+              {index < mechanismSteps.length - 1 ? (
+                <ArrowRight className="absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 rounded-full border border-[#cfe8d5] bg-white p-1 text-[#15803D] md:block" aria-hidden="true" />
+              ) : null}
+            </div>
+          ))}
+        </div>
+      </div>
+      <p className="mt-5 rounded-2xl border border-[#e4ded3] bg-[#fbfaf7] p-4 text-sm font-semibold leading-6 text-[#536173]">
+        Scenario math, not a guarantee: if $40,000 of finished work sits 30 days longer than it should, that is $40,000 the owner cannot use for payroll, materials, ads, or growth during that month.
+      </p>
+    </section>
+  )
+}
 
 const baseComponents = [
   ["A", "Finished-job trigger", "A clear signal when work is complete and ready for billing review."],
@@ -188,6 +240,8 @@ export default function CashflowControlPage() {
         </section>
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 sm:px-6 lg:px-8">
+          <CashflowMechanismVisual />
+
           <section className="rounded-[2rem] border border-[#e4ded3] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
             <SectionHeader title="The billing leaks it is built to fix." copy="Cashflow Control System is for office-side bottlenecks after the work is already earned." />
             <div className="mt-7 grid gap-4 md:grid-cols-2">

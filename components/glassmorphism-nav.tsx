@@ -3,10 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 import { Menu, Phone, X } from "lucide-react"
 import Link from "next/link"
-import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
-const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
+const calculatorHref = `${basePath}/invoicing-delay-cash-flow-calculator`
 
 const navigation = [
   { name: "About", href: `${basePath}/about` },
@@ -130,19 +129,14 @@ export function GlassmorphismNav() {
                 Call: +1 (617) 958-6372
               </a>
               <a
-                href={auditHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-analytics-event="audit_checkout_clicked"
+                href={calculatorHref}
+                data-analytics-event="calculator_cta_clicked"
                 data-analytics-source="site_nav"
-                data-cta-label="Buy the Workflow Audit"
-                data-cta-location="desktop_nav_workflow_audit"
-                data-package-id="workflow_audit"
-                data-package-name="Workflow Audit"
-                data-billing-period="one_time"
-                className="inline-flex min-w-[150px] whitespace-nowrap items-center justify-center rounded-full border border-[#b7d7bf] bg-white px-7 py-2.5 text-[15px] font-semibold text-[#116832] shadow-[0_12px_28px_rgba(21,128,61,0.10)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#f7fcf7]"
+                data-cta-label="Calculate my revenue leak"
+                data-cta-location="desktop_nav_calculator"
+                className="inline-flex min-w-[180px] whitespace-nowrap items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-7 py-2.5 text-[15px] font-semibold text-white shadow-[0_12px_28px_rgba(21,128,61,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#116832]"
               >
-                Buy Audit
+                Calculate leak
               </a>
             </div>
           </div>
@@ -185,20 +179,15 @@ export function GlassmorphismNav() {
                   Call now
                 </a>
                 <a
-                  href={auditHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-analytics-event="audit_checkout_clicked"
+                  href={calculatorHref}
+                  data-analytics-event="calculator_cta_clicked"
                   data-analytics-source="site_nav"
-                  data-cta-label="Buy the Workflow Audit"
-                  data-cta-location="mobile_nav_workflow_audit"
-                  data-package-id="workflow_audit"
-                  data-package-name="Workflow Audit"
-                  data-billing-period="one_time"
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#b7d7bf] bg-white px-5 py-3.5 text-base font-semibold text-[#116832] shadow-[0_12px_28px_rgba(21,128,61,0.10)] transition-all duration-200 hover:border-[#15803D] hover:bg-[#f7fcf7]"
+                  data-cta-label="Calculate my revenue leak"
+                  data-cta-location="mobile_nav_calculator"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(21,128,61,0.16)] transition-all duration-200 hover:bg-[#116832]"
                   onClick={() => setIsOpen(false)}
                 >
-                  Buy the Workflow Audit
+                  Calculate my revenue leak
                 </a>
               </div>
             </div>
