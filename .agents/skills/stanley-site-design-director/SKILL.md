@@ -49,8 +49,8 @@ Public first step:
 - `Workflow Audit`
 
 Public offer/package names:
-- `Cashflow Control System`
-- `Customer Revenue System`
+- `Cash Flow Collection System`
+- `Repeat Revenue System`
 
 Do not invent new offer names unless the user explicitly asks.
 

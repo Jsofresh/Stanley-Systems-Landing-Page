@@ -1,0 +1,5 @@
+base=http://127.0.0.1:3137
+routes_checked=8
+unique_visual_kit_assets=23
+direct_asset_checks=23
+failures=0

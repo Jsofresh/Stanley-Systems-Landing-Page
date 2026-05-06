@@ -31,7 +31,7 @@ type Finding = {
 }
 
 const BANNED_TERMS = ["AI-powered", "AI first", "Stanley H", "Hermes", "Codex", "OpenClaw", "n8n", "QBO API", "HCP API"]
-const APPROVED_OFFERS = ["Workflow Audit", "Cashflow Control System", "Customer Revenue System"]
+const APPROVED_OFFERS = ["Workflow Audit", "Cash Flow Collection System", "Repeat Revenue System"]
 
 await main(async (args) => {
   const manifest = loadManifest(String(args.run_id || ""))
@@ -373,8 +373,8 @@ function reasonForFailure(failureClass: FailureClass, captureFailure: string): s
 
 function humanSectionName(value: string): string {
   const normalized = value.replace(/[-_.]+/g, " ").trim()
-  if (/cashflow/i.test(normalized)) return "Cashflow Control System"
-  if (/customer revenue/i.test(normalized)) return "Customer Revenue System"
+  if (/cashflow/i.test(normalized)) return "Cash Flow Collection System"
+  if (/customer revenue/i.test(normalized)) return "Repeat Revenue System"
   if (/hero/i.test(normalized)) return "Hero"
   return normalized.replace(/\b\w/g, (letter) => letter.toUpperCase())
 }

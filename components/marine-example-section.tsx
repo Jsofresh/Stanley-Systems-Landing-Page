@@ -12,10 +12,10 @@ export function MarineExampleSection() {
             </p>
 
             <a
-              href="/contact"
+              href="/pricing#workflow-audit"
               className="mt-7 inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-[#166534]"
             >
-              Get the same audit for your business
+              Start with the Workflow Audit
             </a>
 
             <div className="mt-8 rounded-[1.5rem] border border-[#e8e1d3] bg-[#fbfaf7] p-5 shadow-[0_10px_24px_rgba(15,23,42,0.04)] sm:p-6">
@@ -27,20 +27,15 @@ export function MarineExampleSection() {
                   <span>★</span>
                   <span>★</span>
                 </div>
-                <div className="rounded-full border border-[#d9e7d2] bg-[#eff9ee] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#166534] sm:text-[12px]">
-                  TRUSTED SERVICE
-                </div>
               </div>
               <p className="mt-4 text-[1.02rem] leading-7 text-slate-700 sm:text-[1.08rem]">
                 “Stanley Systems helped us save 10+ hours a week of manual data entry and cut down the kind of human errors that were slowing the business down. The workflow is cleaner, billing moves faster, and the team is not stuck retyping the same information all day.”
               </p>
-              <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Marine shop office workflow</div>
             </div>
           </div>
 
           <div className="grid gap-4 sm:auto-rows-fr sm:grid-cols-2">
             <div className="rounded-[1.5rem] border border-[#edd6d8] bg-[linear-gradient(180deg,#fff7f7_0%,#fdf0f1_100%)] p-5 shadow-[0_10px_24px_rgba(127,29,29,0.05)] sm:h-full">
-              <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#b91c1c]">Before</div>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700 sm:text-[15px]">
                 <li>Job info lived in too many places</li>
                 <li>The office re-entered the same details by hand</li>
@@ -48,7 +43,6 @@ export function MarineExampleSection() {
               </ul>
             </div>
             <div className="rounded-[1.5rem] border border-[#d9e7d2] bg-[#f3f8ef] p-5 shadow-[0_10px_24px_rgba(21,128,61,0.05)] sm:h-full">
-              <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">After</div>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700 sm:text-[15px]">
                 <li>Information moved cleanly into the next step</li>
                 <li>Staff reviewed exceptions instead of retyping everything</li>
@@ -56,7 +50,6 @@ export function MarineExampleSection() {
               </ul>
             </div>
             <div className="flex h-full flex-col rounded-[1.5rem] border border-[#e8e1d3] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:col-span-2">
-              <div className="text-base font-semibold uppercase tracking-[0.12em] text-slate-900 sm:text-[1.02rem]">Marine shop impact</div>
               <div className="mt-4 grid flex-1 gap-3 sm:grid-cols-3">
                 <div className="flex h-full flex-col rounded-2xl border border-[#e8e1d3] bg-[#fbfaf7] px-4 py-5">
                   <div className="text-xl font-semibold text-slate-900">10+ hours/week</div>

@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "statusLoaded": true,
+    "noCalculatorPill": true,
+    "followUpPathCopy": true,
+    "cashBuildCopy": true,
+    "tailoredFollowUpCopy": true,
+    "lessDefensiveNotFit": true,
+    "founderNoPillCopyPresent": true
+  },
+  "layout": {
+    "viewportWidth": 1280,
+    "scrollWidth": 1280,
+    "noHorizontalOverflow": true,
+    "calculatorTitleRightSlack": 29
+  }
+}

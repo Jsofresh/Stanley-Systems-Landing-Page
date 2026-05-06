@@ -31,7 +31,7 @@ const fieldServiceProblems = [
 const fieldServiceOutcomes = [
   "clearer handoffs between the field, office, and billing",
   "faster movement from completed work to invoice-ready work",
-  "follow-up systems that happen on time and still feel human",
+  "repeat revenue systems that happen on time and still feel human",
   "less manual chasing and less owner dependency",
 ]
 
@@ -42,7 +42,6 @@ export default function FieldServiceAutomationPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Industry page</p>
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.06]">
                 Field service automation should reduce dropped balls, not create more moving parts.
               </h1>
@@ -51,10 +50,10 @@ export default function FieldServiceAutomationPage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/contact"
+                  href="/pricing"
                   className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800"
                 >
-                  Book a meeting
+                  See pricing
                 </Link>
                 <a
                   href="tel:+16179586372"
@@ -67,7 +66,6 @@ export default function FieldServiceAutomationPage() {
             </div>
 
             <div className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Common field-service problems</p>
               <ul className="mt-5 space-y-4">
                 {fieldServiceProblems.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -81,21 +79,18 @@ export default function FieldServiceAutomationPage() {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What usually breaks</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The process depends on memory</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 When the workflow depends on people remembering the next step, the business gets fragile. Busy days erase good intentions. Admin work gets pushed late. Follow-up becomes inconsistent. Billing slows down.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What the team needs</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">A workflow that still works on a messy day</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Good field-service automation is not about adding more layers. It is about making the next step clearer and more reliable even when the schedule changes, the phone rings, and the office is juggling multiple jobs at once.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems does</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Fix the bottleneck before automating it harder</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems starts with the real handoff problem, tightens the workflow in plain English, and then automates the version the team can actually use without creating more confusion.
@@ -105,7 +100,6 @@ export default function FieldServiceAutomationPage() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What better field-service automation creates</p>
               <ul className="mt-6 space-y-4">
                 {fieldServiceOutcomes.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -117,7 +111,6 @@ export default function FieldServiceAutomationPage() {
             </section>
 
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Related Stanley pages</p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
                   ...internalPageLinks,

@@ -102,14 +102,6 @@ export default function RootLayout({
           text: "It depends on the bottleneck, but the goal is to get the first useful fix in place quickly instead of dragging things out.",
         },
       },
-      {
-        "@type": "Question",
-        name: "Do I need to stop operations while this gets set up?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. The goal is to improve how the business runs without disrupting the team.",
-        },
-      },
     ],
   }
 

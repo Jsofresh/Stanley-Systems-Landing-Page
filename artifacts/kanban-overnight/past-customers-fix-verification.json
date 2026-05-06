@@ -1,0 +1,75 @@
+{
+  "baseUrl": "http://127.0.0.1:3107/",
+  "results": [
+    {
+      "name": "desktop-1440",
+      "width": 1440,
+      "height": 1200,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-overnight/screenshots/past-customers-desktop-1440.png",
+      "errors": [],
+      "found": true,
+      "viewportWidth": 1440,
+      "pageScrollWidth": 1440,
+      "pageOverflowPx": 0,
+      "text": {
+        "clientWidth": 239,
+        "scrollWidth": 239,
+        "rectWidth": 239.17,
+        "rectLeft": 1014.81,
+        "rectRight": 1253.98,
+        "whiteSpace": "normal",
+        "fontSize": "34.4px",
+        "lineHeight": "32.68px"
+      },
+      "card": {
+        "clientWidth": 279,
+        "scrollWidth": 279,
+        "rectWidth": 281.17,
+        "overflow": "visible"
+      },
+      "grid": {
+        "clientWidth": 574,
+        "scrollWidth": 574,
+        "rectWidth": 574.34
+      },
+      "withinCard": true,
+      "textNoHorizontalScroll": true,
+      "cardNoHorizontalScroll": true
+    },
+    {
+      "name": "mobile-390",
+      "width": 390,
+      "height": 1200,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-overnight/screenshots/past-customers-mobile-390.png",
+      "errors": [],
+      "found": true,
+      "viewportWidth": 390,
+      "pageScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "text": {
+        "clientWidth": 290,
+        "scrollWidth": 290,
+        "rectWidth": 290,
+        "rectLeft": 50,
+        "rectRight": 340,
+        "whiteSpace": "normal",
+        "fontSize": "30.4px",
+        "lineHeight": "28.88px"
+      },
+      "card": {
+        "clientWidth": 322,
+        "scrollWidth": 322,
+        "rectWidth": 324,
+        "overflow": "visible"
+      },
+      "grid": {
+        "clientWidth": 324,
+        "scrollWidth": 324,
+        "rectWidth": 324
+      },
+      "withinCard": true,
+      "textNoHorizontalScroll": true,
+      "cardNoHorizontalScroll": true
+    }
+  ]
+}

@@ -6,7 +6,7 @@ customer-revenue-green-arrow
 
 ## 2. Intended website use
 
-Decorative textless right-side layer inside the Customer Revenue System visual card. It sits behind or beside the DOM-built outcome badge cluster to show revenue momentum. Codex will build all node labels, outcome labels, support cards, CTAs, connector lines, and text separately.
+Decorative textless right-side layer inside the Repeat Revenue System visual card. It sits behind or beside the DOM-built outcome badge cluster to show revenue momentum. Codex will build all node labels, outcome labels, support cards, CTAs, connector lines, and text separately.
 
 ## 3. What the image is
 

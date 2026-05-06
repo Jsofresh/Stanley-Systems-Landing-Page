@@ -1,7 +1,7 @@
 # Higgsfield Request: fidelity-cashflow-collected-cash-arrow
 
 ## What the image is
-A premium right-pointing Stanley green collected-cash arrow with soft glow and sparse floating bill accents. It is the payoff at the end of the Cashflow Control System pipeline.
+A premium right-pointing Stanley green collected-cash arrow with soft glow and sparse floating bill accents. It is the payoff at the end of the Cash Flow Collection System pipeline.
 
 ## What the image is not
 Not a flat triangle. Not a CTA button. Not a full section. Not a dashboard. Not a stock finance image. Not photoreal money.

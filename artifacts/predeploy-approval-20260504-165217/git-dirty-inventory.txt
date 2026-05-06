@@ -1,0 +1,281 @@
+# git status --short
+ M app/about/page.tsx
+ M app/blog/page.tsx
+ M app/field-service-automation/page.tsx
+ M app/how-stanley-systems-works/page.tsx
+ M app/invoicing-delay-cash-flow-calculator/calculator-client.tsx
+ M app/invoicing-delay-cash-flow-calculator/page.tsx
+ M app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx
+ M app/layout.tsx
+ M app/marine-service-automation/page.tsx
+ M app/missed-estimate-follow-up-for-service-businesses/page.tsx
+ M app/office-handoff-problems-in-field-service-businesses/page.tsx
+ M app/page.tsx
+ M app/service-business-billing-process-fix/page.tsx
+ M app/speed-up-invoicing-for-service-businesses/page.tsx
+ M app/stanley-systems-case-study/page.tsx
+ M app/terms-and-conditions/page.tsx
+ M app/who-stanley-systems-helps/page.tsx
+ M app/work-order-to-invoice-process-for-service-businesses/page.tsx
+ M components/calculator-path-section.tsx
+ M components/contact-section.tsx
+ M components/faq-section.tsx
+ M components/final-cta-section.tsx
+ M components/footer.tsx
+ M components/founder-section.tsx
+ M components/glassmorphism-nav.tsx
+ M components/how-it-works-section.tsx
+ M components/marine-example-section.tsx
+ M components/pricing-section.tsx
+ M components/problem-solution-map-section.tsx
+ M components/proof-strip-section.tsx
+ M components/reach-out-section.tsx
+ M components/testimonials-section.tsx
+ M components/visual-primitives/RevenueLoop.tsx
+ M components/visual-primitives/SectionShell.tsx
+?? app/dev/customer-revenue-system-v2/
+?? app/dev/customer-revenue-system-v3/
+?? app/dev/customer-revenue-system-v4/
+?? app/dev/visual-kit-composite-assets/
+?? app/dev/visual-kit-display-assets/
+?? app/dev/visual-kit-display-icons/
+?? app/dev/visual-kit-mini-features/
+?? app/dev/visual-kit-newest-18/
+?? app/dev/visual-kit-primitives/
+?? app/pricing/
+?? artifacts/
+?? components/best-fit-section.tsx
+?? components/pricing/
+?? components/sections/
+?? components/visual-kit/
+?? docs/
+?? lib/pricing/
+?? public/visual-kit/
+
+# git diff --name-status
+M	app/about/page.tsx
+M	app/blog/page.tsx
+M	app/field-service-automation/page.tsx
+M	app/how-stanley-systems-works/page.tsx
+M	app/invoicing-delay-cash-flow-calculator/calculator-client.tsx
+M	app/invoicing-delay-cash-flow-calculator/page.tsx
+M	app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx
+M	app/layout.tsx
+M	app/marine-service-automation/page.tsx
+M	app/missed-estimate-follow-up-for-service-businesses/page.tsx
+M	app/office-handoff-problems-in-field-service-businesses/page.tsx
+M	app/page.tsx
+M	app/service-business-billing-process-fix/page.tsx
+M	app/speed-up-invoicing-for-service-businesses/page.tsx
+M	app/stanley-systems-case-study/page.tsx
+M	app/terms-and-conditions/page.tsx
+M	app/who-stanley-systems-helps/page.tsx
+M	app/work-order-to-invoice-process-for-service-businesses/page.tsx
+M	components/calculator-path-section.tsx
+M	components/contact-section.tsx
+M	components/faq-section.tsx
+M	components/final-cta-section.tsx
+M	components/footer.tsx
+M	components/founder-section.tsx
+M	components/glassmorphism-nav.tsx
+M	components/how-it-works-section.tsx
+M	components/marine-example-section.tsx
+M	components/pricing-section.tsx
+M	components/problem-solution-map-section.tsx
+M	components/proof-strip-section.tsx
+M	components/reach-out-section.tsx
+M	components/testimonials-section.tsx
+M	components/visual-primitives/RevenueLoop.tsx
+M	components/visual-primitives/SectionShell.tsx
+
+# git ls-files --others --exclude-standard
+app/dev/customer-revenue-system-v2/page.tsx
+app/dev/customer-revenue-system-v3/page.tsx
+app/dev/customer-revenue-system-v4/page.tsx
+app/dev/visual-kit-composite-assets/page.tsx
+app/dev/visual-kit-display-assets/page.tsx
+app/dev/visual-kit-display-icons/page.tsx
+app/dev/visual-kit-mini-features/page.tsx
+app/dev/visual-kit-newest-18/page.tsx
+app/dev/visual-kit-primitives/page.tsx
+app/pricing/page.tsx
+artifacts/predeploy-approval-20260504-165217/capture-approval-screenshots.mjs
+artifacts/predeploy-approval-20260504-165217/git-dirty-inventory.txt
+artifacts/predeploy-approval-20260504-165217/home-desktop-full.png
+artifacts/predeploy-approval-20260504-165217/home-mobile-full.png
+artifacts/predeploy-approval-20260504-165217/pricing-desktop-full.png
+artifacts/predeploy-approval-20260504-165217/pricing-mobile-full.png
+artifacts/predeploy-approval-20260504-165217/screenshot-checks.json
+artifacts/predeploy-approval-20260504-165217/source-commercial-checks.json
+artifacts/predeploy-approval-20260504-165217/who-helps-mobile-full.png
+components/best-fit-section.tsx
+components/pricing/AuditCreditPanel.tsx
+components/pricing/CalculatorHandoffPanel.tsx
+components/pricing/PlanCard.tsx
+components/pricing/PricingCTA.tsx
+components/pricing/PricingFAQ.tsx
+components/pricing/PricingHero.tsx
+components/pricing/PricingPage.tsx
+components/pricing/WorkflowAuditCard.tsx
+components/pricing/index.ts
+components/sections/customer-revenue-system-v2.tsx
+components/sections/customer-revenue-system-v3.tsx
+components/sections/customer-revenue-system-v4.tsx
+components/visual-kit/composite-assets/composite-assets.tsx
+components/visual-kit/composite-assets/index.ts
+components/visual-kit/display-assets/display-assets.tsx
+components/visual-kit/display-assets/index.ts
+components/visual-kit/display-icons/dollar-circle-display.tsx
+components/visual-kit/display-icons/file-invoice-display.tsx
+components/visual-kit/display-icons/index.ts
+components/visual-kit/index.ts
+components/visual-kit/mini-features/cashflow-path-mini.tsx
+components/visual-kit/mini-features/customer-revenue-loop-mini.tsx
+components/visual-kit/mini-features/customer-revenue-step-card.tsx
+components/visual-kit/mini-features/index.ts
+components/visual-kit/mini-features/revenue-leak-category-grid-mini.tsx
+components/visual-kit/mini-features/revenue-leak-estimate-mini.tsx
+components/visual-kit/mini-features/workflow-proof-mini.tsx
+components/visual-kit/primitives/check-circle.tsx
+components/visual-kit/primitives/dollar-circle.tsx
+components/visual-kit/primitives/file-estimate.tsx
+components/visual-kit/primitives/file-invoice.tsx
+components/visual-kit/primitives/index.ts
+components/visual-kit/primitives/message-bubble.tsx
+components/visual-kit/primitives/phone-missed.tsx
+components/visual-kit/primitives/shield-check.tsx
+components/visual-kit/primitives/trend-up.tsx
+components/visual-kit/primitives/user.tsx
+components/visual-kit/primitives/users.tsx
+components/visual-kit/shared/index.ts
+components/visual-kit/shared/visual-kit-types.ts
+docs/architecture/workflow-audit-stripe-checkout-v1.md
+docs/decision-records/pricing-architecture.md
+docs/design-directions/homepage-conversion-block-acceptance-criteria.md
+docs/design-directions/pricing-design-acceptance-criteria.md
+docs/implementation-handoffs/pricing-funnel-and-component-spec.md
+docs/pricing-copy-conversion-direction.md
+lib/pricing/offers.ts
+public/visual-kit/composite-assets/benefit-check-composite.png
+public/visual-kit/composite-assets/benefit-check-composite.webp
+public/visual-kit/composite-assets/dormant-customer-list-composite.png
+public/visual-kit/composite-assets/dormant-customer-list-composite.webp
+public/visual-kit/composite-assets/flow-arrow-composite.png
+public/visual-kit/composite-assets/flow-arrow-composite.webp
+public/visual-kit/composite-assets/missed-call-recovered-card-composite.png
+public/visual-kit/composite-assets/missed-call-recovered-card-composite.webp
+public/visual-kit/composite-assets/monthly-impact-cash-composite.png
+public/visual-kit/composite-assets/monthly-impact-cash-composite.webp
+public/visual-kit/composite-assets/referral-opportunity-card-composite.png
+public/visual-kit/composite-assets/referral-opportunity-card-composite.webp
+public/visual-kit/composite-assets/review-booster-card-composite.png
+public/visual-kit/composite-assets/review-booster-card-composite.webp
+public/visual-kit/composite-assets/sms-reactivation-phone-composite.png
+public/visual-kit/composite-assets/sms-reactivation-phone-composite.webp
+public/visual-kit/display-assets/approved-handoff-display.png
+public/visual-kit/display-assets/billing-check-display.png
+public/visual-kit/display-assets/billing-schedule-display.png
+public/visual-kit/display-assets/broken-handoff-badge-display.png
+public/visual-kit/display-assets/broken-handoff-badge-display.webp
+public/visual-kit/display-assets/calendar-cashflow-trend-display.png
+public/visual-kit/display-assets/cash-approved-display.png
+public/visual-kit/display-assets/cash-collected-badge-display.png
+public/visual-kit/display-assets/cash-collected-badge-display.webp
+public/visual-kit/display-assets/cash-stack-display.png
+public/visual-kit/display-assets/check-circle-display.png
+public/visual-kit/display-assets/check-circle-display.webp
+public/visual-kit/display-assets/completed-job-badge-display.png
+public/visual-kit/display-assets/completed-job-badge-display.webp
+public/visual-kit/display-assets/completed-job-display.png
+public/visual-kit/display-assets/customer-reactivation-check-display.png
+public/visual-kit/display-assets/customer-reactivation-check-display.webp
+public/visual-kit/display-assets/delayed-invoice-display.png
+public/visual-kit/display-assets/dollar-circle-display.png
+public/visual-kit/display-assets/dollar-circle-display.webp
+public/visual-kit/display-assets/estimate-next-step-badge-display.png
+public/visual-kit/display-assets/estimate-next-step-badge-display.webp
+public/visual-kit/display-assets/file-estimate-display.png
+public/visual-kit/display-assets/file-estimate-display.webp
+public/visual-kit/display-assets/file-invoice-display.png
+public/visual-kit/display-assets/file-invoice-display.webp
+public/visual-kit/display-assets/first-fix-wrench-display.png
+public/visual-kit/display-assets/inactive-customers-display.png
+public/visual-kit/display-assets/invoice-approved-display.png
+public/visual-kit/display-assets/invoice-delay-clock-display.png
+public/visual-kit/display-assets/invoice-delay-clock-display.webp
+public/visual-kit/display-assets/invoice-edit-display.png
+public/visual-kit/display-assets/invoice-sent-display.png
+public/visual-kit/display-assets/manual-handoff-badge-display.png
+public/visual-kit/display-assets/manual-handoff-badge-display.webp
+public/visual-kit/display-assets/message-bubble-display.png
+public/visual-kit/display-assets/message-bubble-display.webp
+public/visual-kit/display-assets/money-leak-map-display.png
+public/visual-kit/display-assets/money-leak-routing-display.png
+public/visual-kit/display-assets/monthly-impact-trend-display.png
+public/visual-kit/display-assets/office-alert-badge-display.png
+public/visual-kit/display-assets/office-alert-badge-display.webp
+public/visual-kit/display-assets/office-alert-display.png
+public/visual-kit/display-assets/office-rework-display.png
+public/visual-kit/display-assets/open-balance-follow-up-badge-display.png
+public/visual-kit/display-assets/open-balance-follow-up-badge-display.webp
+public/visual-kit/display-assets/paid-job-badge-display.png
+public/visual-kit/display-assets/paid-job-badge-display.webp
+public/visual-kit/display-assets/payment-approved-display.png
+public/visual-kit/display-assets/payment-hold-display.png
+public/visual-kit/display-assets/payment-received-badge-display.png
+public/visual-kit/display-assets/payment-received-badge-display.webp
+public/visual-kit/display-assets/phone-missed-display.png
+public/visual-kit/display-assets/phone-missed-display.webp
+public/visual-kit/display-assets/phone-missed-transparent-display.png
+public/visual-kit/display-assets/referral-network-display.png
+public/visual-kit/display-assets/repeat-customer-cycle-display.png
+public/visual-kit/display-assets/repeat-customer-loop-display.png
+public/visual-kit/display-assets/repeat-customer-loop-display.webp
+public/visual-kit/display-assets/result-check-display.png
+public/visual-kit/display-assets/review-growth-display.png
+public/visual-kit/display-assets/shield-check-display.png
+public/visual-kit/display-assets/shield-check-display.webp
+public/visual-kit/display-assets/target-click-display.png
+public/visual-kit/display-assets/trend-up-display.png
+public/visual-kit/display-assets/trend-up-display.webp
+public/visual-kit/display-assets/user-display.png
+public/visual-kit/display-assets/user-display.webp
+public/visual-kit/display-assets/users-display.png
+public/visual-kit/display-assets/users-display.webp
+
+# git diff --stat
+ app/about/page.tsx                                 |  13 +-
+ app/blog/page.tsx                                  |   5 +-
+ app/field-service-automation/page.tsx              |   7 -
+ app/how-stanley-systems-works/page.tsx             |   4 -
+ .../calculator-client.tsx                          | 956 ++++++++++++++++-----
+ app/invoicing-delay-cash-flow-calculator/page.tsx  |  61 +-
+ .../paid-calculator-client.tsx                     |   3 -
+ app/layout.tsx                                     |   8 -
+ app/marine-service-automation/page.tsx             |   7 -
+ .../page.tsx                                       |   7 -
+ .../page.tsx                                       |   7 -
+ app/page.tsx                                       |   6 +-
+ app/service-business-billing-process-fix/page.tsx  |   7 -
+ .../page.tsx                                       |   8 -
+ app/stanley-systems-case-study/page.tsx            |   9 -
+ app/terms-and-conditions/page.tsx                  |   2 +-
+ app/who-stanley-systems-helps/page.tsx             | 117 +--
+ .../page.tsx                                       |   7 -
+ components/calculator-path-section.tsx             | 231 ++---
+ components/contact-section.tsx                     |   6 +-
+ components/faq-section.tsx                         |  51 +-
+ components/final-cta-section.tsx                   |   9 +-
+ components/footer.tsx                              |   1 +
+ components/founder-section.tsx                     |  68 +-
+ components/glassmorphism-nav.tsx                   |   1 +
+ components/how-it-works-section.tsx                | 131 +--
+ components/marine-example-section.tsx              |   7 -
+ components/pricing-section.tsx                     | 633 ++++++--------
+ components/problem-solution-map-section.tsx        |   4 -
+ components/proof-strip-section.tsx                 | 191 ++--
+ components/reach-out-section.tsx                   |   2 -
+ components/testimonials-section.tsx                |   5 -
+ components/visual-primitives/RevenueLoop.tsx       |   2 +-
+ components/visual-primitives/SectionShell.tsx      |   9 +-
+ 34 files changed, 1376 insertions(+), 1209 deletions(-)

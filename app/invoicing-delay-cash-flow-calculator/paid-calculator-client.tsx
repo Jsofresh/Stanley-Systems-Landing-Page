@@ -162,7 +162,6 @@ export function PaidInvoicingDelayCalculatorClient() {
     <div className="mx-auto max-w-5xl">
       <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
         <section className="rounded-[2rem] border border-[#e8dfd0] bg-white p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)] sm:p-8">
-          <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Billing drag calculator</div>
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.3rem] lg:leading-[1.06]">
             See what slow invoicing may be doing to cash flow.
           </h1>
@@ -196,7 +195,6 @@ export function PaidInvoicingDelayCalculatorClient() {
           </div>
 
           <div className="mt-8 rounded-[1.4rem] border border-[#dfe8d9] bg-[linear-gradient(180deg,#f5f9f1_0%,#ffffff_100%)] px-5 py-4">
-            <div className="text-sm font-semibold uppercase tracking-[0.12em] text-[#15803D]">Proof</div>
             <p className="mt-3 text-base leading-7 text-slate-700">
               This is the same kind of office-to-billing problem Stanley Systems helps a marine shop clean up: getting finished work into billing more cleanly so cash does not keep waiting on office cleanup.
             </p>
@@ -204,7 +202,6 @@ export function PaidInvoicingDelayCalculatorClient() {
         </section>
 
         <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-7 shadow-[0_18px_60px_rgba(15,23,42,0.05)] sm:p-8">
-          <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Your partial result</div>
           <div className="mt-6 grid gap-4">
             <div className="rounded-[1.4rem] border border-[#e8dfd0] bg-white px-5 py-4">
               <div className="text-sm text-slate-500">Monthly billed value moving through this workflow</div>

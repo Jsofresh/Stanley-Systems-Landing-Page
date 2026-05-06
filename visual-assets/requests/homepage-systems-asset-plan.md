@@ -2,8 +2,8 @@
 
 Scope: Replace the old combined Recommended System section with two full premium visual sections:
 
-1. Cashflow Control System
-2. Customer Revenue System
+1. Cash Flow Collection System
+2. Repeat Revenue System
 
 References:
 
@@ -18,7 +18,7 @@ Principle: Codex should build the actual section structure with React, Tailwind,
 
 ### 1. cashflow-green-cash-arrow
 
-- Section: Cashflow Control System
+- Section: Cash Flow Collection System
 - Purpose: premium green collected-cash arrow with a few floating bill shapes at the end of the Cashflow pipeline.
 - Why Codex cannot or should not build directly: Codex can draw a simple SVG arrow, but the reference has richer polished cash/bill motion and glow. A small textless generated layer can add depth while Codex keeps the pipeline, nodes, labels, and cards editable.
 - Needs transparency: yes, transparent PNG preferred.
@@ -30,7 +30,7 @@ Principle: Codex should build the actual section structure with React, Tailwind,
 
 ### 2. cashflow-leak-puddle
 
-- Section: Cashflow Control System
+- Section: Cash Flow Collection System
 - Purpose: small red warning leak/drip/puddle decoration used near Cashflow leak points.
 - Why Codex cannot or should not build directly: Codex can draw red warnings and dashed connectors, but a small polished leak accent can help match the target screenshot without baking labels or structure into an image.
 - Needs transparency: yes, transparent PNG preferred.
@@ -42,7 +42,7 @@ Principle: Codex should build the actual section structure with React, Tailwind,
 
 ### 3. customer-revenue-green-arrow
 
-- Section: Customer Revenue System
+- Section: Repeat Revenue System
 - Purpose: premium green right-pointing revenue arrow with a few floating bill shapes and subtle motion detail beside the outcome cluster.
 - Why Codex cannot or should not build directly: Codex can build the flywheel and outcome badges with DOM/SVG, but the large polished reference arrow and bill detail benefits from a generated textless decorative layer.
 - Needs transparency: yes, transparent PNG preferred.
@@ -54,7 +54,7 @@ Principle: Codex should build the actual section structure with React, Tailwind,
 
 ### 4. customer-revenue-flywheel-glow
 
-- Section: Customer Revenue System
+- Section: Repeat Revenue System
 - Purpose: soft circular pale-green glow/ring layer behind the DOM-built flywheel nodes.
 - Why Codex cannot or should not build directly: Codex can draw simple circles and arrows, but a subtle generated glow can add the premium dimensional feel in the target without baking structure or copy into the image.
 - Needs transparency: yes, transparent PNG preferred.

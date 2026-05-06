@@ -1,516 +1,409 @@
+import type { ComponentType } from "react"
+import { ArrowRight } from "lucide-react"
+
 import { CTALink } from "@/components/cta-link"
-import Image from "next/image"
-import type { ReactNode } from "react"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 import {
-  ArrowRight,
-  Banknote,
-  CalendarClock,
-  CheckCircle2,
-  Clock3,
-  FilePenLine,
-  PhoneCall,
-  RefreshCw,
-  ShieldCheck,
-  Star,
-  TrendingUp,
-  UserRound,
-  UsersRound,
-  type LucideIcon,
-} from "lucide-react"
+  ApprovedHandoffDisplayAsset,
+  BillingCheckDisplayAsset,
+  CashApprovedDisplayAsset,
+  CashStackDisplayAsset,
+  CompletedJobDisplayAsset,
+  DelayedInvoiceDisplayAsset,
+  InactiveCustomersDisplayAsset,
+  InvoiceSentDisplayAsset,
+  MonthlyImpactTrendDisplayAsset,
+  OfficeAlertDisplayAsset,
+  PhoneMissedTransparentDisplayAsset,
+  ReferralNetworkDisplayAsset,
+  ResultCheckDisplayAsset,
+  ReviewGrowthDisplayAsset,
+  type DisplayAssetProps,
+} from "@/components/visual-kit/display-assets"
 
-const cashflowResultCards = [
-  {
-    eyebrow: "01",
-    title: "Delayed invoices delay cash",
-    detail: "Finished work waits when billing details are not ready.",
-    icon: Clock3,
-  },
-  {
-    eyebrow: "02",
-    title: "Manual handoffs burn payroll",
-    detail: "Office time gets spent chasing what should already be clear.",
-    icon: UserRound,
-  },
-  {
-    eyebrow: "03",
-    title: "Open balances need follow-up",
-    detail: "A/R stays visible before stale invoices become normal.",
-    icon: Banknote,
-  },
-  {
-    eyebrow: "04",
-    title: "Quoted work needs a next step",
-    detail: "Open estimates get a clean path back to booked work.",
-    icon: FilePenLine,
-  },
-] as const
+type DisplayPrimitive = ComponentType<DisplayAssetProps>
 
-const revenueLoopSteps = [
-  {
-    label: "Old customers",
-    detail: "Past buyers hear from you before your shop becomes the last option.",
-    icon: RefreshCw,
-  },
-  {
-    label: "Fresh reviews",
-    detail: "Happy customers are asked the right way, at the right time.",
-    icon: Star,
-  },
-  {
-    label: "Referrals",
-    detail: "Good work becomes a simple path to the next introduction.",
-    icon: UsersRound,
-  },
-  {
-    label: "Missed calls captured",
-    detail: "Missed calls are caught, answered, and turned into real chances.",
-    icon: PhoneCall,
-  },
-  {
-    label: "More booked work",
-    detail: "More conversations, estimates, and jobs land on the calendar.",
-    icon: CalendarClock,
-  },
-] as const
+const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
+const cashflowPricingHref = "/systems/cashflow-control"
+const repeatRevenuePricingHref = "/systems/repeat-revenue"
 
-const revenueBusinessSignals = [
-  "More money in",
-  "Time back",
-  "Stronger reputation",
-  "Repeat revenue",
-] as const
+const cashflowResultCards: Array<{
+  title: string
+  detail: string
+  Icon: DisplayPrimitive
+}> = [
+  {
+    title: "Delayed invoices",
+    detail: "Finished jobs move toward billing before they sit in the office.",
+    Icon: DelayedInvoiceDisplayAsset,
+  },
+  {
+    title: "Manual handoffs",
+    detail: "The office sees what is missing before payroll hours get wasted.",
+    Icon: ApprovedHandoffDisplayAsset,
+  },
+  {
+    title: "Open balances",
+    detail: "Unpaid invoices stay visible until follow-up happens.",
+    Icon: CashStackDisplayAsset,
+  },
+]
 
-const desktopNodePositions = [
-  "left-[1%] top-[26%]",
-  "left-[49%] top-[2%] -translate-x-1/2",
-  "right-[1%] top-[30%]",
-  "right-[28%] bottom-[3%]",
-  "left-[3%] bottom-[18%]",
-] as const
+const cashflowSteps: Array<{
+  label: string
+  body: string
+  status: string
+  Icon: DisplayPrimitive
+  active?: boolean
+}> = [
+  { label: "Completed job", body: "Job is marked finished.", status: "Job done", Icon: CompletedJobDisplayAsset },
+  { label: "Billing check", body: "Missing details trigger the next step.", status: "Fix ready", Icon: BillingCheckDisplayAsset, active: true },
+  { label: "Invoice sent", body: "Invoice-ready work gets sent faster.", status: "Ready to send", Icon: InvoiceSentDisplayAsset },
+  { label: "Final bill follow-up", body: "Open balances trigger the next owner-approved step.", status: "Still visible", Icon: OfficeAlertDisplayAsset },
+  { label: "Cash collected", body: "Earned money stops sitting idle.", status: "Money moved", Icon: CashApprovedDisplayAsset },
+]
 
-const loopArrowPaths = [
-  "M250 192 C330 112 454 104 544 170",
-  "M602 228 C650 332 610 448 512 510",
-  "M452 540 C330 570 224 510 184 404",
-  "M166 342 C150 258 178 214 228 178",
-] as const
-
-const cashflowVisualAsset =
-  "/images/generated/design-loop/homepage-anti-slop-current-diffs-20260430T130608Z/cashflow-pipeline-approved.png"
+const customerRevenueModules: Array<{
+  title: string
+  body: string
+  detail: string
+  Icon: DisplayPrimitive
+}> = [
+  {
+    title: "Smart Re-Engagement",
+    body: "Bring old customers back.",
+    detail: "Past customers get a clear reason to book again.",
+    Icon: InactiveCustomersDisplayAsset,
+  },
+  {
+    title: "Review Booster",
+    body: "Turn happy customers into steady review requests.",
+    detail: "Strong reviews help the next customer trust you faster.",
+    Icon: ReviewGrowthDisplayAsset,
+  },
+  {
+    title: "Referral Engine",
+    body: "Turn customer goodwill into referral opportunities.",
+    detail: "Ask satisfied customers for referrals while the job is still fresh.",
+    Icon: ReferralNetworkDisplayAsset,
+  },
+  {
+    title: "After-Hours Intake Assistant",
+    body: "Catch missed and after-hours inquiries before good jobs slip away.",
+    detail: "Inquiries get logged and handed to the office while the main number stays unchanged.",
+    Icon: PhoneMissedTransparentDisplayAsset,
+  },
+]
 
 function SectionHeader({
-  eyebrow,
   headline,
   subheadline,
 }: {
-  eyebrow: string
   headline: string
   subheadline: string
 }) {
   return (
-    <div className="mx-auto max-w-5xl text-center">
-      <div className="text-sm font-bold tracking-[0.12em] text-[#15803D]">{eyebrow}</div>
-      <h2 className="mt-4 text-4xl font-semibold tracking-tight text-[#071421] sm:text-5xl lg:text-[3.45rem] lg:leading-[1.02]">
+    <div className="mx-auto max-w-4xl text-center">
+      <h2 className="text-[2.2rem] font-semibold leading-[1.04] text-[#071421] sm:text-[2.9rem] lg:text-[3.15rem]">
         {headline}
       </h2>
-      <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-[#4d5a68] sm:text-xl">
+      <p className="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#4d5a68] sm:text-lg">
         {subheadline}
       </p>
     </div>
   )
 }
 
-function SupportStrip({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex items-start gap-3 rounded-2xl border border-[#cfe6d1] bg-[#f4fbf5] px-4 py-4 text-left text-base font-semibold leading-7 text-[#102033] shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:items-center sm:justify-center sm:px-5 sm:text-center">
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-white shadow-[0_10px_22px_rgba(21,128,61,0.2)]">
-        <ShieldCheck className="h-5 w-5" />
-      </span>
-      <span>{children}</span>
-    </div>
-  )
-}
-
 function SystemCTACluster({
   primary,
+  primaryHref,
   location,
+  packageId,
+  packageName,
 }: {
   primary: string
+  primaryHref: string
   location: string
+  packageId: string
+  packageName: string
 }) {
   return (
-    <div className="mt-9 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
+    <div className="mt-5 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
       <CTALink
-        href="/contact"
-        kind="book_meeting"
+        href={primaryHref}
+        kind="systems"
         location={location}
-        className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#24964c] bg-[linear-gradient(180deg,#1ba24c_0%,#15803D_100%)] px-8 py-4 text-base font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.22),inset_0_1px_0_rgba(255,255,255,0.25)] transition hover:bg-[#116832] sm:px-10"
+        analyticsEvent="package_learn_more_clicked"
+        analyticsSource="homepage_systems_section"
+        packageId={packageId}
+        packageName={packageName}
+        ctaLabel={primary}
+        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#24964c] bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] sm:px-8"
       >
         {primary}
-        <ArrowRight className="ml-2 h-4 w-4" />
+        <ArrowRight className="h-4 w-4" aria-hidden="true" />
       </CTALink>
       <CTALink
-        href="/contact"
-        kind="book_meeting"
-        location={location}
-        className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#cbd8c7] bg-white px-8 py-4 text-base font-bold text-[#116832] shadow-[0_12px_28px_rgba(16,32,51,0.06)] transition hover:border-[#15803D] hover:bg-[#f7fcf7]"
+        href={auditHref}
+        kind="checkout"
+        location={`${location}_audit`}
+        analyticsEvent="audit_checkout_clicked"
+        analyticsSource="homepage_systems_section"
+        packageId="workflow_audit"
+        packageName="Workflow Audit"
+        billingPeriod="one_time"
+        ctaLabel="Buy the Workflow Audit"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#cbd8c7] bg-white px-6 py-3 text-sm font-bold text-[#116832] shadow-[0_10px_24px_rgba(16,32,51,0.05)] transition hover:border-[#15803D] hover:bg-[#f7fcf7] sm:px-8"
       >
-        Book the Workflow Audit
-        <ArrowRight className="ml-2 h-4 w-4" />
+        Buy the Workflow Audit
       </CTALink>
     </div>
   )
 }
 
-function TrustLine({ children }: { children: ReactNode }) {
+function ResultIconWell({ Icon }: { Icon: DisplayPrimitive }) {
   return (
-    <p className="mx-auto mt-5 flex max-w-5xl items-start justify-center gap-2 text-center text-sm leading-6 text-[#506070]">
-      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#15803D]" />
-      <span>{children}</span>
-    </p>
-  )
-}
-
-function CashflowPipelineVisual() {
-  return (
-    <div className="relative overflow-hidden rounded-[1.35rem] border border-[#e0d8cc] bg-[linear-gradient(180deg,#ffffff_0%,#fbfaf7_100%)] p-2.5 shadow-[0_22px_60px_rgba(16,32,51,0.1)] ring-1 ring-white/80 sm:rounded-[2rem] sm:p-7 lg:p-8">
-      <div className="pointer-events-none absolute -left-16 top-20 h-44 w-44 rounded-full bg-[#e9f8ed] blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 top-8 h-64 w-64 rounded-full bg-[#edf8ef] blur-3xl" />
-      <div className="relative overflow-hidden rounded-[1.1rem] border border-[#e8e1d6] bg-white/88 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] sm:rounded-[1.55rem] sm:p-6 lg:p-7">
-        <div className="relative min-h-[240px] overflow-hidden rounded-[0.95rem] bg-[#f7fbf7] sm:min-h-[390px] sm:rounded-[1.25rem] lg:min-h-[520px]">
-          <Image
-            src={cashflowVisualAsset}
-            alt="Cashflow Control System pipeline showing finished work moving toward collected cash."
-            fill
-            sizes="(min-width: 1024px) 1120px, 100vw"
-            className="object-contain"
-            priority={false}
-          />
-        </div>
-        <div className="mt-3 sm:mt-5">
-          <SupportStrip>
-            Each step closes a gap between finished work and collected cash.
-          </SupportStrip>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function ResultIconWell({ icon: Icon }: { icon: LucideIcon }) {
-  return (
-    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#d9eedf] bg-[#f5fbf6] text-[#15803D]">
-      <Icon className="h-5 w-5" strokeWidth={1.9} />
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#d9eedf] bg-[#f5fbf6] text-[#15803D]">
+      <Icon size={44} decorative />
     </span>
   )
 }
 
 function SystemResultCard({ card }: { card: (typeof cashflowResultCards)[number] }) {
   return (
-    <div className="min-h-[150px] rounded-3xl border border-[#e2dbcf] bg-white p-5 shadow-[0_14px_34px_rgba(16,32,51,0.06)]">
-      <div className="flex items-start justify-between gap-4">
-        <div className="text-xs font-bold tracking-[0.16em] text-[#15803D]">{card.eyebrow}</div>
-        <ResultIconWell icon={card.icon} />
+    <div className="relative overflow-hidden rounded-2xl border border-[#e2dbcf] bg-[linear-gradient(180deg,#ffffff_0%,#fbfaf7_100%)] p-3 shadow-[0_14px_30px_rgba(16,32,51,0.055)]">
+      <div className="flex items-start gap-3">
+        <ResultIconWell Icon={card.Icon} />
+        <div>
+          <h3 className="text-base font-bold leading-5 text-[#102033]">{card.title}</h3>
+          <p className="mt-1 text-sm leading-5 text-[#506070]">{card.detail}</p>
+        </div>
       </div>
-      <h3 className="mt-4 text-base font-bold leading-6 text-[#102033]">{card.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-[#506070]">{card.detail}</p>
+    </div>
+  )
+}
+
+function CashflowPathCard() {
+  return (
+    <div className="w-full min-w-0 overflow-hidden rounded-[1.35rem] border border-[#d7e5dd] bg-[radial-gradient(circle_at_50%_0%,#effaf2_0%,#ffffff_46%,#f8fbfc_100%)] p-4 shadow-[0_28px_70px_rgba(16,32,51,0.10)] sm:p-5">
+      <div className="flex min-w-0 flex-col gap-2 border-b border-[#dfe7ee] pb-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h3 className="text-xl font-semibold leading-tight text-[#102033]">Cashflow Control System</h3>
+          <p className="mt-1 max-w-2xl text-sm leading-5 text-[#5b6875]">
+Stanley Systems builds the path from completed job to invoice, final bill follow-up, and collected cash inside the tools your team already uses.
+          </p>
+        </div>
+        <div className="max-w-full rounded-2xl border border-[rgba(197,48,48,.22)] bg-[#fff5f5] px-3 py-1 text-xs font-bold leading-snug text-[#B42318] shadow-[0_10px_22px_rgba(21,128,61,0.08)] sm:rounded-full">
+          <span className="sm:hidden">Fix path ready.</span>
+          <span className="hidden sm:inline">Billing stall found. Fix path ready.</span>
+        </div>
+      </div>
+
+      <div className="relative mt-4 grid min-w-0 gap-3 lg:grid-cols-5">
+        <div className="pointer-events-none absolute left-[10%] right-[10%] top-1/2 hidden h-2 -translate-y-1/2 rounded-full bg-[#e6f5ea] lg:block" aria-hidden="true" />
+        {cashflowSteps.map((step, index) => {
+          const Icon = step.Icon
+          const isActive = "active" in step && step.active
+          return (
+            <div key={step.label} className="relative min-w-0">
+              <div className={`relative flex min-h-[4.5rem] flex-col items-start gap-2 rounded-2xl border p-3 sm:flex-row sm:items-center sm:gap-3 lg:min-h-[5.65rem] lg:flex-col lg:items-start lg:justify-between ${isActive ? "border-[rgba(197,48,48,.25)] bg-[linear-gradient(180deg,#FFF1F1_0%,#ffffff_100%)] shadow-[0_18px_42px_rgba(197,48,48,0.12)] ring-1 ring-[rgba(197,48,48,.12)]" : "border-[#e8e1d6] bg-white/90 shadow-[0_10px_24px_rgba(16,32,51,0.045)]"}`}>
+                <div className="flex w-full items-center justify-between gap-2 sm:w-auto lg:w-full">
+                  <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl lg:h-12 lg:w-12 ${isActive ? "bg-white ring-1 ring-[rgba(197,48,48,.25)] shadow-[0_12px_22px_rgba(197,48,48,0.10)]" : "bg-[#f2f7f0] ring-1 ring-[#d9eedf]"}`}>
+                    <Icon size={42} decorative />
+                  </span>
+                  <span className={`hidden rounded-full border px-2 py-1 text-[0.65rem] font-bold leading-none lg:inline-flex ${isActive ? "border-[rgba(197,48,48,.25)] bg-[#FFF1F1] text-[#C53030]" : step.label === "Cash collected" ? "border-[#cfe8d5] bg-[#f4fbf5] text-[#116832]" : "border-[#e8e1d6] bg-[#fbfaf7] text-[#5b6875]"}`}>
+                    {step.status}
+                  </span>
+                </div>
+                <div className="min-w-0 flex-1 self-stretch sm:self-auto lg:mt-2 lg:self-stretch">
+                  <div className="text-sm font-bold leading-tight text-[#102033]">{step.label}</div>
+                  <p className="mt-0.5 text-xs font-semibold leading-4 text-[#5b6875]">{step.body}</p>
+                  {isActive ? (
+                    <div className="mt-1.5 inline-flex max-w-full whitespace-normal rounded-2xl border border-[rgba(197,48,48,.22)] bg-[#fff5f5] px-2.5 py-1 text-[0.68rem] font-bold leading-tight text-[#B42318]">
+                      <span className="sm:hidden">Next step sent.</span>
+                      <span className="hidden sm:inline">Next step sent before the invoice stalls.</span>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              {index < cashflowSteps.length - 1 ? (
+                <div className="pointer-events-none absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 lg:block" aria-hidden="true">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#cfe8d5] bg-white text-[#15803D] shadow-[0_8px_18px_rgba(16,32,51,0.06)]">
+                    <ArrowRight className="h-4 w-4" strokeWidth={2.1} />
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="mt-3 grid gap-3 rounded-2xl border border-[#bfe4c8] bg-[#eef9f2] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] sm:grid-cols-[auto_1fr] sm:items-center">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white ring-1 ring-[#bfe4c8] shadow-[0_14px_28px_rgba(21,128,61,0.12)]">
+          <ResultCheckDisplayAsset size={46} decorative />
+        </span>
+        <p className="text-sm font-extrabold leading-5 text-[#102033] sm:text-base">
+          Result: Stanley Systems automates the invoice-to-final-bill path, the office sees the next step, and finished work turns into collected cash faster.
+        </p>
+      </div>
     </div>
   )
 }
 
 function CashflowControlSystemSection() {
   return (
-    <div>
-      <SectionHeader
-        eyebrow="Cashflow Control System"
-        headline="Turn finished work into collected cash faster."
-        subheadline="Completed jobs should not sit in the office waiting on billing details, invoice cleanup, or follow-up."
-      />
-      <div className="mt-8 sm:mt-10">
-        <CashflowPipelineVisual />
+    <div data-section="cashflow-control-system">
+      <div className="mx-auto max-w-6xl text-center">
+        <h2 className="mx-auto max-w-6xl text-[2.05rem] font-semibold leading-[1.02] text-[#071421] sm:text-[2.65rem] lg:text-[2.9rem] xl:text-[3.1rem]">
+          Turn finished work into collected cash <span className="inline-block text-[1.16em] italic tracking-[-0.05em] text-[#102033]">faster.</span>
+        </h2>
+        <p className="mx-auto mt-3 max-w-4xl text-base font-semibold leading-7 text-[#4d5a68] sm:text-lg">
+          Stanley Systems builds the billing path from completed job to invoice-ready check, final bill follow-up, and collected cash inside the tools your team already uses.
+        </p>
       </div>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-7">
+        <CashflowPathCard />
+      </div>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {cashflowResultCards.map((card) => (
           <SystemResultCard key={card.title} card={card} />
         ))}
       </div>
-      <SystemCTACluster primary="See where cash gets stuck" location="cashflow_system_section" />
-      <TrustLine>
-        Built for service businesses using tools like QuickBooks, Housecall Pro, Jobber, ServiceTitan, Wallace, and similar systems.
-      </TrustLine>
+      <SystemCTACluster primary="View Cashflow Control" primaryHref={cashflowPricingHref} location="cashflow_control_system_section" packageId="cashflow_control_monthly" packageName="Cashflow Control System" />
     </div>
   )
 }
 
-function RevenueNode({
-  step,
-  index,
-}: {
-  step: (typeof revenueLoopSteps)[number]
-  index: number
-}) {
-  const Icon = step.icon
-
+function FollowUpImpactCard() {
   return (
-    <div
-      className={`absolute ${desktopNodePositions[index]} z-20 flex w-[168px] flex-col rounded-[1.05rem] border border-[#dcefe2] bg-white px-4 py-4 text-left shadow-[0_18px_42px_rgba(16,32,51,0.08)]`}
-    >
-      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f5fbf6] text-[#15803D] shadow-[inset_0_1px_0_rgba(255,255,255,0.95)]">
-        <Icon className="h-5 w-5" strokeWidth={1.9} />
-      </div>
-      <p className="mt-3 text-[0.95rem] font-bold leading-5 text-[#102033]">{step.label}</p>
-      <p className="mt-1 text-xs leading-5 text-[#5b6875]">{step.detail}</p>
-    </div>
-  )
-}
-
-function CustomerRevenueHub() {
-  return (
-    <div
-      className="absolute left-1/2 top-1/2 z-30 flex min-h-[190px] w-[236px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[8px] border-white bg-[radial-gradient(circle_at_30%_20%,#1fa454_0%,#0d7137_48%,#064823_100%)] text-center text-white shadow-[0_24px_60px_rgba(16,32,51,0.14),inset_0_1px_0_rgba(255,255,255,0.22)]"
-    >
-      <div className="px-6">
-        <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/14 text-white ring-1 ring-white/25">
-          <TrendingUp className="h-6 w-6" strokeWidth={1.9} />
-        </span>
-        <p className="mt-3 text-xs font-extrabold uppercase leading-4 tracking-[0.12em] text-white/85">
-          More booked work
-        </p>
-        <p className="mt-1 text-3xl font-bold leading-[1.02] text-white">
-          Repeat revenue
-        </p>
-        <p className="mt-2 text-xs font-semibold leading-5 text-white/82">
-          Higher profit. Less owner rescue.
-        </p>
-      </div>
-    </div>
-  )
-}
-
-function RevenueLoopArrows() {
-  return (
-    <svg
-      className="pointer-events-none absolute inset-0 z-10 h-full w-full"
-      viewBox="0 0 760 560"
-      fill="none"
-      aria-hidden="true"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <marker id="revenue-loop-arrow" markerHeight="10" markerWidth="10" orient="auto" refX="9" refY="5">
-          <path d="M0 0L10 5L0 10Z" fill="#15803D" />
-        </marker>
-      </defs>
-      {loopArrowPaths.map((path, index) => (
-        <path
-          key={path}
-          d={path}
-          stroke={index % 2 === 0 ? "#15803D" : "#41a65f"}
-          strokeWidth="5"
-          strokeLinecap="round"
-          markerEnd="url(#revenue-loop-arrow)"
-        />
-      ))}
-      <path d="M382 170V235" stroke="#b6c2cd" strokeLinecap="round" strokeWidth="4" />
-      <path d="M552 312L472 330" stroke="#b6c2cd" strokeLinecap="round" strokeWidth="4" />
-      <path d="M277 392L344 356" stroke="#b6c2cd" strokeLinecap="round" strokeWidth="4" />
-      <path d="M322 418L370 382" stroke="#b6c2cd" strokeLinecap="round" strokeWidth="4" />
-    </svg>
-  )
-}
-
-function CustomerRevenueDesktopLoop() {
-  return (
-    <div className="hidden lg:block">
-      <div className="relative min-h-[430px] rounded-[2rem] bg-[linear-gradient(135deg,#f7fbf5_0%,#ffffff_55%,#f2f8ef_100%)] px-8 py-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)]">
-        <svg className="pointer-events-none absolute inset-x-10 top-24 h-44 w-[calc(100%-5rem)]" viewBox="0 0 900 180" fill="none" aria-hidden="true" preserveAspectRatio="none">
-          <defs>
-            <marker id="customer-revenue-path-arrow" markerHeight="9" markerWidth="9" orient="auto" refX="8" refY="4.5">
-              <path d="M0 0L9 4.5L0 9Z" fill="#15803D" />
-            </marker>
-          </defs>
-          <path d="M40 126 C190 34 330 28 450 92 C570 156 704 156 852 62" stroke="#bddfc5" strokeWidth="14" strokeLinecap="round" opacity="0.55" />
-          <path d="M40 126 C190 34 330 28 450 92 C570 156 704 156 852 62" stroke="#15803D" strokeWidth="5" strokeLinecap="round" markerEnd="url(#customer-revenue-path-arrow)" />
-        </svg>
-
-        <div className="relative z-10 grid grid-cols-5 gap-4">
-          {revenueLoopSteps.map((step, index) => {
-            const Icon = step.icon
-            const offset = ["mt-24", "mt-3", "mt-16", "mt-24", "mt-6"][index]
-
-            return (
-              <div key={step.label} className={`${offset} text-center`}>
-                <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-[#15803D] shadow-[0_18px_36px_rgba(16,32,51,0.12)] ring-1 ring-[#cfe8d5]">
-                  <Icon className="h-7 w-7" strokeWidth={1.9} />
-                </span>
-                <p className="mt-4 text-base font-bold leading-5 text-[#102033]">{step.label}</p>
-                <p className="mx-auto mt-2 max-w-[150px] text-xs leading-5 text-[#5b6875]">{step.detail}</p>
-              </div>
-            )
-          })}
-        </div>
-
-        <div className="relative z-20 mx-auto mt-5 flex max-w-2xl items-center justify-between rounded-full bg-[#0b5a33] px-6 py-4 text-white shadow-[0_22px_50px_rgba(11,90,51,0.18)]">
-          <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/78">Outcome</p>
-            <p className="mt-1 text-2xl font-bold leading-none">Repeat revenue without owner rescue</p>
+    <div className="relative overflow-hidden rounded-[1.35rem] border border-[#bfe4c8] bg-[linear-gradient(135deg,#ffffff_0%,#f2fbf4_58%,#e6f7eb_100%)] p-4 shadow-[0_24px_65px_rgba(16,32,51,0.1)] sm:p-5">
+      <div className="absolute right-6 top-5 hidden h-20 w-52 rounded-full bg-white/55 blur-2xl sm:block" aria-hidden="true" />
+      <div className="relative grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
+        <div className="min-w-0">
+          <div className="flex items-center gap-3">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white ring-1 ring-[#bfe4c8] shadow-[0_18px_34px_rgba(21,128,61,0.14)]">
+              <MonthlyImpactTrendDisplayAsset size={54} decorative />
+            </span>
+            <p className="text-lg font-extrabold leading-tight text-[#102033] sm:text-xl">Repeat customers cost about 1/5 what new customers cost to win.</p>
           </div>
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/14 ring-1 ring-white/25">
-            <TrendingUp className="h-7 w-7" strokeWidth={1.9} />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function CustomerRevenueMobileSequence() {
-  return (
-    <div className="lg:hidden">
-      <div className="rounded-[1.4rem] bg-[radial-gradient(circle_at_30%_20%,#1fa454_0%,#0d7137_50%,#064823_100%)] p-6 text-center text-white shadow-[0_16px_38px_rgba(16,32,51,0.12)]">
-        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white/14 text-white ring-1 ring-white/25">
-          <TrendingUp className="h-6 w-6" strokeWidth={1.9} />
-        </span>
-        <p className="mt-4 text-xs font-extrabold uppercase leading-4 tracking-[0.12em] text-white/85">Outcome</p>
-        <p className="mt-1 text-3xl font-bold leading-tight text-white">Repeat revenue</p>
-        <p className="mt-2 text-sm leading-6 text-white/82">Old customers, reviews, referrals, and captured calls feed more booked work.</p>
-      </div>
-      <div className="relative mt-6 space-y-5 pl-5">
-        <div className="absolute bottom-10 left-[2.15rem] top-8 w-[3px] rounded-full bg-[#bddfc5]" aria-hidden="true" />
-        {revenueLoopSteps.map((step, index) => {
-          const Icon = step.icon
-
-          return (
-            <div key={step.label} className="relative flex gap-4">
-              <span className="z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-[#15803D] shadow-[0_14px_30px_rgba(16,32,51,0.1)] ring-1 ring-[#cfe8d5]">
-                <Icon className="h-6 w-6" strokeWidth={1.9} />
-              </span>
-              <span className="pt-1">
-                <span className="block text-[0.68rem] font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Step 0{index + 1}</span>
-                <span className="mt-1 block text-base font-bold leading-5 text-[#102033]">{step.label}</span>
-                <span className="mt-1 block text-sm leading-6 text-[#5b6875]">{step.detail}</span>
-              </span>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-
-function CustomerRevenueOutcomePanel() {
-  return (
-    <div className="rounded-[1.45rem] border border-[#dfe9dc] bg-[#fbfefb] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)] sm:p-5">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="flex items-start gap-3 border-b border-[#dfe9dc] pb-4 sm:border-b-0 sm:border-r sm:pb-0 sm:pr-4">
-          <Banknote className="mt-1 h-6 w-6 shrink-0 text-[#0b6f35]" strokeWidth={1.9} />
-          <span>
-            <span className="block text-sm font-bold leading-5 text-[#102033]">More money in</span>
-            <span className="mt-1 block text-xs leading-5 text-[#5b6875]">Past customers feed repeat jobs and new revenue.</span>
-          </span>
-        </div>
-        <div className="flex items-start gap-3 border-b border-[#dfe9dc] pb-4 sm:border-b-0 lg:border-r lg:pb-0 lg:pr-4">
-          <Clock3 className="mt-1 h-6 w-6 shrink-0 text-[#0b6f35]" strokeWidth={1.9} />
-          <span>
-            <span className="block text-sm font-bold leading-5 text-[#102033]">Time back</span>
-            <span className="mt-1 block text-xs leading-5 text-[#5b6875]">Clear follow-up means fewer dropped balls and less owner rescue.</span>
-          </span>
-        </div>
-        <div className="flex items-start gap-3 border-b border-[#dfe9dc] pb-4 sm:border-b-0 sm:border-r sm:pb-0 sm:pr-4">
-          <ShieldCheck className="mt-1 h-6 w-6 shrink-0 text-[#0b6f35]" strokeWidth={1.9} />
-          <span>
-            <span className="block text-sm font-bold leading-5 text-[#102033]">Stronger reputation</span>
-            <span className="mt-1 block text-xs leading-5 text-[#5b6875]">Fresh reviews and referrals build trust before the first call.</span>
-          </span>
-        </div>
-        <div className="flex items-start gap-3">
-          <TrendingUp className="mt-1 h-6 w-6 shrink-0 text-[#0b6f35]" strokeWidth={1.9} />
-          <span>
-            <span className="block text-sm font-bold leading-5 text-[#102033]">Repeat revenue</span>
-            <span className="mt-1 block text-xs leading-5 text-[#5b6875]">More calls, conversations, and booked work you can count on.</span>
-          </span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function CustomerRevenueProcessVisual() {
-  return (
-    <div className="relative overflow-hidden rounded-[1.7rem] bg-[linear-gradient(180deg,#ffffff_0%,#f8fbf7_100%)] p-4 shadow-[0_24px_70px_rgba(16,32,51,0.1)] sm:rounded-[2rem] sm:p-6 lg:p-7">
-      <div className="pointer-events-none absolute -right-24 top-12 h-72 w-72 rounded-full bg-[#e9f8ed] blur-3xl" />
-      <div className="pointer-events-none absolute -left-20 bottom-10 h-56 w-56 rounded-full bg-[#f2f7ef] blur-3xl" />
-      <div className="relative rounded-[1.35rem] bg-[#f4faf5] p-3 sm:p-5 lg:p-6">
-        <CustomerRevenueDesktopLoop />
-        <CustomerRevenueMobileSequence />
-      </div>
-      <div className="relative mt-5">
-        <CustomerRevenueOutcomePanel />
-      </div>
-    </div>
-  )
-}
-
-function CustomerRevenueCTACluster() {
-  return (
-    <div className="mt-8 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
-      <CTALink
-        href="/contact"
-        kind="book_meeting"
-        location="customer_revenue_system_section"
-        className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#24964c] bg-[linear-gradient(180deg,#1ba24c_0%,#15803D_100%)] px-8 py-4 text-base font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.22),inset_0_1px_0_rgba(255,255,255,0.25)] transition hover:bg-[#116832] sm:px-10"
-      >
-        Book the Workflow Audit
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </CTALink>
-      <CTALink
-        href="/contact"
-        kind="systems"
-        location="customer_revenue_system_section"
-        className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#cbd8c7] bg-white px-8 py-4 text-base font-bold text-[#102033] shadow-[0_12px_28px_rgba(16,32,51,0.06)] transition hover:border-[#15803D] hover:bg-[#f7fcf7]"
-      >
-        See how the system works
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </CTALink>
-    </div>
-  )
-}
-
-function CustomerRevenueSystemSection() {
-  return (
-    <div id="customer-revenue-system" className="scroll-mt-40 px-3 sm:scroll-mt-44 sm:px-4 lg:scroll-mt-48 lg:px-5">
-      <div className="mx-auto max-w-5xl text-center">
-        <div className="text-sm font-bold uppercase tracking-[0.28em] text-[#0b5a33]">Customer Revenue System</div>
-        <div className="mx-auto mt-4 h-1 w-24 rounded-full bg-[#0b5a33]" />
-        <h2 className="mx-auto mt-7 max-w-5xl text-4xl font-semibold text-[#071421] sm:text-5xl lg:text-[4.7rem] lg:leading-[0.96]">
-          Get more money from the customers you already earned.
-        </h2>
-        <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#344455] sm:text-xl">
-          Old customers, happy customers, reviews, referrals, and missed calls should feed the next job instead of getting lost after the first sale.
-        </p>
-      </div>
-      <div className="mx-auto mt-8 max-w-6xl lg:mt-10">
-        <CustomerRevenueProcessVisual />
-      </div>
-      <CustomerRevenueCTACluster />
-      <div className="mt-7 flex flex-col gap-5 border-t border-[#e5ded3] pt-7 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-start gap-4">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0b5a33] text-white">
-            <ShieldCheck className="h-5 w-5" strokeWidth={1.9} />
-          </span>
-          <p className="max-w-xl text-sm font-semibold leading-6 text-[#102033] sm:text-base">
-            Practical systems for service businesses that turn good jobs, good customers, and missed calls into more booked work.
+          <p className="mt-3 text-sm font-semibold leading-6 text-[#526273] sm:text-base">
+            Before buying more leads, Stanley Systems checks the customer records the business already paid to earn.
           </p>
         </div>
-        <div className="grid gap-2 text-xs font-semibold leading-5 text-[#506070] sm:grid-cols-2 lg:w-[360px]">
-          {revenueBusinessSignals.map((signal) => (
-            <span key={signal} className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-[#15803D]" />
-              {signal}
-            </span>
-          ))}
+        <div className="grid min-w-0 gap-3 sm:grid-cols-2">
+          <div className="flex min-h-[9.25rem] min-w-0 flex-col justify-between rounded-2xl border border-[#cfe8d5] bg-white px-4 py-4 shadow-[0_12px_26px_rgba(16,32,51,0.055)] sm:px-5 sm:py-5">
+            <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#607080]">Common in established shops</p>
+            <p className="mt-3 whitespace-nowrap text-[2.15rem] font-black leading-none tracking-[-0.04em] text-[#15803D] sm:text-[2.45rem] lg:text-[2.35rem] xl:text-[2.55rem]">500-3,000</p>
+            <p className="mt-3 text-sm font-extrabold leading-5 text-[#102033]">saved customer records worth checking</p>
+          </div>
+          <div className="flex min-h-[9.25rem] min-w-0 flex-col justify-between overflow-hidden rounded-2xl border border-[#cfe8d5] bg-white px-4 py-4 shadow-[0_12px_26px_rgba(16,32,51,0.055)] sm:px-5 sm:py-5">
+            <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#607080]">Customer list opportunity</p>
+            <p className="mt-3 -ml-1 max-w-full whitespace-nowrap text-[1.55rem] font-black leading-[0.95] tracking-[-0.07em] text-[#15803D] min-[380px]:text-[1.7rem] sm:text-[1.85rem] lg:text-[1.72rem] xl:text-[1.9rem]">$50K-$300K</p>
+            <p className="mt-3 text-sm font-extrabold leading-5 text-[#102033]">re-engageable revenue worth checking</p>
+          </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+function FollowUpModuleCard({
+  module,
+  index,
+}: {
+  module: (typeof customerRevenueModules)[number]
+  index: number
+}) {
+  const Icon = module.Icon
+
+  return (
+    <div className="relative flex h-full flex-col rounded-2xl border border-[#dfe9dc] bg-[linear-gradient(180deg,#ffffff_0%,#fbfaf7_100%)] p-3.5 shadow-[0_14px_34px_rgba(16,32,51,0.055)] sm:p-4">
+      <div className="flex items-center justify-between gap-3">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-xs font-black text-white shadow-[0_10px_22px_rgba(21,128,61,0.18)]">
+          {index + 1}
+        </span>
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f2f8f0] ring-1 ring-[#d9eedf]">
+          <Icon size={46} decorative />
+        </span>
+      </div>
+      <div className="mt-3 min-w-0">
+        <h3 className="text-base font-extrabold leading-5 text-[#102033]">{module.title}</h3>
+        <p className="mt-1.5 text-sm font-bold leading-5 text-[#116832]">{module.body}</p>
+        <p className="mt-1 text-sm leading-5 text-[#526273]">{module.detail}</p>
+      </div>
+    </div>
+  )
+}
+
+function FollowUpModuleGrid() {
+  return (
+    <div className="relative">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {customerRevenueModules.map((module, index) => (
+          <div key={module.title} className="relative">
+            <FollowUpModuleCard module={module} index={index} />
+            {index < customerRevenueModules.length - 1 ? (
+              <>
+                <div className="flex justify-center py-0.5 lg:hidden" aria-hidden="true">
+                  <ArrowRight className="h-4 w-4 rotate-90 text-[#15803D]" strokeWidth={2.1} />
+                </div>
+                <div className="pointer-events-none absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 lg:block" aria-hidden="true">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#cfe8d5] bg-white text-[#15803D] shadow-[0_8px_18px_rgba(16,32,51,0.06)]">
+                    <ArrowRight className="h-4 w-4" strokeWidth={2.1} />
+                  </span>
+                </div>
+              </>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function FollowUpCTACluster() {
+  return (
+    <SystemCTACluster
+      primary="View Repeat Revenue"
+      primaryHref={repeatRevenuePricingHref}
+      location="repeat_revenue_system_section"
+      packageId="repeat_revenue_monthly"
+      packageName="Repeat Revenue System"
+    />
+  )
+}
+
+function RepeatRevenueSystemSection() {
+  return (
+    <div id="repeat-revenue-system" data-section="repeat-revenue-system" className="scroll-mt-40">
+      <div className="mx-auto max-w-4xl text-center">
+        <h2 className="mx-auto max-w-5xl text-[2.2rem] font-semibold leading-[1.04] text-[#071421] sm:text-[2.9rem] lg:text-[3.15rem]">
+          Get more money from the customers you already earned.
+        </h2>
+        <p className="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#4d5a68] sm:text-lg">
+Old customers are not cold leads. Stanley Systems builds a repeat revenue system for your business, tailored to the way your office books jobs, asks for reviews, captures referrals, and handles missed calls.
+        </p>
+      </div>
+
+      <div className="mx-auto mt-5 max-w-6xl">
+        <FollowUpImpactCard />
+      </div>
+
+      <div className="mx-auto mt-4 max-w-7xl">
+        <p className="mb-3 text-center text-sm font-bold leading-5 text-[#116832]">Repeat Revenue System</p>
+        <FollowUpModuleGrid />
+        <p className="mx-auto mt-3 max-w-3xl rounded-2xl border border-[#cfe8d5] bg-[#effaf2] px-4 py-3 text-center text-sm font-bold leading-5 text-[#102033]">
+          Your saved customer list is a revenue asset. Stanley Systems builds the follow-up path around the way your business runs, then turns it into repeat jobs, review requests, referrals, and captured calls.
+        </p>
+      </div>
+
+      <FollowUpCTACluster />
+      <p className="mx-auto mt-3 flex max-w-5xl items-center justify-center gap-2 text-center text-sm font-semibold leading-6 text-[#607080]">
+        <ResultCheckDisplayAsset size={26} decorative />
+        <span>The Workflow Audit decides scope before any build path is recommended.</span>
+      </p>
     </div>
   )
 }
@@ -522,14 +415,14 @@ export function PricingSection() {
       data-audit-page="/"
       data-audit-section="home.systems"
       data-audit-priority="5"
-      data-audit-offer="Cashflow Control System, Customer Revenue System"
+      data-audit-offer="Cashflow Control System, Repeat Revenue System"
       data-audit-purpose="Explain the two approved Stanley Systems implementation systems without inventing offers."
-      className="relative z-10 scroll-mt-28 px-4 py-16 sm:scroll-mt-32 sm:py-20 lg:scroll-mt-36 lg:py-24"
+      className="relative z-10 scroll-mt-28 px-4 py-14 sm:scroll-mt-32 sm:py-16 lg:scroll-mt-36 lg:py-[4.5rem]"
     >
       <div className="mx-auto max-w-7xl">
         <CashflowControlSystemSection />
-        <div className="mt-20 border-t border-[#e5ded3] pt-16 sm:mt-24 sm:pt-20 lg:mt-28 lg:pt-24">
-          <CustomerRevenueSystemSection />
+        <div className="mt-16 border-t border-[#e5ded3] pt-14 sm:mt-[4.5rem] sm:pt-16 lg:mt-20">
+          <RepeatRevenueSystemSection />
         </div>
       </div>
     </section>

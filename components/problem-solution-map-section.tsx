@@ -8,14 +8,14 @@ const pairs = [
   {
     painTitle: "Missed follow-up",
     painPoints: [
-      "10–20% of good estimates can go cold when nobody follows up fast",
+      "10 to 20% of good estimates can go cold when nobody follows up fast",
       "Quotes can sit for days without a clear next step",
       "Office staff lose hours each week chasing people back down",
     ],
     fixTitle: "Automated follow-up",
     returnPoints: [
       "Follow-up happens almost instantly instead of sitting in the queue",
-      "Most estimate follow-up runs automatically and on time (typically ~80–95%)",
+      "Most estimate follow-up runs automatically and on time (typically ~80 to 95%)",
       "More good leads stay warm long enough to turn into booked work",
     ],
     icon: MessagesSquare,
@@ -23,14 +23,14 @@ const pairs = [
   {
     painTitle: "Slow invoicing",
     painPoints: [
-      "Completed work can sit 3–7 extra days before billing gets it",
+      "Completed work can sit 3 to 7 extra days before billing gets it",
       "Cash can come in a week or more later than it should",
       "The office keeps losing time chasing missing job details",
     ],
     fixTitle: "Faster billing handoff",
     returnPoints: [
       "Job details move into billing almost instantly after the work is done",
-      "The billing handoff runs automatically instead of by hand (typically ~80–95%)",
+      "The billing handoff runs automatically instead of by hand (typically ~80 to 95%)",
       "Invoices go out same day or next day instead of sitting in backlog",
     ],
     icon: FileText,
@@ -38,14 +38,14 @@ const pairs = [
   {
     painTitle: "Office overload",
     painPoints: [
-      "Teams can lose 5–10+ hours a week retyping and checking",
+      "Teams can lose 5 to 10+ hours a week retyping and checking",
       "The same customer details keep living in too many places",
       "Small mistakes keep turning into callbacks, fixes, and extra admin",
     ],
     fixTitle: "Cleaner office workflow",
     returnPoints: [
       "Repeat admin gets handled automatically instead of manually",
-      "Customer details move through the workflow with ~80–95% less retyping",
+      "Customer details move through the workflow with ~80 to 95% less retyping",
       "The office gets cleaner handoffs and far fewer avoidable mistakes",
     ],
     icon: ArrowLeftRight,
@@ -89,10 +89,8 @@ export function ProblemSolutionMapSection() {
         <div className="mt-6 grid gap-3 lg:gap-4">
           <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4">
             <div className="flex items-center justify-center rounded-[1.25rem] border border-[#f1d4d8] bg-[linear-gradient(180deg,#fff8f8_0%,#fff2f3_100%)] px-5 py-3 text-center shadow-[0_14px_32px_rgba(127,29,29,0.05)]">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#9f1239]">What is breaking down</div>
             </div>
             <div className="flex items-center justify-center rounded-[1.25rem] border border-[#d7e7d5] bg-[linear-gradient(180deg,#f9fcf7_0%,#eff7ea_100%)] px-5 py-3 text-center shadow-[0_14px_32px_rgba(21,128,61,0.05)]">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#166534]">What Stanley Systems fixes</div>
             </div>
           </div>
 
@@ -103,7 +101,6 @@ export function ProblemSolutionMapSection() {
               <div key={pair.painTitle} className="grid items-stretch gap-3 lg:grid-cols-2 lg:gap-4">
                 <SlideIn direction="left" delay={index * 90} className="h-full">
                   <div className="flex h-full flex-col rounded-[1.35rem] border border-[#efd9dc] bg-[linear-gradient(180deg,#fffafa_0%,#fff4f5_100%)] p-4 shadow-sm sm:p-[1.05rem]">
-                    <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9f1239] lg:hidden">What is breaking down</div>
                     <div className="flex flex-col gap-3">
                       <div className="flex items-start gap-3">
                         <span className="relative mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.8rem] border border-[#f2d7dc] bg-white text-[#9f1239] shadow-sm">
@@ -133,7 +130,6 @@ export function ProblemSolutionMapSection() {
 
                 <SlideIn direction="right" delay={index * 90} className="h-full">
                   <div className="flex h-full flex-col rounded-[1.35rem] border border-[#dfead9] bg-[linear-gradient(180deg,#ffffff_0%,#f7fbf4_100%)] p-4 shadow-sm sm:p-[1.05rem]">
-                    <div className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-[#166534] lg:hidden">What Stanley Systems fixes</div>
                     <div className="flex flex-col gap-3">
                       <div className="flex items-start gap-3">
                         <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.8rem] border border-[#d7e7d5] bg-white text-[#15803d] shadow-sm">

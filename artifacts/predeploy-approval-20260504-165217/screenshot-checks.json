@@ -1,0 +1,82 @@
+[
+  {
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/predeploy-approval-20260504-165217/home-desktop-full.png",
+    "url": "/",
+    "status": 200,
+    "viewport": "1440x1600",
+    "noHorizontalOverflow": true,
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "checks": {
+      "applicationErrorAbsent": true,
+      "workflowAuditPresent": true,
+      "pricingCreditPresent": false,
+      "bestFitPresent": true,
+      "finalCtaPresent": true,
+      "founderPresent": true
+    }
+  },
+  {
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/predeploy-approval-20260504-165217/home-mobile-full.png",
+    "url": "/",
+    "status": 200,
+    "viewport": "390x1200",
+    "noHorizontalOverflow": true,
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "checks": {
+      "applicationErrorAbsent": true,
+      "workflowAuditPresent": true,
+      "pricingCreditPresent": false,
+      "bestFitPresent": true,
+      "finalCtaPresent": true,
+      "founderPresent": true
+    }
+  },
+  {
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/predeploy-approval-20260504-165217/pricing-desktop-full.png",
+    "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "status": 200,
+    "viewport": "1440x1600",
+    "noHorizontalOverflow": true,
+    "title": "Pricing | Workflow Audit | Stanley Systems",
+    "checks": {
+      "applicationErrorAbsent": true,
+      "workflowAuditPresent": true,
+      "pricingCreditPresent": true,
+      "bestFitPresent": false,
+      "finalCtaPresent": false,
+      "founderPresent": false
+    }
+  },
+  {
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/predeploy-approval-20260504-165217/pricing-mobile-full.png",
+    "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "status": 200,
+    "viewport": "390x1200",
+    "noHorizontalOverflow": true,
+    "title": "Pricing | Workflow Audit | Stanley Systems",
+    "checks": {
+      "applicationErrorAbsent": true,
+      "workflowAuditPresent": true,
+      "pricingCreditPresent": true,
+      "bestFitPresent": false,
+      "finalCtaPresent": false,
+      "founderPresent": false
+    }
+  },
+  {
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/predeploy-approval-20260504-165217/who-helps-mobile-full.png",
+    "url": "/who-stanley-systems-helps",
+    "status": 200,
+    "viewport": "390x1200",
+    "noHorizontalOverflow": true,
+    "title": "Who Stanley Systems Helps | Service Business Workflows",
+    "checks": {
+      "applicationErrorAbsent": true,
+      "workflowAuditPresent": false,
+      "pricingCreditPresent": false,
+      "bestFitPresent": true,
+      "finalCtaPresent": false,
+      "founderPresent": false
+    }
+  }
+]

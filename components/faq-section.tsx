@@ -6,19 +6,14 @@ import { useState } from "react"
 
 const faqs = [
   {
-    question: "Do we need to switch software?",
-    answer:
-      "No, they do not need to switch software. Stanley Systems works inside the tools the team already uses whenever possible. The goal is usually to clean up the handoff between the systems you already have, reduce duplicate entry, and make the workflow easier to trust before talking about any bigger tool changes.",
-  },
-  {
-    question: "Is this going to turn into a big project?",
-    answer:
-      "No. The starting point is usually one or two fixes that make the clearest difference first. Stanley Systems is built to start narrow, prove the workflow works, and then expand only if there is a good reason to. That keeps the rollout easier on the owner and team.",
-  },
-  {
     question: "Who is this best for?",
     answer:
       "Owner-led service businesses where billing, follow-up, office handoffs, or repeat admin are slowing things down. It is usually the best fit when the business is already getting real work in the door, but the office side is still running too much on texts, memory, spreadsheets, and people chasing each other down.",
+  },
+  {
+    question: "Do we need to switch software?",
+    answer:
+      "No, they do not need to switch software. Stanley Systems works inside the tools the team already uses whenever possible. The goal is usually to clean up the handoff between the systems you already have, reduce duplicate entry, and make the workflow easier to trust before talking about any bigger tool changes.",
   },
   {
     question: "What if we are not sure where the real problem is?",
@@ -26,49 +21,19 @@ const faqs = [
       "That is fine. The first call is used to figure out where the bottleneck actually is. Sometimes the thing that looks like a software problem is really a handoff problem, a follow-up problem, or a visibility problem. The goal is to identify what is actually slowing cash, jobs, or communication down before anything gets built.",
   },
   {
+    question: "Is this going to turn into a big project?",
+    answer:
+      "No. The starting point is usually one or two fixes that make the clearest difference first. Stanley Systems is built to start narrow, prove the workflow works, and then expand only if there is a good reason to. That keeps the rollout easier on the owner and team.",
+  },
+  {
     question: "Will my team still control the workflow?",
     answer:
       "Yes. Your team stays in control, and you own what gets built. Stanley Systems is there to remove drag and make the next step clearer, not to lock your team into a black box. The process should be easier for your office and field staff to follow, not harder.",
   },
   {
-    question: "Which system do most businesses start with?",
-    answer:
-      "The Workflow Audit decides that. If finished work is not turning into collected cash fast enough, Stanley Systems usually recommends Cashflow Control System first. If past customers, reviews, referrals, or missed calls are the bigger leak, Stanley Systems usually recommends Customer Revenue System first.",
-  },
-  {
-    question: "What if it is not a fit?",
-    answer:
-      "Stanley Systems will say that upfront. If the workflow is not the real problem, if the business is too early, or if there is not a clear place to create lift, that will be said directly. The point is to give a clear answer, not force a project where one does not belong.",
-  },
-  {
     question: "How long does setup usually take?",
     answer:
       "It depends on the bottleneck, but the goal is to get the first useful fix in place quickly instead of dragging things out. Most of the time, the first step is not a giant rebuild. It is a focused fix that gets one part of the workflow moving better, then builds from there if needed.",
-  },
-  {
-    question: "Do I need to stop operations while this gets set up?",
-    answer:
-      "No. The goal is to improve how the business runs without disrupting the team. Stanley Systems is meant to work around the real pace of the business, so the office and field can keep moving while the first fixes are put in place and tested.",
-  },
-  {
-    question: "Will this work if our office is still pretty manual?",
-    answer:
-      "Yes. Most clients do not start with perfect systems. The work is usually to clean up the handoffs, repeat tasks, and follow-up that are still being done manually. In a lot of cases, that is exactly why Stanley Systems helps in the first place. The goal is to reduce the office drag without forcing the team into a completely different way of operating overnight.",
-  },
-  {
-    question: "Why not just use ServiceTitan, Jobber, or Housecall Pro for this?",
-    answer:
-      "If your software already solves the problem cleanly, that is great. In a lot of businesses, the bottleneck is not the software feature list. It is the handoff between systems, the way the office actually uses them, or the work that still happens outside the platform in texts, inboxes, spreadsheets, and memory. Stanley Systems is there to clean up that gap instead of pretending one tool setting solves everything.",
-  },
-  {
-    question: "Why not just hire another office person?",
-    answer:
-      "Sometimes hiring is the right move. But a lot of owners hire into a messy process and end up paying someone new to chase the same missing information. Stanley Systems is meant to make the workflow cleaner first, so the team you already have can work better and any future hire walks into a process that actually makes sense.",
-  },
-  {
-    question: "I have been burned by consultants before. Why is this different?",
-    answer:
-      "That is common. A lot of owners have paid for advice, documents, or big promises and still ended up doing the hard part themselves. Stanley Systems is built to be more practical than that. The work is to fix the bottleneck inside the real tools and handoffs your business already uses, keep it grounded, and be direct if something is not worth building.",
   },
 ]
 

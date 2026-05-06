@@ -33,7 +33,6 @@ export default function ServiceBusinessBillingProcessFixPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Billing problem</p>
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.06]">
                 Clean up the billing process that slows cash after the work is already done.
               </h1>
@@ -41,8 +40,8 @@ export default function ServiceBusinessBillingProcessFixPage() {
                 Slow billing is usually not just an accounting problem. It starts earlier, when completed work is still missing what the office needs to move billing forward cleanly. Stanley Systems helps fix that path.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800">
-                  Book a meeting
+                <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800">
+                  See pricing
                 </Link>
                 <a href="tel:+16179586372" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">
                   <Phone className="mr-2 h-4 w-4" />
@@ -52,7 +51,6 @@ export default function ServiceBusinessBillingProcessFixPage() {
             </div>
 
             <div className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Where billing slows down</p>
               <ul className="mt-5 space-y-4">
                 {billingBreaks.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -66,21 +64,18 @@ export default function ServiceBusinessBillingProcessFixPage() {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What it costs</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Cash waits longer than it should</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 If work is complete but billing still takes days to catch up, the business is waiting on money it already earned. That slows collections and keeps the office under pressure.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What the office feels</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Too much billing cleanup happens after the fact</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 The office should not need to chase down job details, retype information, and ask one more round of questions before an invoice can go out.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems fixes</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The path from completed work to clean billing</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems helps make the billing process clearer, cleaner, and faster inside the tools the business already uses.
@@ -90,7 +85,6 @@ export default function ServiceBusinessBillingProcessFixPage() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What a cleaner billing process creates</p>
               <ul className="mt-6 space-y-4">
                 {billingGains.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -102,7 +96,6 @@ export default function ServiceBusinessBillingProcessFixPage() {
             </section>
 
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Next best step</p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900">If billing keeps lagging after jobs are done, measure what that delay is doing first.</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Start with the cash-flow impact. Then decide whether the problem starts in job closeout, office handoff, or billing cleanup.

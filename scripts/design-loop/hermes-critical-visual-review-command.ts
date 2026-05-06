@@ -382,7 +382,7 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     "Harsh website critique standard:",
     "- Ask first: would a skeptical HVAC, plumbing, electrical, marine, landscaping, or field-service owner trust Stanley Systems after seeing this on a phone? If no, fail.",
     "- The site must lead with money, time, owner relief, collected revenue, repeat customers, reviews, referrals, captured calls, missed work, fewer delayed invoices, and less office rescue work.",
-    "- The public first step is the Workflow Audit. Package 1 is Cashflow Control System. Package 2 is Customer Revenue System.",
+    "- The public first step is the Workflow Audit. Package 1 is Cash Flow Collection System. Package 2 is Repeat Revenue System.",
     "- The buyer is a skeptical service-business owner, not a SaaS buyer.",
     "- Copy must be clear, not clever. Use Stanley Systems publicly, not Stanley shorthand.",
     "- Public copy must not make AI, Hermes, Codex, OpenClaw, Twilio, n8n, QBO API, or HCP API the star.",
@@ -648,7 +648,7 @@ function runContextProof(context: StanleyWebsiteReviewContext): ContextProof {
     if (typeof answers[key] !== "string" || !answers[key].trim()) throw new Error(`Context proof missing answer: ${key}`)
   }
   const proofText = [parsed.failure_reason, ...required.map((key) => answers[key])].join(" ").toLowerCase()
-  const expectedSignals = ["workflow audit", "cashflow control system", "customer revenue system"]
+  const expectedSignals = ["workflow audit", "cash flow collection system", "repeat revenue system"]
   const missingSignal = expectedSignals.find((signal) => !proofText.includes(signal))
   const publicRuleText = answers.public_language_rule.toLowerCase()
   const hasRecognizedPublicLanguageRule = ["stanley systems", "not stanley", "ai", "automation", "hermes", "codex", "openclaw", "twilio", "n8n", "qbo", "hcp", "clear", "clever", "business result", "result", "stack", "money", "owner", "plain"].some((signal) => publicRuleText.includes(signal))

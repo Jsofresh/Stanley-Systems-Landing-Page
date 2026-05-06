@@ -105,7 +105,6 @@ export default function StanleySystemsCaseStudyPage() {
       <section className="px-4 pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Case Study</p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
               How a Marine Shop Found Money Sitting in Its Office Workflow
             </h1>
@@ -115,7 +114,6 @@ export default function StanleySystemsCaseStudyPage() {
           </div>
 
           <article className="mx-auto mt-14 max-w-3xl rounded-[1.75rem] border border-[#e8dfd0] bg-white/95 p-8 shadow-[0_18px_55px_rgba(15,23,42,0.05)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Where the money got stuck</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">The work was done. The cash was not moving.</h2>
 
             <div className="mt-7 space-y-6 text-lg leading-8 text-slate-700">
@@ -148,7 +146,6 @@ export default function StanleySystemsCaseStudyPage() {
           </article>
 
           <article className="mx-auto mt-8 max-w-3xl rounded-[1.75rem] border border-[#e8dfd0] bg-white/95 p-8 shadow-[0_18px_55px_rgba(15,23,42,0.05)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">The problem</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">The problem was not the field work. It was the office handoff.</h2>
             <p className="mt-5 text-lg leading-8 text-slate-700">
               The shop already had Wallace, QuickBooks, and customers. The missing piece was a cleaner path between them so finished work, repeat customers, reviews, and office hours did not keep slipping through the cracks.
@@ -174,7 +171,6 @@ export default function StanleySystemsCaseStudyPage() {
           </article>
 
           <section className="mt-12">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">First priorities</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">What Stanley Systems focused on first</h2>
             <div className="mt-6 grid gap-5 lg:grid-cols-3">
               {focusAreas.map((area) => (
@@ -191,7 +187,6 @@ export default function StanleySystemsCaseStudyPage() {
           </section>
 
           <section className="mt-12 rounded-[2rem] border border-[#dfe8d9] bg-[linear-gradient(180deg,#f5f9f1_0%,#ffffff_100%)] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Projected impact</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">Projected impact for a shop like this</h2>
             <div className="mt-6 space-y-5 text-base leading-7 text-slate-700">
               <p>For a marine shop with steady service volume, the upside is not theoretical.</p>
@@ -215,7 +210,6 @@ export default function StanleySystemsCaseStudyPage() {
           </section>
 
           <section className="mt-12 rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Why this matters</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">The shops that clean this up get an advantage.</h2>
             <ul className="mt-6 grid gap-4 lg:grid-cols-2">
               {whyItMatters.map((item) => (
@@ -229,7 +223,6 @@ export default function StanleySystemsCaseStudyPage() {
 
           <section className="mt-12 grid gap-8 lg:grid-cols-2">
             <article className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">The real lesson</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">This shop did not need a giant software overhaul.</h2>
               <ul className="mt-6 space-y-3 text-base leading-7 text-slate-700">
                 {realLesson.map((item) => (
@@ -243,7 +236,6 @@ export default function StanleySystemsCaseStudyPage() {
             </article>
 
             <article className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">If you do not fix this</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">What happens if you do not fix this</h2>
               <div className="mt-6 space-y-5 text-base leading-7 text-slate-600">
                 <p>The shops that clean this up will get paid faster, bring past customers back sooner, and spend fewer office hours chasing the same details every week.</p>
@@ -257,7 +249,6 @@ export default function StanleySystemsCaseStudyPage() {
           <section className="mt-12 rounded-[2rem] border border-[#e8dfd0] bg-slate-900 px-8 py-10 text-white shadow-[0_18px_60px_rgba(15,23,42,0.18)]">
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-300">Next best step</p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight">Already have the tools but still feel the drag?</h2>
                 <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
                   If your shop already uses Wallace, QuickBooks, Housecall Pro, Jobber, ServiceTitan, or another field and billing setup, but billing, intake, or repeat customer follow-up still feels messy, Stanley Systems can help you find the money leak.
@@ -266,10 +257,10 @@ export default function StanleySystemsCaseStudyPage() {
               </div>
               <div className="flex flex-col gap-3 lg:items-end">
                 <Link
-                  href="/contact"
+                  href="/pricing#workflow-audit"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-slate-100"
                 >
-                  Book the Workflow Audit
+                  Start with the Workflow Audit
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link

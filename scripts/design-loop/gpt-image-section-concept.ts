@@ -209,7 +209,7 @@ async function main() {
     console.log(`Usage: node --experimental-strip-types scripts/design-loop/gpt-image-section-concept.ts \\
   --section_id customer-revenue \\
   --route / \\
-  --section_type "Customer Revenue System" \\
+  --section_type "Repeat Revenue System" \\
   --generation_goal "Generate 2-3 stronger concept images" \\
   --context_pack_path /path/to/image-generation-context-pack.md \
   --prompt_text "optional extra direction" \\

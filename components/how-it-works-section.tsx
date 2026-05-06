@@ -1,14 +1,19 @@
-import Image from "next/image"
+import type { ComponentType } from "react"
 import { CTALink } from "@/components/cta-link"
+import { IconArrowRight, IconShieldCheck } from "@tabler/icons-react"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 import {
-  IconArrowRight,
-  IconClockDollar,
-  IconFileDollar,
-  IconFileInvoice,
-  IconShieldCheck,
-  IconUsers,
-  type TablerIcon,
-} from "@tabler/icons-react"
+  DelayedInvoiceDisplayAsset,
+  FirstFixWrenchDisplayAsset,
+  InactiveCustomersDisplayAsset,
+  InvoiceApprovedDisplayAsset,
+  OfficeReworkDisplayAsset,
+  type DisplayAssetProps,
+} from "@/components/visual-kit/display-assets"
+
+type DisplayPrimitive = ComponentType<DisplayAssetProps>
+
+const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
 const auditSteps: Array<{
   number: string
@@ -18,17 +23,17 @@ const auditSteps: Array<{
   {
     number: "1",
     title: "Confirm the leak",
-    body: "Find where cash and office time get stuck.",
+    body: "Find where cash, calls, and office time get stuck.",
   },
   {
     number: "2",
     title: "Show what it costs",
-    body: "See delayed cash and wasted hours in plain numbers.",
+    body: "Put delayed cash and payroll hours in plain numbers.",
   },
   {
     number: "3",
-    title: "Fix the first thing first",
-    body: "Leave with the clearest first fix.",
+    title: "Start with the leak that pays back fastest",
+    body: "Leave with the first workflow gap Stanley Systems should fix.",
   },
 ]
 
@@ -36,60 +41,71 @@ const leakMetrics: Array<{
   label: string
   value: string
   suffix: string
-  Icon: TablerIcon
+  Icon: DisplayPrimitive
 }> = [
-  { label: "Delayed invoices", value: "$3,250", suffix: "at risk", Icon: IconFileInvoice },
-  { label: "Open estimates", value: "$7,500", suffix: "waiting", Icon: IconFileDollar },
-  { label: "Office rework", value: "30+", suffix: "hrs / mo", Icon: IconClockDollar },
-  { label: "Inactive customers", value: "12+", suffix: "months", Icon: IconUsers },
+  { label: "Delayed invoices", value: "Ready", suffix: "to bill", Icon: DelayedInvoiceDisplayAsset },
+  { label: "Open estimates", value: "Open", suffix: "next step", Icon: InvoiceApprovedDisplayAsset },
+  { label: "Office rework", value: "30+", suffix: "hrs/mo", Icon: OfficeReworkDisplayAsset },
+  { label: "Inactive customers", value: "12+", suffix: "months", Icon: InactiveCustomersDisplayAsset },
 ]
 
 export function HowItWorksSection() {
   return (
     <section
       id="audit"
+      data-section="audit-output-preview"
       data-audit-page="/"
       data-audit-section="home.workflow-audit"
       data-audit-priority="5"
       data-audit-offer="Workflow Audit"
       data-audit-purpose="Show that the Workflow Audit finds money leaks hiding inside the office workflow."
-      className="relative z-10 scroll-mt-28 px-4 py-5 sm:scroll-mt-32 sm:py-8 lg:scroll-mt-36 lg:py-10"
+      className="relative z-10 scroll-mt-28 px-4 py-8 sm:scroll-mt-32 sm:py-10 lg:scroll-mt-36 lg:py-8"
     >
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-[#d9e4d0] bg-[linear-gradient(180deg,#f4faef_0%,#fbfaf4_68%,#fffefa_100%)] p-4 shadow-[0_20px_58px_rgba(16,32,51,0.08)] sm:rounded-[2rem] sm:p-5 lg:p-7 xl:p-8">
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,0.47fr)_minmax(0,0.53fr)] xl:items-center xl:gap-7">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-[#d9e4d0] bg-[linear-gradient(180deg,#f4faef_0%,#fbfaf4_68%,#fffefa_100%)] p-4 shadow-[0_20px_58px_rgba(16,32,51,0.08)] sm:rounded-[2rem] sm:p-5 lg:p-6">
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:items-center lg:gap-6">
           <div className="min-w-0">
-            <h2 className="max-w-[35rem] text-[1.86rem] font-semibold leading-[1.03] tracking-normal text-[#102033] sm:text-[2.95rem] sm:leading-[1.01] lg:text-[3.3rem] xl:text-[3.06rem]">
+            <h2 className="max-w-[35rem] text-[1.95rem] font-semibold leading-[1.03] text-[#102033] sm:text-[2.65rem] lg:text-[2.8rem]">
               The calculator shows the leak. The Workflow Audit finds the source.
             </h2>
 
-            <p className="mt-2.5 max-w-[35rem] text-[0.98rem] leading-7 text-[#48576C] sm:mt-3 sm:text-base sm:leading-7">
-              The calculator estimates the size of the leak. The Workflow Audit shows exactly which invoices, estimates, calls, and follow-ups are causing it.
+            <p className="mt-3 max-w-[35rem] text-base leading-7 text-[#48576C] sm:text-[1.05rem] sm:leading-7">
+              Buy the Workflow Audit when you want Stanley Systems to turn the calculator range into a clear action report: which invoices, estimates, calls, and follow-ups are holding money back, and what to fix first.
             </p>
 
-            <div className="mt-3.5 grid gap-2.5 sm:mt-4 md:grid-cols-3">
+            <div className="mt-4 grid gap-2.5">
               {auditSteps.map(({ number, title, body }) => (
-                <article key={title} className="flex h-full min-h-[6.4rem] flex-col rounded-[0.9rem] border border-[#e1dacd] bg-white/95 p-3 shadow-[0_9px_20px_rgba(16,32,51,0.04)] sm:min-h-[7.2rem]">
-                  <span className="flex h-6.5 w-6.5 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-[0.8rem] font-bold leading-none text-white">
+                <article key={title} className="flex gap-3 rounded-[1rem] border border-[#e1dacd] bg-white/95 p-3 shadow-[0_9px_20px_rgba(16,32,51,0.04)]">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-xs font-bold leading-none text-white">
                     {number}
                   </span>
-                  <h3 className="mt-2 text-[0.95rem] font-bold leading-tight text-[#102033]">{title}</h3>
-                  <p className="mt-1 text-[0.84rem] leading-5 text-[#536174]">{body}</p>
+                  <div>
+                    <h3 className="text-[0.95rem] font-bold leading-tight text-[#102033]">{title}</h3>
+                    <p className="mt-0.5 text-sm leading-5 text-[#536174]">{body}</p>
+                  </div>
                 </article>
               ))}
             </div>
 
-            <div className="mt-4.5 sm:mt-5">
+            <div className="mt-5">
               <CTALink
-                href="/contact"
-                kind="book_meeting"
+                href={auditHref}
+                kind="checkout"
                 location="workflow_audit_section"
-                className="inline-flex h-[52px] w-full items-center justify-center gap-2.5 rounded-full bg-[#15803D] px-7 text-base font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.28)] ring-1 ring-[#15803D]/15 transition hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:w-auto"
+                analyticsEvent="audit_checkout_clicked"
+                analyticsSource="homepage_workflow_audit_section"
+                packageId="workflow_audit"
+                packageName="Workflow Audit"
+                billingPeriod="one_time"
+                ctaLabel="Buy the Workflow Audit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24)] ring-1 ring-[#15803D]/15 transition hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:w-auto"
               >
-                Book the Workflow Audit
-                <IconArrowRight className="h-5 w-5" stroke={2} aria-hidden />
+                Buy the Workflow Audit
+                <IconArrowRight className="h-4 w-4" stroke={2} aria-hidden />
               </CTALink>
 
-              <p className="mt-3 flex max-w-[34rem] items-start gap-2.5 rounded-[1rem] border border-[#cfe8d5] bg-[#edf9f1] px-3.5 py-3 text-[0.9rem] leading-6 text-[#34465B] shadow-[0_10px_24px_rgba(21,128,61,0.07)]">
+              <p className="mt-3 flex max-w-[34rem] items-start gap-2.5 rounded-[1rem] border border-[#cfe8d5] bg-[#edf9f1] px-3.5 py-2.5 text-sm leading-6 text-[#34465B] shadow-[0_10px_24px_rgba(21,128,61,0.07)]">
                 <IconShieldCheck className="mt-0.5 h-4.5 w-4.5 shrink-0 text-[#15803D]" stroke={2} aria-hidden />
                 <span>
                   If Stanley Systems cannot find one clear money leak we can fix, qualified businesses get the audit fee back.{" "}
@@ -101,45 +117,48 @@ export function HowItWorksSection() {
             </div>
           </div>
 
-          <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-[#e1dacd] bg-white p-3.5 shadow-[0_20px_54px_rgba(16,32,51,0.095)] sm:rounded-[1.6rem] sm:p-4.5 lg:p-5">
-            <div>
-              <h3 className="text-[1.48rem] font-semibold leading-tight tracking-normal text-[#102033] sm:text-[2.05rem]">
-                Audit Output Preview
-              </h3>
-              <p className="mt-1 max-w-[34rem] text-[0.92rem] leading-6 text-[#667085] sm:text-[0.98rem] sm:leading-6">
-                Where delayed cash, missed follow-up, and wasted office hours show up
-              </p>
+          <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-[#e1dacd] bg-white p-3.5 shadow-[0_20px_54px_rgba(16,32,51,0.095)] sm:p-4 lg:p-5">
+            <div className="border-b border-[#ece4d8] pb-3 text-center">
+              <div className="mx-auto max-w-[34rem]">
+                <h3 className="mt-1.5 text-2xl font-semibold leading-tight text-[#102033] sm:text-[1.85rem]">
+                  Money Leak Map
+                </h3>
+                <p className="mt-1 text-sm leading-6 text-[#667085]">
+                  A practical owner report showing where money is stuck and which fix should move first.
+                </p>
+              </div>
             </div>
 
-            <div className="relative mx-auto mt-3 aspect-[16/7.8] w-full max-w-full overflow-hidden rounded-[1rem] border border-[#edf0e8] bg-[#fbfaf7] sm:mt-3.5 sm:aspect-[16/7.15] sm:min-h-[10.6rem] sm:rounded-[1.2rem]">
-              <Image
-                src="/images/generated/audit-output-preview-illustration.webp"
-                alt=""
-                fill
-                sizes="(min-width: 1280px) 610px, (min-width: 768px) 90vw, 100vw"
-                className="object-contain"
-                priority={false}
-              />
-            </div>
-
-            <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+            <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
               {leakMetrics.map(({ label, value, suffix, Icon }) => (
-                <article key={label} className="rounded-[0.95rem] border border-[#c7dec8] bg-[#fbfefa] p-3 shadow-[0_10px_22px_rgba(16,32,51,0.06)]">
+                <article key={label} className="rounded-[1rem] border border-[#dce9d8] bg-[#fbfefa] p-3 shadow-[0_10px_22px_rgba(16,32,51,0.045)]">
                   <div className="flex items-start gap-2.5">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.7rem] bg-[#E7F8ED] text-[#15803D] shadow-[0_7px_16px_rgba(21,128,61,0.08)]">
-                      <Icon className="h-4.5 w-4.5" stroke={1.85} aria-hidden />
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[0.8rem] bg-[#E7F8ED] shadow-[0_7px_16px_rgba(21,128,61,0.08)] ring-1 ring-[#cfe8d5]">
+                      <Icon size={46} decorative />
                     </span>
                     <div className="min-w-0">
-                      <div className="text-[0.86rem] font-bold leading-tight text-[#102033]">{label}</div>
-                      <div className="mt-1 text-[1.78rem] font-extrabold leading-none tracking-normal text-[#15803D] sm:text-[1.98rem]">{value}</div>
-                      <div className="mt-0.5 text-[0.83rem] font-semibold leading-tight text-[#3F4E62]">{suffix}</div>
+                      <div className="text-sm font-bold leading-tight text-[#102033]">{label}</div>
+                      <div className="mt-0.5 text-[1.55rem] font-extrabold leading-none text-[#15803D]">{value}</div>
+                      <div className="mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]">{suffix}</div>
                     </div>
                   </div>
                 </article>
               ))}
             </div>
 
-            <p className="mt-3 text-center text-[0.82rem] leading-5 text-[#667085]">Example figures shown for illustration.</p>
+            <div className="mt-3 rounded-[1rem] border border-[#cfe8d5] bg-[#effaf2] p-3">
+              <div className="flex items-start gap-2.5">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[0.8rem] bg-white ring-1 ring-[#cfe8d5]">
+                  <FirstFixWrenchDisplayAsset size={46} decorative />
+                </span>
+                <div>
+                  <p className="mt-1 text-base font-bold leading-tight text-[#102033]">Invoice-ready check</p>
+                  <p className="mt-1 text-sm leading-5 text-[#4d5a68]">
+                    Confirm job details before billing so finished work can move to invoice without office cleanup.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

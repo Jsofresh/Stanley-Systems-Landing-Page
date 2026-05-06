@@ -14,9 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/missed-estimate-follow-up-for-service-businesses",
     "/office-handoff-problems-in-field-service-businesses",
     "/privacy-policy",
+    "/pricing",
     "/safety",
     "/speed-up-invoicing-for-service-businesses",
     "/stanley-systems-case-study",
+    "/systems/cashflow-control",
+    "/systems/repeat-revenue",
     "/who-stanley-systems-helps",
   ]
 

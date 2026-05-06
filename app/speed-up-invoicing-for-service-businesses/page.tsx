@@ -40,7 +40,7 @@ const roiExamples = [
 const relatedPages = [
   {
     title: "Office handoff problems",
-    description: "See where information gets stuck between the field and the office, then what Stanley does to tighten that path.",
+    description: "See where information gets stuck between the field and the office, then what Stanley Systems does to tighten that path.",
     href: "/office-handoff-problems-in-field-service-businesses",
   },
   {
@@ -61,7 +61,6 @@ export default function SpeedUpInvoicingPage() {
       <section className="px-4 pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Billing bottleneck</p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
               Speed up invoicing by fixing the handoff after the work is already done.
             </h1>
@@ -72,7 +71,6 @@ export default function SpeedUpInvoicingPage() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Where invoicing starts dragging</p>
               <ul className="mt-6 space-y-4">
                 {beforeBreakdown.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -84,7 +82,6 @@ export default function SpeedUpInvoicingPage() {
             </section>
 
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems changes</p>
               <ul className="mt-6 space-y-4">
                 {whatChanges.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -97,7 +94,6 @@ export default function SpeedUpInvoicingPage() {
           </div>
 
           <section className="mt-12 rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What the practical fix usually looks like</p>
             <ul className="mt-6 grid gap-4 lg:grid-cols-2">
               {practicalFixes.map((item) => (
                 <li key={item} className="flex gap-3 rounded-[1.35rem] border border-[#e8dfd0] bg-[#fbfaf7] px-5 py-4 text-base leading-7 text-slate-700">
@@ -109,7 +105,6 @@ export default function SpeedUpInvoicingPage() {
           </section>
 
           <section className="mt-12 rounded-[2rem] border border-[#dfe8d9] bg-[linear-gradient(180deg,#f5f9f1_0%,#ffffff_100%)] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Why owners care</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900">Faster invoicing is not just nicer process. It is faster cash.</h2>
             <div className="mt-6 space-y-4 text-base leading-7 text-slate-700">
               <p>
@@ -129,7 +124,6 @@ export default function SpeedUpInvoicingPage() {
           </section>
 
           <section className="mt-12 rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">A real operating reference</p>
             <p className="mt-5 text-base leading-7 text-slate-600">
               This is the same kind of billing-handoff problem Stanley Systems helps a marine shop clean up: what happens between the work getting done and the office getting what it needs to move billing forward.
             </p>
@@ -141,10 +135,10 @@ export default function SpeedUpInvoicingPage() {
                 Read the marine shop case study
               </Link>
               <Link
-                href="/contact"
+                href="/pricing"
                 className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#166534]"
               >
-                Book a meeting
+                See pricing
               </Link>
             </div>
           </section>
@@ -152,7 +146,6 @@ export default function SpeedUpInvoicingPage() {
           <section className="mt-12 rounded-[2rem] border border-[#e8dfd0] bg-slate-900 px-8 py-10 text-white shadow-[0_18px_60px_rgba(15,23,42,0.18)]">
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-300">Next best step</p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight">
                   If invoicing keeps slipping a few days after the work is done, that is usually a handoff problem worth fixing.
                 </h2>
@@ -162,10 +155,10 @@ export default function SpeedUpInvoicingPage() {
               </div>
               <div className="flex flex-col gap-3 lg:items-end">
                 <Link
-                  href="/contact"
+                  href="/pricing"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-slate-100"
                 >
-                  Book a meeting
+                  See pricing
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link
@@ -186,7 +179,6 @@ export default function SpeedUpInvoicingPage() {
                   href={page.href}
                   className="rounded-[1.6rem] border border-[#e8dfd0] bg-white/90 p-6 shadow-[0_18px_60px_rgba(15,23,42,0.05)] transition hover:-translate-y-0.5 hover:border-[#d9d0bf]"
                 >
-                  <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Keep reading</div>
                   <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">{page.title}</h3>
                   <p className="mt-3 text-base leading-7 text-slate-600">{page.description}</p>
                 </Link>

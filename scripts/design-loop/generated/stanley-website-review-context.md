@@ -48,7 +48,7 @@ Use this folder to keep Stanley useful without burning tokens. Read only the fil
 - `03_BUSINESS_AND_GTM_STATE.txt`
 - `05_DEMO_AND_AUTOMATION_STATE.txt`
 - `08_MOTION_GRAPHICS_AND_VIDEO_RENDERING_STANDARD.txt` if video or Remotion work is involved
-- `09_FOLLOW_UP_SYSTEM_BUNDLE.txt` if the Follow-Up System is involved
+- `09_FOLLOW_UP_SYSTEM_BUNDLE.txt` if the Repeat Revenue System is involved
 
 ### Coastline, Wallace, or MarineFlow
 - `00_START_HERE.txt`
@@ -65,7 +65,7 @@ Use this folder to keep Stanley useful without burning tokens. Read only the fil
 - Current demo build status, live workflows, queued work, and technical gotchas: `05_DEMO_AND_AUTOMATION_STATE.txt`
 - Coastline-specific facts: `06_COASTLINE_MINI_CONTEXT.txt`
 - Motion graphics and video rendering rules: `08_MOTION_GRAPHICS_AND_VIDEO_RENDERING_STANDARD.txt`
-- Follow-Up System bundle spec: `09_FOLLOW_UP_SYSTEM_BUNDLE.txt`
+- Repeat Revenue System bundle spec: `09_FOLLOW_UP_SYSTEM_BUNDLE.txt`
 - Folder hygiene and conflict rules: `99_MAINTENANCE_AND_SOURCE_RULES.txt`
 
 ## Operating memory pointer
@@ -344,33 +344,33 @@ Do not duplicate the full V3 offer file here. Use this section as the concise GT
 
 Current architecture:
 1. Paid first step: Workflow Audit.
-2. Package 1: Cashflow Control System.
-3. Package 2: Customer Revenue System.
+2. Package 1: Cash Flow Collection System.
+3. Package 2: Repeat Revenue System.
 
-The Workflow Audit is the paid diagnostic wedge, not Package 1. It should find the money leaks hiding inside the prospect's office workflow and recommend Cashflow Control System, Customer Revenue System, both, or neither.
+The Workflow Audit is the paid diagnostic wedge, not Package 1. It should find the money leaks hiding inside the prospect's office workflow and recommend Cash Flow Collection System, Repeat Revenue System, both, or neither.
 
-Package 1 is Cashflow Control System. Public promise: "Turn finished work into collected cash faster."
+Package 1 is Cash Flow Collection System. Public promise: "Turn finished work into collected cash faster."
 
 Package 1 must lead with money, cash movement, payroll hours saved, delayed invoices, time saved, and completed work turning into collected revenue. Do not lead with generic automation, handoff optimization, or process language.
 
-Package 2 is Customer Revenue System. Public promise: "Get more money from the customers you already earned."
+Package 2 is Repeat Revenue System. Public promise: "Get more money from the customers you already earned."
 
 Package 2 must lead with repeat customers, reviews, referrals, captured calls, and more revenue from customers already earned.
 
-Follow-Up System can remain internal shorthand or legacy language only. Public website copy should favor Customer Revenue System unless Jaden decides otherwise.
+Repeat Revenue System can remain internal shorthand or legacy language only. Public website copy should favor Repeat Revenue System unless Jaden decides otherwise.
 
 ## Workflow Audit guarantee
 
 The guarantee is a major public selling point. Do not weaken it into a quiet internal note.
 
-Public guarantee: "If Stanley Systems cannot find one clear money leak we can fix, you get your audit fee back and a free Customer Revenue System."
+Public guarantee: "If Stanley Systems cannot find one clear money leak we can fix, you get your audit fee back and a free Repeat Revenue System."
 
 Guarantee qualification rules should protect the offer without weakening the public promise. Qualification should require a real service business, enough job/customer/invoice/call/estimate/review volume for leaks to matter, access to relevant systems, permission to inspect the workflow, and a reachable decision maker or operations contact.
 
 Internal guardrails:
 - The money-back part applies to the Workflow Audit fee.
-- The free Customer Revenue System applies only to businesses that qualify for the guarantee.
-- The free Customer Revenue System should be scoped to Stanley Systems' standard package and normal implementation requirements.
+- The free Repeat Revenue System applies only to businesses that qualify for the guarantee.
+- The free Repeat Revenue System should be scoped to Stanley Systems' standard package and normal implementation requirements.
 - Do not promise unlimited custom development.
 - Do not promise guaranteed revenue, profit, or customers.
 - Keep the public guarantee bold, then place qualification language nearby or in fine print.
@@ -430,8 +430,8 @@ The old `$297` audit note is a pricing test, not the definitive public architect
 
 - Align website and sales copy with the V3 offer architecture.
 - Make the Workflow Audit the paid diagnostic wedge.
-- Lead Package 1 with Cashflow Control System and the promise "Turn finished work into collected cash faster."
-- Lead Package 2 with Customer Revenue System and the promise "Get more money from the customers you already earned."
+- Lead Package 1 with Cash Flow Collection System and the promise "Turn finished work into collected cash faster."
+- Lead Package 2 with Repeat Revenue System and the promise "Get more money from the customers you already earned."
 - Keep building the Housecall Pro to QuickBooks demo lane.
 - Get Wallace demo or dev access.
 - Turn demo content into a real intake source.
@@ -445,7 +445,7 @@ The V3 offer architecture file is the detailed source of truth for the current o
 
 Use this file for GTM state, current offer state, pricing tests, and channel choices.
 Use V3 when the task is offer architecture, Package 1, Package 2, guarantee language, or website package copy.
-Use `09` only when the task specifically concerns the broader legacy Follow-Up System bundle or internal bundle logic.
+Use `09` only when the task specifically concerns the broader legacy Repeat Revenue System bundle or internal bundle logic.
 
 ## Open strategic flags
 
@@ -473,7 +473,7 @@ Treat mutable claims here as a dated snapshot. Verify live before acting if the 
 
 This file is about Stanley Systems demo and workflow state.
 
-The Follow-Up System bundle spec lives in `09_FOLLOW_UP_SYSTEM_BUNDLE.md`.
+The Repeat Revenue System bundle spec lives in `09_FOLLOW_UP_SYSTEM_BUNDLE.md`.
 Do not assume the bundle spec in `09` is already shipped just because it is defined there.
 
 ## Current demo framing
@@ -553,7 +553,7 @@ Keep these out of the main demo for now:
 
 ### Important distinction
 
-The Follow-Up System file defines Review Booster, Referral Engine, Smart Re-Engagement, and Call Catcher as a packaged bundle.
+The Repeat Revenue System file defines Review Booster, Referral Engine, Smart Re-Engagement, and Call Catcher as a packaged bundle.
 
 This demo file is broader office-side workflow state. It may share components with the bundle spec, but it is not the same thing.
 
@@ -592,7 +592,7 @@ This demo file is broader office-side workflow state. It may share components wi
 
 ## Shared-infra note
 
-The Follow-Up System bundle spec requires shared messaging infrastructure such as opt-out handling and messaging throttle.
+The Repeat Revenue System bundle spec requires shared messaging infrastructure such as opt-out handling and messaging throttle.
 
 In this file, treat those features as last-known design or queue items unless a live check confirms they are already running.
 
@@ -614,14 +614,14 @@ Stanley Systems is not selling generic automations. Stanley Systems is selling m
 The current offer architecture is:
 
 1. **Paid first step:** Workflow Audit
-2. **Package 1:** Cashflow Control System
-3. **Package 2:** Customer Revenue System
+2. **Package 1:** Cash Flow Collection System
+3. **Package 2:** Repeat Revenue System
 
 The old Package 1 framing, "fix the handoff from finished work to paid invoice," is directionally right but too weak for the website. It explains the mechanism instead of the result.
 
 Use this instead:
 
-**Cashflow Control System**
+**Cash Flow Collection System**
 
 Public promise:
 **Turn finished work into collected cash faster.**
@@ -634,7 +634,7 @@ One-line pitch:
 
 Package 2 public name:
 
-**Customer Revenue System**
+**Repeat Revenue System**
 
 Public promise:
 **Get more money from the customers you already earned.**
@@ -642,7 +642,7 @@ Public promise:
 Expanded promise:
 **Stanley Systems brings past customers back, turns happy customers into fresh Google reviews, turns those reviews into referral opportunities, and catches extra calls so new work does not fall through.**
 
-The phrase **Follow-Up System** can remain as internal shorthand or legacy name, but public website copy should favor **Customer Revenue System** unless Jaden decides otherwise.
+The phrase **Repeat Revenue System** can remain as internal shorthand or legacy name, but public website copy should favor **Repeat Revenue System** unless Jaden decides otherwise.
 
 ## Paid first step: Workflow Audit
 
@@ -668,11 +668,11 @@ This guarantee is a selling point. Do not weaken it into a quiet internal note.
 
 Public guarantee:
 
-**If Stanley Systems cannot find one clear money leak we can fix, you get your audit fee back and a free Customer Revenue System.**
+**If Stanley Systems cannot find one clear money leak we can fix, you get your audit fee back and a free Repeat Revenue System.**
 
 Website-safe expanded version:
 
-**If your business qualifies and Stanley Systems cannot find one clear money leak we can fix, you get your audit fee back. We will also give you the Customer Revenue System free so you can still leave with a real revenue recovery system in place.**
+**If your business qualifies and Stanley Systems cannot find one clear money leak we can fix, you get your audit fee back. We will also give you the Repeat Revenue System free so you can still leave with a real revenue recovery system in place.**
 
 ### Guarantee qualification rules
 
@@ -703,8 +703,8 @@ Do not delete or soften the public guarantee. The public guarantee is part of th
 Clarify the fulfillment rules internally:
 
 - The money-back part applies to the Workflow Audit fee.
-- The free Customer Revenue System offer applies only when the business qualifies for the guarantee.
-- The free Customer Revenue System should be scoped to Stanley Systems' standard Customer Revenue System package and normal implementation requirements.
+- The free Repeat Revenue System offer applies only when the business qualifies for the guarantee.
+- The free Repeat Revenue System should be scoped to Stanley Systems' standard Repeat Revenue System package and normal implementation requirements.
 - Do not promise unlimited custom development.
 - Do not promise guaranteed revenue, guaranteed profit, or guaranteed customers.
 - Do not hide the guarantee behind legalistic copy. Keep the website promise bold, then place qualification language nearby or in fine print.
@@ -725,11 +725,11 @@ Avoid weak CTAs:
 - Get Started
 - Book a Consultation
 
-## Package 1: Cashflow Control System
+## Package 1: Cash Flow Collection System
 
 ### Customer-facing name
 
-Cashflow Control System
+Cash Flow Collection System
 
 ### Internal shorthand
 
@@ -745,7 +745,7 @@ Finished-work-to-cash package
 
 A finished job does not help cashflow until the invoice goes out, the follow-up happens, and the money comes in.
 
-The Cashflow Control System watches the path from finished work to collected cash. It catches missing billing details, slow invoices, stuck estimates, open balances, software handoff problems, and repeated office issues that burn payroll hours.
+The Cash Flow Collection System watches the path from finished work to collected cash. It catches missing billing details, slow invoices, stuck estimates, open balances, software handoff problems, and repeated office issues that burn payroll hours.
 
 Your office gets a clear action list. Leadership gets a weekly money leak digest. Completed work moves toward collected cash with fewer manual checks, fewer repeated handoffs, and fewer payroll hours spent chasing information between systems.
 
@@ -1090,7 +1090,7 @@ Stanley Systems catches the office gaps that delay invoices, slow payments, and 
 
 A finished job does not help cashflow until the invoice goes out, the customer gets followed up with, and the money comes in.
 
-The Cashflow Control System watches the path from your field system to your accounting system. It catches missing billing details, jobs that are not invoice-ready, invoices that need follow-up, estimates with no next step, and customer records that keep creating rework.
+The Cash Flow Collection System watches the path from your field system to your accounting system. It catches missing billing details, jobs that are not invoice-ready, invoices that need follow-up, estimates with no next step, and customer records that keep creating rework.
 
 Your office gets a clear action list. Leadership gets a weekly money leak digest. Completed work moves toward collected cash with fewer manual checks, fewer repeated handoffs, and fewer payroll hours burned chasing information.
 
@@ -1134,7 +1134,7 @@ Card 2:
 
 Card 3:
 **One leak creates the next.**
-A missing job note delays the invoice. A delayed invoice delays payment. Weak follow-up delays collection. The Cashflow Control System ties the chain together.
+A missing job note delays the invoice. A delayed invoice delays payment. Weak follow-up delays collection. The Cash Flow Collection System ties the chain together.
 
 Card 4:
 **Quoted work needs a next step.**
@@ -1155,15 +1155,15 @@ Other options:
 - See What Is Slowing Down Payment
 - Get the Money Leak Map
 
-## Package 2: Customer Revenue System
+## Package 2: Repeat Revenue System
 
 ### Customer-facing name
 
-Customer Revenue System
+Repeat Revenue System
 
 ### Internal shorthand
 
-Follow-Up System
+Repeat Revenue System
 
 ### Public promise
 
@@ -1171,7 +1171,7 @@ Follow-Up System
 
 ### Customer-facing description
 
-The Customer Revenue System helps service businesses turn completed work into repeat revenue, fresh reviews, referral opportunities, and captured calls.
+The Repeat Revenue System helps service businesses turn completed work into repeat revenue, fresh reviews, referral opportunities, and captured calls.
 
 It brings old customers back, turns happy customers into 5-star Google reviews, turns those reviews into referral opportunities, and catches the extra calls so new work does not fall through.
 
@@ -1192,9 +1192,9 @@ Alternative phrase:
 
 ### Relationship between Package 1 and Package 2
 
-Package 1, Cashflow Control System, helps businesses collect more of the money already earned from completed work.
+Package 1, Cash Flow Collection System, helps businesses collect more of the money already earned from completed work.
 
-Package 2, Customer Revenue System, helps businesses create more future revenue from past customers, happy customers, referrals, reviews, and inbound calls.
+Package 2, Repeat Revenue System, helps businesses create more future revenue from past customers, happy customers, referrals, reviews, and inbound calls.
 
 The Workflow Audit should decide which system matters first.
 
@@ -1250,8 +1250,8 @@ Recommended path:
 Then update `03_BUSINESS_AND_GTM_STATE.md` to summarize:
 
 - Workflow Audit is the paid diagnostic wedge
-- Package 1 is Cashflow Control System
-- Package 2 is Customer Revenue System
+- Package 1 is Cash Flow Collection System
+- Package 2 is Repeat Revenue System
 - The guarantee is a major public selling point and must not be weakened
 - All website copy must use Stanley Systems when referring to the company
 - Package 1 must lead with money, cash movement, payroll hours saved, and time saved
@@ -1262,24 +1262,24 @@ Then update `03_BUSINESS_AND_GTM_STATE.md` to summarize:
 
 ## Source file: /home/jaden/.openclaw/workspace/project/stanley-context/09_FOLLOW_UP_SYSTEM_BUNDLE.md
 
-# 09 Follow-Up System Bundle
+# 09 Repeat Revenue System Bundle
 
 Last revised: 2026-04-25
 
-Use this file for Follow-Up System packaging, product logic, build planning, and bundle-specific copy rules.
+Use this file for Repeat Revenue System packaging, product logic, build planning, and bundle-specific copy rules.
 
 This file is not a live-state tracker.
 Live demo and workflow state belongs in `05_DEMO_AND_AUTOMATION_STATE.md`.
 
 ## What this product is
 
-The Follow-Up System is a bundled set of four connected automations that share one dedicated text line and shared messaging infrastructure.
+The Repeat Revenue System is a bundled set of four connected automations that share one dedicated text line and shared messaging infrastructure.
 
 It is sold as a bundle, not a random list of one-off automations.
 The set is the product.
 
 Internal build name:
-- Follow-Up System
+- Repeat Revenue System
 
 Short product pitch:
 - One system, four automations that turn every job into more money
@@ -1445,7 +1445,7 @@ For customer-facing video, landing pages, calls, and one-pagers:
 
 ## Relationship to the main Stanley demo
 
-The Follow-Up System is a product bundle spec.
+The Repeat Revenue System is a product bundle spec.
 
 It may share parts with the broader Stanley Systems demo lane, but this file does not prove that every piece is already built or live.
 Check `05_DEMO_AND_AUTOMATION_STATE.md` before speaking as if a workflow is already shipped.

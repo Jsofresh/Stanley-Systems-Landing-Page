@@ -92,10 +92,10 @@ export default function BlogArticlePage({ params }: { params: { slug: string } }
             <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">{post.ctaTitle}</h2>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">{post.ctaBody}</p>
             <Link
-              href="/contact"
+              href="/pricing"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
             >
-              Contact Stanley Systems
+              See pricing
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

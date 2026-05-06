@@ -1,6 +1,6 @@
 # Systems Higgsfield Rebuild Manifest
 
-Generated asset set for the Cashflow Control System and Customer Revenue System homepage sections.
+Generated asset set for the Cash Flow Collection System and Repeat Revenue System homepage sections.
 
 ## Selected Assets
 

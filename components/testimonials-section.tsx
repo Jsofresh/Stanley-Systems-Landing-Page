@@ -92,11 +92,6 @@ export function TestimonialsSection() {
       <div className="relative max-w-7xl mx-auto">
         {/* Header Section - Keep as user loves it */}
         <div className="text-center mb-16 md:mb-32">
-          <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 ease-out inline-flex items-center gap-2 text-slate-500 text-sm font-medium tracking-wider uppercase mb-6">
-            <div className="w-8 h-px bg-slate-300"></div>
-            Success Stories
-            <div className="w-8 h-px bg-slate-300"></div>
-          </div>
           <h2 className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 ease-out text-5xl md:text-6xl lg:text-7xl font-light text-slate-900 mb-8 tracking-tight text-balance">
             The businesses we <span className="font-medium italic">empower</span>
           </h2>

@@ -1,0 +1,101 @@
+[
+  {
+    "name": "home-mobile",
+    "url": "/",
+    "width": 390,
+    "height": 1200,
+    "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-fixes-20260504-frontend/home-mobile.png",
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "viewport": "390x1200",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "horizontalOverflowPx": 0,
+    "noHorizontalOverflow": true,
+    "visibleMatches": [
+      {
+        "term": "Cash Flow Collection System",
+        "tag": "H3",
+        "text": "Cash Flow Collection System",
+        "className": "text-lg font-extrabold leading-tight text-[#102033]"
+      },
+      {
+        "term": "Repeat Revenue System",
+        "tag": "H3",
+        "text": "Repeat Revenue System",
+        "className": "text-lg font-extrabold leading-tight text-[#102033]"
+      },
+      {
+        "term": "Cash Flow Collection System",
+        "tag": "H3",
+        "text": "Cash Flow Collection System",
+        "className": "text-xl font-semibold leading-tight text-[#102033]"
+      },
+      {
+        "term": "Repeat Revenue System",
+        "tag": "P",
+        "text": "Repeat Revenue System",
+        "className": "mb-3 text-center text-sm font-bold leading-5 text-[#116832]"
+      }
+    ],
+    "navButton": {
+      "color": "rgb(17, 104, 50)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderColor": "rgb(183, 215, 191)"
+    },
+    "footerHeight": 1059
+  },
+  {
+    "name": "pricing-mobile",
+    "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "width": 390,
+    "height": 1200,
+    "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-fixes-20260504-frontend/pricing-mobile.png",
+    "title": "Pricing | Workflow Audit | Stanley Systems",
+    "viewport": "390x1200",
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "horizontalOverflowPx": 0,
+    "noHorizontalOverflow": true,
+    "visibleMatches": [
+      {
+        "term": "Repeat Revenue System",
+        "tag": "P",
+        "text": "The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that brings past customers, ",
+        "className": "mx-auto mt-6 max-w-3xl text-base leading-8 text-[#536173] sm:text-xl sm:leading-9"
+      }
+    ],
+    "navButton": {
+      "color": "rgb(17, 104, 50)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderColor": "rgb(183, 215, 191)"
+    },
+    "footerHeight": 1059
+  },
+  {
+    "name": "pricing-desktop",
+    "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "width": 1440,
+    "height": 1600,
+    "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-fixes-20260504-frontend/pricing-desktop.png",
+    "title": "Pricing | Workflow Audit | Stanley Systems",
+    "viewport": "1440x1600",
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "horizontalOverflowPx": 0,
+    "noHorizontalOverflow": true,
+    "visibleMatches": [
+      {
+        "term": "Repeat Revenue System",
+        "tag": "P",
+        "text": "The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that brings past customers, ",
+        "className": "mx-auto mt-6 max-w-3xl text-base leading-8 text-[#536173] sm:text-xl sm:leading-9"
+      }
+    ],
+    "navButton": {
+      "color": "rgb(17, 104, 50)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderColor": "rgb(183, 215, 191)"
+    },
+    "footerHeight": 639
+  }
+]

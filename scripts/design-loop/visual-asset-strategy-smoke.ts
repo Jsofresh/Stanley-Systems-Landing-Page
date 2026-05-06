@@ -34,7 +34,7 @@ const cases: Array<{ name: string; section: SectionEvidence; expectPass: boolean
   {
     name: "cashflow_icon_cards_fail",
     section: {
-      section_name: "Cashflow Control System",
+      section_name: "Cash Flow Collection System",
       text: "Turn finished work into collected cash faster.",
       visual_summary: "four generic icon cards arranged as an icon grid",
       generated_asset_status: "approved",
@@ -45,7 +45,7 @@ const cases: Array<{ name: string; section: SectionEvidence; expectPass: boolean
   {
     name: "cashflow_code_only_without_controller_approval_fails",
     section: {
-      section_name: "Cashflow Control System",
+      section_name: "Cash Flow Collection System",
       asset_strategy_hint: "code_only",
       text: "Finished work moves through invoice follow-up to collected cash.",
       visual_summary: "plain text layout requests code only instead of the required left-to-right pipeline",
@@ -57,7 +57,7 @@ const cases: Array<{ name: string; section: SectionEvidence; expectPass: boolean
   {
     name: "customer_revenue_orbiting_pills_fail",
     section: {
-      section_name: "Customer Revenue System",
+      section_name: "Repeat Revenue System",
       text: "Get more money from the customers you already earned.",
       visual_summary: "orbiting pill checklist assembly around the section",
       generated_asset_status: "approved",
@@ -68,7 +68,7 @@ const cases: Array<{ name: string; section: SectionEvidence; expectPass: boolean
   {
     name: "customer_revenue_code_only_without_controller_approval_fails",
     section: {
-      section_name: "Customer Revenue System",
+      section_name: "Repeat Revenue System",
       asset_strategy_hint: "code_only",
       text: "Get more money from the customers you already earned.",
       visual_summary: "plain text layout requests code only instead of the required circular wheel flywheel",
@@ -80,7 +80,7 @@ const cases: Array<{ name: string; section: SectionEvidence; expectPass: boolean
   {
     name: "approved_generated_asset_without_path_fails",
     section: {
-      section_name: "Cashflow Control System",
+      section_name: "Cash Flow Collection System",
       text: "Finished work moves through invoice follow-up to collected cash.",
       visual_summary: "left-to-right pipeline from finished work through invoice follow-up to collected cash",
       generated_asset_status: "approved",
@@ -92,7 +92,7 @@ const cases: Array<{ name: string; section: SectionEvidence; expectPass: boolean
   {
     name: "approved_generated_asset_with_real_fixture_path_passes",
     section: {
-      section_name: "Cashflow Control System",
+      section_name: "Cash Flow Collection System",
       text: "Finished work moves through invoice follow-up to collected cash.",
       visual_summary: "approved generated left-to-right pipeline from finished work through invoice follow-up to collected cash",
       generated_asset_status: "approved",
@@ -114,7 +114,7 @@ const cases: Array<{ name: string; section: SectionEvidence; expectPass: boolean
   {
     name: "missing_required_asset_blocks",
     section: {
-      section_name: "Cashflow Control System",
+      section_name: "Cash Flow Collection System",
       text: "Finished work moves through invoice follow-up to collected cash.",
       visual_summary: "left-to-right pipeline required but no generated asset exists",
       generated_asset_status: "missing",

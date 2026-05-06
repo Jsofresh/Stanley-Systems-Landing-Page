@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { ArrowRight, CheckCircle2, ClipboardList, Mail, Phone, ShieldCheck, Wrench } from "lucide-react"
-import { trackContactFormStarted, trackContactFormSubmitted } from "@/components/posthog-provider"
+import { trackOnboardingFormStarted, trackOnboardingFormSubmitted } from "@/components/posthog-provider"
 
 const contactCards = [
   {
@@ -59,7 +59,7 @@ export function ContactSection() {
   function updateField(field: keyof typeof formData, value: string) {
     if (!hasStarted) {
       setHasStarted(true)
-      trackContactFormStarted()
+      trackOnboardingFormStarted({ event_source: "workflow_audit_contact_form" })
     }
     setFormData((current) => ({ ...current, [field]: value }))
   }
@@ -89,7 +89,7 @@ export function ContactSection() {
       }
 
       setSubmitState("success")
-      trackContactFormSubmitted()
+      trackOnboardingFormSubmitted({ event_source: "workflow_audit_contact_form" })
       setSubmitMessage(
         result?.message || "Thanks. Stanley Systems will take a look and reach out if there is a clear revenue problem to inspect.",
       )
@@ -120,12 +120,8 @@ export function ContactSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="rounded-[2rem] border border-[#ece4d6] bg-[linear-gradient(180deg,#f9f6ef_0%,#ffffff_100%)] p-7 shadow-[0_20px_60px_rgba(15,23,42,0.06)] sm:p-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#dce8d5] bg-[#f3f8ef] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#15803D]">
-              <ClipboardList className="h-4 w-4" />
-              Apply for the Workflow Audit
-            </div>
 
-            <h2 className="mt-5 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
               A better first step than another generic contact form.
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
@@ -311,7 +307,7 @@ export function ContactSection() {
                     onChange={(event) => {
                       if (!hasStarted) {
                         setHasStarted(true)
-                        trackContactFormStarted()
+                        trackOnboardingFormStarted({ event_source: "workflow_audit_contact_form" })
                       }
                       setFormData((current) => ({ ...current, smsConsent: event.target.checked }))
                     }}

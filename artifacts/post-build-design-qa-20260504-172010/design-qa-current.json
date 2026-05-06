@@ -1,0 +1,404 @@
+[
+  {
+    "name": "home-desktop",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-172010/home-desktop.png",
+    "url": "/",
+    "status": 200,
+    "viewport": "1440x1600",
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "noHorizontalOverflow": true,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": false,
+      "finalCta": true,
+      "founder": true,
+      "bestFit": true,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [
+        {
+          "tag": "DIV",
+          "text": "",
+          "bg": "rgb(0, 0, 0)",
+          "area": 2304000,
+          "className": "fixed inset-0 z-[100] bg-black pointer-events-none transition-opacity duration-300 ease-in-out opacity-0"
+        }
+      ],
+      "orangeYellow": [],
+      "possibleEyebrow": [
+        {
+          "tag": "DIV",
+          "text": "at risk",
+          "className": "mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]"
+        },
+        {
+          "tag": "DIV",
+          "text": "waiting",
+          "className": "mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]"
+        },
+        {
+          "tag": "DIV",
+          "text": "hrs/mo",
+          "className": "mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]"
+        },
+        {
+          "tag": "DIV",
+          "text": "months",
+          "className": "mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]"
+        },
+        {
+          "tag": "P",
+          "text": "Common in established shops",
+          "className": "text-xs font-bold uppercase tracking-[0.12em] text-[#607080]"
+        },
+        {
+          "tag": "P",
+          "text": "Customer list opportunity",
+          "className": "text-xs font-bold uppercase tracking-[0.12em] text-[#607080]"
+        },
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Industries",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Company",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Legal",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Connect",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        }
+      ]
+    }
+  },
+  {
+    "name": "home-mobile",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-172010/home-mobile.png",
+    "url": "/",
+    "status": 200,
+    "viewport": "390x1200",
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "noHorizontalOverflow": true,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": false,
+      "finalCta": true,
+      "founder": true,
+      "bestFit": true,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [
+        {
+          "tag": "DIV",
+          "text": "",
+          "bg": "rgb(0, 0, 0)",
+          "area": 468000,
+          "className": "fixed inset-0 z-[100] bg-black pointer-events-none transition-opacity duration-300 ease-in-out opacity-0"
+        }
+      ],
+      "orangeYellow": [],
+      "possibleEyebrow": [
+        {
+          "tag": "DIV",
+          "text": "at risk",
+          "className": "mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]"
+        },
+        {
+          "tag": "DIV",
+          "text": "waiting",
+          "className": "mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]"
+        },
+        {
+          "tag": "DIV",
+          "text": "hrs/mo",
+          "className": "mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]"
+        },
+        {
+          "tag": "DIV",
+          "text": "months",
+          "className": "mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]"
+        },
+        {
+          "tag": "P",
+          "text": "Common in established shops",
+          "className": "text-xs font-bold uppercase tracking-[0.12em] text-[#607080]"
+        },
+        {
+          "tag": "P",
+          "text": "Customer list opportunity",
+          "className": "text-xs font-bold uppercase tracking-[0.12em] text-[#607080]"
+        },
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Industries",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Company",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Legal",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Connect",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        }
+      ]
+    }
+  },
+  {
+    "name": "pricing-desktop",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-172010/pricing-desktop.png",
+    "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "status": 200,
+    "viewport": "1440x1600",
+    "title": "Pricing | Workflow Audit | Stanley Systems",
+    "noHorizontalOverflow": true,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": true,
+      "finalCta": false,
+      "founder": false,
+      "bestFit": false,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [
+        {
+          "tag": "DIV",
+          "text": "",
+          "bg": "rgb(0, 0, 0)",
+          "area": 2304000,
+          "className": "fixed inset-0 z-[100] bg-black pointer-events-none transition-opacity duration-300 ease-in-out opacity-0"
+        }
+      ],
+      "orangeYellow": [],
+      "possibleEyebrow": [
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Industries",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Company",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Legal",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Connect",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        }
+      ]
+    }
+  },
+  {
+    "name": "pricing-mobile",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-172010/pricing-mobile.png",
+    "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "status": 200,
+    "viewport": "390x1200",
+    "title": "Pricing | Workflow Audit | Stanley Systems",
+    "noHorizontalOverflow": true,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": true,
+      "finalCta": false,
+      "founder": false,
+      "bestFit": false,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [
+        {
+          "tag": "DIV",
+          "text": "",
+          "bg": "rgb(0, 0, 0)",
+          "area": 468000,
+          "className": "fixed inset-0 z-[100] bg-black pointer-events-none transition-opacity duration-300 ease-in-out opacity-0"
+        }
+      ],
+      "orangeYellow": [],
+      "possibleEyebrow": [
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Industries",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Company",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Legal",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Connect",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        }
+      ]
+    }
+  },
+  {
+    "name": "contact-mobile",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-172010/contact-mobile.png",
+    "url": "/contact",
+    "status": 200,
+    "viewport": "390x1200",
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "noHorizontalOverflow": true,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": false,
+      "finalCta": false,
+      "founder": false,
+      "bestFit": false,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [
+        {
+          "tag": "DIV",
+          "text": "",
+          "bg": "rgb(0, 0, 0)",
+          "area": 468000,
+          "className": "fixed inset-0 z-[100] bg-black pointer-events-none transition-opacity duration-300 ease-in-out opacity-0"
+        }
+      ],
+      "orangeYellow": [],
+      "possibleEyebrow": [
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Industries",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Company",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Legal",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Connect",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        }
+      ]
+    }
+  },
+  {
+    "name": "who-helps-mobile",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-172010/who-helps-mobile.png",
+    "url": "/who-stanley-systems-helps",
+    "status": 200,
+    "viewport": "390x1200",
+    "title": "Who Stanley Systems Helps | Service Business Workflows",
+    "noHorizontalOverflow": true,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": false,
+      "auditCredit": false,
+      "finalCta": false,
+      "founder": false,
+      "bestFit": true,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [
+        {
+          "tag": "DIV",
+          "text": "",
+          "bg": "rgb(0, 0, 0)",
+          "area": 468000,
+          "className": "fixed inset-0 z-[100] bg-black pointer-events-none transition-opacity duration-300 ease-in-out opacity-0"
+        }
+      ],
+      "orangeYellow": [],
+      "possibleEyebrow": [
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Industries",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Company",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Legal",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        },
+        {
+          "tag": "H3",
+          "text": "Connect",
+          "className": "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
+        }
+      ]
+    }
+  }
+]

@@ -2,16 +2,642 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
-import { ArrowLeft, ArrowRight } from "lucide-react"
-import { GlassmorphismNav } from "@/components/glassmorphism-nav"
-import { Footer } from "@/components/footer"
+import { ArrowLeft, ArrowRight, CheckCircle2, Phone } from "lucide-react"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
+import {
+  CheckCircleDisplayAsset,
+  DollarCircleDisplayAsset,
+  FileInvoiceDisplayAsset,
+  MessageBubbleDisplayAsset,
+  UsersDisplayAsset,
+} from "@/components/visual-kit/display-assets"
 
-type StepKey = "intro" | "invoice" | "jobs" | "delay" | "hours" | "unbilled" | "corrections" | "results" | "cta"
+type StepKey =
+  | "intro"
+  | "invoice"
+  | "jobs"
+  | "delay"
+  | "hours"
+  | "unbilled"
+  | "corrections"
+  | "customerSource"
+  | "customers"
+  | "followup"
+  | "reviews"
+  | "missedCalls"
+  | "results"
+  | "cta";
 
-const STEP_ORDER: StepKey[] = ["intro", "invoice", "jobs", "delay", "hours", "unbilled", "corrections", "results", "cta"]
+const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
+
+const STEP_ORDER: StepKey[] = [
+  "intro",
+  "invoice",
+  "jobs",
+  "delay",
+  "hours",
+  "unbilled",
+  "corrections",
+  "customerSource",
+  "customers",
+  "followup",
+  "reviews",
+  "missedCalls",
+  "results",
+  "cta",
+]
+
+type CustomerListSource = "crm" | "quickbooks" | "spreadsheet" | "scattered"
+type UncontactedCustomerRate = "none" | "most" | "half" | "small" | "unsure"
+type SimpleSystem = "no" | "manual" | "yes" | "unsure"
+type MissedCallRecovery = "nothing" | "voicemail" | "manual" | "automatic" | "unsure"
+
+const customerSourceMessages: Record<CustomerListSource, { label: string; helper: string; firstFix: string }> = {
+  crm: {
+    label: "Job software or CRM",
+    helper: "Housecall Pro, Jobber, ServiceTitan, Wallace, or similar.",
+    firstFix: "Your list is already close to usable. The money leak is follow-up.",
+  },
+  quickbooks: {
+    label: "QuickBooks or accounting",
+    helper: "Customer records exist, but the list needs cleanup before follow-up.",
+    firstFix: "The records exist. The first fix is cleaning them into a follow-up-ready list.",
+  },
+  spreadsheet: {
+    label: "Spreadsheet or contact list",
+    helper: "Usable, but likely needs cleanup before it becomes a repeat revenue system.",
+    firstFix: "The list exists. The first fix is cleaning it into a follow-up-ready list.",
+  },
+  scattered: {
+    label: "Scattered or not sure",
+    helper: "That is a leak by itself. The first fix is building one usable customer list.",
+    firstFix: "The first leak is visibility. Stanley Systems would first build one clean list from the records you already have.",
+  },
+}
+
+const uncontactedCustomerSettings: Record<UncontactedCustomerRate, { rate: number; label: string; helper: string }> = {
+  none: { rate: 1, label: "None or almost none", helper: "Count 100% as worth checking." },
+  most: { rate: 0.85, label: "Most have not been followed up with recently", helper: "Count 85% as worth checking." },
+  half: { rate: 0.5, label: "About half have not been followed up with recently", helper: "Count 50% as worth checking." },
+  small: { rate: 0.2, label: "Only a small portion has not been followed up with recently", helper: "Count 20% as worth checking." },
+  unsure: { rate: 0.75, label: "Not sure", helper: "Count 75%. If nobody knows, treat the list as underworked." },
+}
+
+const missedCallSettings: Record<MissedCallRecovery, { multiplier: number; label: string; helper: string }> = {
+  nothing: { multiplier: 1, label: "Nothing", helper: "No text back, no office alert, no saved next step." },
+  voicemail: { multiplier: 0.7, label: "Voicemail only", helper: "Some people leave a message. Some call the next company." },
+  manual: { multiplier: 0.4, label: "Someone calls back manually", helper: "Better than nothing, but it depends on memory and timing." },
+  automatic: { multiplier: 0.15, label: "Automatic text reply and office alert", helper: "A fast reply catches more of the work before it disappears." },
+  unsure: { multiplier: 0.6, label: "Not sure", helper: "If nobody knows, use a conservative missed-call gap." },
+}
+
+
+const CUSTOMER_BOOKING_WINDOW_MONTHS = 3
+const CUSTOMER_BOOKING_WINDOW_LABEL = "90 days"
+
+const repeatJobCases = [
+  { key: "conservative", label: "Conservative case", rate: 0.02, helper: "2% book again" },
+  { key: "middle", label: "Middle case", rate: 0.04, helper: "4% book again" },
+  { key: "bold", label: "Bold case", rate: 0.07, helper: "7% book again" },
+] as const
+
+function getFirstFix(sources: CustomerListSource[]) {
+  if (sources.includes("scattered")) return customerSourceMessages.scattered.firstFix
+  if (sources.includes("quickbooks")) return customerSourceMessages.quickbooks.firstFix
+  if (sources.includes("spreadsheet")) return customerSourceMessages.spreadsheet.firstFix
+  return customerSourceMessages.crm.firstFix
+}
+
+function formatPercent(rate: number) {
+  return `${Math.round(rate * 100)}%`
+}
+
+const faqItems = [
+  {
+    question: "Do we need to switch software?",
+    answer:
+      "No. Stanley Systems works around the tools your team already uses whenever possible. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, Wallace, or your current setup. The point is to fix the gaps where work, billing, follow-up, and customer records fall through.",
+  },
+  {
+    question: "Who is this best for?",
+    answer:
+      "Service businesses with real job volume, repeat customers, invoices, estimates, calls, and at least one person dealing with office work. If your team already uses job software, accounting software, spreadsheets, or a CRM, Stanley Systems can find where money is getting stuck.",
+  },
+  {
+    question: "What if we are not sure where the real problem is?",
+    answer:
+      "That is exactly what the Workflow Audit is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat revenue. You leave knowing which leak matters first.",
+  },
+  {
+    question: "I have been burned by consultants before. Why is this different?",
+    answer:
+      "Stanley Systems is not selling a giant strategy deck. The audit finds specific money leaks, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
+  },
+]
+
+function boundNumber(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max)
+}
 
 function formatMoney(value: number) {
   return `$${Math.round(value).toLocaleString()}`
+}
+
+function roundToNearest(value: number, nearest: number) {
+  if (!Number.isFinite(value) || value <= 0) return 0
+  return Math.round(value / nearest) * nearest
+}
+
+function formatRoundedCompact(value: number, kind: "monthly" | "annual" = "monthly") {
+  const rounded = kind === "annual"
+    ? roundToNearest(value, 10000)
+    : roundToNearest(value, value < 15000 ? 500 : value < 100000 ? 1000 : 5000)
+
+  if (rounded >= 1000) {
+    const thousands = rounded / 1000
+    const label = Number.isInteger(thousands) ? thousands.toLocaleString() : thousands.toFixed(1)
+    return `$${label}K`
+  }
+
+  return `$${rounded.toLocaleString()}`
+}
+
+function formatRoundedRange(low: number, high: number, kind: "monthly" | "annual" = "monthly") {
+  const lowLabel = formatRoundedCompact(low, kind)
+  const highLabel = formatRoundedCompact(high, kind)
+  return lowLabel === highLabel ? lowLabel : `${lowLabel} to ${highLabel}`
+}
+
+type ResultSummaryInput = {
+  delayedCashDrag: number
+  officeTimeCost: number
+  stuckUnbilledValue: number
+  correctionLoss: number
+  cashflowImpact: number
+  totalSavedCustomerRecords: number
+  estimatedUnderworkedCustomers: number
+  repeatValue: number
+  conservativeFollowupOpportunity: number
+  estimatedFollowupOpportunity: number
+  boldFollowupOpportunity: number
+  missedCallLoss: number
+  customerRevenueLow: number
+  customerRevenueHigh: number
+  totalLow: number
+  totalHigh: number
+}
+
+type ResultDriver = {
+  key: string
+  label: string
+  meaning: string
+  value?: number
+  displayValue?: string
+}
+
+type CustomerScenarioDetail = {
+  key: string
+  label: string
+  assumption: string
+  meaning: string
+  monthlyValue: number
+  displayValue: string
+}
+
+type CalculationRelationship = "direct" | "rough" | "built-from"
+
+function finiteMoney(value: number) {
+  return Number.isFinite(value) && value > 0 ? value : 0
+}
+
+function hasMeaningfulValue(value: number) {
+  return Number.isFinite(value) && value > 0
+}
+
+function formatResultRange(min: number, max: number, kind: "monthly" | "annual" = "monthly") {
+  return formatRoundedRange(finiteMoney(min), finiteMoney(max), kind)
+}
+
+function formatNumberLabel(value: number) {
+  return Number.isFinite(value) && value > 0 ? Math.round(value).toLocaleString() : "0"
+}
+
+function pickLargestDollarDriver(drivers: ResultDriver[]) {
+  return drivers
+    .filter((driver) => hasMeaningfulValue(driver.value ?? 0))
+    .sort((a, b) => (b.value ?? 0) - (a.value ?? 0))[0]
+}
+
+function formatMonthlyDisplay(value: number) {
+  return `${formatRoundedCompact(finiteMoney(value), "monthly")}/month`
+}
+
+function formatMonthlyRangeDisplay(min: number, max: number) {
+  return `${formatResultRange(min, max, "monthly")}/month`
+}
+
+function createResultSummary(result: ResultSummaryInput & {
+  customerRevenueImpact?: number
+  followupCases?: Array<{ key: string; label: string; rate: number; helper: string; bookings: number; monthlyValue: number }>
+  missedCallLabel?: string
+}) {
+  const totalMonthlyLeakMin = finiteMoney(result.totalLow)
+  const totalMonthlyLeakMax = finiteMoney(result.totalHigh)
+  const totalAnnualLeakMin = totalMonthlyLeakMin * 12
+  const totalAnnualLeakMax = totalMonthlyLeakMax * 12
+  const cashMonthlyLeak = finiteMoney(result.cashflowImpact)
+  const customerMonthlyLeakMin = finiteMoney(result.customerRevenueLow)
+  const customerMonthlyLeakMax = finiteMoney(result.customerRevenueHigh)
+  const customerMonthlyMiddle = finiteMoney(result.customerRevenueImpact ?? result.estimatedFollowupOpportunity + result.missedCallLoss)
+  const costOfWaiting30DayRange = { min: totalMonthlyLeakMin, max: totalMonthlyLeakMax }
+  const costOfWaiting90DayRange = { min: totalMonthlyLeakMin * 3, max: totalMonthlyLeakMax * 3 }
+  const costOfWaiting12MonthRange = { min: totalAnnualLeakMin, max: totalAnnualLeakMax }
+
+  const formattedHeadlineRange = formatResultRange(totalAnnualLeakMin, totalAnnualLeakMax, "annual")
+  const formattedMonthlyRange = formatResultRange(totalMonthlyLeakMin, totalMonthlyLeakMax, "monthly")
+  const formattedCashMonthly = formatRoundedCompact(cashMonthlyLeak, "monthly")
+  const formattedCashAnnual = formatRoundedCompact(cashMonthlyLeak * 12, "annual")
+  const formattedCustomerMonthly = formatResultRange(customerMonthlyLeakMin, customerMonthlyLeakMax, "monthly")
+  const formattedCustomerAnnual = formatResultRange(customerMonthlyLeakMin * 12, customerMonthlyLeakMax * 12, "annual")
+  const formattedCTAValue = totalMonthlyLeakMin === totalMonthlyLeakMax
+    ? formatRoundedCompact(totalMonthlyLeakMin, "monthly")
+    : formattedMonthlyRange
+
+  const cashDrivers: ResultDriver[] = [
+    {
+      key: "slow-invoice-drag",
+      label: "slow invoice drag",
+      meaning: "Completed work is waiting too long before cash starts moving.",
+      value: finiteMoney(result.delayedCashDrag),
+      displayValue: formatMoney(result.delayedCashDrag),
+    },
+    {
+      key: "unbilled-work",
+      label: "completed jobs sitting unbilled",
+      meaning: "Finished jobs have not turned into invoices yet.",
+      value: finiteMoney(result.stuckUnbilledValue),
+      displayValue: formatMoney(result.stuckUnbilledValue),
+    },
+    {
+      key: "office-cleanup",
+      label: "office cleanup time",
+      meaning: "Paid admin time is being spent fixing records instead of moving money.",
+      value: finiteMoney(result.officeTimeCost),
+      displayValue: formatMoney(result.officeTimeCost),
+    },
+    {
+      key: "correction-drag",
+      label: "invoice correction drag",
+      meaning: "Billing mistakes and rework are adding delay.",
+      value: finiteMoney(result.correctionLoss),
+      displayValue: formatMoney(result.correctionLoss),
+    },
+  ].filter((driver) => hasMeaningfulValue(driver.value ?? 0)).sort((a, b) => (b.value ?? 0) - (a.value ?? 0))
+
+  const customerDollarDrivers: ResultDriver[] = [
+    {
+      key: "repeat-job-opportunity",
+      label: "repeat-job opportunity",
+      meaning: "Past customers can turn into booked jobs when the list gets worked.",
+      value: finiteMoney(result.estimatedFollowupOpportunity),
+      displayValue: formatMoney(result.estimatedFollowupOpportunity),
+    },
+    {
+      key: "missed-call-gap",
+      label: "missed-call gap",
+      meaning: "Missed or late calls can become lost booked work.",
+      value: finiteMoney(result.missedCallLoss),
+      displayValue: formatMoney(result.missedCallLoss),
+    },
+    {
+      key: "conservative-saved-customer-opportunity",
+      label: "conservative saved-customer opportunity",
+      meaning: "A smaller response from the saved customer list still creates money worth checking.",
+      value: finiteMoney(result.conservativeFollowupOpportunity),
+      displayValue: formatMoney(result.conservativeFollowupOpportunity),
+    },
+    {
+      key: "bold-saved-customer-opportunity",
+      label: "bold saved-customer opportunity",
+      meaning: "A stronger response from the saved customer list makes the leak larger.",
+      value: finiteMoney(result.boldFollowupOpportunity),
+      displayValue: formatMoney(result.boldFollowupOpportunity),
+    },
+  ].filter((driver) => hasMeaningfulValue(driver.value ?? 0))
+
+  const selectedCashDriver = pickLargestDollarDriver(cashDrivers)
+  let selectedCustomerDriver: ResultDriver | undefined
+  if (result.estimatedUnderworkedCustomers > 0) {
+    selectedCustomerDriver = {
+      key: "saved-customer-records",
+      label: `${result.estimatedUnderworkedCustomers.toLocaleString()} saved customer records checked`,
+      meaning: "The calculator counts customer records that are worth checking for follow-up.",
+      value: undefined,
+    }
+  } else if (result.estimatedFollowupOpportunity > 0) {
+    selectedCustomerDriver = customerDollarDrivers.find((driver) => driver.key === "repeat-job-opportunity")
+  } else if (result.missedCallLoss > 0) {
+    selectedCustomerDriver = customerDollarDrivers.find((driver) => driver.key === "missed-call-gap")
+  } else {
+    selectedCustomerDriver = pickLargestDollarDriver(customerDollarDrivers)
+  }
+
+  const hasMeaningfulLeak =
+    Number.isFinite(totalMonthlyLeakMin) &&
+    Number.isFinite(totalMonthlyLeakMax) &&
+    totalMonthlyLeakMax > 0
+
+  const cashPlusCustomerMin = cashMonthlyLeak + customerMonthlyLeakMin
+  const cashPlusCustomerMax = cashMonthlyLeak + customerMonthlyLeakMax
+  const roundingTolerance = 2
+  const exactMatches = Math.abs(totalMonthlyLeakMin - cashPlusCustomerMin) <= roundingTolerance && Math.abs(totalMonthlyLeakMax - cashPlusCustomerMax) <= roundingTolerance
+  const roundedMatches =
+    formatRoundedRange(totalMonthlyLeakMin, totalMonthlyLeakMax, "monthly") ===
+    formatRoundedRange(cashPlusCustomerMin, cashPlusCustomerMax, "monthly")
+  const calculationRelationship: CalculationRelationship = exactMatches ? "direct" : roundedMatches ? "rough" : "built-from"
+  const equationText = calculationRelationship === "direct"
+    ? `${formatMonthlyRangeDisplay(totalMonthlyLeakMin, totalMonthlyLeakMax)} = ${formatMonthlyDisplay(cashMonthlyLeak)} cash drag + ${formatMonthlyRangeDisplay(customerMonthlyLeakMin, customerMonthlyLeakMax)} customer revenue drag.`
+    : calculationRelationship === "rough"
+      ? `${formatMonthlyRangeDisplay(totalMonthlyLeakMin, totalMonthlyLeakMax)} is built from about ${formatMonthlyDisplay(cashMonthlyLeak)} cash drag plus ${formatMonthlyRangeDisplay(customerMonthlyLeakMin, customerMonthlyLeakMax)} customer revenue drag.`
+      : `${formatMonthlyRangeDisplay(totalMonthlyLeakMin, totalMonthlyLeakMax)} is built from these leak areas.`
+
+  const equationComponents = [
+    { label: "Cash drag", value: cashMonthlyLeak, displayValue: formatMonthlyDisplay(cashMonthlyLeak) },
+    { label: "Customer revenue drag", value: customerMonthlyMiddle || customerMonthlyLeakMax, displayValue: formatMonthlyRangeDisplay(customerMonthlyLeakMin, customerMonthlyLeakMax) },
+  ].filter((component) => hasMeaningfulValue(component.value))
+
+  const scenarioMeanings: Record<string, string> = {
+    conservative: "A small number of past customers book again.",
+    middle: "More saved customers respond to follow-up.",
+    bold: "Stronger response from the customer list.",
+  }
+
+  const scenarioSource = result.followupCases?.length ? result.followupCases : repeatJobCases.map((scenario) => ({
+    ...scenario,
+    bookings: Math.round(result.estimatedUnderworkedCustomers * scenario.rate),
+    monthlyValue: scenario.key === "conservative"
+      ? result.conservativeFollowupOpportunity
+      : scenario.key === "middle"
+        ? result.estimatedFollowupOpportunity
+        : result.boldFollowupOpportunity,
+  }))
+
+  const customerScenarios: CustomerScenarioDetail[] = scenarioSource
+    .filter((scenario) => hasMeaningfulValue(scenario.monthlyValue) || scenario.bookings > 0)
+    .map((scenario) => ({
+      key: scenario.key,
+      label: scenario.label.replace(" case", ""),
+      assumption: `${formatPercent(scenario.rate)} book again`,
+      meaning: scenarioMeanings[scenario.key] ?? "This is one booking scenario used by the calculator.",
+      monthlyValue: finiteMoney(scenario.monthlyValue),
+      displayValue: formatMoney(scenario.monthlyValue),
+    }))
+
+  const missedCallImpact = finiteMoney(result.missedCallLoss) > 0 ? {
+    label: "missed-call gap",
+    meaning: `Missed-call gap is added separately using ${result.missedCallLabel?.toLowerCase() ?? "the selected call setting"}.`,
+    value: finiteMoney(result.missedCallLoss),
+    displayValue: formatMoney(result.missedCallLoss),
+  } : undefined
+
+  const workflowAuditChecks = [
+    cashDrivers.some((driver) => ["unbilled-work", "slow-invoice-drag"].includes(driver.key)) ? "Which finished jobs are stuck before invoicing" : undefined,
+    cashDrivers.some((driver) => driver.key === "slow-invoice-drag") ? "Which invoices are aging without the right follow-up" : undefined,
+    result.estimatedUnderworkedCustomers > 0 ? "Which customer records are worth reactivating first" : undefined,
+    missedCallImpact ? "Which missed calls are becoming lost work" : undefined,
+    cashDrivers.some((driver) => ["office-cleanup", "correction-drag"].includes(driver.key)) ? "Which office handoff keeps causing the leak" : undefined,
+  ].filter(Boolean) as string[]
+
+  return {
+    totalMonthlyLeakMin,
+    totalMonthlyLeakMax,
+    totalAnnualLeakMin,
+    totalAnnualLeakMax,
+    cashMonthlyLeak,
+    customerMonthlyLeakMin,
+    customerMonthlyLeakMax,
+    costOfWaiting30DayRange,
+    costOfWaiting90DayRange,
+    costOfWaiting12MonthRange,
+    formattedHeadlineRange,
+    formattedMonthlyRange,
+    formattedCardValues: {
+      cashMonthly: formattedCashMonthly,
+      cashAnnual: formattedCashAnnual,
+      customerMonthly: formattedCustomerMonthly,
+      customerAnnual: formattedCustomerAnnual,
+      wait30Days: formatResultRange(costOfWaiting30DayRange.min, costOfWaiting30DayRange.max, "monthly"),
+      wait90Days: formatResultRange(costOfWaiting90DayRange.min, costOfWaiting90DayRange.max, "monthly"),
+      wait12Months: formatResultRange(costOfWaiting12MonthRange.min, costOfWaiting12MonthRange.max, "annual"),
+    },
+    formattedCTAValue,
+    selectedCashDriver,
+    selectedCustomerDriver,
+    cashDrivers,
+    customerDollarDrivers,
+    customerScenarios,
+    missedCallImpact,
+    equationText,
+    equationComponents,
+    calculationRelationship,
+    savedCustomerRecordCount: Math.max(result.totalSavedCustomerRecords, 0),
+    estimatedUnderworkedCustomers: Math.max(result.estimatedUnderworkedCustomers, 0),
+    averageRepeatJobValue: finiteMoney(result.repeatValue),
+    formattedAverageRepeatJobValue: formatMoney(result.repeatValue),
+    bookingScenarioWindow: CUSTOMER_BOOKING_WINDOW_LABEL,
+    customerRangeExplanation: customerScenarios.length > 0
+      ? `Built from ${formatNumberLabel(result.estimatedUnderworkedCustomers)} saved customer records × ${formatMoney(result.repeatValue)} average repeat job value × booking scenarios over ${CUSTOMER_BOOKING_WINDOW_LABEL}.`
+      : "The range comes from conservative, middle, and stronger booking scenarios already used by the calculator.",
+    workflowAuditChecks,
+    hasMeaningfulLeak,
+  }
+}
+
+function StepFrame({
+  title,
+  body,
+  children,
+  canContinue = true,
+  continueLabel = "Next",
+  progress,
+  step,
+  onBack,
+  onNext,
+  compact = false,
+}: {
+  title: string
+  body: string
+  children?: React.ReactNode
+  canContinue?: boolean
+  continueLabel?: string
+  progress: number
+  step: StepKey
+  onBack: () => void
+  onNext: () => void
+  compact?: boolean
+}) {
+  return (
+    <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6">
+      <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1240px] items-center justify-center">
+        <div className={`box-border w-full max-w-full overflow-hidden rounded-[1.65rem] border border-[#e8dfd0] bg-white/96 shadow-[0_22px_80px_rgba(15,23,42,0.10)] backdrop-blur sm:rounded-[2.25rem] lg:rounded-[2.5rem] ${compact ? "p-4 sm:p-5 lg:p-4" : "p-4 sm:p-7 lg:p-9"}`}>
+          <div className="mb-5 sm:mb-6">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2">
+              <div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: `${progress}%` }} />
+            </div>
+          </div>
+
+          <div className="mx-auto max-w-4xl space-y-3 text-center sm:space-y-4">
+            <h1 className={`font-semibold leading-[1.04] tracking-tight text-slate-900 lg:leading-[1.01] ${compact ? "text-[1.45rem] sm:text-[2rem] lg:text-[2.35rem]" : "text-[1.7rem] sm:text-[2.7rem] lg:text-[3.45rem]"}`}>{title}</h1>
+            <p className={`mx-auto max-w-3xl text-sm leading-6 text-slate-600 sm:leading-7 ${compact ? "sm:text-base lg:text-[0.98rem]" : "sm:text-lg lg:text-[1.05rem] lg:leading-8"}`}>{body}</p>
+          </div>
+
+          {children}
+
+          <div className="mt-6 grid w-full max-w-full grid-cols-1 gap-3 sm:mt-7 sm:grid-cols-2 lg:mt-8">
+            <button
+              type="button"
+              onClick={onBack}
+              className={`inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-[#f4efe6] ${step === "intro" ? "invisible" : ""}`}
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back
+            </button>
+            <button
+              type="button"
+              data-calculator-next="true"
+              onClick={onNext}
+              disabled={!canContinue}
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#116832] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {continueLabel}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function BigNumberInput({ value, onChange, prefix, suffix }: { value: string; onChange: (value: string) => void; prefix?: string; suffix?: string }) {
+  const inputRef = useRef<HTMLInputElement | null>(null)
+
+  useEffect(() => {
+    const el = inputRef.current
+    if (!el) return
+    const raf = requestAnimationFrame(() => {
+      el.focus()
+      const end = el.value.length
+      el.setSelectionRange(end, end)
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  return (
+    <div
+      className="mx-auto mt-7 box-border w-full max-w-3xl rounded-[1.45rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-5 shadow-[0_18px_50px_rgba(15,23,42,0.05)] sm:mt-8 sm:rounded-[1.9rem] sm:px-8 sm:py-8 lg:max-w-4xl lg:px-10 lg:py-10"
+      onClick={() => inputRef.current?.focus()}
+    >
+      <div className="flex min-h-[68px] min-w-0 items-center justify-center gap-1 text-4xl font-semibold text-slate-900 sm:min-h-[86px] sm:gap-3 sm:text-6xl lg:min-h-[96px] lg:text-[4.6rem]">
+        {prefix ? <span className="shrink-0 text-slate-400">{prefix}</span> : null}
+        <input
+          ref={inputRef}
+          value={value}
+          onChange={(e) => onChange(e.target.value.replace(/[^0-9.]/g, ""))}
+          inputMode="decimal"
+          enterKeyHint="next"
+          className="min-w-0 flex-1 bg-transparent px-1 text-center outline-none"
+        />
+        {suffix ? <span className="shrink-0 text-lg text-slate-400 sm:text-3xl lg:text-4xl">{suffix}</span> : null}
+      </div>
+    </div>
+  )
+}
+
+function ChoiceGrid<T extends string>({
+  value,
+  onChange,
+  options,
+  compact = false,
+}: {
+  value: T
+  onChange: (value: T) => void
+  options: Array<{ value: T; label: string; detail?: string }>
+  compact?: boolean
+}) {
+  return (
+    <div className={`mx-auto grid w-full gap-3 sm:grid-cols-2 ${compact ? "mt-3 max-w-full" : "mt-7 max-w-5xl sm:mt-8"}`}>
+      {options.map((option) => {
+        const selected = option.value === value
+        return (
+          <button
+            key={option.value}
+            type="button"
+            onClick={() => onChange(option.value)}
+            className={`box-border w-full min-w-0 rounded-[1.05rem] border px-4 text-left transition sm:rounded-[1.25rem] ${compact ? "py-3 sm:px-4 sm:py-3" : "py-3.5 sm:px-5 sm:py-4"} ${
+              selected
+                ? "border-[#15803D]/40 bg-[#eef9f2] shadow-[0_14px_35px_rgba(21,128,61,0.12)]"
+                : "border-[#e8dfd0] bg-white hover:border-[#cfe8d5] hover:bg-[#fbfaf7]"
+            }`}
+          >
+            <div className="flex min-w-0 items-start gap-3">
+              <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${selected ? "border-[#15803D] bg-[#15803D] text-white" : "border-[#d8d1c4] bg-white text-transparent"}`}>
+                <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-semibold leading-5 text-slate-900 sm:text-base sm:leading-6">{option.label}</span>
+                {option.detail ? <span className="mt-1 block text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">{option.detail}</span> : null}
+              </span>
+            </div>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function MultiChoiceGrid<T extends string>({
+  value,
+  onChange,
+  options,
+}: {
+  value: T[]
+  onChange: (value: T[]) => void
+  options: Array<{ value: T; label: string; detail?: string }>
+}) {
+  return (
+    <div className="mx-auto mt-7 grid w-full max-w-5xl gap-3 sm:mt-8 sm:grid-cols-2">
+      {options.map((option) => {
+        const selected = value.includes(option.value)
+        return (
+          <button
+            key={option.value}
+            type="button"
+            aria-pressed={selected}
+            onClick={() => {
+              const next = selected ? value.filter((item) => item !== option.value) : [...value, option.value]
+              onChange(next.length ? next : [option.value])
+            }}
+            className={`box-border w-full min-w-0 rounded-[1.05rem] border px-4 py-3.5 text-left transition sm:rounded-[1.25rem] sm:px-5 sm:py-4 ${
+              selected
+                ? "border-[#15803D]/40 bg-[#eef9f2] shadow-[0_14px_35px_rgba(21,128,61,0.12)]"
+                : "border-[#e8dfd0] bg-white hover:border-[#cfe8d5] hover:bg-[#fbfaf7]"
+            }`}
+          >
+            <div className="flex min-w-0 items-start gap-3">
+              <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${selected ? "border-[#15803D] bg-[#15803D] text-white" : "border-[#d8d1c4] bg-white text-transparent"}`}>
+                <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-semibold leading-5 text-slate-900 sm:text-base sm:leading-6">{option.label}</span>
+                {option.detail ? <span className="mt-1 block text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">{option.detail}</span> : null}
+              </span>
+            </div>
+          </button>
+        )
+      })}
+    </div>
+  )
 }
 
 export function InvoicingDelayCalculatorClient() {
@@ -22,10 +648,17 @@ export function InvoicingDelayCalculatorClient() {
   const [hoursLost, setHoursLost] = useState("0.5")
   const [unbilledJobs, setUnbilledJobs] = useState("3")
   const [correctionRate, setCorrectionRate] = useState("20")
+  const [customerListSources, setCustomerListSources] = useState<CustomerListSource[]>(["crm"])
+  const [totalSavedCustomerRecords, setTotalSavedCustomerRecords] = useState("400")
+  const [repeatJobValue, setRepeatJobValue] = useState("850")
+  const [uncontactedCustomerRate, setUncontactedCustomerRate] = useState<UncontactedCustomerRate>("none")
+  const [reviewFollowup, setReviewFollowup] = useState<SimpleSystem>("manual")
+  const [referralFollowup, setReferralFollowup] = useState<SimpleSystem>("no")
+  const [missedCallRecovery, setMissedCallRecovery] = useState<MissedCallRecovery>("voicemail")
+  const [missedCallsPerMonth, setMissedCallsPerMonth] = useState("12")
 
-  const showSiteChrome = false
   const stepIndex = STEP_ORDER.indexOf(step)
-  const progress = step === "intro" ? 5 : step === "cta" ? 100 : Math.round((stepIndex / (STEP_ORDER.length - 2)) * 100)
+  const progress = step === "intro" ? 6 : step === "cta" ? 100 : Math.round((stepIndex / (STEP_ORDER.length - 2)) * 100)
 
   const result = useMemo(() => {
     const invoice = Number(invoiceValue) || 0
@@ -34,145 +667,145 @@ export function InvoicingDelayCalculatorClient() {
     const hours = Number(hoursLost) || 0
     const unbilled = Number(unbilledJobs) || 0
     const correction = (Number(correctionRate) || 0) / 100
+    const savedRecords = Math.max(Number(totalSavedCustomerRecords) || 0, 0)
+    const repeatValue = Number(repeatJobValue) || invoice
+    const missedCalls = Math.max(Number(missedCallsPerMonth) || 0, 0)
 
     const monthlyBilledValue = invoice * jobs
-    const weightedCashDrag = monthlyBilledValue * (days / 30)
+    const delayedCashDrag = monthlyBilledValue * (days / 30)
     const monthlyLaborHours = jobs * hours
-    const roughAdminCost = monthlyLaborHours * 35
+    const officeTimeCost = monthlyLaborHours * 35
     const stuckUnbilledValue = invoice * unbilled
     const correctionLoss = monthlyBilledValue * correction * 0.03
-    const totalImpact = weightedCashDrag + roughAdminCost + stuckUnbilledValue + correctionLoss
+    const cashflowImpact = delayedCashDrag + officeTimeCost + stuckUnbilledValue + correctionLoss
 
-    let band = "Money leaking"
-    if (totalImpact >= 120000 || monthlyLaborHours >= 45) band = "Critical billing bottleneck"
-    else if (totalImpact >= 50000 || monthlyLaborHours >= 24) band = "Serious cash drag"
+    const rate = uncontactedCustomerSettings[uncontactedCustomerRate]
+    const estimatedUnderworkedCustomers = Math.round(savedRecords * rate.rate)
+    const followupCases = repeatJobCases.map((scenario) => ({
+      ...scenario,
+      bookings: Math.round(estimatedUnderworkedCustomers * scenario.rate),
+      monthlyValue: (estimatedUnderworkedCustomers * scenario.rate * repeatValue) / CUSTOMER_BOOKING_WINDOW_MONTHS,
+    }))
+    const conservativeFollowupOpportunity = followupCases[0].monthlyValue
+    const estimatedFollowupOpportunity = followupCases[1].monthlyValue
+    const boldFollowupOpportunity = followupCases[2].monthlyValue
+
+    const missedCall = missedCallSettings[missedCallRecovery]
+    const missedCallLoss = missedCalls * repeatValue * 0.2 * missedCall.multiplier
+    const customerRevenueImpact = estimatedFollowupOpportunity + missedCallLoss
+    const customerRevenueLow = conservativeFollowupOpportunity + missedCallLoss
+    const customerRevenueHigh = boldFollowupOpportunity + missedCallLoss
+    const totalImpact = cashflowImpact + customerRevenueImpact
+    const totalLow = cashflowImpact + customerRevenueLow
+    const totalHigh = cashflowImpact + customerRevenueHigh
+    const cashflowShare = totalImpact > 0 ? cashflowImpact / totalImpact : 0
+    const customerRevenueShare = totalImpact > 0 ? customerRevenueImpact / totalImpact : 0
+    const bothMeaningful = cashflowShare >= 0.35 && customerRevenueShare >= 0.35
+
+    let recommendedFirstMove = "Use the Workflow Audit to decide which leak gets fixed first."
+    if (!bothMeaningful && cashflowImpact > 0 && customerRevenueImpact === 0) recommendedFirstMove = "Start with the Cashflow Control System."
+    else if (!bothMeaningful && customerRevenueImpact > 0 && cashflowImpact === 0) recommendedFirstMove = "Start with the Repeat Revenue System."
+    else if (!bothMeaningful && cashflowShare >= 0.6) recommendedFirstMove = "Start with the Cashflow Control System."
+    else if (!bothMeaningful && customerRevenueShare >= 0.6) recommendedFirstMove = "Start with the Repeat Revenue System."
 
     return {
       monthlyBilledValue,
-      weightedCashDrag,
+      delayedCashDrag,
       monthlyLaborHours,
-      roughAdminCost,
+      officeTimeCost,
       stuckUnbilledValue,
       correctionLoss,
+      cashflowImpact,
+      totalSavedCustomerRecords: savedRecords,
+      estimatedUnderworkedCustomers,
+      repeatValue,
+      followupCases,
+      conservativeFollowupOpportunity,
+      estimatedFollowupOpportunity,
+      boldFollowupOpportunity,
+      missedCallLoss,
+      customerRevenueImpact,
+      customerRevenueLow,
+      customerRevenueHigh,
+      cashflowShare,
+      customerRevenueShare,
+      bothMeaningful,
+      recommendedFirstMove,
+      missedCallLabel: missedCall.label,
+      reviewNeedsWork: reviewFollowup !== "yes",
+      referralNeedsWork: referralFollowup !== "yes",
       totalImpact,
-      band,
+      totalLow,
+      totalHigh,
+      firstFix: getFirstFix(customerListSources),
+      customerSourceLabel: customerListSources.map((source) => customerSourceMessages[source].label).join(", "),
+      uncontactedLabel: rate.label,
     }
-  }, [invoiceValue, jobsPerMonth, delayDays, hoursLost, unbilledJobs, correctionRate])
+  }, [invoiceValue, jobsPerMonth, delayDays, hoursLost, unbilledJobs, correctionRate, totalSavedCustomerRecords, repeatJobValue, uncontactedCustomerRate, reviewFollowup, referralFollowup, missedCallsPerMonth, missedCallRecovery, customerListSources])
+
+  const resultSummary = useMemo(() => createResultSummary(result), [result])
 
   function next(nextStep?: StepKey) {
     if (nextStep) {
       setStep(nextStep)
+      window.scrollTo({ top: 0, behavior: "smooth" })
       return
     }
     const idx = STEP_ORDER.indexOf(step)
-    if (idx < STEP_ORDER.length - 1) setStep(STEP_ORDER[idx + 1])
+    if (idx < STEP_ORDER.length - 1) {
+      setStep(STEP_ORDER[idx + 1])
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
   }
 
   function back() {
     const idx = STEP_ORDER.indexOf(step)
-    if (idx > 0) setStep(STEP_ORDER[idx - 1])
+    if (idx > 0) {
+      setStep(STEP_ORDER[idx - 1])
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
   }
 
-  function StepFrame({ eyebrow, title, body, children, canContinue = true, continueLabel = "Next" }: { eyebrow: string; title: string; body: string; children?: React.ReactNode; canContinue?: boolean; continueLabel?: string }) {
-    return (
-      <section className="relative min-h-screen px-4 pb-10 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:px-8 lg:pb-14 lg:pt-10">
-        <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-[1380px] items-center justify-center">
-          <div className="w-full rounded-[2.25rem] border border-[#e8dfd0] bg-white/96 p-6 shadow-[0_28px_100px_rgba(15,23,42,0.10)] backdrop-blur sm:p-8 lg:min-h-[82vh] lg:rounded-[2.75rem] lg:p-12">
-            <div className="mb-8">
-              <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#efe9dc]">
-                <div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: `${progress}%` }} />
-              </div>
-              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{eyebrow}</div>
-            </div>
-
-            <div className="mx-auto max-w-4xl space-y-5 text-center">
-              <h1 className="text-[2rem] font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[4.5rem] lg:leading-[0.98]">{title}</h1>
-              <p className="mx-auto max-w-3xl text-base leading-7 text-slate-600 sm:text-xl lg:text-[1.35rem] lg:leading-9">{body}</p>
-            </div>
-
-            {children}
-
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-between lg:mt-12">
-              <button
-                type="button"
-                onClick={back}
-                className={`inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-[#f4efe6] ${step === "intro" ? "invisible" : ""}`}
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back
-              </button>
-              <button
-                type="button"
-                onClick={() => next()}
-                disabled={!canContinue}
-                className="inline-flex items-center justify-center rounded-full bg-slate-950 px-7 py-4 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {continueLabel}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  function BigNumberInput({ value, onChange, prefix, suffix }: { value: string; onChange: (value: string) => void; prefix?: string; suffix?: string }) {
-    const inputRef = useRef<HTMLInputElement | null>(null)
-
-    useEffect(() => {
-      const el = inputRef.current
-      if (!el) return
-      const raf = requestAnimationFrame(() => {
-        el.focus()
-        const end = el.value.length
-        el.setSelectionRange(end, end)
-      })
-      return () => cancelAnimationFrame(raf)
-    }, [])
-
-    return (
-      <div
-        className="mx-auto mt-10 max-w-3xl rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] px-5 py-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)] sm:px-8 sm:py-10 lg:mt-14 lg:max-w-4xl lg:rounded-[2.3rem] lg:px-12 lg:py-14"
-        onClick={() => inputRef.current?.focus()}
-      >
-        <div className="flex min-h-[88px] items-center justify-center gap-2 text-4xl font-semibold text-slate-900 sm:min-h-[110px] sm:gap-3 sm:text-6xl lg:min-h-[132px] lg:text-[5.5rem]">
-          {prefix ? <span className="shrink-0 text-slate-400">{prefix}</span> : null}
-          <input
-            ref={inputRef}
-            value={value}
-            onChange={(e) => onChange(e.target.value.replace(/[^0-9.]/g, ''))}
-            inputMode="decimal"
-            enterKeyHint="next"
-            className="min-w-0 flex-1 bg-transparent px-1 text-center outline-none"
-          />
-          {suffix ? <span className="shrink-0 text-xl text-slate-400 sm:text-3xl lg:text-4xl">{suffix}</span> : null}
-        </div>
-      </div>
-    )
-  }
+  const frameProps = { progress, step, onBack: back, onNext: () => next() }
 
   const quizContent = (() => {
     if (step === "intro") {
       return (
-        <StepFrame
-          eyebrow="Interactive assessment"
-          title="See how much money slow invoicing is costing your business"
-          body="Answer 6 quick questions. We will estimate how much cash is getting held up, how much payroll is being burned on invoice cleanup, and how much finished work may still be sitting unbilled."
+        <StepFrame {...frameProps}
+          title="Find the money already sitting inside your business."
+          body="Stanley Systems checks the places service businesses lose money after the lead, job, or customer already exists: slow invoices, open estimates, missed calls, and saved customers nobody is following up with."
           continueLabel="Start the calculator"
         >
-          <div className="mx-auto mt-12 grid max-w-5xl gap-4 sm:grid-cols-3 lg:mt-16">
-            <div className="rounded-[1.8rem] border border-[#e8dfd0] bg-[#fbfaf7] px-6 py-6 text-left">
-              <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Estimate 1</div>
-              <div className="mt-3 text-xl font-semibold text-slate-900">Cash getting held up</div>
-            </div>
-            <div className="rounded-[1.8rem] border border-[#e8dfd0] bg-[#fbfaf7] px-6 py-6 text-left">
-              <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Estimate 2</div>
-              <div className="mt-3 text-xl font-semibold text-slate-900">Payroll burned on cleanup</div>
-            </div>
-            <div className="rounded-[1.8rem] border border-[#e8dfd0] bg-[#fbfaf7] px-6 py-6 text-left">
-              <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Estimate 3</div>
-              <div className="mt-3 text-xl font-semibold text-slate-900">How bad the billing bottleneck is</div>
+          <div className="mx-auto mt-8 grid w-full max-w-5xl gap-3 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
+            {[
+              ["Delayed invoices", "Finished work waiting to become collected cash."],
+              ["Open estimates", "Quoted work sitting without a next step."],
+              ["Missed calls", "New work that never reached the office."],
+              ["Saved customers not followed up with", "Old customers sitting in your customer list."],
+            ].map(([label, detail]) => (
+              <div key={label} className="box-border w-full rounded-[1.35rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left sm:rounded-[1.65rem] sm:p-5">
+                <div className="text-base font-semibold text-slate-900">{label}</div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{detail}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mx-auto mt-5 box-border w-full max-w-5xl rounded-2xl border border-[#cfe8d5] bg-[#f4fbf5] px-4 py-3 text-left text-sm font-semibold leading-6 text-slate-800">
+            Repeat customers cost about 1/5 what new customers cost to win. This calculator checks the saved customer list before more money gets spent chasing cold leads.
+          </div>
+
+          <div className="mx-auto mt-4 box-border w-full max-w-5xl rounded-[1.45rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#effaf2_0%,#ffffff_100%)] p-5 text-left sm:mt-6 sm:rounded-[1.9rem] sm:p-6">
+            <div className="text-sm font-bold leading-tight text-[#15803D]">Estimated monthly opportunity worth checking</div>
+            <div className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-5xl">$3,000 to $25,000+</div>
+            <p className="mt-3 text-sm leading-6 text-slate-700">
+              The calculator shows which leak is costing the business first: collected cash, follow-up, or both.
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-[#d8ecd9] bg-white p-4 text-sm leading-6 text-slate-700">
+                <span className="font-semibold text-slate-950">Cashflow Control System:</span> turn finished work into collected cash faster.
+              </div>
+              <div className="rounded-2xl border border-[#d8ecd9] bg-white p-4 text-sm leading-6 text-slate-700">
+                <span className="font-semibold text-slate-950">Repeat Revenue System:</span> get more money from customers already earned.
+              </div>
             </div>
           </div>
         </StepFrame>
@@ -181,8 +814,7 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "invoice") {
       return (
-        <StepFrame
-          eyebrow="Step 1 of 6"
+        <StepFrame {...frameProps}
           title="How much money is tied to each invoice?"
           body="The bigger each invoice is, the more money gets trapped every time billing slips."
         >
@@ -193,10 +825,9 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "jobs") {
       return (
-        <StepFrame
-          eyebrow="Step 2 of 6"
+        <StepFrame {...frameProps}
           title="How many finished jobs are waiting to turn into cash each month?"
-          body="Even small invoicing delays become expensive when completed work keeps stacking up week after week."
+          body="Even small invoicing delays get expensive when completed work keeps stacking up week after week."
         >
           <BigNumberInput value={jobsPerMonth} onChange={setJobsPerMonth} suffix="jobs" />
         </StepFrame>
@@ -205,8 +836,7 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "delay") {
       return (
-        <StepFrame
-          eyebrow="Step 3 of 6"
+        <StepFrame {...frameProps}
           title="How many days does your money sit before you bill it?"
           body="Every extra day before the invoice goes out is another day your cash stays stuck instead of coming in."
         >
@@ -217,9 +847,8 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "hours") {
       return (
-        <StepFrame
-          eyebrow="Step 4 of 6"
-          title="How much office time gets burned just to get one invoice out?"
+        <StepFrame {...frameProps}
+          title="How much office time gets burned just to send one invoice?"
           body="Think re-entry, missing details, cleanup, and chasing field info that should have been ready the first time."
         >
           <BigNumberInput value={hoursLost} onChange={setHoursLost} suffix="hrs" />
@@ -229,10 +858,9 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "unbilled") {
       return (
-        <StepFrame
-          eyebrow="Step 5 of 6"
+        <StepFrame {...frameProps}
           title="How many completed jobs are usually sitting unbilled right now?"
-          body="If work is done but the invoice is still not out, that is money already earned but still stuck in limbo."
+          body="If work is done but the invoice is still not out, that is money already earned and still stuck."
         >
           <BigNumberInput value={unbilledJobs} onChange={setUnbilledJobs} suffix="jobs" />
         </StepFrame>
@@ -241,124 +869,544 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "corrections") {
       return (
-        <StepFrame
-          eyebrow="Step 6 of 6"
-          title="What percent of invoices need corrections, missing info, or extra follow-up before they can go out?"
-          body="Every correction cycle slows cash down and quietly adds more payroll waste to work that should already be finished."
-          continueLabel="See what it is costing"
+        <StepFrame {...frameProps}
+          title="What percent of invoices need corrections before they can go out?"
+          body="Missing details and cleanup slow cash down and waste payroll time on work that should already be finished."
+          continueLabel="Next: customer revenue"
         >
           <BigNumberInput value={correctionRate} onChange={setCorrectionRate} suffix="%" />
+          <div className="mx-auto mt-8 box-border w-full max-w-4xl rounded-[1.5rem] border border-[#cfe8d5] bg-[#f4fbf5] p-5 text-left">
+            <p className="text-base font-semibold leading-7 text-slate-900">Cash stuck in billing is one leak. Old customers sitting untouched is another.</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">Now let’s check the money inside the customer list your business already owns.</p>
+          </div>
+        </StepFrame>
+      )
+    }
+
+    if (step === "customerSource") {
+      return (
+        <StepFrame {...frameProps}
+          title="Where is your customer list saved?"
+          body="A messy list does not erase the opportunity. It shows where Stanley Systems starts: getting the list clean enough to use."
+        >
+          <MultiChoiceGrid<CustomerListSource>
+            value={customerListSources}
+            onChange={setCustomerListSources}
+            options={Object.entries(customerSourceMessages).map(([value, source]) => ({
+              value: value as CustomerListSource,
+              label: source.label,
+              detail: source.helper,
+            }))}
+          />
+        </StepFrame>
+      )
+    }
+
+    if (step === "customers") {
+      return (
+        <StepFrame {...frameProps}
+          title="How much money is sitting in your saved customer list?"
+          body="Old customers are not cold leads. A repeat customer costs about 1/5 what a new customer costs to win. If nobody is following up with the list your business already owns, money is sitting idle."
+        >
+          <div className="mx-auto mt-8 grid w-full min-w-0 max-w-full gap-4 lg:max-w-5xl lg:grid-cols-2">
+            <div className="box-border w-full min-w-0 max-w-full rounded-[1.45rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left sm:rounded-[1.6rem] sm:p-5">
+              <label className="block text-sm font-semibold leading-6 text-slate-700">
+                Saved customer records
+              </label>
+              <input
+                value={totalSavedCustomerRecords}
+                onChange={(e) => setTotalSavedCustomerRecords(e.target.value.replace(/[^0-9.]/g, ""))}
+                inputMode="decimal"
+                className="mt-4 box-border w-full max-w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 text-3xl font-semibold text-slate-900 outline-none focus:border-[#15803D]"
+              />
+              <p className="mt-3 text-sm leading-6 text-slate-500">
+                Count unique customers saved in job software, CRM, QuickBooks, accounting, spreadsheets, contact lists, or old files.
+              </p>
+            </div>
+            <div className="box-border w-full min-w-0 max-w-full rounded-[1.45rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left sm:rounded-[1.6rem] sm:p-5">
+              <label className="text-sm font-semibold leading-6 text-slate-700">What is a typical repeat job worth?</label>
+              <div className="mt-4 flex min-w-0 items-center rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 focus-within:border-[#15803D]">
+                <span className="shrink-0 text-3xl font-semibold text-slate-400">$</span>
+                <input
+                  value={repeatJobValue}
+                  onChange={(e) => setRepeatJobValue(e.target.value.replace(/[^0-9.]/g, ""))}
+                  inputMode="decimal"
+                  className="min-w-0 flex-1 bg-transparent px-2 text-3xl font-semibold text-slate-900 outline-none"
+                />
+              </div>
+              <p className="mt-3 text-sm leading-6 text-slate-500">Use your service call, maintenance visit, repair, seasonal service, or repeat job.</p>
+            </div>
+          </div>
+          <div className="mx-auto mt-5 grid box-border w-full min-w-0 max-w-full gap-3 rounded-[1.45rem] border border-[#cfe8d5] bg-[#f4fbf5] p-5 text-left sm:grid-cols-[0.85fr_1.15fr] sm:items-center lg:max-w-5xl">
+            <p className="text-2xl font-semibold leading-tight text-[#15803D] sm:text-3xl">500 to 3,000 saved records can hide serious repeat work.</p>
+            <p className="text-sm leading-6 text-slate-700">
+              We count each saved customer once so the estimate does not double-count the same record. The first fix is getting the list clean enough to use.
+            </p>
+          </div>
+        </StepFrame>
+      )
+    }
+
+    if (step === "followup") {
+      return (
+        <StepFrame {...frameProps}
+          title="How much of this saved customer list has been followed up with recently?"
+          body="Use the closest answer. If nobody knows, Stanley Systems treats the list as underworked until the records prove otherwise."
+        >
+          <ChoiceGrid<UncontactedCustomerRate>
+            value={uncontactedCustomerRate}
+            onChange={setUncontactedCustomerRate}
+            options={Object.entries(uncontactedCustomerSettings).map(([value, setting]) => ({
+              value: value as UncontactedCustomerRate,
+              label: setting.label,
+              detail: setting.helper,
+            }))}
+          />
+        </StepFrame>
+      )
+    }
+
+    if (step === "reviews") {
+      return (
+        <StepFrame {...frameProps}
+          title="Do reviews and referrals get a real next step?"
+          body="This does not add a guaranteed dollar claim. It tells Stanley Systems whether happy customers are turning into proof, referrals, and booked work."
+          compact
+        >
+          <div className="mx-auto mt-6 grid w-full max-w-5xl gap-4 lg:grid-cols-2">
+            <div className="box-border w-full rounded-[1.35rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 sm:p-5">
+              <div className="text-sm font-semibold text-slate-700">Do happy customers get asked for a Google review?</div>
+              <ChoiceGrid<SimpleSystem>
+                value={reviewFollowup}
+                onChange={setReviewFollowup}
+                compact
+                options={[
+                  { value: "no", label: "No" },
+                  { value: "manual", label: "Sometimes manually" },
+                  { value: "yes", label: "Yes" },
+                  { value: "unsure", label: "Not sure" },
+                ]}
+              />
+            </div>
+            <div className="box-border w-full rounded-[1.35rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 sm:p-5">
+              <div className="text-sm font-semibold text-slate-700">Do good reviews turn into referral asks?</div>
+              <ChoiceGrid<SimpleSystem>
+                value={referralFollowup}
+                onChange={setReferralFollowup}
+                compact
+                options={[
+                  { value: "no", label: "No" },
+                  { value: "manual", label: "Sometimes manually" },
+                  { value: "yes", label: "Yes" },
+                  { value: "unsure", label: "Not sure" },
+                ]}
+              />
+            </div>
+          </div>
+        </StepFrame>
+      )
+    }
+
+    if (step === "missedCalls") {
+      return (
+        <StepFrame {...frameProps}
+          title="What happens when a new customer call is missed?"
+          body="Missed calls are counted inside Customer Revenue with a conservative booked-job estimate."
+          continueLabel="See the result"
+        >
+          <ChoiceGrid<MissedCallRecovery>
+            value={missedCallRecovery}
+            onChange={setMissedCallRecovery}
+            options={Object.entries(missedCallSettings).map(([value, setting]) => ({
+              value: value as MissedCallRecovery,
+              label: setting.label,
+              detail: setting.helper,
+            }))}
+          />
+          <div className="mx-auto mt-7 box-border w-full max-w-xl rounded-[1.45rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left sm:rounded-[1.6rem] sm:p-5">
+            <label className="text-sm font-semibold leading-6 text-slate-700">Missed calls per month</label>
+            <input
+              value={missedCallsPerMonth}
+              onChange={(e) => setMissedCallsPerMonth(e.target.value.replace(/[^0-9.]/g, ""))}
+              inputMode="decimal"
+              className="mt-4 box-border w-full max-w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 text-3xl font-semibold text-slate-900 outline-none focus:border-[#15803D]"
+            />
+            <p className="mt-3 text-sm leading-6 text-slate-500">Use the number of real calls the office misses or answers too late in a normal month.</p>
+          </div>
         </StepFrame>
       )
     }
 
     if (step === "results") {
-      return (
-        <StepFrame
-          eyebrow="Estimated monthly loss"
-          title="Here is how much slow invoicing may be costing you every month"
-          body="This combines delayed cash, payroll tied up in invoice cleanup, work still sitting unbilled, and the drag created by corrections and missing information."
-          continueLabel="Show me how to stop it"
-        >
-          <div className="mx-auto mt-12 grid max-w-5xl gap-4 lg:mt-16">
-            <div className="rounded-[1.8rem] border border-[#e8dfd0] bg-[#fbfaf7] px-6 py-6 lg:px-8 lg:py-8">
-              <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Monthly billing volume moving through this workflow</div>
-              <div className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">{formatMoney(result.monthlyBilledValue)}</div>
-            </div>
-            <div className="rounded-[1.8rem] border border-[#f1d8d8] bg-[linear-gradient(180deg,#fff5f5_0%,#ffffff_100%)] px-6 py-6 lg:px-8 lg:py-8">
-              <div className="text-sm font-semibold uppercase tracking-[0.16em] text-[#b91c1c]">Cash getting held up each month</div>
-              <div className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">{formatMoney(result.weightedCashDrag)}</div>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-[1.8rem] border border-[#e8dfd0] bg-white px-6 py-6 lg:px-8 lg:py-8">
-                <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Payroll wasted on invoice cleanup</div>
-                <div className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{formatMoney(result.roughAdminCost)}</div>
-              </div>
-              <div className="rounded-[1.8rem] border border-[#e8dfd0] bg-white px-6 py-6 lg:px-8 lg:py-8">
-                <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Finished work still sitting unbilled</div>
-                <div className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{formatMoney(result.stuckUnbilledValue)}</div>
-              </div>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-[1.8rem] border border-[#e8dfd0] bg-white px-6 py-6 lg:px-8 lg:py-8">
-                <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Loss from corrections and missing info</div>
-                <div className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{formatMoney(result.correctionLoss)}</div>
-              </div>
-              <div className="rounded-[1.8rem] border border-[#e8dfd0] bg-white px-6 py-6 lg:px-8 lg:py-8">
-                <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Office hours lost every month</div>
-                <div className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">{result.monthlyLaborHours.toFixed(1)} hrs</div>
-              </div>
-            </div>
-            <div className="rounded-[1.8rem] border border-[#d8d1c4] bg-slate-950 px-6 py-6 text-white lg:px-8 lg:py-8">
-              <div className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Total monthly impact</div>
-              <div className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">{formatMoney(result.totalImpact)}</div>
-              <div className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">Severity</div>
-              <div className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{result.band}</div>
-              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-200 sm:text-lg">
-                This is what happens when completed work does not turn into invoices fast enough. Cash gets held up, payroll gets burned on cleanup, and the owner ends up carrying the mess instead of getting paid faster.
-              </p>
+      const summary = resultSummary
+      const ctaLabel = summary.hasMeaningfulLeak
+        ? `Find Where ${summary.formattedCTAValue}/month Is Stuck`
+        : "Check the Workflow"
+      const mobileCtaLabel = summary.hasMeaningfulLeak
+        ? `Find Where ${summary.formattedCTAValue}/mo Is Stuck`
+        : "Check the Workflow"
+
+      const ResultIconHolder = ({ children }: { children: React.ReactNode }) => (
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f4fbf5] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+          {children}
+        </span>
+      )
+
+      const CtaBar = ({ compact = false }: { compact?: boolean }) => (
+        <div className={`result-cta-reveal rounded-[1.25rem] border border-[#bfe5c7] bg-[linear-gradient(135deg,#eef9f2_0%,#ffffff_52%,#e9f7ed_100%)] p-4 text-left shadow-[0_18px_48px_rgba(21,128,61,0.12)] ${compact ? "lg:hidden" : "hidden lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-5 lg:p-4"}`}>
+          <div className="flex min-w-0 items-start gap-3">
+            <ResultIconHolder><CheckCircleDisplayAsset size={26} decorative /></ResultIconHolder>
+            <div className="min-w-0">
+              <div className="text-base font-semibold tracking-tight text-slate-950 sm:text-lg">Recommended first move: Workflow Audit</div>
+              <p className="mt-1 text-sm leading-6 text-slate-700">Check the real records. Find the first leak. Stop the repeat.</p>
             </div>
           </div>
-        </StepFrame>
+          <Link
+            href={auditHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="audit_checkout_clicked"
+            data-analytics-source="calculator_results"
+            data-cta-label={ctaLabel}
+            data-cta-location={compact ? "calculator_results_mobile" : "calculator_results_desktop"}
+            className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-5 py-3 text-center text-sm font-semibold leading-5 text-white transition hover:bg-[#166534] focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2 sm:text-base lg:mt-0 lg:w-auto lg:min-w-[330px] lg:px-7"
+          >
+            <span className="hidden sm:inline">{ctaLabel}</span>
+            <span className="sm:hidden">{mobileCtaLabel}</span>
+            <ArrowRight className="ml-2 h-4 w-4 shrink-0" />
+          </Link>
+        </div>
+      )
+
+      return (
+        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6">
+          <style>{`
+            .result-reveal { opacity: 0; transform: translateY(10px); animation: resultReveal 560ms cubic-bezier(.2,.8,.2,1) forwards; }
+            .result-card-reveal { opacity: 0; transform: translateY(14px); animation: resultReveal 640ms cubic-bezier(.2,.8,.2,1) forwards; }
+            .result-cta-reveal { transform: translateY(6px); animation: ctaSettle 520ms cubic-bezier(.2,.8,.2,1) 920ms both; }
+            .driver-highlight { animation: driverGlow 900ms cubic-bezier(.2,.8,.2,1) 1.05s both; }
+            @keyframes resultReveal { to { opacity: 1; transform: translateY(0); } }
+            @keyframes ctaSettle { to { transform: translateY(0); } }
+            @keyframes driverGlow { 0%, 100% { background-color: rgba(240,253,244,.72); border-color: rgba(187,247,208,.78); } 45% { background-color: rgba(220,252,231,.98); border-color: rgba(21,128,61,.34); } }
+            @media (prefers-reduced-motion: reduce) { .result-reveal, .result-card-reveal, .result-cta-reveal, .driver-highlight { animation: none !important; opacity: 1 !important; transform: none !important; } }
+          `}</style>
+          <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
+            <div className="box-border w-full max-w-full overflow-hidden rounded-[1.65rem] border border-[#e8dfd0] bg-white/96 p-4 shadow-[0_22px_80px_rgba(15,23,42,0.10)] backdrop-blur sm:rounded-[2.25rem] sm:p-5 lg:rounded-[2.35rem] lg:p-5">
+              <div className="mb-4">
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2">
+                  <div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: `${progress}%` }} />
+                </div>
+              </div>
+
+              <div className="grid gap-2.5 lg:gap-3">
+                <div className="result-reveal rounded-[1.55rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#f4fbf5_0%,#ffffff_100%)] px-4 py-5 text-center shadow-[0_16px_48px_rgba(21,128,61,0.08)] sm:rounded-[2rem] sm:px-6 sm:py-6 lg:px-8 lg:py-4" style={{ animationDelay: "60ms" }}>
+                  {summary.hasMeaningfulLeak ? (
+                    <>
+                      <div className="result-reveal text-[2.65rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#15803D] sm:text-[4.2rem] lg:text-[4.75rem]" style={{ animationDelay: "120ms" }}>
+                        {summary.formattedHeadlineRange}/year
+                      </div>
+                      <h1 className="mx-auto mt-2 max-w-4xl text-[2rem] font-semibold leading-[1.02] tracking-tight text-slate-950 sm:text-[2.75rem] lg:text-[3.2rem]">
+                        is leaking from your business.
+                      </h1>
+                      <p className="result-reveal mx-auto mt-2 max-w-3xl text-base font-semibold leading-7 text-slate-800 sm:text-lg lg:text-base" style={{ animationDelay: "360ms" }}>
+                        That is {summary.formattedMonthlyRange}/month before another lead is added.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <h1 className="mx-auto max-w-4xl text-[1.8rem] font-semibold leading-[1.05] tracking-tight text-slate-950 sm:text-[2.45rem] lg:text-[3rem]">
+                        Your answers show a smaller leak, but the Workflow Audit can still check the records.
+                      </h1>
+                      <p className="result-reveal mx-auto mt-2 max-w-3xl text-base font-semibold leading-7 text-slate-800 sm:text-lg lg:text-base" style={{ animationDelay: "360ms" }}>
+                        The safest next step is checking the real workflow before making a bigger claim.
+                      </p>
+                    </>
+                  )}
+                  <p className="mt-2 text-xs font-semibold leading-5 text-slate-500 sm:text-sm">Estimates only. The Workflow Audit checks the real records.</p>
+                </div>
+
+                {summary.hasMeaningfulLeak ? (
+                  <div className="result-card-reveal" style={{ animationDelay: "560ms" }}>
+                    <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700">
+                      <span className="h-px flex-1 bg-[#e8dfd0]" />
+                      Cost of waiting
+                      <span className="h-px flex-1 bg-[#e8dfd0]" />
+                    </div>
+                    <div className="grid gap-2 sm:grid-cols-3">
+                      {[
+                        ["30 days", summary.formattedCardValues.wait30Days, "620ms"],
+                        ["90 days", summary.formattedCardValues.wait90Days, "760ms"],
+                        ["12 months", summary.formattedCardValues.wait12Months, "900ms"],
+                      ].map(([label, value, delay]) => (
+                        <div key={label} className="result-card-reveal rounded-[1rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-2 text-left" style={{ animationDelay: delay }}>
+                          <div className="text-sm font-semibold text-slate-500">{label}</div>
+                          <div className="mt-0.5 text-2xl font-semibold tracking-tight text-slate-950 sm:text-[1.6rem]">{value}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
+                <CtaBar compact />
+
+                <div className="grid gap-3 lg:grid-cols-2">
+                  <div className="result-card-reveal box-border flex w-full flex-col rounded-[1.15rem] border border-[#dcefe0] bg-white p-3.5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]" style={{ animationDelay: "980ms" }}>
+                    <div className="flex items-center gap-3">
+                      <ResultIconHolder><DollarCircleDisplayAsset size={27} decorative /></ResultIconHolder>
+                      <h2 className="min-w-0 text-xl font-semibold leading-6 tracking-tight text-slate-950">Cash earned, still stuck</h2>
+                    </div>
+                    <div className="mt-2 break-words text-[2.05rem] font-semibold leading-none tracking-tight text-slate-950 sm:text-[2.35rem]">{summary.formattedCardValues.cashMonthly}/month</div>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-900">Finished jobs are done. Billing and collection are still dragging.</p>
+                    {summary.selectedCashDriver ? (
+                      <p className="driver-highlight mt-2 w-fit max-w-full rounded-full border border-[#dcefe0] px-3 py-1.5 text-sm font-semibold leading-5 text-slate-800">
+                        Biggest drag: {summary.selectedCashDriver.label}
+                      </p>
+                    ) : null}
+                    <p className="mt-auto pt-3 text-xs leading-5 text-slate-500">Annualized cash check value: {summary.formattedCardValues.cashAnnual}</p>
+                  </div>
+
+                  <div className="result-card-reveal box-border flex w-full flex-col rounded-[1.15rem] border border-[#dcefe0] bg-white p-3.5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]" style={{ animationDelay: "1080ms" }}>
+                    <div className="flex items-center gap-3">
+                      <ResultIconHolder><UsersDisplayAsset size={27} decorative /></ResultIconHolder>
+                      <h2 className="min-w-0 text-xl font-semibold leading-6 tracking-tight text-slate-950">Past customers, still untouched</h2>
+                    </div>
+                    <div className="mt-2 break-words text-[2.05rem] font-semibold leading-none tracking-tight text-slate-950 sm:text-[2.35rem]">{summary.formattedCardValues.customerMonthly}/month</div>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-900">Saved customers and missed calls are not turning into booked jobs.</p>
+                    {summary.selectedCustomerDriver ? (
+                      <p className="driver-highlight mt-2 w-fit max-w-full rounded-full border border-[#dcefe0] px-3 py-1.5 text-sm font-semibold leading-5 text-slate-800">
+                        Biggest drag: {summary.selectedCustomerDriver.label}
+                      </p>
+                    ) : null}
+                    <p className="mt-auto pt-3 text-xs leading-5 text-slate-500">Annualized customer check value: {summary.formattedCardValues.customerAnnual}</p>
+                  </div>
+                </div>
+
+                <div className="result-card-reveal flex flex-col gap-3 rounded-[1rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-2.5 text-left sm:flex-row sm:items-center" style={{ animationDelay: "1220ms" }}>
+                  <ResultIconHolder><MessageBubbleDisplayAsset size={25} decorative /></ResultIconHolder>
+                  <p className="text-sm leading-6 text-slate-700">
+                    <span className="font-semibold text-slate-950">Plain English:</span> You already paid for the crew, the customer, and the office time. The money still waits because the follow-up depends on someone remembering. <span className="font-semibold text-slate-950">More leads make this leak bigger.</span>
+                  </p>
+                </div>
+
+                <CtaBar />
+
+                <button type="button" onClick={back} className="mx-auto inline-flex items-center justify-center rounded-full px-3 py-1.5 text-sm font-semibold text-slate-500 transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2">
+                  ← Back to inputs
+                </button>
+
+                <details className="box-border w-full rounded-[1rem] border border-[#e8dfd0] bg-white px-4 py-3 text-left open:bg-[#fbfaf7]">
+                  <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-semibold text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D] focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden">
+                    <FileInvoiceDisplayAsset size={22} decorative />
+                    Show how this estimate was built
+                  </summary>
+                  <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
+                    <div className="rounded-[1rem] border border-[#cfe8d5] bg-[#f4fbf5] p-4">
+                      <div className="text-xs font-semibold uppercase tracking-[0.12em] text-[#15803D]">Monthly leak estimate</div>
+                      <p className="mt-2 text-base font-semibold leading-7 text-slate-950">{summary.equationText}</p>
+                      {summary.calculationRelationship === "built-from" ? (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {summary.equationComponents.map((component) => (
+                            <span key={component.label} className="rounded-full border border-[#bfe5c7] bg-white px-3 py-1 text-xs font-semibold text-slate-700">
+                              {component.label}: {component.displayValue}
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+
+                    <div className="grid gap-3 lg:grid-cols-2">
+                      <div className="rounded-[1rem] border border-[#e8dfd0] bg-white p-4">
+                        <div className="flex items-start gap-3">
+                          <ResultIconHolder><DollarCircleDisplayAsset size={24} decorative /></ResultIconHolder>
+                          <div className="min-w-0">
+                            <div className="text-base font-semibold text-slate-950">Cash drag: {summary.formattedCardValues.cashMonthly}/month</div>
+                            <p className="mt-1 text-sm leading-6 text-slate-600">Money already earned is getting delayed after the work is done.</p>
+                          </div>
+                        </div>
+
+                        {summary.cashDrivers.length ? (
+                          <div className="mt-4 space-y-2">
+                            {summary.cashDrivers.map((driver) => (
+                              <div key={driver.key} className="grid gap-2 rounded-[0.85rem] border border-[#edf0e8] bg-[#fbfaf7] p-3 sm:grid-cols-[0.85fr_1.4fr_auto] sm:items-start">
+                                <div>
+                                  <div className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">Driver</div>
+                                  <div className="mt-0.5 font-semibold text-slate-950">{driver.label}</div>
+                                </div>
+                                <div>
+                                  <div className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">What it means</div>
+                                  <div className="mt-0.5 text-slate-700">{driver.meaning}</div>
+                                </div>
+                                <div className="sm:text-right">
+                                  <div className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">Impact</div>
+                                  <div className="mt-0.5 font-semibold text-slate-950">{driver.displayValue}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="mt-4 rounded-[0.85rem] border border-[#edf0e8] bg-[#fbfaf7] p-3 text-sm text-slate-600">No meaningful cash drag rows were created from the current answers.</p>
+                        )}
+
+                        {summary.selectedCashDriver ? (
+                          <p className="mt-3 rounded-[0.85rem] border border-[#cfe8d5] bg-[#f4fbf5] p-3 text-sm font-semibold text-slate-800">
+                            Biggest issue: {summary.selectedCashDriver.key === "slow-invoice-drag" ? "invoices are not moving fast enough after the work is done." : `${summary.selectedCashDriver.meaning}`}
+                          </p>
+                        ) : null}
+                      </div>
+
+                      <div className="rounded-[1rem] border border-[#e8dfd0] bg-white p-4">
+                        <div className="flex items-start gap-3">
+                          <ResultIconHolder><UsersDisplayAsset size={24} decorative /></ResultIconHolder>
+                          <div className="min-w-0">
+                            <div className="text-base font-semibold text-slate-950">Customer revenue drag: {summary.formattedCardValues.customerMonthly}/month</div>
+                            <p className="mt-1 text-sm leading-6 text-slate-600">Past customers and missed calls are not turning into booked jobs.</p>
+                          </div>
+                        </div>
+
+                        {(summary.estimatedUnderworkedCustomers > 0 && summary.averageRepeatJobValue > 0) || summary.customerScenarios.length ? (
+                          <div className="mt-4 rounded-[0.85rem] border border-[#cfe8d5] bg-[#f4fbf5] p-3">
+                            <div className="text-xs font-semibold uppercase tracking-[0.1em] text-[#15803D]">Why it is a range</div>
+                            <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">{summary.customerRangeExplanation}</p>
+                            {summary.customerScenarios.length ? <p className="mt-1 text-xs leading-5 text-slate-600">Then the result is converted into a monthly estimate.</p> : null}
+                          </div>
+                        ) : null}
+
+                        {summary.customerScenarios.length ? (
+                          <div className="mt-3 space-y-2">
+                            {summary.customerScenarios.map((scenario) => (
+                              <div key={scenario.key} className="grid gap-2 rounded-[0.85rem] border border-[#edf0e8] bg-[#fbfaf7] p-3 sm:grid-cols-[0.7fr_0.8fr_1.25fr]">
+                                <div>
+                                  <div className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">Scenario</div>
+                                  <div className="mt-0.5 font-semibold text-slate-950">{scenario.label}</div>
+                                </div>
+                                <div>
+                                  <div className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">Assumption</div>
+                                  <div className="mt-0.5 font-semibold text-slate-800">{scenario.assumption}</div>
+                                </div>
+                                <div>
+                                  <div className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">What it means</div>
+                                  <div className="mt-0.5 text-slate-700">{scenario.meaning}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
+
+                        {summary.missedCallImpact ? (
+                          <div className="mt-3 rounded-[0.85rem] border border-[#edf0e8] bg-white p-3">
+                            <div className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">Missed-call note</div>
+                            <p className="mt-1 text-sm leading-6 text-slate-700">{summary.missedCallImpact.meaning} Impact: <span className="font-semibold text-slate-950">{summary.missedCallImpact.displayValue}</span>.</p>
+                          </div>
+                        ) : null}
+
+                        {summary.selectedCustomerDriver ? (
+                          <p className="mt-3 rounded-[0.85rem] border border-[#cfe8d5] bg-[#f4fbf5] p-3 text-sm font-semibold text-slate-800">
+                            Biggest issue: {summary.selectedCustomerDriver.key === "saved-customer-records" ? "the business already has customer records, but there is no follow-up path turning them into jobs." : `${summary.selectedCustomerDriver.meaning}`}
+                          </p>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    {summary.workflowAuditChecks.length ? (
+                      <div className="rounded-[1rem] border border-[#cfe8d5] bg-[#f4fbf5] p-4">
+                        <div className="flex items-start gap-3">
+                          <ResultIconHolder><CheckCircleDisplayAsset size={24} decorative /></ResultIconHolder>
+                          <div className="min-w-0">
+                            <div className="text-base font-semibold text-slate-950">What the Workflow Audit checks</div>
+                            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                              {summary.workflowAuditChecks.map((item) => (
+                                <div key={item} className="flex items-start gap-2 text-sm leading-6 text-slate-700">
+                                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#15803D]" aria-hidden="true" />
+                                  <span>{item}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
+
+                    <p className="text-sm leading-6 text-slate-500">These numbers are estimates. The Workflow Audit checks the real records before anything is built.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+        </section>
       )
     }
 
     return null
   })()
 
-  return (
-    <>
-      {showSiteChrome ? <GlassmorphismNav /> : null}
+  if (step === "cta") {
+    return (
+      <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-5 sm:px-5 sm:pt-7 lg:px-8 lg:pb-14 lg:pt-10">
+        <div className="mx-auto flex min-h-[calc(100vh-2.5rem)] w-full max-w-[1380px] items-center justify-center">
+          <section className="box-border w-full max-w-full overflow-hidden rounded-[1.65rem] border border-[#e8dfd0] bg-[linear-gradient(180deg,#f9f6ef_0%,#ffffff_100%)] p-4 shadow-[0_28px_100px_rgba(15,23,42,0.10)] sm:rounded-[2.25rem] sm:p-8 lg:rounded-[2.5rem] lg:p-9">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-[#efe9dc]">
+              <div className="h-full w-full rounded-full bg-[#15803D]" />
+            </div>
+            <div className="mt-8 text-center">
+              <h2 className="mt-4 text-3xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl lg:text-[3rem] lg:leading-[1.05]">
+                Almost nothing to do. Costs everything to not do.
+              </h2>
+              <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                The customers are already in your list. The jobs already happened. The trust already exists. Stanley Systems helps turn saved customer records into repeat jobs, reviews, referrals, captured calls, and collected cash.
+              </p>
+            </div>
 
-      {step === "cta" ? (
-        <section className="relative min-h-screen px-4 pb-10 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:px-8 lg:pb-14 lg:pt-10">
-          <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-[1380px] items-center justify-center">
-            <section className="w-full rounded-[2.25rem] border border-[#e8dfd0] bg-[linear-gradient(180deg,#f9f6ef_0%,#ffffff_100%)] p-6 shadow-[0_28px_100px_rgba(15,23,42,0.10)] sm:p-8 lg:min-h-[82vh] lg:rounded-[2.75rem] lg:p-12">
-              <div className="h-2 w-full overflow-hidden rounded-full bg-[#efe9dc]">
-                <div className="h-full w-full rounded-full bg-[#15803D]" />
-              </div>
-              <div className="mt-8 text-center">
-                <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">What to do next</div>
-                <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-[3rem] lg:leading-[1.05]">
-                  This is money you should already have.
-                </h2>
-                <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
-                  Stanley Systems helps service businesses fix the handoff between completed work, office admin, and billing so invoices go out faster, fewer details get lost, and the owner stops acting like the backup system.
-                </p>
-              </div>
-
-              <div className="mt-10 grid gap-4 md:grid-cols-3">
-                <div className="rounded-[1.6rem] border border-[#e8dfd0] bg-white px-5 py-5 text-left">
-                  <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Fix 1</div>
-                  <div className="mt-3 text-lg font-semibold text-slate-900">Tighten the handoff from completed work to invoice prep</div>
+            <div className="mt-8 grid w-full gap-3 md:grid-cols-3 lg:mt-10">
+              {[
+                ["Fix 1", "Use the Workflow Audit to choose the first system"],
+                ["Fix 2", "Cashflow Control System collects more money already earned"],
+                ["Fix 3", "Repeat Revenue brings back customers you already earned"],
+              ].map(([label, copy]) => (
+                <div key={label} className="box-border w-full rounded-[1.35rem] border border-[#e8dfd0] bg-white px-5 py-5 text-left">
+                  <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</div>
+                  <div className="mt-3 text-lg font-semibold text-slate-900">{copy}</div>
                 </div>
-                <div className="rounded-[1.6rem] border border-[#e8dfd0] bg-white px-5 py-5 text-left">
-                  <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Fix 2</div>
-                  <div className="mt-3 text-lg font-semibold text-slate-900">Cut the office cleanup that keeps cash waiting</div>
-                </div>
-                <div className="rounded-[1.6rem] border border-[#e8dfd0] bg-white px-5 py-5 text-left">
-                  <div className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Fix 3</div>
-                  <div className="mt-3 text-lg font-semibold text-slate-900">Get invoices out faster without the owner chasing everything</div>
-                </div>
-              </div>
+              ))}
+            </div>
 
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#166534]">
-                  Book the Workflow Audit
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-                <Link href="/#systems" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">
-                  Show Me the Recommended System
-                </Link>
-              </div>
-            </section>
-          </div>
-        </section>
-      ) : (
-        quizContent
-      )}
+            <div className="mt-8 grid w-full gap-3 sm:grid-cols-2 sm:justify-center lg:mt-10">
+              <Link
+                href={auditHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-analytics-event="audit_checkout_clicked"
+                data-analytics-source="calculator_final_cta"
+                data-cta-label={resultSummary.hasMeaningfulLeak ? `Find Where ${resultSummary.formattedCTAValue}/month Is Stuck` : "Check the Workflow"}
+                data-cta-location="calculator_final_cta"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#166534]"
+              >
+                {resultSummary.hasMeaningfulLeak ? `Find Where ${resultSummary.formattedCTAValue}/month Is Stuck` : "Check the Workflow"}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+              <a href="tel:+16172745391" className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">
+                <Phone className="mr-2 h-4 w-4" />
+                Call now
+              </a>
+            </div>
 
-      {showSiteChrome ? <Footer /> : null}
-    </>
-  )
+            <div className="mt-10 border-t border-[#e8dfd0] pt-8">
+              <div className="text-center">
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">Four quick answers before you book.</h3>
+              </div>
+              <div className="mx-auto mt-6 grid w-full max-w-4xl gap-3">
+                {faqItems.map((item) => (
+                  <details key={item.question} className="box-border w-full rounded-[1.15rem] border border-[#e8dfd0] bg-white px-4 py-3 text-left open:bg-[#fbfaf7] sm:rounded-[1.35rem] sm:px-5 sm:py-4">
+                    <summary className="cursor-pointer text-base font-semibold leading-6 text-slate-900">{item.question}</summary>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    )
+  }
+
+  return quizContent
 }

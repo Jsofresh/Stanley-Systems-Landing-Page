@@ -1,0 +1,91 @@
+ M .agents/skills/stanley-site-design-director/SKILL.md
+ M AGENTS.md
+ M DESIGN.md
+ M app/about/page.tsx
+ M app/blog/[slug]/page.tsx
+ M app/blog/page.tsx
+ M app/blog/posts.ts
+ M app/field-service-automation/page.tsx
+ M app/how-stanley-systems-works/page.tsx
+ M app/invoicing-delay-cash-flow-calculator/calculator-client.tsx
+ M app/invoicing-delay-cash-flow-calculator/page.tsx
+ M app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx
+ M app/layout.tsx
+ M app/marine-service-automation/page.tsx
+ M app/missed-estimate-follow-up-for-service-businesses/page.tsx
+ M app/office-handoff-problems-in-field-service-businesses/page.tsx
+ M app/page.tsx
+ M app/service-business-billing-process-fix/page.tsx
+ M app/sitemap.ts
+ M app/speed-up-invoicing-for-service-businesses/page.tsx
+ M app/stanley-systems-case-study/page.tsx
+ M app/terms-and-conditions/page.tsx
+ M app/who-stanley-systems-helps/page.tsx
+ M app/work-order-to-invoice-process-for-service-businesses/page.tsx
+ M components/calculator-path-section.tsx
+ M components/contact-section.tsx
+ M components/cta-link.tsx
+ M components/faq-section.tsx
+ M components/final-cta-section.tsx
+ M components/footer.tsx
+ M components/founder-section.tsx
+ M components/glassmorphism-nav.tsx
+ M components/hero-section.tsx
+ M components/how-it-works-section.tsx
+ M components/marine-example-section.tsx
+ M components/mobile-sticky-cta.tsx
+ M components/pain-points-section.tsx
+ M components/posthog-provider.tsx
+ M components/pricing-section.tsx
+ M components/problem-solution-map-section.tsx
+ M components/proof-strip-section.tsx
+ M components/reach-out-section.tsx
+ M components/testimonials-section.tsx
+ M components/visual-primitives/RevenueLoop.tsx
+ M components/visual-primitives/SectionShell.tsx
+ M lib/posthog-attribution.ts
+ M scripts/design-loop/anti-ai-slop-gate.ts
+ M scripts/design-loop/build-stanley-image-context-pack.ts
+ M scripts/design-loop/critical-visual-review-gate.ts
+ M scripts/design-loop/four-judge-visual-reviewer.ts
+ M scripts/design-loop/generated/stanley-website-review-context.md
+ M scripts/design-loop/gpt-image-section-concept.ts
+ M scripts/design-loop/hermes-critical-visual-review-command.ts
+ M scripts/design-loop/run-verification.ts
+ M scripts/design-loop/visual-asset-strategy-smoke.ts
+ M visual-assets/generated/fidelity-pass-assets-manifest.md
+ M visual-assets/generated/homepage-systems-assets-manifest.md
+ M visual-assets/generated/homepage-systems-higgsfield-jobs.json
+ M visual-assets/generated/homepage-systems-higgsfield-status.json
+ M visual-assets/generated/systems-clean-icon-pass-manifest.md
+ M visual-assets/generated/systems-higgsfield-rebuild-manifest.md
+ M visual-assets/requests/cashflow-green-cash-arrow.request.md
+ M visual-assets/requests/cashflow-leak-puddle.request.md
+ M visual-assets/requests/customer-revenue-flywheel-glow.request.md
+ M visual-assets/requests/customer-revenue-green-arrow.request.md
+ M visual-assets/requests/fidelity-cashflow-collected-cash-arrow.request.md
+ M visual-assets/requests/fidelity-cashflow-pipeline-layer.request.md
+ M visual-assets/requests/fidelity-revenue-flywheel-glow-ring.request.md
+ M visual-assets/requests/homepage-systems-asset-plan.md
+?? app/api/checkout/
+?? app/checkout/
+?? app/dev/customer-revenue-system-v2/
+?? app/dev/customer-revenue-system-v3/
+?? app/dev/customer-revenue-system-v4/
+?? app/dev/visual-kit-composite-assets/
+?? app/dev/visual-kit-display-assets/
+?? app/dev/visual-kit-display-icons/
+?? app/dev/visual-kit-mini-features/
+?? app/dev/visual-kit-newest-18/
+?? app/dev/visual-kit-primitives/
+?? app/pricing/
+?? app/systems/
+?? artifacts/
+?? components/best-fit-section.tsx
+?? components/checkout/
+?? components/pricing/
+?? components/sections/
+?? components/visual-kit/
+?? docs/
+?? lib/pricing/
+?? public/visual-kit/

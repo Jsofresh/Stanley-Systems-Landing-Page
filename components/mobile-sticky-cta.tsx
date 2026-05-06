@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react"
 import { CTALink } from "@/components/cta-link"
 import { CTAPhoneLink } from "@/components/cta-phone-link"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
+
+const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
 export function MobileStickyCTA() {
   const [showStickyCta, setShowStickyCta] = useState(false)
@@ -61,12 +64,20 @@ export function MobileStickyCTA() {
           Call now
         </CTAPhoneLink>
         <CTALink
-          href="/contact"
-          kind="book_meeting"
+          href={auditHref}
+          kind="checkout"
           location="mobile_sticky_primary"
+          analyticsEvent="audit_checkout_clicked"
+          analyticsSource="mobile_sticky_cta"
+          packageId="workflow_audit"
+          packageName="Workflow Audit"
+          billingPeriod="one_time"
+          ctaLabel="Buy Audit"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center rounded-full bg-[#15803D] px-4 py-3 text-sm font-semibold text-white"
         >
-          Workflow Audit
+          Buy Audit
         </CTALink>
       </div>
     </div>

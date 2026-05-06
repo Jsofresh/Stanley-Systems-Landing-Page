@@ -294,7 +294,7 @@ function buildStrategyPrompt(packet: ReviewPacket, route: string, visibleText: s
     "<<<STANLEY_CONTEXT_BEGIN>>>",
     context.markdown,
     "<<<STANLEY_CONTEXT_END>>>",
-    "Strategy rubric: judge ICP alignment, offer architecture, copy rules, public language rules, result-first positioning, Workflow Audit, Cashflow Control System, and Customer Revenue System.",
+    "Strategy rubric: judge ICP alignment, offer architecture, copy rules, public language rules, result-first positioning, Workflow Audit, Cash Flow Collection System, and Repeat Revenue System.",
     "Hard fail generic SaaS filler, internal tooling language, clever-not-clear copy, weak outcome framing, and visuals that do not support money, time, billing speed, customer revenue, missed calls, follow-up, or owner relief.",
     baseJudgeJsonContract("stanley_strategy"),
   ].join("\n")

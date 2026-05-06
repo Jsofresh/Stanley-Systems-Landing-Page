@@ -42,7 +42,6 @@ export default function MarineServiceAutomationPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Industry page</p>
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.06]">
                 Marine service automation should make the office run cleaner, not add more software chaos.
               </h1>
@@ -51,10 +50,10 @@ export default function MarineServiceAutomationPage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/contact"
+                  href="/pricing"
                   className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800"
                 >
-                  Book a meeting
+                  See pricing
                 </Link>
                 <a
                   href="tel:+16179586372"
@@ -67,7 +66,6 @@ export default function MarineServiceAutomationPage() {
             </div>
 
             <div className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Common marine-service pain points</p>
               <ul className="mt-5 space-y-4">
                 {marinePainPoints.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -81,21 +79,18 @@ export default function MarineServiceAutomationPage() {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Where the drag usually starts</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The handoff is fragmented</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Marine service businesses often have great technical execution and messy operational handoffs. Details live in texts, calls, paperwork, and memory. That turns simple office work into reconstruction work.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What matters operationally</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Faster billing and cleaner closeout</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 The biggest win is rarely a flashy dashboard. It is getting completed work turned into clean next steps without office backtracking, owner intervention, or billing delay.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Why Stanley fits</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The work stays grounded in real operations</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems focuses on practical workflow fixes inside the tools the business already uses, rather than pushing a whole new system just because it looks cleaner in a demo.
@@ -105,7 +100,6 @@ export default function MarineServiceAutomationPage() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Why this page exists</p>
               <ul className="mt-6 space-y-4">
                 {marineFit.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -117,7 +111,6 @@ export default function MarineServiceAutomationPage() {
             </section>
 
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Related Stanley pages</p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
                   ...internalPageLinks,

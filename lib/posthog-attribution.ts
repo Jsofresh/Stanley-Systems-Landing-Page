@@ -12,6 +12,18 @@ export type AttributionProperties = {
   content_asset?: string
   cta_label?: string
   cta_location?: string
+  cta_href?: string
+  event_source?: string
+  package_id?: string
+  package_name?: string
+  billing_period?: string
+  recommended_system?: string
+  recommended_plan?: string
+  calculator_kind?: string
+  annual_leak_estimate?: string
+  monthly_leak_estimate?: string
+  form_id?: string
+  form_location?: string
 }
 
 type PostHogClient = unknown[] & {
@@ -38,6 +50,16 @@ function getWindowPath() {
 
 function clean(value: string | null) {
   return value?.trim() || undefined
+}
+
+export function cleanAnalyticsValue(value: string | null | undefined, maxLength = 80) {
+  const cleaned = value?.replace(/[^a-zA-Z0-9_$+.,:/#?&= -]/g, "").replace(/\s+/g, " ").trim()
+  return cleaned ? cleaned.slice(0, maxLength) : undefined
+}
+
+export function safeSearchParam(key: string, maxLength = 80) {
+  if (typeof window === "undefined") return undefined
+  return cleanAnalyticsValue(new URLSearchParams(window.location.search).get(key), maxLength)
 }
 
 export function readStoredAttribution(): AttributionProperties {
@@ -92,6 +114,69 @@ export function trackStanleyEvent(eventName: string, properties: AttributionProp
 
   const payload = getAttributionProperties(properties)
   window.posthog?.capture?.(eventName, payload)
+}
+
+export function trackPricingViewed() {
+  trackStanleyEvent("pricing_viewed", {
+    event_source: safeSearchParam("source") || "direct",
+    recommended_system: safeSearchParam("recommended"),
+    recommended_plan: safeSearchParam("recommended_plan"),
+    calculator_kind: safeSearchParam("calculator_kind") || (safeSearchParam("source") === "calculator" ? "customer_revenue" : undefined),
+    annual_leak_estimate: safeSearchParam("annual_leak", 40),
+    monthly_leak_estimate: safeSearchParam("monthly_leak", 40),
+  })
+}
+
+export function trackCheckoutOutcomeViewed(eventName: "checkout_success_viewed" | "checkout_cancel_viewed") {
+  trackStanleyEvent(eventName, {
+    event_source: safeSearchParam("source") || "stripe_redirect",
+    package_id: safeSearchParam("package") || safeSearchParam("package_id") || "workflow_audit",
+    package_name: safeSearchParam("package_name") || "Workflow Audit",
+  })
+}
+
+export function trackCalculatorIntroViewed(source = "homepage_calculator_section") {
+  trackStanleyEvent("calculator_intro_viewed", { event_source: source })
+}
+
+export function trackCalculatorCtaClicked(properties: AttributionProperties = {}) {
+  trackStanleyEvent("calculator_cta_clicked", properties)
+}
+
+export function trackAuditCheckoutClicked(properties: AttributionProperties = {}) {
+  trackStanleyEvent("audit_checkout_clicked", {
+    package_id: "workflow_audit",
+    package_name: "Workflow Audit",
+    ...properties,
+  })
+}
+
+export function trackPackageCheckoutClicked(properties: AttributionProperties = {}) {
+  trackStanleyEvent("package_checkout_clicked", properties)
+}
+
+export function trackPackageLearnMoreClicked(properties: AttributionProperties = {}) {
+  trackStanleyEvent("package_learn_more_clicked", properties)
+}
+
+export function trackPackageCompareClicked(properties: AttributionProperties = {}) {
+  trackStanleyEvent("package_compare_clicked", properties)
+}
+
+export function trackOnboardingFormStarted(properties: AttributionProperties = {}) {
+  trackStanleyEvent("onboarding_form_started", {
+    form_id: "workflow_audit_application",
+    form_location: "contact_page",
+    ...properties,
+  })
+}
+
+export function trackOnboardingFormSubmitted(properties: AttributionProperties = {}) {
+  trackStanleyEvent("onboarding_form_submitted", {
+    form_id: "workflow_audit_application",
+    form_location: "contact_page",
+    ...properties,
+  })
 }
 
 export function initializePostHog() {

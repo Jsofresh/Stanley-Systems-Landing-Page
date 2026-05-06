@@ -2,7 +2,7 @@
 
 Status: no generated assets approved for implementation in this first Codex pass.
 
-Decision: Codex should build the Cashflow Control System and Customer Revenue System visuals directly with React, Tailwind, and SVG. This avoids waiting on generated assets that came back as RGB/checkerboard backgrounds or had visual artifacts.
+Decision: Codex should build the Cash Flow Collection System and Repeat Revenue System visuals directly with React, Tailwind, and SVG. This avoids waiting on generated assets that came back as RGB/checkerboard backgrounds or had visual artifacts.
 
 ## Approved assets
 

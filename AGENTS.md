@@ -4,8 +4,8 @@ Codex builds from approved specs. Codex does not own public-site strategy, inven
 
 Use only approved public offers unless a spec explicitly says otherwise:
 - Workflow Audit
-- Cashflow Control System
-- Customer Revenue System
+- Cash Flow Collection System
+- Repeat Revenue System
 
 Do not use public site copy that mentions Hermes, Codex, Stanley H, OpenClaw, internal agents, n8n, QBO internals, HCP internals, secrets, or private implementation tools.
 

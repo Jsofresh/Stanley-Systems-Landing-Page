@@ -23,7 +23,6 @@ export function ReachOutSection() {
     <section className="relative z-10 px-4 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#e8e1d3] bg-[#fbfaf7] px-6 py-8 shadow-[0_18px_50px_rgba(15,23,42,0.06)] sm:px-8 sm:py-10 lg:px-10 lg:py-12">
         <div className="max-w-[50rem] sm:max-w-[56rem] lg:max-w-[64rem]">
-          <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">What happens after you reach out</div>
           <h2 className="mt-3 max-w-[58rem] text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-[3rem] lg:leading-[1.06] xl:max-w-none">
             A quick call, a clear answer, and no forced fit.
           </h2>
@@ -38,7 +37,6 @@ export function ReachOutSection() {
             return (
               <div key={step.title} className="rounded-[1.5rem] border border-[#e8e1d3] bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
                 <div className="flex items-center justify-between gap-3">
-                  <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Step {index + 1}</div>
                   <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#dce8d5] bg-[#f4f9f0] text-[#15803D]">
                     <Icon className="h-5 w-5" strokeWidth={2.1} />
                   </span>

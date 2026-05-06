@@ -57,7 +57,6 @@ export default function HowStanleySystemsWorksPage() {
       <section className="px-4 pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">How Stanley Systems works</p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem] lg:leading-[1.08]">
               Clean up the workflow first. Then automate the parts that should stop depending on memory.
             </h1>
@@ -72,7 +71,6 @@ export default function HowStanleySystemsWorksPage() {
                 key={step.title}
                 className="rounded-[1.85rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]"
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Step {String(index + 1).padStart(2, "0")}</p>
                 <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">{step.title}</h2>
                 <p className="mt-4 text-base leading-7 text-slate-600">{step.body}</p>
               </article>
@@ -81,7 +79,6 @@ export default function HowStanleySystemsWorksPage() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Core principles</p>
               <ul className="mt-6 space-y-4">
                 {principles.map((principle) => (
                   <li key={principle} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -93,7 +90,6 @@ export default function HowStanleySystemsWorksPage() {
             </section>
 
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What that usually means in practice</p>
               <div className="mt-6 space-y-5 text-base leading-7 text-slate-600">
                 <p>
                   A technician finishes a job and the office gets what it needs without chasing notes. A quote goes out and follow-up happens on time. A manager can see what is waiting, what is complete, and what needs attention without rebuilding the story from scratch.
@@ -111,10 +107,10 @@ export default function HowStanleySystemsWorksPage() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/pricing"
                   className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]"
                 >
-                  Book a meeting
+                  See pricing
                 </Link>
               </div>
             </section>

@@ -1,0 +1,21 @@
+[32m[PM2] [39mApplying action restartProcessId on app [stanley-landing](ids: [ 39 ])
+[32m[PM2] [39m[stanley-landing](39) ✓
+┌────┬────────────────────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name                               │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼────────────────────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ [1m[36m2[39m[22m  │ fb-webhook                         │ default     │ 1.0.0   │ [7m[1mfork[22m[27m    │ N/A      │ 0      │ 0    │ [31m[1mstopped[22m[39m   │ 0%       │ 0b       │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m5[39m[22m  │ gmail-watch-register               │ default     │ 1.0.0   │ [7m[1mfork[22m[27m    │ 0        │ 0      │ 0    │ [31m[1mstopped[22m[39m   │ 0%       │ 0b       │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m4[39m[22m  │ gmail-webhook                      │ default     │ 1.0.0   │ [7m[1mfork[22m[27m    │ 2690041  │ 43D    │ 0    │ [32m[1monline[22m[39m    │ 0%       │ 138.4mb  │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m41[39m[22m │ hyperframes-preview                │ default     │ N/A     │ [7m[1mfork[22m[27m    │ 1234014  │ 15D    │ 2    │ [32m[1monline[22m[39m    │ 0%       │ 126.7mb  │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m3[39m[22m  │ marineflow-poc                     │ default     │ N/A     │ [7m[1mfork[22m[27m    │ N/A      │ 0      │ 11   │ [31m[1mstopped[22m[39m   │ 0%       │ 0b       │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m38[39m[22m │ mcgough-preview                    │ default     │ N/A     │ [7m[1mfork[22m[27m    │ 2279128  │ 0s     │ 422… │ [32m[1monline[22m[39m    │ 0%       │ 52.9mb   │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m40[39m[22m │ n8n-main                           │ default     │ N/A     │ [7m[1mfork[22m[27m    │ 1823073  │ 13D    │ 10   │ [32m[1monline[22m[39m    │ 0%       │ 530.2mb  │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m37[39m[22m │ openclaw-auto-compact              │ default     │ N/A     │ [7m[1mfork[22m[27m    │ 2754200  │ 42D    │ 2    │ [32m[1monline[22m[39m    │ 0%       │ 75.7mb   │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m1[39m[22m  │ openclaw-dashboard                 │ default     │ 1.0.0   │ [7m[1mfork[22m[27m    │ N/A      │ 0      │ 0    │ [31m[1mstopped[22m[39m   │ 0%       │ 0b       │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m6[39m[22m  │ stanley-brilliance                 │ default     │ N/A     │ [7m[1mfork[22m[27m    │ 2690042  │ 43D    │ 0    │ [32m[1monline[22m[39m    │ 0%       │ 89.8mb   │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m39[39m[22m │ stanley-landing                    │ default     │ N/A     │ [7m[1mfork[22m[27m    │ 2279135  │ 0s     │ 178  │ [32m[1monline[22m[39m    │ 0%       │ 25.8mb   │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m7[39m[22m  │ stanley-landing-preview            │ default     │ N/A     │ [7m[1mfork[22m[27m    │ 2690043  │ 43D    │ 0    │ [32m[1monline[22m[39m    │ 0%       │ 105.4mb  │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m45[39m[22m │ stanley-persistence-server         │ default     │ 1.0.0   │ [7m[1mfork[22m[27m    │ 4175646  │ 13D    │ 3    │ [32m[1monline[22m[39m    │ 0%       │ 71.1mb   │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m36[39m[22m │ stanley-phone-assistant-backend    │ default     │ N/A     │ [7m[1mfork[22m[27m    │ 2716535  │ 43D    │ 1    │ [32m[1monline[22m[39m    │ 0%       │ 74.9mb   │ [1mjaden[22m    │ [90mdisabled[39m │
+│ [1m[36m0[39m[22m  │ stanley-website                    │ default     │ 1.0.0   │ [7m[1mfork[22m[27m    │ N/A      │ 0      │ 2    │ [31m[1mstopped[22m[39m   │ 0%       │ 0b       │ [1mjaden[22m    │ [90mdisabled[39m │
+└────┴────────────────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘

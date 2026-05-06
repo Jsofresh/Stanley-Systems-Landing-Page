@@ -42,7 +42,6 @@ export default function OfficeHandoffProblemsPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Problem page</p>
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.06]">
                 Office handoff problems slow field-service businesses down long after the job is done.
               </h1>
@@ -51,10 +50,10 @@ export default function OfficeHandoffProblemsPage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/contact"
+                  href="/pricing"
                   className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800"
                 >
-                  Book a meeting
+                  See pricing
                 </Link>
                 <a
                   href="tel:+16179586372"
@@ -67,7 +66,6 @@ export default function OfficeHandoffProblemsPage() {
             </div>
 
             <div className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Common failure points</p>
               <ul className="mt-5 space-y-4">
                 {failurePoints.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -81,21 +79,18 @@ export default function OfficeHandoffProblemsPage() {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Why it drags</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The office is forced to do detective work</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 When notes are incomplete or scattered, the office is no longer processing clean work. It is rebuilding the story of the job after the fact. That delays invoicing, creates mistakes, and burns time on follow-up questions that should not exist.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What owners feel</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Everything comes back to the owner for answers</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Once the workflow stops being trustworthy, owners start acting like the backup system. They answer clarification calls, check job status manually, and fill in missing context because the handoff never became dependable.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems fixes</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The workflow between done in the field and ready in the office</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems helps make the handoff clear enough that the next step can happen without guesswork. That usually means defining what must be captured, what triggers the next step, and what should get flagged early.
@@ -105,7 +100,6 @@ export default function OfficeHandoffProblemsPage() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What a cleaner handoff creates</p>
               <ul className="mt-6 space-y-4">
                 {outcomes.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -117,7 +111,6 @@ export default function OfficeHandoffProblemsPage() {
             </section>
 
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Related Stanley pages</p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
                   ...internalPageLinks,

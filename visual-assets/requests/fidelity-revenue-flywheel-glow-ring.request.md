@@ -15,7 +15,7 @@ Not a complete flywheel diagram. Not a node system. Not a chart. Not a logo. Not
 - no nodes, icons, text, labels, letters, or numbers
 
 ## Composition and use
-Square asset centered. Clean center safe area for DOM center hub. Outer ring should sit behind four DOM node circles. Used in Customer Revenue System flywheel card.
+Square asset centered. Clean center safe area for DOM center hub. Outer ring should sit behind four DOM node circles. Used in Repeat Revenue System flywheel card.
 
 ## Palette and style
 Pale green, Stanley green at low opacity, white, soft gray-blue shadow. Premium light-mode website polish.

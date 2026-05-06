@@ -6,7 +6,7 @@ cashflow-leak-puddle
 
 ## 2. Intended website use
 
-Small decorative textless leak/drip/puddle layer inside the Cashflow Control System visual card. It sits under DOM/SVG pipe joints near leak warnings. Codex will build all warning badges, labels, dashed connectors, pipeline stages, and text separately.
+Small decorative textless leak/drip/puddle layer inside the Cash Flow Collection System visual card. It sits under DOM/SVG pipe joints near leak warnings. Codex will build all warning badges, labels, dashed connectors, pipeline stages, and text separately.
 
 ## 3. What the image is
 

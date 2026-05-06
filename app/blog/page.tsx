@@ -9,10 +9,7 @@ export default function BlogPage() {
       <section className="px-4 pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">
-              Operations · Strategy · Trust
-            </p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
               Practical writing on bottlenecks, workflows, and operational cleanup.
             </h1>
             <p className="mt-5 text-lg leading-8 text-slate-600">
@@ -22,7 +19,7 @@ export default function BlogPage() {
               <Link href="/about" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">About Stanley Systems</Link>
               <Link href="/who-stanley-systems-helps" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Who Stanley Systems helps</Link>
               <Link href="/how-stanley-systems-works" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">How Stanley Systems works</Link>
-              <Link href="/stanley-systems-case-study" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Stanley proof</Link>
+              <Link href="/stanley-systems-case-study" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Stanley Systems proof</Link>
               <Link href="/missed-estimate-follow-up-for-service-businesses" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Missed estimate follow-up</Link>
               <Link href="/office-handoff-problems-in-field-service-businesses" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Office handoff problems</Link>
               <Link href="/marine-service-automation" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Marine service automation</Link>

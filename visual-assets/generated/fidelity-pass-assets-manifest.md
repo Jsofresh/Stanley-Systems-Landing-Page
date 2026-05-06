@@ -30,7 +30,7 @@ Original Higgsfield job:
 `a0691cdf-be65-44b7-9f6a-841f2661a51f`
 
 Use:
-Decorative textless right-side payoff layer in Cashflow Control System main visual card. Place behind/near the DOM final pipeline node. Do not place copy on the image.
+Decorative textless right-side payoff layer in Cash Flow Collection System main visual card. Place behind/near the DOM final pipeline node. Do not place copy on the image.
 
 QA:
 - Textless: yes.
@@ -49,7 +49,7 @@ Original Higgsfield job:
 `85f9a597-e58d-43ee-9cd8-11f812d4e86b`
 
 Use:
-Decorative textless right-side output/revenue layer in Customer Revenue System main visual card. Place behind/near DOM outcome cluster.
+Decorative textless right-side output/revenue layer in Repeat Revenue System main visual card. Place behind/near DOM outcome cluster.
 
 QA:
 - Textless: yes.

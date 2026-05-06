@@ -3,11 +3,13 @@
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight, Calculator } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const headline = "Make your business more money with less office work."
 const subheadline =
   "Stanley Systems helps service-business owners get paid faster, recover office time, and stop revenue from slipping through missed calls and delayed follow-up."
-const primaryCta = "Book the Workflow Audit"
+const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
+const primaryCta = "Buy the Workflow Audit"
 const secondaryCta = "Calculate your revenue leak"
 
 const mobileHeadlineLines = ["Make your", "business more", "money with", "less office work."]
@@ -78,9 +80,17 @@ export function HeroSection() {
 
             <div className="mt-5 flex w-full max-w-[47rem] flex-col items-stretch gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-3">
               <CTALink
-                href="/contact"
-                kind="book_meeting"
+                href={auditHref}
+                kind="checkout"
                 location="home_hero_primary"
+                analyticsEvent="audit_checkout_clicked"
+                analyticsSource="homepage_hero"
+                packageId="workflow_audit"
+                packageName="Workflow Audit"
+                billingPeriod="one_time"
+                ctaLabel={primaryCta}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-5 py-2.5 text-[0.94rem] font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#116832] focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2 focus:ring-offset-white sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
               >
                 {primaryCta}

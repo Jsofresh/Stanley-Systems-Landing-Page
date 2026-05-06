@@ -6,7 +6,7 @@ customer-revenue-flywheel-glow
 
 ## 2. Intended website use
 
-Decorative background layer behind the DOM/SVG-built Customer Revenue flywheel nodes. It sits inside the large Customer Revenue System visual card, behind the center hub and four outer nodes. Codex will build all circles, labels, icons, arrows, and text as DOM/SVG.
+Decorative background layer behind the DOM/SVG-built Customer Revenue flywheel nodes. It sits inside the large Repeat Revenue System visual card, behind the center hub and four outer nodes. Codex will build all circles, labels, icons, arrows, and text as DOM/SVG.
 
 ## 3. What the image is
 

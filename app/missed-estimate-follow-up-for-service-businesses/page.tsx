@@ -42,7 +42,6 @@ export default function MissedEstimateFollowUpPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Problem page</p>
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.06]">
                 Missed estimate follow-up is usually not a sales problem. It is a workflow problem.
               </h1>
@@ -51,10 +50,10 @@ export default function MissedEstimateFollowUpPage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/contact"
+                  href="/pricing"
                   className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800"
                 >
-                  Book a meeting
+                  See pricing
                 </Link>
                 <a
                   href="tel:+16179586372"
@@ -67,7 +66,6 @@ export default function MissedEstimateFollowUpPage() {
             </div>
 
             <div className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What this usually looks like</p>
               <ul className="mt-5 space-y-4">
                 {symptoms.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -81,21 +79,18 @@ export default function MissedEstimateFollowUpPage() {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Why it happens</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Urgent work always crowds out invisible follow-up</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 A lead can be a perfect fit, but if the next step is not triggered clearly, the team gets pulled into live jobs, supplier issues, scheduling changes, and customer calls. The quote does not lose because the team does not care. It loses because nothing in the workflow protects the follow-up step.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What gets lost</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Revenue disappears without showing up as an expense</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 One missed estimate follow-up can mean a few thousand dollars gone. Most owners feel that loss, but it rarely shows up in a way the system tracks clearly. It just looks like work that never came back.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems fixes</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The gap between sent quote and real next action</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems focuses on the handoff itself. The goal is a simple follow-up workflow that still sounds like the business, still routes real replies to a human, and does not depend on somebody remembering tomorrow.
@@ -105,7 +100,6 @@ export default function MissedEstimateFollowUpPage() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">A cleaner follow-up workflow</p>
               <ul className="mt-6 space-y-4">
                 {workflowShifts.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -117,7 +111,6 @@ export default function MissedEstimateFollowUpPage() {
             </section>
 
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Related Stanley pages</p>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
                   ...internalPageLinks,

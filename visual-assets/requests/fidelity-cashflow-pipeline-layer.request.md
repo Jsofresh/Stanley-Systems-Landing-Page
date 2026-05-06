@@ -15,7 +15,7 @@ Not a full website section. Not a full UI. Not a dashboard. Not a chart. Not a c
 - no labels, no numbers, no letters
 
 ## Composition and use
-Wide 16:9 composition. The pipe spans left to right across the center, leaving transparent/safe padding. It will sit inside the Cashflow Control System visual card behind real DOM stage nodes and badges.
+Wide 16:9 composition. The pipe spans left to right across the center, leaving transparent/safe padding. It will sit inside the Cash Flow Collection System visual card behind real DOM stage nodes and badges.
 
 ## Palette and style
 White, pale gray, soft blue-gray, very subtle green tint on the right side, Stanley green at low opacity only. Premium, clean, restrained, dimensional, light-mode website asset.

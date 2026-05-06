@@ -1,0 +1,86 @@
+
+> my-v0-project@0.1.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.25
+  - Environments: .env.local, .env.production
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Skipping validation of types
+   Linting ...
+   Collecting page data ...
+   Generating static pages (0/48) ...
+   Generating static pages (12/48) 
+   Generating static pages (24/48) 
+   Generating static pages (36/48) 
+ ✓ Generating static pages (48/48)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                Size     First Load JS
+┌ ○ /                                                      10.2 kB         169 kB
+├ ○ /_not-found                                            177 B          87.4 kB
+├ ○ /404                                                   2.23 kB         120 kB
+├ ○ /about                                                 2.23 kB         120 kB
+├ ƒ /api/contact                                           0 B                0 B
+├ ƒ /api/hcp/completed-job                                 0 B                0 B
+├ ƒ /api/qbo/callback                                      0 B                0 B
+├ ƒ /api/remotion-auth                                     0 B                0 B
+├ ƒ /api/send-breakdown                                    0 B                0 B
+├ ○ /blog                                                  2.23 kB         120 kB
+├ ● /blog/[slug]                                           2.23 kB         120 kB
+├   ├ /blog/why-the-plumber-waits-3-weeks-to-get-paid
+├   ├ /blog/the-estimate-that-went-cold-and-the-4000-job
+├   ├ /blog/real-cost-of-slow-invoicing-service-business
+├   └ [+2 more paths]
+├ ƒ /bookAppointment                                       0 B                0 B
+├ ○ /car-dealerships                                       177 B          87.4 kB
+├ ƒ /checkAvailability                                     0 B                0 B
+├ ○ /contact                                               6.47 kB         124 kB
+├ ○ /dev/customer-revenue-system-v2                        177 B          87.4 kB
+├ ○ /dev/customer-revenue-system-v3                        177 B          87.4 kB
+├ ○ /dev/customer-revenue-system-v4                        177 B          87.4 kB
+├ ○ /dev/motion-smoke                                      4.4 kB          132 kB
+├ ○ /dev/visual-kit-composite-assets                       177 B          87.4 kB
+├ ○ /dev/visual-kit-display-assets                         177 B          87.4 kB
+├ ○ /dev/visual-kit-display-icons                          177 B          87.4 kB
+├ ○ /dev/visual-kit-mini-features                          177 B          87.4 kB
+├ ○ /dev/visual-kit-newest-18                              177 B          87.4 kB
+├ ○ /dev/visual-kit-primitives                             177 B          87.4 kB
+├ ƒ /escalateToHuman                                       0 B                0 B
+├ ○ /field-service-automation                              2.23 kB         120 kB
+├ ○ /how-stanley-systems-works                             2.23 kB         120 kB
+├ ○ /invoicing-delay-cash-flow-calculator                  11.4 kB         120 kB
+├ ○ /invoicing-delay-cash-flow-calculator/paid             3.46 kB        90.7 kB
+├ ○ /marine-service-automation                             2.23 kB         120 kB
+├ ○ /missed-estimate-follow-up-for-service-businesses      2.23 kB         120 kB
+├ ○ /office-handoff-problems-in-field-service-businesses   2.23 kB         120 kB
+├ ƒ /pricing                                               1.16 kB         105 kB
+├ ○ /privacy-policy                                        2.19 kB         120 kB
+├ ƒ /remotion                                              178 B          94.2 kB
+├ ○ /remotion-link                                         177 B          87.4 kB
+├ ○ /remotion/login                                        2.16 kB        89.4 kB
+├ ○ /safety                                                2.19 kB         120 kB
+├ ○ /service-business-billing-process-fix                  2.23 kB         120 kB
+├ ○ /sitemap.xml                                           0 B                0 B
+├ ○ /speed-up-invoicing-for-service-businesses             2.23 kB         120 kB
+├ ○ /stanley-systems-case-study                            2.23 kB         120 kB
+├ ○ /terms-and-conditions                                  2.19 kB         120 kB
+├ ○ /who-stanley-systems-helps                             2.19 kB         120 kB
+└ ○ /work-order-to-invoice-process-for-service-businesses  2.23 kB         120 kB
++ First Load JS shared by all                              87.2 kB
+  ├ chunks/2117-118e97a0fb9055fd.js                        31.6 kB
+  ├ chunks/fd9d1056-a81371f087f4d64b.js                    53.6 kB
+  └ other shared chunks (total)                            2 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+

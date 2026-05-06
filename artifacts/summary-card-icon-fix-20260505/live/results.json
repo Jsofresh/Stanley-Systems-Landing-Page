@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "pageLoaded": true,
+    "noHorizontalOverflow": true,
+    "allCardsVisible": true,
+    "allCardsHaveSvgIcons": true,
+    "noBlankImageOnlyWells": true
+  },
+  "cards": [
+    {
+      "label": "system buckets",
+      "svgCount": 1,
+      "imgCount": 0,
+      "visible": true
+    },
+    {
+      "label": "monthly range",
+      "svgCount": 1,
+      "imgCount": 0,
+      "visible": true
+    },
+    {
+      "label": "first move",
+      "svgCount": 1,
+      "imgCount": 0,
+      "visible": true
+    }
+  ]
+}

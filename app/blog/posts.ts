@@ -86,7 +86,7 @@ export const posts: BlogPost[] = [
     slug: "the-estimate-that-went-cold-and-the-4000-job",
     title: "The estimate that went cold (and the $4,000 job that went with it)",
     excerpt:
-      "A quote goes out on Friday. Monday gets slammed. By Wednesday, the lead has hired someone else. This is rarely a sales problem. It is a follow-up system problem.",
+      "A quote goes out on Friday. Monday gets slammed. By Wednesday, the lead has hired someone else. This is rarely a sales problem. It is a repeat revenue system problem.",
     category: "Follow-up",
     readTime: "6 min read",
     seoTitle: "The Estimate That Went Cold and the $4,000 Job | Stanley Systems",

@@ -6,7 +6,7 @@ cashflow-green-cash-arrow
 
 ## 2. Intended website use
 
-Decorative textless foreground/right-side layer inside the Cashflow Control System visual card. It sits at the end of the DOM/SVG-built cash pipeline, behind or beside the final `Collected Cash` stage. Codex will overlay all labels, icons, stage nodes, badges, cards, and text separately.
+Decorative textless foreground/right-side layer inside the Cash Flow Collection System visual card. It sits at the end of the DOM/SVG-built cash pipeline, behind or beside the final `Collected Cash` stage. Codex will overlay all labels, icons, stage nodes, badges, cards, and text separately.
 
 ## 3. What the image is
 

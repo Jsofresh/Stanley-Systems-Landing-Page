@@ -14,7 +14,7 @@ export type RevenueLoopProps = React.ComponentProps<'div'> & {
   items: RevenueLoopItem[]
 }
 
-export function RevenueLoop({ centerLabel = 'Customer Revenue System', items, className, ...props }: RevenueLoopProps) {
+export function RevenueLoop({ centerLabel = 'Repeat Revenue System', items, className, ...props }: RevenueLoopProps) {
   return (
     <div className={cn('relative rounded-3xl border border-emerald-100 bg-emerald-50/60 p-5 md:p-8', className)} {...props}>
       <div className="mx-auto mb-5 flex size-36 items-center justify-center rounded-full border border-emerald-200 bg-white p-5 text-center text-sm font-semibold leading-5 text-slate-950 shadow-sm md:absolute md:left-1/2 md:top-1/2 md:mb-0 md:-translate-x-1/2 md:-translate-y-1/2">

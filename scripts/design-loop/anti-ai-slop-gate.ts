@@ -511,8 +511,8 @@ function renderMarkdown(report: GateReport): string {
 
 function humanSectionName(value: string): string {
   const normalized = value.replace(/[-_.]+/g, " ").trim()
-  if (/cashflow/i.test(normalized)) return "Cashflow Control System"
-  if (/customer revenue/i.test(normalized)) return "Customer Revenue System"
+  if (/cashflow/i.test(normalized)) return "Cash Flow Collection System"
+  if (/customer revenue/i.test(normalized)) return "Repeat Revenue System"
   if (/hero/i.test(normalized)) return "Hero"
   return normalized.replace(/\b\w/g, (letter) => letter.toUpperCase())
 }
@@ -530,13 +530,13 @@ function fixtureSections(): SectionEvidence[] {
       visual_summary: "brand pill above headline, bottom support box, extra filler badge",
     },
     {
-      section_name: "Cashflow Control System",
+      section_name: "Cash Flow Collection System",
       text: "Turn finished work into collected cash faster.",
       visual_summary: "four generic icon cards in an icon grid instead of a left-to-right pipeline",
       generated_asset_status: "approved",
     },
     {
-      section_name: "Customer Revenue System",
+      section_name: "Repeat Revenue System",
       text: "Get more money from the customers you already earned.",
       visual_summary: "orbiting pill checklist assembly with no true wheel or flywheel",
       generated_asset_status: "approved",
@@ -549,7 +549,7 @@ function fixtureSections(): SectionEvidence[] {
       visual_summary: "plain typography, CTA, and restrained layout",
     },
     {
-      section_name: "Cashflow Control System",
+      section_name: "Cash Flow Collection System",
       text: "Finished work should move left-to-right through invoice follow-up to collected cash.",
       visual_summary: "required generated pipeline visual route unavailable",
       generated_asset_status: "missing",

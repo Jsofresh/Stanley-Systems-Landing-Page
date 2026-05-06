@@ -1,0 +1,56 @@
+import { ArrowRight, Calculator } from "lucide-react"
+
+import { CTALink } from "@/components/cta-link"
+import type { PricingCalculatorContext, WorkflowAuditOffer } from "@/lib/pricing/offers"
+
+export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAuditOffer; calculatorContext?: PricingCalculatorContext | null }) {
+  return (
+    <section className="px-4 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pt-36">
+      <div className="mx-auto max-w-6xl rounded-[2.25rem] border border-[#e7e1d6] bg-white px-5 py-10 text-center shadow-[0_28px_90px_rgba(15,23,42,0.08)] sm:rounded-[3rem] sm:px-8 sm:py-14 lg:px-14 lg:py-16">
+        <h1 className="mx-auto max-w-5xl text-balance text-[2.55rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-6xl lg:text-[5.2rem]">
+          Find where cash, customers, and office time are leaking.
+        </h1>
+        <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-[#536173] sm:text-xl sm:leading-9">
+          The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System opportunities that bring past customers, reviews, referrals, and missed calls back into view.
+        </p>
+        <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#102033] sm:text-lg">
+          You leave with a clear money leak map, the first fix to make, and a straight answer on whether Stanley Systems should build the Cashflow Control System, the Repeat Revenue System, Both Systems, or neither.
+        </p>
+        <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+          <CTALink
+            href={offer.cta.href}
+            kind="book_meeting"
+            location="pricing_hero_primary"
+            analyticsEvent="audit_checkout_clicked"
+            analyticsSource="pricing_page"
+            packageId={offer.analyticsPackageId}
+            packageName={offer.packageName}
+            billingPeriod={offer.billingPeriod}
+            ctaLabel={offer.cta.label}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.24)] transition hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:px-8"
+          >
+            {offer.cta.label}
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </CTALink>
+          <CTALink
+            href="/invoicing-delay-cash-flow-calculator"
+            kind="calculator"
+            location="pricing_hero_secondary"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-bold text-[#102033] shadow-[0_10px_24px_rgba(16,32,51,0.06)] transition hover:bg-[#fbfaf7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:px-8"
+          >
+            <Calculator className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
+            Calculate Your Revenue Leak
+          </CTALink>
+        </div>
+        <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-6 text-[#5f6e7d]">
+          The audit comes first. Build work is recommended only after the leak is clear.
+        </p>
+        {calculatorContext?.source === "calculator" ? (
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[#15803D]">
+            Your calculator handoff is loaded below with rounded, display-safe estimates only.
+          </p>
+        ) : null}
+      </div>
+    </section>
+  )
+}

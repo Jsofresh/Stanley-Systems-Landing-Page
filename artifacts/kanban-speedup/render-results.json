@@ -1,0 +1,89 @@
+[
+  {
+    "label": "local",
+    "route": "/",
+    "url": "http://127.0.0.1:3107/?qa=t_e2a0a760",
+    "status": 200,
+    "textLength": 12137,
+    "htmlLength": 226667,
+    "present": {
+      "Cash Flow Collection System": true,
+      "Repeat Revenue System": true,
+      "Repeat Revenue System": true,
+      "Cash Flow Collection System": true,
+      "Stanley Systems": true
+    },
+    "forbidden": [
+      {
+        "name": "free/no-cost Follow-Up guarantee",
+        "sample": "follow-up are treated as free"
+      }
+    ],
+    "dollars": [
+      "$3,000",
+      "$25,000",
+      "$3,250",
+      "$7,500",
+      "$50K-$300K",
+      "$650",
+      "$2,500"
+    ]
+  },
+  {
+    "label": "local",
+    "route": "/pricing",
+    "url": "http://127.0.0.1:3107/pricing?qa=t_e2a0a760",
+    "status": 200,
+    "textLength": 4349,
+    "htmlLength": 92707,
+    "present": {
+      "Cash Flow Collection System": true,
+      "Repeat Revenue System": true,
+      "Repeat Revenue System": true,
+      "Cash Flow Collection System": false,
+      "Stanley Systems": true
+    },
+    "forbidden": [],
+    "dollars": []
+  },
+  {
+    "label": "live",
+    "route": "/",
+    "url": "https://stanley-systems.com/?qa=t_e2a0a760",
+    "status": 200,
+    "textLength": 10193,
+    "htmlLength": 192325,
+    "present": {
+      "Cash Flow Collection System": true,
+      "Repeat Revenue System": true,
+      "Repeat Revenue System": true,
+      "Cash Flow Collection System": true,
+      "Stanley Systems": true
+    },
+    "forbidden": [],
+    "dollars": [
+      "$3,000",
+      "$25,000",
+      "$3,250",
+      "$7,500",
+      "$50K-$300K"
+    ]
+  },
+  {
+    "label": "live",
+    "route": "/pricing",
+    "url": "https://stanley-systems.com/pricing?qa=t_e2a0a760",
+    "status": 404,
+    "textLength": 898,
+    "htmlLength": 36144,
+    "present": {
+      "Cash Flow Collection System": false,
+      "Repeat Revenue System": false,
+      "Repeat Revenue System": false,
+      "Cash Flow Collection System": false,
+      "Stanley Systems": true
+    },
+    "forbidden": [],
+    "dollars": []
+  }
+]

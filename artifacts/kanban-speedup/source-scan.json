@@ -1,0 +1,1704 @@
+{
+  "files_scanned": 196,
+  "terms": {
+    "Cash Flow Collection System": [
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 408,
+        "text": "if (!bothMeaningful && cashflowImpact > 0 && customerRevenueImpact === 0) recommendedFirstMove = \"Start with the Cash Flow Collection System.\""
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 410,
+        "text": "else if (!bothMeaningful && cashflowShare >= 0.6) recommendedFirstMove = \"Start with the Cash Flow Collection System.\""
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 504,
+        "text": "<span className=\"font-semibold text-slate-950\">Cash Flow Collection System:</span> turn finished work into collected cash faster."
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 843,
+        "text": "[\"Fix 2\", \"Cash Flow Collection System collects more money already earned\"],"
+      },
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 402,
+        "text": "data-audit-offer=\"Cash Flow Collection System, Repeat Revenue System\""
+      },
+      {
+        "path": "components/calculator-path-section.tsx",
+        "line": 153,
+        "text": "\"Cash Flow Collection System: turn finished work into collected cash faster.\","
+      },
+      {
+        "path": "components/pricing/PricingHero.tsx",
+        "line": 17,
+        "text": "You leave with a clear money leak map, the first fix to make, and a straight answer on whether Stanley Systems should build the Cash Flow Collection System, the Repeat Revenue System, both, or neither."
+      },
+      {
+        "path": "components/pricing/CalculatorHandoffPanel.tsx",
+        "line": 4,
+        "text": "cash_collection_system: \"Cash Flow Collection System\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 79,
+        "text": "helperLine: \"You leave with a clear money leak map and a recommendation: Cash Flow Collection System, Repeat Revenue System, both, or neither.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 95,
+        "text": "title: \"Cash Flow Collection System\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 152,
+        "text": "\"Yes. The Workflow Audit is the paid first step. Stanley Systems uses it to find the leak before recommending Cash Flow Collection System, Repeat Revenue System, both, or neither.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 164,
+        "text": "question: \"Can I buy Cash Flow Collection System or Repeat Revenue System directly from this page?\","
+      }
+    ],
+    "Repeat Revenue System": [
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 409,
+        "text": "else if (!bothMeaningful && customerRevenueImpact > 0 && cashflowImpact === 0) recommendedFirstMove = \"Start with the Repeat Revenue System.\""
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 411,
+        "text": "else if (!bothMeaningful && customerRevenueShare >= 0.6) recommendedFirstMove = \"Start with the Repeat Revenue System.\""
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 507,
+        "text": "<span className=\"font-semibold text-slate-950\">Repeat Revenue System:</span> get more money from customers already earned."
+      },
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 402,
+        "text": "data-audit-offer=\"Cash Flow Collection System, Repeat Revenue System\""
+      },
+      {
+        "path": "components/calculator-path-section.tsx",
+        "line": 154,
+        "text": "\"Repeat Revenue System: get more money from customers you already earned.\","
+      },
+      {
+        "path": "components/pricing/PricingHero.tsx",
+        "line": 17,
+        "text": "You leave with a clear money leak map, the first fix to make, and a straight answer on whether Stanley Systems should build the Cash Flow Collection System, the Repeat Revenue System, both, or neither."
+      },
+      {
+        "path": "components/pricing/CalculatorHandoffPanel.tsx",
+        "line": 5,
+        "text": "follow_up_system: \"Repeat Revenue System\","
+      },
+      {
+        "path": "components/visual-primitives/RevenueLoop.tsx",
+        "line": 17,
+        "text": "export function RevenueLoop({ centerLabel = 'Repeat Revenue System', items, className, ...props }: RevenueLoopProps) {"
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 79,
+        "text": "helperLine: \"You leave with a clear money leak map and a recommendation: Cash Flow Collection System, Repeat Revenue System, both, or neither.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 118,
+        "text": "title: \"Repeat Revenue System\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 152,
+        "text": "\"Yes. The Workflow Audit is the paid first step. Stanley Systems uses it to find the leak before recommending Cash Flow Collection System, Repeat Revenue System, both, or neither.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 164,
+        "text": "question: \"Can I buy Cash Flow Collection System or Repeat Revenue System directly from this page?\","
+      }
+    ],
+    "Repeat Revenue System": [
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 379,
+        "text": "<p className=\"mb-3 text-center text-sm font-bold leading-5 text-[#116832]\">Repeat Revenue System</p>"
+      },
+      {
+        "path": "components/proof-strip-section.tsx",
+        "line": 33,
+        "text": "title: \"Repeat Revenue System\","
+      },
+      {
+        "path": "components/pricing/PricingHero.tsx",
+        "line": 14,
+        "text": "The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that brings past customers, reviews, referrals, and missed calls back into view."
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 119,
+        "text": "shortTitle: \"Repeat Revenue System\","
+      }
+    ],
+    "Cash Flow Collection System": [
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 169,
+        "text": "<h3 className=\"text-xl font-semibold leading-tight text-[#102033]\">Cash Flow Collection System</h3>"
+      },
+      {
+        "path": "components/proof-strip-section.tsx",
+        "line": 26,
+        "text": "title: \"Cash Flow Collection System\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 96,
+        "text": "shortTitle: \"Cash Flow Collection System\","
+      }
+    ],
+    "Stanley Systems": [
+      {
+        "path": "app/layout.tsx",
+        "line": 24,
+        "text": "title: \"Stanley Systems | Backend Bottleneck Removal for Service Businesses\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 26,
+        "text": "\"Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 28,
+        "text": "title: \"Stanley Systems | Backend Bottleneck Removal for Service Businesses\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 30,
+        "text": "\"Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 32,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 38,
+        "text": "title: \"Stanley Systems | Backend Bottleneck Removal for Service Businesses\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 40,
+        "text": "\"Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 62,
+        "text": "text: \"No. Stanley Systems works inside the tools the team already uses whenever possible.\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 111,
+        "text": "name: \"Stanley Systems\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 112,
+        "text": "legalName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 117,
+        "text": "\"Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 130,
+        "text": "name: \"Stanley Systems\","
+      },
+      {
+        "path": "app/layout.tsx",
+        "line": 131,
+        "text": "alternateName: \"Stanley Systems Automation\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx",
+        "line": 199,
+        "text": "This is the same kind of office-to-billing problem Stanley Systems helps a marine shop clean up: getting finished work into billing more cleanly so cash does not keep waiting on office cleanup."
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 64,
+        "text": "firstFix: \"The first leak is visibility. Stanley Systems would first build one clean list from the records you already have.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 106,
+        "text": "\"No. Stanley Systems works around the tools your team already uses whenever possible. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, Wallace, or your current setup. The point is to fix the gaps where work, billing, follow-up, and customer records fall through.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 111,
+        "text": "\"Service businesses with real job volume, repeat customers, invoices, estimates, calls, and at least one person dealing with office work. If your team already uses job software, accounting software, spreadsheets, or a CRM, Stanley Systems can find where money is getting stuck.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 116,
+        "text": "\"That is exactly what the Workflow Audit is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat revenue. You leave knowing which leak matters first.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 121,
+        "text": "\"Stanley Systems is not selling a giant strategy deck. The audit finds specific money leaks, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 476,
+        "text": "body=\"Stanley Systems checks the places service businesses lose money after the lead, job, or customer already exists: slow invoices, open estimates, missed calls, and saved customers nobody is following up with.\""
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 590,
+        "text": "body=\"A messy list does not erase the opportunity. It shows where Stanley Systems starts: getting the list clean enough to use.\""
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 654,
+        "text": "body=\"Use the closest answer. If nobody knows, Stanley Systems treats the list as underworked until the records prove otherwise.\""
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 673,
+        "text": "body=\"This does not add a guaranteed dollar claim. It tells Stanley Systems whether happy customers are turning into proof, referrals, and booked work.\""
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+        "line": 836,
+        "text": "The customers are already in your list. The jobs already happened. The trust already exists. Stanley Systems helps turn saved customer records into repeat jobs, reviews, referrals, captured calls, and collected cash."
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/page.tsx",
+        "line": 20,
+        "text": "text: \"No. Stanley Systems works around the tools your team already uses whenever possible. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, Wallace, or your current setup. The point is to fix the gaps where work, billing, follow-up, and customer records fall through.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/page.tsx",
+        "line": 28,
+        "text": "text: \"Service businesses with real job volume, repeat customers, invoices, estimates, calls, and at least one person dealing with office work. If your team already uses job software, accounting software, spreadsheets, or a CRM, Stanley Systems can find where money is getting stuck.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/page.tsx",
+        "line": 36,
+        "text": "text: \"That is exactly what the Workflow Audit is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat revenue. You leave knowing which leak matters first.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/page.tsx",
+        "line": 44,
+        "text": "text: \"Stanley Systems is not selling a giant strategy deck. The audit finds specific money leaks, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/page.tsx",
+        "line": 51,
+        "text": "title: \"Revenue Leak Calculator | Stanley Systems\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/page.tsx",
+        "line": 55,
+        "text": "title: \"Revenue Leak Calculator | Stanley Systems\","
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/page.tsx",
+        "line": 59,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/work-order-to-invoice-process-for-service-businesses/page.tsx",
+        "line": 7,
+        "text": "title: \"Work Order to Invoice Process Fix | Stanley Systems\","
+      },
+      {
+        "path": "app/work-order-to-invoice-process-for-service-businesses/page.tsx",
+        "line": 9,
+        "text": "\"See where service businesses lose time between completed work orders and invoice-ready billing, and how Stanley Systems helps fix that handoff.\","
+      },
+      {
+        "path": "app/work-order-to-invoice-process-for-service-businesses/page.tsx",
+        "line": 40,
+        "text": "If the crew already finished the work, the business should not still be waiting on a clean billing handoff. Stanley Systems helps service businesses clean up the step between job complete and invoice ready so cash can move faster."
+      },
+      {
+        "path": "app/work-order-to-invoice-process-for-service-businesses/page.tsx",
+        "line": 81,
+        "text": "Stanley Systems helps clean up the step that turns finished work into invoice-ready information. The goal is fewer delays, less re-entry, and less owner rescue work."
+      },
+      {
+        "path": "app/work-order-to-invoice-process-for-service-businesses/page.tsx",
+        "line": 101,
+        "text": "Stanley Systems looks at the path between job complete and invoice ready, then shows where the delay is coming from and whether there is a clean fix worth building."
+      },
+      {
+        "path": "app/speed-up-invoicing-for-service-businesses/page.tsx",
+        "line": 7,
+        "text": "title: \"Speed Up Invoicing for Service Businesses | Stanley Systems\","
+      },
+      {
+        "path": "app/speed-up-invoicing-for-service-businesses/page.tsx",
+        "line": 9,
+        "text": "\"Most service businesses lose days on every invoice because the handoff from completed work to billing is still manual. Stanley Systems helps tighten that path so invoices move faster.\","
+      },
+      {
+        "path": "app/speed-up-invoicing-for-service-businesses/page.tsx",
+        "line": 43,
+        "text": "description: \"See where information gets stuck between the field and the office, then what Stanley Systems does to tighten that path.\","
+      },
+      {
+        "path": "app/speed-up-invoicing-for-service-businesses/page.tsx",
+        "line": 128,
+        "text": "This is the same kind of billing-handoff problem Stanley Systems helps a marine shop clean up: what happens between the work getting done and the office getting what it needs to move billing forward."
+      },
+      {
+        "path": "app/speed-up-invoicing-for-service-businesses/page.tsx",
+        "line": 153,
+        "text": "Stanley Systems can look at the actual path from completed job to invoice sent, then show where the drag is coming from and whether there is a clean fix worth building."
+      },
+      {
+        "path": "app/pricing/page.tsx",
+        "line": 8,
+        "text": "title: \"Pricing | Workflow Audit | Stanley Systems\","
+      },
+      {
+        "path": "app/pricing/page.tsx",
+        "line": 10,
+        "text": "\"Start with the paid Workflow Audit from Stanley Systems. Find where cash, customers, and office time are leaking before choosing a build path.\","
+      },
+      {
+        "path": "app/office-handoff-problems-in-field-service-businesses/page.tsx",
+        "line": 8,
+        "text": "title: \"Office Handoff Problems in Field Service Businesses | Stanley Systems\","
+      },
+      {
+        "path": "app/office-handoff-problems-in-field-service-businesses/page.tsx",
+        "line": 10,
+        "text": "\"Stanley Systems helps field-service businesses clean up office handoff problems so job details, approvals, and billing-ready information stop getting lost between the field and the office.\","
+      },
+      {
+        "path": "app/office-handoff-problems-in-field-service-businesses/page.tsx",
+        "line": 15,
+        "text": "title: \"Office Handoff Problems in Field Service Businesses | Stanley Systems\","
+      },
+      {
+        "path": "app/office-handoff-problems-in-field-service-businesses/page.tsx",
+        "line": 17,
+        "text": "\"A practical breakdown of where office handoff problems start in field-service businesses and how Stanley Systems helps tighten the workflow.\","
+      },
+      {
+        "path": "app/office-handoff-problems-in-field-service-businesses/page.tsx",
+        "line": 19,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/office-handoff-problems-in-field-service-businesses/page.tsx",
+        "line": 49,
+        "text": "Stanley Systems helps field-service businesses clean up the handoff between the field, the office, and billing. When that handoff is messy, the business keeps paying for the job long after the crew has moved on."
+      },
+      {
+        "path": "app/office-handoff-problems-in-field-service-businesses/page.tsx",
+        "line": 96,
+        "text": "Stanley Systems helps make the handoff clear enough that the next step can happen without guesswork. That usually means defining what must be captured, what triggers the next step, and what should get flagged early."
+      },
+      {
+        "path": "app/office-handoff-problems-in-field-service-businesses/page.tsx",
+        "line": 117,
+        "text": "{ title: \"How Stanley Systems works\", href: \"/how-stanley-systems-works\" },"
+      },
+      {
+        "path": "app/marine-service-automation/page.tsx",
+        "line": 8,
+        "text": "title: \"Marine Service Automation | Stanley Systems\","
+      },
+      {
+        "path": "app/marine-service-automation/page.tsx",
+        "line": 10,
+        "text": "\"Stanley Systems helps marine service businesses clean up invoicing, follow-up, and office handoffs without forcing the team into a whole new software stack.\","
+      },
+      {
+        "path": "app/marine-service-automation/page.tsx",
+        "line": 15,
+        "text": "title: \"Marine Service Automation | Stanley Systems\","
+      },
+      {
+        "path": "app/marine-service-automation/page.tsx",
+        "line": 19,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/marine-service-automation/page.tsx",
+        "line": 49,
+        "text": "Stanley Systems helps marine service businesses tighten the handoff between work completed, office processing, and billing. The goal is practical automation that helps cash move faster and admin drag stay under control."
+      },
+      {
+        "path": "app/marine-service-automation/page.tsx",
+        "line": 96,
+        "text": "Stanley Systems focuses on practical workflow fixes inside the tools the business already uses, rather than pushing a whole new system just because it looks cleaner in a demo."
+      },
+      {
+        "path": "app/field-service-automation/page.tsx",
+        "line": 8,
+        "text": "title: \"Field Service Automation | Stanley Systems\","
+      },
+      {
+        "path": "app/field-service-automation/page.tsx",
+        "line": 10,
+        "text": "\"Stanley Systems helps field-service businesses remove backend bottlenecks around invoicing, follow-up, and office handoffs without forcing a full software switch.\","
+      },
+      {
+        "path": "app/field-service-automation/page.tsx",
+        "line": 15,
+        "text": "title: \"Field Service Automation | Stanley Systems\","
+      },
+      {
+        "path": "app/field-service-automation/page.tsx",
+        "line": 19,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/field-service-automation/page.tsx",
+        "line": 49,
+        "text": "Stanley Systems helps field-service businesses remove backend bottlenecks around invoicing, follow-up, and office handoffs. The goal is cleaner operations that the team can actually follow under real working conditions."
+      },
+      {
+        "path": "app/field-service-automation/page.tsx",
+        "line": 96,
+        "text": "Stanley Systems starts with the real handoff problem, tightens the workflow in plain English, and then automates the version the team can actually use without creating more confusion."
+      },
+      {
+        "path": "app/service-business-billing-process-fix/page.tsx",
+        "line": 7,
+        "text": "title: \"Service Business Billing Process Fix | Stanley Systems\","
+      },
+      {
+        "path": "app/service-business-billing-process-fix/page.tsx",
+        "line": 40,
+        "text": "Slow billing is usually not just an accounting problem. It starts earlier, when completed work is still missing what the office needs to move billing forward cleanly. Stanley Systems helps fix that path."
+      },
+      {
+        "path": "app/service-business-billing-process-fix/page.tsx",
+        "line": 81,
+        "text": "Stanley Systems helps make the billing process clearer, cleaner, and faster inside the tools the business already uses."
+      },
+      {
+        "path": "app/how-stanley-systems-works/page.tsx",
+        "line": 7,
+        "text": "title: \"How Stanley Systems Works | Practical Workflow Automation\","
+      },
+      {
+        "path": "app/how-stanley-systems-works/page.tsx",
+        "line": 9,
+        "text": "\"See how Stanley Systems approaches workflow cleanup, bottleneck diagnosis, and practical automation for service businesses without overcomplicating the operation.\","
+      },
+      {
+        "path": "app/how-stanley-systems-works/page.tsx",
+        "line": 14,
+        "text": "title: \"How Stanley Systems Works | Practical Workflow Automation\","
+      },
+      {
+        "path": "app/how-stanley-systems-works/page.tsx",
+        "line": 16,
+        "text": "\"Stanley Systems starts with the real bottleneck, tightens the workflow, and automates only the steps that should stop depending on memory or manual re-entry.\","
+      },
+      {
+        "path": "app/how-stanley-systems-works/page.tsx",
+        "line": 18,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 5,
+        "text": "title: \"Privacy Policy | Stanley Systems\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 7,
+        "text": "\"Read how Stanley Systems collects, uses, stores, and protects website, account, and SMS-related information.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 12,
+        "text": "title: \"Privacy Policy | Stanley Systems\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 14,
+        "text": "\"Read how Stanley Systems collects, uses, stores, and protects website, account, and SMS-related information.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 16,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 25,
+        "text": "\"This Privacy Policy explains how Stanley Systems collects, uses, stores, and protects information shared through this website, through direct communication, and through account-related messaging channels. It is written to give visitors, leads, and clients a clear understanding of what information may be collected and how that information may be used in the normal course of business.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 28,
+        "text": "title: \"Information Stanley Systems collects\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 30,
+        "text": "\"Stanley Systems may collect your name, email address, phone number, company name, and details you submit through our website forms. We use this information to respond to inquiries, schedule calls, provide service updates, follow up on account or billing matters, and communicate with people who request information from Stanley Systems.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 35,
+        "text": "\"If you contact Stanley Systems through a form, email, phone call, text message, scheduling link, or direct conversation, you may provide personal or business information such as your name, email address, phone number, company name, billing details, service history, project notes, and operational information about your business. You are not required to provide more information than is reasonably necessary to begin a conversation or evaluate services.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 40,
+        "text": "\"Like most websites, Stanley Systems may collect limited technical and usage information automatically. This may include IP address, browser type, operating system, referring pages, device information, page views, interaction patterns, and basic performance telemetry. This information is used to keep the site working, understand usage patterns, and improve the quality of the website and related services.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 45,
+        "text": "\"Information collected through the site or through direct communication may be used to respond to inquiries, schedule calls, provide service proposals, deliver client work, support billing and collections workflows, send account reminders, troubleshoot workflow issues, improve service delivery, and maintain business records. Stanley Systems uses information to operate its business and deliver relevant operational communication, not to build invasive profiles or sell data.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 50,
+        "text": "\"If you choose to opt in to SMS updates through the Stanley Systems contact form or another direct request channel, Stanley Systems may use your mobile number to send replies to inquiries, appointment confirmations, service updates, billing reminders, and account follow-up. Message frequency varies. Message and data rates may apply. You may reply STOP to opt out of text messages at any time or HELP for help.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 55,
+        "text": "\"Stanley Systems sends text messages only to people who directly contact Stanley Systems and choose to opt in. Consent to receive text messages is not a condition of purchase.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 60,
+        "text": "\"Stanley Systems does not sell personal information. Information may be shared only with service providers and vendors required to operate the website, communications stack, invoicing systems, hosting, analytics, or service delivery workflows. That sharing is limited to what is reasonably necessary to run the business and deliver services. Personal information is not shared with third parties for their own marketing purposes. SMS consent and phone numbers collected for SMS purposes will not be shared with third parties or affiliates for marketing purposes.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 65,
+        "text": "\"Stanley Systems may rely on third-party providers for website hosting, analytics, calendar scheduling, communications delivery, invoicing, payments, workflow automation, and related business operations. Those providers may process information on behalf of Stanley Systems under their own service terms. While Stanley Systems works with standard commercial providers, it cannot independently control every aspect of third-party platform behavior once data is processed through those systems.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 75,
+        "text": "\"Stanley Systems keeps information only as long as it is reasonably useful for inquiry handling, client communication, service delivery, billing, legal compliance, recordkeeping, or legitimate business operations. The exact retention period may vary depending on the nature of the relationship, the type of information involved, and whether continuing retention is needed for operational or legal reasons.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 80,
+        "text": "\"Stanley Systems uses reasonable administrative, technical, and operational measures to protect information from unauthorized access, misuse, or disclosure. No internet transmission or storage system can be guaranteed to be completely secure, but reasonable efforts are made to protect sensitive business and contact data in the normal course of operations.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 85,
+        "text": "\"You may request that Stanley Systems update or delete information you previously submitted, subject to any business, legal, billing, or recordkeeping obligations that require continued retention. You may also opt out of non-essential future communication and may stop SMS messages by replying STOP. For questions, corrections, or requests, use the contact page or email the business directly.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 90,
+        "text": "\"This website and its services are intended for business use and are not directed to children under 13. Stanley Systems does not knowingly collect personal information from children through the site.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 95,
+        "text": "\"This Privacy Policy may be updated from time to time to reflect operational, legal, or service changes. When updates are made, the revised version posted on this page becomes the current policy. Continued use of the website or continued communication with Stanley Systems after an update constitutes acceptance of the revised policy.\","
+      },
+      {
+        "path": "app/privacy-policy/page.tsx",
+        "line": 111,
+        "text": "Stanley Systems privacy policy"
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 5,
+        "text": "title: \"Terms and Conditions | Stanley Systems\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 7,
+        "text": "\"Read the Stanley Systems terms and conditions for website use, service discussions, and SMS account notification programs.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 12,
+        "text": "title: \"Terms and Conditions | Stanley Systems\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 14,
+        "text": "\"Read the Stanley Systems terms and conditions for website use, service discussions, and SMS account notification programs.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 16,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 25,
+        "text": "\"By accessing or using the Stanley Systems website, you agree to be bound by these Terms and Conditions. If you do not agree with these terms, you should not use this website or rely on its content. These terms apply to general website visitors, prospective clients, and users of any communication workflow connected to Stanley Systems.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 30,
+        "text": "\"The information on this website is provided for general business and informational purposes. While Stanley Systems aims to keep content accurate and up to date, no guarantee is made that every statement, description, case example, or service reference will remain current, complete, or applicable to every business situation. Content may be changed, updated, or removed at any time without notice.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 35,
+        "text": "\"You agree to use this website only for lawful purposes and in a way that does not interfere with the operation of the site, damage the site, attempt unauthorized access, or impair the experience of other users. You may not use the site to transmit harmful code, scrape protected systems, misrepresent your identity, or engage in conduct that could reasonably harm Stanley Systems or others.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 45,
+        "text": "\"Qualified businesses only. To qualify, the business must be active and currently operating, have at least one designated office or admin staff member, have at least seven other employees, have real job, customer, billing, estimate, review, or call volume, use software systems Stanley Systems can inspect, and be willing to provide access to the systems needed for the audit.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 50,
+        "text": "\"A business may be disqualified from the Workflow Audit guarantee if it is not active or running, has no designated office or admin staff member, has fewer than seven other employees, refuses required software or workflow access, does not have enough real workflow activity to inspect, or is outside Stanley Systems' normal service scope.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 55,
+        "text": "\"The money-back portion applies to the Workflow Audit fee only. If Stanley Systems cannot find one clear money leak it can fix for a qualified business, the Workflow Audit fee is refunded. If the audit is refunded because no clear fix is found, there is no build credit.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 60,
+        "text": "\"Submitting a form, scheduling a call, or exchanging messages with Stanley Systems does not by itself create a client relationship. Proposals, estimates, onboarding plans, and implementation recommendations are informational until confirmed through a direct written agreement. Stanley Systems reserves the right to decline inquiries or proposed engagements at its discretion.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 65,
+        "text": "\"Unless otherwise stated, the content on this website, including copy, branding, graphics, layout, and original materials, is the property of Stanley Systems or is used with permission. You may not reproduce, republish, distribute, modify, or commercially use site content without prior written permission, except for ordinary personal or internal business review.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 70,
+        "text": "\"This website may reference or link to third-party tools, platforms, or websites. Those external services are not controlled by Stanley Systems, and Stanley Systems is not responsible for their content, policies, availability, or practices. Use of third-party services is subject to their own terms and policies.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 73,
+        "text": "title: \"SMS Terms for Stanley Systems\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 75,
+        "text": "\"By opting in, you agree to receive text messages from Stanley Systems. Messages may include replies to inquiries, appointment confirmations, service updates, billing reminders, and account follow-up related to your relationship with Stanley Systems.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 80,
+        "text": "\"Program name: Stanley Systems. Message frequency varies.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 90,
+        "text": "\"For support, contact Stanley Systems through https://stanley-systems.com/contact.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 100,
+        "text": "\"This website and its content are provided on an as-is and as-available basis. Stanley Systems makes no warranties, express or implied, regarding availability, merchantability, fitness for a particular purpose, non-infringement, or uninterrupted operation. To the fullest extent permitted by law, use of the site is at your own risk.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 105,
+        "text": "\"To the fullest extent permitted by law, Stanley Systems will not be liable for any indirect, incidental, consequential, special, or punitive damages arising out of or related to use of the website, reliance on site content, inability to use the site, or use of linked third-party services. If liability is found despite this limitation, it will be limited to the smallest amount permitted under applicable law.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 110,
+        "text": "\"You agree to indemnify and hold harmless Stanley Systems from claims, damages, losses, liabilities, and expenses arising out of your misuse of the website, violation of these Terms and Conditions, infringement of another party's rights, or unlawful conduct connected to your use of the site or related communication channels.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 115,
+        "text": "\"Stanley Systems may revise these Terms and Conditions at any time. Updated terms become effective when posted to this page. Continued use of the website or continued interaction with Stanley Systems after changes are posted constitutes acceptance of the updated terms.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 120,
+        "text": "\"These Terms and Conditions are intended to govern use of the Stanley Systems website and related communication programs in a commercially reasonable manner. If any section is found unenforceable, the remaining sections will continue in effect to the fullest extent possible.\","
+      },
+      {
+        "path": "app/terms-and-conditions/page.tsx",
+        "line": 131,
+        "text": "Stanley Systems terms and conditions"
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 8,
+        "text": "title: \"About Stanley Systems | Workflow Automation That Makes Service Businesses More Money\","
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 10,
+        "text": "\"Learn how Stanley Systems helps service businesses make more money by fixing slow invoicing, missed follow-up, and office bottlenecks that quietly cost revenue every week.\","
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 15,
+        "text": "title: \"About Stanley Systems | Workflow Automation That Makes Service Businesses More Money\","
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 17,
+        "text": "\"Stanley Systems helps service businesses make more money by removing office bottlenecks, tightening handoffs, and fixing the admin drag that slows cash flow down.\","
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 19,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 42,
+        "text": "\"If Stanley Systems is a fit, the goal is simple: fix what is costing the business money.\","
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 53,
+        "text": "Stanley Systems helps service businesses fix the office bottlenecks that are quietly costing them money."
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 56,
+        "text": "Your team works hard in the field. The system behind the business should work just as hard to make sure the money comes through cleanly. Stanley Systems exists to fix the messy handoffs between the field, the office, and billing that slow cash flow down, let estimates go cold, and force owners to keep patching the workflow by hand. When those bottlenecks get cleaned up, the business moves faster and usually makes more money because less revenue leaks out through admin drag."
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 94,
+        "text": "Stanley Systems is built for businesses where work is getting done, but the office side is still too manual. That often includes plumbing, HVAC, marine service, electrical, landscaping, and similar field-service operations where fixing the workflow can directly improve revenue, speed up billing, and stop good jobs from slipping away."
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 100,
+        "text": "The goal is to make the workflow easier to follow and more profitable to run. Instead of starting with a flashy tool stack, Stanley Systems starts with the real bottleneck, tightens the process, and then automates the parts that should no longer depend on memory, rework, or owner babysitting."
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 114,
+        "text": "The people doing the actual work are already putting the effort in. The office system should not be the part that drops the ball after the job is done. Stanley Systems is built around the idea that if the team works hard to earn the revenue, the backend should work hard to help the business collect it, protect it, and keep more of it."
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 141,
+        "text": "I\u2019m Jaden, founder of Stanley Systems. I have worked for and around trade businesses my whole life, and I have seen the same pattern over and over: the team does solid work, but money gets lost in the office through slow invoicing, missed follow-up, duplicate entry, and workflows that depend on memory."
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 144,
+        "text": "Stanley Systems carries my middle name, and it was my grandfather\u2019s name too. He ran a successful retail business selling hardware, tools, and more, but he eventually got squeezed out when the business could not keep up with how technology was changing sales, bookkeeping, and the rest of the operation."
+      },
+      {
+        "path": "app/about/page.tsx",
+        "line": 147,
+        "text": "That is a big part of why Stanley Systems exists. The goal is not to bolt on random tech. The goal is to help good service businesses keep more of the money they are already earning by fixing the bottlenecks that are quietly costing them time, cash flow, and good jobs."
+      },
+      {
+        "path": "app/safety/page.tsx",
+        "line": 7,
+        "text": "\"Stanley Systems is built around reliable workflows, not buzzwords or certifications. The goal is simple: the process works on a busy Tuesday, not just in a demo.\","
+      },
+      {
+        "path": "app/safety/page.tsx",
+        "line": 12,
+        "text": "\"When a workflow touches scheduling, invoicing, payments, or customer communication, Stanley Systems builds guardrails into the process. That means validations, required fields, status gates, and clear handoffs \u2014 not hoping a prompt behaves perfectly.\","
+      },
+      {
+        "path": "app/safety/page.tsx",
+        "line": 17,
+        "text": "\"Operational failures usually come from missing context: a detail that never makes it from intake \u2192 job \u2192 billing \u2192 follow-up. Stanley Systems designs workflows so the right details are captured once and passed forward consistently, instead of relying on memory, texts, or retyping.\","
+      },
+      {
+        "path": "app/safety/page.tsx",
+        "line": 27,
+        "text": "\"Stanley Systems prefers systems that can be inspected: clear documentation, event history, and traceable steps. When something changes, it is visible \u2014 so the team is never stuck wondering what happened.\","
+      },
+      {
+        "path": "app/safety/page.tsx",
+        "line": 42,
+        "text": "<h1 className=\"text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl\">Stanley Systems safety</h1>"
+      },
+      {
+        "path": "app/safety/page.tsx",
+        "line": 44,
+        "text": "This page explains how Stanley Systems builds reliable workflows with guardrails \u2014 especially when money, customers, and operations are on the line."
+      },
+      {
+        "path": "app/who-stanley-systems-helps/page.tsx",
+        "line": 6,
+        "text": "title: \"Who Stanley Systems Helps | Service Business Workflows\","
+      },
+      {
+        "path": "app/who-stanley-systems-helps/page.tsx",
+        "line": 8,
+        "text": "\"See which service businesses Stanley Systems helps most, where cash gets stuck, and when the Workflow Audit is a good fit.\","
+      },
+      {
+        "path": "app/who-stanley-systems-helps/page.tsx",
+        "line": 13,
+        "text": "title: \"Who Stanley Systems Helps | Service Business Workflows\","
+      },
+      {
+        "path": "app/who-stanley-systems-helps/page.tsx",
+        "line": 15,
+        "text": "\"Stanley Systems helps service businesses find late invoices, stale estimates, messy handoffs, and owner cleanup inside the tools they already use.\","
+      },
+      {
+        "path": "app/who-stanley-systems-helps/page.tsx",
+        "line": 17,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/blog/page.tsx",
+        "line": 19,
+        "text": "<Link href=\"/about\" className=\"rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]\">About Stanley Systems</Link>"
+      },
+      {
+        "path": "app/blog/page.tsx",
+        "line": 20,
+        "text": "<Link href=\"/who-stanley-systems-helps\" className=\"rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]\">Who Stanley Systems helps</Link>"
+      },
+      {
+        "path": "app/blog/page.tsx",
+        "line": 21,
+        "text": "<Link href=\"/how-stanley-systems-works\" className=\"rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]\">How Stanley Systems works</Link>"
+      },
+      {
+        "path": "app/blog/page.tsx",
+        "line": 22,
+        "text": "<Link href=\"/stanley-systems-case-study\" className=\"rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]\">Stanley Systems proof</Link>"
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 28,
+        "text": "seoTitle: \"Why Plumbers Wait Weeks to Get Paid | Stanley Systems\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 83,
+        "text": "\"Stanley Systems helps trade and service businesses fix the exact problems above inside the tools you already use, without a big software switch. If any of this sounds familiar, we are easy to reach at /contact.\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 92,
+        "text": "seoTitle: \"The Estimate That Went Cold and the $4,000 Job | Stanley Systems\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 148,
+        "text": "\"Stanley Systems helps trade and service businesses fix the exact problems above inside the tools you already use, without a big software switch. If any of this sounds familiar, we are easy to reach at /contact.\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 157,
+        "text": "seoTitle: \"The Real Cost of Slow Invoicing in a Service Business | Stanley Systems\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 206,
+        "text": "heading: \"Why this matters for Stanley Systems' audience\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 209,
+        "text": "\"That matters for both traditional SEO and AI-driven discovery. Clear, specific writing gives search engines and AI systems something concrete to understand: Stanley Systems helps service businesses remove operational drag, not just install random automation tools.\""
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 215,
+        "text": "\"Stanley Systems helps service businesses build cleaner handoffs so billing happens faster, with fewer mistakes and less follow-up work.\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 224,
+        "text": "seoTitle: \"Why Most Automation Projects Fail Before They Help the Team | Stanley Systems\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 277,
+        "text": "\"It also helps public search surfaces place Stanley Systems correctly. The message becomes clear: this is not generic tech consulting. Stanley Systems helps service businesses clean up the workflow first and automate the version the team can actually follow.\""
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 283,
+        "text": "\"Stanley Systems helps owners find the real bottleneck first, then build automation around a process the team can actually trust and use.\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 292,
+        "text": "seoTitle: \"What a Trustworthy Automation Partner Should Actually Deliver | Stanley Systems\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 343,
+        "text": "\"Trust and ownership are not soft topics. They are buying criteria. Owners search for trustworthy automation help, automation consultant red flags, implementation partner questions, and whether they will actually own what gets built. This article gives Stanley Systems a useful page around those exact concerns.\","
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 344,
+        "text": "\"It also reinforces the brand position clearly for search engines and AI systems: Stanley Systems builds practical, owner-friendly workflow automation that the business can understand and keep control of.\""
+      },
+      {
+        "path": "app/blog/posts.ts",
+        "line": 350,
+        "text": "\"Stanley Systems builds inside the tools you already use and keeps ownership clear so the business stays in control after the project is live.\","
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 7,
+        "text": "title: \"Marine Shop Case Study | Stanley Systems\","
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 9,
+        "text": "\"See how Stanley Systems helps a marine shop find money stuck in office workflow, billing handoffs, intake cleanup, and repeat customer follow-up.\","
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 14,
+        "text": "title: \"Marine Shop Case Study | Stanley Systems\","
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 16,
+        "text": "\"A Stanley Systems case study page focused on practical workflow cleanup for a marine shop, including billing handoffs, intake cleanup, and repeat revenue from existing customers.\","
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 18,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 28,
+        "text": "\"Stanley Systems focused on making that handoff cleaner so more completed jobs could move toward billing without extra admin drag.\","
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 35,
+        "text": "\"Stanley Systems looked at how intake details could move into Wallace with fewer missed fields, fewer manual checks, and less duplicate entry.\","
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 143,
+        "text": "That is where the money was getting stuck. Stanley Systems focused on cleaning up the path from completed work to collected cash, then identifying how the shop could recover $11,250 to $45,000 from customers it had already earned."
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 174,
+        "text": "<h2 className=\"mt-3 text-3xl font-semibold tracking-tight text-slate-900\">What Stanley Systems focused on first</h2>"
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 235,
+        "text": "<p className=\"mt-5 text-base leading-7 text-slate-600\">That is what Stanley Systems is built to fix.</p>"
+      },
+      {
+        "path": "app/stanley-systems-case-study/page.tsx",
+        "line": 254,
+        "text": "If your shop already uses Wallace, QuickBooks, Housecall Pro, Jobber, ServiceTitan, or another field and billing setup, but billing, intake, or repeat customer follow-up still feels messy, Stanley Systems can help you find the money leak."
+      },
+      {
+        "path": "app/missed-estimate-follow-up-for-service-businesses/page.tsx",
+        "line": 8,
+        "text": "title: \"Missed Estimate Follow-Up for Service Businesses | Stanley Systems\","
+      },
+      {
+        "path": "app/missed-estimate-follow-up-for-service-businesses/page.tsx",
+        "line": 10,
+        "text": "\"Stanley Systems helps service businesses fix missed estimate follow-up so good jobs do not go cold while the team gets pulled into the next urgent thing.\","
+      },
+      {
+        "path": "app/missed-estimate-follow-up-for-service-businesses/page.tsx",
+        "line": 15,
+        "text": "title: \"Missed Estimate Follow-Up for Service Businesses | Stanley Systems\","
+      },
+      {
+        "path": "app/missed-estimate-follow-up-for-service-businesses/page.tsx",
+        "line": 17,
+        "text": "\"A practical breakdown of why estimates go cold in service businesses and how Stanley Systems helps build follow-up workflows that still feel human.\","
+      },
+      {
+        "path": "app/missed-estimate-follow-up-for-service-businesses/page.tsx",
+        "line": 19,
+        "text": "siteName: \"Stanley Systems\","
+      },
+      {
+        "path": "app/missed-estimate-follow-up-for-service-businesses/page.tsx",
+        "line": 49,
+        "text": "Stanley Systems helps service businesses fix the gap between sending the quote and following up on time. When that step depends on memory, the next busy day wins. Good jobs go cold quietly."
+      },
+      {
+        "path": "app/missed-estimate-follow-up-for-service-businesses/page.tsx",
+        "line": 96,
+        "text": "Stanley Systems focuses on the handoff itself. The goal is a simple follow-up workflow that still sounds like the business, still routes real replies to a human, and does not depend on somebody remembering tomorrow."
+      },
+      {
+        "path": "app/missed-estimate-follow-up-for-service-businesses/page.tsx",
+        "line": 117,
+        "text": "{ title: \"How Stanley Systems helps service businesses\", href: \"/who-stanley-systems-helps\" },"
+      },
+      {
+        "path": "app/blog/[slug]/page.tsx",
+        "line": 17,
+        "text": "title: \"Article not found | Stanley Systems\","
+      },
+      {
+        "path": "app/blog/[slug]/page.tsx",
+        "line": 98,
+        "text": "Contact Stanley Systems"
+      },
+      {
+        "path": "app/invoicing-delay-cash-flow-calculator/paid/page.tsx",
+        "line": 5,
+        "text": "title: \"What Are Invoicing Delays Costing Your Shop? | Stanley Systems\","
+      },
+      {
+        "path": "components/internal-page-data.ts",
+        "line": 8,
+        "text": "{ title: \"Who Stanley Systems helps\", href: \"/who-stanley-systems-helps\" },"
+      },
+      {
+        "path": "components/internal-page-data.ts",
+        "line": 9,
+        "text": "{ title: \"How Stanley Systems works\", href: \"/how-stanley-systems-works\" },"
+      },
+      {
+        "path": "components/glassmorphism-nav.tsx",
+        "line": 106,
+        "text": "Stanley Systems"
+      },
+      {
+        "path": "components/not-found-content.tsx",
+        "line": 17,
+        "text": "If you were trying to learn about Stanley Systems, the best next step is to head back to the homepage, read the blog, or go straight to the contact page."
+      },
+      {
+        "path": "components/not-found-content.tsx",
+        "line": 31,
+        "text": "Contact Stanley Systems"
+      },
+      {
+        "path": "components/founder-section.tsx",
+        "line": 27,
+        "text": "I\u2019m Jaden, founder of Stanley Systems. I built Stanley Systems because service businesses do not need another dashboard, software pitch, or bloated agency process. They need the money leak found, fixed, and kept from coming back."
+      },
+      {
+        "path": "components/founder-section.tsx",
+        "line": 33,
+        "text": "Stanley Systems carries my middle name and my grandfather\u2019s name, so the work has to be practical, useful, and built to last."
+      },
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 171,
+        "text": "Stanley Systems flags missing billing details before finished jobs get stuck."
+      },
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 236,
+        "text": "subheadline=\"This is how Stanley Systems helps collect more of the money already earned. Completed jobs should not sit in the office waiting on billing details, invoice cleanup, or follow-up.\""
+      },
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 264,
+        "text": "Before buying more leads, Stanley Systems checks the customer records the business already paid to earn."
+      },
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 382,
+        "text": "Your saved customer list is a revenue asset. Stanley Systems helps turn it into repeat jobs, reviews, referrals, and captured calls."
+      },
+      {
+        "path": "components/pricing-section.tsx",
+        "line": 403,
+        "text": "data-audit-purpose=\"Explain the two approved Stanley Systems implementation systems without inventing offers.\""
+      },
+      {
+        "path": "components/footer.tsx",
+        "line": 93,
+        "text": "alt=\"Stanley Systems logo\""
+      },
+      {
+        "path": "components/footer.tsx",
+        "line": 101,
+        "text": "<p>\u00a9 {new Date().getFullYear()} Stanley Systems. All rights reserved.</p>"
+      },
+      {
+        "path": "components/footer.tsx",
+        "line": 134,
+        "text": "<p className=\"text-sm text-slate-500\">\u00a9 {new Date().getFullYear()} Stanley Systems. All rights reserved.</p>"
+      },
+      {
+        "path": "components/reach-out-section.tsx",
+        "line": 11,
+        "text": "description: \"Stanley Systems looks at the bottleneck, calls out what matters, and keeps the first move practical.\","
+      },
+      {
+        "path": "components/reach-out-section.tsx",
+        "line": 16,
+        "text": "description: \"The fix gets put into the tools your team already uses. If it is not a fit, Stanley Systems says that upfront.\","
+      },
+      {
+        "path": "components/marine-example-section.tsx",
+        "line": 32,
+        "text": "\u201cStanley Systems helped us save 10+ hours a week of manual data entry and cut down the kind of human errors that were slowing the business down. The workflow is cleaner, billing moves faster, and the team is not stuck retyping the same information all day.\u201d"
+      },
+      {
+        "path": "components/contact-section.tsx",
+        "line": 12,
+        "text": "description: \"If you would rather send notes by email, Stanley Systems can review them there too.\","
+      },
+      {
+        "path": "components/contact-section.tsx",
+        "line": 94,
+        "text": "result?.message || \"Thanks. Stanley Systems will take a look and reach out if there is a clear revenue problem to inspect.\","
+      },
+      {
+        "path": "components/contact-section.tsx",
+        "line": 128,
+        "text": "This starts the paid Workflow Audit path. If there is a real breakdown in your follow-up, calls, paperwork, or invoicing, Stanley Systems uses this to see where money may be leaking first."
+      },
+      {
+        "path": "components/contact-section.tsx",
+        "line": 183,
+        "text": "Stanley Systems reviews what you send, looks for the revenue problem, and reaches out if there is a clear place to inspect through the Workflow Audit."
+      },
+      {
+        "path": "components/contact-section.tsx",
+        "line": 212,
+        "text": "Answer a few quick questions so Stanley Systems can see whether there is a real revenue problem worth auditing first."
+      },
+      {
+        "path": "components/contact-section.tsx",
+        "line": 317,
+        "text": "I agree to receive text messages from Stanley Systems about my inquiry, appointments, service updates, billing, and account follow-up. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. {\" \"}"
+      },
+      {
+        "path": "components/faq-section.tsx",
+        "line": 16,
+        "text": "\"No, they do not need to switch software. Stanley Systems works inside the tools the team already uses whenever possible. The goal is usually to clean up the handoff between the systems you already have, reduce duplicate entry, and make the workflow easier to trust before talking about any bigger tool changes.\","
+      },
+      {
+        "path": "components/faq-section.tsx",
+        "line": 26,
+        "text": "\"No. The starting point is usually one or two fixes that make the clearest difference first. Stanley Systems is built to start narrow, prove the workflow works, and then expand only if there is a good reason to. That keeps the rollout easier on the owner and team.\","
+      },
+      {
+        "path": "components/faq-section.tsx",
+        "line": 31,
+        "text": "\"Yes. Your team stays in control, and you own what gets built. Stanley Systems is there to remove drag and make the next step clearer, not to lock your team into a black box. The process should be easier for your office and field staff to follow, not harder.\","
+      },
+      {
+        "path": "components/how-it-works-section.tsx",
+        "line": 100,
+        "text": "If Stanley Systems cannot find one clear money leak we can fix, qualified businesses get the audit fee back.{\" \"}"
+      },
+      {
+        "path": "components/hero-section.tsx",
+        "line": 9,
+        "text": "\"Stanley Systems helps service-business owners get paid faster, recover office time, and stop revenue from slipping through missed calls and delayed follow-up.\""
+      },
+      {
+        "path": "components/hero-section.tsx",
+        "line": 26,
+        "text": "data-audit-purpose=\"Make the owner understand that Stanley Systems helps make more money with less office work.\""
+      },
+      {
+        "path": "components/final-cta-section.tsx",
+        "line": 28,
+        "text": "Stanley Systems starts with the Workflow Audit. We find the leak costing you first, then build the simplest system to keep money moving."
+      },
+      {
+        "path": "components/final-cta-section.tsx",
+        "line": 31,
+        "text": "If the leak is not real enough to fix, Stanley Systems will tell you before you buy a system."
+      },
+      {
+        "path": "components/problem-solution-map-section.tsx",
+        "line": 79,
+        "text": "What Stanley Systems fixes first"
+      },
+      {
+        "path": "components/problem-solution-map-section.tsx",
+        "line": 84,
+        "text": "Stanley Systems starts with the bottlenecks that cost the most time, cash, and attention."
+      },
+      {
+        "path": "components/calculator-path-section.tsx",
+        "line": 66,
+        "text": "Stanley Systems checks the places service businesses lose money after the lead, job, or customer already exists: slow invoices, open estimates, missed calls, and saved customers nobody is following up with."
+      },
+      {
+        "path": "components/best-fit-section.tsx",
+        "line": 53,
+        "text": "data-audit-purpose=\"Show which service businesses fit Stanley Systems before the final Workflow Audit CTA.\""
+      },
+      {
+        "path": "components/best-fit-section.tsx",
+        "line": 62,
+        "text": "Stanley Systems fits service businesses already using tools like QuickBooks, Housecall Pro, Jobber, ServiceTitan, Wallace, or Yardbook, but still losing time to late invoices, stale estimates, messy handoffs, and owner cleanup."
+      },
+      {
+        "path": "components/best-fit-section.tsx",
+        "line": 89,
+        "text": "<h3 className=\"text-2xl font-semibold tracking-tight text-slate-950\">Stanley Systems is a fit if...</h3>"
+      },
+      {
+        "path": "components/best-fit-section.tsx",
+        "line": 101,
+        "text": "<h3 className=\"text-2xl font-semibold tracking-tight text-slate-950\">Stanley Systems is not the fit if...</h3>"
+      },
+      {
+        "path": "components/trust-ownership-section.tsx",
+        "line": 5,
+        "text": "text: \"Stanley Systems works inside the tools your team already uses, instead of forcing a whole new operating layer onto the business.\","
+      },
+      {
+        "path": "components/trust-ownership-section.tsx",
+        "line": 31,
+        "text": "Stanley Systems is not trying to wrap your business in another confusing layer. The setup stays yours, the documentation stays yours, and the team is not left guessing how the handoff works."
+      },
+      {
+        "path": "components/pricing/PricingHero.tsx",
+        "line": 14,
+        "text": "The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that brings past customers, reviews, referrals, and missed calls back into view."
+      },
+      {
+        "path": "components/pricing/PricingHero.tsx",
+        "line": 17,
+        "text": "You leave with a clear money leak map, the first fix to make, and a straight answer on whether Stanley Systems should build the Cash Flow Collection System, the Repeat Revenue System, both, or neither."
+      },
+      {
+        "path": "components/pricing/PricingCTA.tsx",
+        "line": 13,
+        "text": "Start with the Workflow Audit. Stanley Systems will show you which money leak is worth fixing first."
+      },
+      {
+        "path": "components/sections/customer-revenue-system-v3.tsx",
+        "line": 69,
+        "text": "Stanley Systems brings old customers back, turns happy customers into reviews and referrals, and catches missed calls before they become lost jobs."
+      },
+      {
+        "path": "components/sections/customer-revenue-system-v2.tsx",
+        "line": 97,
+        "text": "Stanley Systems turns past customers, happy customers, missed calls, reviews, and referrals into a cleaner revenue loop."
+      },
+      {
+        "path": "components/sections/customer-revenue-system-v4.tsx",
+        "line": 32,
+        "text": "Stanley Systems brings old customers back, turns happy customers into reviews and referrals, and catches missed calls before they become lost jobs."
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 69,
+        "text": "\"Stanley Systems reviews the office path where money usually gets stuck and gives you a plain-English money leak map.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 77,
+        "text": "\"Where Stanley Systems can or cannot fix the leak.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 85,
+        "text": "headline: \"If Stanley Systems cannot find one clear money leak we can fix, you get your Workflow Audit fee back.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 87,
+        "text": "\"The guarantee applies to qualified service businesses with enough job, invoice, customer, call, estimate, or review volume for leaks to matter. Stanley Systems needs access to the relevant systems and a reachable decision maker or operations contact during the audit.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 99,
+        "text": "\"Stanley Systems helps completed work move toward billing, follow-up, and collected cash with fewer manual checks and fewer repeated office handoffs.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 122,
+        "text": "\"Stanley Systems helps bring past customers back, request fresh reviews, create referral opportunities, and catch calls that should not be lost.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 144,
+        "text": "\"If Stanley Systems recommends a build after the Workflow Audit, the Workflow Audit price comes off the monthly plan if you buy monthly, or double the Workflow Audit price comes off the yearly plan if you buy yearly.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 152,
+        "text": "\"Yes. The Workflow Audit is the paid first step. Stanley Systems uses it to find the leak before recommending Cash Flow Collection System, Repeat Revenue System, both, or neither.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 166,
+        "text": "\"No. Those systems are scoped after the Workflow Audit. Stanley Systems does not sell those builds as self-serve packages in v1.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 171,
+        "text": "\"If your business qualifies and Stanley Systems cannot find one clear money leak we can fix, you get your Workflow Audit fee back. The refund applies to the Workflow Audit fee only.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 176,
+        "text": "\"The guarantee is for real service businesses with enough job, invoice, customer, call, estimate, or review volume for leaks to matter. Stanley Systems also needs access to the relevant systems and a reachable decision maker or operations contact during the audit.\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 179,
+        "text": "question: \"Can Stanley Systems work inside my current tools?\","
+      },
+      {
+        "path": "lib/pricing/offers.ts",
+        "line": 181,
+        "text": "\"That is the point. Stanley Systems looks at the office-side gaps inside the tools your business already uses instead of pushing a software migration.\","
+      }
+    ]
+  },
+  "forbidden": {
+    "Hermes": [],
+    "Codex": [],
+    "Stanley H": [],
+    "OpenClaw": [],
+    "n8n": [],
+    "QBO": [],
+    "HCP": [],
+    "Twilio": [],
+    "free/no-cost Follow-Up guarantee": [
+      {
+        "path": "components/best-fit-section.tsx",
+        "line": 45,
+        "text": "\"Admin time, billing delays, and missed follow-up are treated as free.\","
+      }
+    ],
+    "Stanley alone": [
+      {
+        "path": "components/visual-kit/mini-features/workflow-proof-mini.tsx",
+        "line": 25,
+        "text": "eyebrow: 'Stanley step',"
+      }
+    ]
+  },
+  "dollars": [
+    {
+      "path": "app/invoicing-delay-cash-flow-calculator/calculator-client.tsx",
+      "line": 498,
+      "text": "<div className=\"mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-5xl\">$3,000 to $25,000+</div>",
+      "matches": [
+        "$3,000",
+        "$25,000"
+      ]
+    },
+    {
+      "path": "app/speed-up-invoicing-for-service-businesses/page.tsx",
+      "line": 35,
+      "text": "\"If your average invoice is $1,200 and 25 jobs a month sit an extra 4 days before billing, that is $30,000 of work waiting longer than it should.\",",
+      "matches": [
+        "$1,200",
+        "$30,000"
+      ]
+    },
+    {
+      "path": "app/blog/posts.ts",
+      "line": 87,
+      "text": "title: \"The estimate that went cold (and the $4,000 job that went with it)\",",
+      "matches": [
+        "$4,000"
+      ]
+    },
+    {
+      "path": "app/blog/posts.ts",
+      "line": 92,
+      "text": "seoTitle: \"The Estimate That Went Cold and the $4,000 Job | Stanley Systems\",",
+      "matches": [
+        "$4,000"
+      ]
+    },
+    {
+      "path": "app/blog/posts.ts",
+      "line": 141,
+      "text": "\"If one $4,000 job slips away each month, that is $48,000 a year. Most owners never count it because it does not show up as an expense line.\",",
+      "matches": [
+        "$4,000",
+        "$48,000"
+      ]
+    },
+    {
+      "path": "app/stanley-systems-case-study/page.tsx",
+      "line": 51,
+      "text": "number: \"$6,000 to $18,000 per month\",",
+      "matches": [
+        "$6,000",
+        "$18,000"
+      ]
+    },
+    {
+      "path": "app/stanley-systems-case-study/page.tsx",
+      "line": 53,
+      "text": "\"If 8 to 12 completed jobs per month are slowed down by missing details, billing cleanup, or handoff issues, and the average job is worth $750 to $1,500, the shop can have $6,000 to $18,000 in monthly cash movement slowed down by office friction.\",",
+      "matches": [
+        "$750",
+        "$1,500,",
+        "$6,000",
+        "$18,000"
+      ]
+    },
+    {
+      "path": "app/stanley-systems-case-study/page.tsx",
+      "line": 83,
+      "text": "number: \"$11,250 to $45,000\",",
+      "matches": [
+        "$11,250",
+        "$45,000"
+      ]
+    },
+    {
+      "path": "app/stanley-systems-case-study/page.tsx",
+      "line": 85,
+      "text": "\"At $750 to $1,500 per job, 15 to 30 returning customers can create $11,250 to $45,000 in recovered service revenue from customers the shop already had.\",",
+      "matches": [
+        "$750",
+        "$1,500",
+        "$11,250",
+        "$45,000"
+      ]
+    },
+    {
+      "path": "app/stanley-systems-case-study/page.tsx",
+      "line": 124,
+      "text": "The drag showed up after the job was finished. If 8 to 12 completed jobs per month were slowed down by missing details, billing cleanup, or handoff issues, that could leave $6,000 to $18,000 per month moving slower than it should.",
+      "matches": [
+        "$6,000",
+        "$18,000"
+      ]
+    },
+    {
+      "path": "app/stanley-systems-case-study/page.tsx",
+      "line": 128,
+      "text": "[\"Cash slowed down\", \"$6,000 to $18,000 per month\"],",
+      "matches": [
+        "$6,000",
+        "$18,000"
+      ]
+    },
+    {
+      "path": "app/stanley-systems-case-study/page.tsx",
+      "line": 143,
+      "text": "That is where the money was getting stuck. Stanley Systems focused on cleaning up the path from completed work to collected cash, then identifying how the shop could recover $11,250 to $45,000 from customers it had already earned.",
+      "matches": [
+        "$11,250",
+        "$45,000"
+      ]
+    },
+    {
+      "path": "app/stanley-systems-case-study/page.tsx",
+      "line": 158,
+      "text": "\"Past customers were sitting in the system without a strong follow-up path, leaving 15 to 30 returning customers and $11,250 to $45,000 in repeat revenue on the table.\",",
+      "matches": [
+        "$11,250",
+        "$45,000"
+      ]
+    },
+    {
+      "path": "components/HeroVisual.tsx",
+      "line": 13,
+      "text": "amount: \"$480\",",
+      "matches": [
+        "$480"
+      ]
+    },
+    {
+      "path": "components/HeroVisual.tsx",
+      "line": 21,
+      "text": "amount: \"$1,240\",",
+      "matches": [
+        "$1,240"
+      ]
+    },
+    {
+      "path": "components/HeroVisual.tsx",
+      "line": 29,
+      "text": "amount: \"$2,350\",",
+      "matches": [
+        "$2,350"
+      ]
+    },
+    {
+      "path": "components/HeroVisual.tsx",
+      "line": 37,
+      "text": "amount: \"$915\",",
+      "matches": [
+        "$915"
+      ]
+    },
+    {
+      "path": "components/HeroVisual.tsx",
+      "line": 202,
+      "text": "<div className=\"mt-1 text-xs text-[#1B2A4A]/48 sm:text-[0.8rem]\">Invoice #2847 \u2022 $1,240</div>",
+      "matches": [
+        "$1,240"
+      ]
+    },
+    {
+      "path": "components/pricing-section.tsx",
+      "line": 275,
+      "text": "<p className=\"mt-3 whitespace-nowrap text-[2.15rem] font-black leading-none tracking-[-0.04em] text-[#15803D] sm:text-[2.45rem] lg:text-[2.35rem] xl:text-[2.55rem]\">$50K-$300K</p>",
+      "matches": [
+        "$50K-$300K"
+      ]
+    },
+    {
+      "path": "components/how-it-works-section.tsx",
+      "line": 43,
+      "text": "{ label: \"Delayed invoices\", value: \"$3,250\", suffix: \"at risk\", Icon: DelayedInvoiceDisplayAsset },",
+      "matches": [
+        "$3,250"
+      ]
+    },
+    {
+      "path": "components/how-it-works-section.tsx",
+      "line": 44,
+      "text": "{ label: \"Open estimates\", value: \"$7,500\", suffix: \"waiting\", Icon: InvoiceApprovedDisplayAsset },",
+      "matches": [
+        "$7,500"
+      ]
+    },
+    {
+      "path": "components/calculator-path-section.tsx",
+      "line": 144,
+      "text": "<div className=\"mt-2 text-[2rem] font-bold leading-none text-[#102033] sm:text-[2.15rem] lg:text-[2.25rem]\">$3,000 to $25,000+</div>",
+      "matches": [
+        "$3,000",
+        "$25,000"
+      ]
+    },
+    {
+      "path": "components/best-fit-section.tsx",
+      "line": 21,
+      "text": "body: \"At $650 each, that is $3,250 in cash movement waiting on the office.\",",
+      "matches": [
+        "$650",
+        "$3,250"
+      ]
+    },
+    {
+      "path": "components/best-fit-section.tsx",
+      "line": 29,
+      "text": "body: \"At $2,500 each, that is $7,500 in quoted work waiting for a next step.\",",
+      "matches": [
+        "$2,500",
+        "$7,500"
+      ]
+    },
+    {
+      "path": "components/sections/customer-revenue-system-v3.tsx",
+      "line": 83,
+      "text": "+$8,400",
+      "matches": [
+        "$8,400"
+      ]
+    },
+    {
+      "path": "components/sections/customer-revenue-system-v4.tsx",
+      "line": 46,
+      "text": "+$8,400",
+      "matches": [
+        "$8,400"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-category-grid-mini.tsx",
+      "line": 21,
+      "text": "amount: '$3.6k',",
+      "matches": [
+        "$3.6k"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-category-grid-mini.tsx",
+      "line": 27,
+      "text": "amount: '$7.2k',",
+      "matches": [
+        "$7.2k"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-category-grid-mini.tsx",
+      "line": 33,
+      "text": "amount: '$2.1k',",
+      "matches": [
+        "$2.1k"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-category-grid-mini.tsx",
+      "line": 39,
+      "text": "amount: '$4.8k',",
+      "matches": [
+        "$4.8k"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-category-grid-mini.tsx",
+      "line": 54,
+      "text": "<p className=\"text-sm font-semibold text-[#15803D]\">$17.7k exposed</p>",
+      "matches": [
+        "$17.7k"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-estimate-mini.tsx",
+      "line": 20,
+      "text": "amount: '$4,800',",
+      "matches": [
+        "$4,800"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-estimate-mini.tsx",
+      "line": 26,
+      "text": "amount: '$7,200',",
+      "matches": [
+        "$7,200"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-estimate-mini.tsx",
+      "line": 32,
+      "text": "amount: '$3,600',",
+      "matches": [
+        "$3,600"
+      ]
+    },
+    {
+      "path": "components/visual-kit/mini-features/revenue-leak-estimate-mini.tsx",
+      "line": 48,
+      "text": "$15,600",
+      "matches": [
+        "$15,600"
+      ]
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import { PricingSection } from "@/components/pricing-section"
 import { FAQSection } from "@/components/faq-section"
 import { FounderSection } from "@/components/founder-section"
 import { FinalCTASection } from "@/components/final-cta-section"
+import { BestFitSection } from "@/components/best-fit-section"
 import Aurora from "@/components/Aurora"
 import { Footer } from "@/components/footer"
 import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
@@ -24,12 +25,13 @@ export default function HomePage() {
           <HeroSection />
           <CalculatorPathSection />
           <HowItWorksSection />
-          <PricingSection />
           <ProofStripSection />
+          <PricingSection />
           <TrustOwnershipSection />
           <FAQSection />
-          <FounderSection />
+          <BestFitSection />
           <FinalCTASection />
+          <FounderSection />
           <Footer />
           <MobileStickyCTA />
         </div>

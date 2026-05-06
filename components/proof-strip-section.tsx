@@ -1,129 +1,124 @@
-import {
-  BellRing,
-  BriefcaseBusiness,
-  Clock3,
-  CreditCard,
-  RotateCcw,
-  Share2,
-  Star,
-} from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+import type { ComponentType } from "react"
+import { ArrowRight } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
-import { ConnectorArrow, FlowStep, SectionShell, VisualCard } from "@/components/visual-primitives"
+import { SectionShell } from "@/components/visual-primitives"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
+import {
+  CashApprovedDisplayAsset,
+  CompletedJobDisplayAsset,
+  InactiveCustomersDisplayAsset,
+  ReferralNetworkDisplayAsset,
+  type DisplayAssetProps,
+} from "@/components/visual-kit/display-assets"
 
-type WorkflowStep = {
-  label: string
-  icon: LucideIcon
-  active?: boolean
+type DisplayPrimitive = ComponentType<DisplayAssetProps>
+
+const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
+
+type AuditPathCard = {
+  title: string
+  items: string
+  result: string
+  Icon: DisplayPrimitive
+  AccentIcon: DisplayPrimitive
 }
 
-const cashflowSteps: WorkflowStep[] = [
-  { label: "Completed job", icon: BriefcaseBusiness },
-  { label: "Invoice delay", icon: Clock3 },
-  { label: "Office alert", icon: BellRing, active: true },
+const auditPaths: AuditPathCard[] = [
+  {
+    title: "Cashflow Control System",
+    items: "Finished jobs, invoices, open balances, handoffs.",
+    result: "Earned money moves toward collected cash faster.",
+    Icon: CompletedJobDisplayAsset,
+    AccentIcon: CashApprovedDisplayAsset,
+  },
+  {
+    title: "Repeat Revenue System",
+    items: "Saved customers, review requests, referrals, captured calls.",
+    result: "Past customers turn into repeat jobs, referral opportunities, review requests, and booked calls before more money goes to cold leads.",
+    Icon: InactiveCustomersDisplayAsset,
+    AccentIcon: ReferralNetworkDisplayAsset,
+  },
 ]
 
-const customerRevenueSteps: WorkflowStep[] = [
-  { label: "Paid job", icon: CreditCard },
-  { label: "Review request", icon: Star },
-  { label: "Referral", icon: Share2 },
-  { label: "Repeat customer", icon: RotateCcw, active: true },
-]
-
-function WorkflowPath({
-  title,
-  steps,
-  outcome,
-}: {
-  title: string
-  steps: WorkflowStep[]
-  outcome: string
-}) {
+function AuditPathCard({ path, index }: { path: AuditPathCard; index: number }) {
   return (
-    <div className="flex h-full flex-col rounded-[1.5rem] border border-[#e5dccf] bg-[#fbfaf7] p-4 shadow-[0_14px_30px_rgba(16,32,51,0.05)] sm:p-5">
-      <div className="flex items-center justify-between gap-4">
-        <h3 className="text-lg font-semibold leading-tight text-[#102033]">{title}</h3>
-        <div className="h-px flex-1 bg-[#ded6c8]" aria-hidden="true" />
-      </div>
-
-      <div className="mt-5 grid gap-2">
-        {steps.map((step, index) => (
-          <div key={step.label} className="grid gap-2">
-            <FlowStep
-              icon={step.icon}
-              label={step.label}
-              active={step.active}
-              className="min-h-[68px] border-[#e6ded1] px-3 py-3 shadow-none"
-            />
-            {index < steps.length - 1 && (
-              <div className="flex justify-center" aria-hidden="true">
-                <ConnectorArrow direction="down" className="h-5 w-12 text-[#15803D]" />
-              </div>
-            )}
+    <article className="relative overflow-hidden rounded-[1.15rem] border border-[#dfe8d9] bg-[linear-gradient(180deg,#ffffff_0%,#fbfdf8_100%)] p-3.5 shadow-[0_14px_30px_rgba(16,32,51,0.055)] sm:p-5">
+      <div className="absolute right-4 top-4 h-12 w-12 rounded-full bg-[#DDF7E8]/45" aria-hidden="true" />
+      <div className="relative flex items-start gap-3">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-sm font-black text-white shadow-[0_10px_22px_rgba(21,128,61,0.18)]">
+          {index + 1}
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="text-lg font-extrabold leading-tight text-[#102033]">{path.title}</h3>
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f2f8f0] ring-1 ring-[#d9eedf]">
+              <path.Icon size={38} decorative />
+            </span>
           </div>
-        ))}
+          <p className="mt-2 text-sm font-semibold leading-5 text-[#526273]">{path.items}</p>
+          <p className="mt-2 flex items-start gap-2 text-sm font-extrabold leading-5 text-[#102033]">
+            <path.AccentIcon size={28} decorative />
+            <span>Result: {path.result}</span>
+          </p>
+        </div>
       </div>
-
-      <p className="mt-5 rounded-2xl border border-[#d6eadc] bg-[#effaf2] p-4 text-sm font-semibold leading-6 text-[#116832]">
-        {outcome}
-      </p>
-    </div>
+    </article>
   )
 }
 
 export function ProofStripSection() {
   return (
     <SectionShell
-      id="proof"
+      id="workflow-audit-paths"
+      data-section="workflow-proof"
       data-audit-page="/"
-      data-audit-section="home.proof"
+      data-audit-section="home.workflow-audit-paths"
       data-audit-priority="3"
       data-audit-offer="Workflow Audit"
-      data-audit-purpose="Provide compact proof that office-side leaks cost money and attention."
-      eyebrow="Workflow proof"
-      title="Built paths for cash, reviews, referrals, and repeat work."
-      description="Stanley Systems tests the same paths the Workflow Audit checks: finished jobs, invoices, reviews, referrals, old customers, missed calls, and stuck follow-up."
-      className="relative z-10 scroll-mt-28 bg-transparent px-4 pb-28 pt-8 sm:scroll-mt-32 sm:pb-28 sm:pt-10 md:py-10 lg:scroll-mt-36 lg:py-12"
-      containerClassName="rounded-[2rem] border border-[#e9e2d7] bg-white/95 px-5 py-7 shadow-[0_16px_40px_rgba(15,23,42,0.05)] sm:px-8 sm:py-9 lg:px-10"
-      headerClassName="mb-7 max-w-4xl md:mb-9"
+      data-audit-purpose="Explain the two money paths checked by the Workflow Audit before the two systems are introduced."
+      title="The Workflow Audit checks two money paths."
+      description="One path finds cash stuck after the work is done. The other checks the customer list your business already owns before more money gets spent chasing new leads."
+      className="relative z-10 scroll-mt-28 bg-transparent px-4 pb-8 pt-4 sm:scroll-mt-32 sm:pb-10 sm:pt-5 lg:scroll-mt-36 lg:py-10"
+      containerClassName="rounded-[1.35rem] border border-[#e4eadf] bg-white/95 px-4 py-5 shadow-[0_18px_44px_rgba(15,23,42,0.055)] sm:rounded-[1.75rem] sm:px-6 sm:py-6 lg:px-7 lg:py-7"
+      headerClassName="mb-4 max-w-4xl md:mb-5"
     >
-      <VisualCard className="overflow-hidden border-[#e5dccf] bg-[#fffdf9] p-4 shadow-[0_20px_55px_rgba(16,32,51,0.08)] sm:p-5 lg:p-7">
-        <div className="grid gap-4 lg:grid-cols-2">
-          <WorkflowPath
-            title="Cashflow path"
-            steps={cashflowSteps}
-            outcome="Shows where finished work can stall before money is collected."
-          />
-          <WorkflowPath
-            title="Customer revenue path"
-            steps={customerRevenueSteps}
-            outcome="Shows how customer moments feed reviews, referrals, and repeat work."
-          />
-        </div>
+      <div className="grid gap-3 lg:grid-cols-2 lg:gap-4">
+        {auditPaths.map((path, index) => (
+          <AuditPathCard key={path.title} path={path} index={index} />
+        ))}
+      </div>
 
-        <div className="mt-5 flex flex-col gap-4 border-t border-[#ece4d8] pt-5 lg:flex-row lg:items-center lg:justify-between">
-          <p className="text-sm leading-6 text-slate-600">Example only. Your audit uses your actual workflow.</p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <CTALink
-              href="/contact"
-              kind="book_meeting"
-              location="proof_section_primary"
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#116832]"
-            >
-              Book the Workflow Audit
-            </CTALink>
-            <CTALink
-              href="/stanley-systems-case-study"
-              kind="case_study"
-              location="proof_section"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3 text-sm font-semibold text-[#102033] transition hover:bg-[#f4efe6]"
-            >
-              View the Proof Case
-            </CTALink>
-          </div>
-        </div>
-      </VisualCard>
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
+        <CTALink
+          href={auditHref}
+          kind="checkout"
+          location="workflow_audit_paths_primary"
+          analyticsEvent="audit_checkout_clicked"
+          analyticsSource="homepage_workflow_audit_paths"
+          packageId="workflow_audit"
+          packageName="Workflow Audit"
+          billingPeriod="one_time"
+          ctaLabel="Buy the Workflow Audit"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] sm:px-8"
+        >
+          Buy the Workflow Audit
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </CTALink>
+        <CTALink
+          href="/pricing#compare-systems"
+          kind="systems"
+          location="workflow_audit_paths_secondary"
+          analyticsEvent="package_compare_clicked"
+          analyticsSource="homepage_workflow_audit_paths"
+          ctaLabel="Compare systems"
+          className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#cbd8c7] bg-white px-6 py-3 text-sm font-bold text-[#116832] shadow-[0_10px_24px_rgba(16,32,51,0.05)] transition hover:border-[#15803D] hover:bg-[#f7fcf7] sm:px-8"
+        >
+          Compare systems
+        </CTALink>
+      </div>
     </SectionShell>
   )
 }

@@ -1,7 +1,7 @@
 # Systems Clean Icon Pass Manifest
 
 Date: 2026-04-29
-Task: Rebuild Cashflow Control System and Customer Revenue System with cleaner top process/icon asset sets.
+Task: Rebuild Cash Flow Collection System and Repeat Revenue System with cleaner top process/icon asset sets.
 
 ## Source files inspected
 
@@ -59,7 +59,7 @@ Normalized exports are 512x512 and use transparent backgrounds. They remain avai
 
 ## Approved final top process asset systems
 
-### Cashflow Control System
+### Cash Flow Collection System
 
 Used in the final section:
 
@@ -71,7 +71,7 @@ Used in the final section:
 
 Codex arranged these in a clean coded process row with restrained connectors. The old giant pipe, wedge arrow, money doodles, and decorative generated arrow were removed from the rendered section.
 
-### Customer Revenue System
+### Repeat Revenue System
 
 Used in the final section:
 

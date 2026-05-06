@@ -136,7 +136,7 @@ Do:
 - Lead with money, time, and owner relief.
 - Keep Stanley Systems as the public business name.
 - Make the Workflow Audit the paid first step when the page needs a first action.
-- Use Cashflow Control System and Customer Revenue System as public package names.
+- Use Cash Flow Collection System and Repeat Revenue System as public package names.
 - Build section by section and verify desktop plus mobile.
 
 Do not:

@@ -1,0 +1,636 @@
+{
+  "artifactDir": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-footer-fix-design-qa-rerun-20260504-design-coordinator",
+  "base": "http://127.0.0.1:3123",
+  "pricingPath": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+  "failures": [
+    "home-mobile: Workflow Audit nav CTA not found",
+    "home-mobile: visual-kit image load failure [{\"src\":\"/visual-kit/display-assets/delayed-invoice-display.png\",\"alt\":\"\",\"naturalWidth\":790,\"naturalHeight\":790,\"complete\":false,\"left\":62,\"top\":3777,\"width\":46,\"height\":46},{\"src\":\"/visual-kit/display-assets/delayed-invoice-display.png\",\"alt\":\"\",\"naturalWidth\":790,\"naturalHeight\":790,\"complete\":false,\"left\":31,\"top\":6683,\"width\":44,\"height\":44},{\"src\":\"/visual-kit/display-assets/phone-missed-transparent-display.png\",\"alt\":\"\",\"naturalWidth\":853,\"naturalHeight\":853,\"complete\":false,\"left\":312,\"top\":8724,\"width\":46,\"height\":46}]",
+    "home-desktop: visual-kit image load failure [{\"src\":\"/visual-kit/display-assets/delayed-invoice-display.png\",\"alt\":\"\",\"naturalWidth\":790,\"naturalHeight\":790,\"complete\":false,\"left\":707,\"top\":2889,\"width\":46,\"height\":46},{\"src\":\"/visual-kit/display-assets/delayed-invoice-display.png\",\"alt\":\"\",\"naturalWidth\":790,\"naturalHeight\":790,\"complete\":false,\"left\":95,\"top\":4631,\"width\":44,\"height\":44},{\"src\":\"/visual-kit/display-assets/phone-missed-transparent-display.png\",\"alt\":\"\",\"naturalWidth\":853,\"naturalHeight\":853,\"complete\":false,\"left\":1296,\"top\":5398,\"width\":46,\"height\":46}]",
+    "pricing-mobile: footer missing content or too tall (827)",
+    "pricing-mobile: Workflow Audit nav CTA not found"
+  ],
+  "results": [
+    {
+      "name": "home-mobile",
+      "url": "/",
+      "status": 200,
+      "width": 390,
+      "height": 1200,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-footer-fix-design-qa-rerun-20260504-design-coordinator/home-mobile.png",
+      "consoleMessages": [],
+      "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "horizontalOverflowPx": 0,
+      "noHorizontalOverflow": true,
+      "overflowingVisibleElements": [
+        {
+          "tag": "DIV",
+          "text": "",
+          "className": "pointer-events-none absolute -inset-10 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_28%,rgba(148,163,184,0.22),transparent_34%),radial-gradient(ellipse_",
+          "left": -23,
+          "right": 413,
+          "width": 436,
+          "height": 502
+        }
+      ],
+      "cashSection": {
+        "left": 92,
+        "right": 342,
+        "width": 250,
+        "height": 45,
+        "overflowingChildren": []
+      },
+      "visibleTermMatches": [
+        {
+          "term": "Cash Flow Collection System",
+          "tag": "H3",
+          "text": "Cash Flow Collection System",
+          "className": "text-lg font-extrabold leading-tight text-[#102033]",
+          "fontSize": "18px"
+        },
+        {
+          "term": "Repeat Revenue System",
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "className": "text-lg font-extrabold leading-tight text-[#102033]",
+          "fontSize": "18px"
+        },
+        {
+          "term": "Cash Flow Collection System",
+          "tag": "H3",
+          "text": "Cash Flow Collection System",
+          "className": "text-xl font-semibold leading-tight text-[#102033]",
+          "fontSize": "20px"
+        },
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "Repeat Revenue System",
+          "className": "mb-3 text-center text-sm font-bold leading-5 text-[#116832]",
+          "fontSize": "14px"
+        }
+      ],
+      "badPricingKickerMatches": [
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "Repeat Revenue System",
+          "className": "mb-3 text-center text-sm font-bold leading-5 text-[#116832]",
+          "fontSize": "14px"
+        }
+      ],
+      "navButton": null,
+      "footer": {
+        "height": 827,
+        "top": 17815,
+        "text": "SOLUTIONS Speed up invoicing Missed estimate follow-up Office handoff problems INDUSTRIES Marine service businesses Field service businesses Who we help COMPANY About How we work Pricing Proof Blog Contact LEGAL Privacy Policy Terms and Conditions Safety Contact CONNECT Call: +1 (617) 958-6372 hello",
+        "children": [
+          {
+            "tag": "DIV",
+            "text": "",
+            "top": 17816,
+            "height": 1,
+            "bottom": 17817,
+            "className": "absolute left-1/2 right-1/2 top-0 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 blur"
+          },
+          {
+            "tag": "DIV",
+            "text": "SOLUTIONS Speed up invoicing Missed estimate follow-up Office handoff problems INDUSTRIES Marine service businesses Fiel",
+            "top": 17840,
+            "height": 738,
+            "bottom": 18578,
+            "className": "grid w-full gap-8 xl:grid-cols-[1.1fr_3.4fr] xl:gap-12"
+          },
+          {
+            "tag": "DIV",
+            "text": "© 2026 Stanley Systems. All rights reserved.",
+            "top": 18598,
+            "height": 20,
+            "bottom": 18618,
+            "className": "mt-5 space-y-2 text-center md:hidden"
+          }
+        ],
+        "linksStart": 17980,
+        "logo": {
+          "top": 17840,
+          "bottom": 17920,
+          "height": 80
+        }
+      },
+      "visualKitImages": [
+        {
+          "src": "/visual-kit/display-assets/money-leak-routing-display.png",
+          "alt": "",
+          "naturalWidth": 1100,
+          "naturalHeight": 1100,
+          "complete": true,
+          "left": 40,
+          "top": 1237,
+          "width": 42,
+          "height": 42
+        },
+        {
+          "src": "/visual-kit/display-assets/calendar-cashflow-trend-display.png",
+          "alt": "",
+          "naturalWidth": 934,
+          "naturalHeight": 934,
+          "complete": true,
+          "left": 40,
+          "top": 1323,
+          "width": 42,
+          "height": 42
+        },
+        {
+          "src": "/visual-kit/display-assets/target-click-display.png",
+          "alt": "",
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "complete": true,
+          "left": 40,
+          "top": 1409,
+          "width": 42,
+          "height": 42
+        },
+        {
+          "src": "/visual-kit/display-assets/delayed-invoice-display.png",
+          "alt": "",
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "complete": true,
+          "left": 60,
+          "top": 1730,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "src": "/visual-kit/display-assets/invoice-edit-display.png",
+          "alt": "",
+          "naturalWidth": 848,
+          "naturalHeight": 848,
+          "complete": true,
+          "left": 60,
+          "top": 1830,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "src": "/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "alt": "",
+          "naturalWidth": 853,
+          "naturalHeight": 853,
+          "complete": true,
+          "left": 60,
+          "top": 1929,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "src": "/visual-kit/display-assets/repeat-customer-cycle-display.png",
+          "alt": "",
+          "naturalWidth": 842,
+          "naturalHeight": 842,
+          "complete": true,
+          "left": 60,
+          "top": 2029,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "src": "/visual-kit/display-assets/payment-hold-display.png",
+          "alt": "",
+          "naturalWidth": 979,
+          "naturalHeight": 979,
+          "complete": true,
+          "left": 65,
+          "top": 2203,
+          "width": 58,
+          "height": 58
+        },
+        {
+          "src": "/visual-kit/display-assets/delayed-invoice-display.png",
+          "alt": "",
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "complete": false,
+          "left": 62,
+          "top": 3777,
+          "width": 46,
+          "height": 46
+        },
+        {
+          "src": "/visual-kit/display-assets/delayed-invoice-display.png",
+          "alt": "",
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "complete": false,
+          "left": 31,
+          "top": 6683,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "src": "/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "alt": "",
+          "naturalWidth": 853,
+          "naturalHeight": 853,
+          "complete": false,
+          "left": 312,
+          "top": 8724,
+          "width": 46,
+          "height": 46
+        }
+      ],
+      "warmColors": []
+    },
+    {
+      "name": "home-desktop",
+      "url": "/",
+      "status": 200,
+      "width": 1440,
+      "height": 1600,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-footer-fix-design-qa-rerun-20260504-design-coordinator/home-desktop.png",
+      "consoleMessages": [],
+      "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "horizontalOverflowPx": 0,
+      "noHorizontalOverflow": true,
+      "overflowingVisibleElements": [
+        {
+          "tag": "DIV",
+          "text": "",
+          "className": "pointer-events-none absolute -inset-10 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_28%,rgba(148,163,184,0.22),transparent_34%),radial-gradient(ellipse_",
+          "left": -7,
+          "right": 1447,
+          "width": 1454,
+          "height": 1166
+        }
+      ],
+      "cashSection": {
+        "left": 174,
+        "right": 691,
+        "width": 517,
+        "height": 40,
+        "overflowingChildren": []
+      },
+      "visibleTermMatches": [
+        {
+          "term": "Cash Flow Collection System",
+          "tag": "H3",
+          "text": "Cash Flow Collection System",
+          "className": "text-lg font-extrabold leading-tight text-[#102033]",
+          "fontSize": "18px"
+        },
+        {
+          "term": "Repeat Revenue System",
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "className": "text-lg font-extrabold leading-tight text-[#102033]",
+          "fontSize": "18px"
+        },
+        {
+          "term": "Cash Flow Collection System",
+          "tag": "H3",
+          "text": "Cash Flow Collection System",
+          "className": "text-xl font-semibold leading-tight text-[#102033]",
+          "fontSize": "20px"
+        },
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "Repeat Revenue System",
+          "className": "mb-3 text-center text-sm font-bold leading-5 text-[#116832]",
+          "fontSize": "14px"
+        }
+      ],
+      "badPricingKickerMatches": [
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "Repeat Revenue System",
+          "className": "mb-3 text-center text-sm font-bold leading-5 text-[#116832]",
+          "fontSize": "14px"
+        }
+      ],
+      "navButton": {
+        "color": "rgb(17, 104, 50)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(183, 215, 191)"
+      },
+      "footer": {
+        "height": 655,
+        "top": 10811,
+        "text": "Call now Book the Workflow Audit © 2026 Stanley Systems. All rights reserved. SOLUTIONS Speed up invoicing Missed estimate follow-up Office handoff problems INDUSTRIES Marine service businesses Field service businesses Who we help COMPANY About How we work Pricing Proof Blog Contact LEGAL Privacy Po",
+        "children": [
+          {
+            "tag": "DIV",
+            "text": "",
+            "top": 10812,
+            "height": 1,
+            "bottom": 10813,
+            "className": "absolute left-1/2 right-1/2 top-0 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 blur"
+          },
+          {
+            "tag": "DIV",
+            "text": "Call now Book the Workflow Audit",
+            "top": 10852,
+            "height": 84,
+            "bottom": 10936,
+            "className": "mb-6 hidden w-full rounded-[1.5rem] border border-[#dfe7ee] bg-[#f8fbfc] px-5 py-4 text-center shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:block sm:px-6"
+          },
+          {
+            "tag": "DIV",
+            "text": "© 2026 Stanley Systems. All rights reserved. SOLUTIONS Speed up invoicing Missed estimate follow-up Office handoff probl",
+            "top": 10960,
+            "height": 393,
+            "bottom": 11353,
+            "className": "grid w-full gap-8 xl:grid-cols-[1.1fr_3.4fr] xl:gap-12"
+          },
+          {
+            "tag": "DIV",
+            "text": "Book the Workflow Audit or tap the phone number if you want the fastest answer.",
+            "top": 11385,
+            "height": 41,
+            "bottom": 11426,
+            "className": "mt-8 hidden w-full border-t border-slate-200 pt-6 md:block"
+          }
+        ],
+        "linksStart": 10960,
+        "logo": {
+          "top": 10960,
+          "bottom": 11088,
+          "height": 128
+        }
+      },
+      "visualKitImages": [
+        {
+          "src": "/visual-kit/display-assets/money-leak-routing-display.png",
+          "alt": "",
+          "naturalWidth": 1100,
+          "naturalHeight": 1100,
+          "complete": true,
+          "left": 100,
+          "top": 2374,
+          "width": 42,
+          "height": 42
+        },
+        {
+          "src": "/visual-kit/display-assets/calendar-cashflow-trend-display.png",
+          "alt": "",
+          "naturalWidth": 934,
+          "naturalHeight": 934,
+          "complete": true,
+          "left": 296,
+          "top": 2374,
+          "width": 42,
+          "height": 42
+        },
+        {
+          "src": "/visual-kit/display-assets/target-click-display.png",
+          "alt": "",
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "complete": true,
+          "left": 492,
+          "top": 2374,
+          "width": 42,
+          "height": 42
+        },
+        {
+          "src": "/visual-kit/display-assets/delayed-invoice-display.png",
+          "alt": "",
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "complete": true,
+          "left": 767,
+          "top": 1939,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "src": "/visual-kit/display-assets/invoice-edit-display.png",
+          "alt": "",
+          "naturalWidth": 848,
+          "naturalHeight": 848,
+          "complete": true,
+          "left": 1065,
+          "top": 1939,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "src": "/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "alt": "",
+          "naturalWidth": 853,
+          "naturalHeight": 853,
+          "complete": true,
+          "left": 767,
+          "top": 2041,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "src": "/visual-kit/display-assets/repeat-customer-cycle-display.png",
+          "alt": "",
+          "naturalWidth": 842,
+          "naturalHeight": 842,
+          "complete": true,
+          "left": 1065,
+          "top": 2041,
+          "width": 52,
+          "height": 52
+        },
+        {
+          "src": "/visual-kit/display-assets/payment-hold-display.png",
+          "alt": "",
+          "naturalWidth": 979,
+          "naturalHeight": 979,
+          "complete": true,
+          "left": 772,
+          "top": 2267,
+          "width": 58,
+          "height": 58
+        },
+        {
+          "src": "/visual-kit/display-assets/delayed-invoice-display.png",
+          "alt": "",
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "complete": false,
+          "left": 707,
+          "top": 2889,
+          "width": 46,
+          "height": 46
+        },
+        {
+          "src": "/visual-kit/display-assets/delayed-invoice-display.png",
+          "alt": "",
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "complete": false,
+          "left": 95,
+          "top": 4631,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "src": "/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "alt": "",
+          "naturalWidth": 853,
+          "naturalHeight": 853,
+          "complete": false,
+          "left": 1296,
+          "top": 5398,
+          "width": 46,
+          "height": 46
+        }
+      ],
+      "warmColors": []
+    },
+    {
+      "name": "pricing-mobile",
+      "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+      "status": 200,
+      "width": 390,
+      "height": 1200,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-footer-fix-design-qa-rerun-20260504-design-coordinator/pricing-mobile.png",
+      "consoleMessages": [],
+      "title": "Pricing | Workflow Audit | Stanley Systems",
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "horizontalOverflowPx": 0,
+      "noHorizontalOverflow": true,
+      "overflowingVisibleElements": [],
+      "cashSection": null,
+      "visibleTermMatches": [
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that bri",
+          "className": "mx-auto mt-6 max-w-3xl text-base leading-8 text-[#536173] sm:text-xl sm:leading-9",
+          "fontSize": "16px"
+        }
+      ],
+      "badPricingKickerMatches": [],
+      "navButton": null,
+      "footer": {
+        "height": 827,
+        "top": 6861,
+        "text": "SOLUTIONS Speed up invoicing Missed estimate follow-up Office handoff problems INDUSTRIES Marine service businesses Field service businesses Who we help COMPANY About How we work Pricing Proof Blog Contact LEGAL Privacy Policy Terms and Conditions Safety Contact CONNECT Call: +1 (617) 958-6372 hello",
+        "children": [
+          {
+            "tag": "DIV",
+            "text": "",
+            "top": 6861,
+            "height": 1,
+            "bottom": 6862,
+            "className": "absolute left-1/2 right-1/2 top-0 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 blur"
+          },
+          {
+            "tag": "DIV",
+            "text": "SOLUTIONS Speed up invoicing Missed estimate follow-up Office handoff problems INDUSTRIES Marine service businesses Fiel",
+            "top": 6886,
+            "height": 738,
+            "bottom": 7624,
+            "className": "grid w-full gap-8 xl:grid-cols-[1.1fr_3.4fr] xl:gap-12"
+          },
+          {
+            "tag": "DIV",
+            "text": "© 2026 Stanley Systems. All rights reserved.",
+            "top": 7644,
+            "height": 20,
+            "bottom": 7664,
+            "className": "mt-5 space-y-2 text-center md:hidden"
+          }
+        ],
+        "linksStart": 7026,
+        "logo": {
+          "top": 6886,
+          "bottom": 6966,
+          "height": 80
+        }
+      },
+      "visualKitImages": [],
+      "warmColors": []
+    },
+    {
+      "name": "pricing-desktop",
+      "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+      "status": 200,
+      "width": 1440,
+      "height": 1600,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-footer-fix-design-qa-rerun-20260504-design-coordinator/pricing-desktop.png",
+      "consoleMessages": [],
+      "title": "Pricing | Workflow Audit | Stanley Systems",
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "horizontalOverflowPx": 0,
+      "noHorizontalOverflow": true,
+      "overflowingVisibleElements": [],
+      "cashSection": null,
+      "visibleTermMatches": [
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that bri",
+          "className": "mx-auto mt-6 max-w-3xl text-base leading-8 text-[#536173] sm:text-xl sm:leading-9",
+          "fontSize": "20px"
+        }
+      ],
+      "badPricingKickerMatches": [],
+      "navButton": {
+        "color": "rgb(17, 104, 50)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(183, 215, 191)"
+      },
+      "footer": {
+        "height": 655,
+        "top": 4067,
+        "text": "Call now Book the Workflow Audit © 2026 Stanley Systems. All rights reserved. SOLUTIONS Speed up invoicing Missed estimate follow-up Office handoff problems INDUSTRIES Marine service businesses Field service businesses Who we help COMPANY About How we work Pricing Proof Blog Contact LEGAL Privacy Po",
+        "children": [
+          {
+            "tag": "DIV",
+            "text": "",
+            "top": 4067,
+            "height": 1,
+            "bottom": 4068,
+            "className": "absolute left-1/2 right-1/2 top-0 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 blur"
+          },
+          {
+            "tag": "DIV",
+            "text": "Call now Book the Workflow Audit",
+            "top": 4108,
+            "height": 84,
+            "bottom": 4192,
+            "className": "mb-6 hidden w-full rounded-[1.5rem] border border-[#dfe7ee] bg-[#f8fbfc] px-5 py-4 text-center shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:block sm:px-6"
+          },
+          {
+            "tag": "DIV",
+            "text": "© 2026 Stanley Systems. All rights reserved. SOLUTIONS Speed up invoicing Missed estimate follow-up Office handoff probl",
+            "top": 4216,
+            "height": 393,
+            "bottom": 4609,
+            "className": "grid w-full gap-8 xl:grid-cols-[1.1fr_3.4fr] xl:gap-12"
+          },
+          {
+            "tag": "DIV",
+            "text": "Book the Workflow Audit or tap the phone number if you want the fastest answer.",
+            "top": 4641,
+            "height": 41,
+            "bottom": 4682,
+            "className": "mt-8 hidden w-full border-t border-slate-200 pt-6 md:block"
+          }
+        ],
+        "linksStart": 4216,
+        "logo": {
+          "top": 4216,
+          "bottom": 4344,
+          "height": 128
+        }
+      },
+      "visualKitImages": [],
+      "warmColors": []
+    }
+  ]
+}

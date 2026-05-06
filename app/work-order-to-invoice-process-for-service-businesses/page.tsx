@@ -33,7 +33,6 @@ export default function WorkOrderToInvoicePage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Problem page</p>
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.06]">
                 Fix the gap between completed work orders and invoice-ready billing.
               </h1>
@@ -41,8 +40,8 @@ export default function WorkOrderToInvoicePage() {
                 If the crew already finished the work, the business should not still be waiting on a clean billing handoff. Stanley Systems helps service businesses clean up the step between job complete and invoice ready so cash can move faster.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800">
-                  Book a meeting
+                <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800">
+                  See pricing
                 </Link>
                 <a href="tel:+16179586372" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">
                   <Phone className="mr-2 h-4 w-4" />
@@ -52,7 +51,6 @@ export default function WorkOrderToInvoicePage() {
             </div>
 
             <div className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Where the gap starts</p>
               <ul className="mt-5 space-y-4">
                 {failurePoints.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -66,21 +64,18 @@ export default function WorkOrderToInvoicePage() {
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Why owners feel it</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The work is done, but the money still waits</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 When completed work does not become invoice-ready quickly, the business keeps waiting on money it already earned. That delay usually starts in the office handoff, not in accounting.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What the office feels</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Billing turns into detective work</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Instead of moving a clean job into billing, the office has to chase notes, confirm approvals, and reconstruct what happened. That burns time and slows everything after it.
               </p>
             </div>
             <div className="rounded-[1.75rem] border border-[#e8dfd0] bg-white/90 p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Stanley Systems fixes</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">The handoff between done in the field and ready to bill</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems helps clean up the step that turns finished work into invoice-ready information. The goal is fewer delays, less re-entry, and less owner rescue work.
@@ -90,7 +85,6 @@ export default function WorkOrderToInvoicePage() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-[#fbfaf7] p-8 shadow-[0_18px_60px_rgba(15,23,42,0.05)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What better looks like</p>
               <ul className="mt-6 space-y-4">
                 {whatBetterLooksLike.map((item) => (
                   <li key={item} className="flex gap-3 text-base leading-7 text-slate-700">
@@ -102,7 +96,6 @@ export default function WorkOrderToInvoicePage() {
             </section>
 
             <section className="rounded-[2rem] border border-[#e8dfd0] bg-white/90 p-8 shadow-[0_18px_60px_rgba(15,23,42,0.06)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Next best step</p>
               <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900">If completed work keeps stalling before billing, that is worth fixing now.</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">
                 Stanley Systems looks at the path between job complete and invoice ready, then shows where the delay is coming from and whether there is a clean fix worth building.
