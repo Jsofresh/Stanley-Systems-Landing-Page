@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import useEmblaCarousel from "embla-carousel-react"
 import { useCallback, useEffect, useState } from "react"
 
@@ -86,18 +87,18 @@ export function PainAgitationCarousel() {
           <button
             type="button"
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#D8E4DD] bg-white text-4xl font-semibold leading-none text-[#071D3A] transition hover:border-[#28B463] hover:bg-[#F5FBF7] hover:text-[#28B463] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#28B463]/25 lg:flex"
+            className="absolute left-0 top-1/2 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#D8E4DD] bg-white text-[#071D3A] transition hover:border-[#28B463] hover:bg-[#F5FBF7] hover:text-[#28B463] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#28B463]/25 lg:flex"
             aria-label="Show previous pain point image"
           >
-            ‹
+            <ChevronLeft className="h-7 w-7" strokeWidth={3} aria-hidden="true" />
           </button>
           <button
             type="button"
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 hidden h-16 w-16 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#D8E4DD] bg-white text-4xl font-semibold leading-none text-[#071D3A] transition hover:border-[#28B463] hover:bg-[#F5FBF7] hover:text-[#28B463] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#28B463]/25 lg:flex"
+            className="absolute right-0 top-1/2 hidden h-16 w-16 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#D8E4DD] bg-white text-[#071D3A] transition hover:border-[#28B463] hover:bg-[#F5FBF7] hover:text-[#28B463] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#28B463]/25 lg:flex"
             aria-label="Show next pain point image"
           >
-            ›
+            <ChevronRight className="h-7 w-7" strokeWidth={3} aria-hidden="true" />
           </button>
         </div>
 
@@ -105,10 +106,10 @@ export function PainAgitationCarousel() {
           <button
             type="button"
             onClick={scrollPrev}
-            className="flex h-14 w-20 items-center justify-center rounded-full border-2 border-[#D8E4DD] bg-white text-4xl font-semibold leading-none text-[#071D3A] transition hover:border-[#28B463] hover:bg-[#F5FBF7] hover:text-[#28B463] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#28B463]/25"
+            className="flex h-14 w-20 items-center justify-center rounded-full border-2 border-[#D8E4DD] bg-white text-[#071D3A] transition hover:border-[#28B463] hover:bg-[#F5FBF7] hover:text-[#28B463] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#28B463]/25"
             aria-label="Show previous pain point image"
           >
-            ‹
+            <ChevronLeft className="h-7 w-7" strokeWidth={3} aria-hidden="true" />
           </button>
           <div className="flex items-center gap-2" aria-label={`Slide ${selectedIndex + 1} of ${slides.length}`}>
             {slides.map((slide, index) => (
@@ -123,10 +124,10 @@ export function PainAgitationCarousel() {
           <button
             type="button"
             onClick={scrollNext}
-            className="flex h-14 w-20 items-center justify-center rounded-full border-2 border-[#D8E4DD] bg-white text-4xl font-semibold leading-none text-[#071D3A] transition hover:border-[#28B463] hover:bg-[#F5FBF7] hover:text-[#28B463] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#28B463]/25"
+            className="flex h-14 w-20 items-center justify-center rounded-full border-2 border-[#D8E4DD] bg-white text-[#071D3A] transition hover:border-[#28B463] hover:bg-[#F5FBF7] hover:text-[#28B463] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#28B463]/25"
             aria-label="Show next pain point image"
           >
-            ›
+            <ChevronRight className="h-7 w-7" strokeWidth={3} aria-hidden="true" />
           </button>
         </div>
       </div>

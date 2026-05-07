@@ -22,20 +22,22 @@ const logos: LogoLockup[] = [
   },
   {
     name: "ServiceTrade",
-    source: "text-lockup",
-    monogram: "ST",
+    markSrc: "/brand-logos/marks/servicetrade-mark.svg",
+    source: "official-site",
+    markClass: "text-white",
     textClass: "font-extrabold tracking-[-0.05em] [font-family:var(--font-manrope),Arial,sans-serif]",
   },
   {
     name: "CompanyCam",
-    source: "text-lockup",
-    monogram: "CC",
+    markSrc: "/brand-logos/marks/companycam-mark.svg",
+    source: "official-site",
+    markClass: "text-white",
     textClass: "font-extrabold tracking-[-0.04em] [font-family:var(--font-manrope),Arial,sans-serif]",
   },
   {
     name: "CallRail",
-    source: "text-lockup",
-    monogram: "CR",
+    markSrc: "/brand-logos/marks/callrail-mark.png",
+    source: "official-site",
     textClass: "font-extrabold tracking-[-0.045em] [font-family:var(--font-manrope),Arial,sans-serif]",
   },
   {
@@ -112,7 +114,7 @@ function LogoMark({ logo }: { logo: LogoLockup }) {
         alt=""
         loading="eager"
         decoding="async"
-        className={`h-6 w-6 shrink-0 object-contain brightness-0 invert grayscale md:h-7 md:w-7 ${logo.markClass ?? ""}`}
+        className={`h-6 w-6 shrink-0 object-contain ${logo.markSrc.endsWith(".svg") ? "" : "brightness-0 invert grayscale"} md:h-7 md:w-7 ${logo.markClass ?? ""}`}
       />
     )
   }

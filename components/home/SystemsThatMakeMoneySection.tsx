@@ -96,19 +96,19 @@ function ProductFlow({ flow, flowTitle }: Pick<ProductSystem, 'flow' | 'flowTitl
         {flow.map(({ Icon, final, label, sublabel }, index) => (
           <div key={label} className="relative">
             {index < flow.length - 1 ? (
-              <span aria-hidden="true" className="absolute left-[19px] top-[39px] h-[10px] w-px bg-[#A9D9B7]" />
+              <span aria-hidden="true" className="absolute left-[21px] top-[41px] h-[10px] w-px bg-[#A9D9B7]" />
             ) : null}
             <div
               className={cn(
-                'stanley-system-flow-step grid grid-cols-[38px_minmax(0,1fr)_auto] transform-gpu items-center gap-2.5 rounded-[13px] border px-2.5 py-1.5 will-change-transform',
+                'stanley-system-flow-step grid grid-cols-[42px_minmax(0,1fr)_auto] transform-gpu items-center gap-2.5 rounded-[13px] border px-2.5 py-1.5 will-change-transform',
                 final
                   ? 'border-[#A9D9B7] bg-[#EFF8EB] shadow-[0_10px_20px_rgba(8,166,75,0.08)]'
                   : 'border-[#E1ECE5] bg-[#FCFDF9]',
               )}
               style={{ animationDelay: `${index * 140}ms` }}
             >
-              <div className="grid h-9 w-9 place-items-center rounded-[11px] bg-white ring-1 ring-[#D9E9DF]">
-                <Icon size={34} />
+              <div className="grid h-10 w-10 place-items-center rounded-full border border-[#CFE8D5] bg-[#F3FAF1]">
+                <Icon size={44} imgClassName="scale-[1.16] mix-blend-multiply" />
               </div>
               <div className="min-w-0">
                 <p className="text-[14px] font-extrabold leading-tight tracking-[-0.01em] text-[#071D3A]">{label}</p>
@@ -146,8 +146,8 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
             </h3>
             <p className="mt-1.5 max-w-[520px] text-[14px] font-semibold leading-5 text-[#41596C]">{system.promise}</p>
           </div>
-          <div className="hidden h-[50px] w-[50px] shrink-0 place-items-center rounded-[15px] border border-[#D8E8DE] bg-white shadow-sm sm:grid">
-            <Icon size={46} priority />
+          <div className="hidden h-[54px] w-[54px] shrink-0 place-items-center rounded-full border border-[#CFE8D5] bg-[#F3FAF1] sm:grid">
+            <Icon size={58} priority imgClassName="scale-[1.08] mix-blend-multiply" />
           </div>
         </div>
 
@@ -159,8 +159,8 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
           <ProductFlow flowTitle={system.flowTitle} flow={system.flow} />
         </div>
 
-        <div className="mt-3 flex items-center justify-between gap-3 border-t border-[#DDEBE2] pt-3">
-          <p className="max-w-[330px] text-[12px] font-semibold leading-5 text-[#5A7080]">
+        <div className="mt-3 flex flex-col items-stretch gap-3 border-t border-[#DDEBE2] pt-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-none text-[13px] font-semibold leading-5 text-[#5A7080] sm:max-w-[330px]">
             {system.bottomLine}
           </p>
           <CTALink
@@ -170,7 +170,7 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
             analyticsEvent="system_detail_clicked"
             packageName={system.packageName}
             ctaLabel={system.ctaLabel}
-            className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-3 text-[13px] font-bold text-white shadow-[0_10px_20px_rgba(7,29,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#116832] hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B]"
+            className="inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-3 text-[13px] font-bold text-white shadow-[0_10px_20px_rgba(7,29,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#116832] hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B] sm:w-auto"
           >
             {system.ctaLabel}
             <ArrowRight className="ml-2 h-3.5 w-3.5" aria-hidden="true" />

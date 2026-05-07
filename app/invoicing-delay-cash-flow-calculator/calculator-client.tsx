@@ -1101,7 +1101,7 @@ export function InvoicingDelayCalculatorClient() {
         : "Check the Workflow"
 
       const ResultIconHolder = ({ children }: { children: React.ReactNode }) => (
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f4fbf5] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f4fbf5] [&_[data-stanley-display-asset=true]>img]:scale-[1.2] [&_[data-stanley-display-asset=true]>img]:mix-blend-multiply">
           {children}
         </span>
       )
@@ -1241,9 +1241,14 @@ export function InvoicingDelayCalculatorClient() {
 
                 <CtaBar />
 
-                <button type="button" onClick={back} className="mx-auto inline-flex items-center justify-center rounded-full px-3 py-1.5 text-sm font-semibold text-slate-500 transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2">
-                  ← Back to inputs
-                </button>
+                <div className="mx-auto flex flex-wrap items-center justify-center gap-2">
+                  <button type="button" onClick={back} className="inline-flex items-center justify-center rounded-full px-3 py-1.5 text-sm font-semibold text-slate-500 transition hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2">
+                    ← Back to inputs
+                  </button>
+                  <Link href="/" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-3.5 py-1.5 text-sm font-semibold text-slate-600 transition hover:border-[#bfc8bd] hover:bg-[#fbfaf7] hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2">
+                    Back to site
+                  </Link>
+                </div>
 
                 <details className="box-border w-full rounded-[1rem] border border-[#e8dfd0] bg-white px-4 py-3 text-left open:bg-[#fbfaf7]">
                   <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-semibold text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D] focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden">
