@@ -195,6 +195,33 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .stanley-system-flow-step {
+    animation: stanley-system-flow-smooth 2800ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  }
+}
+
+@keyframes stanley-system-flow-smooth {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.94;
+  }
+  45% {
+    transform: translate3d(0, -2px, 0);
+    opacity: 1;
+  }
+  65% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stanley-system-flow-step {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes slide-in-from-top {

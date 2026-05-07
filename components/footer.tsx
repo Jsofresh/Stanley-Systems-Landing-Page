@@ -75,7 +75,7 @@ const footerLinks: FooterSection[] = [
 
 export function Footer() {
   return (
-    <footer className="relative mx-auto flex w-[calc(100%-2rem)] max-w-[1380px] flex-col items-center rounded-t-[2rem] border-t border-slate-200 bg-white px-5 py-6 shadow-[0_-10px_30px_rgba(15,23,42,0.04)] md:w-[calc(100%-3rem)] md:rounded-t-[3rem] md:px-8 md:py-8 lg:py-10 xl:px-10">
+    <footer data-nav-theme="light" className="relative mx-auto flex w-[calc(100%-2rem)] max-w-[1380px] flex-col items-center rounded-t-[2rem] border-t border-slate-200 bg-white px-5 py-6 shadow-[0_-10px_30px_rgba(15,23,42,0.04)] md:w-[calc(100%-3rem)] md:rounded-t-[3rem] md:px-8 md:py-8 lg:py-10 xl:px-10">
       <div className="absolute left-1/2 right-1/2 top-0 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 blur" />
 
       <div className="mb-6 hidden w-full rounded-[1.5rem] border border-[#dfe7ee] bg-[#f8fbfc] px-5 py-4 text-center shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:block sm:px-6">

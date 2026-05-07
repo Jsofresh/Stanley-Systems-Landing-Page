@@ -11,6 +11,7 @@ export function FinalCTASection() {
       id="final-audit"
       data-audit-page="/"
       data-audit-section="home.final-cta"
+      data-nav-theme="light"
       data-audit-priority="4"
       data-audit-offer="Workflow Audit"
       data-audit-purpose="Give qualified service businesses a clear final path to book the Workflow Audit."

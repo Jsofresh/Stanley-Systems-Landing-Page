@@ -45,8 +45,9 @@ export function PainAgitationCarousel() {
 
   return (
     <section
-      className="bg-white px-4 py-14 text-[#071D3A] sm:px-6 lg:px-8 lg:py-20"
+      className="scroll-mt-28 bg-white px-4 py-14 text-[#071D3A] sm:px-6 lg:px-8 lg:py-20"
       data-section="pain-agitation-carousel"
+      data-nav-theme="light"
       aria-labelledby="pain-agitation-heading"
     >
       <div className="mx-auto max-w-7xl">

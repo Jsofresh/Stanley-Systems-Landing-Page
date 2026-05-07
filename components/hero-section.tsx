@@ -141,44 +141,29 @@ function HeroVideoLoop() {
     const video = videoRef.current
     if (!video) return
 
-    const durationSeconds = 25
-    const framesPerSecond = 12
-    let startedAt = window.performance.now()
-
-    const advanceManualTimeline = () => {
-      const currentVideo = videoRef.current
-      if (!currentVideo || currentVideo.readyState < 1) return
-
-      const elapsedSeconds = ((window.performance.now() - startedAt) / 1000) % durationSeconds
-      if (Math.abs(currentVideo.currentTime - elapsedSeconds) > 0.08) {
-        currentVideo.currentTime = elapsedSeconds
-      }
-      if (!currentVideo.paused) {
-        currentVideo.pause()
-      }
-    }
-
-    const resetClockAfterPageRestore = () => {
-      startedAt = window.performance.now() - (video.currentTime || 0) * 1000
-      advanceManualTimeline()
-    }
-
     video.muted = true
+    video.loop = true
+    video.playsInline = true
     video.preload = "auto"
-    video.load()
 
-    const interval = window.setInterval(advanceManualTimeline, 1000 / framesPerSecond)
-    video.addEventListener("loadedmetadata", advanceManualTimeline)
-    document.addEventListener("visibilitychange", resetClockAfterPageRestore)
-    window.addEventListener("focus", resetClockAfterPageRestore)
-    window.addEventListener("pageshow", resetClockAfterPageRestore)
+    const playVideo = () => {
+      const playPromise = video.play()
+      if (playPromise) {
+        playPromise.catch(() => {
+          // Browser autoplay policy can defer playback; poster remains visible.
+        })
+      }
+    }
+
+    playVideo()
+    document.addEventListener("visibilitychange", playVideo)
+    window.addEventListener("focus", playVideo)
+    window.addEventListener("pageshow", playVideo)
 
     return () => {
-      window.clearInterval(interval)
-      video.removeEventListener("loadedmetadata", advanceManualTimeline)
-      document.removeEventListener("visibilitychange", resetClockAfterPageRestore)
-      window.removeEventListener("focus", resetClockAfterPageRestore)
-      window.removeEventListener("pageshow", resetClockAfterPageRestore)
+      document.removeEventListener("visibilitychange", playVideo)
+      window.removeEventListener("focus", playVideo)
+      window.removeEventListener("pageshow", playVideo)
     }
   }, [])
 
@@ -187,12 +172,14 @@ function HeroVideoLoop() {
       key={heroVideoVersion}
       ref={videoRef}
       data-hero-video="true"
-      data-hero-manual-timeline="true"
+      data-hero-playback="native-loop"
       poster={heroVideo.poster}
       muted
+      loop
       playsInline
+      autoPlay
       preload="auto"
-      className="h-full w-full object-cover saturate-[0.82] contrast-[1.05] brightness-[0.92]"
+      className="h-full w-full transform-gpu object-cover saturate-[0.82] contrast-[1.05] brightness-[0.92] will-change-transform"
     >
       <source src={heroVideo.mp4} type="video/mp4" />
       <source src={heroVideo.webm} type="video/webm" />
@@ -205,6 +192,7 @@ function DarkEnterpriseHeader() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileMenu, setMobileMenu] = useState<string | null>(navGroups[0]?.label ?? null)
   const [scrolled, setScrolled] = useState(false)
+  const [navTheme, setNavTheme] = useState<"dark" | "light">("dark")
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const headerRef = useRef<HTMLElement | null>(null)
 
@@ -253,26 +241,88 @@ function DarkEnterpriseHeader() {
     }
   }, [])
 
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-nav-theme]"))
+    if (!sections.length) return
+
+    const headerOffset = () => Math.min(112, Math.max(82, headerRef.current?.offsetHeight ?? 100))
+    let frame = 0
+
+    const updateTheme = () => {
+      frame = 0
+      const probeY = headerOffset() + 12
+      let current = sections[0]
+
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect()
+        if (rect.top <= probeY && rect.bottom > probeY) {
+          current = section
+          break
+        }
+        if (rect.top <= probeY) current = section
+      }
+
+      const theme = current.dataset.navTheme === "light" ? "light" : "dark"
+      setNavTheme(theme)
+    }
+
+    const requestThemeUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateTheme)
+    }
+
+    const observer = new IntersectionObserver(requestThemeUpdate, {
+      root: null,
+      rootMargin: `-${headerOffset()}px 0px -68% 0px`,
+      threshold: [0, 0.08, 0.18, 0.35, 0.6, 1],
+    })
+
+    sections.forEach((section) => observer.observe(section))
+    updateTheme()
+    window.addEventListener("scroll", requestThemeUpdate, { passive: true })
+    window.addEventListener("resize", requestThemeUpdate)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener("scroll", requestThemeUpdate)
+      window.removeEventListener("resize", requestThemeUpdate)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
+  }, [])
+
   const selectedMenu = navGroups.find((group) => group.label === activeMenu)
+  const isLight = navTheme === "light" && !mobileOpen
+  const themeAttr = isLight ? "light" : "dark"
+  const logoSrc = isLight ? "/images/stanley-systems-logo-white.jpg" : "/images/stanley-systems-logo-standard.jpg"
+  const headerClasses = isLight
+    ? "border-[#d9e7df] bg-[#fffdf8]/96 text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.10)] backdrop-blur-xl"
+    : scrolled || mobileOpen || activeMenu
+      ? "border-[#d9efe2]/18 bg-[#071422]/96 text-white shadow-[0_16px_42px_rgba(2,8,15,0.28)] backdrop-blur-xl"
+      : "border-white/10 bg-[#071422]/93 text-white backdrop-blur-md"
+  const utilityClasses = isLight
+    ? "border-[#e2ece5] bg-[#f7fbf2]/88 text-[#42596C]"
+    : "border-white/8 bg-[#06111d]/72 text-white/76"
+  const navLinkClasses = isLight
+    ? "text-[#20384F] hover:bg-[#eaf6ee] hover:text-[#071D3A] focus:bg-[#eaf6ee] focus:text-[#071D3A]"
+    : "text-white/82 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
+  const menuButtonClasses = isLight
+    ? "border-[#d6e5dc] text-[#071D3A] hover:bg-[#edf8f1]"
+    : "border-white/15 text-white hover:bg-white/10"
 
   return (
     <header
       ref={headerRef}
-      className={`fixed inset-x-0 top-0 z-50 border-b text-white transition-all duration-200 ${
-        scrolled || mobileOpen || activeMenu
-          ? "border-[#d9efe2]/20 bg-[#071422]/96 shadow-[0_14px_38px_rgba(2,8,15,0.24)] backdrop-blur-xl"
-          : "border-white/10 bg-[#071422]/92 backdrop-blur-md"
-      }`}
+      data-nav-theme-current={themeAttr}
+      className={`fixed inset-x-0 top-0 z-[80] translate-y-0 border-b transition-[background-color,border-color,box-shadow,color,transform,opacity] duration-[220ms] ease-out ${headerClasses}`}
     >
-      <div className="border-b border-white/8 bg-[#06111d]/72">
-        <div className="mx-auto flex h-9 max-w-[92rem] items-center justify-between px-4 text-[12px] font-bold text-white/76 sm:px-6 lg:px-8">
-          <a href="tel:+16179586372" className="inline-flex items-center gap-2 rounded-full transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">
+      <div className={`border-b transition-colors duration-[220ms] ${utilityClasses}`}>
+        <div className="mx-auto flex h-9 max-w-[92rem] items-center justify-between px-4 text-[12px] font-bold sm:px-6 lg:px-8">
+          <a href="tel:+16179586372" className="inline-flex items-center gap-2 rounded-full transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">
             <Phone className="h-3.5 w-3.5 text-[#53d986]" aria-hidden="true" />
             <span>+1 (617) 958-6372</span>
           </a>
           <div className="hidden items-center gap-5 md:flex">
-            <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Calculator</a>
-            <a href="/contact" className="transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
+            <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Calculator</a>
+            <a href="/contact" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
           </div>
         </div>
       </div>
@@ -289,9 +339,9 @@ function DarkEnterpriseHeader() {
         <div className="mx-auto flex h-16 max-w-[92rem] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <a href="/" className="inline-flex shrink-0 items-center rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071422]" aria-label="Stanley Systems home">
             <img
-              src="/images/stanley-systems-logo-lock-navbar.png"
+              src={logoSrc}
               alt="Stanley Systems"
-              className="h-auto w-[178px] rounded-md bg-white object-contain shadow-[0_8px_22px_rgba(0,0,0,0.16)] sm:w-[224px] xl:w-[248px]"
+              className={`h-auto w-[168px] object-contain transition-[filter,opacity,transform] duration-[220ms] sm:w-[208px] xl:w-[226px] ${isLight ? "" : "rounded-md"}`}
               decoding="async"
               fetchPriority="high"
             />
@@ -305,7 +355,7 @@ function DarkEnterpriseHeader() {
                 aria-haspopup="true"
                 onMouseEnter={() => openMenu(group.label)}
                 onFocus={() => openMenu(group.label)}
-                className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[13px] font-bold text-white/82 transition hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] xl:px-4"
+                className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[13px] font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] xl:px-4 ${navLinkClasses}`}
               >
                 {group.label}
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform ${activeMenu === group.label ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -318,14 +368,14 @@ function DarkEnterpriseHeader() {
               kind="systems"
               location="hero_nav_audit"
               ctaLabel="Book the Workflow Audit"
-              className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-4 text-[13px] font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.28)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-5"
+              className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-4 text-[13px] font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-5"
             >
               Book the Workflow Audit
             </CTALink>
           </div>
           <button
             type="button"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/15 text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] lg:hidden"
+            className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] lg:hidden ${menuButtonClasses}`}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}
@@ -449,6 +499,7 @@ export function HeroSection() {
     <section
       data-audit-page="/"
       data-audit-section="home.hero"
+      data-nav-theme="dark"
       data-audit-priority="5"
       data-audit-offer="Workflow Audit"
       data-audit-purpose="Make the owner understand that Stanley Systems helps make more money with less office work."

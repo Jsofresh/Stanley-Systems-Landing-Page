@@ -78,6 +78,7 @@ export function RevenueLeakCalculatorPreview() {
   return (
     <section
       data-section="revenue-leak-calculator-preview"
+      data-nav-theme="light"
       aria-labelledby="revenue-leak-calculator-preview-heading"
       className="relative isolate overflow-hidden bg-[#FBFCF7] px-5 py-8 text-[#071D3A] md:px-8 lg:px-10 lg:py-9"
     >

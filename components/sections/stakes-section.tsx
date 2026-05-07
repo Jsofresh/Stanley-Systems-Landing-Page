@@ -22,7 +22,8 @@ export function StakesSection() {
   return (
     <section
       data-section="stakes"
-      className="relative isolate w-full overflow-hidden bg-white px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:px-8 lg:pb-24 lg:pt-32"
+      data-nav-theme="light"
+      className="relative isolate w-full scroll-mt-28 overflow-hidden bg-white px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:px-8 lg:pb-24 lg:pt-32"
       aria-labelledby="stakes-heading"
     >
       <div

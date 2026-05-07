@@ -97,11 +97,12 @@ function ProductFlow({ flow, flowTitle }: Pick<ProductSystem, 'flow' | 'flowTitl
             ) : null}
             <div
               className={cn(
-                'grid grid-cols-[38px_minmax(0,1fr)_auto] items-center gap-2.5 rounded-[13px] border px-2.5 py-1.5',
+                'stanley-system-flow-step grid grid-cols-[38px_minmax(0,1fr)_auto] transform-gpu items-center gap-2.5 rounded-[13px] border px-2.5 py-1.5 will-change-transform',
                 final
                   ? 'border-[#A9D9B7] bg-[#EFF8EB] shadow-[0_10px_20px_rgba(8,166,75,0.08)]'
                   : 'border-[#E1ECE5] bg-[#FCFDF9]',
               )}
+              style={{ animationDelay: `${index * 140}ms` }}
             >
               <div className="grid h-9 w-9 place-items-center rounded-[11px] bg-white ring-1 ring-[#D9E9DF]">
                 <Icon size={34} />
@@ -182,7 +183,8 @@ export function SystemsThatMakeMoneySection({ className, ...props }: SystemsThat
     <section
       id="systems"
       data-section="systems-that-move-money"
-      className={cn('relative isolate overflow-hidden bg-[#FBFCF7] px-5 py-8 md:px-8 lg:px-10 lg:py-9', className)}
+      data-nav-theme="light"
+      className={cn('relative isolate scroll-mt-28 overflow-hidden bg-[#FBFCF7] px-5 py-8 md:px-8 lg:px-10 lg:py-9', className)}
       aria-labelledby="systems-that-move-money-heading"
       {...props}
     >
