@@ -292,7 +292,6 @@ export function SiteHeader() {
   const selectedMenu = navGroups.find((group) => group.label === activeMenu)
   const isLight = navTheme === "light" && !mobileOpen
   const themeAttr = isLight ? "light" : "dark"
-  const logoSrc = isLight ? "/images/stanley-systems-logo-white.jpg" : "/images/stanley-systems-logo-standard.jpg"
   const headerClasses = isLight
     ? "border-[#d9e7df] bg-[#fffdf8]/96 text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.10)] backdrop-blur-xl"
     : scrolled || mobileOpen || activeMenu
@@ -307,6 +306,7 @@ export function SiteHeader() {
   const menuButtonClasses = isLight
     ? "border-[#d6e5dc] text-[#071D3A] hover:bg-[#edf8f1]"
     : "border-white/15 text-white hover:bg-white/10"
+  const brandTextClasses = isLight ? "text-[#071D3A]" : "text-[#f7fbff]"
 
   return (
     <header
@@ -337,14 +337,13 @@ export function SiteHeader() {
         }}
       >
         <div className="mx-auto flex h-16 max-w-[92rem] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-          <a href="/" className="inline-flex h-9 w-[132px] shrink-0 items-center overflow-hidden rounded-lg sm:h-10 sm:w-[150px] lg:w-[158px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071422]" aria-label="Stanley Systems home">
-            <img
-              src={logoSrc}
-              alt="Stanley Systems"
-              className="h-full w-full object-contain transition-[filter,opacity,transform] duration-[220ms]"
-              decoding="async"
-              fetchPriority="high"
-            />
+          <a href="/" className="group -ml-1.5 inline-flex h-10 shrink-0 items-center rounded-xl pr-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071422] sm:-ml-2 lg:-ml-3" aria-label="Stanley Systems home">
+            <span
+              className={`whitespace-nowrap text-[19px] font-[700] leading-none tracking-[-0.045em] transition-colors duration-[220ms] sm:text-[20px] ${brandTextClasses}`}
+              style={{ fontFamily: "var(--font-logo), var(--font-neue-montreal), sans-serif" }}
+            >
+              Stanley Systems
+            </span>
           </a>
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
             {navGroups.map((group) => (

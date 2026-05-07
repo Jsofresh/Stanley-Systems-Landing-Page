@@ -4,7 +4,7 @@ import { Suspense } from "react"
 import "./globals.css"
 import { PageTransition } from "@/components/page-transition"
 import { NavigationTransition } from "@/components/navigation-transition"
-import { Dancing_Script, Caveat, Inter, Manrope, Nunito_Sans, Space_Grotesk, Work_Sans } from "next/font/google"
+import { Dancing_Script, Caveat, Inter, Manrope, Montserrat, Nunito_Sans, Space_Grotesk, Work_Sans } from "next/font/google"
 import localFont from "next/font/local"
 
 const neueMontreal = localFont({
@@ -45,6 +45,13 @@ const caveat = Caveat({
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
+  display: "swap",
+})
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  variable: "--font-logo",
   display: "swap",
 })
 
@@ -201,7 +208,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={`font-sans antialiased ${neueMontreal.variable} ${dancingScript.variable} ${caveat.variable} ${manrope.variable} ${inter.variable} ${spaceGrotesk.variable} ${nunitoSans.variable} ${workSans.variable}`}>
+      <body className={`font-sans antialiased ${neueMontreal.variable} ${dancingScript.variable} ${caveat.variable} ${manrope.variable} ${montserrat.variable} ${inter.variable} ${spaceGrotesk.variable} ${nunitoSans.variable} ${workSans.variable}`}>
         <Suspense fallback={null}>
           <NavigationTransition />
           <PageTransition>{children}</PageTransition>
