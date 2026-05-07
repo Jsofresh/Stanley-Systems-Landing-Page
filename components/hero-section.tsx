@@ -187,7 +187,7 @@ function HeroVideoLoop() {
   )
 }
 
-function DarkEnterpriseHeader() {
+export function SiteHeader() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileMenu, setMobileMenu] = useState<string | null>(navGroups[0]?.label ?? null)
@@ -312,7 +312,7 @@ function DarkEnterpriseHeader() {
     <header
       ref={headerRef}
       data-nav-theme-current={themeAttr}
-      className={`fixed inset-x-0 top-0 z-[80] translate-y-0 border-b transition-[background-color,border-color,box-shadow,color,transform,opacity] duration-[220ms] ease-out ${headerClasses}`}
+      className={`fixed inset-x-0 top-0 z-[999] translate-y-0 border-b transition-[background-color,border-color,box-shadow,color,transform,opacity] duration-[220ms] ease-out ${headerClasses}`}
     >
       <div className={`border-b transition-colors duration-[220ms] ${utilityClasses}`}>
         <div className="mx-auto flex h-9 max-w-[92rem] items-center justify-between px-4 text-[12px] font-bold sm:px-6 lg:px-8">
@@ -337,11 +337,11 @@ function DarkEnterpriseHeader() {
         }}
       >
         <div className="mx-auto flex h-16 max-w-[92rem] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-          <a href="/" className="inline-flex shrink-0 items-center rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071422]" aria-label="Stanley Systems home">
+          <a href="/" className="inline-flex h-9 w-[132px] shrink-0 items-center overflow-hidden rounded-lg sm:h-10 sm:w-[150px] lg:w-[158px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071422]" aria-label="Stanley Systems home">
             <img
               src={logoSrc}
               alt="Stanley Systems"
-              className={`h-auto w-[168px] object-contain transition-[filter,opacity,transform] duration-[220ms] sm:w-[208px] xl:w-[226px] ${isLight ? "" : "rounded-md"}`}
+              className="h-full w-full object-contain transition-[filter,opacity,transform] duration-[220ms]"
               decoding="async"
               fetchPriority="high"
             />
@@ -505,7 +505,6 @@ export function HeroSection() {
       data-audit-purpose="Make the owner understand that Stanley Systems helps make more money with less office work."
       className="relative isolate overflow-hidden bg-[#071422] pt-[100px] text-white"
     >
-      <DarkEnterpriseHeader />
       <div className="relative min-h-[700px] overflow-hidden md:min-h-[calc(100svh-100px)]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_76%_34%,rgba(83,217,134,0.14),transparent_31%),radial-gradient(circle_at_88%_4%,rgba(2,8,15,0.92),transparent_30%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[76%] bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.99)_32%,rgba(7,20,34,0.86)_56%,rgba(7,20,34,0.22)_82%,rgba(7,20,34,0)_100%)] md:block xl:w-[67%] xl:bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.98)_29%,rgba(7,20,34,0.78)_50%,rgba(7,20,34,0.16)_78%,rgba(7,20,34,0)_100%)]" />
