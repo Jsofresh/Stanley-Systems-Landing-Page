@@ -29,3 +29,39 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# === Added by recovery cleanup ===
+# Build artifacts and backups
+.next/
+.next.bak-*/
+.next.failed-*/
+.next.pre-*/
+pages.bak-*/
+out/
+
+# Agent runtime state
+.hermes/
+.openclaw/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Agent QA artifacts (regenerable, large)
+artifacts/
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Local environment files
+.env.local
+.env.*.local
+
+# Reference materials (often copyrighted)
+references/
+
