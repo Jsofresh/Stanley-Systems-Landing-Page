@@ -1,208 +1,316 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
 
-import { CTALink } from "@/components/cta-link"
 import { Footer } from "@/components/footer"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
+import {
+  AlertPanel,
+  DiagramPanel,
+  DisplayHeadline,
+  FeatureTile,
+  FlowSequence,
+  IconMedallion,
+  MetricStrip,
+  StanleyButton,
+  SupportTile,
+  SystemCTA,
+  SystemPageSection,
+  type StanleyIconName,
+} from "@/components/stanley-system"
 
 const monthlyPlan = pricingPackageById.repeat_revenue_monthly
 const yearlyPlan = pricingPackageById.repeat_revenue_yearly
 const workflowAudit = pricingPackageById.workflow_audit
 
-const packageScopeNote =
-  "Buying this package starts onboarding and implementation intake. Stanley Systems confirms fit, access, tool constraints, data quality, and first implementation scope before work proceeds. If the selected package is not the right fit, Stanley Systems may redirect, pause until required access is available, propose custom scope, or refund before implementation begins."
-
-const repeatScopeLine =
-  "Repeat Revenue System helps past customers, reviews, referrals, and missed calls stay visible so the next step is easier to follow. It does not guarantee new customers, review volume, review ratings, search rankings, platform approvals, or unlimited custom outreach work."
-
 export const metadata: Metadata = {
   title: "Repeat Revenue System | Stanley Systems",
   description:
-    "Repeat Revenue System helps service businesses bring past customers, review requests, referrals, and missed calls back into a practical office follow-up path.",
+    "Repeat Revenue System helps service businesses bring past customers back, collect better feedback, create referral opportunities, and catch the extra calls created by stronger reputation.",
   alternates: {
     canonical: "https://stanley-systems.com/systems/repeat-revenue",
   },
   openGraph: {
     title: "Repeat Revenue System | Stanley Systems",
     description:
-      "A practical repeat revenue system for service businesses that need past customers, referrals, reviews, and missed calls to stay visible.",
+      "A native repeat revenue system for service businesses that need past customers, reviews, referrals, and missed calls to become a visible growth loop.",
     url: "https://stanley-systems.com/systems/repeat-revenue",
     siteName: "Stanley Systems",
     type: "website",
   },
 }
 
-const fixes = [
-  "Every good job should create the next one.",
-  "1-3 star private ratings need manager follow-up before they become public problems.",
-  "4-5 star customers should be routed toward Google reviews and referral asks.",
-  "Past customers, old estimates, seasonal buyers, and dormant customers should be reactivated.",
-  "Past customers nobody has reached back out to after the first job.",
-  "Happy customers who are never asked for a review while the work is still fresh.",
-  "Referral opportunities that depend on the owner remembering to ask.",
-  "Missed or after-hours inquiries that turn into forgotten callbacks and cold leads.",
+const heroSteps = [
+  {
+    id: "past-customer",
+    icon: "user" as const,
+    label: "Past Customer",
+    description: "The customer record is already earned. The system keeps the next step visible.",
+    mobileDescription: false,
+  },
+  {
+    id: "review-proof",
+    icon: "message-bubble" as const,
+    label: "Review Proof",
+    description: "Useful feedback and strong public proof get routed while the work is fresh.",
+    mobileDescription: false,
+  },
+  {
+    id: "referral-offer",
+    icon: "referral-gift" as const,
+    label: "Referral Offer",
+    description: "Happy customers get a clear reason to send the next good customer your way.",
+    mobileDescription: false,
+  },
+  {
+    id: "new-call",
+    icon: "phone-missed" as const,
+    label: "New Call",
+    description: "Extra reputation-driven demand gets caught instead of slipping into voicemail.",
+    mobileDescription: false,
+  },
+  {
+    id: "booked-work",
+    icon: "check-circle" as const,
+    label: "Booked Work",
+    description: "The loop ends in a next job, then feeds the proof cycle again.",
+    mobileDescription: false,
+    tone: "emphasis" as const,
+  },
 ]
 
-const beforeAfter = [
-  ["Before", "Good jobs end quietly. Ratings, reviews, referrals, old estimates, seasonal buyers, and missed calls all depend on memory.", "#B42318", "#fff5f5", "#edd6d8"],
-  ["After", "Completed jobs feed a repeat revenue cycle: private rating, review routing, referral asks, reactivation, and missed-call recovery.", "#116832", "#eef9f2", "#bfe4c8"],
+const referralSteps = [
+  {
+    id: "happy-customer",
+    icon: "users" as const,
+    label: "Happy Customer",
+    description: "A good job creates a high-trust moment.",
+    mobileDescription: false,
+  },
+  {
+    id: "referral-offer",
+    icon: "gift" as const,
+    label: "Referral Offer",
+    description: "The customer gets a simple, trackable offer.",
+    mobileDescription: false,
+  },
+  {
+    id: "track-it",
+    icon: "trend-up" as const,
+    label: "We Track It",
+    description: "Referral activity stays visible to the office.",
+    mobileDescription: false,
+  },
+  {
+    id: "new-work-booked",
+    icon: "file-estimate" as const,
+    label: "New Work Booked",
+    description: "The opportunity becomes real booked work.",
+    mobileDescription: false,
+    tone: "emphasis" as const,
+  },
 ]
 
-const flywheelSteps = [
-  "Job complete",
-  "Private 1-5 rating",
-  "1-3 stars to managers",
-  "4-5 stars to Google review path",
-  "Best customers get referral asks",
-  "Past buyers and missed calls reactivated",
+const callCatcherSteps = [
+  {
+    id: "missed-call",
+    icon: "phone-missed" as const,
+    label: "Missed Call Captured",
+    description: "A missed call becomes a follow-up item, not a dead lead.",
+    mobileDescription: false,
+  },
+  {
+    id: "voicemail",
+    icon: "message-bubble" as const,
+    label: "Voicemail Transcribed",
+    description: "The office sees what the caller needed.",
+    mobileDescription: false,
+  },
+  {
+    id: "office-alerted",
+    icon: "message-bubble" as const,
+    label: "Office Alerted",
+    description: "The right person gets the next action quickly.",
+    mobileDescription: false,
+  },
+  {
+    id: "auto-reply",
+    icon: "check-circle" as const,
+    label: "Auto-Reply Sent",
+    description: "The caller knows the business saw the inquiry.",
+    mobileDescription: false,
+    tone: "emphasis" as const,
+  },
 ]
 
-function RepeatRevenueMechanismVisual() {
+const reviewSteps = [
+  {
+    id: "job-complete",
+    icon: "check-circle" as const,
+    label: "Job Complete",
+    description: "The review path starts when the work is still fresh.",
+    mobileDescription: false,
+  },
+  {
+    id: "feedback-request",
+    icon: "message-bubble" as const,
+    label: "Feedback Request Sent",
+    description: "Customers get a clear, timely request.",
+    mobileDescription: false,
+  },
+  {
+    id: "customer-feedback",
+    icon: "user" as const,
+    label: "Customer Shares Feedback",
+    description: "The response shows whether to amplify or recover.",
+    mobileDescription: false,
+  },
+  {
+    id: "review-published",
+    icon: "shield-check" as const,
+    label: "Review Published",
+    description: "Strong public proof goes live.",
+    mobileDescription: false,
+    tone: "emphasis" as const,
+  },
+  {
+    id: "recovery-when-needed",
+    icon: "message-bubble" as const,
+    label: "Recovery When Needed",
+    description: "Low-score feedback routes to a manager before it turns into public damage.",
+    mobileDescription: false,
+    tone: "emphasis" as const,
+  },
+]
+
+const reengagementSteps = [
+  {
+    id: "dormant-records",
+    icon: "users" as const,
+    label: "Dormant Customer Records",
+    description: "Past customers and old estimates get surfaced from the existing list.",
+    mobileDescription: false,
+  },
+  {
+    id: "messages",
+    icon: "message-bubble" as const,
+    label: "Re-Engagement Messages",
+    description: "The system sends timely, practical follow-up instead of random blasts.",
+    mobileDescription: false,
+  },
+  {
+    id: "booked-work",
+    icon: "file-estimate" as const,
+    label: "Re-Booked Work",
+    description: "The business gets more value from customers it already earned.",
+    mobileDescription: false,
+    tone: "emphasis" as const,
+  },
+]
+
+const supportTiles = [
+  ["message-bubble", "Dedicated local-area-code text line", "A clean outbound path for Repeat Revenue."],
+  ["phone-missed", "Main business number stays unchanged", "Follow-up gets stronger without changing your primary number."],
+  ["shield-check", "A2P 10DLC setup", "Registration details handled in the support layer."],
+  ["shield-check", "STOP and UNSUBSCRIBE handling", "Opt-outs stay managed without extra office work."],
+  ["message-bubble", "Message throttling", "Outreach stays paced instead of blasting customers."],
+  ["file-estimate", "Weekly activity digest", "Owners see the pattern without checking every thread."],
+  ["dollar-circle", "Configurable referral amounts", "Referral offers match the economics of the business."],
+  ["message-bubble", "Configurable timing and message copy", "Follow-up can fit how customers actually buy."],
+  ["users", "Manager routing for low-score feedback", "Bad experiences route to the right person for recovery."],
+  ["message-bubble", "Voicemail transcription", "Missed calls become readable follow-up context."],
+  ["phone-missed", "Missed-call auto-reply", "Callers get a response while the office is busy."],
+  ["message-bubble", "Office alerts", "The team sees the next action."],
+] as const
+
+const benefitTiles = [
+  ["users", "Works from your existing records.", "The system starts with customers the business already earned."],
+  ["message-bubble", "Timed follow-up brings old customers back.", "Useful outreach happens before competitors win the next job."],
+  ["trend-up", "More value from customers you already earned.", "Repeat Revenue turns buried records into visible opportunity."],
+  ["check-circle", "Booked work without starting from zero.", "The next job comes from a warmer path than cold lead buying."],
+] as const
+
+type RepeatRevenueStep = {
+  id?: string
+  icon: StanleyIconName
+  label: string
+  description?: string
+  tone?: 'default' | 'emphasis' | 'quiet'
+}
+
+function MobileFlowRows({ steps, summary }: { steps: readonly RepeatRevenueStep[]; summary?: string }) {
   return (
-    <section className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-      <SectionHeader
-        title="Every good job should create the next one."
-        copy="Repeat Revenue System turns completed jobs, happy customers, referrals, reviews, missed calls, and past buyers into a cycle."
-      />
-      <div className="mt-7 grid gap-4 lg:grid-cols-2">
-        {beforeAfter.map(([label, copy, color, bg, border]) => (
-          <article key={label} className="rounded-[1.35rem] border p-5" style={{ borderColor: border, backgroundColor: bg }}>
-            <p className="text-sm font-extrabold uppercase tracking-[0.14em]" style={{ color }}>{label}</p>
-            <p className="mt-3 text-lg font-semibold leading-7 text-[#102033]">{copy}</p>
-          </article>
-        ))}
-      </div>
-      <div className="mt-6 rounded-[1.35rem] border border-[#cfe8d5] bg-[#f4fbf5] p-4">
-        <p className="text-sm font-bold text-[#116832]">Mechanism</p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {flywheelSteps.map((step, index) => (
-            <div key={step} className="rounded-2xl border border-[#dfe7ee] bg-white p-4 shadow-[0_10px_24px_rgba(16,32,51,0.04)]">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#15803D] text-xs font-black text-white">{index + 1}</span>
-              <p className="mt-3 text-sm font-extrabold leading-5 text-[#102033]">{step}</p>
-            </div>
-          ))}
+    <div className="grid gap-2 md:hidden" data-repeat-revenue-mobile-flow="compact-readable-rows">
+      {steps.map((step, index) => (
+        <div
+          key={step.id ?? `${index}-${step.label}`}
+          className="flex min-w-0 items-center gap-3 rounded-2xl border border-[rgba(21,128,61,0.16)] bg-white px-4 py-3 shadow-[0_10px_24px_rgba(7,20,34,0.06)]"
+        >
+          <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#eaf6e6] text-sm font-extrabold leading-none text-[#116832]">
+            {index + 1}
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-[1.04rem] font-bold leading-[1.22] tracking-[-0.02em] text-[#071421]">{step.label}</p>
+            {step.description ? <p className="sr-only">{step.description}</p> : null}
+          </div>
         </div>
-        <p className="mt-4 rounded-2xl border border-[#bfe4c8] bg-white p-4 text-sm font-semibold leading-6 text-[#102033]">
-          Reviews and referrals improve trust and Google visibility. More visibility creates more inbound volume. Missed-call recovery turns that volume back into follow-up and booked work, then the cycle repeats.
+      ))}
+      {summary ? (
+        <p className="mt-2 rounded-2xl border border-[rgba(21,128,61,0.14)] bg-[#f4fbf5] px-4 py-3 text-[1.02rem] font-semibold leading-7 text-[#2f3f52]">
+          {summary}
         </p>
-      </div>
-      <p className="mt-5 rounded-2xl border border-[#e4ded3] bg-[#fbfaf7] p-4 text-sm font-semibold leading-6 text-[#536173]">
-        Scenario math, not a guarantee: if 500 past customers include 25 ready buyers at a $1,200 average job, that is a $30,000 opportunity worth checking before buying more cold leads.
-      </p>
-    </section>
-  )
-}
-
-const baseAutomations = [
-  ["A", "Private 1-5 Rating", "A private post-job rating routes 1-3 stars to managers and 4-5 stars toward review and referral paths."],
-  ["B", "Review Booster", "A steady Google review-request step after good work is complete, without promising review volume or ratings."],
-  ["C", "Referral Engine", "A simple referral ask for the best customers while the job is still fresh."],
-  ["D", "Reactivation and Missed-Call Recovery", "Past customers, old estimates, seasonal buyers, dormant records, and missed inquiries get brought back into follow-up."],
-]
-
-const setupItems = [
-  "Map how past customers, reviews, referrals, and missed inquiries currently move through the office.",
-  "Confirm the customer records, booking tools, review links, contact methods, and handoff rules Stanley Systems can safely build around.",
-  "Keep the business main number unchanged while adding the after-hours intake path around the existing customer contact flow.",
-  "Separate base implementation from upgrades such as extra campaigns, deeper data cleanup, custom segmentation, advanced reporting, or extra locations.",
-  "Review fit, access, and scope before implementation begins after checkout.",
-]
-
-const bestFit = [
-  "Service businesses with an existing customer list worth checking before buying more cold leads.",
-  "Teams that finish good work but do not consistently ask for reviews, referrals, or repeat bookings.",
-  "Owners who miss calls or after-hours inquiries and need a cleaner office follow-up path.",
-  "Businesses that want practical follow-up infrastructure without changing their main number or replacing their whole software stack first.",
-]
-
-const excludedItems = [
-  "No promised new customers, review volume, review ratings, search rankings, platform approvals, or ad performance.",
-  "No call center, sales team replacement, reputation-management agency, or unlimited custom outreach work.",
-  "No public backend/tool promises, no custom phone-provider claims, and no requirement to change the business main number.",
-  "No upgrades are included unless they are separately scoped in writing before implementation proceeds.",
-]
-
-const faqs = [
-  {
-    question: "Will Repeat Revenue System promise more customers or reviews?",
-    answer:
-      "No. It helps past customers, review requests, referrals, and missed calls stay visible so the next step is easier to follow. It does not promise new customers, review volume, review ratings, search rankings, platform approvals, or customer behavior.",
-  },
-  {
-    question: "Will this change my main business number?",
-    answer:
-      "No. The base setup keeps the main number unchanged and adds the After-Hours Intake Assistant around the existing customer contact flow. Any deeper phone-system change would need separate written scope.",
-  },
-  {
-    question: "What is included in the base system?",
-    answer:
-      "The base system includes four practical automations: Smart Re-Engagement, Review Booster, Referral Engine, and After-Hours Intake Assistant. Extra campaigns, complex list cleanup, advanced reporting, multi-location logic, or unusual integrations are upgrades that must be scoped separately.",
-  },
-  {
-    question: "Do I need the Workflow Audit first?",
-    answer:
-      "No. You can buy Repeat Revenue directly. The Workflow Audit is the safer first step if you are not sure whether the bigger leak is billing, repeat revenue, both, or neither.",
-  },
-  {
-    question: "What happens after I buy?",
-    answer:
-      "Checkout starts onboarding and implementation intake. Stanley Systems reviews fit, access, tools, data quality, and scope before implementation proceeds, then may refund, redirect, pause, or propose custom scope before work begins if the fit is not right.",
-  },
-  {
-    question: "Will this replace my booking, CRM, or review platform?",
-    answer:
-      "No. The goal is to build a cleaner follow-up path around the tools your business already uses, not force a full software migration.",
-  },
-]
-
-function SectionHeader({ title, copy }: { title: string; copy: string }) {
-  return (
-    <div className="mx-auto max-w-3xl text-center">
-      <h2 className="text-[2rem] font-semibold leading-tight tracking-[-0.03em] text-[#102033] sm:text-5xl">{title}</h2>
-      <p className="mt-3 text-base leading-7 text-[#536173] sm:text-lg">{copy}</p>
+      ) : null}
     </div>
   )
 }
 
-function PrimaryCTACluster({ location }: { location: string }) {
+function RepeatRevenueFlow({
+  steps,
+  connectorLabel,
+  summary,
+  showStepNumbers,
+}: {
+  steps: readonly RepeatRevenueStep[]
+  connectorLabel: string
+  summary?: string
+  showStepNumbers?: boolean
+}) {
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-      <CTALink
-        href={monthlyPlan.stripePaymentLink.url}
-        kind="checkout"
-        location={`${location}_repeat_revenue_monthly`}
-        analyticsEvent="package_checkout_clicked"
-        analyticsSource="repeat_revenue_page"
-        packageId={monthlyPlan.analyticsPackageId}
-        packageName={monthlyPlan.publicName}
-        billingPeriod={monthlyPlan.billingPeriod}
-        ctaLabel="Buy Repeat Revenue"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]"
-      >
-        Buy Repeat Revenue
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-      </CTALink>
-      <CTALink
-        href={workflowAudit.stripePaymentLink.url}
-        kind="checkout"
-        location={`${location}_workflow_audit`}
-        analyticsEvent="audit_checkout_clicked"
-        analyticsSource="repeat_revenue_page"
-        packageId="workflow_audit"
-        packageName="Workflow Audit"
-        billingPeriod="one_time"
-        ctaLabel="Start with Workflow Audit"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#cbd8c7] bg-white px-6 py-3 text-sm font-bold text-[#116832] shadow-[0_10px_24px_rgba(16,32,51,0.05)] transition hover:border-[#15803D] hover:bg-[#f7fcf7]"
-      >
-        Start with Workflow Audit
-      </CTALink>
-    </div>
+    <>
+      <FlowSequence className="hidden md:block" steps={steps} connectorLabel={connectorLabel} showStepNumbers={showStepNumbers} />
+      <MobileFlowRows steps={steps} summary={summary} />
+    </>
+  )
+}
+
+function HeroVisualPanel() {
+  return (
+    <DiagramPanel
+      icon="users"
+      title="Insights & automation keep the cycle going."
+      subtitle="More happy customers. More proof. More referrals. More booked work."
+      tone="mint"
+      className="lg:min-h-[35rem]"
+    >
+      <RepeatRevenueFlow steps={heroSteps} connectorLabel="creates the next step" summary="A simple loop: past customers create proof, referrals, caught calls, and booked work." />
+      <MetricStrip
+        className="mt-7"
+        columns={2}
+        items={[
+          {
+            value: "+37%",
+            label: "more booked work",
+            description: "Proof target from the written reference, shown as a business outcome cue rather than a guarantee.",
+            icon: "trend-up",
+          },
+          {
+            value: "Stronger pipeline",
+            label: "Stronger reputation",
+            description: "Reviews, referrals, and caught calls feed the next booked job.",
+            icon: "shield-check",
+          },
+        ]}
+      />
+    </DiagramPanel>
   )
 }
 
@@ -211,149 +319,196 @@ export default function RepeatRevenuePage() {
     <>
       <GlassmorphismNav />
       <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
-        <section className="relative px-4 pb-12 pt-32 sm:px-6 sm:pb-16 lg:px-8 lg:pt-36">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.72fr)] lg:items-center">
+        <section className="relative isolate overflow-hidden px-6 pb-18 pt-32 md:pb-24 lg:px-8 lg:pt-36">
+          <span aria-hidden="true" className="pointer-events-none absolute -left-24 top-24 -z-10 size-80 rounded-full bg-[rgba(21,128,61,0.08)] blur-3xl" />
+          <span aria-hidden="true" className="pointer-events-none absolute -right-24 bottom-14 -z-10 size-96 rounded-full bg-[rgba(21,128,61,0.06)] blur-3xl" />
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(500px,1.05fr)] lg:items-center">
             <div>
-              <h1 className="max-w-4xl text-[3rem] font-semibold leading-[0.96] tracking-[-0.055em] text-[#071421] sm:text-[4.5rem] lg:text-[5.25rem]">
-                Get more money from the customers you already earned.
-              </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#455467] sm:text-xl">
-                Repeat Revenue System builds the follow-up path that brings past customers, review requests, referrals, and missed calls back into view inside the tools your team already uses.
-              </p>
-              <div className="mt-7">
-                <PrimaryCTACluster location="repeat_revenue_hero" />
+              <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#cfe8d5] bg-white px-4 py-2 text-sm font-bold text-[#116832] shadow-[0_10px_24px_rgba(7,20,34,0.05)]">
+                <IconMedallion icon="users" size="sm" />
+                Repeat Revenue System
               </div>
-              <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#607080]">
-                {packageScopeNote}
+              <DisplayHeadline
+                as="h1"
+                align="left"
+                size="page"
+                before="Make your best customers your best"
+                highlight="lead generation."
+                className="max-w-5xl"
+              />
+              <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-[#455467] sm:text-xl">
+                Stanley Systems helps service businesses bring past customers back, collect more useful feedback, turn happy customers into stronger public proof, create referral opportunities, and catch the extra calls that come from a stronger reputation.
               </p>
-            </div>
-
-            <div className="rounded-[2rem] border border-[#d8e5dd] bg-white p-5 shadow-[0_24px_70px_rgba(16,32,51,0.1)] sm:p-6">
-              <div className="rounded-[1.5rem] border border-[#bfe4c8] bg-[#eef9f2] p-4">
-                <p className="text-sm font-bold text-[#116832]">Repeat Revenue Monthly</p>
-                <p className="mt-2 text-[2.5rem] font-semibold tracking-[-0.05em] text-[#102033]">{monthlyPlan.priceDisplay}</p>
-                <p className="text-sm font-semibold leading-6 text-[#536173]">{monthlyPlan.setupFeeDisplay} at checkout. Audit buyers can use the monthly audit credit.</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <StanleyButton href={monthlyPlan.stripePaymentLink.url} size="xl" aria-label="Start Repeat Revenue System checkout">
+                  Start Repeat Revenue
+                </StanleyButton>
+                <StanleyButton href={workflowAudit.stripePaymentLink.url} variant="secondary" size="xl" aria-label="Book a Workflow Audit for Repeat Revenue System">
+                  Book a Workflow Audit
+                </StanleyButton>
               </div>
-              <div className="mt-4 grid gap-3 text-sm font-semibold leading-6 text-[#26374b]">
-                <div className="flex items-start gap-2 rounded-2xl border border-[#e0e8ef] bg-[#f8fbfc] p-3">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#15803D]" />
-                  Past customer, review, referral, and missed-inquiry follow-up.
-                </div>
-                <div className="flex items-start gap-2 rounded-2xl border border-[#e0e8ef] bg-[#f8fbfc] p-3">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#15803D]" />
-                  After-Hours Intake Assistant with the main number unchanged.
-                </div>
-                <div className="flex items-start gap-2 rounded-2xl border border-[#e0e8ef] bg-[#f8fbfc] p-3">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#15803D]" />
+              <div className="mt-5 max-w-xl rounded-2xl border border-[rgba(21,128,61,0.16)] bg-white px-4 py-3 shadow-[0_12px_28px_rgba(7,20,34,0.06)]">
+                <p className="text-[1.05rem] font-bold leading-7 text-[#455467] md:text-base">
+                  Repeat Revenue starts at <span className="text-[#102033]">{monthlyPlan.priceDisplay}</span>.
+                </p>
+                <p className="mt-1 text-[0.98rem] font-semibold leading-7 text-[#455467] md:text-sm md:leading-6">
                   Yearly option: {yearlyPlan.priceDisplay} with installation waived.
-                </div>
+                </p>
               </div>
             </div>
+            <HeroVisualPanel />
           </div>
         </section>
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 sm:px-6 lg:px-8">
-          <RepeatRevenueMechanismVisual />
-
-          <section className="rounded-[2rem] border border-[#e4ded3] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <SectionHeader title="The repeat revenue leaks it is built to fix." copy="Repeat Revenue System is for follow-up opportunities after the business has already earned attention, trust, or a customer record." />
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
-              {fixes.map((fix) => (
-                <div key={fix} className="flex gap-3 rounded-2xl border border-[#dfe7ee] bg-[#f8fbfc] p-4 text-sm font-semibold leading-6 text-[#26374b]">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                  <span>{fix}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <SectionHeader title="Included base automations A-D." copy="The build is practical office follow-up infrastructure, not a promise of customers, reviews, rankings, or unlimited custom outreach." />
-            <div className="mt-7 grid gap-3 md:grid-cols-2">
-              {baseAutomations.map(([letter, title, body]) => (
-                <article key={letter} className="rounded-2xl border border-[#e2e8ef] bg-[#fbfcfd] p-4">
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-sm font-black text-white">{letter}</span>
-                    <div>
-                      <h3 className="text-base font-bold text-[#102033]">{title}</h3>
-                      <p className="mt-1 text-sm leading-6 text-[#536173]">{body}</p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-            <div className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#102033] sm:text-4xl">Setup and infrastructure.</h2>
-              <ul className="mt-5 space-y-3">
-                {setupItems.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm font-semibold leading-6 text-[#26374b]">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#102033] sm:text-4xl">Best fit.</h2>
-              <ul className="mt-5 space-y-3">
-                {bestFit.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm font-semibold leading-6 text-[#26374b]">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
-          <section className="rounded-[2rem] border border-[#ead8c5] bg-[#fffaf3] p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <SectionHeader title="What is not included by default." copy="These limits keep the base package honest and make upgrades explicit before implementation begins." />
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
-              {excludedItems.map((item) => (
-                <div key={item} className="flex gap-3 rounded-2xl border border-[#ead8c5] bg-white p-4 text-sm font-semibold leading-6 text-[#26374b]">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="rounded-[2rem] border border-[#bfe4c8] bg-[#eef9f2] p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#102033] sm:text-4xl">Ready to build the repeat revenue path?</h2>
-                <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">
-                  {repeatScopeLine}
-                </p>
-                <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">
-                  {packageScopeNote}
-                </p>
-              </div>
-              <PrimaryCTACluster location="repeat_revenue_midpage" />
-            </div>
-          </section>
-
-          <section className="rounded-[2rem] border border-[#e4ded3] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <SectionHeader title="Practical FAQ." copy="Plain answers before you buy Repeat Revenue System." />
-            <div className="mt-7 grid gap-4 lg:grid-cols-2">
-              {faqs.map((faq) => (
-                <article key={faq.question} className="rounded-2xl border border-[#dfe7ee] bg-[#f8fbfc] p-5">
-                  <h3 className="text-lg font-bold text-[#102033]">{faq.question}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#536173]">{faq.answer}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <div className="text-center text-sm font-semibold text-[#607080]">
-            Need to compare both systems first? <Link href="/pricing#compare-systems" className="font-bold text-[#116832] underline underline-offset-4">Compare systems on pricing</Link>.
+        <SystemPageSection
+          id="how-repeat-revenue-works"
+          tone="white"
+          title="Five-star moments turn into"
+          accent="referral opportunities."
+          description="The page is not about abstract reputation management. It is about turning the work your team already did well into the next visible opportunity."
+        >
+          <div className="grid gap-6 lg:grid-cols-2">
+            <DiagramPanel
+              icon="referral-gift"
+              title="Five-star moments turn into referral opportunities."
+              subtitle="Happy customers should not disappear after the invoice. The system creates the referral path while trust is high."
+              tone="mint"
+            >
+              <RepeatRevenueFlow steps={referralSteps} connectorLabel="opens" summary="The happy-customer moment becomes a tracked referral path." />
+            </DiagramPanel>
+            <DiagramPanel
+              icon="phone-missed"
+              title="More demand only matters if the phone gets caught."
+              subtitle="A stronger reputation creates more inbound attention. Missed-call recovery keeps that attention from going cold."
+            >
+              <RepeatRevenueFlow steps={callCatcherSteps} connectorLabel="routes" summary="Missed calls become readable context and quick office follow-up." />
+            </DiagramPanel>
           </div>
-        </div>
+        </SystemPageSection>
+
+        <SystemPageSection
+          tone="white"
+          title="More strong reviews. Faster recovery"
+          accent="when something goes wrong."
+          description="Repeat Revenue System routes public-proof moments and recovery moments inside the same feedback loop."
+          className="py-14 md:py-24"
+        >
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
+            <DiagramPanel
+              icon="shield-check"
+              title="Review Booster & Recovery Loop"
+              subtitle="Customer feedback branches into public proof or manager recovery before the moment goes cold."
+              tone="mint"
+              footer={
+                <p className="text-base font-bold leading-7 text-[#116832]">
+                  No reviews are hidden.
+                </p>
+              }
+            >
+              <RepeatRevenueFlow steps={reviewSteps} connectorLabel="routes" summary="Feedback becomes public proof or manager recovery before it goes cold." />
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                <FeatureTile
+                  icon="shield-check"
+                  title="Public Reviews That Build Trust"
+                  description="Strong experiences become public proof for the next customer."
+                  density="compact"
+                />
+                <FeatureTile
+                  icon="message-bubble"
+                  title="Review and recovery cues stay visible"
+                  description="The team can see whether feedback became public proof or a recovery task."
+                  density="compact"
+                />
+              </div>
+            </DiagramPanel>
+            <div className="grid gap-4">
+              <AlertPanel
+                icon="message-bubble"
+                title="Low-Score Feedback Alert"
+                description="A poor experience routes to manager attention instead of disappearing."
+                tone="attention"
+              />
+              <AlertPanel
+                icon="shield-check"
+                title="Recovery When Needed"
+                description="The right person gets context to respond before a small issue becomes a reputation problem."
+                tone="recovery"
+              />
+            </div>
+          </div>
+        </SystemPageSection>
+
+        <SystemPageSection
+          tone="white"
+          title="Past customers get followed up with before"
+          accent="competitors win them."
+          description="Dormant customer value is not a cold outbound campaign. It is existing trust that needs a clean, timed next step."
+          className="py-14 md:py-24"
+        >
+          <DiagramPanel
+            icon="users"
+            title="Past Customer Re-Engagement"
+            subtitle="Records, messages, and booked work stay connected in one visible path."
+            tone="mint"
+          >
+            <RepeatRevenueFlow steps={reengagementSteps} showStepNumbers={false} connectorLabel="becomes" summary="Old records become timely messages and re-booked work." />
+            <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {benefitTiles.map(([icon, title, description]) => (
+                <FeatureTile
+                  key={title}
+                  icon={icon}
+                  title={title}
+                  description={description}
+                  density="compact"
+                  medallion={false}
+                />
+              ))}
+            </div>
+          </DiagramPanel>
+        </SystemPageSection>
+
+        <SystemPageSection
+          tone="mint"
+          title="The support layer"
+          accent="is included."
+          description="We handle the details that keep Repeat Revenue running without turning your office into a campaign desk."
+          className="py-12 md:py-24"
+        >
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {supportTiles.map(([icon, title, description]) => (
+              <SupportTile
+                key={title}
+                icon={icon}
+                title={title}
+                description={description}
+                descriptionClassName="hidden md:block"
+                className="p-5 md:p-6"
+              />
+            ))}
+          </div>
+
+          <SystemCTA
+            className="mt-10"
+            icon="trend-up"
+            title="Turn happy customers into a predictable source of repeat revenue."
+            description="The next step is a Workflow Audit: map the customer records, review path, referral opportunities, missed-call handoff, and support layer before build scope starts."
+            primaryAction={{ label: "Start Repeat Revenue", href: monthlyPlan.stripePaymentLink.url, ariaLabel: "Start Repeat Revenue System checkout" }}
+            secondaryAction={{ label: "Book a Workflow Audit", href: workflowAudit.stripePaymentLink.url, ariaLabel: "Book a Workflow Audit checkout" }}
+          >
+            <div className="rounded-2xl border border-[rgba(21,128,61,0.16)] bg-white/80 px-4 py-3 shadow-[0_10px_24px_rgba(7,20,34,0.05)]">
+              <p className="text-[1.05rem] font-bold leading-7 text-[#455467]">
+                Package price: <span className="font-extrabold text-[#102033]">{monthlyPlan.priceDisplay}</span>.
+              </p>
+              <p className="mt-1 text-[0.98rem] font-semibold leading-7 text-[#455467]">
+                Yearly option: {yearlyPlan.priceDisplay} with installation waived.
+              </p>
+            </div>
+          </SystemCTA>
+        </SystemPageSection>
       </main>
-      <Footer />
+      <div className="[&_footer_h3]:text-sm [&_footer_h3]:leading-5 [&_footer_ul]:text-base [&_footer_ul]:leading-7">
+        <Footer />
+      </div>
     </>
   )
 }

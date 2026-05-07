@@ -1,195 +1,217 @@
 import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
 
-import { CTALink } from "@/components/cta-link"
 import { Footer } from "@/components/footer"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
+import {
+  AlertPanel,
+  DiagramPanel,
+  DisplayHeadline,
+  FeatureTile,
+  FlowSequence,
+  IconMedallion,
+  MetricStrip,
+  StanleyButton,
+  SupportTile,
+  SystemCTA,
+  SystemPageSection,
+} from "@/components/stanley-system"
 
 const monthlyPlan = pricingPackageById.cashflow_control_monthly
 const yearlyPlan = pricingPackageById.cashflow_control_yearly
 const workflowAudit = pricingPackageById.workflow_audit
 
-const packageScopeNote =
-  "Buying this package starts onboarding and implementation intake. Stanley Systems confirms fit, access, tool constraints, data quality, and first implementation scope before work proceeds. If the selected package is not the right fit, Stanley Systems may redirect, pause until required access is available, propose custom scope, or refund before implementation begins."
-
-const cashflowScopeLine =
-  "Cashflow Control System helps finished work move toward billing, follow-up, and collected cash with fewer manual checks. It does not guarantee collected revenue, profit, customer payment behavior, third-party processor behavior, or unlimited custom billing work."
-
 export const metadata: Metadata = {
   title: "Cashflow Control System | Stanley Systems",
   description:
-    "Cashflow Control System helps service businesses move finished work toward billing, invoice follow-up, and collected cash with fewer manual office checks.",
+    "Cashflow Control System helps service businesses move finished work through intake, billing handoff, invoice follow-up, exception review, and owner-visible money leak reporting.",
   alternates: {
     canonical: "https://stanley-systems.com/systems/cashflow-control",
   },
   openGraph: {
     title: "Cashflow Control System | Stanley Systems",
     description:
-      "A practical billing and invoice follow-up system for service businesses that need finished work to move toward collected cash faster.",
+      "A native cashflow control system for service businesses that need finished jobs, billing details, invoices, balances, and exceptions to stay visible until money is collected.",
     url: "https://stanley-systems.com/systems/cashflow-control",
     siteName: "Stanley Systems",
     type: "website",
   },
 }
 
-const fixes = [
-  "Late cash is growth money the owner cannot use.",
-  "Best competitors collect faster, reinvest faster, and outpace slow operators.",
-  "Staff chasing billing, status, and follow-up burns payroll and steals output from the business.",
-  "Finished jobs that wait days before billing sees them.",
-  "Invoices that cannot go out because job details are missing.",
-  "Invoice-to-final-bill follow-up that depends on manual reminders.",
-  "Open balances that depend on somebody remembering to follow up.",
-  "Office handoffs that live in texts, notes, and memory instead of one visible path.",
+const heroSteps = [
+  {
+    id: "customer-intake",
+    icon: "message-bubble" as const,
+    label: "Customer Intake",
+    description: "Customer and job details enter one visible path.",
+  },
+  {
+    id: "job-complete",
+    icon: "check-circle" as const,
+    label: "Job Complete",
+    description: "Finished work is flagged before it disappears.",
+  },
+  {
+    id: "billing-ready",
+    icon: "file-estimate" as const,
+    label: "Billing Ready",
+    description: "Billing sees the detail needed to invoice cleanly.",
+  },
+  {
+    id: "invoice-sent",
+    icon: "file-invoice" as const,
+    label: "Invoice Sent",
+    description: "Invoices and open balances stay visible.",
+  },
+  {
+    id: "followed-up",
+    icon: "message-bubble" as const,
+    label: "Followed Up",
+    description: "Open balances get the next action before they stall.",
+  },
+  {
+    id: "cash-collected",
+    icon: "dollar-circle" as const,
+    label: "Cash Collected",
+    description: "The owner sees earned work become collected cash.",
+    tone: "emphasis" as const,
+  },
 ]
 
-const beforeAfter = [
-  ["Before", "Job is done, but billing waits on memory, messages, missing notes, and somebody checking open balances.", "#B42318", "#fff5f5", "#edd6d8"],
-  ["After", "Job complete moves to billing-ready, invoice or follow-up, open balance visibility, and collected cash.", "#116832", "#eef9f2", "#bfe4c8"],
+const intakeBillingSteps = [
+  {
+    id: "where-intake-happens",
+    icon: "message-bubble" as const,
+    label: "Where customer intake happens",
+    description: "Customer, job, and billing details enter the path early.",
+  },
+  {
+    id: "required-fields-validation",
+    icon: "file-estimate" as const,
+    label: "Required Fields Validation",
+    description: "Missing billing fields are caught before invoice time.",
+    mobileDescription: false,
+  },
+  {
+    id: "customer-intake-captured",
+    icon: "check-circle" as const,
+    label: "Customer Intake Captured",
+    description: "The record carries the context billing needs.",
+    mobileDescription: false,
+  },
+  {
+    id: "job-complete-trigger",
+    icon: "file-invoice" as const,
+    label: "Job complete triggers the billing path",
+    description: "Finished work starts a same-day billing queue.",
+    mobileDescription: false,
+    tone: "emphasis" as const,
+  },
 ]
 
-const mechanismSteps = [
-  "Job complete",
-  "Billing-ready",
-  "Invoice/follow-up",
-  "Open balance visibility",
-  "Collected cash",
+const exceptionSteps = [
+  {
+    id: "field-job-software",
+    icon: "message-bubble" as const,
+    label: "Field / Job Software",
+    description: "Completed job context starts where the team already works.",
+    mobileDescription: false,
+  },
+  {
+    id: "clean-handoff",
+    icon: "shield-check" as const,
+    label: "Clean Handoff Automated",
+    description: "Clean records move without owner chasing.",
+    mobileDescription: false,
+  },
+  {
+    id: "accounting-software",
+    icon: "file-invoice" as const,
+    label: "Accounting Software",
+    description: "Billing gets invoice-ready context.",
+    mobileDescription: false,
+  },
+  {
+    id: "action-needed",
+    icon: "check-circle" as const,
+    label: "Action Needed",
+    description: "Exceptions route with owner-visible next steps.",
+    mobileDescription: false,
+    tone: "emphasis" as const,
+  },
 ]
 
-function CashflowMechanismVisual() {
+const digestItems = [
+  {
+    value: "40%+",
+    label: "Faster time to invoice",
+    description: "Finished work gets to billing faster.",
+    icon: "file-invoice" as const,
+  },
+  {
+    value: "25–35%",
+    label: "Improvement in cash velocity",
+    description: "Open money keeps moving toward collection.",
+    icon: "trend-up" as const,
+  },
+  {
+    value: "2–5 hrs/week",
+    label: "Less office drag",
+    description: "Fewer manual checks between job complete and invoice sent.",
+    icon: "shield-check" as const,
+  },
+  {
+    value: "100%",
+    label: "Visibility across the flow",
+    description: "Owners see the path from intake through cash collected.",
+    icon: "dollar-circle" as const,
+  },
+]
+
+const sourceScanTiles = [
+  ["check-circle", "Invoice-Ready Checklist", "The invoice moves when the details are there."],
+  ["message-bubble", "Technician Notes", "Job notes are checked before billing gets stuck."],
+  ["file-estimate", "Billing Source Scan", "Stanley Systems watches where bills actually get created."],
+  ["shield-check", "Blocker Detected", "Missing details, approvals, or prices get surfaced."],
+  ["message-bubble", "Routed to the right person", "The blocker moves to whoever can clear it."],
+  ["dollar-circle", "Collected-cash confirmation", "The system follows the path until money is collected."],
+] as const
+
+function HeroDashboardPanel() {
   return (
-    <section className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-      <SectionHeader
-        title="Late cash is growth money you cannot use."
-        copy="Cashflow Control System moves repeat admin work out of memory and into a visible path from finished work to collected cash."
-      />
-      <div className="mt-7 grid gap-4 lg:grid-cols-2">
-        {beforeAfter.map(([label, copy, color, bg, border]) => (
-          <article key={label} className="rounded-[1.35rem] border p-5" style={{ borderColor: border, backgroundColor: bg }}>
-            <p className="text-sm font-extrabold uppercase tracking-[0.14em]" style={{ color }}>{label}</p>
-            <p className="mt-3 text-lg font-semibold leading-7 text-[#102033]">{copy}</p>
-          </article>
+    <DiagramPanel
+      icon="shield-check"
+      title="A control board for money your business already earned."
+      subtitle="The system watches the path from finished job to billed, followed up, and collected cash."
+      tone="mint"
+      className="lg:min-h-[35rem]"
+    >
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3" aria-label="Customer Intake to Cash Collected workflow">
+        {heroSteps.map((step, index) => (
+          <div
+            key={step.id}
+            className="rounded-[1.1rem] border border-[#cfe8d5] bg-white p-4 shadow-[0_8px_18px_rgba(7,20,34,0.045)]"
+          >
+            <div className="flex items-center gap-3">
+              <span className="grid size-9 shrink-0 place-items-center rounded-full border border-[rgba(21,128,61,0.18)] bg-[#f4fbf5] text-sm font-extrabold text-[#15803D]">
+                {index + 1}
+              </span>
+              <p className="text-pretty text-[1.02rem] font-extrabold leading-[1.12] tracking-[-0.025em] text-[#102033]">
+                {step.label}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
-      <div className="mt-6 overflow-hidden rounded-[1.35rem] border border-[#cfe8d5] bg-[#f4fbf5] p-4">
-        <p className="text-sm font-bold text-[#116832]">Mechanism</p>
-        <div className="mt-4 grid gap-3 md:grid-cols-5">
-          {mechanismSteps.map((step, index) => (
-            <div key={step} className="relative rounded-2xl border border-[#dfe7ee] bg-white p-4 shadow-[0_10px_24px_rgba(16,32,51,0.04)]">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#15803D] text-xs font-black text-white">{index + 1}</span>
-              <p className="mt-3 text-sm font-extrabold leading-5 text-[#102033]">{step}</p>
-              {index < mechanismSteps.length - 1 ? (
-                <ArrowRight className="absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 rounded-full border border-[#cfe8d5] bg-white p-1 text-[#15803D] md:block" aria-hidden="true" />
-              ) : null}
-            </div>
-          ))}
-        </div>
+      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        {["Workflow Status", "Invoice Performance", "Next Up"].map((label) => (
+          <div key={label} className="rounded-[1rem] border border-[#cfe8d5] bg-white px-4 py-3 shadow-[0_8px_18px_rgba(7,20,34,0.045)]">
+            <p className="text-base font-extrabold tracking-[-0.02em] text-[#102033] md:text-sm">{label}</p>
+          </div>
+        ))}
       </div>
-      <p className="mt-5 rounded-2xl border border-[#e4ded3] bg-[#fbfaf7] p-4 text-sm font-semibold leading-6 text-[#536173]">
-        Scenario math, not a guarantee: if $40,000 of finished work sits 30 days longer than it should, that is $40,000 the owner cannot use for payroll, materials, ads, or growth during that month.
-      </p>
-    </section>
-  )
-}
-
-const baseComponents = [
-  ["A", "Finished-job trigger", "A clear signal when work is complete and ready for billing review."],
-  ["B", "Billing-ready checklist", "The office can see missing job details before an invoice stalls."],
-  ["C", "Invoice handoff view", "Jobs that can be invoiced are separated from jobs that need cleanup."],
-  ["D", "Missing-info request", "The next person gets a plain request for what billing needs."],
-  ["E", "Invoice-to-final-bill automation", "Stanley Systems can automate the owner-approved path from invoice-ready handoff through final bill follow-up."],
-  ["F", "Invoice-sent record", "Sent invoices stay tied to the job path instead of disappearing into email."],
-  ["G", "Open-balance tracker", "Unpaid invoices stay visible until the next follow-up happens."],
-  ["H", "Owner/office view", "The business can see which jobs are waiting, ready, sent, or unpaid."],
-  ["I", "Exception alerts", "Problem jobs get surfaced without promising automatic collection."],
-  ["J", "Handoff notes", "The system preserves what happened so the next person is not starting cold."],
-]
-
-const setupItems = [
-  "Map the current job-complete, invoice, and payment-follow-up path.",
-  "Confirm which tools hold jobs, invoices, customer records, and payment status.",
-  "Build the handoff checks, reminders, invoice-to-final-bill automation, and visibility layer around the existing office workflow.",
-  "Review fit, access, and scope before implementation begins after checkout.",
-]
-
-const bestFit = [
-  "Service businesses where completed work often waits before invoicing.",
-  "Teams with office handoffs between field staff, admin, owner, or bookkeeper.",
-  "Companies that already have enough invoice volume for delayed billing to matter.",
-  "Owners who want fewer manual checks without changing their whole software stack first.",
-]
-
-const faqs = [
-  {
-    question: "Does Cashflow Control System collect money automatically?",
-    answer:
-      "No. It helps finished work move toward billing, follow-up, and visibility. It does not guarantee customer payment behavior or replace your payment processor, accountant, or collections policy.",
-  },
-  {
-    question: "Do I need the Workflow Audit first?",
-    answer:
-      "No. You can buy Cashflow Control directly. The Workflow Audit is the safer first step if you are not sure whether the bigger leak is billing, repeat revenue, both, or neither.",
-  },
-  {
-    question: "What happens after I buy?",
-    answer:
-      "Checkout starts onboarding and implementation intake. Stanley Systems reviews fit, access, and scope before implementation proceeds, then may refund, redirect, pause, or propose custom scope before work begins if the fit is not right.",
-  },
-  {
-    question: "Will this replace my accounting software?",
-    answer:
-      "No. The goal is to improve the handoff around the tools your business already uses, not force a full software migration.",
-  },
-]
-
-function SectionHeader({ title, copy }: { title: string; copy: string }) {
-  return (
-    <div className="mx-auto max-w-3xl text-center">
-      <h2 className="text-[2rem] font-semibold leading-tight tracking-[-0.03em] text-[#102033] sm:text-5xl">{title}</h2>
-      <p className="mt-3 text-base leading-7 text-[#536173] sm:text-lg">{copy}</p>
-    </div>
-  )
-}
-
-function PrimaryCTACluster({ location }: { location: string }) {
-  return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-      <CTALink
-        href={monthlyPlan.stripePaymentLink.url}
-        kind="checkout"
-        location={`${location}_cashflow_control_monthly`}
-        analyticsEvent="package_checkout_clicked"
-        analyticsSource="cashflow_control_page"
-        packageId={monthlyPlan.analyticsPackageId}
-        packageName={monthlyPlan.publicName}
-        billingPeriod={monthlyPlan.billingPeriod}
-        ctaLabel="Buy Cashflow Control"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]"
-      >
-        Buy Cashflow Control
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-      </CTALink>
-      <CTALink
-        href={workflowAudit.stripePaymentLink.url}
-        kind="checkout"
-        location={`${location}_workflow_audit`}
-        analyticsEvent="audit_checkout_clicked"
-        analyticsSource="cashflow_control_page"
-        packageId="workflow_audit"
-        packageName="Workflow Audit"
-        billingPeriod="one_time"
-        ctaLabel="Start with Workflow Audit"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#cbd8c7] bg-white px-6 py-3 text-sm font-bold text-[#116832] shadow-[0_10px_24px_rgba(16,32,51,0.05)] transition hover:border-[#15803D] hover:bg-[#f7fcf7]"
-      >
-        Start with Workflow Audit
-      </CTALink>
-    </div>
+      <MetricStrip className="mt-5" columns={2} items={digestItems} />
+    </DiagramPanel>
   )
 }
 
@@ -198,135 +220,210 @@ export default function CashflowControlPage() {
     <>
       <GlassmorphismNav />
       <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
-        <section className="relative px-4 pb-12 pt-32 sm:px-6 sm:pb-16 lg:px-8 lg:pt-36">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.72fr)] lg:items-center">
+        <section className="relative isolate overflow-hidden px-6 pb-18 pt-32 md:pb-24 lg:px-8 lg:pt-36">
+          <span aria-hidden="true" className="pointer-events-none absolute -left-24 top-24 -z-10 size-80 rounded-full bg-[rgba(21,128,61,0.08)] blur-3xl" />
+          <span aria-hidden="true" className="pointer-events-none absolute -right-24 bottom-14 -z-10 size-96 rounded-full bg-[rgba(21,128,61,0.06)] blur-3xl" />
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(500px,1.05fr)] lg:items-center">
             <div>
-              <h1 className="max-w-5xl text-[3rem] font-semibold leading-[0.96] tracking-[-0.055em] text-[#071421] sm:text-[4.35rem] lg:text-[4.8rem] xl:text-[5.25rem]">
-                Turn finished work into collected cash <span className="inline-block text-[1.12em] italic tracking-[-0.06em]">faster.</span>
-              </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#455467] sm:text-xl">
-                Cashflow Control System builds the office path that moves completed jobs from invoice-ready handoff through final bill follow-up and visible open balances inside the tools your team already uses.
-              </p>
-              <div className="mt-7">
-                <PrimaryCTACluster location="cashflow_control_hero" />
+              <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#cfe8d5] bg-white px-4 py-2 text-sm font-bold text-[#116832] shadow-[0_10px_24px_rgba(7,20,34,0.05)]">
+                <IconMedallion icon="shield-check" size="sm" />
+                Cashflow Control System
               </div>
-              <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#607080]">
-                {packageScopeNote}
+              <DisplayHeadline
+                as="h1"
+                align="left"
+                size="page"
+                before="Turn finished work into"
+                highlight="collected cash faster."
+                className="max-w-5xl"
+              />
+              <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-[#455467] sm:text-xl">
+                Turn finished work into collected cash faster. Stanley Systems helps service businesses tighten the path from customer intake to billing handoff, invoice follow-up, human exceptions, and owner-visible money leak reporting.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <StanleyButton href={monthlyPlan.stripePaymentLink.url} size="xl" aria-label="Start Cashflow Control System checkout">
+                  Start Cashflow Control
+                </StanleyButton>
+                <StanleyButton href={workflowAudit.stripePaymentLink.url} variant="secondary" size="xl" aria-label="Book a Workflow Audit for Cashflow Control System">
+                  Book a Workflow Audit
+                </StanleyButton>
+              </div>
+              <p className="mt-4 text-base font-semibold leading-7 text-[#455467] md:text-sm md:leading-6">
+                Cashflow Control starts at <span className="text-[#102033]">{monthlyPlan.priceDisplay}</span>. Yearly option: {yearlyPlan.priceDisplay} with installation waived.
               </p>
             </div>
-
-            <div className="rounded-[2rem] border border-[#d8e5dd] bg-white p-5 shadow-[0_24px_70px_rgba(16,32,51,0.1)] sm:p-6">
-              <div className="rounded-[1.5rem] border border-[#bfe4c8] bg-[#eef9f2] p-4">
-                <p className="text-sm font-bold text-[#116832]">Cashflow Control Monthly</p>
-                <p className="mt-2 text-[2.5rem] font-semibold tracking-[-0.05em] text-[#102033]">{monthlyPlan.priceDisplay}</p>
-                <p className="text-sm font-semibold leading-6 text-[#536173]">{monthlyPlan.setupFeeDisplay} at checkout. Audit buyers can use the monthly audit credit.</p>
-              </div>
-              <div className="mt-4 grid gap-3 text-sm font-semibold leading-6 text-[#26374b]">
-                <div className="flex items-start gap-2 rounded-2xl border border-[#e0e8ef] bg-[#f8fbfc] p-3">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#15803D]" />
-                  Finished-job to billing-ready handoff.
-                </div>
-                <div className="flex items-start gap-2 rounded-2xl border border-[#e0e8ef] bg-[#f8fbfc] p-3">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#15803D]" />
-                  Invoice-to-final-bill automation and open-balance visibility.
-                </div>
-                <div className="flex items-start gap-2 rounded-2xl border border-[#e0e8ef] bg-[#f8fbfc] p-3">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#15803D]" />
-                  Yearly option: {yearlyPlan.priceDisplay} with installation waived.
-                </div>
-              </div>
-            </div>
+            <HeroDashboardPanel />
           </div>
         </section>
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-16 sm:px-6 lg:px-8">
-          <CashflowMechanismVisual />
-
-          <section className="rounded-[2rem] border border-[#e4ded3] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <SectionHeader title="The billing leaks it is built to fix." copy="Cashflow Control System is for office-side bottlenecks after the work is already earned." />
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
-              {fixes.map((fix) => (
-                <div key={fix} className="flex gap-3 rounded-2xl border border-[#dfe7ee] bg-[#f8fbfc] p-4 text-sm font-semibold leading-6 text-[#26374b]">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                  <span>{fix}</span>
-                </div>
-              ))}
+        <SystemPageSection
+          id="how-cashflow-control-works"
+          tone="white"
+          title="Customer intake becomes a"
+          accent="billing-ready path."
+          description="Clean customer intake keeps billing from breaking later. It gives the office a cleaner handoff from the first customer request to the moment finished work is ready to bill."
+          className="py-14 md:py-24"
+        >
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.8fr)]">
+            <DiagramPanel
+              icon="file-estimate"
+              title="Intake and billing stay connected."
+              subtitle="When a job is marked complete, the billing path starts automatically."
+              tone="mint"
+            >
+              <FlowSequence steps={intakeBillingSteps} connectorLabel="keeps context for" />
+            </DiagramPanel>
+            <div className="grid gap-4">
+              <FeatureTile
+                icon="message-bubble"
+                title="Missing details routed before invoice"
+                description="Incomplete jobs move to the right person before billing waits."
+              />
+              <FeatureTile
+                icon="file-invoice"
+                title="On track for same-day billing"
+                description="Clean completions go straight into a billing-ready queue."
+              />
             </div>
-          </section>
-
-          <section className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <SectionHeader title="Included base components A-J." copy="The build is practical office infrastructure, not speculative finance software." />
-            <div className="mt-7 grid gap-3 md:grid-cols-2">
-              {baseComponents.map(([letter, title, body]) => (
-                <article key={letter} className="rounded-2xl border border-[#e2e8ef] bg-[#fbfcfd] p-4">
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-sm font-black text-white">{letter}</span>
-                    <div>
-                      <h3 className="text-base font-bold text-[#102033]">{title}</h3>
-                      <p className="mt-1 text-sm leading-6 text-[#536173]">{body}</p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-            <div className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#102033] sm:text-4xl">Setup and infrastructure.</h2>
-              <ul className="mt-5 space-y-3">
-                {setupItems.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm font-semibold leading-6 text-[#26374b]">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-[2rem] border border-[#dfe7ee] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#102033] sm:text-4xl">Best fit.</h2>
-              <ul className="mt-5 space-y-3">
-                {bestFit.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm font-semibold leading-6 text-[#26374b]">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
-          <section className="rounded-[2rem] border border-[#bfe4c8] bg-[#eef9f2] p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#102033] sm:text-4xl">Ready to tighten the billing path?</h2>
-                <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">
-                  {cashflowScopeLine}
-                </p>
-                <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">
-                  {packageScopeNote}
-                </p>
-              </div>
-              <PrimaryCTACluster location="cashflow_control_midpage" />
-            </div>
-          </section>
-
-          <section className="rounded-[2rem] border border-[#e4ded3] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
-            <SectionHeader title="Practical FAQ." copy="Plain answers before you buy Cashflow Control System." />
-            <div className="mt-7 grid gap-4 lg:grid-cols-2">
-              {faqs.map((faq) => (
-                <article key={faq.question} className="rounded-2xl border border-[#dfe7ee] bg-[#f8fbfc] p-5">
-                  <h3 className="text-lg font-bold text-[#102033]">{faq.question}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#536173]">{faq.answer}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <div className="text-center text-sm font-semibold text-[#607080]">
-            Need to compare both systems first? <Link href="/pricing#compare-systems" className="font-bold text-[#116832] underline underline-offset-4">Compare systems on pricing</Link>.
           </div>
-        </div>
+        </SystemPageSection>
+
+        <SystemPageSection
+          tone="white"
+          title="The system handles clean paths and"
+          accent="human exceptions."
+          description="Cashflow Control flags the exception, routes the context, and brings the record back into the path once a person decides."
+          className="py-14 md:py-24"
+        >
+          <div className="grid gap-6 lg:grid-cols-[minmax(360px,0.72fr)_minmax(0,1.28fr)]">
+            <div className="grid gap-4">
+              <AlertPanel
+                icon="message-bubble"
+                title="Completed job missing details"
+                description="A note, approval, price, or customer answer is missing."
+                tone="attention"
+              >
+                <div className="grid gap-2 text-sm font-semibold text-[#102033]">
+                  <span>Assigned to: Office manager</span>
+                  <span>Next steps: clear the detail, then resume billing.</span>
+                </div>
+              </AlertPanel>
+              <AlertPanel
+                icon="shield-check"
+                title="Clean Handoff Automated"
+                description="Clean records move from Field / Job Software into Accounting Software."
+                tone="recovery"
+              />
+            </div>
+            <DiagramPanel
+              icon="shield-check"
+              title="Exception handoff path"
+              subtitle="Blocked cash gets routed with enough context to make a decision and keep moving."
+              tone="mint"
+            >
+              <FlowSequence steps={exceptionSteps} connectorLabel="routes to" />
+            </DiagramPanel>
+          </div>
+        </SystemPageSection>
+
+        <SystemPageSection
+          tone="white"
+          title="Weekly Money Leak Digest shows billing gaps before they"
+          accent="create collection delays."
+          description="The office fixes today’s issues. Leadership sees the pattern before delays compound."
+          className="py-14 md:py-24"
+        >
+          <DiagramPanel
+            icon="dollar-circle"
+            title="Weekly Money Leak Digest"
+            subtitle="The report separates real cash blockers from general office noise. Quoted work gets a next step before it goes cold."
+            tone="mint"
+            footer={
+              <p className="text-base font-bold leading-7 text-[#116832]">
+                Cash is the goal. Systems are how you get there.
+              </p>
+            }
+          >
+            <div className="grid gap-4 md:grid-cols-3">
+              <FeatureTile
+                icon="file-invoice"
+                title="A/R Follow-Up Automation"
+                description="Open invoices get a next action before they age into owner stress."
+                density="compact"
+                medallion={false}
+              />
+              <FeatureTile
+                icon="file-invoice"
+                title="Aging Buckets"
+                description="Sent invoices that need follow-up before collection gets stale."
+                density="compact"
+                medallion={false}
+              />
+              <FeatureTile
+                icon="shield-check"
+                title="Escalation Logic"
+                description="Human exceptions that need owner, manager, or office review."
+                density="compact"
+                medallion={false}
+              />
+              <FeatureTile
+                icon="file-estimate"
+                title="Open Estimate Recovery"
+                description="Quoted work gets a next step before it goes cold."
+                density="compact"
+                medallion={false}
+              />
+              <FeatureTile
+                icon="message-bubble"
+                title="Office Exception Inbox"
+                description="Missing details and billing blockers land in one visible queue."
+                density="compact"
+                medallion={false}
+              />
+              <FeatureTile
+                icon="dollar-circle"
+                title="Weekly Money Leak Digest"
+                description="Owners see earned money that has not become collected cash yet."
+                density="compact"
+                medallion={false}
+              />
+            </div>
+          </DiagramPanel>
+        </SystemPageSection>
+
+        <SystemPageSection
+          tone="mint"
+          title="The invoice moves when the details are there."
+          accent="Stanley Systems watches where bills actually get created."
+          description="Cashflow Control works by finding the handoff points already inside the business, then turning those points into a tighter path with owner visibility."
+          className="py-12 md:py-24"
+        >
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {sourceScanTiles.map(([icon, title, description]) => (
+              <SupportTile
+                key={title}
+                icon={icon}
+                title={title}
+                description={description}
+                descriptionClassName="hidden md:block"
+                className="p-4 md:p-6"
+              />
+            ))}
+          </div>
+
+          <SystemCTA
+            className="mt-10"
+            icon="dollar-circle"
+            title="Stop letting finished work sit between the job and the bank."
+            description="The next step is a Workflow Audit: map the intake path, billing source records, invoice follow-up, exception handoffs, and weekly owner digest before build scope starts."
+            primaryAction={{ label: "Start Cashflow Control", href: monthlyPlan.stripePaymentLink.url, ariaLabel: "Start Cashflow Control System checkout" }}
+            secondaryAction={{ label: "Book a Workflow Audit", href: workflowAudit.stripePaymentLink.url, ariaLabel: "Book a Workflow Audit checkout" }}
+          >
+            <p className="text-base font-semibold leading-7 text-[#455467]">
+              Package price: <span className="font-extrabold text-[#102033]">{monthlyPlan.priceDisplay}</span>. Yearly option: {yearlyPlan.priceDisplay} with installation waived.
+            </p>
+          </SystemCTA>
+        </SystemPageSection>
       </main>
       <Footer />
     </>
