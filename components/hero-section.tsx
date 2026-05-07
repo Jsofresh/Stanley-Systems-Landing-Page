@@ -8,10 +8,10 @@ import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 const headline = "Make Your Business More Money With Less Office Work"
 const subheadline = "Move finished work into cash faster, keep repeat revenue from slipping, and give the owner fewer office hours to carry."
 
-const heroVideoVersion = "still-hold-ff751e66-v2"
+const heroVideoVersion = "manual-clock-20260507"
 const heroVideo = {
-  webm: `/hero-videos/hero-video-1.webm?v=${heroVideoVersion}`,
   mp4: `/hero-videos/hero-video-1.mp4?v=${heroVideoVersion}`,
+  webm: `/hero-videos/hero-video-1.webm?v=${heroVideoVersion}`,
   poster: `/hero-videos/hero-video-poster.jpg?v=${heroVideoVersion}`,
 }
 
@@ -110,28 +110,47 @@ function HeroVideoLoop() {
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
-    const playHeroVideo = () => {
-      const video = videoRef.current
-      if (!video) return
-      video.muted = true
-      const playPromise = video.play()
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {
-          // Browser autoplay policies can still pause muted video in edge cases
-          // such as low-power modes. The next visibility/focus event retries.
-        })
+    const video = videoRef.current
+    if (!video) return
+
+    const durationSeconds = 25
+    const framesPerSecond = 12
+    let startedAt = window.performance.now()
+
+    const advanceManualTimeline = () => {
+      const currentVideo = videoRef.current
+      if (!currentVideo || currentVideo.readyState < 1) return
+
+      const elapsedSeconds = ((window.performance.now() - startedAt) / 1000) % durationSeconds
+      if (Math.abs(currentVideo.currentTime - elapsedSeconds) > 0.08) {
+        currentVideo.currentTime = elapsedSeconds
+      }
+      if (!currentVideo.paused) {
+        currentVideo.pause()
       }
     }
 
-    playHeroVideo()
-    document.addEventListener("visibilitychange", playHeroVideo)
-    window.addEventListener("focus", playHeroVideo)
-    window.addEventListener("pageshow", playHeroVideo)
+    const resetClockAfterPageRestore = () => {
+      startedAt = window.performance.now() - (video.currentTime || 0) * 1000
+      advanceManualTimeline()
+    }
+
+    video.muted = true
+    video.preload = "auto"
+    video.load()
+
+    const interval = window.setInterval(advanceManualTimeline, 1000 / framesPerSecond)
+    video.addEventListener("loadedmetadata", advanceManualTimeline)
+    document.addEventListener("visibilitychange", resetClockAfterPageRestore)
+    window.addEventListener("focus", resetClockAfterPageRestore)
+    window.addEventListener("pageshow", resetClockAfterPageRestore)
 
     return () => {
-      document.removeEventListener("visibilitychange", playHeroVideo)
-      window.removeEventListener("focus", playHeroVideo)
-      window.removeEventListener("pageshow", playHeroVideo)
+      window.clearInterval(interval)
+      video.removeEventListener("loadedmetadata", advanceManualTimeline)
+      document.removeEventListener("visibilitychange", resetClockAfterPageRestore)
+      window.removeEventListener("focus", resetClockAfterPageRestore)
+      window.removeEventListener("pageshow", resetClockAfterPageRestore)
     }
   }, [])
 
@@ -140,16 +159,15 @@ function HeroVideoLoop() {
       key={heroVideoVersion}
       ref={videoRef}
       data-hero-video="true"
+      data-hero-manual-timeline="true"
       poster={heroVideo.poster}
-      autoPlay
       muted
-      loop
       playsInline
       preload="auto"
       className="h-full w-full object-cover saturate-[0.82] contrast-[1.05] brightness-[0.92]"
     >
-      <source src={heroVideo.webm} type="video/webm" />
       <source src={heroVideo.mp4} type="video/mp4" />
+      <source src={heroVideo.webm} type="video/webm" />
     </video>
   )
 }
