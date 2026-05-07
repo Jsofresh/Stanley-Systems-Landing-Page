@@ -578,3 +578,53 @@ export function CompletedJobDisplayAsset(props: DisplayAssetProps) {
   )
 }
 
+export function UploadedRevenueDropWarningDisplayAsset(props: DisplayAssetProps) {
+  return (
+    <StanleyDisplayAsset
+      {...props}
+      src="/visual-kit/display-assets/uploaded-revenue-drop-warning-display.png"
+      defaultAlt="Revenue drop warning display asset"
+    />
+  )
+}
+
+export function UploadedPhoneCallGrowthDisplayAsset(props: DisplayAssetProps) {
+  return (
+    <StanleyDisplayAsset
+      {...props}
+      src="/visual-kit/display-assets/uploaded-phone-call-growth-display.png"
+      defaultAlt="Phone call growth display asset"
+    />
+  )
+}
+
+export function UploadedEstimateCalculatorDisplayAsset(props: DisplayAssetProps) {
+  return (
+    <StanleyDisplayAsset
+      {...props}
+      src="/visual-kit/display-assets/uploaded-estimate-calculator-display.png"
+      defaultAlt="Estimate calculator display asset"
+    />
+  )
+}
+
+export function UploadedShieldCheckDisplayAsset(props: DisplayAssetProps) {
+  return (
+    <StanleyDisplayAsset
+      {...props}
+      src="/visual-kit/display-assets/uploaded-shield-check-display.png"
+      defaultAlt="Shield check display asset"
+    />
+  )
+}
+
+export function UploadedInvoiceClockWarningDisplayAsset(props: DisplayAssetProps) {
+  return (
+    <StanleyDisplayAsset
+      {...props}
+      src="/visual-kit/display-assets/uploaded-invoice-clock-warning-display.png"
+      defaultAlt="Invoice clock warning display asset"
+    />
+  )
+}
+

@@ -59,9 +59,9 @@ const pricingPreview = [
 export function PricingSection() {
   return (
     <section
-      id="systems"
+      id="pricing-preview"
       data-audit-page="/"
-      data-audit-section="home.systems"
+      data-audit-section="home.pricing-preview"
       data-audit-priority="5"
       data-audit-offer="Cashflow Control System, Repeat Revenue System"
       data-audit-purpose="Explain the two approved Stanley Systems implementation systems without inventing offers."
