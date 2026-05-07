@@ -4,15 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Calculator, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
-import { CheckCircle } from "@/components/visual-kit/primitives/check-circle"
-import { DollarCircle } from "@/components/visual-kit/primitives/dollar-circle"
-import { FileEstimate } from "@/components/visual-kit/primitives/file-estimate"
-import { FileInvoice } from "@/components/visual-kit/primitives/file-invoice"
-import { MessageBubble } from "@/components/visual-kit/primitives/message-bubble"
-import { PhoneMissed } from "@/components/visual-kit/primitives/phone-missed"
-import { ShieldCheck } from "@/components/visual-kit/primitives/shield-check"
-import { TrendUp } from "@/components/visual-kit/primitives/trend-up"
-import { Users } from "@/components/visual-kit/primitives/users"
 
 const headline = "Make Your Business More Money With Less Office Work"
 const subheadline = "Move finished work into cash faster, keep repeat revenue from slipping, and give the owner fewer office hours to carry."
@@ -24,13 +15,10 @@ const heroVideo = {
   poster: `/hero-videos/hero-video-poster.jpg?v=${heroVideoVersion}`,
 }
 
-type NavIconKey = "dollar" | "invoice" | "estimate" | "phone" | "message" | "trend" | "users" | "shield" | "check"
-
 type MegaMenuItem = {
   label: string
   href: string
   description?: string
-  icon: NavIconKey
 }
 
 type MegaMenuGroup = {
@@ -49,17 +37,6 @@ type MegaMenuGroup = {
   }
 }
 
-const navIconMap = {
-  dollar: DollarCircle,
-  invoice: FileInvoice,
-  estimate: FileEstimate,
-  phone: PhoneMissed,
-  message: MessageBubble,
-  trend: TrendUp,
-  users: Users,
-  shield: ShieldCheck,
-  check: CheckCircle,
-}
 
 const navGroups: MegaMenuGroup[] = [
   {
@@ -70,14 +47,14 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(690px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-[1fr_230px]",
     items: [
-      { label: "Cashflow Control System", href: "/systems/cashflow-control", icon: "invoice", description: "Turn finished work into collected cash faster." },
-      { label: "Repeat Revenue System", href: "/systems/repeat-revenue", icon: "trend", description: "Bring back past customers, reviews, referrals, and missed calls." },
-      { label: "Both Systems", href: "/pricing", icon: "dollar", description: "Fix cash movement and repeat revenue together." },
+      { label: "Cashflow Control System", href: "/systems/cashflow-control", description: "Turn finished work into collected cash faster." },
+      { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "Bring back past customers, reviews, referrals, and missed calls." },
+      { label: "Both Systems", href: "/workflow-audit", description: "Compare the first leak before buying a system." },
     ],
     featured: {
       title: "Not sure where money is stuck?",
       copy: "Start with the Workflow Audit before buying a system.",
-      href: "#final-audit",
+      href: "/workflow-audit",
       cta: "Start with the Workflow Audit",
     },
   },
@@ -89,33 +66,33 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(620px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-2",
     items: [
-      { label: "HVAC", href: "/who-stanley-systems-helps", icon: "check" },
-      { label: "Plumbing", href: "/who-stanley-systems-helps", icon: "check" },
-      { label: "Electrical", href: "/who-stanley-systems-helps", icon: "check" },
-      { label: "Marine", href: "/marine-service-automation", icon: "check" },
-      { label: "Landscaping", href: "/who-stanley-systems-helps", icon: "check" },
-      { label: "Roofing", href: "/who-stanley-systems-helps", icon: "check" },
-      { label: "General Contractors", href: "/who-stanley-systems-helps", icon: "check" },
-      { label: "Adjacent Service Businesses", href: "/who-stanley-systems-helps", icon: "check" },
+      { label: "HVAC", href: "/who-stanley-systems-helps" },
+      { label: "Plumbing", href: "/who-stanley-systems-helps" },
+      { label: "Electrical", href: "/who-stanley-systems-helps" },
+      { label: "Marine", href: "/marine-service-automation" },
+      { label: "Landscaping", href: "/who-stanley-systems-helps" },
+      { label: "Roofing", href: "/who-stanley-systems-helps" },
+      { label: "General Contractors", href: "/who-stanley-systems-helps" },
+      { label: "Adjacent Service Businesses", href: "/who-stanley-systems-helps" },
     ],
     featured: {
       title: "Busy team, messy handoff?",
       copy: "Stanley Systems works around the tools your crews already use.",
-      href: "#final-audit",
+      href: "/workflow-audit",
       cta: "Book the Workflow Audit",
     },
   },
   {
     label: "Workflow Audit",
-    href: "#final-audit",
+    href: "/workflow-audit",
     eyebrow: "Find the first fix",
     summary: "The audit finds the money leak before the system gets built.",
     widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Workflow Audit", href: "#final-audit", icon: "shield", description: "Find the money leak before buying a system." },
-      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", icon: "dollar", description: "Run the numbers before the audit." },
-      { label: "How the Audit Works", href: "/how-stanley-systems-works", icon: "estimate", description: "See what Stanley Systems checks first." },
+      { label: "Workflow Audit", href: "/workflow-audit", description: "Find the money leak before buying a system." },
+      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the audit." },
+      { label: "How the Audit Works", href: "/how-stanley-systems-works", description: "See what Stanley Systems checks first." },
     ],
   },
   {
@@ -126,10 +103,10 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(440px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", icon: "dollar", description: "Estimate where cash and follow-up are slipping." },
-      { label: "Case Notes", href: "/stanley-systems-case-study", icon: "message", description: "See how workflow gaps turn into owner-time problems." },
-      { label: "Blog", href: "/blog", icon: "estimate", description: "Plain-English notes on cashflow and repeat revenue." },
-      { label: "Contact", href: "/contact", icon: "phone", description: "Send the workflow problem straight to Stanley Systems." },
+      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate where cash and follow-up are slipping." },
+      { label: "Case Notes", href: "/stanley-systems-case-study", description: "See how workflow gaps turn into owner-time problems." },
+      { label: "Blog", href: "/blog", description: "Plain-English notes on cashflow and repeat revenue." },
+      { label: "Contact", href: "/contact", description: "Send the workflow problem straight to Stanley Systems." },
     ],
   },
 ]
@@ -363,11 +340,11 @@ export function SiteHeader() {
           </nav>
           <div className="hidden items-center gap-3 md:flex">
             <CTALink
-              href="#final-audit"
+              href="/workflow-audit"
               kind="systems"
               location="hero_nav_audit"
               ctaLabel="Book the Workflow Audit"
-              className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-4 text-[13px] font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-5"
+              className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-4 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-5"
             >
               Book the Workflow Audit
             </CTALink>
@@ -393,31 +370,25 @@ export function SiteHeader() {
             <div className={`grid gap-3 ${selectedMenu.featured ? selectedMenu.columnsClass : "grid-cols-1"}`}>
               <div>
                 <div className="border-b border-[#dcece3] px-2 pb-3">
-                  <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#15803D]">{selectedMenu.eyebrow}</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#15803D]">{selectedMenu.eyebrow}</p>
                   <p className="mt-1 max-w-[34rem] text-[13px] font-semibold leading-5 text-[#526172]">{selectedMenu.summary}</p>
                 </div>
                 <div className={`mt-3 grid gap-1.5 ${selectedMenu.columnsClass === "grid-cols-2" ? "grid-cols-2" : "grid-cols-1"}`}>
-                  {selectedMenu.items.map((item) => {
-                    const Icon = navIconMap[item.icon]
-                    return (
+                  {selectedMenu.items.map((item) => (
                       <a
                         key={item.label}
                         href={item.href}
                         className="group flex gap-3 rounded-xl border border-transparent p-3 transition hover:border-[#bfe8cc] hover:bg-[#f0fbf4] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D]"
                       >
-                        <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#e9f8ef] text-[#15803D] ring-1 ring-[#c8ead4]">
-                          <Icon size={20} ariaLabel="" />
-                        </span>
-                        <span className="min-w-0">
-                          <span className="flex items-center gap-2 text-[14px] font-extrabold tracking-[-0.012em] text-[#0B1F33]">
+                        <span className="min-w-0 flex-1">
+                          <span className="flex items-center gap-2 text-[14px] font-bold tracking-[-0.012em] text-[#0B1F33]">
                             {item.label}
                             <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#15803D] opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden="true" />
                           </span>
                           {item.description ? <span className="mt-1 block text-[12.5px] font-semibold leading-5 text-[#5d6d7c]">{item.description}</span> : null}
                         </span>
                       </a>
-                    )
-                  })}
+                  ))}
                 </div>
               </div>
               {selectedMenu.featured ? (
@@ -426,10 +397,10 @@ export function SiteHeader() {
                   className="flex flex-col justify-between rounded-2xl border border-[#bfe8cc] bg-[linear-gradient(145deg,#f0fbf4,#ffffff)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition hover:-translate-y-0.5 hover:border-[#8bdbab] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D]"
                 >
                   <span>
-                    <span className="block text-[16px] font-extrabold leading-tight tracking-[-0.025em] text-[#0B1F33]">{selectedMenu.featured.title}</span>
+                    <span className="block text-[16px] font-bold leading-tight tracking-[-0.025em] text-[#0B1F33]">{selectedMenu.featured.title}</span>
                     <span className="mt-2 block text-[13px] font-semibold leading-5 text-[#526172]">{selectedMenu.featured.copy}</span>
                   </span>
-                  <span className="mt-4 inline-flex items-center text-[13px] font-extrabold text-[#15803D]">
+                  <span className="mt-4 inline-flex items-center text-[13px] font-bold text-[#15803D]">
                     {selectedMenu.featured.cta}
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" aria-hidden="true" />
                   </span>
@@ -448,7 +419,7 @@ export function SiteHeader() {
                   <div key={group.label} className="rounded-2xl border border-[#d9efe2] bg-white">
                     <button
                       type="button"
-                      className="flex w-full items-center justify-between px-4 py-3 text-left text-[15px] font-extrabold text-[#0B1F33]"
+                      className="flex w-full items-center justify-between px-4 py-3 text-left text-[15px] font-bold text-[#0B1F33]"
                       aria-expanded={expanded}
                       onClick={() => setMobileMenu(expanded ? null : group.label)}
                     >
@@ -457,31 +428,26 @@ export function SiteHeader() {
                     </button>
                     {expanded && (
                       <div className="border-t border-[#e3f0e8] px-3 pb-3 pt-2">
-                        {group.items.map((item) => {
-                          const Icon = navIconMap[item.icon]
-                          return (
-                            <a key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="flex gap-3 rounded-xl px-2 py-2.5 text-sm font-semibold text-[#516272] hover:bg-[#f0fbf4] hover:text-[#0B1F33] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D]">
-                              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#e9f8ef] text-[#15803D] ring-1 ring-[#c8ead4]">
-                                <Icon size={20} ariaLabel="" />
-                              </span>
-                              <span>
-                                <span className="block font-extrabold text-[#0B1F33]">{item.label}</span>
-                                {item.description ? <span className="mt-0.5 block leading-5 text-[#5d6d7c]">{item.description}</span> : null}
-                              </span>
-                            </a>
-                          )
-                        })}
+                        {group.items.map((item) => (
+                          <a key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="group flex items-start justify-between gap-3 rounded-xl px-2 py-2.5 text-sm font-semibold text-[#516272] hover:bg-[#f0fbf4] hover:text-[#0B1F33] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D]">
+                            <span className="min-w-0">
+                              <span className="block font-bold text-[#0B1F33]">{item.label}</span>
+                              {item.description ? <span className="mt-0.5 block leading-5 text-[#5d6d7c]">{item.description}</span> : null}
+                            </span>
+                            <ArrowRight className="mt-1 h-3.5 w-3.5 shrink-0 text-[#15803D] opacity-70 transition group-hover:translate-x-0.5" aria-hidden="true" />
+                          </a>
+                        ))}
                       </div>
                     )}
                   </div>
                 )
               })}
               <CTALink
-                href="#final-audit"
+                href="/workflow-audit"
                 kind="systems"
                 location="hero_mobile_nav_audit"
                 ctaLabel="Book the Workflow Audit"
-                className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
+                className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
               >
                 Book the Workflow Audit
               </CTALink>
@@ -520,7 +486,7 @@ export function HeroSection() {
           <div className="max-w-[42rem] xl:max-w-[44rem]">
             <h1
               aria-label={headline}
-              className="max-w-[700px] text-balance text-[clamp(1.72rem,7vw,2.42rem)] font-extrabold leading-[0.98] tracking-[-0.036em] text-white md:max-w-[720px] md:text-[clamp(1.85rem,2.47vw,2.76rem)]"
+              className="max-w-[700px] text-balance text-[clamp(1.72rem,7vw,2.42rem)] font-bold leading-[0.98] tracking-[-0.036em] text-white md:max-w-[720px] md:text-[clamp(1.85rem,2.47vw,2.76rem)]"
             >
               <span className="md:hidden">{headline}</span>
               <span className="hidden whitespace-nowrap md:block">Make Your Business More Money</span>
@@ -537,17 +503,17 @@ export function HeroSection() {
                 analyticsEvent="calculator_cta_clicked"
                 analyticsSource="homepage_hero"
                 ctaLabel="Find the Revenue Leaks"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
                 <Calculator className="mr-2 h-4 w-4" aria-hidden="true" />
                 Find the Revenue Leaks
               </CTALink>
               <CTALink
-                href="#final-audit"
+                href="/workflow-audit"
                 kind="systems"
                 location="home_hero_secondary"
                 ctaLabel="Book the Workflow Audit"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 text-base font-extrabold text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 text-base font-bold text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
                 Book the Workflow Audit
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />

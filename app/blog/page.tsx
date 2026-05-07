@@ -16,8 +16,7 @@ export default function BlogPage() {
               Plain-English articles for service-business owners who want to understand where the drag is coming from and what a clean fix actually looks like.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-slate-700">
-              <Link href="/about" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">About Stanley Systems</Link>
-              <Link href="/who-stanley-systems-helps" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Who Stanley Systems helps</Link>
+              <Link href="/contact" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Contact Stanley Systems</Link>
               <Link href="/how-stanley-systems-works" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">How Stanley Systems works</Link>
               <Link href="/stanley-systems-case-study" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Stanley Systems proof</Link>
               <Link href="/missed-estimate-follow-up-for-service-businesses" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Missed estimate follow-up</Link>

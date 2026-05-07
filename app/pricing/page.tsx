@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { GlassmorphismNav } from "@/components/glassmorphism-nav"
+import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
 import { PricingPage } from "@/components/pricing"
 
@@ -17,7 +17,7 @@ type PricingRouteProps = {
 export default function PricingRoute({ searchParams = {} }: PricingRouteProps) {
   return (
     <>
-      <GlassmorphismNav />
+      <SiteHeader />
       <PricingPage searchParams={searchParams} />
       <Footer />
     </>

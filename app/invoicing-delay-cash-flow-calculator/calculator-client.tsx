@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, CheckCircle2, Phone } from "lucide-react"
-import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 import {
   CheckCircleDisplayAsset,
   DollarCircleDisplayAsset,
@@ -25,10 +24,12 @@ type StepKey =
   | "followup"
   | "reviews"
   | "missedCalls"
+  | "calculating"
   | "results"
   | "cta";
 
-const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
+const auditHref = "/workflow-audit"
+const CALCULATOR_LOADING_DURATION_MS = 3400
 
 const STEP_ORDER: StepKey[] = [
   "intro",
@@ -493,7 +494,7 @@ function StepFrame({
 
           {children}
 
-          <div className="mt-6 grid w-full max-w-full grid-cols-1 gap-3 sm:mt-7 sm:grid-cols-2 lg:mt-8">
+          <div className="mt-6 grid w-full max-w-full grid-cols-1 gap-3 sm:mt-7 sm:grid-cols-[1fr_1fr_auto] sm:items-center lg:mt-8">
             <button
               type="button"
               onClick={onBack}
@@ -512,6 +513,12 @@ function StepFrame({
               {continueLabel}
               <ArrowRight className="ml-2 h-4 w-4" />
             </button>
+            <Link
+              href="/"
+              className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#d8d1c4] bg-white/70 px-4 py-2 text-sm font-semibold text-slate-500 transition hover:border-[#bfc8bd] hover:bg-[#fbfaf7] hover:text-slate-800 sm:min-h-11"
+            >
+              Back to site
+            </Link>
           </div>
         </div>
       </div>
@@ -656,6 +663,8 @@ export function InvoicingDelayCalculatorClient() {
   const [referralFollowup, setReferralFollowup] = useState<SimpleSystem>("no")
   const [missedCallRecovery, setMissedCallRecovery] = useState<MissedCallRecovery>("voicemail")
   const [missedCallsPerMonth, setMissedCallsPerMonth] = useState("12")
+  const [isCalculating, setIsCalculating] = useState(false)
+  const calculatingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const stepIndex = STEP_ORDER.indexOf(step)
   const progress = step === "intro" ? 6 : step === "cta" ? 100 : Math.round((stepIndex / (STEP_ORDER.length - 2)) * 100)
@@ -745,10 +754,29 @@ export function InvoicingDelayCalculatorClient() {
 
   const resultSummary = useMemo(() => createResultSummary(result), [result])
 
+  useEffect(() => {
+    return () => {
+      if (calculatingTimerRef.current) clearTimeout(calculatingTimerRef.current)
+    }
+  }, [])
+
   function next(nextStep?: StepKey) {
     if (nextStep) {
       setStep(nextStep)
       window.scrollTo({ top: 0, behavior: "smooth" })
+      return
+    }
+    if (step === "missedCalls") {
+      setIsCalculating(true)
+      setStep("calculating")
+      window.scrollTo({ top: 0, behavior: "smooth" })
+      const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+      const duration = reduceMotion ? 900 : CALCULATOR_LOADING_DURATION_MS
+      calculatingTimerRef.current = setTimeout(() => {
+        setIsCalculating(false)
+        setStep("results")
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      }, duration)
       return
     }
     const idx = STEP_ORDER.indexOf(step)
@@ -759,6 +787,11 @@ export function InvoicingDelayCalculatorClient() {
   }
 
   function back() {
+    if (calculatingTimerRef.current) {
+      clearTimeout(calculatingTimerRef.current)
+      calculatingTimerRef.current = null
+    }
+    setIsCalculating(false)
     const idx = STEP_ORDER.indexOf(step)
     if (idx > 0) {
       setStep(STEP_ORDER[idx - 1])
@@ -767,6 +800,27 @@ export function InvoicingDelayCalculatorClient() {
   }
 
   const frameProps = { progress, step, onBack: back, onNext: () => next() }
+
+  if (isCalculating || step === "calculating") {
+    return (
+      <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6" data-calculator-loading="true">
+        <style>{`
+          .calculator-load-bar { animation: calculatorLoad ${CALCULATOR_LOADING_DURATION_MS}ms cubic-bezier(.22,.74,.22,1) forwards; }
+          @keyframes calculatorLoad { from { transform: translateX(-100%); } to { transform: translateX(0%); } }
+          @media (prefers-reduced-motion: reduce) { .calculator-load-bar { animation-duration: 900ms; } }
+        `}</style>
+        <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
+          <div className="box-border w-full max-w-3xl overflow-hidden rounded-[1.8rem] border border-[#d9efe2] bg-[#071422] p-6 text-center text-white shadow-[0_30px_100px_rgba(7,20,34,0.24)] sm:rounded-[2.4rem] sm:p-10">
+            <div className="mx-auto h-2 w-full max-w-xl overflow-hidden rounded-full bg-white/12 ring-1 ring-white/10">
+              <div className="calculator-load-bar h-full w-full origin-left rounded-full bg-[#53d986] shadow-[0_0_28px_rgba(83,217,134,0.42)]" />
+            </div>
+            <h1 className="mt-8 text-[2.4rem] font-semibold leading-none tracking-[-0.045em] sm:text-[4rem]">Calculating...</h1>
+            <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-[#d7e5dc] sm:text-xl">Finding where revenue is still stuck.</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   const quizContent = (() => {
     if (step === "intro") {
@@ -1040,10 +1094,10 @@ export function InvoicingDelayCalculatorClient() {
     if (step === "results") {
       const summary = resultSummary
       const ctaLabel = summary.hasMeaningfulLeak
-        ? `Find Where ${summary.formattedCTAValue}/month Is Stuck`
+        ? `Find where ${summary.formattedCTAValue}/month is still stuck`
         : "Check the Workflow"
       const mobileCtaLabel = summary.hasMeaningfulLeak
-        ? `Find Where ${summary.formattedCTAValue}/mo Is Stuck`
+        ? `Find where ${summary.formattedCTAValue}/mo is stuck`
         : "Check the Workflow"
 
       const ResultIconHolder = ({ children }: { children: React.ReactNode }) => (
@@ -1063,9 +1117,7 @@ export function InvoicingDelayCalculatorClient() {
           </div>
           <Link
             href={auditHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-analytics-event="audit_checkout_clicked"
+            data-analytics-event="workflow_audit_clicked"
             data-analytics-source="calculator_results"
             data-cta-label={ctaLabel}
             data-cta-location={compact ? "calculator_results_mobile" : "calculator_results_desktop"}
@@ -1081,12 +1133,11 @@ export function InvoicingDelayCalculatorClient() {
       return (
         <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6">
           <style>{`
-            .result-reveal { opacity: 0; transform: translateY(10px); animation: resultReveal 560ms cubic-bezier(.2,.8,.2,1) forwards; }
-            .result-card-reveal { opacity: 0; transform: translateY(14px); animation: resultReveal 640ms cubic-bezier(.2,.8,.2,1) forwards; }
-            .result-cta-reveal { transform: translateY(6px); animation: ctaSettle 520ms cubic-bezier(.2,.8,.2,1) 920ms both; }
-            .driver-highlight { animation: driverGlow 900ms cubic-bezier(.2,.8,.2,1) 1.05s both; }
+            .result-reveal { opacity: 0; transform: translateY(12px); animation: resultReveal 480ms cubic-bezier(.2,.8,.2,1) forwards; }
+            .result-card-reveal { opacity: 0; transform: translateY(14px); animation: resultReveal 500ms cubic-bezier(.2,.8,.2,1) forwards; }
+            .result-cta-reveal { opacity: 0; transform: translateY(10px); animation: resultReveal 500ms cubic-bezier(.2,.8,.2,1) 1180ms forwards; }
+            .driver-highlight { animation: driverGlow 820ms cubic-bezier(.2,.8,.2,1) 1.1s both; }
             @keyframes resultReveal { to { opacity: 1; transform: translateY(0); } }
-            @keyframes ctaSettle { to { transform: translateY(0); } }
             @keyframes driverGlow { 0%, 100% { background-color: rgba(240,253,244,.72); border-color: rgba(187,247,208,.78); } 45% { background-color: rgba(220,252,231,.98); border-color: rgba(21,128,61,.34); } }
             @media (prefers-reduced-motion: reduce) { .result-reveal, .result-card-reveal, .result-cta-reveal, .driver-highlight { animation: none !important; opacity: 1 !important; transform: none !important; } }
           `}</style>
@@ -1099,16 +1150,16 @@ export function InvoicingDelayCalculatorClient() {
               </div>
 
               <div className="grid gap-2.5 lg:gap-3">
-                <div className="result-reveal rounded-[1.55rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#f4fbf5_0%,#ffffff_100%)] px-4 py-5 text-center shadow-[0_16px_48px_rgba(21,128,61,0.08)] sm:rounded-[2rem] sm:px-6 sm:py-6 lg:px-8 lg:py-4" style={{ animationDelay: "60ms" }}>
+                <div className="result-reveal rounded-[1.55rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#f4fbf5_0%,#ffffff_100%)] px-4 py-5 text-center shadow-[0_16px_48px_rgba(21,128,61,0.08)] sm:rounded-[2rem] sm:px-6 sm:py-6 lg:px-8 lg:py-4" style={{ animationDelay: "180ms" }}>
                   {summary.hasMeaningfulLeak ? (
                     <>
-                      <div className="result-reveal text-[2.65rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#15803D] sm:text-[4.2rem] lg:text-[4.75rem]" style={{ animationDelay: "120ms" }}>
+                      <div className="result-reveal text-[2.65rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#15803D] sm:text-[4.2rem] lg:text-[4.75rem]" style={{ animationDelay: "180ms" }}>
                         {summary.formattedHeadlineRange}/year
                       </div>
                       <h1 className="mx-auto mt-2 max-w-4xl text-[2rem] font-semibold leading-[1.02] tracking-tight text-slate-950 sm:text-[2.75rem] lg:text-[3.2rem]">
                         is leaking from your business.
                       </h1>
-                      <p className="result-reveal mx-auto mt-2 max-w-3xl text-base font-semibold leading-7 text-slate-800 sm:text-lg lg:text-base" style={{ animationDelay: "360ms" }}>
+                      <p className="result-reveal mx-auto mt-2 max-w-3xl text-base font-semibold leading-7 text-slate-800 sm:text-lg lg:text-base" style={{ animationDelay: "300ms" }}>
                         That is {summary.formattedMonthlyRange}/month before another lead is added.
                       </p>
                     </>
@@ -1117,7 +1168,7 @@ export function InvoicingDelayCalculatorClient() {
                       <h1 className="mx-auto max-w-4xl text-[1.8rem] font-semibold leading-[1.05] tracking-tight text-slate-950 sm:text-[2.45rem] lg:text-[3rem]">
                         Your answers show a smaller leak, but the Workflow Audit can still check the records.
                       </h1>
-                      <p className="result-reveal mx-auto mt-2 max-w-3xl text-base font-semibold leading-7 text-slate-800 sm:text-lg lg:text-base" style={{ animationDelay: "360ms" }}>
+                      <p className="result-reveal mx-auto mt-2 max-w-3xl text-base font-semibold leading-7 text-slate-800 sm:text-lg lg:text-base" style={{ animationDelay: "300ms" }}>
                         The safest next step is checking the real workflow before making a bigger claim.
                       </p>
                     </>
@@ -1126,7 +1177,7 @@ export function InvoicingDelayCalculatorClient() {
                 </div>
 
                 {summary.hasMeaningfulLeak ? (
-                  <div className="result-card-reveal" style={{ animationDelay: "560ms" }}>
+                  <div className="result-card-reveal" style={{ animationDelay: "430ms" }}>
                     <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-700">
                       <span className="h-px flex-1 bg-[#e8dfd0]" />
                       Cost of waiting
@@ -1134,9 +1185,9 @@ export function InvoicingDelayCalculatorClient() {
                     </div>
                     <div className="grid gap-2 sm:grid-cols-3">
                       {[
-                        ["30 days", summary.formattedCardValues.wait30Days, "620ms"],
-                        ["90 days", summary.formattedCardValues.wait90Days, "760ms"],
-                        ["12 months", summary.formattedCardValues.wait12Months, "900ms"],
+                        ["30 days", summary.formattedCardValues.wait30Days, "520ms"],
+                        ["90 days", summary.formattedCardValues.wait90Days, "640ms"],
+                        ["12 months", summary.formattedCardValues.wait12Months, "760ms"],
                       ].map(([label, value, delay]) => (
                         <div key={label} className="result-card-reveal rounded-[1rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-2 text-left" style={{ animationDelay: delay }}>
                           <div className="text-sm font-semibold text-slate-500">{label}</div>
@@ -1150,7 +1201,7 @@ export function InvoicingDelayCalculatorClient() {
                 <CtaBar compact />
 
                 <div className="grid gap-3 lg:grid-cols-2">
-                  <div className="result-card-reveal box-border flex w-full flex-col rounded-[1.15rem] border border-[#dcefe0] bg-white p-3.5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]" style={{ animationDelay: "980ms" }}>
+                  <div className="result-card-reveal box-border flex w-full flex-col rounded-[1.15rem] border border-[#dcefe0] bg-white p-3.5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]" style={{ animationDelay: "880ms" }}>
                     <div className="flex items-center gap-3">
                       <ResultIconHolder><DollarCircleDisplayAsset size={27} decorative /></ResultIconHolder>
                       <h2 className="min-w-0 text-xl font-semibold leading-6 tracking-tight text-slate-950">Cash earned, still stuck</h2>
@@ -1165,7 +1216,7 @@ export function InvoicingDelayCalculatorClient() {
                     <p className="mt-auto pt-3 text-xs leading-5 text-slate-500">Annualized cash check value: {summary.formattedCardValues.cashAnnual}</p>
                   </div>
 
-                  <div className="result-card-reveal box-border flex w-full flex-col rounded-[1.15rem] border border-[#dcefe0] bg-white p-3.5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]" style={{ animationDelay: "1080ms" }}>
+                  <div className="result-card-reveal box-border flex w-full flex-col rounded-[1.15rem] border border-[#dcefe0] bg-white p-3.5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]" style={{ animationDelay: "1000ms" }}>
                     <div className="flex items-center gap-3">
                       <ResultIconHolder><UsersDisplayAsset size={27} decorative /></ResultIconHolder>
                       <h2 className="min-w-0 text-xl font-semibold leading-6 tracking-tight text-slate-950">Past customers, still untouched</h2>
@@ -1181,7 +1232,7 @@ export function InvoicingDelayCalculatorClient() {
                   </div>
                 </div>
 
-                <div className="result-card-reveal flex flex-col gap-3 rounded-[1rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-2.5 text-left sm:flex-row sm:items-center" style={{ animationDelay: "1220ms" }}>
+                <div className="result-card-reveal flex flex-col gap-3 rounded-[1rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-2.5 text-left sm:flex-row sm:items-center" style={{ animationDelay: "1120ms" }}>
                   <ResultIconHolder><MessageBubbleDisplayAsset size={25} decorative /></ResultIconHolder>
                   <p className="text-sm leading-6 text-slate-700">
                     <span className="font-semibold text-slate-950">Plain English:</span> You already paid for the crew, the customer, and the office time. The money still waits because the follow-up depends on someone remembering. <span className="font-semibold text-slate-950">More leads make this leak bigger.</span>
@@ -1372,15 +1423,13 @@ export function InvoicingDelayCalculatorClient() {
             <div className="mt-8 grid w-full gap-3 sm:grid-cols-2 sm:justify-center lg:mt-10">
               <Link
                 href={auditHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-analytics-event="audit_checkout_clicked"
+                data-analytics-event="workflow_audit_clicked"
                 data-analytics-source="calculator_final_cta"
-                data-cta-label={resultSummary.hasMeaningfulLeak ? `Find Where ${resultSummary.formattedCTAValue}/month Is Stuck` : "Check the Workflow"}
+                data-cta-label={resultSummary.hasMeaningfulLeak ? `Find where ${resultSummary.formattedCTAValue}/month is still stuck` : "Check the Workflow"}
                 data-cta-location="calculator_final_cta"
                 className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#166534]"
               >
-                {resultSummary.hasMeaningfulLeak ? `Find Where ${resultSummary.formattedCTAValue}/month Is Stuck` : "Check the Workflow"}
+                {resultSummary.hasMeaningfulLeak ? `Find where ${resultSummary.formattedCTAValue}/month is still stuck` : "Check the Workflow"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <a href="tel:+16179586372" className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">

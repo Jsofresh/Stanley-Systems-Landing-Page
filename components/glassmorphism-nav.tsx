@@ -8,7 +8,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
 const calculatorHref = `${basePath}/invoicing-delay-cash-flow-calculator`
 
 const navigation = [
-  { name: "About", href: `${basePath}/about` },
+  { name: "Home", href: `${basePath}/` },
   { name: "Calculator", href: `${basePath || ""}/#calculator` },
   { name: "Pricing", href: `${basePath}/pricing` },
   { name: "Systems", href: `${basePath || ""}/#systems` },

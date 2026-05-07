@@ -27,6 +27,7 @@ type ProductSystem = {
   href: string
   analyticsLocation: string
   packageName: string
+  ctaLabel: string
   flowTitle: string
   bottomLine: string
   Icon: DisplayAsset
@@ -42,6 +43,7 @@ const systems: ProductSystem[] = [
     href: '/systems/cashflow-control',
     analyticsLocation: 'home_systems_cashflow_control',
     packageName: 'Cashflow Control System',
+    ctaLabel: 'See the Cashflow Control System',
     flowTitle: 'How cash starts moving',
     bottomLine: 'For shops where completed work still waits on office follow-up.',
     Icon: CashApprovedDisplayAsset,
@@ -59,6 +61,7 @@ const systems: ProductSystem[] = [
     href: '/systems/repeat-revenue',
     analyticsLocation: 'home_systems_repeat_revenue',
     packageName: 'Repeat Revenue System',
+    ctaLabel: 'See the Repeat Revenue System',
     flowTitle: 'How customers turn into booked work',
     bottomLine: 'For shops with old customers, happy customers, and missed calls sitting unused.',
     Icon: RepeatCustomerCycleDisplayAsset,
@@ -164,12 +167,12 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
             href={system.href}
             kind="systems"
             location={system.analyticsLocation}
-            analyticsEvent="package_learn_more_clicked"
+            analyticsEvent="system_detail_clicked"
             packageName={system.packageName}
-            ctaLabel="Learn more"
-            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-[10px] border border-[#BFDCC8] bg-white px-4 py-2.5 text-[13px] font-extrabold text-[#087B3F] shadow-[0_10px_20px_rgba(7,29,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#08A64B] hover:bg-[#F3FAF1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B]"
+            ctaLabel={system.ctaLabel}
+            className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-3 text-[13px] font-bold text-white shadow-[0_10px_20px_rgba(7,29,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#116832] hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B]"
           >
-            Learn more
+            {system.ctaLabel}
             <ArrowRight className="ml-2 h-3.5 w-3.5" aria-hidden="true" />
           </CTALink>
         </div>

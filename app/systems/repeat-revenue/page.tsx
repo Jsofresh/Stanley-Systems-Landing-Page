@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { Footer } from "@/components/footer"
-import { GlassmorphismNav } from "@/components/glassmorphism-nav"
+import { SiteHeader } from "@/components/hero-section"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const monthlyPlan = pricingPackageById.repeat_revenue_monthly
@@ -209,8 +209,8 @@ function PrimaryCTACluster({ location }: { location: string }) {
 export default function RepeatRevenuePage() {
   return (
     <>
-      <GlassmorphismNav />
-      <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
+      <SiteHeader />
+      <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
         <section className="relative px-4 pb-12 pt-32 sm:px-6 sm:pb-16 lg:px-8 lg:pt-36">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.72fr)] lg:items-center">
             <div>
