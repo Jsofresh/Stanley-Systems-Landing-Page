@@ -320,10 +320,6 @@
   will-change: transform;
 }
 
-.software-logo-marquee:hover .software-logo-marquee__track {
-  animation-play-state: paused;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .software-logo-marquee__track {
     animation: none;

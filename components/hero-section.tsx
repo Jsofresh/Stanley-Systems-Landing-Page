@@ -393,7 +393,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-[#071422]/92 py-4 backdrop-blur-xl md:py-5">
+        <div className="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-[#071422]/92 py-2.5 backdrop-blur-xl md:py-3">
           <SoftwareLogoMarquee />
         </div>
       </div>
