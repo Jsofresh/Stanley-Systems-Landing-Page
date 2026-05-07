@@ -4,6 +4,15 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowRight, Calculator, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
+import { CheckCircle } from "@/components/visual-kit/primitives/check-circle"
+import { DollarCircle } from "@/components/visual-kit/primitives/dollar-circle"
+import { FileEstimate } from "@/components/visual-kit/primitives/file-estimate"
+import { FileInvoice } from "@/components/visual-kit/primitives/file-invoice"
+import { MessageBubble } from "@/components/visual-kit/primitives/message-bubble"
+import { PhoneMissed } from "@/components/visual-kit/primitives/phone-missed"
+import { ShieldCheck } from "@/components/visual-kit/primitives/shield-check"
+import { TrendUp } from "@/components/visual-kit/primitives/trend-up"
+import { Users } from "@/components/visual-kit/primitives/users"
 
 const headline = "Make Your Business More Money With Less Office Work"
 const subheadline = "Move finished work into cash faster, keep repeat revenue from slipping, and give the owner fewer office hours to carry."
@@ -15,10 +24,13 @@ const heroVideo = {
   poster: `/hero-videos/hero-video-poster.jpg?v=${heroVideoVersion}`,
 }
 
+type NavIconKey = "dollar" | "invoice" | "estimate" | "phone" | "message" | "trend" | "users" | "shield" | "check"
+
 type MegaMenuItem = {
   label: string
   href: string
-  description: string
+  description?: string
+  icon: NavIconKey
 }
 
 type MegaMenuGroup = {
@@ -26,8 +38,10 @@ type MegaMenuGroup = {
   href: string
   eyebrow: string
   summary: string
+  widthClass: string
+  columnsClass: string
   items: MegaMenuItem[]
-  featured: {
+  featured?: {
     title: string
     copy: string
     href: string
@@ -35,37 +49,58 @@ type MegaMenuGroup = {
   }
 }
 
+const navIconMap = {
+  dollar: DollarCircle,
+  invoice: FileInvoice,
+  estimate: FileEstimate,
+  phone: PhoneMissed,
+  message: MessageBubble,
+  trend: TrendUp,
+  users: Users,
+  shield: ShieldCheck,
+  check: CheckCircle,
+}
+
 const navGroups: MegaMenuGroup[] = [
   {
     label: "Systems",
-    href: "/systems",
-    eyebrow: "Revenue systems",
-    summary: "Choose the build by the leak: cash stuck in handoffs or repeat revenue slipping after the job.",
+    href: "/#systems",
+    eyebrow: "Revenue Systems",
+    summary: "Pick the system by the leak: cash stuck after the job, or customers slipping after the first sale.",
+    widthClass: "w-[min(690px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-[1fr_230px]",
     items: [
-      { label: "Cashflow Control System", href: "/systems/cashflow-control", description: "Finished work moves toward invoice, payment, and owner visibility with fewer manual checks." },
-      { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "Past customers, reviews, referrals, and missed calls stay in motion instead of going stale." },
-      { label: "Both Systems", href: "/pricing", description: "Fix cash movement and repeat revenue together when both leaks are costing money." },
+      { label: "Cashflow Control System", href: "/systems/cashflow-control", icon: "invoice", description: "Turn finished work into collected cash faster." },
+      { label: "Repeat Revenue System", href: "/systems/repeat-revenue", icon: "trend", description: "Bring back past customers, reviews, referrals, and missed calls." },
+      { label: "Both Systems", href: "/pricing", icon: "dollar", description: "Fix cash movement and repeat revenue together." },
     ],
     featured: {
-      title: "Find the leak that pays back first.",
-      copy: "The Workflow Audit shows which system should move first so the office stops guessing.",
-      href: "/invoicing-delay-cash-flow-calculator",
-      cta: "Find the Revenue Leaks",
+      title: "Not sure where money is stuck?",
+      copy: "Start with the Workflow Audit before buying a system.",
+      href: "#final-audit",
+      cta: "Start with the Workflow Audit",
     },
   },
   {
     label: "Industries",
     href: "/who-stanley-systems-helps",
-    eyebrow: "Service businesses",
-    summary: "Built for owner-led shops where office work, billing lag, and follow-up gaps quietly tax growth.",
+    eyebrow: "Built for service businesses",
+    summary: "Clear paths for busy shops where office handoffs, follow-up, and billing leaks cost real money.",
+    widthClass: "w-[min(620px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-2",
     items: [
-      { label: "Home service", href: "/who-stanley-systems-helps", description: "Keep jobs, invoices, reminders, and repeat customers from falling between tools." },
-      { label: "Field service", href: "/who-stanley-systems-helps", description: "Turn dispatch, job notes, billing, and customer follow-up into a cleaner operating path." },
-      { label: "Trade businesses", href: "/who-stanley-systems-helps", description: "Reduce owner cleanup when the team already has work but the office process leaks cash." },
+      { label: "HVAC", href: "/who-stanley-systems-helps", icon: "check" },
+      { label: "Plumbing", href: "/who-stanley-systems-helps", icon: "check" },
+      { label: "Electrical", href: "/who-stanley-systems-helps", icon: "check" },
+      { label: "Marine", href: "/marine-service-automation", icon: "check" },
+      { label: "Landscaping", href: "/who-stanley-systems-helps", icon: "check" },
+      { label: "Roofing", href: "/who-stanley-systems-helps", icon: "check" },
+      { label: "General Contractors", href: "/who-stanley-systems-helps", icon: "check" },
+      { label: "Adjacent Service Businesses", href: "/who-stanley-systems-helps", icon: "check" },
     ],
     featured: {
-      title: "If your team is busy, the leak is usually the handoff.",
-      copy: "Stanley Systems fixes the revenue path around the software you already use.",
+      title: "Busy team, messy handoff?",
+      copy: "Stanley Systems works around the tools your crews already use.",
       href: "#final-audit",
       cta: "Book the Workflow Audit",
     },
@@ -73,36 +108,29 @@ const navGroups: MegaMenuGroup[] = [
   {
     label: "Workflow Audit",
     href: "#final-audit",
-    eyebrow: "First move",
-    summary: "A focused business audit to find where money, time, and follow-up are getting trapped.",
+    eyebrow: "Find the first fix",
+    summary: "The audit finds the money leak before the system gets built.",
+    widthClass: "w-[min(460px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-1",
     items: [
-      { label: "Cash movement map", href: "#final-audit", description: "See where finished work slows before it becomes collected cash." },
-      { label: "Office-hour drain", href: "#final-audit", description: "Find the repeated checks, retyping, reminders, and owner follow-up costing time." },
-      { label: "Build recommendation", href: "#final-audit", description: "Leave with the clearest first system to buy, not a vague automation wish list." },
+      { label: "Workflow Audit", href: "#final-audit", icon: "shield", description: "Find the money leak before buying a system." },
+      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", icon: "dollar", description: "Run the numbers before the audit." },
+      { label: "How the Audit Works", href: "/how-stanley-systems-works", icon: "estimate", description: "See what Stanley Systems checks first." },
     ],
-    featured: {
-      title: "Stop buying software before you know the leak.",
-      copy: "The audit points the build at cash movement, repeat revenue, or both.",
-      href: "#final-audit",
-      cta: "Book the Workflow Audit",
-    },
   },
   {
     label: "Resources",
     href: "/blog",
     eyebrow: "Owner tools",
-    summary: "Calculators and plain-English pages for finding revenue leaks before they become normal.",
+    summary: "Use these routes to find the leak, see the thinking, or contact Stanley Systems.",
+    widthClass: "w-[min(440px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-1",
     items: [
-      { label: "Revenue leak calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate the cash and office-hour cost of delays inside the current workflow." },
-      { label: "Stanley Systems case study", href: "/stanley-systems-case-study", description: "See how workflow gaps turn into cash, follow-up, and owner-time problems." },
-      { label: "Blog", href: "/blog", description: "Practical notes on cashflow, repeat revenue, and service-business operations." },
+      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", icon: "dollar", description: "Estimate where cash and follow-up are slipping." },
+      { label: "Case Notes", href: "/stanley-systems-case-study", icon: "message", description: "See how workflow gaps turn into owner-time problems." },
+      { label: "Blog", href: "/blog", icon: "estimate", description: "Plain-English notes on cashflow and repeat revenue." },
+      { label: "Contact", href: "/contact", icon: "phone", description: "Send the workflow problem straight to Stanley Systems." },
     ],
-    featured: {
-      title: "Make the next move obvious.",
-      copy: "Start with the calculator, then use the audit to turn the leak into a build plan.",
-      href: "/invoicing-delay-cash-flow-calculator",
-      cta: "Calculate the leak",
-    },
   },
 ]
 
@@ -176,8 +204,9 @@ function DarkEnterpriseHeader() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileMenu, setMobileMenu] = useState<string | null>(navGroups[0]?.label ?? null)
+  const [scrolled, setScrolled] = useState(false)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const menuRegionRef = useRef<HTMLDivElement | null>(null)
+  const headerRef = useRef<HTMLElement | null>(null)
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {
@@ -193,40 +222,61 @@ function DarkEnterpriseHeader() {
 
   const closeMenuWithDelay = () => {
     clearCloseTimer()
-    closeTimer.current = setTimeout(() => setActiveMenu(null), 140)
+    closeTimer.current = setTimeout(() => setActiveMenu(null), 120)
   }
 
   useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 18)
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setActiveMenu(null)
         setMobileOpen(false)
       }
     }
+    const onPointerDown = (event: PointerEvent) => {
+      const header = headerRef.current
+      if (header && !header.contains(event.target as Node)) {
+        setActiveMenu(null)
+        setMobileOpen(false)
+      }
+    }
 
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
     window.addEventListener("keydown", onKeyDown)
+    document.addEventListener("pointerdown", onPointerDown)
     return () => {
       clearCloseTimer()
+      window.removeEventListener("scroll", onScroll)
       window.removeEventListener("keydown", onKeyDown)
+      document.removeEventListener("pointerdown", onPointerDown)
     }
   }, [])
 
   const selectedMenu = navGroups.find((group) => group.label === activeMenu)
 
   return (
-    <header className="relative z-30 border-b border-white/10 bg-[#071422]/94 text-white backdrop-blur-xl">
-      <div className="mx-auto flex h-10 max-w-[92rem] items-center justify-between px-4 text-[13px] font-semibold text-white/70 sm:px-6 lg:px-8">
-        <a href="tel:+16179586372" className="inline-flex items-center gap-2 transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">
-          <Phone className="h-3.5 w-3.5" aria-hidden="true" />
-          +1 (617) 958-6372
-        </a>
-        <div className="hidden items-center gap-5 md:flex">
-          <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Calculator</a>
-          <a href="/contact" className="transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
+    <header
+      ref={headerRef}
+      className={`fixed inset-x-0 top-0 z-50 border-b text-white transition-all duration-200 ${
+        scrolled || mobileOpen || activeMenu
+          ? "border-[#d9efe2]/20 bg-[#071422]/96 shadow-[0_14px_38px_rgba(2,8,15,0.24)] backdrop-blur-xl"
+          : "border-white/10 bg-[#071422]/92 backdrop-blur-md"
+      }`}
+    >
+      <div className="border-b border-white/8 bg-[#06111d]/72">
+        <div className="mx-auto flex h-9 max-w-[92rem] items-center justify-between px-4 text-[12px] font-bold text-white/76 sm:px-6 lg:px-8">
+          <a href="tel:+16179586372" className="inline-flex items-center gap-2 rounded-full transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">
+            <Phone className="h-3.5 w-3.5 text-[#53d986]" aria-hidden="true" />
+            <span>+1 (617) 958-6372</span>
+          </a>
+          <div className="hidden items-center gap-5 md:flex">
+            <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Calculator</a>
+            <a href="/contact" className="transition hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
+          </div>
         </div>
       </div>
       <div
-        ref={menuRegionRef}
         className="relative"
         onMouseEnter={clearCloseTimer}
         onMouseLeave={closeMenuWithDelay}
@@ -236,15 +286,15 @@ function DarkEnterpriseHeader() {
           }
         }}
       >
-        <div className="mx-auto flex h-[72px] max-w-[92rem] items-center justify-between px-4 sm:px-6 lg:px-8">
-          <a href="/" className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]" aria-label="Stanley Systems home">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/15 bg-white shadow-[0_10px_26px_rgba(0,0,0,0.18)] sm:h-11 sm:w-11">
-              <img src="/stanley-logo.svg" alt="" className="h-8 w-8 object-contain sm:h-9 sm:w-9" />
-            </span>
-            <span>
-              <span className="block text-[18px] font-extrabold leading-none tracking-[-0.025em] text-white sm:text-[19px]">Stanley Systems</span>
-              <span className="mt-1 block text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#53d986] sm:text-[10px]">Workflow Revenue Control</span>
-            </span>
+        <div className="mx-auto flex h-16 max-w-[92rem] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+          <a href="/" className="inline-flex shrink-0 items-center rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071422]" aria-label="Stanley Systems home">
+            <img
+              src="/images/stanley-systems-logo-lock-navbar.png"
+              alt="Stanley Systems"
+              className="h-auto w-[178px] rounded-md bg-white object-contain shadow-[0_8px_22px_rgba(0,0,0,0.16)] sm:w-[224px] xl:w-[248px]"
+              decoding="async"
+              fetchPriority="high"
+            />
           </a>
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
             {navGroups.map((group) => (
@@ -255,8 +305,7 @@ function DarkEnterpriseHeader() {
                 aria-haspopup="true"
                 onMouseEnter={() => openMenu(group.label)}
                 onFocus={() => openMenu(group.label)}
-                onClick={() => openMenu(group.label)}
-                className="inline-flex items-center gap-1 rounded-full px-4 py-2.5 text-sm font-bold text-white/78 transition hover:bg-white/8 hover:text-white focus:bg-white/8 focus:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]"
+                className="inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[13px] font-bold text-white/82 transition hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] xl:px-4"
               >
                 {group.label}
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform ${activeMenu === group.label ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -269,14 +318,14 @@ function DarkEnterpriseHeader() {
               kind="systems"
               location="hero_nav_audit"
               ctaLabel="Book the Workflow Audit"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.32)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
+              className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-4 text-[13px] font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.28)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-5"
             >
               Book the Workflow Audit
             </CTALink>
           </div>
           <button
             type="button"
-            className="grid h-11 w-11 place-items-center rounded-xl border border-white/15 text-white transition hover:bg-white/8 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] lg:hidden"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/15 text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] lg:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}
@@ -287,73 +336,92 @@ function DarkEnterpriseHeader() {
 
         {selectedMenu && (
           <div
-            className="absolute left-0 right-0 top-[72px] hidden border-y border-white/10 bg-[#071422]/98 shadow-[0_28px_80px_rgba(0,0,0,0.34)] backdrop-blur-2xl lg:block"
+            className={`absolute left-1/2 top-[64px] hidden -translate-x-1/2 rounded-[18px] border border-[#cfe7d8] bg-[#fffdf8] p-3 text-[#0B1F33] shadow-[0_24px_70px_rgba(3,18,31,0.22)] ring-1 ring-black/5 lg:block ${selectedMenu.widthClass}`}
             data-nav-menu={selectedMenu.label}
             onMouseEnter={clearCloseTimer}
             onMouseLeave={closeMenuWithDelay}
           >
-            <div className="mx-auto grid max-w-[92rem] grid-cols-[0.72fr_1.24fr_0.72fr] gap-8 px-8 py-8">
+            <div className={`grid gap-3 ${selectedMenu.featured ? selectedMenu.columnsClass : "grid-cols-1"}`}>
               <div>
-                <p className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#53d986]">{selectedMenu.eyebrow}</p>
-                <h2 className="mt-3 text-3xl font-extrabold leading-[0.98] tracking-[-0.045em] text-white">{selectedMenu.label}</h2>
-                <p className="mt-4 text-sm font-semibold leading-6 text-white/62">{selectedMenu.summary}</p>
+                <div className="border-b border-[#dcece3] px-2 pb-3">
+                  <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#15803D]">{selectedMenu.eyebrow}</p>
+                  <p className="mt-1 max-w-[34rem] text-[13px] font-semibold leading-5 text-[#526172]">{selectedMenu.summary}</p>
+                </div>
+                <div className={`mt-3 grid gap-1.5 ${selectedMenu.columnsClass === "grid-cols-2" ? "grid-cols-2" : "grid-cols-1"}`}>
+                  {selectedMenu.items.map((item) => {
+                    const Icon = navIconMap[item.icon]
+                    return (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className="group flex gap-3 rounded-xl border border-transparent p-3 transition hover:border-[#bfe8cc] hover:bg-[#f0fbf4] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D]"
+                      >
+                        <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#e9f8ef] text-[#15803D] ring-1 ring-[#c8ead4]">
+                          <Icon size={20} ariaLabel="" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="flex items-center gap-2 text-[14px] font-extrabold tracking-[-0.012em] text-[#0B1F33]">
+                            {item.label}
+                            <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#15803D] opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden="true" />
+                          </span>
+                          {item.description ? <span className="mt-1 block text-[12.5px] font-semibold leading-5 text-[#5d6d7c]">{item.description}</span> : null}
+                        </span>
+                      </a>
+                    )
+                  })}
+                </div>
               </div>
-              <div className="grid gap-3">
-                {selectedMenu.items.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="group rounded-2xl border border-white/10 bg-white/[0.045] p-4 transition hover:-translate-y-0.5 hover:border-[#53d986]/35 hover:bg-white/[0.075] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]"
-                  >
-                    <span className="flex items-center justify-between gap-5 text-base font-extrabold tracking-[-0.01em] text-white">
-                      {item.label}
-                      <ArrowRight className="h-4 w-4 text-[#53d986] transition group-hover:translate-x-0.5" aria-hidden="true" />
-                    </span>
-                    <span className="mt-2 block text-sm font-semibold leading-6 text-white/60">{item.description}</span>
-                  </a>
-                ))}
-              </div>
-              <a
-                href={selectedMenu.featured.href}
-                className="flex min-h-full flex-col justify-between rounded-[1.65rem] border border-[#53d986]/24 bg-[linear-gradient(145deg,rgba(83,217,134,0.14),rgba(255,255,255,0.045)_48%,rgba(2,8,15,0.35))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition hover:-translate-y-0.5 hover:border-[#53d986]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]"
-              >
-                <span>
-                  <span className="text-xl font-extrabold leading-tight tracking-[-0.035em] text-white">{selectedMenu.featured.title}</span>
-                  <span className="mt-3 block text-sm font-semibold leading-6 text-white/64">{selectedMenu.featured.copy}</span>
-                </span>
-                <span className="mt-8 inline-flex items-center text-sm font-extrabold text-[#7af0a8]">
-                  {selectedMenu.featured.cta}
-                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                </span>
-              </a>
+              {selectedMenu.featured ? (
+                <a
+                  href={selectedMenu.featured.href}
+                  className="flex flex-col justify-between rounded-2xl border border-[#bfe8cc] bg-[linear-gradient(145deg,#f0fbf4,#ffffff)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition hover:-translate-y-0.5 hover:border-[#8bdbab] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D]"
+                >
+                  <span>
+                    <span className="block text-[16px] font-extrabold leading-tight tracking-[-0.025em] text-[#0B1F33]">{selectedMenu.featured.title}</span>
+                    <span className="mt-2 block text-[13px] font-semibold leading-5 text-[#526172]">{selectedMenu.featured.copy}</span>
+                  </span>
+                  <span className="mt-4 inline-flex items-center text-[13px] font-extrabold text-[#15803D]">
+                    {selectedMenu.featured.cta}
+                    <ArrowRight className="ml-1.5 h-3.5 w-3.5" aria-hidden="true" />
+                  </span>
+                </a>
+              ) : null}
             </div>
           </div>
         )}
 
         {mobileOpen && (
-          <div className="border-t border-white/10 bg-[#071422]/98 px-4 pb-5 pt-3 shadow-[0_24px_60px_rgba(0,0,0,0.34)] lg:hidden">
+          <div className="max-h-[calc(100svh-100px)] overflow-y-auto border-t border-[#dcece3] bg-[#fffdf8] px-4 pb-5 pt-3 text-[#0B1F33] shadow-[0_24px_60px_rgba(0,0,0,0.24)] lg:hidden">
             <div className="space-y-2">
               {navGroups.map((group) => {
                 const expanded = mobileMenu === group.label
                 return (
-                  <div key={group.label} className="rounded-2xl border border-white/10 bg-white/[0.045]">
+                  <div key={group.label} className="rounded-2xl border border-[#d9efe2] bg-white">
                     <button
                       type="button"
-                      className="flex w-full items-center justify-between px-4 py-3 text-left text-base font-extrabold text-white"
+                      className="flex w-full items-center justify-between px-4 py-3 text-left text-[15px] font-extrabold text-[#0B1F33]"
                       aria-expanded={expanded}
                       onClick={() => setMobileMenu(expanded ? null : group.label)}
                     >
                       {group.label}
-                      <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} aria-hidden="true" />
+                      <ChevronDown className={`h-4 w-4 text-[#15803D] transition-transform ${expanded ? "rotate-180" : ""}`} aria-hidden="true" />
                     </button>
                     {expanded && (
-                      <div className="border-t border-white/10 px-4 pb-4 pt-2">
-                        {group.items.map((item) => (
-                          <a key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="block rounded-xl px-2 py-2.5 text-sm font-semibold text-white/72 hover:bg-white/8 hover:text-white">
-                            <span className="block font-extrabold text-white">{item.label}</span>
-                            <span className="mt-1 block leading-5 text-white/55">{item.description}</span>
-                          </a>
-                        ))}
+                      <div className="border-t border-[#e3f0e8] px-3 pb-3 pt-2">
+                        {group.items.map((item) => {
+                          const Icon = navIconMap[item.icon]
+                          return (
+                            <a key={item.label} href={item.href} onClick={() => setMobileOpen(false)} className="flex gap-3 rounded-xl px-2 py-2.5 text-sm font-semibold text-[#516272] hover:bg-[#f0fbf4] hover:text-[#0B1F33] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803D]">
+                              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#e9f8ef] text-[#15803D] ring-1 ring-[#c8ead4]">
+                                <Icon size={20} ariaLabel="" />
+                              </span>
+                              <span>
+                                <span className="block font-extrabold text-[#0B1F33]">{item.label}</span>
+                                {item.description ? <span className="mt-0.5 block leading-5 text-[#5d6d7c]">{item.description}</span> : null}
+                              </span>
+                            </a>
+                          )
+                        })}
                       </div>
                     )}
                   </div>
@@ -364,7 +432,7 @@ function DarkEnterpriseHeader() {
                 kind="systems"
                 location="hero_mobile_nav_audit"
                 ctaLabel="Book the Workflow Audit"
-                className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.32)]"
+                className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
               >
                 Book the Workflow Audit
               </CTALink>
@@ -384,10 +452,10 @@ export function HeroSection() {
       data-audit-priority="5"
       data-audit-offer="Workflow Audit"
       data-audit-purpose="Make the owner understand that Stanley Systems helps make more money with less office work."
-      className="relative isolate overflow-hidden bg-[#071422] text-white"
+      className="relative isolate overflow-hidden bg-[#071422] pt-[100px] text-white"
     >
       <DarkEnterpriseHeader />
-      <div className="relative min-h-[700px] overflow-hidden md:min-h-[calc(100svh-112px)]">
+      <div className="relative min-h-[700px] overflow-hidden md:min-h-[calc(100svh-100px)]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_76%_34%,rgba(83,217,134,0.14),transparent_31%),radial-gradient(circle_at_88%_4%,rgba(2,8,15,0.92),transparent_30%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[76%] bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.99)_32%,rgba(7,20,34,0.86)_56%,rgba(7,20,34,0.22)_82%,rgba(7,20,34,0)_100%)] md:block xl:w-[67%] xl:bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.98)_29%,rgba(7,20,34,0.78)_50%,rgba(7,20,34,0.16)_78%,rgba(7,20,34,0)_100%)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[28%] bg-[linear-gradient(0deg,#071422_0%,rgba(7,20,34,0.78)_28%,rgba(7,20,34,0)_100%)]" />
