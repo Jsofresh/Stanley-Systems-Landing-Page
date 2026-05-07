@@ -8,7 +8,12 @@ import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 const headline = "Make Your Business More Money With Less Office Work"
 const subheadline = "Move finished work into cash faster, keep repeat revenue from slipping, and give the owner fewer office hours to carry."
 
-const heroVideo = { webm: "/hero-videos/hero-video-1.webm", mp4: "/hero-videos/hero-video-1.mp4" }
+const heroVideoVersion = "still-hold-ff751e66-v2"
+const heroVideo = {
+  webm: `/hero-videos/hero-video-1.webm?v=${heroVideoVersion}`,
+  mp4: `/hero-videos/hero-video-1.mp4?v=${heroVideoVersion}`,
+  poster: `/hero-videos/hero-video-poster.jpg?v=${heroVideoVersion}`,
+}
 
 type MegaMenuItem = {
   label: string
@@ -102,10 +107,40 @@ const navGroups: MegaMenuGroup[] = [
 ]
 
 function HeroVideoLoop() {
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+
+  useEffect(() => {
+    const playHeroVideo = () => {
+      const video = videoRef.current
+      if (!video) return
+      video.muted = true
+      const playPromise = video.play()
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          // Browser autoplay policies can still pause muted video in edge cases
+          // such as low-power modes. The next visibility/focus event retries.
+        })
+      }
+    }
+
+    playHeroVideo()
+    document.addEventListener("visibilitychange", playHeroVideo)
+    window.addEventListener("focus", playHeroVideo)
+    window.addEventListener("pageshow", playHeroVideo)
+
+    return () => {
+      document.removeEventListener("visibilitychange", playHeroVideo)
+      window.removeEventListener("focus", playHeroVideo)
+      window.removeEventListener("pageshow", playHeroVideo)
+    }
+  }, [])
+
   return (
     <video
+      key={heroVideoVersion}
+      ref={videoRef}
       data-hero-video="true"
-      poster="/hero-videos/hero-video-poster.jpg"
+      poster={heroVideo.poster}
       autoPlay
       muted
       loop
