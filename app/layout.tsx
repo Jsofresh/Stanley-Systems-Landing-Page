@@ -4,7 +4,7 @@ import { Suspense } from "react"
 import "./globals.css"
 import { PageTransition } from "@/components/page-transition"
 import { NavigationTransition } from "@/components/navigation-transition"
-import { Dancing_Script, Caveat } from "next/font/google"
+import { Dancing_Script, Caveat, Manrope, Nunito_Sans, Work_Sans } from "next/font/google"
 
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
@@ -15,6 +15,24 @@ const dancingScript = Dancing_Script({
 const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
+  display: "swap",
+})
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+})
+
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  variable: "--font-nunito-sans",
+  display: "swap",
+})
+
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  variable: "--font-work-sans",
   display: "swap",
 })
 
@@ -147,7 +165,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={`font-sans antialiased ${dancingScript.variable} ${caveat.variable}`}>
+      <body className={`font-sans antialiased ${dancingScript.variable} ${caveat.variable} ${manrope.variable} ${nunitoSans.variable} ${workSans.variable}`}>
         <Suspense fallback={null}>
           <NavigationTransition />
           <PageTransition>{children}</PageTransition>

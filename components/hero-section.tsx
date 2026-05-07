@@ -1,22 +1,102 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
-import { ArrowRight, Calculator } from "lucide-react"
+import { useState } from "react"
+import { ArrowRight, Calculator, ChevronDown, Menu, Phone } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 
-const headline = "The work gets done. The cash still gets stuck."
-const subheadline =
-  "For trade contractors, Stanley Systems finds the leaks in billing, handoffs, follow-up, missed calls, and repeat revenue."
-const primaryCta = "Calculate my revenue leak"
-const secondaryCta = "See how the audit works"
+const headline = "make your business more money with less office work"
+const subheadline = "Automate your customer to billing pipeline and guarantee repeat customers with Stanley Systems."
 
-const mobileHeadlineLines = ["The work gets done.", "The cash still", "gets stuck."]
-const headlineLines = ["The work gets done.", "The cash still", "gets stuck."]
-const premiumEase = [0.22, 1, 0.36, 1] as const
+const heroVideos = [
+  { webm: "/hero-videos/hero-video-1.webm", mp4: "/hero-videos/hero-video-1.mp4" },
+  { webm: "/hero-videos/hero-video-2.webm", mp4: "/hero-videos/hero-video-2.mp4" },
+]
+
+const navGroups = ["Systems", "Industries", "Workflow Audit", "Resources"]
+
+const logoLockups: Array<{ name: string; fontClass: string }> = [
+  { name: "Nous Research",   fontClass: "font-[var(--font-manrope),system-ui,sans-serif]" },
+  { name: "Housecall Pro",   fontClass: "font-[var(--font-nunito-sans),system-ui,sans-serif]" },
+  { name: "QuickBooks",      fontClass: "font-[var(--font-work-sans),system-ui,sans-serif]" },
+  { name: "Jobber",          fontClass: "font-[var(--font-manrope),system-ui,sans-serif]" },
+  { name: "ServiceM8",       fontClass: "font-[var(--font-work-sans),system-ui,sans-serif]" },
+  { name: "FieldPulse",      fontClass: "font-[var(--font-nunito-sans),system-ui,sans-serif]" },
+  { name: "Service Fusion",  fontClass: "font-[var(--font-manrope),system-ui,sans-serif]" },
+  { name: "Workiz",          fontClass: "font-[var(--font-work-sans),system-ui,sans-serif]" },
+  { name: "CompanyCam",      fontClass: "font-[var(--font-nunito-sans),system-ui,sans-serif]" },
+]
+
+function HeroVideoLoop() {
+  const [activeVideo, setActiveVideo] = useState(0)
+  const video = heroVideos[activeVideo]
+
+  return (
+    <video
+      key={video.webm}
+      data-hero-video="true"
+      poster="/hero-videos/hero-video-poster.jpg"
+      autoPlay
+      muted
+      playsInline
+      preload="auto"
+      className="h-full w-full object-cover"
+      onEnded={() => setActiveVideo((current) => (current + 1) % heroVideos.length)}
+    >
+      <source src={video.webm} type="video/webm" />
+      <source src={video.mp4} type="video/mp4" />
+    </video>
+  )
+}
+
+function DarkEnterpriseHeader() {
+  return (
+    <header className="relative z-30 border-b border-white/10 bg-[#071422]/92 text-white backdrop-blur">
+      <div className="mx-auto flex h-10 max-w-[92rem] items-center justify-between px-4 text-[13px] font-semibold text-white/70 sm:px-6 lg:px-8">
+        <a href="tel:+16179586372" className="inline-flex items-center gap-2 transition hover:text-white">
+          <Phone className="h-3.5 w-3.5" aria-hidden="true" />
+          +1 (617) 958-6372
+        </a>
+        <div className="hidden items-center gap-5 md:flex">
+          <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-white">Calculator</a>
+          <a href="/contact" className="transition hover:text-white">Contact</a>
+        </div>
+      </div>
+      <div className="mx-auto flex h-[72px] max-w-[92rem] items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="/" className="flex items-center gap-3" aria-label="Stanley Systems home">
+          <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/15 bg-white text-sm font-extrabold text-[#071422]">SS</span>
+          <span>
+            <span className="block text-[18px] font-extrabold leading-none tracking-[-0.02em]">Stanley Systems</span>
+            <span className="mt-1 block text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#53d986]">Workflow Revenue Control</span>
+          </span>
+        </a>
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+          {navGroups.map((group) => (
+            <a key={group} href={group === "Workflow Audit" ? "#audit" : group === "Systems" ? "/systems" : "#"} className="inline-flex items-center gap-1 rounded-full px-4 py-2.5 text-sm font-bold text-white/78 transition hover:bg-white/8 hover:text-white">
+              {group}
+              <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
+        <div className="hidden items-center gap-3 md:flex">
+          <CTALink
+            href="#audit"
+            kind="systems"
+            location="hero_nav_audit"
+            ctaLabel="Book the Workflow Audit"
+            className="inline-flex min-h-11 items-center justify-center rounded-xl bg-[#16883d] px-5 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(22,136,61,0.25)] transition hover:-translate-y-0.5 hover:bg-[#0f7131]"
+          >
+            Book the Workflow Audit
+          </CTALink>
+        </div>
+        <button type="button" className="grid h-11 w-11 place-items-center rounded-xl border border-white/15 text-white lg:hidden" aria-label="Open menu">
+          <Menu className="h-5 w-5" />
+        </button>
+      </div>
+    </header>
+  )
+}
 
 export function HeroSection() {
-  const shouldReduceMotion = useReducedMotion()
-
   return (
     <section
       data-audit-page="/"
@@ -24,83 +104,72 @@ export function HeroSection() {
       data-audit-priority="5"
       data-audit-offer="Workflow Audit"
       data-audit-purpose="Make the owner understand that Stanley Systems helps make more money with less office work."
-      className="relative isolate overflow-hidden bg-transparent"
+      className="relative isolate overflow-hidden bg-[#071422] text-white"
     >
-      <svg className="pointer-events-none absolute h-0 w-0" aria-hidden="true" focusable="false">
-        <filter id="hero-liquid-glass-distortion">
-          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="8" result="noise" />
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </svg>
-      <div className="mx-auto flex max-w-[96rem] flex-col items-center justify-center px-4 pb-7 pt-14 text-center sm:px-6 sm:pb-10 sm:pt-24 lg:px-8 lg:pb-12 lg:pt-28">
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? undefined : { duration: 0.9, ease: premiumEase }}
-          className="relative flex w-full max-w-[90rem] items-center justify-center overflow-hidden rounded-[1.65rem] border border-white/55 bg-white/[0.06] px-4 py-7 shadow-[0_34px_110px_rgba(27,42,74,0.13),0_2px_8px_rgba(255,255,255,0.6)_inset,0_-18px_42px_rgba(15,23,42,0.04)_inset] backdrop-blur-[18px] backdrop-brightness-110 backdrop-contrast-125 backdrop-saturate-200 min-[390px]:py-8 sm:min-h-[56svh] sm:rounded-[3.25rem] sm:px-7 sm:py-12 lg:min-h-[56svh] lg:rounded-[4.5rem] lg:px-10 lg:py-14"
-        >
-          <div className="pointer-events-none absolute -inset-10 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_28%,rgba(148,163,184,0.22),transparent_34%),radial-gradient(ellipse_at_84%_36%,rgba(219,234,254,0.26),transparent_36%),radial-gradient(ellipse_at_48%_82%,rgba(203,213,225,0.18),transparent_38%)] blur-2xl [filter:url(#hero-liquid-glass-distortion)]" />
-          <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(102deg,transparent_0%,rgba(100,116,139,0.14)_13%,transparent_28%,rgba(219,234,254,0.24)_46%,transparent_62%,rgba(100,116,139,0.12)_82%,transparent_100%)] opacity-80 [filter:url(#hero-liquid-glass-distortion)]" />
-          <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(135deg,rgba(255,255,255,0.24)_0%,rgba(255,255,255,0.06)_34%,rgba(255,255,255,0.02)_58%,rgba(248,246,240,0.08)_100%)] [filter:url(#hero-liquid-glass-distortion)]" />
-          <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_10%,rgba(255,255,255,0.46),transparent_20%),radial-gradient(ellipse_at_80%_4%,rgba(255,255,255,0.28),transparent_28%),radial-gradient(ellipse_at_50%_108%,rgba(255,255,255,0.2),transparent_30%),linear-gradient(118deg,rgba(255,255,255,0.22)_0%,transparent_28%,rgba(255,255,255,0.12)_52%,transparent_74%)] mix-blend-screen" />
-          <div className="pointer-events-none absolute -inset-px rounded-[inherit] border border-white/75 shadow-[0_0_0_1px_rgba(255,255,255,0.36)_inset,0_24px_60px_rgba(255,255,255,0.14)_inset]" />
-          <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-white lg:inset-x-20" />
-          <div className="pointer-events-none absolute inset-x-12 bottom-0 h-px bg-white/55 lg:inset-x-24" />
-          <div className="pointer-events-none absolute inset-y-8 left-0 w-px bg-white/70" />
-          <div className="pointer-events-none absolute inset-y-8 right-0 w-px bg-slate-400/20" />
-          <div className="relative flex w-full max-w-[76rem] flex-col items-center">
-            <h1
-              aria-label={headline}
-              className="block text-balance text-[1.98rem] font-semibold leading-[0.95] tracking-normal text-[#101b2f] min-[390px]:text-[2.1rem] sm:hidden"
-            >
-              {mobileHeadlineLines.map((line, index) => (
-                <span key={line} className="block">
-                  {line}
-                  {index < mobileHeadlineLines.length - 1 ? <span className="sr-only"> </span> : null}
-                </span>
-              ))}
-            </h1>
-            <h1
-              aria-hidden="true"
-              className="hidden text-balance font-semibold leading-[0.9] tracking-normal text-[#101b2f] sm:block sm:text-[4.45rem] md:text-[5.15rem] lg:text-[5.85rem] xl:text-[6.2rem] 2xl:text-[6.45rem]"
-            >
-              {headlineLines.map((line, index) => (
-                <span key={line} className="block md:whitespace-nowrap">
-                  {line}
-                  {index < headlineLines.length - 1 ? <span className="sr-only"> </span> : null}
-                </span>
-              ))}
-            </h1>
+      <DarkEnterpriseHeader />
+      <div className="relative min-h-[690px] overflow-hidden md:min-h-[calc(100svh-112px)]">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_45%,rgba(19,147,78,0.28),transparent_34%),radial-gradient(circle_at_42%_10%,rgba(44,101,150,0.18),transparent_36%),linear-gradient(180deg,#071422_0%,#06101d_100%)]" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[62%] bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.96)_34%,rgba(7,20,34,0.74)_54%,rgba(7,20,34,0)_100%)] md:block" />
 
-            <p className="mt-4 max-w-[43rem] text-balance text-[0.93rem] leading-6 text-slate-700 sm:mt-7 sm:text-lg sm:leading-8">
+        <div className="absolute right-[-3%] top-[1%] z-0 hidden h-[88%] w-[63%] overflow-hidden md:block">
+          <div className="absolute inset-x-0 inset-y-[-6%] [mask-image:linear-gradient(90deg,transparent_0%,black_12%,black_84%,transparent_100%)]">
+            <HeroVideoLoop />
+          </div>
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.58)_8%,rgba(7,20,34,0.22)_18%,rgba(7,20,34,0)_30%),linear-gradient(0deg,#071422_0%,rgba(7,20,34,0.45)_8%,rgba(7,20,34,0)_22%,rgba(7,20,34,0)_78%,rgba(7,20,34,0.45)_94%,#071422_100%)]" />
+        </div>
+
+        <div className="relative z-20 mx-auto flex min-h-[570px] max-w-[92rem] items-center px-4 pb-28 pt-16 sm:px-6 lg:px-8">
+          <div className="max-w-[38rem]">
+            <h1
+              aria-label="make your business more money with less office work"
+              className="text-balance text-[3.1rem] font-extrabold leading-[0.98] tracking-[-0.045em] text-white sm:text-[4.3rem] md:text-[3.25rem] lg:text-[3.65rem] xl:text-[3.95rem]"
+            >
+              <span className="md:hidden">{headline}</span>
+              <span className="hidden whitespace-nowrap md:block">make your business more money</span>
+              <span className="hidden whitespace-nowrap md:block">with less office work</span>
+            </h1>
+            <p className="mt-7 max-w-[640px] text-pretty text-lg font-semibold leading-8 tracking-[-0.01em] text-[#d3dce7] sm:text-xl">
               {subheadline}
             </p>
-
-            <div className="mt-5 flex w-full max-w-[47rem] flex-col items-stretch gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CTALink
                 href="/invoicing-delay-cash-flow-calculator"
                 kind="calculator"
                 location="home_hero_primary"
                 analyticsEvent="calculator_cta_clicked"
                 analyticsSource="homepage_hero"
-                ctaLabel={primaryCta}
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-5 py-2.5 text-[0.94rem] font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#116832] focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2 focus:ring-offset-white sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
+                ctaLabel="Find the Revenue Leaks"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[#16883d] px-6 text-base font-extrabold text-white shadow-[0_18px_42px_rgba(22,136,61,0.25)] transition hover:-translate-y-0.5 hover:bg-[#0f7131] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
                 <Calculator className="mr-2 h-4 w-4" aria-hidden="true" />
-                {primaryCta}
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                Find the Revenue Leaks
               </CTALink>
               <CTALink
                 href="#audit"
                 kind="systems"
                 location="home_hero_secondary"
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#d8d1c4] bg-white/78 px-5 py-2.5 text-[0.94rem] font-semibold text-[#102033] shadow-[0_12px_30px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#15803D] focus:ring-offset-2 focus:ring-offset-white sm:min-h-12 sm:px-6 sm:py-3 sm:text-base"
+                ctaLabel="Book the Workflow Audit"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/18 bg-white/8 px-6 text-base font-extrabold text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                {secondaryCta}
+                Book the Workflow Audit
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
             </div>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-[#071422]/88 py-8 backdrop-blur">
+          <div className="mx-auto flex max-w-[92rem] items-center gap-12 overflow-hidden px-4 [mask-image:linear-gradient(90deg,transparent_0%,black_8%,black_92%,transparent_100%)] sm:px-6 lg:px-8">
+            {[...logoLockups, ...logoLockups].map((lockup, index) => (
+              <span
+                key={`${lockup.name}-${index}`}
+                className={`shrink-0 text-[22px] font-extrabold tracking-[-0.04em] text-white/72 md:text-[26px] ${lockup.fontClass}`}
+              >
+                {lockup.name}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
