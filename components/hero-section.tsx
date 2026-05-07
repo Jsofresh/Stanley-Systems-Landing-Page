@@ -8,10 +8,7 @@ import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 const headline = "Make Your Business More Money With Less Office Work"
 const subheadline = "Move finished work into cash faster, keep repeat revenue from slipping, and give the owner fewer office hours to carry."
 
-const heroVideos = [
-  { webm: "/hero-videos/hero-video-1.webm", mp4: "/hero-videos/hero-video-1.mp4" },
-  { webm: "/hero-videos/hero-video-2.webm", mp4: "/hero-videos/hero-video-2.mp4" },
-]
+const heroVideo = { webm: "/hero-videos/hero-video-1.webm", mp4: "/hero-videos/hero-video-1.mp4" }
 
 type MegaMenuItem = {
   label: string
@@ -64,24 +61,24 @@ const navGroups: MegaMenuGroup[] = [
     featured: {
       title: "If your team is busy, the leak is usually the handoff.",
       copy: "Stanley Systems fixes the revenue path around the software you already use.",
-      href: "#audit",
+      href: "#final-audit",
       cta: "Book the Workflow Audit",
     },
   },
   {
     label: "Workflow Audit",
-    href: "#audit",
+    href: "#final-audit",
     eyebrow: "First move",
     summary: "A focused business audit to find where money, time, and follow-up are getting trapped.",
     items: [
-      { label: "Cash movement map", href: "#audit", description: "See where finished work slows before it becomes collected cash." },
-      { label: "Office-hour drain", href: "#audit", description: "Find the repeated checks, retyping, reminders, and owner follow-up costing time." },
-      { label: "Build recommendation", href: "#audit", description: "Leave with the clearest first system to buy, not a vague automation wish list." },
+      { label: "Cash movement map", href: "#final-audit", description: "See where finished work slows before it becomes collected cash." },
+      { label: "Office-hour drain", href: "#final-audit", description: "Find the repeated checks, retyping, reminders, and owner follow-up costing time." },
+      { label: "Build recommendation", href: "#final-audit", description: "Leave with the clearest first system to buy, not a vague automation wish list." },
     ],
     featured: {
       title: "Stop buying software before you know the leak.",
       copy: "The audit points the build at cash movement, repeat revenue, or both.",
-      href: "#audit",
+      href: "#final-audit",
       cta: "Book the Workflow Audit",
     },
   },
@@ -105,23 +102,19 @@ const navGroups: MegaMenuGroup[] = [
 ]
 
 function HeroVideoLoop() {
-  const [activeVideo, setActiveVideo] = useState(0)
-  const video = heroVideos[activeVideo]
-
   return (
     <video
-      key={video.webm}
       data-hero-video="true"
       poster="/hero-videos/hero-video-poster.jpg"
       autoPlay
       muted
+      loop
       playsInline
       preload="auto"
-      className="h-full w-full object-cover saturate-[0.78] contrast-[1.04] brightness-[0.9]"
-      onEnded={() => setActiveVideo((current) => (current + 1) % heroVideos.length)}
+      className="h-full w-full object-cover saturate-[0.82] contrast-[1.05] brightness-[0.92]"
     >
-      <source src={video.webm} type="video/webm" />
-      <source src={video.mp4} type="video/mp4" />
+      <source src={heroVideo.webm} type="video/webm" />
+      <source src={heroVideo.mp4} type="video/mp4" />
     </video>
   )
 }
@@ -219,7 +212,7 @@ function DarkEnterpriseHeader() {
           </nav>
           <div className="hidden items-center gap-3 md:flex">
             <CTALink
-              href="#audit"
+              href="#final-audit"
               kind="systems"
               location="hero_nav_audit"
               ctaLabel="Book the Workflow Audit"
@@ -314,7 +307,7 @@ function DarkEnterpriseHeader() {
                 )
               })}
               <CTALink
-                href="#audit"
+                href="#final-audit"
                 kind="systems"
                 location="hero_mobile_nav_audit"
                 ctaLabel="Book the Workflow Audit"
@@ -347,10 +340,10 @@ export function HeroSection() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[28%] bg-[linear-gradient(0deg,#071422_0%,rgba(7,20,34,0.78)_28%,rgba(7,20,34,0)_100%)]" />
 
         <div className="absolute right-[-16%] top-0 z-0 hidden h-[91%] w-[56%] overflow-hidden md:block xl:right-[-4%] xl:w-[62%]">
-          <div className="absolute inset-x-[-2%] inset-y-[-7%] [mask-image:linear-gradient(90deg,transparent_0%,black_14%,black_82%,transparent_100%)]">
+          <div className="absolute inset-x-[-3%] inset-y-[-8%] [mask-image:radial-gradient(ellipse_at_center,black_42%,rgba(0,0,0,0.92)_58%,rgba(0,0,0,0.46)_76%,transparent_96%)]">
             <HeroVideoLoop />
           </div>
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_86%_10%,rgba(2,8,15,0.9),rgba(7,20,34,0.46)_34%,rgba(7,20,34,0)_58%),linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.76)_12%,rgba(7,20,34,0.28)_26%,rgba(7,20,34,0)_42%),linear-gradient(0deg,#071422_0%,rgba(7,20,34,0.58)_10%,rgba(7,20,34,0)_24%,rgba(7,20,34,0)_74%,rgba(7,20,34,0.62)_94%,#071422_100%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_86%_10%,rgba(2,8,15,0.86),rgba(7,20,34,0.42)_34%,rgba(7,20,34,0)_58%),linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.82)_10%,rgba(7,20,34,0.34)_25%,rgba(7,20,34,0)_45%,rgba(7,20,34,0)_72%,rgba(7,20,34,0.5)_91%,#071422_100%),linear-gradient(0deg,#071422_0%,rgba(7,20,34,0.62)_10%,rgba(7,20,34,0)_25%,rgba(7,20,34,0)_72%,rgba(7,20,34,0.62)_94%,#071422_100%)]" />
         </div>
 
         <div className="relative z-20 mx-auto flex min-h-[570px] max-w-[92rem] items-center px-4 pb-32 pt-16 sm:px-6 md:min-h-[calc(100svh-250px)] lg:px-8">
@@ -380,7 +373,7 @@ export function HeroSection() {
                 Find the Revenue Leaks
               </CTALink>
               <CTALink
-                href="#audit"
+                href="#final-audit"
                 kind="systems"
                 location="home_hero_secondary"
                 ctaLabel="Book the Workflow Audit"
