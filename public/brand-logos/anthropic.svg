@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="96" viewBox="0 0 320 96" role="img" aria-label="Anthropic logo">
+  <rect width="320" height="96" fill="none"/>
+  <g transform="translate(18 18) scale(2.5)" fill="#fff" opacity="0.94"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></g>
+  <text x="96" y="58" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="800" letter-spacing="-0.7">Anthropic</text>
+</svg>
