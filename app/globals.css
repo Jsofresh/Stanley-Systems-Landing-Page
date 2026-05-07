@@ -3,8 +3,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-heading: var(--font-manrope), sans-serif;
-  --font-body: var(--font-inter), sans-serif;
+  --font-heading: var(--font-neue-montreal), var(--font-manrope), sans-serif;
+  --font-body: var(--font-neue-montreal), var(--font-inter), sans-serif;
   --font-mono-metric: var(--font-space-grotesk), sans-serif;
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.2 0 0);
@@ -77,9 +77,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), var(--font-manrope), sans-serif;
-  --font-heading: var(--font-manrope), sans-serif;
-  --font-body: var(--font-inter), sans-serif;
+  --font-sans: var(--font-neue-montreal), var(--font-inter), var(--font-manrope), sans-serif;
+  --font-heading: var(--font-neue-montreal), var(--font-manrope), sans-serif;
+  --font-body: var(--font-neue-montreal), var(--font-inter), sans-serif;
   --font-mono-metric: var(--font-space-grotesk), sans-serif;
   --font-mono: var(--font-space-grotesk), ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-script: "Dancing Script", cursive;

@@ -108,7 +108,7 @@ export function RevenueLeakCalculatorPreview() {
           </Badge>
           <h2
             id="revenue-leak-calculator-preview-heading"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+            style={{ fontFamily: "var(--font-heading)" }}
             className="mt-5 text-balance text-[38px] font-extrabold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[50px] lg:text-[58px] [font-family:var(--font-heading)]"
           >
             Run the numbers. Then see what to fix first.

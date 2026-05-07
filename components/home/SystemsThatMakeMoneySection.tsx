@@ -142,7 +142,7 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
           <div>
             <p className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#087B3F]">{system.eyebrow}</p>
             <h3
-              style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+              style={{ fontFamily: "var(--font-heading)" }}
               className="mt-3 text-[30px] font-extrabold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[36px] [font-family:var(--font-heading)]"
             >
               {system.title}
@@ -201,7 +201,7 @@ export function SystemsThatMakeMoneySection({ className, ...props }: SystemsThat
           </Badge>
           <h2
             id="systems-that-move-money-heading"
-            style={{ fontFamily: "var(--font-manrope), sans-serif" }}
+            style={{ fontFamily: "var(--font-heading)" }}
             className="mt-5 text-balance text-[40px] font-extrabold leading-[0.96] tracking-[-0.05em] text-[#071D3A] sm:text-[54px] lg:text-[64px] [font-family:var(--font-heading)]"
           >
             Systems that Move Money
