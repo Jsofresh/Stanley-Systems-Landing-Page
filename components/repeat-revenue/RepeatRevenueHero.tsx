@@ -70,12 +70,12 @@ export function RepeatRevenueHero() {
 
         <div className="relative min-h-[360px] overflow-hidden rounded-[1.75rem] border border-[#D6E8DC] bg-[#F8FBF9] shadow-[0_30px_80px_rgba(16,32,51,0.12),0_0_48px_rgba(21,128,61,0.16)] sm:min-h-[440px] lg:min-h-[500px]">
           <Image
-            src="/images/repeat-revenue/repeat-revenue-hero-loop.png"
-            alt="3D Repeat Revenue System visual showing customer records, reviews, referrals, missed calls, and booked jobs connected by a green revenue loop."
-            width={1536}
-            height={1024}
+            src="/images/repeat-revenue/repeat-revenue-loop.jpg"
+            alt="Repeat Revenue loop visual showing past customers, five-star reviews, referrals, and captured calls feeding more repeat revenue."
+            width={1280}
+            height={960}
             priority
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 h-full w-full object-contain object-center p-4 sm:p-6"
           />
         </div>
       </div>

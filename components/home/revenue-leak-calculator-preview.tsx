@@ -102,31 +102,32 @@ export function RevenueLeakCalculatorPreview() {
         </div>
 
         <Card className="mx-auto mt-5 overflow-hidden rounded-[22px] border-[#D7E7DC] bg-white/95 p-0 shadow-[0_18px_48px_rgba(7,29,58,0.075)]">
-          <CardHeader className="border-b border-[#E3ECE6] bg-gradient-to-r from-white via-[#FBFEFA] to-[#F1FAEE] px-4 py-3 sm:px-5">
-            <div className="grid gap-4 lg:grid-cols-[1fr_420px] lg:items-center">
-              <div className="flex items-center gap-3">
-                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-[12px] bg-[#EAF6E6] ring-1 ring-[#CFE6D6]">
-                  <MoneyLeakMapDisplayAsset size={36} priority />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[11px] font-extrabold uppercase tracking-[0.15em] text-[#087B3F]">Revenue Leak Preview</p>
-                  <p className="mt-0.5 text-[13px] font-semibold leading-5 text-[#42596C] sm:text-[14px]">
-                    A quick sample of what the calculator looks for before you run your real numbers.
-                  </p>
-                </div>
+          <CardHeader className="border-b border-[#E3ECE6] bg-gradient-to-r from-white via-[#FBFEFA] to-[#F1FAEE] px-4 py-4 sm:px-5">
+            <div className="flex items-center gap-3">
+              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-[12px] bg-[#EAF6E6] ring-1 ring-[#CFE6D6]">
+                <MoneyLeakMapDisplayAsset size={36} priority />
               </div>
-              <div className="relative hidden overflow-hidden rounded-[18px] border border-[#D7E7DC] bg-white shadow-[0_12px_28px_rgba(7,29,58,0.06)] lg:block">
-                <Image
-                  src="/images/generated/homepage/revenue-leak-path.webp"
-                  alt="Revenue leak path showing delayed invoices, dormant customers, open estimates, and missed calls moving toward a clearer next step."
-                  width={900}
-                  height={520}
-                  className="h-[190px] w-full object-cover"
-                  priority
-                />
+              <div className="min-w-0">
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.15em] text-[#087B3F]">Revenue Leak Preview</p>
+                <p className="mt-0.5 text-[13px] font-semibold leading-5 text-[#42596C] sm:text-[14px]">
+                  A quick sample of what the calculator looks for before you run your real numbers.
+                </p>
               </div>
             </div>
           </CardHeader>
+
+          <div className="border-b border-[#E3ECE6] bg-[#F8FCF6] px-4 py-4 sm:px-5">
+            <div className="relative overflow-hidden rounded-[18px] border border-[#D7E7DC] bg-white shadow-[0_12px_28px_rgba(7,29,58,0.06)]">
+              <Image
+                src="/images/generated/homepage/revenue-leak-path.webp"
+                alt="Revenue leak path showing delayed invoices, dormant customers, open estimates, and missed calls moving toward a clearer next step."
+                width={1200}
+                height={620}
+                className="h-[190px] w-full object-contain p-2 sm:h-[230px] lg:h-[255px]"
+                priority
+              />
+            </div>
+          </div>
 
           <CardContent className="grid gap-0 p-0 lg:grid-cols-[0.82fr_1.18fr]">
             <div className="border-b border-[#E4EEE7] bg-[#FCFDF9] p-4 sm:p-4 lg:border-b-0 lg:border-r lg:p-5">

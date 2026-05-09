@@ -21,10 +21,8 @@ export type SystemsThatMakeMoneySectionProps = React.HTMLAttributes<HTMLElement>
 type DisplayAsset = (props: DisplayAssetProps) => JSX.Element
 
 type ProductSystem = {
-  eyebrow: string
   title: string
   promise: string
-  chips: string[]
   href: string
   analyticsLocation: string
   packageName: string
@@ -39,10 +37,8 @@ type ProductSystem = {
 
 const systems: ProductSystem[] = [
   {
-    eyebrow: 'CASHFLOW CONTROL',
     title: 'Cashflow Control System',
     promise: 'Turn finished work into collected cash faster.',
-    chips: ['Same-day invoice path', 'Cleaner billing handoffs', 'Fewer stuck balances'],
     href: '/systems/cashflow-control',
     analyticsLocation: 'home_systems_cashflow_control',
     packageName: 'Cashflow Control System',
@@ -59,17 +55,15 @@ const systems: ProductSystem[] = [
     ],
   },
   {
-    eyebrow: 'REPEAT REVENUE',
     title: 'Repeat Revenue System',
-    promise: 'Turn old customers, reviews, referrals, and missed calls into cleaner booked-work paths.',
-    chips: ['Past customers reactivated', 'Review requests sent', 'Referral prompts', 'Missed calls recovered'],
+    promise: 'Turn past customers, referrals, reviews, and missed calls into booked work.',
     href: '/systems/repeat-revenue',
     analyticsLocation: 'home_systems_repeat_revenue',
     packageName: 'Repeat Revenue System',
     ctaLabel: 'See the Repeat Revenue System',
     flowTitle: 'How customers turn into booked work',
     bottomLine: 'For shops with old customers, happy customers, referrals, reviews, and missed calls that should produce more booked work.',
-    visualSrc: '/images/generated/homepage/repeat-revenue-visual.webp',
+    visualSrc: '/images/repeat-revenue/repeat-revenue-loop.jpg',
     visualAlt: 'Repeat Revenue visual showing past customers, reviews, referrals, and missed calls becoming booked work.',
     Icon: RepeatCustomerCycleDisplayAsset,
     flow: [
@@ -79,21 +73,6 @@ const systems: ProductSystem[] = [
     ],
   },
 ]
-
-function OutcomeChips({ chips }: { chips: string[] }) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {chips.map((chip) => (
-        <span
-          key={chip}
-          className="rounded-full border border-[#D7E9DC] bg-[#F3FAF1] px-2.5 py-1 text-[11px] font-extrabold leading-none text-[#087B3F]"
-        >
-          {chip}
-        </span>
-      ))}
-    </div>
-  )
-}
 
 function ProductFlow({ flow, flowTitle }: Pick<ProductSystem, 'flow' | 'flowTitle'>) {
   return (
@@ -144,10 +123,9 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
       <CardContent className="flex h-full flex-col p-4 sm:p-4 lg:p-4">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.15em] text-[#087B3F]">{system.eyebrow}</p>
             <h3
               style={{ fontFamily: "var(--font-heading)" }}
-              className="mt-1.5 text-[26px] font-extrabold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-[30px] [font-family:var(--font-heading)]"
+              className="text-[26px] font-extrabold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-[30px] [font-family:var(--font-heading)]"
             >
               {system.title}
             </h3>
@@ -158,17 +136,13 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
           </div>
         </div>
 
-        <div className="mt-3">
-          <OutcomeChips chips={system.chips} />
-        </div>
-
         <div className="mt-3 overflow-hidden rounded-[18px] border border-[#DDEBE2] bg-white shadow-[0_10px_24px_rgba(7,29,58,0.04)]">
           <Image
             src={system.visualSrc}
             alt={system.visualAlt}
             width={920}
             height={620}
-            className="h-[220px] w-full object-cover"
+            className="h-[220px] w-full object-contain p-2"
             loading="eager"
           />
         </div>
