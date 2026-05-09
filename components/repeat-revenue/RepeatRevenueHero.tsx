@@ -13,16 +13,16 @@ const heroChips = [
 
 export function RepeatRevenueHero() {
   return (
-    <section id="hero" data-section="hero" className="relative scroll-mt-[120px] overflow-hidden bg-[#F8F4EA] px-4 pt-24 text-[#213343] sm:px-6 lg:px-8 lg:pt-28">
-      <div className="absolute right-0 top-0 hidden h-full w-[38%] skew-x-[-10deg] bg-[#DDEFE3] lg:block" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-7xl gap-9 pb-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:pb-16">
+    <section id="hero" data-section="hero" className="relative scroll-mt-[120px] overflow-hidden bg-white px-4 pt-24 text-[#213343] sm:px-6 lg:px-8 lg:pt-28">
+      <div className="absolute right-0 top-24 h-[520px] w-[48%] rounded-l-full bg-[radial-gradient(circle_at_center,rgba(21,128,61,0.14),rgba(255,255,255,0)_68%)] blur-2xl" aria-hidden="true" />
+      <div className="relative mx-auto grid max-w-7xl gap-9 pb-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:pb-16">
         <div className="max-w-3xl">
           <nav className="text-sm font-semibold text-[#33475B]" aria-label="Breadcrumb">
             <a href="/systems" className="underline decoration-[#1F7A3A]/50 underline-offset-4 hover:text-[#1F7A3A]">Systems</a>
             <span className="mx-2 text-[#7C98B6]">/</span>
             <span>Repeat Revenue System</span>
           </nav>
-          <h1 className="mt-6 max-w-4xl text-[2.45rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#213343] sm:text-[3.45rem] lg:text-[3.75rem]">
+          <h1 className="mt-6 max-w-4xl text-[2.45rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#102033] sm:text-[3.45rem] lg:text-[3.75rem]">
             Get more money from the customers you already earned.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[#33475B] sm:text-xl">
@@ -42,7 +42,7 @@ export function RepeatRevenueHero() {
               ctaLabel="Buy Repeat Revenue"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#1F7A3A] px-7 py-3 text-sm font-bold text-white shadow-[0_12px_24px_rgba(31,122,58,0.18)] transition hover:bg-[#17612E]"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#15803D] px-7 py-3 text-sm font-bold text-white shadow-[0_0_26px_rgba(21,128,61,0.25)] transition hover:bg-[#17612E]"
             >
               Buy Repeat Revenue <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </CTALink>
@@ -58,7 +58,7 @@ export function RepeatRevenueHero() {
               ctaLabel="Start with the $97 Workflow Audit"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#1F7A3A] bg-white/70 px-7 py-3 text-sm font-bold text-[#213343] transition hover:bg-[#E8F6EC]"
+              className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-7 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]"
             >
               Start with the $97 Workflow Audit
             </CTALink>
@@ -68,26 +68,24 @@ export function RepeatRevenueHero() {
           </p>
         </div>
 
-        <div className="relative">
-          <div className="rounded-[1.35rem] border border-[#C8D8CE] bg-white p-3 shadow-[0_22px_56px_rgba(33,51,67,0.12)] sm:p-4">
-            <Image
-              src="/images/repeat-revenue/repeat-revenue-hero-loop.png"
-              alt="Repeat Revenue System loop showing past customers, review ask, referral ask, missed call captured, and next job booked."
-              width={1536}
-              height={1024}
-              priority
-              className="aspect-[16/10] w-full rounded-[1rem] object-cover"
-            />
-          </div>
+        <div className="relative min-h-[360px] overflow-hidden rounded-[1.75rem] border border-[#D6E8DC] bg-[#F8FBF9] shadow-[0_30px_80px_rgba(16,32,51,0.12),0_0_48px_rgba(21,128,61,0.16)] sm:min-h-[440px] lg:min-h-[500px]">
+          <Image
+            src="/images/repeat-revenue/repeat-revenue-hero-loop.png"
+            alt="3D Repeat Revenue System visual showing customer records, reviews, referrals, missed calls, and booked jobs connected by a green revenue loop."
+            width={1536}
+            height={1024}
+            priority
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
         </div>
       </div>
 
-      <div className="relative border-y border-[#D5DEE8] bg-white/85">
+      <div className="relative border-y border-[#D5DEE8] bg-white">
         <div className="mx-auto grid max-w-7xl divide-y divide-[#D5DEE8] sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
           {heroChips.map((label) => (
             <div key={label} className="flex items-center gap-3 px-5 py-4">
-              <CheckCircle2 className="h-5 w-5 shrink-0 text-[#1F7A3A]" aria-hidden="true" />
-              <p className="text-base font-bold text-[#213343]">{label}</p>
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
+              <p className="text-base font-bold text-[#102033]">{label}</p>
             </div>
           ))}
         </div>

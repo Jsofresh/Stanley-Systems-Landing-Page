@@ -15,7 +15,7 @@ function AuditLink({ label, location }: { label: string; location: string }) {
       ctaLabel="Start with the Workflow Audit"
       target="_blank"
       rel="noopener noreferrer"
-      className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-md border-2 border-[#1F7A3A] px-4 py-3 text-sm font-bold text-[#213343] transition hover:bg-[#E8F6EC]"
+      className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-4 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]"
     >
       {label}
     </CTALink>
@@ -23,19 +23,19 @@ function AuditLink({ label, location }: { label: string; location: string }) {
 }
 
 function badgeClass(tone: string) {
-  if (tone === "recommended") return "-top-5 right-4 bg-[#102A43] text-white shadow-[0_12px_24px_rgba(16,42,67,0.18)]"
-  if (tone === "yearly") return "-top-5 right-4 bg-[#15803D] text-white shadow-[0_12px_24px_rgba(21,128,61,0.2)]"
-  if (tone === "complete") return "-top-5 right-4 bg-[#1B4D89] text-white shadow-[0_12px_24px_rgba(27,77,137,0.16)]"
+  if (tone === "recommended") return "-top-5 right-4 bg-[#E11D48] text-white shadow-[0_12px_24px_rgba(225,29,72,0.18)]"
+  if (tone === "yearly") return "-top-5 right-4 bg-[#E11D48] text-white shadow-[0_12px_24px_rgba(225,29,72,0.18)]"
+  if (tone === "complete") return "-top-5 right-4 bg-[#102A43] text-white shadow-[0_12px_24px_rgba(16,42,67,0.16)]"
   return "-top-4 left-4 bg-white text-[#102033] ring-1 ring-[#D5DEE8]"
 }
 
 export function RepeatRevenuePricing() {
   return (
-    <section id="plans" data-section="pricing" className="scroll-mt-[120px] bg-[#F8F4EA] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+    <section id="plans" data-section="pricing" className="scroll-mt-[120px] bg-[#F8FBF9] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-bold text-[#1F7A3A]">Packages</p>
-          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#213343] sm:text-5xl">
+          <p className="text-sm font-bold text-[#15803D]">Packages</p>
+          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
             Choose the path that matches the leak.
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-[#33475B]">
@@ -56,15 +56,15 @@ export function RepeatRevenuePricing() {
                 key={card.name}
                 className={`relative flex min-h-full flex-col rounded-[1.1rem] border p-5 pt-8 shadow-[0_14px_34px_rgba(33,51,67,0.08)] ${
                   isRecommended
-                    ? "border-[#1F7A3A] bg-white ring-2 ring-[#A7D8B4]"
+                    ? "border-[#15803D] bg-white ring-2 ring-[#A7D8B4]"
                     : isYearly
                       ? "border-[#9FCFAD] bg-white"
                       : "border-[#D5DEE8] bg-white"
                 }`}
               >
                 <p className={`absolute rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] ${badgeClass(card.tone)}`}>{card.badge}</p>
-                <h3 className="text-xl font-bold leading-tight tracking-[-0.025em] text-[#213343]">{card.name}</h3>
-                <p className="mt-3 text-[2.55rem] font-bold leading-none tracking-[-0.055em] text-[#213343]">{card.package.priceDisplay}</p>
+                <h3 className="text-xl font-bold leading-tight tracking-[-0.025em] text-[#102033]">{card.name}</h3>
+                <p className="mt-3 text-[2.55rem] font-bold leading-none tracking-[-0.055em] text-[#102033]">{card.package.priceDisplay}</p>
                 <p className="mt-3 min-h-[66px] text-sm leading-6 text-[#33475B]">{card.description}</p>
 
                 <div className="mt-4 grid gap-2 border-y border-[#C8D8CE] py-3 text-sm font-semibold leading-5 text-[#33475B]">
@@ -81,7 +81,7 @@ export function RepeatRevenuePricing() {
                 <ul className="mt-4 grid gap-2 text-sm leading-5 text-[#33475B]">
                   {card.bullets.map((feature) => (
                     <li key={feature} className="flex gap-2">
-                      <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1F7A3A]" />
+                      <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -100,7 +100,7 @@ export function RepeatRevenuePricing() {
                     ctaLabel={card.cta}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-[#1F7A3A] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
+                    className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-[#15803D] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
                   >
                     {card.cta}
                   </CTALink>
