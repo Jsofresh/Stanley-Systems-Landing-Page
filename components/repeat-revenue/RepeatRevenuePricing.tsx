@@ -15,7 +15,7 @@ function AuditLink({ label, location }: { label: string; location: string }) {
       ctaLabel="Start with the Workflow Audit"
       target="_blank"
       rel="noopener noreferrer"
-      className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-4 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]"
+      className="mt-2 inline-flex min-h-10 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-4 py-2.5 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]"
     >
       {label}
     </CTALink>
@@ -31,30 +31,30 @@ function badgeClass(tone: string) {
 
 export function RepeatRevenuePricing() {
   return (
-    <section id="plans" data-section="pricing" className="scroll-mt-[120px] bg-[#F8FBF9] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+    <section id="plans" data-section="pricing" className="scroll-mt-[120px] bg-[#F8FBF9] px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-bold text-[#15803D]">Packages</p>
-          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
+          <h2 className="mt-3 text-[2.2rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl lg:text-[2.9rem]">
             Choose the path that matches the leak.
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-[#33475B]">
+          <p className="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#33475B] sm:text-lg">
             Buy the package that matches the problem you already know, or start with the audit and let the numbers choose the first build.
           </p>
         </div>
 
-        <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-[#B7D8C0] bg-white px-5 py-4 text-center text-base font-extrabold text-[#124E25] shadow-[0_12px_30px_rgba(33,51,67,0.06)]">
+        <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-[#B7D8C0] bg-white px-5 py-3 text-center text-sm font-extrabold text-[#124E25] shadow-[0_12px_30px_rgba(33,51,67,0.06)]">
           Yearly plans save 20%, waive installation, and double the audit credit to $194.
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 lg:grid-cols-4">
           {packageCards.map((card) => {
             const isRecommended = card.tone === "recommended"
             const isYearly = card.tone === "yearly" || card.tone === "recommended"
             return (
               <article
                 key={card.name}
-                className={`flex min-h-full flex-col rounded-[1.1rem] border p-5 shadow-[0_14px_34px_rgba(33,51,67,0.08)] ${
+                className={`flex min-h-full flex-col rounded-[1.1rem] border p-4 shadow-[0_14px_34px_rgba(33,51,67,0.08)] ${
                   isRecommended
                     ? "border-[#15803D] bg-white ring-2 ring-[#A7D8B4]"
                     : isYearly
@@ -63,22 +63,22 @@ export function RepeatRevenuePricing() {
                 }`}
               >
                 <p className={`mb-4 inline-flex w-fit rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] ${badgeClass(card.tone)}`}>{card.badge}</p>
-                <h3 className="text-xl font-bold leading-tight tracking-[-0.025em] text-[#102033]">{card.name}</h3>
-                <p className="mt-3 text-[2.55rem] font-bold leading-none tracking-[-0.055em] text-[#102033]">{card.package.priceDisplay}</p>
-                <p className="mt-3 min-h-[66px] text-sm leading-6 text-[#33475B]">{card.description}</p>
+                <h3 className="text-lg font-bold leading-tight tracking-[-0.025em] text-[#102033]">{card.name}</h3>
+                <p className="mt-2 text-[2.25rem] font-bold leading-none tracking-[-0.055em] text-[#102033]">{card.package.priceDisplay}</p>
+                <p className="mt-2 min-h-[56px] text-sm leading-5 text-[#33475B]">{card.description}</p>
 
-                <div className="mt-4 grid gap-2 border-y border-[#C8D8CE] py-3 text-sm font-semibold leading-5 text-[#33475B]">
+                <div className="mt-3 grid gap-2 border-y border-[#C8D8CE] py-2 text-xs font-semibold leading-5 text-[#33475B]">
                   <div className="rounded-xl bg-[#F8FCF9] px-3 py-2 ring-1 ring-[#E0E9E3]">{card.install}</div>
                   <div className="rounded-xl bg-[#E8F6EC] px-3 py-2 font-extrabold text-[#124E25] ring-1 ring-[#B7D8C0]">{card.credit}</div>
                 </div>
 
                 {card.callout ? (
-                  <p className="mt-4 rounded-2xl border border-[#B7D8C0] bg-[#F2FBF4] px-4 py-3 text-sm font-extrabold leading-5 text-[#124E25] shadow-[0_10px_22px_rgba(31,122,58,0.08)]">
+                  <p className="mt-3 rounded-2xl border border-[#B7D8C0] bg-[#F2FBF4] px-3 py-2 text-xs font-extrabold leading-5 text-[#124E25] shadow-[0_10px_22px_rgba(31,122,58,0.08)]">
                     {card.callout}
                   </p>
                 ) : null}
 
-                <ul className="mt-4 grid gap-2 text-sm leading-5 text-[#33475B]">
+                <ul className="mt-3 grid gap-1.5 text-xs leading-5 text-[#33475B]">
                   {card.bullets.map((feature) => (
                     <li key={feature} className="flex gap-2">
                       <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />
@@ -87,7 +87,7 @@ export function RepeatRevenuePricing() {
                   ))}
                 </ul>
 
-                <div className="mt-auto pt-5">
+                <div className="mt-auto pt-4">
                   <CTALink
                     href={card.package.stripePaymentLink.url}
                     kind="checkout"
@@ -100,7 +100,7 @@ export function RepeatRevenuePricing() {
                     ctaLabel={card.cta}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-[#15803D] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
+                    className="inline-flex min-h-10 w-full items-center justify-center rounded-md bg-[#15803D] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#17612E]"
                   >
                     {card.cta}
                   </CTALink>

@@ -28,7 +28,7 @@ export const leakCards = [
 export const leakResultPanels = [
   {
     image: "/images/repeat-revenue/result-past-customers.png",
-    title: "Repeat Revenue is the best first fix for quiet customer lists.",
+    title: "Quiet customer lists become booked jobs.",
     body: "Stanley Systems finds past customers, old buyers, seasonal records, and completed jobs that should have a next step.",
     fixes: [
       "Finds customer records worth checking",
@@ -39,7 +39,7 @@ export const leakResultPanels = [
   },
   {
     image: "/images/repeat-revenue/result-review-path.png",
-    title: "Repeat Revenue is the best first fix for weak review flow.",
+    title: "Happy customers get asked while trust is fresh.",
     body: "Stanley Systems gives happy customers a clear review ask while the job is still fresh and sends weak experiences to a manager first.",
     fixes: [
       "Sends a private rating step",
@@ -50,7 +50,7 @@ export const leakResultPanels = [
   },
   {
     image: "/images/repeat-revenue/result-referral-path.png",
-    title: "Repeat Revenue is the best first fix for missed referrals.",
+    title: "Referral asks turn trust into new leads.",
     body: "Stanley Systems gives your best customers a simple referral ask while trust is highest.",
     fixes: [
       "Identifies the best referral moments",
@@ -61,7 +61,7 @@ export const leakResultPanels = [
   },
   {
     image: "/images/repeat-revenue/result-missed-calls.png",
-    title: "Repeat Revenue is the best first fix for cold missed calls.",
+    title: "Missed calls get a recovery path.",
     body: "Stanley Systems helps missed and after-hours inquiries get acknowledged and routed before the customer calls someone else.",
     fixes: [
       "Captures missed inquiry moments",
