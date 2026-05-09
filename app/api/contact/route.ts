@@ -19,20 +19,42 @@ export async function POST(request: Request) {
       name: clean(body?.name),
       email: clean(body?.email),
       phone: clean(body?.phone),
-      company: clean(body?.company),
+      business: clean(body?.business),
+      company: clean(body?.company) || clean(body?.business),
       location: clean(body?.location),
+      business_type: clean(body?.business_type),
+      main_issue: clean(body?.main_issue),
+      message: clean(body?.message),
+      page_source: clean(body?.page_source),
+      current_path: clean(body?.current_path),
       businessType: clean(body?.businessType),
       bottleneck: clean(body?.bottleneck),
       invoiceDelay: clean(body?.invoiceDelay),
       currentProcess: clean(body?.currentProcess),
       problem: clean(body?.problem),
       smsConsent: cleanBoolean(body?.smsConsent),
+      status: clean(body?.status) || "contact_request",
+      form_type: clean(body?.form_type) || "contact_form",
+      utm_source: clean(body?.utm_source),
+      utm_medium: clean(body?.utm_medium),
+      utm_campaign: clean(body?.utm_campaign),
+      utm_content: clean(body?.utm_content),
+      utm_term: clean(body?.utm_term),
+      referrer: clean(body?.referrer),
       source: clean(body?.source) || "website-contact-form",
       page: clean(body?.page) || "/contact",
+      submitted_at: clean(body?.submitted_at) || new Date().toISOString(),
       submittedAt: new Date().toISOString(),
     }
 
-    if (!payload.name || !payload.email || !payload.company || !payload.businessType || !payload.bottleneck || !payload.currentProcess || !payload.problem) {
+    if (payload.form_type === "pre_buy_question") {
+      if (!payload.name || !payload.email || !payload.company || !payload.problem) {
+        return NextResponse.json(
+          { ok: false, error: "Missing required fields." },
+          { status: 400 },
+        )
+      }
+    } else if (!payload.name || !payload.email || !payload.company || !payload.businessType || !payload.bottleneck || !payload.currentProcess || !payload.problem) {
       return NextResponse.json(
         { ok: false, error: "Missing required fields." },
         { status: 400 },

@@ -1,4 +1,5 @@
 import type * as React from 'react'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 
 import { CTALink } from '@/components/cta-link'
@@ -30,6 +31,8 @@ type ProductSystem = {
   ctaLabel: string
   flowTitle: string
   bottomLine: string
+  visualSrc: string
+  visualAlt: string
   Icon: DisplayAsset
   flow: Array<{ label: string; sublabel: string; Icon: DisplayAsset; final?: boolean }>
 }
@@ -46,6 +49,8 @@ const systems: ProductSystem[] = [
     ctaLabel: 'See the Cashflow Control System',
     flowTitle: 'How cash starts moving',
     bottomLine: 'For shops where completed work still waits on office follow-up.',
+    visualSrc: '/images/generated/homepage/cashflow-control-visual.webp',
+    visualAlt: 'Cashflow Control visual showing completed work moving through billing readiness into collected cash.',
     Icon: CashApprovedDisplayAsset,
     flow: [
       { label: 'Job finished', sublabel: 'work is complete', Icon: CompletedJobDisplayAsset },
@@ -56,14 +61,16 @@ const systems: ProductSystem[] = [
   {
     eyebrow: 'REPEAT REVENUE',
     title: 'Repeat Revenue System',
-    promise: 'Get more money from the customers you already earned.',
-    chips: ['Past customers reactivated', 'More 5-star reviews', 'More referral opportunities'],
+    promise: 'Turn old customers, reviews, referrals, and missed calls into cleaner booked-work paths.',
+    chips: ['Past customers reactivated', 'Review requests sent', 'Referral prompts', 'Missed calls recovered'],
     href: '/systems/repeat-revenue',
     analyticsLocation: 'home_systems_repeat_revenue',
     packageName: 'Repeat Revenue System',
     ctaLabel: 'See the Repeat Revenue System',
     flowTitle: 'How customers turn into booked work',
-    bottomLine: 'For shops with old customers, happy customers, and missed calls sitting unused.',
+    bottomLine: 'For shops with old customers, happy customers, referrals, reviews, and missed calls that should produce more booked work.',
+    visualSrc: '/images/generated/homepage/repeat-revenue-visual.webp',
+    visualAlt: 'Repeat Revenue visual showing past customers, reviews, referrals, and missed calls becoming booked work.',
     Icon: RepeatCustomerCycleDisplayAsset,
     flow: [
       { label: 'Past customer', sublabel: 'earned trust', Icon: CustomerReactivationCheckDisplayAsset },
@@ -153,6 +160,17 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
 
         <div className="mt-3">
           <OutcomeChips chips={system.chips} />
+        </div>
+
+        <div className="mt-3 overflow-hidden rounded-[18px] border border-[#DDEBE2] bg-white shadow-[0_10px_24px_rgba(7,29,58,0.04)]">
+          <Image
+            src={system.visualSrc}
+            alt={system.visualAlt}
+            width={920}
+            height={620}
+            className="h-[220px] w-full object-cover"
+            loading="eager"
+          />
         </div>
 
         <div className="mt-3 flex-1">

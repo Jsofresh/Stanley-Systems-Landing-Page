@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { ArrowRight, Calculator } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
@@ -46,7 +47,18 @@ export function FinalCTASection() {
           </div>
 
           <div className="border-t border-[#dbe7cf] bg-white/72 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="overflow-hidden rounded-2xl border border-[#dfe8da] bg-white shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
+              <Image
+                src="/images/generated/homepage/cost-of-waiting-verdict.webp"
+                alt="Cost of waiting verdict visual showing unfinished follow-up and billing leaks turning into a clear Workflow Audit next step."
+                width={980}
+                height={720}
+                className="h-[260px] w-full object-cover sm:h-[320px]"
+                loading="eager"
+              />
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {leaks.map(([before, after]) => (
                 <div key={before} className="rounded-2xl border border-[#dfe8da] bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
                   <p className="text-sm font-bold text-[#475569]">{before}</p>
