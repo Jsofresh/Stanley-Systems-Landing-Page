@@ -1,13 +1,7 @@
+import Image from "next/image"
 import { ArrowRight, Calculator } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { plans, sectionShell } from "./tokens"
-
-const proof = [
-  ["Delayed billing", "5 completed jobs × $650 average job = $3,250 sitting in the office path."],
-  ["Office time", "8 hours a week chasing billing details = more than 30 hours a month spent on preventable follow-up."],
-  ["Open balances", "A/R follow-up that depends on memory turns collected cash into “we'll check later.”"],
-  ["Repeated cleanup", "The same missing notes, customer records, and invoice questions keep stealing office time every week."],
-] as const
 
 export function ProofCost() {
   return (
@@ -18,14 +12,13 @@ export function ProofCost() {
             <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Proof and cost</p>
             <h2 className="mt-3 text-[2.45rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">A few stuck jobs can tie up thousands.</h2>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {proof.map(([title, body]) => (
-              <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 shadow-[0_12px_30px_rgba(7,29,58,0.05)]">
-                <h3 className="text-lg font-extrabold text-[#071D3A]">{title}</h3>
-                <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
-              </article>
-            ))}
-          </div>
+          <Image
+            src="/images/uploaded/cashflow-control/delayed-billing-office-time-open-balances.jpg"
+            alt="Delayed billing, office time, open balances, and repeated cleanup cashflow costs."
+            width={1280}
+            height={720}
+            className="h-auto w-full rounded-[2rem] shadow-[0_18px_48px_rgba(7,29,58,0.08)]"
+          />
         </div>
         <div className="mt-8 rounded-[2rem] border border-[#BFE4C8] bg-[#F4FBF5] p-5 shadow-[0_18px_48px_rgba(7,29,58,0.06)] sm:p-7">
           <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">

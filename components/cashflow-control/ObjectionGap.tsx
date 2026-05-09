@@ -1,11 +1,5 @@
-import { CheckCircle2 } from "lucide-react"
-import { cardShell, sectionShell } from "./tokens"
-
-const cards = [
-  ["Job complete does not mean invoice-ready", "The office still has to check notes, prices, line items, photos, payment status, and whether the job reached the billing system."],
-  ["Invoice sent does not mean follow-up is handled", "Some balances need a normal reminder. Some need a person. Some need owner visibility before they get old."],
-  ["Reports do not fix the handoff", "A report can show what happened. Stanley Systems helps catch the issue before it becomes normal office drag."],
-] as const
+import Image from "next/image"
+import { sectionShell } from "./tokens"
 
 export function ObjectionGap() {
   return (
@@ -21,22 +15,13 @@ export function ObjectionGap() {
               QuickBooks, Housecall Pro, Jobber, ServiceTitan, and other tools already handle parts of invoicing, reminders, payments, and reporting. That is not the problem. The problem is the gap between job completion, billing readiness, invoice follow-up, and owner visibility. Stanley Systems does not replace your software. It makes the handoff around it harder to miss.
             </p>
           </div>
-          <div className="grid gap-4">
-            {cards.map(([title, body]) => (
-              <article key={title} className={`${cardShell} p-5`}>
-                <div className="flex gap-3">
-                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                  <div>
-                    <h3 className="text-xl font-extrabold tracking-[-0.02em] text-[#071D3A]">{title}</h3>
-                    <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
-            <div className="rounded-[1.5rem] border border-[#BFE4C8] bg-[#F4FBF5] p-5 text-base font-extrabold leading-7 text-[#102033]">
-              Already have reminders? Good. Cashflow Control watches the office path around them so missing details, stuck invoices, and open balances do not depend on memory.
-            </div>
-          </div>
+          <Image
+            src="/images/uploaded/cashflow-control/cashflow-control-catches-the-gap.jpg"
+            alt="Cashflow Control catches the gap between job completion, invoice readiness, invoice sent, and follow-up."
+            width={960}
+            height={1280}
+            className="h-auto w-full rounded-[2rem] shadow-[0_18px_48px_rgba(7,29,58,0.08)]"
+          />
         </div>
       </div>
     </section>

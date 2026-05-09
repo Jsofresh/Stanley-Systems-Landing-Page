@@ -1,26 +1,9 @@
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Mail, ClipboardCheck, ReceiptText } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { plans, sectionShell } from "./tokens"
-
-const outputCards = [
-  {
-    icon: Mail,
-    title: "Office alert",
-    body: "Job #1842 is complete but not billing-ready. Missing: line items and tech notes. Sent to: office@shop.com",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Daily billing nudge",
-    body: "4 jobs finished today. 3 are ready to invoice. 1 needs cleanup before billing.",
-  },
-  {
-    icon: ReceiptText,
-    title: "Weekly Money Leak Digest",
-    body: "6 completed jobs reviewed. 2 jobs missing billing details. $4,850 in open balances surfaced. 3 invoices need follow-up.",
-  },
-]
 
 export function CashflowControlHero() {
   return (
@@ -56,24 +39,14 @@ export function CashflowControlHero() {
 
         <div className="relative">
           <div className="absolute -inset-4 rounded-[2.5rem] bg-[#15803D]/10 blur-3xl" aria-hidden="true" />
-          <div className="relative overflow-hidden rounded-[2.25rem] border border-[#CFE8D5] bg-white p-5 shadow-[0_26px_70px_rgba(7,29,58,0.12)] sm:p-6">
-            <div className="rounded-[1.65rem] bg-[#F4FBF5] p-4">
-              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-[#116832]">System outputs, not another dashboard</p>
-              <div className="mt-4 grid gap-4">
-                {outputCards.map((card, index) => (
-                  <article key={card.title} className="rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_14px_30px_rgba(7,29,58,0.06)]" style={{ transform: `translateX(${index * 10}px)` }}>
-                    <div className="flex items-start gap-3">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#EAF6E6] text-[#15803D] ring-1 ring-[#CFE8D5]"><card.icon className="h-5 w-5" /></span>
-                      <div>
-                        <h2 className="text-lg font-extrabold tracking-[-0.02em] text-[#071D3A]">{card.title}</h2>
-                        <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{card.body}</p>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
+          <Image
+            src="/images/uploaded/cashflow-control/finished-job-to-cash-collected.jpg"
+            alt="Finished jobs moving through billing ready, invoice sent, and cash collected."
+            width={1254}
+            height={1254}
+            priority
+            className="relative h-auto w-full rounded-[2.25rem] shadow-[0_26px_70px_rgba(7,29,58,0.12)]"
+          />
           <div className="mt-4 text-center text-sm font-semibold text-[#607080]">
             Prefer to compare first? <Link href="/pricing" className="font-extrabold text-[#116832] underline underline-offset-4">See all pricing</Link>.
           </div>
