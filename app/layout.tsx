@@ -81,13 +81,13 @@ const workSans = Work_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stanley-systems.com"),
-  title: "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+  title: "Stanley Systems | Office Bottleneck Removal for Service Businesses",
   description:
-    "Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+    "Stanley Systems helps blue-collar service businesses remove office bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
   openGraph: {
-    title: "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    title: "Stanley Systems | Office Bottleneck Removal for Service Businesses",
     description:
-      "Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+      "Stanley Systems helps blue-collar service businesses remove office bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
     url: "https://stanley-systems.com",
     siteName: "Stanley Systems",
     locale: "en_US",
@@ -95,9 +95,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    title: "Stanley Systems | Office Bottleneck Removal for Service Businesses",
     description:
-      "Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+      "Stanley Systems helps blue-collar service businesses remove office bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
   },
   alternates: {
     canonical: "https://stanley-systems.com",
@@ -174,7 +174,7 @@ export default function RootLayout({
     logo: "https://stanley-systems.com/stanley-logo-new.jpg",
     image: "https://stanley-systems.com/stanley-logo-new.jpg",
     description:
-      "Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+      "Stanley Systems helps blue-collar service businesses remove office bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
     telephone: "+16179586372",
     email: "hello@stanley-systems.com",
     areaServed: ["US"],
