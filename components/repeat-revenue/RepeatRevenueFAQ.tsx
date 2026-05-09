@@ -6,8 +6,8 @@ export function RepeatRevenueFAQ() {
     <section id="scope" data-section="faq-scope" className="scroll-mt-[120px] bg-white px-4 pb-16 pt-4 sm:px-6 lg:px-8 lg:pb-20">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr]">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#1F7A3A]">Questions and scope</p>
-          <h2 className="mt-4 font-serif text-[2.35rem] font-semibold leading-[1.03] tracking-[-0.04em] text-[#213343] sm:text-5xl">
+          <p className="text-sm font-bold text-[#1F7A3A]">Questions and scope</p>
+          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#213343] sm:text-5xl">
             Clear answers before you buy.
           </h2>
           <div className="mt-7 flex flex-col gap-3">

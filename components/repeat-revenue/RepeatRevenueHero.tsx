@@ -1,29 +1,28 @@
+import Image from "next/image"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { repeatMonthly, workflowAudit } from "./tokens"
 
 const heroChips = [
-  ["Past customers", "get a reason to book again"],
-  ["Happy customers", "get asked while trust is fresh"],
-  ["Referrals", "get asked while the job is still fresh"],
-  ["Missed calls", "get followed before they go cold"],
+  "Past customers return",
+  "Reviews get asked for",
+  "Referrals get asked for",
+  "Missed calls get caught",
 ]
-
-const visualSteps = ["Past customers", "Review ask", "Referral ask", "Missed call captured", "Next job"]
 
 export function RepeatRevenueHero() {
   return (
     <section id="hero" data-section="hero" className="relative scroll-mt-[120px] overflow-hidden bg-[#F8F4EA] px-4 pt-24 text-[#213343] sm:px-6 lg:px-8 lg:pt-28">
-      <div className="absolute right-0 top-0 hidden h-full w-[40%] skew-x-[-10deg] bg-[#DDEFE3] lg:block" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 pb-12 lg:grid-cols-[0.98fr_1.02fr] lg:items-center lg:pb-16">
+      <div className="absolute right-0 top-0 hidden h-full w-[38%] skew-x-[-10deg] bg-[#DDEFE3] lg:block" aria-hidden="true" />
+      <div className="relative mx-auto grid max-w-7xl gap-9 pb-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:pb-16">
         <div className="max-w-3xl">
           <nav className="text-sm font-semibold text-[#33475B]" aria-label="Breadcrumb">
             <a href="/systems" className="underline decoration-[#1F7A3A]/50 underline-offset-4 hover:text-[#1F7A3A]">Systems</a>
             <span className="mx-2 text-[#7C98B6]">/</span>
             <span>Repeat Revenue System</span>
           </nav>
-          <h1 className="mt-6 max-w-4xl font-serif text-[3.2rem] font-semibold leading-[0.98] tracking-[-0.04em] text-[#213343] sm:text-[4.6rem] lg:text-[5.15rem]">
+          <h1 className="mt-6 max-w-4xl text-[2.45rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#213343] sm:text-[3.45rem] lg:text-[3.75rem]">
             Get more money from the customers you already earned.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[#33475B] sm:text-xl">
@@ -56,10 +55,10 @@ export function RepeatRevenueHero() {
               packageId="workflow_audit"
               packageName="Workflow Audit"
               billingPeriod="one_time"
-              ctaLabel="Start with the Workflow Audit"
+              ctaLabel="Start with the $97 Workflow Audit"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#1F7A3A] px-7 py-3 text-sm font-bold text-[#213343] transition hover:bg-[#E8F6EC]"
+              className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#1F7A3A] bg-white/70 px-7 py-3 text-sm font-bold text-[#213343] transition hover:bg-[#E8F6EC]"
             >
               Start with the $97 Workflow Audit
             </CTALink>
@@ -70,37 +69,25 @@ export function RepeatRevenueHero() {
         </div>
 
         <div className="relative">
-          <div className="rounded-[1.35rem] border border-[#C8D8CE] bg-white p-5 shadow-[0_22px_56px_rgba(33,51,67,0.12)]">
-            <div className="rounded-2xl bg-[#F2F8F0] p-5">
-              <div className="grid gap-3 sm:grid-cols-2">
-                {visualSteps.slice(0, 4).map((step, index) => (
-                  <div key={step} className="rounded-xl border border-[#C8D8CE] bg-white p-4">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1F7A3A] text-sm font-bold text-white">{index + 1}</span>
-                      <p className="text-base font-bold text-[#213343]">{step}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 rounded-2xl border-2 border-[#1F7A3A] bg-white p-5 text-center">
-                <p className="text-sm font-bold uppercase tracking-[0.12em] text-[#1F7A3A]">Result</p>
-                <p className="mt-2 text-3xl font-bold tracking-[-0.04em] text-[#213343]">Next job</p>
-                <p className="mt-2 text-sm leading-6 text-[#516F90]">The follow-up path turns earned trust into another booked opportunity.</p>
-              </div>
-            </div>
+          <div className="rounded-[1.35rem] border border-[#C8D8CE] bg-white p-3 shadow-[0_22px_56px_rgba(33,51,67,0.12)] sm:p-4">
+            <Image
+              src="/images/repeat-revenue/repeat-revenue-hero-loop.png"
+              alt="Repeat Revenue System loop showing past customers, review ask, referral ask, missed call captured, and next job booked."
+              width={1536}
+              height={1024}
+              priority
+              className="aspect-[16/10] w-full rounded-[1rem] object-cover"
+            />
           </div>
         </div>
       </div>
 
-      <div className="relative border-y border-[#D5DEE8] bg-white/80">
+      <div className="relative border-y border-[#D5DEE8] bg-white/85">
         <div className="mx-auto grid max-w-7xl divide-y divide-[#D5DEE8] sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
-          {heroChips.map(([label, detail]) => (
-            <div key={label} className="flex gap-3 px-5 py-4">
-              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#1F7A3A]" aria-hidden="true" />
-              <div>
-                <p className="text-base font-bold text-[#213343]">{label}</p>
-                <p className="mt-1 text-sm leading-5 text-[#516F90]">{detail}</p>
-              </div>
+          {heroChips.map((label) => (
+            <div key={label} className="flex items-center gap-3 px-5 py-4">
+              <CheckCircle2 className="h-5 w-5 shrink-0 text-[#1F7A3A]" aria-hidden="true" />
+              <p className="text-base font-bold text-[#213343]">{label}</p>
             </div>
           ))}
         </div>

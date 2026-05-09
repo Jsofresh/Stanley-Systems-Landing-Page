@@ -25,27 +25,96 @@ export const leakCards = [
   },
 ]
 
+export const leakResultPanels = [
+  {
+    image: "/images/repeat-revenue/result-past-customers.png",
+    title: "Repeat Revenue is the best first fix for quiet customer lists.",
+    body: "Stanley Systems finds past customers, old buyers, seasonal records, and completed jobs that should have a next step.",
+    fixes: [
+      "Finds customer records worth checking",
+      "Groups them by follow-up timing",
+      "Gives your office a clear next step when someone replies",
+    ],
+    cta: "See Repeat Revenue packages",
+  },
+  {
+    image: "/images/repeat-revenue/result-review-path.png",
+    title: "Repeat Revenue is the best first fix for weak review flow.",
+    body: "Stanley Systems gives happy customers a clear review ask while the job is still fresh and sends weak experiences to a manager first.",
+    fixes: [
+      "Sends a private rating step",
+      "Routes happy customers toward reviews",
+      "Flags bad experiences before they go public",
+    ],
+    cta: "See Repeat Revenue packages",
+  },
+  {
+    image: "/images/repeat-revenue/result-referral-path.png",
+    title: "Repeat Revenue is the best first fix for missed referrals.",
+    body: "Stanley Systems gives your best customers a simple referral ask while trust is highest.",
+    fixes: [
+      "Identifies the best referral moments",
+      "Gives customers a simple next step",
+      "Keeps referral opportunities visible to the office",
+    ],
+    cta: "See Repeat Revenue packages",
+  },
+  {
+    image: "/images/repeat-revenue/result-missed-calls.png",
+    title: "Repeat Revenue is the best first fix for cold missed calls.",
+    body: "Stanley Systems helps missed and after-hours inquiries get acknowledged and routed before the customer calls someone else.",
+    fixes: [
+      "Captures missed inquiry moments",
+      "Gives the office a follow-up path",
+      "Helps good calls avoid turning into dead leads",
+    ],
+    cta: "See Repeat Revenue packages",
+  },
+]
+
 export const cashflowUpsellChips = [
   "Invoices go out late",
   "Open balances need chasing",
   "Office keeps checking job details",
 ]
 
-export const moneyRows = [
-  ["Past customer records", "500"],
-  ["Ready to book again", "5%"],
-  ["Average job value", "$1,200"],
-  ["Revenue worth checking", "$30,000"],
+export const cashflowResultPanel = {
+  title: "Repeat Revenue + Cashflow Control System is the stronger fix.",
+  body: "Repeat Revenue System brings customers back. Cashflow Control System helps finished work turn into collected cash faster.",
+  fixes: [
+    "Repeat Revenue System protects future revenue",
+    "Cashflow Control System protects earned revenue",
+    "Together they catch leaks before and after the job",
+  ],
+  cta: "See both-system packages",
+}
+
+export const multiplierStack = [
+  "Past customers create repeat jobs",
+  "Happy customers create reviews",
+  "Reviews create trust",
+  "Trust creates referrals",
+  "More calls create more chances to book",
 ] as const
 
-export const flywheelSteps = [
-  ["1", "Job finishes", "The completed job becomes the trigger, not the end of the relationship."],
-  ["2", "Private rating goes out", "Happy customers move forward. Bad experiences go to a manager first."],
-  ["3", "Reviews get asked for", "Good work turns into fresh Google reviews while trust is still high."],
-  ["4", "Referrals get asked for", "Your best customers get a simple way to send someone new."],
-  ["5", "Past customers hear from you", "Old buyers get a useful reason to come back before they shop elsewhere."],
-  ["6", "Missed calls get caught", "Calls and inquiries get followed before they turn into dead leads."],
-]
+export const howItWorksSteps = [
+  [
+    "A job or customer record creates the trigger",
+    "The system looks for completed work, past customers, missed calls, and customer moments worth following up.",
+  ],
+  [
+    "The right ask goes out at the right time",
+    "Past buyers get a reason to come back. Happy customers get review and referral asks while trust is fresh.",
+  ],
+  [
+    "Replies become office action",
+    "When someone responds, your office sees what happened and what the next step should be.",
+  ],
+  [
+    "The loop keeps feeding itself",
+    "Reviews build trust. Referrals bring new calls. Past customers come back. Missed demand gets followed.",
+  ],
+] as const
 
 export const packageCards = [
   {
@@ -84,7 +153,7 @@ export const packageCards = [
     callout: null,
     cta: "Buy both monthly",
     secondary: "Start with the audit",
-    tone: "monthly",
+    tone: "complete",
     bullets: ["Repeat Revenue System", "Cashflow Control System", "Finished-job intake watch", "A/R follow-up prompts"],
   },
   {
@@ -111,7 +180,7 @@ export const proofCards = [
 
 export const faqItems = [
   ["Will this change my main business number?", "No. Your main number stays in place. Stanley Systems builds the follow-up path around the way customers already reach you."],
-  ["What does Repeat Revenue System actually do?", "It helps bring past customers back, asks happy customers for reviews and referrals, and catches missed calls before they become cold leads."],
+  ["What does Repeat Revenue System actually do?", "It brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they become cold leads."],
   ["Does this guarantee reviews, rankings, or new customers?", "No. The system creates the follow-up path. It does not promise customer behavior, platform approvals, search rankings, or guaranteed new customers."],
   ["Do I need the Workflow Audit first?", "No. You can buy directly. The audit is the smart first step if you want the numbers to show which leak should be fixed first."],
   ["How does the audit credit work?", "The Workflow Audit costs $97. Buy a monthly package after the audit and get $97 off. Buy yearly and get $194 off."],
