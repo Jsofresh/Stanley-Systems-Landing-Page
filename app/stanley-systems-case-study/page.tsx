@@ -191,7 +191,7 @@ export default function StanleySystemsCaseStudyPage() {
             <div className="mt-6 space-y-5 text-base leading-7 text-slate-700">
               <p>For a marine shop with steady service volume, the upside is not theoretical.</p>
               <p>
-                Cleaner billing handoffs can help invoices move faster. Cleaner intake can save office hours every week. A customer reactivation system can turn old customers back into booked work.
+                Better billing handoffs can help invoices move faster. Cleaner intake can save office hours every week. A customer reactivation system can turn old customers back into booked work.
               </p>
             </div>
             <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

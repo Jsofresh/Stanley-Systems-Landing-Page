@@ -3,22 +3,9 @@ import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 
 import { CTALink } from '@/components/cta-link'
-import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
-import {
-  BillingCheckDisplayAsset,
-  CashApprovedDisplayAsset,
-  CompletedJobDisplayAsset,
-  CustomerReactivationCheckDisplayAsset,
-  InvoiceApprovedDisplayAsset,
-  RepeatCustomerCycleDisplayAsset,
-  ReviewGrowthDisplayAsset,
-} from '@/components/visual-kit/display-assets'
-import type { DisplayAssetProps } from '@/components/visual-kit/display-assets'
 
 export type SystemsThatMakeMoneySectionProps = React.HTMLAttributes<HTMLElement>
-
-type DisplayAsset = (props: DisplayAssetProps) => JSX.Element
 
 type ProductSystem = {
   title: string
@@ -27,12 +14,9 @@ type ProductSystem = {
   analyticsLocation: string
   packageName: string
   ctaLabel: string
-  flowTitle: string
-  bottomLine: string
   visualSrc: string
   visualAlt: string
-  Icon: DisplayAsset
-  flow: Array<{ label: string; sublabel: string; Icon: DisplayAsset; final?: boolean }>
+  bullets: readonly string[]
 }
 
 const systems: ProductSystem[] = [
@@ -43,15 +27,12 @@ const systems: ProductSystem[] = [
     analyticsLocation: 'home_systems_cashflow_control',
     packageName: 'Cashflow Control System',
     ctaLabel: 'See the Cashflow Control System',
-    flowTitle: 'How cash starts moving',
-    bottomLine: 'For shops where completed work still waits on office follow-up.',
-    visualSrc: '/images/generated/homepage/cashflow-control-visual.webp',
-    visualAlt: 'Cashflow Control visual showing completed work moving through billing readiness into collected cash.',
-    Icon: CashApprovedDisplayAsset,
-    flow: [
-      { label: 'Job finished', sublabel: 'work is complete', Icon: CompletedJobDisplayAsset },
-      { label: 'Invoice ready', sublabel: 'billing has what it needs', Icon: BillingCheckDisplayAsset },
-      { label: 'Cash collected', sublabel: 'owner sees movement', Icon: CashApprovedDisplayAsset, final: true },
+    visualSrc: '/images/generated/homepage/cashflow-control-wide.webp',
+    visualAlt: 'Cashflow Control illustration showing job complete, invoice ready, sent today, and cash collected in one operational flow.',
+    bullets: [
+      'Completed jobs stop waiting on office follow-up',
+      'Invoices move out faster',
+      'Owners get cleaner cash visibility',
     ],
   },
   {
@@ -61,115 +42,62 @@ const systems: ProductSystem[] = [
     analyticsLocation: 'home_systems_repeat_revenue',
     packageName: 'Repeat Revenue System',
     ctaLabel: 'See the Repeat Revenue System',
-    flowTitle: 'How customers turn into booked work',
-    bottomLine: 'For shops with old customers, happy customers, referrals, reviews, and missed calls that should produce more booked work.',
-    visualSrc: '/images/repeat-revenue/repeat-revenue-loop.jpg',
-    visualAlt: 'Repeat Revenue visual showing past customers, reviews, referrals, and missed calls becoming booked work.',
-    Icon: RepeatCustomerCycleDisplayAsset,
-    flow: [
-      { label: 'Past customer', sublabel: 'earned trust', Icon: CustomerReactivationCheckDisplayAsset },
-      { label: 'Review or referral', sublabel: 'proof creates demand', Icon: ReviewGrowthDisplayAsset },
-      { label: 'Booked work', sublabel: 'new job path', Icon: InvoiceApprovedDisplayAsset, final: true },
+    visualSrc: '/images/generated/homepage/repeat-revenue-wide.webp',
+    visualAlt: 'Repeat Revenue illustration showing past customers, reviews, referrals, and missed calls flowing into booked jobs and repeat revenue.',
+    bullets: [
+      'Past customers get reactivated',
+      'Happy customers create reviews and referrals',
+      'Missed calls get a recovery path',
     ],
   },
 ]
 
-function ProductFlow({ flow, flowTitle }: Pick<ProductSystem, 'flow' | 'flowTitle'>) {
-  return (
-    <div className="rounded-[16px] border border-[#DDEBE2] bg-white p-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] sm:p-3">
-      <p className="mb-2 text-[13px] font-extrabold leading-tight tracking-[-0.01em] text-[#071D3A]">{flowTitle}</p>
-      <div className="grid gap-2">
-        {flow.map(({ Icon, final, label, sublabel }, index) => (
-          <div key={label} className="relative">
-            {index < flow.length - 1 ? (
-              <span aria-hidden="true" className="absolute left-[21px] top-[41px] h-[10px] w-px bg-[#A9D9B7]" />
-            ) : null}
-            <div
-              className={cn(
-                'stanley-system-flow-step grid grid-cols-[42px_minmax(0,1fr)_auto] transform-gpu items-center gap-2.5 rounded-[13px] border px-2.5 py-1.5 will-change-transform',
-                final
-                  ? 'border-[#A9D9B7] bg-[#EFF8EB] shadow-[0_10px_20px_rgba(8,166,75,0.08)]'
-                  : 'border-[#E1ECE5] bg-[#FCFDF9]',
-              )}
-              style={{ animationDelay: `${index * 140}ms` }}
-            >
-              <div className="grid h-10 w-10 place-items-center rounded-full border border-[#CFE8D5] bg-[#F3FAF1]">
-                <Icon size={44} imgClassName="scale-[1.16] mix-blend-multiply" />
-              </div>
-              <div className="min-w-0">
-                <p className="text-[14px] font-extrabold leading-tight tracking-[-0.01em] text-[#071D3A]">{label}</p>
-                <p className="mt-0.5 text-[11.5px] font-semibold leading-4 text-[#536A7D]">{sublabel}</p>
-              </div>
-              <span
-                className={cn(
-                  'h-2.5 w-2.5 rounded-full ring-4',
-                  final ? 'bg-[#08A64B] ring-[#DDF2E2]' : 'bg-[#A8CBB2] ring-[#EDF6EF]',
-                )}
-                aria-hidden="true"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 function ProductSystemCard({ system }: { system: ProductSystem }) {
-  const { Icon } = system
-
   return (
-    <Card className="h-full overflow-hidden rounded-[22px] border-[#D8E8DE] bg-gradient-to-b from-white to-[#F7FCF4] p-0 shadow-[0_16px_44px_rgba(7,29,58,0.06)]">
-      <CardContent className="flex h-full flex-col p-4 sm:p-4 lg:p-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h3
-              style={{ fontFamily: "var(--font-heading)" }}
-              className="text-[26px] font-extrabold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-[30px] [font-family:var(--font-heading)]"
-            >
-              {system.title}
-            </h3>
-            <p className="mt-1.5 max-w-[520px] text-[14px] font-semibold leading-5 text-[#41596C]">{system.promise}</p>
-          </div>
-          <div className="hidden h-[54px] w-[54px] shrink-0 place-items-center rounded-full border border-[#CFE8D5] bg-[#F3FAF1] sm:grid">
-            <Icon size={58} priority imgClassName="scale-[1.08] mix-blend-multiply" />
-          </div>
-        </div>
+    <article className="h-full overflow-hidden rounded-[26px] border border-[#D8E8DE] bg-white shadow-[0_18px_48px_rgba(7,29,58,0.07)]">
+      <div className="relative border-b border-[#E2EDE5] bg-[#F8FCF6]">
+        <Image
+          src={system.visualSrc}
+          alt={system.visualAlt}
+          width={1536}
+          height={1024}
+          className="h-[220px] w-full object-contain p-2 sm:h-[260px] lg:h-[300px]"
+          loading="eager"
+        />
+      </div>
 
-        <div className="mt-3 overflow-hidden rounded-[18px] border border-[#DDEBE2] bg-white shadow-[0_10px_24px_rgba(7,29,58,0.04)]">
-          <Image
-            src={system.visualSrc}
-            alt={system.visualAlt}
-            width={920}
-            height={620}
-            className="h-[220px] w-full object-contain p-2"
-            loading="eager"
-          />
-        </div>
+      <div className="p-5 sm:p-6">
+        <h3
+          style={{ fontFamily: "var(--font-heading)" }}
+          className="text-[27px] font-extrabold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[33px] [font-family:var(--font-heading)]"
+        >
+          {system.title}
+        </h3>
+        <p className="mt-2 max-w-[560px] text-[15px] font-semibold leading-6 text-[#41596C]">{system.promise}</p>
 
-        <div className="mt-3 flex-1">
-          <ProductFlow flowTitle={system.flowTitle} flow={system.flow} />
-        </div>
+        <ul className="mt-4 grid gap-2.5">
+          {system.bullets.map((bullet) => (
+            <li key={bullet} className="flex gap-2.5 text-[14px] font-semibold leading-5 text-[#243D52]">
+              <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#08A64B]" aria-hidden="true" />
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
 
-        <div className="mt-3 flex flex-col items-stretch gap-3 border-t border-[#DDEBE2] pt-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-none text-[13px] font-semibold leading-5 text-[#5A7080] sm:max-w-[330px]">
-            {system.bottomLine}
-          </p>
-          <CTALink
-            href={system.href}
-            kind="systems"
-            location={system.analyticsLocation}
-            analyticsEvent="system_detail_clicked"
-            packageName={system.packageName}
-            ctaLabel={system.ctaLabel}
-            className="inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-3 text-[13px] font-bold text-white shadow-[0_10px_20px_rgba(7,29,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#116832] hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B] sm:w-auto"
-          >
-            {system.ctaLabel}
-            <ArrowRight className="ml-2 h-3.5 w-3.5" aria-hidden="true" />
-          </CTALink>
-        </div>
-      </CardContent>
-    </Card>
+        <CTALink
+          href={system.href}
+          kind="systems"
+          location={system.analyticsLocation}
+          analyticsEvent="system_detail_clicked"
+          packageName={system.packageName}
+          ctaLabel={system.ctaLabel}
+          className="mt-5 inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-2.5 text-[13px] font-bold text-white shadow-[0_10px_20px_rgba(7,29,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#116832] hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B] sm:w-auto"
+        >
+          {system.ctaLabel}
+          <ArrowRight className="ml-2 h-3.5 w-3.5" aria-hidden="true" />
+        </CTALink>
+      </div>
+    </article>
   )
 }
 
@@ -179,7 +107,7 @@ export function SystemsThatMakeMoneySection({ className, ...props }: SystemsThat
       id="systems"
       data-section="systems-that-move-money"
       data-nav-theme="light"
-      className={cn('relative isolate scroll-mt-28 overflow-hidden bg-[#FBFCF7] px-5 py-8 md:px-8 lg:px-10 lg:py-9', className)}
+      className={cn('relative isolate scroll-mt-28 overflow-hidden bg-[#FBFCF7] px-5 py-8 md:px-8 lg:px-10 lg:py-10', className)}
       aria-labelledby="systems-that-move-money-heading"
       {...props}
     >
@@ -189,12 +117,12 @@ export function SystemsThatMakeMoneySection({ className, ...props }: SystemsThat
           <h2
             id="systems-that-move-money-heading"
             style={{ fontFamily: "var(--font-heading)" }}
-            className="text-balance text-[36px] font-extrabold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[46px] lg:text-[50px] [font-family:var(--font-heading)]"
+            className="text-balance text-[36px] font-extrabold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[46px] lg:text-[52px] [font-family:var(--font-heading)]"
           >
             Systems that Move Money
           </h2>
           <p className="mx-auto mt-3 max-w-[760px] text-pretty text-[15px] font-medium leading-6 text-[#334B60] sm:text-[16px]">
-            Stanley Systems helps service businesses move finished work into cash, past customers into booked work, and missed opportunities into cleaner revenue paths.
+            Two focused systems for service businesses that need finished work, old demand, and missed opportunities to turn into cash more reliably.
           </p>
         </div>
 

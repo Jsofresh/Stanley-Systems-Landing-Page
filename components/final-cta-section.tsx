@@ -6,78 +6,40 @@ import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 const calculatorHref = "/invoicing-delay-cash-flow-calculator"
 
-const leaks = [
-  ["Jobs finished", "Invoice still waiting"],
-  ["Estimates open", "No next step"],
-  ["Customers saved", "No follow-up"],
-  ["Calls missed", "No recovery path"],
-] as const
-
 export function FinalCTASection() {
   return (
     <section
       id="final-audit"
       data-audit-page="/"
       data-audit-section="home.final-cta"
+      data-section="cost-of-waiting"
       data-nav-theme="light"
       data-audit-priority="4"
       data-audit-offer="Workflow Audit"
       data-audit-purpose="Give qualified service businesses a clear final path to book the Workflow Audit."
-      className="relative mb-24 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+      className="relative mb-16 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
     >
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.25rem] border border-[#dbe7cf] bg-[linear-gradient(180deg,#f7fbf2_0%,#ffffff_100%)] shadow-[0_24px_70px_rgba(15,23,42,0.09)]">
-        <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="p-8 sm:p-10 lg:p-14">
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">THE COST OF WAITING</p>
-            <h3 className="mt-4 text-balance text-4xl font-semibold leading-[0.98] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[4.35rem]">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#dbe7cf] bg-[linear-gradient(180deg,#f7fbf2_0%,#ffffff_100%)] shadow-[0_22px_60px_rgba(15,23,42,0.08)]">
+        <div className="grid gap-0 lg:grid-cols-[0.96fr_1.04fr] lg:items-center">
+          <div className="p-7 sm:p-9 lg:p-11">
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#15803D]">The Cost of Waiting</p>
+            <h3 className="mt-3 text-balance text-[38px] font-semibold leading-[0.98] tracking-[-0.045em] text-[#102033] sm:text-[52px] lg:text-[62px]">
               The money leak is already happening.
             </h3>
-            <div className="mt-6 space-y-2 text-lg font-semibold leading-8 text-[#334155] sm:text-xl">
+            <div className="mt-5 space-y-1.5 text-[17px] font-semibold leading-7 text-[#334155] sm:text-[19px]">
               <p>The job is done, but the invoice waits.</p>
               <p>The estimate is sent, but nobody follows up.</p>
               <p>The customer is saved, but nobody brings them back.</p>
               <p>The call comes in, but nobody catches it.</p>
             </div>
-            <p className="mt-6 max-w-2xl text-base font-bold leading-7 text-[#102033] sm:text-lg">
+            <p className="mt-5 max-w-2xl text-base font-bold leading-7 text-[#102033] sm:text-lg">
               That is how service businesses lose money without noticing it.
             </p>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
+            <p className="mt-2 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
               The Workflow Audit finds the first leak, shows what it is costing, and gives you the first fix to make.
             </p>
-          </div>
 
-          <div className="border-t border-[#dbe7cf] bg-white/72 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
-            <div className="overflow-hidden rounded-2xl border border-[#dfe8da] bg-white shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
-              <Image
-                src="/images/generated/homepage/cost-of-waiting-verdict.webp"
-                alt="Cost of waiting verdict visual showing unfinished follow-up and billing leaks turning into a clear Workflow Audit next step."
-                width={980}
-                height={720}
-                className="h-[260px] w-full object-cover sm:h-[320px]"
-                loading="eager"
-              />
-            </div>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {leaks.map(([before, after]) => (
-                <div key={before} className="rounded-2xl border border-[#dfe8da] bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
-                  <p className="text-sm font-bold text-[#475569]">{before}</p>
-                  <p className="mt-2 text-xl font-extrabold tracking-[-0.035em] text-[#102033]">{after}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-[#b9dec3] bg-[#eaf7ee] p-5">
-              <div className="flex items-center gap-3">
-                <span className="h-1.5 flex-1 rounded-full bg-[#15803D]" aria-hidden="true" />
-                <ArrowRight className="h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-              </div>
-              <p className="mt-4 text-2xl font-extrabold leading-tight tracking-[-0.04em] text-[#102033]">
-                The Workflow Audit finds which leak to fix first.
-              </p>
-            </div>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <CTALink
                 href={auditHref}
                 kind="checkout"
@@ -90,10 +52,10 @@ export function FinalCTASection() {
                 ctaLabel="Book the Workflow Audit"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex min-h-14 flex-1 items-center justify-center gap-3 rounded-full bg-[#15803D] px-7 py-4 text-base font-extrabold text-white shadow-xl transition-all duration-300 hover:scale-[1.01] hover:bg-[#166534] sm:text-lg"
+                className="group inline-flex h-[48px] min-w-[238px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-5 py-0 text-[14px] font-extrabold leading-none text-white shadow-xl transition-all duration-300 hover:scale-[1.01] hover:bg-[#166534] sm:whitespace-nowrap"
               >
                 Book the Workflow Audit
-                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
               </CTALink>
 
               <CTALink
@@ -103,11 +65,33 @@ export function FinalCTASection() {
                 analyticsEvent="calculator_cta_clicked"
                 analyticsSource="homepage_final_cta"
                 ctaLabel="Run the Calculator First"
-                className="inline-flex min-h-14 flex-1 items-center justify-center gap-3 rounded-full border border-[#cbd5c0] bg-white px-7 py-4 text-base font-extrabold text-[#102033] shadow-[0_10px_22px_rgba(15,23,42,0.04)] transition-all duration-200 hover:border-[#15803D] hover:bg-[#f3fbf5] sm:text-lg"
+                className="inline-flex h-[48px] min-w-[238px] items-center justify-center gap-2 rounded-full border border-[#cbd5c0] bg-white px-5 py-0 text-[14px] font-extrabold leading-none text-[#102033] shadow-[0_10px_22px_rgba(15,23,42,0.04)] transition-all duration-200 hover:border-[#15803D] hover:bg-[#f3fbf5] sm:whitespace-nowrap"
               >
-                <Calculator className="h-5 w-5" />
+                <Calculator className="h-4 w-4" />
                 Run the Calculator First
               </CTALink>
+            </div>
+          </div>
+
+          <div className="border-t border-[#dbe7cf] bg-white/72 p-5 sm:p-7 lg:border-l lg:border-t-0 lg:p-8">
+            <div className="overflow-hidden rounded-[24px] border border-[#dfe8da] bg-white shadow-[0_14px_32px_rgba(15,23,42,0.06)]">
+              <Image
+                src="/images/generated/homepage/cost-of-waiting-wide.webp"
+                alt="Cost of waiting illustration showing delayed invoices, open estimates, quiet past customers, and missed calls draining revenue until an audit identifies the leak."
+                width={1536}
+                height={1024}
+                className="h-auto w-full object-contain"
+                loading="eager"
+              />
+            </div>
+
+            <div className="mt-4 rounded-[22px] border border-[#b9dec3] bg-[#eaf7ee] p-5">
+              <p className="text-[23px] font-extrabold leading-tight tracking-[-0.04em] text-[#102033]">
+                Workflow Audit finds the first leak to fix.
+              </p>
+              <p className="mt-2 text-[14px] font-semibold leading-6 text-[#365044]">
+                Delayed invoices. Open estimates. Old customers. Missed calls.
+              </p>
             </div>
           </div>
         </div>
