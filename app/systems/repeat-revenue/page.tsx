@@ -14,14 +14,14 @@ import { WorkflowAuditFallback } from "@/components/repeat-revenue/WorkflowAudit
 export const metadata: Metadata = {
   title: "Repeat Revenue System | Stanley Systems",
   description:
-    "Repeat Revenue System builds the follow-up path that brings past customers back, asks happy customers at the right moment, and catches demand before it goes cold.",
+    "Repeat Revenue System brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they turn into cold leads.",
   alternates: {
     canonical: "https://stanley-systems.com/systems/repeat-revenue",
   },
   openGraph: {
     title: "Repeat Revenue System | Stanley Systems",
     description:
-      "Turn completed jobs, past customers, reviews, referrals, and missed demand into a practical repeat revenue path.",
+      "Get more money from the customers you already earned with follow-up, reviews, referrals, and captured missed calls.",
     url: "https://stanley-systems.com/systems/repeat-revenue",
     siteName: "Stanley Systems",
     type: "website",
@@ -32,7 +32,7 @@ export default function RepeatRevenuePage() {
   return (
     <>
       <SiteHeader />
-      <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-white text-[#213343]">
+      <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-white text-[#213343] [&_section[id]]:scroll-mt-[120px]">
         <RepeatRevenueHero />
         <LeakSelector />
         <MoneyMathSection />
