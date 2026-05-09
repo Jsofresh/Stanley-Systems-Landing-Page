@@ -5,27 +5,17 @@ import { howItWorksSteps } from "./tokens"
 
 export function RevenueFlywheel() {
   return (
-    <section id="flywheel" data-section="flywheel" className="scroll-mt-[120px] bg-white px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
-        <div className="relative min-h-[340px] overflow-hidden rounded-[1.65rem] border border-[#D5E9DC] bg-[#F8FBF9] shadow-[0_24px_70px_rgba(16,32,51,0.10),0_0_48px_rgba(21,128,61,0.12)] sm:min-h-[430px] lg:min-h-[510px]">
-          <Image
-            src="/images/repeat-revenue/repeat-revenue-flywheel.png"
-            alt="3D Repeat Revenue flywheel visual showing completed jobs, reviews, referrals, past customers, missed calls, and booked jobs connected by a green loop."
-            width={1536}
-            height={1024}
-            className="absolute inset-0 h-full w-full object-cover object-center"
-          />
-        </div>
-
+    <section id="flywheel" data-section="flywheel" className="scroll-mt-[120px] bg-white px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <p className="text-sm font-bold text-[#15803D]">Repeat Revenue flywheel</p>
-          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
+          <h2 className="mt-3 text-[2.2rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
             Every good job should create the next opportunity.
           </h2>
-          <p className="mt-6 text-lg leading-8 text-[#33475B]">
-            Repeat Revenue System turns completed jobs into follow-up moments your office can actually use. It does not wait for someone to remember. The system helps decide who should hear from you, what they should be asked, and what your office should do when they reply.
+          <p className="mt-4 text-base leading-7 text-[#33475B] sm:text-lg">
+            Repeat Revenue System turns completed jobs into follow-up moments your office can actually use. The system helps decide who should hear from you, what they should be asked, and what happens when they reply.
           </p>
-          <div className="mt-6 grid gap-3">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
             {howItWorksSteps.map(([title, text]) => (
               <article key={title} className="rounded-2xl border border-[#D5DEE8] bg-[#F8FBF9] p-4">
                 <div className="flex gap-3">
@@ -38,9 +28,19 @@ export function RevenueFlywheel() {
               </article>
             ))}
           </div>
-          <p className="mt-6 rounded-2xl border border-[#B7D8C0] bg-[#E8F6EC] px-4 py-3 text-base font-bold leading-7 text-[#124E25]">
+          <p className="mt-5 rounded-2xl border border-[#B7D8C0] bg-[#E8F6EC] px-4 py-3 text-base font-bold leading-7 text-[#124E25]">
             One job creates trust. Trust creates reviews. Reviews create referrals. Referrals and repeat customers create the next job.
           </p>
+        </div>
+
+        <div className="relative min-h-[320px] overflow-hidden rounded-[1.65rem] border border-[#D5E9DC] bg-[#F8FBF9] shadow-[0_24px_70px_rgba(16,32,51,0.10),0_0_48px_rgba(21,128,61,0.12)] sm:min-h-[390px] lg:min-h-[480px]">
+          <Image
+            src="/images/repeat-revenue/repeat-revenue-flywheel.png"
+            alt="3D Repeat Revenue flywheel visual showing job done, review ask, referral ask, old customer, missed call, and booked job connected by a green loop."
+            width={1536}
+            height={1024}
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
         </div>
       </div>
     </section>

@@ -23,10 +23,10 @@ function AuditLink({ label, location }: { label: string; location: string }) {
 }
 
 function badgeClass(tone: string) {
-  if (tone === "recommended") return "-top-5 right-4 bg-[#E11D48] text-white shadow-[0_12px_24px_rgba(225,29,72,0.18)]"
-  if (tone === "yearly") return "-top-5 right-4 bg-[#E11D48] text-white shadow-[0_12px_24px_rgba(225,29,72,0.18)]"
-  if (tone === "complete") return "-top-5 right-4 bg-[#102A43] text-white shadow-[0_12px_24px_rgba(16,42,67,0.16)]"
-  return "-top-4 left-4 bg-white text-[#102033] ring-1 ring-[#D5DEE8]"
+  if (tone === "recommended") return "bg-[#E11D48] text-white shadow-[0_12px_24px_rgba(225,29,72,0.18)]"
+  if (tone === "yearly") return "bg-[#E11D48] text-white shadow-[0_12px_24px_rgba(225,29,72,0.18)]"
+  if (tone === "complete") return "bg-[#102A43] text-white shadow-[0_12px_24px_rgba(16,42,67,0.16)]"
+  return "bg-white text-[#102033] ring-1 ring-[#D5DEE8]"
 }
 
 export function RepeatRevenuePricing() {
@@ -47,14 +47,14 @@ export function RepeatRevenuePricing() {
           Yearly plans save 20%, waive installation, and double the audit credit to $194.
         </div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-4">
+        <div className="mt-10 grid gap-5 lg:grid-cols-4">
           {packageCards.map((card) => {
             const isRecommended = card.tone === "recommended"
             const isYearly = card.tone === "yearly" || card.tone === "recommended"
             return (
               <article
                 key={card.name}
-                className={`relative flex min-h-full flex-col rounded-[1.1rem] border p-5 pt-8 shadow-[0_14px_34px_rgba(33,51,67,0.08)] ${
+                className={`flex min-h-full flex-col rounded-[1.1rem] border p-5 shadow-[0_14px_34px_rgba(33,51,67,0.08)] ${
                   isRecommended
                     ? "border-[#15803D] bg-white ring-2 ring-[#A7D8B4]"
                     : isYearly
@@ -62,7 +62,7 @@ export function RepeatRevenuePricing() {
                       : "border-[#D5DEE8] bg-white"
                 }`}
               >
-                <p className={`absolute rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] ${badgeClass(card.tone)}`}>{card.badge}</p>
+                <p className={`mb-4 inline-flex w-fit rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] ${badgeClass(card.tone)}`}>{card.badge}</p>
                 <h3 className="text-xl font-bold leading-tight tracking-[-0.025em] text-[#102033]">{card.name}</h3>
                 <p className="mt-3 text-[2.55rem] font-bold leading-none tracking-[-0.055em] text-[#102033]">{card.package.priceDisplay}</p>
                 <p className="mt-3 min-h-[66px] text-sm leading-6 text-[#33475B]">{card.description}</p>
