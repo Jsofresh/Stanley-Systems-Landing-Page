@@ -27,8 +27,8 @@ const systems: ProductSystem[] = [
     analyticsLocation: 'home_systems_cashflow_control',
     packageName: 'Cashflow Control System',
     ctaLabel: 'See the Cashflow Control System',
-    visualSrc: '/images/generated/homepage/cashflow-control-wide.webp',
-    visualAlt: 'Cashflow Control illustration showing job complete, invoice ready, sent today, and cash collected in one operational flow.',
+    visualSrc: '/images/uploaded/homepage/cashflow-control-system.jpg',
+    visualAlt: 'Cashflow Control System visual for moving finished work into collected cash faster.',
     bullets: [
       'Completed jobs stop waiting on office follow-up',
       'Invoices move out faster',
@@ -42,8 +42,8 @@ const systems: ProductSystem[] = [
     analyticsLocation: 'home_systems_repeat_revenue',
     packageName: 'Repeat Revenue System',
     ctaLabel: 'See the Repeat Revenue System',
-    visualSrc: '/images/generated/homepage/repeat-revenue-wide.webp',
-    visualAlt: 'Repeat Revenue illustration showing past customers, reviews, referrals, and missed calls flowing into booked jobs and repeat revenue.',
+    visualSrc: '/images/uploaded/homepage/repeat-revenue-system.jpg',
+    visualAlt: 'Repeat Revenue System visual for turning past customers, reviews, referrals, and missed calls into booked work.',
     bullets: [
       'Past customers get reactivated',
       'Happy customers create reviews and referrals',

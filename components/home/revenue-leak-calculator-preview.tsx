@@ -19,11 +19,10 @@ export function RevenueLeakCalculatorPreview() {
 
       <div className="mx-auto grid max-w-[78rem] gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
         <div className="max-w-[650px]">
-          <p className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#087B3F]">Revenue Leak Calculator</p>
           <h2
             id="revenue-leak-calculator-preview-heading"
             style={{ fontFamily: "var(--font-heading)" }}
-            className="mt-3 text-balance text-[34px] font-extrabold leading-[1.02] tracking-[-0.045em] text-[#071D3A] sm:text-[44px] lg:text-[54px] [font-family:var(--font-heading)]"
+            className="text-balance text-[34px] font-extrabold leading-[1.02] tracking-[-0.045em] text-[#071D3A] sm:text-[44px] lg:text-[54px] [font-family:var(--font-heading)]"
           >
             Run the numbers. See where money is getting stuck.
           </h2>
@@ -70,10 +69,10 @@ export function RevenueLeakCalculatorPreview() {
 
         <div className="relative overflow-hidden rounded-[28px] border border-[#D7E7DC] bg-white shadow-[0_22px_56px_rgba(7,29,58,0.09)]">
           <Image
-            src="/images/generated/homepage/revenue-leak-diagnostic-wide.webp"
-            alt="Diagnostic illustration showing invoice waiting, open estimate, past customer, and missed call flowing into a revenue leak found lens."
-            width={1536}
-            height={1024}
+            src="/images/uploaded/homepage/held-back-revenue-audit.jpg"
+            alt="Held-back revenue audit visual showing where money is getting stuck before the Workflow Audit finds the leak."
+            width={1280}
+            height={960}
             className="h-auto w-full object-contain"
             priority
           />

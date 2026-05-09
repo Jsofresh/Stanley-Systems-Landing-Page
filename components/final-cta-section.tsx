@@ -22,8 +22,7 @@ export function FinalCTASection() {
       <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#dbe7cf] bg-[linear-gradient(180deg,#f7fbf2_0%,#ffffff_100%)] shadow-[0_22px_60px_rgba(15,23,42,0.08)]">
         <div className="grid gap-0 lg:grid-cols-[0.96fr_1.04fr] lg:items-center">
           <div className="p-7 sm:p-9 lg:p-11">
-            <p className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-[#15803D]">The Cost of Waiting</p>
-            <h3 className="mt-3 text-balance text-[38px] font-semibold leading-[0.98] tracking-[-0.045em] text-[#102033] sm:text-[52px] lg:text-[62px]">
+            <h3 className="text-balance text-[38px] font-semibold leading-[0.98] tracking-[-0.045em] text-[#102033] sm:text-[52px] lg:text-[62px]">
               The money leak is already happening.
             </h3>
             <div className="mt-5 space-y-1.5 text-[17px] font-semibold leading-7 text-[#334155] sm:text-[19px]">
@@ -76,10 +75,10 @@ export function FinalCTASection() {
           <div className="border-t border-[#dbe7cf] bg-white/72 p-5 sm:p-7 lg:border-l lg:border-t-0 lg:p-8">
             <div className="overflow-hidden rounded-[24px] border border-[#dfe8da] bg-white shadow-[0_14px_32px_rgba(15,23,42,0.06)]">
               <Image
-                src="/images/generated/homepage/cost-of-waiting-wide.webp"
-                alt="Cost of waiting illustration showing delayed invoices, open estimates, quiet past customers, and missed calls draining revenue until an audit identifies the leak."
-                width={1536}
-                height={1024}
+                src="/images/uploaded/homepage/workflow-audit-first-leak-found.jpg"
+                alt="Workflow Audit visual showing the first money leak found before the next fix is built."
+                width={1280}
+                height={960}
                 className="h-auto w-full object-contain"
                 loading="eager"
               />
