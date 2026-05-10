@@ -39,14 +39,16 @@ export function CashflowControlHero() {
 
         <div className="relative">
           <div className="absolute -inset-4 rounded-[2.5rem] bg-[#15803D]/10 blur-3xl" aria-hidden="true" />
-          <Image
-            src="/images/uploaded/cashflow-control/finished-job-to-cash-collected.jpg"
-            alt="Finished jobs moving through billing ready, invoice sent, and cash collected."
-            width={1254}
-            height={1254}
-            priority
-            className="relative h-auto w-full rounded-[2.25rem] shadow-[0_26px_70px_rgba(7,29,58,0.12)]"
-          />
+          <div className="relative aspect-[1.26/1] overflow-hidden rounded-[2.25rem] shadow-[0_26px_70px_rgba(7,29,58,0.12)] lg:aspect-[1.22/1]">
+            <Image
+              src="/images/uploaded/cashflow-control/finished-job-to-cash-collected.jpg"
+              alt="Finished jobs moving through billing ready, invoice sent, and cash collected."
+              fill
+              priority
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              className="scale-[1.06] object-cover object-center"
+            />
+          </div>
           <div className="mt-4 text-center text-sm font-semibold text-[#607080]">
             Prefer to compare first? <Link href="/pricing" className="font-extrabold text-[#116832] underline underline-offset-4">See all pricing</Link>.
           </div>

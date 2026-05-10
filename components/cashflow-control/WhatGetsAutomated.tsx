@@ -11,14 +11,16 @@ export function WhatGetsAutomated() {
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems watches the path from finished job to collected cash and sends the right notice when something needs attention.</p>
         </div>
 
-        <Image
-          src="/images/uploaded/cashflow-control/job-complete-to-money-leak-digest.jpg"
-          alt="Cashflow Control automation path from job complete to money leak digest."
-          width={1280}
-          height={720}
-          className="mt-8 h-auto w-full rounded-[2rem] shadow-[0_18px_48px_rgba(7,29,58,0.08)]"
-        />
-        <p className="mx-auto mt-7 max-w-3xl rounded-[1.5rem] border border-[#BFE4C8] bg-[#F4FBF5] p-5 text-center text-xl font-extrabold leading-7 tracking-[-0.02em] text-[#102033]">
+        <div className="relative mt-7 aspect-[16/6.6] overflow-hidden rounded-[2rem] shadow-[0_18px_48px_rgba(7,29,58,0.08)]">
+          <Image
+            src="/images/uploaded/cashflow-control/job-complete-to-money-leak-digest.jpg"
+            alt="Cashflow Control automation path from job complete to money leak digest."
+            fill
+            sizes="100vw"
+            className="scale-[1.03] object-cover object-center"
+          />
+        </div>
+        <p className="mx-auto mt-5 max-w-3xl rounded-[1.5rem] border border-[#BFE4C8] bg-[#F4FBF5] p-5 text-center text-xl font-extrabold leading-7 tracking-[-0.02em] text-[#102033]">
           Your office should not spend paid hours rebuilding the same billing checklist every week.
         </p>
       </div>
