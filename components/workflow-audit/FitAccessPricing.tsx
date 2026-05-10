@@ -29,7 +29,7 @@ function money(value: number, cents = false) {
 }
 
 function monthlyEquivalent(price: number) {
-  return money(price / 12, true)
+  return money(Math.round(price / 12))
 }
 
 function shortInstallAmount(display: string) {
@@ -52,10 +52,12 @@ function PlanCard({ id, name, cadence, kind }: { id: PricingPackageId; name: str
   const firstYearSavings = isYearly ? pkg.auditCredit + pkg.setupFee + yearlyPackageSavings : pkg.auditCredit + yearlyPackageSavings
   const meta = checkoutMeta(id)
   const billingPeriod = pkg.billingPeriod
+  const ctaLabel = id === "cashflow_control_yearly" ? "Buy Cashflow Control Yearly" : pkg.cta
 
   return (
-    <article className={`flex h-full min-h-[21rem] flex-col rounded-[1.35rem] border bg-white p-5 shadow-[0_12px_34px_rgba(7,29,58,0.045)] ${isYearly ? "border-[#efb7b0]" : "border-[#dfe8e1]"}`}>
-      <div className="flex items-start justify-between gap-3">
+    <article className={`relative flex h-full min-h-[21rem] flex-col overflow-hidden rounded-[1.35rem] border bg-white p-5 shadow-[0_12px_34px_rgba(7,29,58,0.045)] ${isYearly ? "border-[#efb7b0]" : "border-[#dfe8e1]"}`}>
+      <div aria-hidden="true" className={`absolute inset-x-0 top-0 h-1.5 ${isYearly ? "bg-[#b91c1c]" : "bg-[#071D3A]"}`} />
+      <div className="flex items-start justify-between gap-3 pt-2">
         <div>
           <p className="text-[11px] font-extrabold uppercase tracking-[0.15em] text-[#15803D]">{name}</p>
           <h4 className="mt-1 text-2xl font-semibold tracking-[-0.04em] text-[#071D3A]">{cadence}</h4>
@@ -67,7 +69,7 @@ function PlanCard({ id, name, cadence, kind }: { id: PricingPackageId; name: str
           <span className="text-4xl font-semibold tracking-[-0.045em] text-[#071D3A]">{price}</span>
           <span className="pb-1.5 text-xs font-bold text-[#64748b]">{isYearly ? "paid yearly" : "month-to-month"}</span>
         </div>
-        {isYearly ? <p className="mt-1 text-xs font-bold leading-5 text-[#64748b]">Billed as {pkg.priceDisplay}. Monthly equivalent shown.</p> : null}
+        {isYearly ? <p className="mt-1 text-xs font-bold leading-5 text-[#64748b]">Rounded monthly view. Billed as {pkg.priceDisplay}.</p> : null}
       </div>
 
       <div className="mt-5 rounded-2xl border border-[#efb7b0] bg-[#fff6f4] p-4">
@@ -92,15 +94,15 @@ function PlanCard({ id, name, cadence, kind }: { id: PricingPackageId; name: str
         ) : null}
         {pkg.savings ? (
           <div className="flex items-center justify-between gap-4 py-2.5">
-            <span className="text-sm font-bold text-[#536173]">Package discount</span>
+            <span className="text-sm font-bold text-[#536173]">{isYearly ? "Yearly package savings" : "Monthly package savings"}</span>
             <span className="text-sm font-black text-[#b91c1c]">{isYearly ? money(pkg.savings.amount) : `${money(pkg.savings.amount)}/mo`}</span>
           </div>
         ) : null}
       </div>
 
       <div className="mt-auto pt-5">
-        <CTALink href={pkg.stripePaymentLink.url} kind="checkout" location="workflow_audit_package_grid" analyticsEvent="package_checkout_clicked" analyticsSource="workflow_audit_page" packageId={id} packageName={meta.packageName} billingPeriod={billingPeriod} ctaLabel={pkg.cta} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#071D3A] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#0e315f] focus:outline-none focus:ring-4 focus:ring-[#071D3A]/20">
-          {pkg.cta} <ArrowRight className="ml-2 h-3.5 w-3.5" />
+        <CTALink href={pkg.stripePaymentLink.url} kind="checkout" location="workflow_audit_package_grid" analyticsEvent="package_checkout_clicked" analyticsSource="workflow_audit_page" packageId={id} packageName={meta.packageName} billingPeriod={billingPeriod} ctaLabel={ctaLabel} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#071D3A] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#0e315f] focus:outline-none focus:ring-4 focus:ring-[#071D3A]/20">
+          {ctaLabel} <ArrowRight className="ml-2 h-3.5 w-3.5" />
         </CTALink>
       </div>
     </article>
@@ -149,12 +151,16 @@ export function FitAccessPricing() {
         </div>
 
         <div className="mt-8 rounded-[2rem] border border-[#d9e5dc] bg-white p-5 shadow-[0_18px_60px_rgba(7,29,58,0.06)]">
-          <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+          <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
             <div>
               <p className={page.eyebrow}>Where the audit can lead</p>
-              <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">Compare the next move after the audit.</h3>
+              <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">Choose the cleanest next payment.</h3>
             </div>
-            <p className="max-w-xl text-sm font-bold leading-6 text-[#536173]">Six clean payment cards. The red number shows how much money stays in your pocket after the audit or yearly choice.</p>
+            <div className="grid gap-2 text-xs font-extrabold leading-5 text-[#536173] sm:grid-cols-3 lg:max-w-2xl">
+              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-3 py-2">Monthly keeps it flexible.</div>
+              <div className="rounded-2xl border border-[#efb7b0] bg-[#fff6f4] px-3 py-2 text-[#8f1d1d]">Yearly shows the larger first-year savings.</div>
+              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-3 py-2">Prices stay easy to compare.</div>
+            </div>
           </div>
           <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {planCards.map((card) => <PlanCard key={card.id} {...card} />)}
