@@ -108,8 +108,8 @@ function PackagePricingCardView({
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[#E4EBE6] transition duration-300 group-hover:bg-[#15803D]" />
       <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className={`text-xs font-extrabold uppercase tracking-[0.12em] ${badgeClass(card.tone)}`}>
+        <div className="w-full">
+          <p className={`${card.badge.startsWith("-") ? "text-center text-lg font-black leading-none tracking-[-0.035em]" : "text-xs font-extrabold uppercase tracking-[0.12em]"} ${badgeClass(card.tone)}`}>
             {card.badge}
           </p>
           <h3 className="mt-4 text-xl font-bold leading-tight tracking-[-0.035em] text-[#102033]">{card.name}</h3>
@@ -143,7 +143,7 @@ function PackagePricingCardView({
       </div>
 
       {discountCallout ? (
-        <p className="mt-3 rounded-2xl border border-[#F0C8C1] bg-[#FFF6F4] px-3 py-2 text-xs font-extrabold leading-5 text-[#B91C1C] shadow-[0_10px_22px_rgba(185,28,28,0.08)]">
+        <p className="mt-3 rounded-2xl border border-[#F0C8C1] bg-[#FFF6F4] px-3 py-3 text-center text-sm font-black leading-5 tracking-[-0.02em] text-[#B91C1C] shadow-[0_10px_22px_rgba(185,28,28,0.08)]">
           {discountCallout}
         </p>
       ) : null}

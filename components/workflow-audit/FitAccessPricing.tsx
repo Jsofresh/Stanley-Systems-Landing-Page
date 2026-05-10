@@ -94,14 +94,14 @@ export function FitAccessPricing() {
         </div>
 
         <div data-section="workflow-audit-access-offer" className="mt-5 grid gap-5 lg:grid-cols-[0.66fr_1.2fr] lg:items-center">
-          <div className="mx-auto max-w-[360px] overflow-hidden rounded-[1.35rem] border border-[#d9e5dc] bg-white shadow-[0_12px_34px_rgba(7,29,58,0.05)]">
+          <div className="mx-auto w-full max-w-[360px] lg:max-w-[390px]">
             <Image
-              src="/images/uploaded/money-leak-map/money-leak-map-access-options-illustrated.jpg"
-              alt="Workflow Audit access options showing screen share, exports and screenshots, or temporary invited user."
-              width={960}
+              src="/images/uploaded/money-leak-map/money-leak-map-how-access-works.jpg"
+              alt="How access works for the Workflow Audit: walkthrough, exports or screenshots, or a temporary invited user."
+              width={957}
               height={1280}
-              sizes="(min-width: 1024px) 29vw, 100vw"
-              className="h-auto max-h-[440px] w-full object-contain"
+              sizes="(min-width: 1024px) 30vw, 100vw"
+              className="h-auto max-h-[480px] w-full object-contain"
             />
           </div>
 

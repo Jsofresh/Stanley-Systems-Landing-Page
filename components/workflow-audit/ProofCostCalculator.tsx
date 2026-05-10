@@ -12,7 +12,6 @@ export function ProofCostCalculator() {
         <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
             <h2 className={page.h2}>A few stuck jobs can cost more than the audit.</h2>
-            <p className={`${page.lead} mt-4`}>The audit turns examples like delayed billing, quiet estimates, open balances, missed reviews, and payroll waste into a clear first-fix decision.</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <a href="/invoicing-delay-cash-flow-calculator" className={page.quietButton}>Use the Money Leak Calculator <ArrowRight className="ml-2 h-4 w-4" /></a>
               <CTALink href={auditHref} kind="checkout" location="workflow_audit_proof" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the Workflow Audit" target="_blank" rel="noopener noreferrer" className={page.greenButton}>Start the Workflow Audit</CTALink>

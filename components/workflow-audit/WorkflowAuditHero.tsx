@@ -8,17 +8,17 @@ export function WorkflowAuditHero() {
   const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
   return (
-    <section data-section="workflow-audit-hero" data-nav-theme="light" className="px-4 pb-7 pt-[80px] sm:px-6 lg:px-8 lg:pb-8">
+    <section data-section="workflow-audit-hero" data-nav-theme="light" className="px-4 pb-8 pt-[80px] sm:px-6 lg:px-8 lg:pb-9">
       <div className="mx-auto max-w-[1360px]">
-        <div className="rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-6 lg:p-6 xl:p-7">
+        <div className="rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-6 lg:p-7 xl:p-8">
           <div className="max-w-[1200px]">
             <p className={page.eyebrow}>Workflow Audit</p>
-            <h1 className="mt-2 text-[clamp(2.7rem,5.25vw,5.15rem)] font-semibold leading-[0.88] tracking-[-0.075em] text-[#071D3A]">
+            <h1 className="mt-2 max-w-[1120px] text-[clamp(2.65rem,4.75vw,4.85rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-[#071D3A]">
               Find the money leaks hiding inside your office workflow.
             </h1>
           </div>
 
-          <div className="mt-4 grid items-center gap-5 lg:grid-cols-[0.88fr_0.62fr] xl:grid-cols-[0.92fr_0.58fr]">
+          <div className="mt-5 grid items-center gap-6 lg:grid-cols-[0.9fr_0.7fr] xl:grid-cols-[0.94fr_0.66fr]">
             <div>
               <p className="max-w-2xl text-base font-medium leading-7 text-[#42596C] sm:text-lg sm:leading-8">
                 A $97 paid diagnostic that shows where cash, customers, and office time are slipping before you buy the wrong system.
@@ -50,8 +50,8 @@ export function WorkflowAuditHero() {
                 width={960}
                 height={1280}
                 priority
-                sizes="(min-width: 1024px) 31vw, 100vw"
-                className="h-[410px] w-auto max-w-full object-contain"
+                sizes="(min-width: 1024px) 36vw, 100vw"
+                className="h-auto max-h-[390px] w-full max-w-[460px] object-contain lg:max-w-[500px]"
               />
             </aside>
           </div>
