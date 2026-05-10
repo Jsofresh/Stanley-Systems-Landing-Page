@@ -6,7 +6,7 @@ export const page = {
   sectionTight: "px-4 py-10 sm:px-6 lg:px-8 lg:py-12",
   wrap: "mx-auto max-w-[1180px]",
   eyebrow: "text-[12px] font-extrabold uppercase tracking-[0.18em] text-[#15803D]",
-  h1: "text-[3rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#071D3A] sm:text-[4.7rem] lg:text-[5.7rem]",
+  h1: "text-[2.05rem] font-semibold leading-[1.02] tracking-[-0.035em] text-[#071D3A] sm:text-[2.65rem] lg:text-[3rem]",
   h2: "text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.05em] text-[#071D3A] sm:text-[3.35rem]",
   h3: "text-xl font-semibold tracking-[-0.025em] text-[#071D3A]",
   lead: "text-base font-medium leading-7 text-[#42596C] sm:text-lg sm:leading-8",
