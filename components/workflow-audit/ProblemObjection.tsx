@@ -3,7 +3,7 @@ import { page } from "./tokens"
 
 export function ProblemObjection() {
   return (
-    <section data-section="problem-objection" data-nav-theme="light" className={page.sectionTight}>
+    <section data-section="problem-objection" data-nav-theme="light" className="px-4 py-8 sm:px-6 lg:px-8 lg:py-9">
       <div className={page.wrap}>
         <div className="grid gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
@@ -15,14 +15,14 @@ export function ProblemObjection() {
               The audit looks for the repeated reminders, missing details, office gaps, and payroll hours that keep jobs, invoices, estimates, reviews, referrals, and customer follow-up from moving cleanly.
             </p>
           </div>
-          <div className="overflow-hidden rounded-[1.75rem] border border-[#dfe8e1] bg-white shadow-[0_18px_54px_rgba(7,29,58,0.06)]">
+          <div className="mx-auto w-full max-w-[390px] overflow-hidden rounded-[1.5rem] border border-[#dfe8e1] bg-white shadow-[0_14px_38px_rgba(7,29,58,0.05)] lg:ml-auto">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-reminders-gaps-office-payroll.jpg"
               alt="Money Leak Map showing reminders, office gaps, and payroll waste found in workflow handoffs."
               width={881}
               height={1280}
-              sizes="(min-width: 1024px) 52vw, 100vw"
-              className="h-auto w-full object-contain"
+              sizes="(min-width: 1024px) 32vw, 100vw"
+              className="h-auto max-h-[515px] w-full object-contain"
             />
           </div>
         </div>

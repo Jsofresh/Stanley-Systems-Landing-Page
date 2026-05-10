@@ -18,14 +18,14 @@ export function ProofCostCalculator() {
               <CTALink href={auditHref} kind="checkout" location="workflow_audit_proof" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the Workflow Audit" target="_blank" rel="noopener noreferrer" className={page.greenButton}>Start the Workflow Audit</CTALink>
             </div>
           </div>
-          <div className="mx-auto max-w-[650px] overflow-hidden rounded-[1.5rem] border border-[#d9e5dc] bg-white shadow-[0_16px_46px_rgba(7,29,58,0.06)]">
+          <div className="mx-auto w-full max-w-[690px]">
             <Image
-              src="/images/uploaded/money-leak-map/money-leak-map-leak-examples-cta.jpg"
-              alt="Examples of leaks the Workflow Audit can find and turn into a first fix recommendation."
+              src="/images/uploaded/money-leak-map/money-leak-map-delayed-billing-quiet-estimates-review-flow.jpg"
+              alt="Money Leak Map showing delayed billing, quiet estimates, and review flow leaks that can cost more than the audit."
               width={1280}
-              height={720}
+              height={703}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="h-auto max-h-[440px] w-full object-contain"
+              className="h-auto w-full object-contain"
             />
           </div>
         </div>

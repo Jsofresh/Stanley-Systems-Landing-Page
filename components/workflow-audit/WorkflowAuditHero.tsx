@@ -8,12 +8,12 @@ export function WorkflowAuditHero() {
   const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
   return (
-    <section data-section="workflow-audit-hero" data-nav-theme="light" className="px-4 pb-6 pt-[72px] sm:px-6 lg:px-8 lg:pb-7">
+    <section data-section="workflow-audit-hero" data-nav-theme="light" className="px-4 pb-7 pt-[80px] sm:px-6 lg:px-8 lg:pb-8">
       <div className="mx-auto max-w-[1360px]">
-        <div className="rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-6 lg:p-5 xl:p-6">
-          <div className="max-w-[1160px]">
+        <div className="rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-6 lg:p-6 xl:p-7">
+          <div className="max-w-[1200px]">
             <p className={page.eyebrow}>Workflow Audit</p>
-            <h1 className="mt-2 text-[clamp(2.55rem,4.95vw,4.85rem)] font-semibold leading-[0.88] tracking-[-0.075em] text-[#071D3A]">
+            <h1 className="mt-2 text-[clamp(2.7rem,5.25vw,5.15rem)] font-semibold leading-[0.88] tracking-[-0.075em] text-[#071D3A]">
               Find the money leaks hiding inside your office workflow.
             </h1>
           </div>
@@ -43,15 +43,15 @@ export function WorkflowAuditHero() {
               </div>
             </div>
 
-            <aside aria-label="Money Leak Map Priority Fixes Preview" className="mx-auto w-full max-w-[350px] lg:ml-auto">
+            <aside aria-label="Money Leak Map Priority Fixes Preview" className="mx-auto flex w-full justify-center lg:justify-end">
               <Image
                 src="/images/uploaded/money-leak-map/money-leak-map-preview-priority-fixes.jpg"
                 alt="Money Leak Map preview showing priority fixes and recommended first action."
                 width={960}
                 height={1280}
                 priority
-                sizes="(min-width: 1024px) 34vw, 100vw"
-                className="h-auto max-h-[390px] w-full object-contain"
+                sizes="(min-width: 1024px) 31vw, 100vw"
+                className="h-[410px] w-auto max-w-full object-contain"
               />
             </aside>
           </div>
