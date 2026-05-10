@@ -14,10 +14,10 @@ export function WorkflowAuditHero() {
           <div className="grid items-center gap-6 lg:min-h-[610px] lg:grid-cols-[minmax(0,0.78fr)_minmax(470px,0.9fr)] lg:gap-7 xl:grid-cols-[minmax(0,0.76fr)_minmax(500px,0.92fr)] xl:gap-8">
             <div className="relative z-10 max-w-[680px]">
               <p className={page.eyebrow}>Workflow Audit</p>
-              <h1 className="mt-2 max-w-[760px] text-[clamp(2.25rem,4.04vw,4.12rem)] font-semibold leading-[0.98] tracking-[-0.042em] text-[#071D3A]">
+              <h1 className="mt-2 max-w-[570px] text-[clamp(2rem,3.18vw,3.35rem)] font-semibold leading-[1.02] tracking-[-0.038em] text-[#071D3A]">
                 Find the money leaks hiding inside your office workflow.
               </h1>
-              <p className="mt-8 max-w-2xl text-base font-medium leading-7 text-[#42596C] sm:mt-10 sm:text-lg sm:leading-8 lg:mt-24 xl:mt-28">
+              <p className="mt-8 max-w-2xl text-base font-medium leading-7 text-[#42596C] sm:mt-10 sm:text-lg sm:leading-8 lg:mt-20 xl:mt-24">
                 A $97 paid diagnostic that shows where cash, customers, and office time are slipping before you buy the wrong system.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
