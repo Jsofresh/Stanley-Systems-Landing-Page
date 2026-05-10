@@ -7,9 +7,9 @@ import { plans, sectionShell } from "./tokens"
 
 export function CashflowControlHero() {
   return (
-    <section data-section="cashflow-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-8 pt-24 sm:pb-9 lg:min-h-[calc(100vh-34px)] lg:pt-24">
+    <section data-section="cashflow-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-24 sm:pb-14 lg:pt-20">
       <div className="absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.10),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
-      <div className={`${sectionShell} relative grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center`}>
+      <div className={`${sectionShell} relative grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center`}>
         <div>
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Cashflow Control System</p>
           <h1 className="mt-2 max-w-5xl text-[2.45rem] font-semibold leading-[0.98] tracking-[-0.052em] text-[#071D3A] sm:text-[3.35rem] lg:text-[3.85rem]">
@@ -34,16 +34,18 @@ export function CashflowControlHero() {
           </p>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[520px] lg:ml-auto">
-          <Image
-            src="/images/uploaded/cashflow-control/customer-intake-to-cash-collected.jpg"
-            alt="Customer intake moving through finished job, billing ready, invoice sent, and cash collected."
-            width={1100}
-            height={900}
-            priority
-            sizes="(min-width: 1024px) 40vw, 100vw"
-            className="h-auto max-h-[455px] w-full object-contain"
-          />
+        <div className="relative mx-auto w-full max-w-[620px] lg:ml-auto">
+          <div className="overflow-hidden rounded-[1.6rem] bg-white shadow-[0_20px_60px_rgba(7,29,58,0.07)] ring-1 ring-[#DDEBE2]">
+            <Image
+              src="/images/uploaded/cashflow-control/customer-intake-to-cash-collected-hero-crop.jpg"
+              alt="Customer intake moving through finished job, billing ready, invoice sent, and cash collected."
+              width={1254}
+              height={520}
+              priority
+              sizes="(min-width: 1024px) 46vw, 100vw"
+              className="h-auto w-full object-contain"
+            />
+          </div>
           <div className="mt-3 text-center text-sm font-semibold text-[#607080]">
             Prefer to compare first? <Link href="#cashflow-pricing" className="font-extrabold text-[#116832] underline underline-offset-4">See all pricing</Link>.
           </div>
