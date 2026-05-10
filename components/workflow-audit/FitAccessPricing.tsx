@@ -5,111 +5,103 @@ import { page } from "./tokens"
 
 const includes = ["30-minute workflow walkthrough", "Transaction Pattern Review", "Online Follow-Up Review", "Systems and Handoff Review", "Money Leak Summary", "Workflow Map", "Leak Priority Score", "First Fix Recommendation", "System Recommendation"]
 
-const systemCards: Array<{
-  title: string
-  bestFor: string
-  monthly: PricingPackageId
-  yearly: PricingPackageId
-  route: string
+const planCards: Array<{
+  id: PricingPackageId
+  name: string
+  cadence: "Monthly" | "Yearly"
+  kind: "monthly" | "yearly"
 }> = [
-  {
-    title: "Cashflow Control System",
-    bestFor: "Slow invoices, billing handoffs, open balances, job completion gaps, and cash that should already be moving.",
-    monthly: "cashflow_control_monthly",
-    yearly: "cashflow_control_yearly",
-    route: "/systems/cashflow-control",
-  },
-  {
-    title: "Repeat Revenue System",
-    bestFor: "Past customers, missed calls, review asks, referral follow-up, and repeat work that never gets owned.",
-    monthly: "repeat_revenue_monthly",
-    yearly: "repeat_revenue_yearly",
-    route: "/systems/repeat-revenue",
-  },
-  {
-    title: "Both Systems",
-    bestFor: "For businesses leaking cash after the job and missing customer value after the work is done.",
-    monthly: "both_systems_monthly",
-    yearly: "both_systems_yearly",
-    route: "/pricing#both-systems",
-  },
+  { id: "cashflow_control_monthly", name: "Cashflow Control", cadence: "Monthly", kind: "monthly" },
+  { id: "cashflow_control_yearly", name: "Cashflow Control", cadence: "Yearly", kind: "yearly" },
+  { id: "repeat_revenue_monthly", name: "Repeat Revenue", cadence: "Monthly", kind: "monthly" },
+  { id: "repeat_revenue_yearly", name: "Repeat Revenue", cadence: "Yearly", kind: "yearly" },
+  { id: "both_systems_monthly", name: "Both Systems", cadence: "Monthly", kind: "monthly" },
+  { id: "both_systems_yearly", name: "Both Systems", cadence: "Yearly", kind: "yearly" },
 ]
 
-function monthlyEquivalent(price: number) {
+function money(value: number, cents = false) {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(price / 12)
-}
-
-function dollars(value: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
+    minimumFractionDigits: cents ? 2 : 0,
+    maximumFractionDigits: cents ? 2 : 0,
   }).format(value)
 }
 
-function PricingRow({ label, value, quiet = false, accent = false }: { label: string; value: string; quiet?: boolean; accent?: boolean }) {
-  return (
-    <div className="flex items-baseline justify-between gap-4 border-t border-[#e8eee9] py-2.5 first:border-t-0 first:pt-0 last:pb-0">
-      <span className={`text-sm ${quiet ? "font-semibold text-[#6b7788]" : "font-bold text-[#536173]"}`}>{label}</span>
-      <span className={`text-right text-sm ${accent ? "font-black text-[#b91c1c]" : "font-bold text-[#071D3A]"}`}>{value}</span>
-    </div>
-  )
+function monthlyEquivalent(price: number) {
+  return money(price / 12, true)
 }
 
-function SystemPathCard({ card }: { card: (typeof systemCards)[number] }) {
-  const monthly = pricingPackageById[card.monthly]
-  const yearly = pricingPackageById[card.yearly]
-  const yearlyMonthly = monthlyEquivalent(yearly.price)
-  const setupDiscount = dollars(yearly.setupFee)
-  const yearlySavings = yearly.savings ? dollars(yearly.savings.amount) : null
+function shortInstallAmount(display: string) {
+  return display.split(" ")[0]
+}
+
+function checkoutMeta(id: PricingPackageId) {
+  if (id.includes("cashflow_control")) return { packageName: "Cashflow Control System", route: "/systems/cashflow-control" }
+  if (id.includes("repeat_revenue")) return { packageName: "Repeat Revenue System", route: "/systems/repeat-revenue" }
+  return { packageName: "Both Systems", route: "/pricing#both-systems" }
+}
+
+function PlanCard({ id, name, cadence, kind }: { id: PricingPackageId; name: string; cadence: "Monthly" | "Yearly"; kind: "monthly" | "yearly" }) {
+  const pkg = pricingPackageById[id]
+  const isYearly = kind === "yearly"
+  const price = isYearly ? `${monthlyEquivalent(pkg.price)}/mo` : pkg.priceDisplay
+  const auditCredit = pkg.auditCreditDisplay
+  const installAmount = shortInstallAmount(pkg.setupFeeDisplay)
+  const yearlyPackageSavings = pkg.savings?.amount ?? 0
+  const firstYearSavings = isYearly ? pkg.auditCredit + pkg.setupFee + yearlyPackageSavings : pkg.auditCredit + yearlyPackageSavings
+  const meta = checkoutMeta(id)
+  const billingPeriod = pkg.billingPeriod
 
   return (
-    <article className="flex h-full flex-col rounded-[1.45rem] border border-[#dfe8e1] bg-[#fbfcf7] p-5 shadow-[0_14px_38px_rgba(7,29,58,0.04)]">
-      <div>
-        <h4 className="text-xl font-semibold tracking-[-0.025em] text-[#071D3A]">{card.title}</h4>
-        <div className="mt-4 rounded-[1.2rem] border border-[#efb7b0] bg-[#fff6f4] px-4 py-3">
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#8f1d1d]">Audit credit after Workflow Audit</p>
-          <p className="mt-1 text-xl font-black leading-6 tracking-[-0.035em] text-[#b91c1c]">{monthly.auditCreditDisplay} monthly / {yearly.auditCreditDisplay} yearly</p>
-        </div>
-        <p className="mt-4 text-sm font-semibold leading-6 text-[#536173]">{card.bestFor}</p>
-      </div>
-
-      <div className="mt-5 grid gap-3">
-        <div className="rounded-[1.1rem] border border-[#e1ebe4] bg-white p-4">
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#536173]">Monthly</p>
-          <div className="mt-1 flex flex-wrap items-end gap-x-2 gap-y-1">
-            <span className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">{monthly.priceDisplay}</span>
-            <span className="pb-1 text-xs font-bold text-[#64748b]">month-to-month</span>
-          </div>
-          <div className="mt-4">
-            <PricingRow label="Installation fee" value={monthly.setupFeeDisplay} quiet />
-          </div>
-        </div>
-
-        <div className="rounded-[1.1rem] border border-[#dfe8e1] bg-[#fcfdf9] p-4">
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#536173]">Yearly</p>
-          <div className="mt-1 flex flex-wrap items-end gap-x-2 gap-y-1">
-            <span className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">{yearlyMonthly}/mo</span>
-            <span className="pb-1 text-xs font-bold text-[#64748b]">paid yearly</span>
-          </div>
-          <p className="mt-1 text-xs font-bold leading-5 text-[#64748b]">Billed as {yearly.priceDisplay}. Monthly equivalent shown for easier comparison.</p>
-          <div className="mt-4 rounded-2xl border border-[#efb7b0] bg-[#fff8f6] p-3">
-            <PricingRow label="Installation discount" value={setupDiscount} accent />
-            {yearlySavings ? <PricingRow label="Yearly discount" value={yearlySavings} accent /> : null}
-          </div>
+    <article className={`flex h-full min-h-[21rem] flex-col rounded-[1.35rem] border bg-white p-5 shadow-[0_12px_34px_rgba(7,29,58,0.045)] ${isYearly ? "border-[#efb7b0]" : "border-[#dfe8e1]"}`}>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.15em] text-[#15803D]">{name}</p>
+          <h4 className="mt-1 text-2xl font-semibold tracking-[-0.04em] text-[#071D3A]">{cadence}</h4>
         </div>
       </div>
 
-      <div className="mt-auto pt-4">
-        <a href={card.route} className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#cfded3] bg-white px-4 py-2 text-sm font-extrabold text-[#071D3A] transition hover:bg-[#f7faf6]">
-          See {card.title} <ArrowRight className="ml-2 h-3.5 w-3.5" />
-        </a>
+      <div className="mt-6">
+        <div className="flex items-end gap-2">
+          <span className="text-4xl font-semibold tracking-[-0.045em] text-[#071D3A]">{price}</span>
+          <span className="pb-1.5 text-xs font-bold text-[#64748b]">{isYearly ? "paid yearly" : "month-to-month"}</span>
+        </div>
+        {isYearly ? <p className="mt-1 text-xs font-bold leading-5 text-[#64748b]">Billed as {pkg.priceDisplay}. Monthly equivalent shown.</p> : null}
+      </div>
+
+      <div className="mt-5 rounded-2xl border border-[#efb7b0] bg-[#fff6f4] p-4">
+        <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#8f1d1d]">{isYearly ? "First-year savings" : "Savings after audit"}</p>
+        <p className="mt-1 text-3xl font-black tracking-[-0.04em] text-[#b91c1c]">{money(firstYearSavings)}</p>
+      </div>
+
+      <div className="mt-5 divide-y divide-[#e8eee9] rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-4 py-2">
+        <div className="flex items-center justify-between gap-4 py-2.5">
+          <span className="text-sm font-bold text-[#536173]">Audit credit</span>
+          <span className="text-sm font-black text-[#b91c1c]">{auditCredit}</span>
+        </div>
+        <div className="flex items-center justify-between gap-4 py-2.5">
+          <span className="text-sm font-semibold text-[#6b7788]">Installation fee</span>
+          <span className="text-sm font-semibold text-[#536173]">{installAmount}</span>
+        </div>
+        {isYearly ? (
+          <div className="flex items-center justify-between gap-4 py-2.5">
+            <span className="text-sm font-bold text-[#536173]">Install discount</span>
+            <span className="text-sm font-black text-[#b91c1c]">{money(pkg.setupFee)}</span>
+          </div>
+        ) : null}
+        {pkg.savings ? (
+          <div className="flex items-center justify-between gap-4 py-2.5">
+            <span className="text-sm font-bold text-[#536173]">Package discount</span>
+            <span className="text-sm font-black text-[#b91c1c]">{isYearly ? money(pkg.savings.amount) : `${money(pkg.savings.amount)}/mo`}</span>
+          </div>
+        ) : null}
+      </div>
+
+      <div className="mt-auto pt-5">
+        <CTALink href={pkg.stripePaymentLink.url} kind="checkout" location="workflow_audit_package_grid" analyticsEvent="package_checkout_clicked" analyticsSource="workflow_audit_page" packageId={id} packageName={meta.packageName} billingPeriod={billingPeriod} ctaLabel={pkg.cta} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#071D3A] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#0e315f] focus:outline-none focus:ring-4 focus:ring-[#071D3A]/20">
+          {pkg.cta} <ArrowRight className="ml-2 h-3.5 w-3.5" />
+        </CTALink>
       </div>
     </article>
   )
@@ -160,12 +152,12 @@ export function FitAccessPricing() {
           <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
               <p className={page.eyebrow}>Where the audit can lead</p>
-              <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">Pick the system after the leak is clear.</h3>
+              <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">Compare the next move after the audit.</h3>
             </div>
-            <p className="max-w-xl text-sm font-bold leading-6 text-[#536173]">The audit helps decide which path is worth building first. Credits appear first; package discounts stay visible without turning the section into a coupon board.</p>
+            <p className="max-w-xl text-sm font-bold leading-6 text-[#536173]">Six clean payment cards. The red number shows how much money stays in your pocket after the audit or yearly choice.</p>
           </div>
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
-            {systemCards.map((card) => <SystemPathCard key={card.title} card={card} />)}
+          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {planCards.map((card) => <PlanCard key={card.id} {...card} />)}
           </div>
         </div>
 
