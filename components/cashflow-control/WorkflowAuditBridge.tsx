@@ -15,8 +15,7 @@ export function WorkflowAuditBridge() {
     <section data-section="cashflow-workflow-audit-bridge" className="bg-[#F8FBF9] px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
       <div className={`${sectionShell} grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Safe first move</p>
-          <h2 className="mt-3 text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">
+          <h2 className="text-[2.2rem] font-semibold leading-[1.02] tracking-[-0.045em] text-[#071D3A] sm:text-[2.85rem]">
             Buy the audit first. Let the numbers choose the system.
           </h2>
           <p className="mt-4 text-base font-medium leading-7 text-[#536173] sm:text-lg">
@@ -61,7 +60,7 @@ export function WorkflowAuditBridge() {
             <CTALink href={plans.workflowAudit.stripePaymentLink.url} kind="checkout" location="cashflow_audit_bridge" analyticsEvent="audit_checkout_clicked" analyticsSource="cashflow_control_page" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Buy the Workflow Audit" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832]">
               Buy the Workflow Audit <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
-            <a href="/workflow-audit#audit-checks" className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#071D3A] transition hover:bg-[#F4FBF5]">
+            <a href="/workflow-audit#packages" className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#071D3A] transition hover:bg-[#F4FBF5]">
               Read what is included
             </a>
           </div>

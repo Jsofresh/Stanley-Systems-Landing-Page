@@ -15,8 +15,7 @@ export function WorkflowAuditFallback() {
     <section id="audit" data-section="audit-fallback" className="scroll-mt-[120px] bg-white px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto grid max-w-7xl gap-7 rounded-[1.35rem] border border-[#C8D8CE] bg-[#F8FBF9] p-6 shadow-[0_18px_46px_rgba(33,51,67,0.08)] lg:grid-cols-[1fr_0.82fr] lg:items-center lg:p-8">
         <div>
-          <p className="text-sm font-bold text-[#15803D]">Safe first move</p>
-          <h2 className="mt-3 max-w-3xl text-[2.25rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
+          <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
             Buy the audit first. Let the numbers choose the system.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#33475B] sm:text-lg">

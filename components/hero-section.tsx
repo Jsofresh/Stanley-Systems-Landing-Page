@@ -506,10 +506,10 @@ export function HeroSection() {
                 location="home_hero_primary"
                 analyticsEvent="audit_cta_clicked"
                 analyticsSource="homepage_hero"
-                ctaLabel="Start the $97 Workflow Audit"
+                ctaLabel="Start the Workflow Audit"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                Start the $97 Workflow Audit
+                Start the Workflow Audit
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
               <a

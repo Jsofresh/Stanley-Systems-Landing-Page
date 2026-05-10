@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
-import { DemoProofStrip } from "@/components/repeat-revenue/DemoProofStrip"
+import { CashflowDemoProofStrip } from "@/components/cashflow-control/CashflowDemoProofStrip"
 import { CashflowControlFAQ } from "@/components/cashflow-control/CashflowControlFAQ"
 import { CashflowControlHero } from "@/components/cashflow-control/CashflowControlHero"
 import { CashflowControlPricing } from "@/components/cashflow-control/CashflowControlPricing"
@@ -41,7 +41,7 @@ export default function CashflowControlPage() {
         <FitSetup />
         <CashflowControlPricing />
         <WorkflowAuditBridge />
-        <DemoProofStrip />
+        <CashflowDemoProofStrip />
         <CashflowControlFAQ />
       </main>
       <Footer />

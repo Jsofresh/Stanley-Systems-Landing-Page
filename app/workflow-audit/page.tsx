@@ -3,7 +3,6 @@ import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
 import { WorkflowAuditHero } from "@/components/workflow-audit/WorkflowAuditHero"
 import { ProblemObjection } from "@/components/workflow-audit/ProblemObjection"
-import { AuditChecks } from "@/components/workflow-audit/AuditChecks"
 import { HowAuditWorks } from "@/components/workflow-audit/HowAuditWorks"
 import { ProofCostCalculator } from "@/components/workflow-audit/ProofCostCalculator"
 import { FitAccessPricing } from "@/components/workflow-audit/FitAccessPricing"
@@ -29,7 +28,6 @@ export default function WorkflowAuditPage() {
       <main data-nav-theme="light" className="relative bg-[#f7f7f4]">
         <WorkflowAuditHero />
         <ProblemObjection />
-        <AuditChecks />
         <HowAuditWorks />
         <ProofCostCalculator />
         <FitAccessPricing />

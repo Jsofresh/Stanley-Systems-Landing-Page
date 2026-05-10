@@ -7,8 +7,7 @@ export function ObjectionGap() {
       <div className={sectionShell}>
         <div className="grid gap-7 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
           <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">The real gap</p>
-            <h2 className="mt-3 text-[2.35rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">
+            <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">
               Your tools hold the pieces. Stanley Systems automates the path between them.
             </h2>
             <p className="mt-5 text-base leading-7 text-[#536173] sm:text-lg">

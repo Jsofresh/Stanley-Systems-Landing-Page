@@ -10,8 +10,7 @@ export function DemoProofStrip() {
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.75rem] border border-[#D5DEE8] bg-white shadow-[0_18px_54px_rgba(16,32,51,0.08)]">
         <div className="grid gap-0 lg:grid-cols-[0.86fr_1.14fr]">
           <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-            <p className="text-sm font-bold text-[#15803D]">Demo proof</p>
-            <h2 className="mt-3 text-[2.25rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
+            <h2 className="text-[2.25rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
               See the system before you buy.
             </h2>
             <p className="mt-4 text-base leading-7 text-[#33475B] sm:text-lg">

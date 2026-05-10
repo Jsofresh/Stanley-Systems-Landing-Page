@@ -9,7 +9,7 @@ import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 const routes = [
-  { id: "audit", title: "Start the Workflow Audit", body: "Best if cash, follow-up, invoices, estimates, reviews, referrals, or office handoffs are getting stuck.", cta: "Start the $97 Workflow Audit", icon: ReceiptText },
+  { id: "audit", title: "Start the Workflow Audit", body: "Best if cash, follow-up, invoices, estimates, reviews, referrals, or office handoffs are getting stuck.", cta: "Start the Workflow Audit", icon: ReceiptText },
   { id: "question", title: "Ask before buying", body: "Not sure whether the audit fits your business? Send a short note first.", cta: "Ask a quick question", icon: MailQuestion },
   { id: "bought", title: "Already bought?", body: "Book your walkthrough or finish your audit intake.", cta: "Continue audit setup", icon: CheckCircle2 },
 ] as const
@@ -60,7 +60,7 @@ export function ContactRouter() {
 function AuditPanel() {
   return (
     <div>
-      <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">$97 Workflow Audit</p>
+      
       <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Find the first revenue leak before buying a system.</h2>
       <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">The Workflow Audit is the paid diagnostic first step. Stanley Systems reviews your workflow, looks for the first meaningful leak, and credits the fee toward Cashflow Control or Repeat Revenue if you buy a system after the audit.</p>
       <ul className="mt-5 space-y-3 text-sm font-semibold leading-6 text-[#536173]">
@@ -71,8 +71,8 @@ function AuditPanel() {
         ].map((item) => <li key={item} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" />{item}</li>)}
       </ul>
       <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-        <CTALink href={auditHref} kind="checkout" location="contact_audit_panel" analyticsEvent="audit_checkout_clicked" analyticsSource="contact_router" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the $97 Workflow Audit" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">
-          Start the $97 Workflow Audit <ArrowRight className="ml-2 h-4 w-4" />
+        <CTALink href={auditHref} kind="checkout" location="contact_audit_panel" analyticsEvent="audit_checkout_clicked" analyticsSource="contact_router" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the Workflow Audit" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">
+          Start the Workflow Audit <ArrowRight className="ml-2 h-4 w-4" />
         </CTALink>
         <Link href="/audit-started" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] hover:bg-[#F4FBF5]">What happens after buying</Link>
       </div>
@@ -148,7 +148,7 @@ function PreBuyQuestionForm() {
       <div>
         <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Ask before buying</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Ask before buying the audit.</h2>
-        <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">Short questions only. If you need workflow diagnosis, start the $97 Workflow Audit.</p>
+        <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">Short questions only. If you need workflow diagnosis, start the Workflow Audit.</p>
       </div>
       {state === "success" ? <p className="rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-3 text-sm font-bold text-[#116832]">{message}</p> : null}
       {state === "error" ? <p className="rounded-2xl border border-red-200 bg-red-50 p-3 text-sm font-bold text-red-800">{message}</p> : null}

@@ -43,12 +43,12 @@ export function MoneyMathSection() {
             packageId="workflow_audit"
             packageName="Workflow Audit"
             billingPeriod="one_time"
-            ctaLabel="Run the $97 Workflow Audit"
+            ctaLabel="Run the Workflow Audit"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex min-h-12 w-fit items-center justify-center gap-2 rounded-md bg-[#15803D] px-7 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(21,128,61,0.20)] transition hover:bg-[#17612E]"
           >
-            Run the $97 Workflow Audit <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Run the Workflow Audit <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
         </div>
 

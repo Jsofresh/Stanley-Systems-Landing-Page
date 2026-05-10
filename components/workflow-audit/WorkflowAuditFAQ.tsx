@@ -17,7 +17,6 @@ export function WorkflowAuditFAQ() {
     <section data-section="faq" data-nav-theme="light" className={page.sectionTight}>
       <div className={`${page.wrap} max-w-[980px]`}>
         <div className="text-center">
-          <p className={page.eyebrow}>FAQ</p>
           <h2 className={`${page.h2} mt-3`}>Questions owners ask before buying the audit</h2>
         </div>
         <div className="mt-7 grid gap-3">

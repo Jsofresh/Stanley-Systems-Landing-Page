@@ -14,8 +14,7 @@ export function CashflowControlFAQ() {
     <section className="bg-white px-4 pb-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">FAQ</p>
-          <h2 className="mt-3 text-[2.25rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Plain answers before you buy.</h2>
+          <h2 className="text-[2.25rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Plain answers before you buy.</h2>
         </div>
         <div className="mt-8 divide-y divide-[#DDEBE2] overflow-hidden rounded-[1.75rem] border border-[#DDEBE2] bg-[#FBFCF7]">
           {faqs.map(([question, answer]) => (

@@ -53,9 +53,6 @@ export function PainAgitationCarousel() {
     >
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-8 max-w-3xl text-center lg:mb-10">
-          <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#28B463]">
-            Where the money leaks
-          </p>
           <h2
             id="pain-agitation-heading"
             className="text-3xl font-extrabold tracking-[-0.03em] text-[#071D3A] sm:text-4xl lg:text-5xl"

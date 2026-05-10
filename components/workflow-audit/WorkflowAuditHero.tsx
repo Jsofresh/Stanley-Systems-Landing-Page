@@ -18,11 +18,11 @@ export function WorkflowAuditHero() {
               A $97 paid diagnostic that shows where cash, customers, and office time are slipping before you buy the wrong system.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <CTALink href={auditHref} kind="checkout" location="workflow_audit_hero" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the $97 Workflow Audit" target="_blank" rel="noopener noreferrer" className={page.greenButton}>
-                Start the $97 Workflow Audit
+              <CTALink href={auditHref} kind="checkout" location="workflow_audit_hero" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the Workflow Audit" target="_blank" rel="noopener noreferrer" className={page.greenButton}>
+                Start the Workflow Audit
               </CTALink>
-              <a href="#audit-checks" className={page.quietButton}>
-                See what gets checked <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              <a href="#packages" className={page.quietButton}>
+                See audit details <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             <div className="mt-5 grid max-w-2xl gap-3 sm:grid-cols-2">

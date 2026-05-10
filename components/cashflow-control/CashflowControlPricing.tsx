@@ -63,7 +63,7 @@ export function CashflowControlPricing() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-[2.4rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Pick your cashflow fix.</h2>
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
-            Buy Cashflow Control now, or start with the $97 Workflow Audit and credit it toward a system. Yearly options show the rounded monthly price first and bill yearly.
+            Buy Cashflow Control now, or start with the Workflow Audit and credit it toward a system. Yearly options show the rounded monthly price first and bill yearly.
           </p>
         </div>
 
