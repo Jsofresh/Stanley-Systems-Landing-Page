@@ -18,7 +18,7 @@ export function WorkflowAuditHero() {
             </h1>
           </div>
 
-          <div className="mt-5 grid items-center gap-6 lg:grid-cols-[0.9fr_0.7fr] xl:grid-cols-[0.94fr_0.66fr]">
+          <div className="mt-4 grid items-center gap-4 lg:grid-cols-[0.72fr_0.98fr] xl:grid-cols-[0.72fr_0.98fr]">
             <div>
               <p className="max-w-2xl text-base font-medium leading-7 text-[#42596C] sm:text-lg sm:leading-8">
                 A $97 paid diagnostic that shows where cash, customers, and office time are slipping before you buy the wrong system.
@@ -50,8 +50,8 @@ export function WorkflowAuditHero() {
                 width={960}
                 height={1280}
                 priority
-                sizes="(min-width: 1024px) 36vw, 100vw"
-                className="h-auto max-h-[390px] w-full max-w-[460px] object-contain lg:max-w-[500px]"
+                sizes="(min-width: 1024px) 49vw, 100vw"
+                className="h-auto max-h-[527px] w-full max-w-[621px] object-contain lg:max-w-[675px]"
               />
             </aside>
           </div>

@@ -34,16 +34,16 @@ export function CashflowControlHero() {
           </p>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[620px] lg:ml-auto">
+        <div className="relative mx-auto w-full max-w-[500px] lg:ml-auto">
           <div className="overflow-hidden rounded-[1.6rem] bg-white shadow-[0_20px_60px_rgba(7,29,58,0.07)] ring-1 ring-[#DDEBE2]">
             <Image
-              src="/images/uploaded/cashflow-control/customer-intake-to-cash-collected-hero-crop.jpg"
-              alt="Customer intake moving through finished job, billing ready, invoice sent, and cash collected."
-              width={1254}
-              height={520}
+              src="/images/uploaded/money-leak-map/money-leak-map-delayed-billing-office-time-quiet-estimates-missed-reviews.jpg"
+              alt="Money leak examples showing delayed billing, office time, quiet estimates, and missed review and referral flow."
+              width={960}
+              height={1280}
               priority
-              sizes="(min-width: 1024px) 46vw, 100vw"
-              className="h-auto w-full object-contain"
+              sizes="(min-width: 1024px) 36vw, 100vw"
+              className="h-auto max-h-[520px] w-full object-contain"
             />
           </div>
           <div className="mt-3 text-center text-sm font-semibold text-[#607080]">
