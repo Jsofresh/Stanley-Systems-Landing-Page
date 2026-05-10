@@ -8,22 +8,22 @@ export function WorkflowAuditHero() {
   const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
   return (
-    <section data-section="workflow-audit-hero" data-nav-theme="light" className="px-4 pb-8 pt-[104px] sm:px-6 lg:px-8 lg:pb-10">
+    <section data-section="workflow-audit-hero" data-nav-theme="light" className="px-4 pb-6 pt-[72px] sm:px-6 lg:px-8 lg:pb-7">
       <div className="mx-auto max-w-[1360px]">
-        <div className="rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-7 lg:p-8 xl:p-9">
-          <div className="max-w-[1120px]">
+        <div className="rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-6 lg:p-5 xl:p-6">
+          <div className="max-w-[1160px]">
             <p className={page.eyebrow}>Workflow Audit</p>
-            <h1 className="mt-3 text-[clamp(3rem,6.25vw,6.15rem)] font-semibold leading-[0.88] tracking-[-0.075em] text-[#071D3A]">
+            <h1 className="mt-2 text-[clamp(2.55rem,4.95vw,4.85rem)] font-semibold leading-[0.88] tracking-[-0.075em] text-[#071D3A]">
               Find the money leaks hiding inside your office workflow.
             </h1>
           </div>
 
-          <div className="mt-6 grid items-center gap-6 lg:grid-cols-[0.82fr_0.78fr] xl:grid-cols-[0.9fr_0.72fr]">
+          <div className="mt-4 grid items-center gap-5 lg:grid-cols-[0.88fr_0.62fr] xl:grid-cols-[0.92fr_0.58fr]">
             <div>
               <p className="max-w-2xl text-base font-medium leading-7 text-[#42596C] sm:text-lg sm:leading-8">
                 A $97 paid diagnostic that shows where cash, customers, and office time are slipping before you buy the wrong system.
               </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <CTALink href={auditHref} kind="checkout" location="workflow_audit_hero" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the Workflow Audit" target="_blank" rel="noopener noreferrer" className={page.greenButton}>
                   Start the Workflow Audit
                 </CTALink>
@@ -43,15 +43,15 @@ export function WorkflowAuditHero() {
               </div>
             </div>
 
-            <aside aria-label="Money Leak Map Preview" className="mx-auto w-full max-w-[430px] overflow-hidden rounded-[1.6rem] border border-[#d7e5dc] bg-white shadow-[0_14px_40px_rgba(7,29,58,0.08)] lg:ml-auto">
+            <aside aria-label="Money Leak Map Priority Fixes Preview" className="mx-auto w-full max-w-[350px] lg:ml-auto">
               <Image
-                src="/images/uploaded/money-leak-map/money-leak-map-preview-card.jpg"
-                alt="Money Leak Map preview card showing audit summary, score, and recommended first fix."
-                width={1024}
+                src="/images/uploaded/money-leak-map/money-leak-map-preview-priority-fixes.jpg"
+                alt="Money Leak Map preview showing priority fixes and recommended first action."
+                width={960}
                 height={1280}
                 priority
                 sizes="(min-width: 1024px) 34vw, 100vw"
-                className="h-auto max-h-[500px] w-full object-contain"
+                className="h-auto max-h-[390px] w-full object-contain"
               />
             </aside>
           </div>
