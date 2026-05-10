@@ -13,7 +13,7 @@ export function FitSetup() {
 
         <div className="mx-auto mt-5 max-w-5xl overflow-hidden rounded-[1.5rem] border border-[#DDEBE2] bg-white shadow-[0_16px_44px_rgba(7,29,58,0.06)]">
           <Image
-            src="/images/uploaded/money-leak-map/money-leak-map-stanley-workflow-automation.jpg"
+            src="/images/uploaded/money-leak-map/money-leak-map-stanley-systems-workflow-automation.jpg"
             alt="Stanley workflow automation layer connecting intake, job records, billing checks, routing, invoices, and payment follow-up."
             width={1280}
             height={720}

@@ -36,7 +36,7 @@ export function CashflowDemoProofStrip() {
 
           <Link href="/how-stanley-systems-works" prefetch={false} className="group relative block min-h-[285px] overflow-hidden bg-[#F8FBF9] sm:min-h-[340px] lg:min-h-[390px]">
             <Image
-              src="/images/uploaded/money-leak-map/money-leak-map-stanley-workflow-automation.jpg"
+              src="/images/uploaded/money-leak-map/money-leak-map-stanley-systems-workflow-automation.jpg"
               alt="Cashflow Control demo visual showing intake, job records, billing checks, routing, invoices, and payment follow-up connected into one workflow."
               width={1280}
               height={720}
