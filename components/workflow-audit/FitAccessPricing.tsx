@@ -89,20 +89,19 @@ export function FitAccessPricing() {
   return (
     <section id="packages" data-section="fit-access-pricing" data-nav-theme="light" className="bg-white px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
       <div className={page.wrap}>
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <h2 className={`${page.h2} mt-3`}>Start with the audit. Use the credit when you build.</h2>
-          <p className={`${page.lead} mt-4 max-w-2xl`}>The Workflow Audit shows what is leaking first. If Stanley Systems builds the fix after the audit, your audit fee credits toward the system.</p>
         </div>
 
-        <div data-section="workflow-audit-access-offer" className="mt-6 grid gap-5 lg:grid-cols-[0.84fr_1.16fr] lg:items-center">
-          <div className="mx-auto max-w-[470px] overflow-hidden rounded-[1.5rem] border border-[#d9e5dc] bg-white shadow-[0_14px_42px_rgba(7,29,58,0.05)]">
+        <div data-section="workflow-audit-access-offer" className="mt-5 grid gap-5 lg:grid-cols-[0.66fr_1.2fr] lg:items-center">
+          <div className="mx-auto max-w-[360px] overflow-hidden rounded-[1.35rem] border border-[#d9e5dc] bg-white shadow-[0_12px_34px_rgba(7,29,58,0.05)]">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-access-options-illustrated.jpg"
               alt="Workflow Audit access options showing screen share, exports and screenshots, or temporary invited user."
               width={960}
               height={1280}
-              sizes="(min-width: 1024px) 38vw, 100vw"
-              className="h-auto max-h-[520px] w-full object-contain"
+              sizes="(min-width: 1024px) 29vw, 100vw"
+              className="h-auto max-h-[440px] w-full object-contain"
             />
           </div>
 
@@ -122,15 +121,8 @@ export function FitAccessPricing() {
         </div>
 
         <div className="mt-8 rounded-[2rem] border border-[#d9e5dc] bg-white p-5 shadow-[0_18px_60px_rgba(7,29,58,0.06)]">
-          <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
-            <div>
-              <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">Choose the cleanest next payment.</h3>
-            </div>
-            <div className="grid gap-2 text-xs font-extrabold leading-5 text-[#536173] sm:grid-cols-3 lg:max-w-2xl">
-              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-3 py-2">Monthly keeps it flexible.</div>
-              <div className="rounded-2xl border border-[#efb7b0] bg-[#fff6f4] px-3 py-2 text-[#8f1d1d]">Yearly shows the rounded monthly price and yearly bill.</div>
-              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-3 py-2">Audit credit is shown early.</div>
-            </div>
+          <div className="text-center">
+            <h3 className="text-3xl font-semibold tracking-[-0.045em] text-[#071D3A] sm:text-4xl">Choose the cleanest next payment.</h3>
           </div>
           <PackagePricingGrid cards={packageCards} locationPrefix="workflow_audit_package_grid" analyticsSource="workflow_audit_page" gridClassName="md:grid-cols-2 xl:grid-cols-3" />
         </div>

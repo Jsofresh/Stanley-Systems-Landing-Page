@@ -18,10 +18,10 @@ export type PackagePricingCard = {
 }
 
 function badgeClass(tone: PackagePricingCard["tone"]) {
-  if (tone === "recommended") return "bg-[#E11D48] text-white shadow-[0_12px_24px_rgba(225,29,72,0.18)]"
-  if (tone === "yearly") return "bg-[#E11D48] text-white shadow-[0_12px_24px_rgba(225,29,72,0.18)]"
-  if (tone === "complete") return "bg-[#102A43] text-white shadow-[0_12px_24px_rgba(16,42,67,0.16)]"
-  return "bg-white text-[#102033] ring-1 ring-[#D5DEE8]"
+  if (tone === "recommended") return "text-[#15803D]"
+  if (tone === "yearly") return "text-[#B91C1C]"
+  if (tone === "complete") return "text-[#102A43]"
+  return "text-[#66758A]"
 }
 
 function money(value: number) {
@@ -62,7 +62,7 @@ export function PackagePricingGrid({
   gridClassName?: string
 }) {
   return (
-    <div className={`mt-8 grid gap-4 ${gridClassName}`}>
+    <div className={`mt-7 grid gap-5 ${gridClassName}`}>
       {cards.map((card) => (
         <PackagePricingCardView
           key={card.name}
@@ -98,21 +98,44 @@ function PackagePricingCardView({
 
   return (
     <article
-      className={`flex min-h-full flex-col rounded-[1.1rem] border p-4 shadow-[0_14px_34px_rgba(33,51,67,0.08)] ${
+      className={`group relative flex min-h-full flex-col overflow-hidden rounded-[1.45rem] border bg-white p-5 shadow-[0_14px_34px_rgba(33,51,67,0.07)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#15803D] hover:shadow-[0_24px_70px_rgba(21,128,61,0.16)] hover:ring-2 hover:ring-[#B7E4C7] ${
         isRecommended
-          ? "border-[#15803D] bg-white ring-2 ring-[#A7D8B4]"
+          ? "border-[#15803D] ring-2 ring-[#A7D8B4]"
           : isYearly
-            ? "border-[#9FCFAD] bg-white"
-            : "border-[#D5DEE8] bg-white"
+            ? "border-[#CFE1D4]"
+            : "border-[#D8E0EA]"
       }`}
     >
-      <p className={`mb-4 inline-flex min-h-9 w-fit items-center rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] ${badgeClass(card.tone)}`}>
-        {card.badge}
-      </p>
-      <h3 className="text-lg font-bold leading-tight tracking-[-0.025em] text-[#102033]">{card.name}</h3>
-      <p className="mt-2 text-[2.25rem] font-bold leading-none tracking-[-0.055em] text-[#102033]">{display.price}</p>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[#E4EBE6] transition duration-300 group-hover:bg-[#15803D]" />
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className={`text-xs font-extrabold uppercase tracking-[0.12em] ${badgeClass(card.tone)}`}>
+            {card.badge}
+          </p>
+          <h3 className="mt-4 text-xl font-bold leading-tight tracking-[-0.035em] text-[#102033]">{card.name}</h3>
+        </div>
+      </div>
+      <p className="mt-3 text-[2.55rem] font-bold leading-none tracking-[-0.06em] text-[#102033]">{display.price}</p>
       <p className="mt-1 text-xs font-extrabold uppercase tracking-[0.08em] text-[#607080]">{display.note}</p>
-      <p className="mt-2 min-h-[56px] text-sm leading-5 text-[#33475B]">{card.description}</p>
+
+      <CTALink
+        href={pkg.stripePaymentLink.url}
+        kind="checkout"
+        location={`${locationPrefix}_${pkg.id}`}
+        analyticsEvent="package_checkout_clicked"
+        analyticsSource={analyticsSource}
+        packageId={pkg.analyticsPackageId as PricingPackageId}
+        packageName={pkg.publicName}
+        billingPeriod={normalizedBillingPeriod(pkg)}
+        ctaLabel={card.cta}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#15803D] px-4 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(21,128,61,0.18)] transition duration-300 hover:bg-[#116832] group-hover:shadow-[0_16px_34px_rgba(21,128,61,0.28)]"
+      >
+        {card.cta} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+      </CTALink>
+
+      <p className="mt-4 min-h-[56px] text-sm leading-5 text-[#33475B]">{card.description}</p>
 
       <div className="mt-3 grid gap-2 border-y border-[#C8D8CE] py-2 text-xs font-semibold leading-5 text-[#33475B]">
         <div className="rounded-xl bg-[#F8FCF9] px-3 py-2 ring-1 ring-[#E0E9E3]">{card.install}</div>
@@ -134,42 +157,24 @@ function PackagePricingCardView({
         ))}
       </ul>
 
-      <div className="mt-auto pt-4">
+      {showAuditSecondary && auditHref && card.secondary ? (
         <CTALink
-          href={pkg.stripePaymentLink.url}
+          href={auditHref}
           kind="checkout"
-          location={`${locationPrefix}_${pkg.id}`}
-          analyticsEvent="package_checkout_clicked"
+          location={`${locationPrefix}_audit_${pkg.id}`}
+          analyticsEvent="audit_checkout_clicked"
           analyticsSource={analyticsSource}
-          packageId={pkg.analyticsPackageId as PricingPackageId}
-          packageName={pkg.publicName}
-          billingPeriod={normalizedBillingPeriod(pkg)}
-          ctaLabel={card.cta}
+          packageId="workflow_audit"
+          packageName="Workflow Audit"
+          billingPeriod="one_time"
+          ctaLabel={card.secondary}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-10 w-full items-center justify-center rounded-md bg-[#15803D] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-[#17612E]"
+          className="mt-auto inline-flex min-h-10 w-full items-center justify-center rounded-full border-2 border-[#15803D] px-4 py-2.5 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]"
         >
-          {card.cta} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+          {card.secondary}
         </CTALink>
-        {showAuditSecondary && auditHref && card.secondary ? (
-          <CTALink
-            href={auditHref}
-            kind="checkout"
-            location={`${locationPrefix}_audit_${pkg.id}`}
-            analyticsEvent="audit_checkout_clicked"
-            analyticsSource={analyticsSource}
-            packageId="workflow_audit"
-            packageName="Workflow Audit"
-            billingPeriod="one_time"
-            ctaLabel={card.secondary}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 inline-flex min-h-10 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-4 py-2.5 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]"
-          >
-            {card.secondary}
-          </CTALink>
-        ) : null}
-      </div>
+      ) : null}
     </article>
   )
 }
