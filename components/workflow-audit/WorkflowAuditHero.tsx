@@ -40,15 +40,15 @@ export function WorkflowAuditHero() {
               </div>
             </div>
 
-            <aside aria-label="Money Leak Map Priority Fixes Preview" className="relative mx-auto flex min-h-[520px] w-full max-w-[690px] items-center justify-center lg:min-h-[600px] lg:max-w-none lg:justify-end">
+            <aside aria-label="Money Leak Map cash collection workflow preview" className="relative mx-auto flex min-h-[520px] w-full max-w-[690px] items-center justify-center lg:min-h-[600px] lg:max-w-none lg:justify-end">
               <Image
-                src="/images/uploaded/money-leak-map/money-leak-map-preview-priority-fixes-hero-crop.jpg"
-                alt="Money Leak Map preview showing priority fixes and recommended first action."
-                width={960}
-                height={1120}
+                src="/images/uploaded/money-leak-map/money-leak-map-job-finished-office-check-invoice-sent-cash-collected.jpg"
+                alt="Money Leak Map preview showing job finished, office check, invoice sent, and cash collected."
+                width={1280}
+                height={720}
                 priority
                 sizes="(min-width: 1280px) 50vw, (min-width: 1024px) 48vw, 100vw"
-                className="h-auto w-full max-w-[690px] object-contain lg:mr-[-10px] lg:max-w-[720px] xl:mr-[-18px] xl:max-w-[760px]"
+                className="h-auto w-full max-w-[720px] object-contain lg:mr-[-28px] lg:w-[min(54vw,780px)] lg:max-w-none xl:mr-[-44px] xl:w-[min(54vw,780px)]"
               />
             </aside>
           </div>
