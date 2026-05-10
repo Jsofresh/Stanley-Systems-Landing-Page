@@ -7,24 +7,24 @@ import { plans, sectionShell } from "./tokens"
 
 export function CashflowControlHero() {
   return (
-    <section className="relative overflow-hidden bg-[#FBFCF7] pb-14 pt-32 sm:pb-18 lg:pt-36">
+    <section className="relative overflow-hidden bg-[#FBFCF7] pb-10 pt-28 sm:pb-12 lg:pt-32">
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
-      <div className={`${sectionShell} relative grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center`}>
+      <div className={`${sectionShell} relative grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center`}>
         <div>
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Cashflow Control System</p>
-          <h1 className="mt-4 max-w-5xl text-[3.05rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#071D3A] sm:text-[4.5rem] lg:text-[5.2rem]">
+          <h1 className="mt-3 max-w-5xl text-[2.65rem] font-semibold leading-[0.98] tracking-[-0.052em] text-[#071D3A] sm:text-[3.7rem] lg:text-[4.35rem]">
             Automate the path from customer intake to final bill.
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-[#334B60] sm:text-xl">
+          <p className="mt-5 max-w-3xl text-base leading-7 text-[#334B60] sm:text-lg">
             Stanley Systems connects the customer request, webhook, form, field job, office handoff, invoice, follow-up, and final bill so your team is not manually re-entering the same information across tools.
           </p>
-          <p className="mt-5 max-w-3xl text-base font-bold leading-7 text-[#102033]">
+          <p className="mt-4 max-w-3xl text-sm font-bold leading-6 text-[#102033] sm:text-base">
             When the automation hits missing notes, pricing, photos, approvals, or payment details, it routes the fix to the right office staff instead of letting the job sit.
           </p>
           <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">
             Common setups include Housecall Pro, Jobber, ServiceTitan, FieldEdge, Service Fusion, Workiz, FieldPulse, Yardbook, JobTread, ServiceTrade, Wallace, QuickBooks, Xero, Sage, FreshBooks, Stripe, Square, and similar tools.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <CTALink href={plans.cashflowMonthly.stripePaymentLink.url} kind="checkout" location="cashflow_hero_primary" analyticsEvent="package_checkout_clicked" analyticsSource="cashflow_control_page" packageId={plans.cashflowMonthly.analyticsPackageId} packageName="Cashflow Control System" billingPeriod="monthly" ctaLabel="Start Cashflow Control" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full bg-[#15803D] px-7 py-4 text-base font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">
               Start Cashflow Control <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
             </CTALink>
@@ -38,7 +38,7 @@ export function CashflowControlHero() {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-4 rounded-[2.5rem] bg-[#15803D]/10 blur-3xl" aria-hidden="true" />
+          <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-[#15803D]/10 blur-3xl" aria-hidden="true" />
           <div className="relative aspect-[1.26/1] overflow-hidden rounded-[2.25rem] shadow-[0_26px_70px_rgba(7,29,58,0.12)] lg:aspect-[1.22/1]">
             <Image
               src="/images/uploaded/cashflow-control/customer-intake-to-cash-collected.jpg"
@@ -50,7 +50,7 @@ export function CashflowControlHero() {
             />
           </div>
           <div className="mt-4 text-center text-sm font-semibold text-[#607080]">
-            Prefer to compare first? <Link href="/pricing" className="font-extrabold text-[#116832] underline underline-offset-4">See all pricing</Link>.
+            Prefer to compare first? <Link href="#cashflow-pricing" className="font-extrabold text-[#116832] underline underline-offset-4">See all pricing</Link>.
           </div>
         </div>
       </div>
