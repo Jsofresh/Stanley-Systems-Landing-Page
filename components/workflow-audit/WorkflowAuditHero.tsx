@@ -10,17 +10,14 @@ export function WorkflowAuditHero() {
   return (
     <section data-section="workflow-audit-hero" data-nav-theme="light" className="px-4 pb-8 pt-[80px] sm:px-6 lg:px-8 lg:pb-9">
       <div className="mx-auto max-w-[1360px]">
-        <div className="rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-6 lg:p-7 xl:p-8">
-          <div className="max-w-[1200px]">
-            <p className={page.eyebrow}>Workflow Audit</p>
-            <h1 className="mt-2 max-w-[1120px] text-[clamp(2.65rem,4.75vw,4.85rem)] font-semibold leading-[0.96] tracking-[-0.045em] text-[#071D3A]">
-              Find the money leaks hiding inside your office workflow.
-            </h1>
-          </div>
-
-          <div className="mt-4 grid items-center gap-4 lg:grid-cols-[0.72fr_0.98fr] xl:grid-cols-[0.72fr_0.98fr]">
-            <div>
-              <p className="max-w-2xl text-base font-medium leading-7 text-[#42596C] sm:text-lg sm:leading-8">
+        <div className="overflow-hidden rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-6 lg:p-7 xl:p-8">
+          <div className="grid items-center gap-6 lg:min-h-[610px] lg:grid-cols-[minmax(0,0.78fr)_minmax(470px,0.9fr)] lg:gap-7 xl:grid-cols-[minmax(0,0.76fr)_minmax(500px,0.92fr)] xl:gap-8">
+            <div className="relative z-10 max-w-[680px]">
+              <p className={page.eyebrow}>Workflow Audit</p>
+              <h1 className="mt-2 max-w-[760px] text-[clamp(2.25rem,4.04vw,4.12rem)] font-semibold leading-[0.98] tracking-[-0.042em] text-[#071D3A]">
+                Find the money leaks hiding inside your office workflow.
+              </h1>
+              <p className="mt-8 max-w-2xl text-base font-medium leading-7 text-[#42596C] sm:mt-10 sm:text-lg sm:leading-8 lg:mt-24 xl:mt-28">
                 A $97 paid diagnostic that shows where cash, customers, and office time are slipping before you buy the wrong system.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -43,15 +40,15 @@ export function WorkflowAuditHero() {
               </div>
             </div>
 
-            <aside aria-label="Money Leak Map Priority Fixes Preview" className="mx-auto flex w-full justify-center lg:justify-end">
+            <aside aria-label="Money Leak Map Priority Fixes Preview" className="relative mx-auto flex min-h-[520px] w-full max-w-[690px] items-center justify-center lg:min-h-[600px] lg:max-w-none lg:justify-end">
               <Image
-                src="/images/uploaded/money-leak-map/money-leak-map-preview-priority-fixes.jpg"
+                src="/images/uploaded/money-leak-map/money-leak-map-preview-priority-fixes-hero-crop.jpg"
                 alt="Money Leak Map preview showing priority fixes and recommended first action."
                 width={960}
-                height={1280}
+                height={1120}
                 priority
-                sizes="(min-width: 1024px) 49vw, 100vw"
-                className="h-auto max-h-[527px] w-full max-w-[621px] object-contain lg:max-w-[675px]"
+                sizes="(min-width: 1280px) 50vw, (min-width: 1024px) 48vw, 100vw"
+                className="h-auto w-full max-w-[690px] object-contain lg:mr-[-10px] lg:max-w-[720px] xl:mr-[-18px] xl:max-w-[760px]"
               />
             </aside>
           </div>

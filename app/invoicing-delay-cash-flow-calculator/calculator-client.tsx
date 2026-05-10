@@ -469,7 +469,7 @@ function StepFrame({
   compact = false,
 }: {
   title: string
-  body: string
+  body?: string
   children?: React.ReactNode
   canContinue?: boolean
   continueLabel?: string
@@ -491,7 +491,7 @@ function StepFrame({
 
           <div className="mx-auto max-w-4xl space-y-3 text-center sm:space-y-4">
             <h1 className={`font-semibold leading-[1.04] tracking-tight text-slate-900 lg:leading-[1.01] ${compact ? "text-[1.45rem] sm:text-[2rem] lg:text-[2.35rem]" : "text-[1.7rem] sm:text-[2.7rem] lg:text-[3.45rem]"}`}>{title}</h1>
-            <p className={`mx-auto max-w-3xl text-sm leading-6 text-slate-600 sm:leading-7 ${compact ? "sm:text-base lg:text-[0.98rem]" : "sm:text-lg lg:text-[1.05rem] lg:leading-8"}`}>{body}</p>
+            {body ? <p className={`mx-auto max-w-3xl text-sm leading-6 text-slate-600 sm:leading-7 ${compact ? "sm:text-base lg:text-[0.98rem]" : "sm:text-lg lg:text-[1.05rem] lg:leading-8"}`}>{body}</p> : null}
           </div>
 
           {children}
@@ -829,26 +829,8 @@ export function InvoicingDelayCalculatorClient() {
       return (
         <StepFrame {...frameProps}
           title="Find the money already sitting inside your business."
-          body="Answer a few plain questions. The calculator will show the yearly leak, where the money is stuck, and the math behind the estimate if you want it."
           continueLabel="Start the calculator"
         >
-          <div className="mx-auto mt-8 grid w-full max-w-5xl gap-3 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
-            {[
-              ["Delayed invoices", "Finished work waiting to become collected cash."],
-              ["Open estimates", "Quoted work sitting without a next step."],
-              ["Missed calls", "New work that never reached the office."],
-              ["Saved customers not followed up with", "Old customers sitting in your customer list."],
-            ].map(([label, detail]) => (
-              <div key={label} className="box-border w-full rounded-[1.35rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left sm:rounded-[1.65rem] sm:p-5">
-                <div className="text-base font-semibold text-slate-900">{label}</div>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{detail}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mx-auto mt-5 box-border w-full max-w-5xl rounded-2xl border border-[#cfe8d5] bg-[#f4fbf5] px-4 py-3 text-left text-sm font-semibold leading-6 text-slate-800">
-            Repeat customers cost about 1/5 what new customers cost to win. This calculator checks the saved customer list before more money gets spent chasing cold leads.
-          </div>
-
           <div className="mx-auto mt-4 box-border w-full max-w-5xl rounded-[1.45rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#effaf2_0%,#ffffff_100%)] p-5 text-left sm:mt-6 sm:rounded-[1.9rem] sm:p-6">
             <div className="text-sm font-bold leading-tight text-[#15803D]">Estimated monthly opportunity worth checking</div>
             <div className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-5xl">$3,000 to $25,000+</div>
