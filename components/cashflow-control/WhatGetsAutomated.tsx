@@ -3,7 +3,7 @@ import { sectionShell } from "./tokens"
 
 export function WhatGetsAutomated() {
   return (
-    <section className="bg-[#FBFCF7] py-10 sm:py-12">
+    <section className="scroll-mt-28 bg-[#FBFCF7] py-10 sm:py-12">
       <div className={sectionShell}>
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">What gets automated</p>
