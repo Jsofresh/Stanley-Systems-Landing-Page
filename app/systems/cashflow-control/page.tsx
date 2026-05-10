@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
+import { DemoProofStrip } from "@/components/repeat-revenue/DemoProofStrip"
 import { CashflowControlFAQ } from "@/components/cashflow-control/CashflowControlFAQ"
 import { CashflowControlHero } from "@/components/cashflow-control/CashflowControlHero"
 import { CashflowControlPricing } from "@/components/cashflow-control/CashflowControlPricing"
@@ -9,6 +10,7 @@ import { FitSetup } from "@/components/cashflow-control/FitSetup"
 import { ObjectionGap } from "@/components/cashflow-control/ObjectionGap"
 import { ProofCost } from "@/components/cashflow-control/ProofCost"
 import { WhatGetsAutomated } from "@/components/cashflow-control/WhatGetsAutomated"
+import { WorkflowAuditBridge } from "@/components/cashflow-control/WorkflowAuditBridge"
 
 export const metadata: Metadata = {
   title: "Cashflow Control System | Stanley Systems",
@@ -38,6 +40,8 @@ export default function CashflowControlPage() {
         <ProofCost />
         <FitSetup />
         <CashflowControlPricing />
+        <WorkflowAuditBridge />
+        <DemoProofStrip />
         <CashflowControlFAQ />
       </main>
       <Footer />

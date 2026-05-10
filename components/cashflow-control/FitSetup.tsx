@@ -1,29 +1,7 @@
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { sectionShell } from "./tokens"
-
-const workflowSteps = [
-  "Capture the customer request from the form, webhook, phone intake, CRM, or field system.",
-  "Create or update the job record so technician notes, materials, photos, pricing, and approvals land where billing needs them.",
-  "Check the job against your billing rules before the invoice or final bill goes out.",
-  "Route missing information to the technician, office staff, manager, or customer contact who can actually fix it.",
-  "Push the invoice, final bill, payment follow-up, and owner visibility forward without another manual handoff spreadsheet.",
-]
-
-const automationInputs = [
-  "Customer intake forms and website leads",
-  "Webhook events from scheduling or field tools",
-  "Accounting, invoice, payment, or billing software",
-  "CRM, dispatch, job, technician, or shop systems",
-  "Office approval rules, exception paths, and billing deadlines",
-]
-
-const flags = [
-  "Missing job notes, photos, line items, receipts, or approvals",
-  "Pricing, scope, customer, or payment information that does not match the billing rule",
-  "Invoices or final bills that should have moved but are still waiting on a person",
-  "Open balances that need the right follow-up before they become owner cleanup work",
-]
 
 export function FitSetup() {
   return (
@@ -34,23 +12,15 @@ export function FitSetup() {
           <h2 className="mt-2 text-[2.15rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-[2.9rem]">Stanley Systems adds the workflow your software still makes people carry.</h2>
         </div>
 
-        <div className="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-          <article className="rounded-[1.75rem] border border-[#BFE4C8] bg-white p-5 shadow-[0_18px_48px_rgba(7,29,58,0.06)] sm:p-6">
-            <h3 className="text-2xl font-extrabold tracking-[-0.03em] text-[#071D3A]">The workflow Stanley automates</h3>
-            <ol className="mt-4 space-y-3">
-              {workflowSteps.map((item, index) => (
-                <li key={item} className="grid grid-cols-[2rem_1fr] gap-3 text-sm font-semibold leading-5 text-[#536173]">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#15803D] text-xs font-extrabold text-white">{index + 1}</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ol>
-          </article>
-
-          <div className="grid gap-4">
-            <ListCard title="Inputs it can connect" items={automationInputs} />
-            <ListCard title="What gets flagged to people" items={flags} />
-          </div>
+        <div className="mt-6 overflow-hidden rounded-[2rem] border border-[#DDEBE2] bg-white shadow-[0_24px_70px_rgba(7,29,58,0.08)]">
+          <Image
+            src="/images/uploaded/money-leak-map/money-leak-map-stanley-workflow-automation.jpg"
+            alt="Stanley workflow automation layer connecting intake, job records, billing checks, routing, invoices, and payment follow-up."
+            width={1280}
+            height={720}
+            sizes="(min-width: 1024px) 1180px, 100vw"
+            className="h-auto w-full object-contain"
+          />
         </div>
 
         <div className="mt-5 rounded-[1.5rem] border border-[#DDEBE2] bg-white p-4 shadow-[0_12px_30px_rgba(7,29,58,0.04)] sm:flex sm:items-center sm:justify-between sm:gap-5">
@@ -59,18 +29,5 @@ export function FitSetup() {
         </div>
       </div>
     </section>
-  )
-}
-
-function ListCard({ title, items }: { title: string; items: string[] }) {
-  return (
-    <article className="rounded-[1.75rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_18px_48px_rgba(7,29,58,0.06)]">
-      <h3 className="text-xl font-extrabold tracking-[-0.03em] text-[#071D3A]">{title}</h3>
-      <ul className="mt-3 space-y-2.5">
-        {items.map((item) => (
-          <li key={item} className="flex gap-3 text-sm font-semibold leading-5 text-[#536173]"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" /> <span>{item}</span></li>
-        ))}
-      </ul>
-    </article>
   )
 }

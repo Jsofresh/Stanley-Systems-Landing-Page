@@ -1,113 +1,86 @@
+import Image from "next/image"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
-import { pricingPackageById, type PricingPackageId } from "@/lib/pricing/source-of-truth"
+import { PackagePricingGrid, type PackagePricingCard } from "@/components/package-pricing-cards"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 import { page } from "./tokens"
 
 const includes = ["30-minute workflow walkthrough", "Transaction Pattern Review", "Online Follow-Up Review", "Systems and Handoff Review", "Money Leak Summary", "Workflow Map", "Leak Priority Score", "First Fix Recommendation", "System Recommendation"]
 
-const planCards: Array<{
-  id: PricingPackageId
-  name: string
-  cadence: "Monthly" | "Yearly"
-  kind: "monthly" | "yearly"
-}> = [
-  { id: "cashflow_control_monthly", name: "Cashflow Control", cadence: "Monthly", kind: "monthly" },
-  { id: "cashflow_control_yearly", name: "Cashflow Control", cadence: "Yearly", kind: "yearly" },
-  { id: "repeat_revenue_monthly", name: "Repeat Revenue", cadence: "Monthly", kind: "monthly" },
-  { id: "repeat_revenue_yearly", name: "Repeat Revenue", cadence: "Yearly", kind: "yearly" },
-  { id: "both_systems_monthly", name: "Both Systems", cadence: "Monthly", kind: "monthly" },
-  { id: "both_systems_yearly", name: "Both Systems", cadence: "Yearly", kind: "yearly" },
+const packageCards: PackagePricingCard[] = [
+  {
+    badge: "Monthly flexibility",
+    name: "Cashflow Control Monthly",
+    package: pricingPackageById.cashflow_control_monthly,
+    description: "For shops where customer intake, billing, final bill, and follow-up still depend on manual handoffs.",
+    install: "$199 installation",
+    credit: "Audit credit: -$97",
+    callout: null,
+    cta: "Buy Cashflow Monthly",
+    tone: "monthly",
+    bullets: ["Customer intake to billing workflow", "Billing-ready checks", "Missing detail routing", "Open-balance visibility"],
+  },
+  {
+    badge: "-$1,250",
+    name: "Cashflow Control Yearly",
+    package: pricingPackageById.cashflow_control_yearly,
+    description: "Best first-year value for automating the intake-to-final-bill path for the year.",
+    install: "Install discount: -$199",
+    credit: "Audit credit: -$194",
+    callout: "-$1,250 first-year package savings",
+    cta: "Buy Cashflow Yearly",
+    tone: "yearly",
+    bullets: ["Everything in monthly", "Lower first-year cost", "Yearly billing shown clearly", "Cash collection workflow"],
+  },
+  {
+    badge: "Monthly flexibility",
+    name: "Repeat Revenue Monthly",
+    package: pricingPackageById.repeat_revenue_monthly,
+    description: "For shops where past customers, reviews, referrals, and missed calls are the clearest leak.",
+    install: "$349 installation",
+    credit: "Audit credit: -$97",
+    callout: null,
+    cta: "Buy Repeat Revenue Monthly",
+    tone: "monthly",
+    bullets: ["Past customer reactivation", "Review and referral asks", "Missed-call recovery", "Main number stays unchanged"],
+  },
+  {
+    badge: "-$2,120",
+    name: "Repeat Revenue Yearly",
+    package: pricingPackageById.repeat_revenue_yearly,
+    description: "Best first-year value for turning existing customers and missed demand into follow-up paths.",
+    install: "Install discount: -$349",
+    credit: "Audit credit: -$194",
+    callout: "-$2,120 first-year package savings",
+    cta: "Buy Repeat Revenue Yearly",
+    tone: "yearly",
+    bullets: ["Everything in monthly", "Lower first-year cost", "Reviews and referrals", "Customer reactivation"],
+  },
+  {
+    badge: "Most complete monthly",
+    name: "Both Systems Monthly",
+    package: pricingPackageById.both_systems_monthly,
+    description: "For shops leaking money before the job is booked, while it is billed, and after the customer leaves.",
+    install: "$449 installation",
+    credit: "Audit credit: -$97",
+    callout: "-$197/mo bundle savings",
+    cta: "Buy Both Monthly",
+    tone: "complete",
+    bullets: ["Cashflow Control System", "Repeat Revenue System", "Billing workflow", "Customer follow-up"],
+  },
+  {
+    badge: "-$2,700 · Best value",
+    name: "Both Systems Yearly",
+    package: pricingPackageById.both_systems_yearly,
+    description: "The full revenue-control path with yearly savings and an installation discount.",
+    install: "Install discount: -$449",
+    credit: "Audit credit: -$194",
+    callout: "-$2,700 first-year package savings",
+    cta: "Buy Both Yearly",
+    tone: "recommended",
+    bullets: ["Cashflow Control System", "Repeat Revenue System", "Lowest first-year bundle cost", "Best full-system economics"],
+  },
 ]
-
-function money(value: number, cents = false) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: cents ? 2 : 0,
-    maximumFractionDigits: cents ? 2 : 0,
-  }).format(value)
-}
-
-function monthlyEquivalent(price: number) {
-  return money(Math.round(price / 12))
-}
-
-function shortInstallAmount(display: string) {
-  return display.split(" ")[0]
-}
-
-function checkoutMeta(id: PricingPackageId) {
-  if (id.includes("cashflow_control")) return { packageName: "Cashflow Control System", route: "/systems/cashflow-control" }
-  if (id.includes("repeat_revenue")) return { packageName: "Repeat Revenue System", route: "/systems/repeat-revenue" }
-  return { packageName: "Both Systems", route: "/pricing#both-systems" }
-}
-
-function PlanCard({ id, name, cadence, kind }: { id: PricingPackageId; name: string; cadence: "Monthly" | "Yearly"; kind: "monthly" | "yearly" }) {
-  const pkg = pricingPackageById[id]
-  const isYearly = kind === "yearly"
-  const price = isYearly ? `${monthlyEquivalent(pkg.price)}/mo` : pkg.priceDisplay
-  const auditCredit = pkg.auditCreditDisplay
-  const installAmount = shortInstallAmount(pkg.setupFeeDisplay)
-  const yearlyPackageSavings = pkg.savings?.amount ?? 0
-  const firstYearSavings = isYearly ? pkg.auditCredit + pkg.setupFee + yearlyPackageSavings : pkg.auditCredit + yearlyPackageSavings
-  const meta = checkoutMeta(id)
-  const billingPeriod = pkg.billingPeriod
-  const ctaLabel = id === "cashflow_control_yearly" ? "Buy Cashflow Control Yearly" : pkg.cta
-
-  return (
-    <article className={`relative flex h-full min-h-[21rem] flex-col overflow-hidden rounded-[1.35rem] border bg-white p-5 shadow-[0_12px_34px_rgba(7,29,58,0.045)] ${isYearly ? "border-[#efb7b0]" : "border-[#dfe8e1]"}`}>
-      <div aria-hidden="true" className={`absolute inset-x-0 top-0 h-1.5 ${isYearly ? "bg-[#b91c1c]" : "bg-[#071D3A]"}`} />
-      <div className="flex items-start justify-between gap-3 pt-2">
-        <div>
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.15em] text-[#15803D]">{name}</p>
-          <h4 className="mt-1 text-2xl font-semibold tracking-[-0.04em] text-[#071D3A]">{cadence}</h4>
-        </div>
-      </div>
-
-      <div className="mt-6">
-        <div className="flex items-end gap-2">
-          <span className="text-4xl font-semibold tracking-[-0.045em] text-[#071D3A]">{price}</span>
-          <span className="pb-1.5 text-xs font-bold text-[#64748b]">{isYearly ? "paid yearly" : "month-to-month"}</span>
-        </div>
-        {isYearly ? <p className="mt-1 text-xs font-bold leading-5 text-[#64748b]">Rounded monthly view. Billed as {pkg.priceDisplay}.</p> : null}
-      </div>
-
-      <div className="mt-5 rounded-2xl border border-[#efb7b0] bg-[#fff6f4] p-4">
-        <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#8f1d1d]">{isYearly ? "First-year savings" : "Savings after audit"}</p>
-        <p className="mt-1 text-3xl font-black tracking-[-0.04em] text-[#b91c1c]">{money(firstYearSavings)}</p>
-      </div>
-
-      <div className="mt-5 divide-y divide-[#e8eee9] rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-4 py-2">
-        <div className="flex items-center justify-between gap-4 py-2.5">
-          <span className="text-sm font-bold text-[#536173]">Audit credit</span>
-          <span className="text-sm font-black text-[#b91c1c]">{auditCredit}</span>
-        </div>
-        <div className="flex items-center justify-between gap-4 py-2.5">
-          <span className="text-sm font-semibold text-[#6b7788]">Installation fee</span>
-          <span className="text-sm font-semibold text-[#536173]">{installAmount}</span>
-        </div>
-        {isYearly ? (
-          <div className="flex items-center justify-between gap-4 py-2.5">
-            <span className="text-sm font-bold text-[#536173]">Install discount</span>
-            <span className="text-sm font-black text-[#b91c1c]">{money(pkg.setupFee)}</span>
-          </div>
-        ) : null}
-        {pkg.savings ? (
-          <div className="flex items-center justify-between gap-4 py-2.5">
-            <span className="text-sm font-bold text-[#536173]">{isYearly ? "Yearly package savings" : "Monthly package savings"}</span>
-            <span className="text-sm font-black text-[#b91c1c]">{isYearly ? money(pkg.savings.amount) : `${money(pkg.savings.amount)}/mo`}</span>
-          </div>
-        ) : null}
-      </div>
-
-      <div className="mt-auto pt-5">
-        <CTALink href={pkg.stripePaymentLink.url} kind="checkout" location="workflow_audit_package_grid" analyticsEvent="package_checkout_clicked" analyticsSource="workflow_audit_page" packageId={id} packageName={meta.packageName} billingPeriod={billingPeriod} ctaLabel={ctaLabel} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#071D3A] px-4 py-2 text-sm font-extrabold text-white transition hover:bg-[#0e315f] focus:outline-none focus:ring-4 focus:ring-[#071D3A]/20">
-          {ctaLabel} <ArrowRight className="ml-2 h-3.5 w-3.5" />
-        </CTALink>
-      </div>
-    </article>
-  )
-}
 
 export function FitAccessPricing() {
   const audit = pricingPackageById.workflow_audit
@@ -122,16 +95,16 @@ export function FitAccessPricing() {
           <p className={`${page.lead} mt-4 max-w-2xl`}>The Workflow Audit shows what is leaking first. If Stanley Systems builds the fix after the audit, your audit fee credits toward the system.</p>
         </div>
 
-        <div className="mt-7 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className={`${page.panel} p-5`}>
-            <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">How access works</h3>
-            <p className={`${page.body} mt-3 text-base leading-7`}>Stanley Systems does not need your password. After checkout, you choose the safest way to share what is needed.</p>
-            <div className="mt-4 grid gap-3">
-              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] p-4"><p className="font-extrabold text-[#071D3A]">Option 1: Walkthrough only</p><p className={page.body}>You share your screen during the audit call and Stanley Systems maps the workflow from what you show.</p></div>
-              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] p-4"><p className="font-extrabold text-[#071D3A]">Option 2: Exports or screenshots</p><p className={page.body}>You send reports, screenshots, or CSV exports from your accounting, field, CRM, review, or referral tools.</p></div>
-              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] p-4"><p className="font-extrabold text-[#071D3A]">Option 3: Temporary invited user</p><p className={page.body}>You invite Stanley Systems as a temporary user or manager with only the access needed for the audit.</p></div>
-            </div>
-            <p className="mt-4 rounded-2xl border border-[#cfe8d5] bg-[#f0fbf4] p-4 text-sm font-bold leading-6 text-[#116832]">After the audit, you can remove access, cancel pending invites, or change permissions. You stay in control.</p>
+        <div className="mt-7 grid gap-4 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <div className="overflow-hidden rounded-[2rem] border border-[#d9e5dc] bg-white shadow-[0_18px_60px_rgba(7,29,58,0.06)]">
+            <Image
+              src="/images/uploaded/money-leak-map/money-leak-map-access-options-illustrated.jpg"
+              alt="Workflow Audit access options showing screen share, exports and screenshots, or temporary invited user."
+              width={960}
+              height={1280}
+              sizes="(min-width: 1024px) 54vw, 100vw"
+              className="h-auto w-full object-contain"
+            />
           </div>
 
           <aside className="rounded-[2rem] border border-[#cfe8d5] bg-[#071D3A] p-5 text-white shadow-[0_20px_70px_rgba(7,29,58,0.16)]">
@@ -158,13 +131,11 @@ export function FitAccessPricing() {
             </div>
             <div className="grid gap-2 text-xs font-extrabold leading-5 text-[#536173] sm:grid-cols-3 lg:max-w-2xl">
               <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-3 py-2">Monthly keeps it flexible.</div>
-              <div className="rounded-2xl border border-[#efb7b0] bg-[#fff6f4] px-3 py-2 text-[#8f1d1d]">Yearly shows the larger first-year savings.</div>
-              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-3 py-2">Prices stay easy to compare.</div>
+              <div className="rounded-2xl border border-[#efb7b0] bg-[#fff6f4] px-3 py-2 text-[#8f1d1d]">Yearly shows the rounded monthly price and yearly bill.</div>
+              <div className="rounded-2xl border border-[#e1ebe4] bg-[#fbfcf7] px-3 py-2">Audit credit is shown early.</div>
             </div>
           </div>
-          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {planCards.map((card) => <PlanCard key={card.id} {...card} />)}
-          </div>
+          <PackagePricingGrid cards={packageCards} locationPrefix="workflow_audit_package_grid" analyticsSource="workflow_audit_page" gridClassName="md:grid-cols-2 xl:grid-cols-3" />
         </div>
 
         <p className="mt-5 text-center text-sm font-semibold leading-6 text-[#536173]">Prefer to buy a system directly? You can buy Cashflow Control System or Repeat Revenue System without the audit. The audit is for buyers who want the workflow reviewed first and want the audit fee credited toward the system.</p>

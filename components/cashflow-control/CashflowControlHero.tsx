@@ -16,13 +16,10 @@ export function CashflowControlHero() {
             Automate the path from customer intake to final bill.
           </h1>
           <p className="mt-5 max-w-3xl text-base leading-7 text-[#334B60] sm:text-lg">
-            Stanley Systems connects the customer request, webhook, form, field job, office handoff, invoice, follow-up, and final bill so your team is not manually re-entering the same information across tools.
-          </p>
-          <p className="mt-4 max-w-3xl text-sm font-bold leading-6 text-[#102033] sm:text-base">
-            When the automation hits missing notes, pricing, photos, approvals, or payment details, it routes the fix to the right office staff instead of letting the job sit.
+            Stop letting finished work wait on re-entry, missing billing details, and office handoffs. Cashflow Control gives the path from request to paid bill one owner: the system.
           </p>
           <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">
-            Common setups include Housecall Pro, Jobber, ServiceTitan, FieldEdge, Service Fusion, Workiz, FieldPulse, Yardbook, JobTread, ServiceTrade, Wallace, QuickBooks, Xero, Sage, FreshBooks, Stripe, Square, and similar tools.
+            Built around the tools service businesses already use for field work, accounting, invoices, payments, customer records, and scheduling.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <CTALink href={plans.cashflowMonthly.stripePaymentLink.url} kind="checkout" location="cashflow_hero_primary" analyticsEvent="package_checkout_clicked" analyticsSource="cashflow_control_page" packageId={plans.cashflowMonthly.analyticsPackageId} packageName="Cashflow Control System" billingPeriod="monthly" ctaLabel="Start Cashflow Control" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full bg-[#15803D] px-7 py-4 text-base font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">

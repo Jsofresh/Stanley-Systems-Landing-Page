@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { ArrowRight, Calculator, ChevronDown, Menu, Phone, X } from "lucide-react"
+import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 
@@ -501,28 +501,23 @@ export function HeroSection() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CTALink
-                href="/invoicing-delay-cash-flow-calculator"
-                kind="calculator"
-                location="home_hero_primary"
-                analyticsEvent="calculator_cta_clicked"
-                analyticsSource="homepage_hero"
-                ctaLabel="Find the Revenue Leaks"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
-              >
-                <Calculator className="mr-2 h-4 w-4" aria-hidden="true" />
-                Find the Revenue Leaks
-              </CTALink>
-              <a href="/workflow-audit#packages" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">See the packages</a>
-              <CTALink
                 href="/workflow-audit"
                 kind="systems"
-                location="home_hero_secondary"
-                ctaLabel="Book the Workflow Audit"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 text-base font-bold text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
+                location="home_hero_primary"
+                analyticsEvent="audit_cta_clicked"
+                analyticsSource="homepage_hero"
+                ctaLabel="Start the $97 Workflow Audit"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                Book the Workflow Audit
+                Start the $97 Workflow Audit
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
+              <a
+                href="/workflow-audit#packages"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 text-base font-bold text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
+              >
+                Compare system options
+              </a>
             </div>
           </div>
         </div>
