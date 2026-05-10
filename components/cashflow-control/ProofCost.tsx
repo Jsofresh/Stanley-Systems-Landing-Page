@@ -10,7 +10,7 @@ export function ProofCost() {
         <div className="grid gap-7 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Proof and cost</p>
-            <h2 className="mt-3 text-[2.45rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">A few stuck jobs can tie up thousands.</h2>
+            <h2 className="mt-3 text-[2.45rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Manual handoffs turn completed work into delayed cash.</h2>
           </div>
           <Image
             src="/images/uploaded/cashflow-control/delayed-billing-office-time-open-balances.jpg"
@@ -24,7 +24,7 @@ export function ProofCost() {
           <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Want to estimate your own leak first?</p>
-              <p className="mt-2 text-2xl font-extrabold tracking-[-0.03em] text-[#071D3A]">Use the Money Leak Calculator, then start the fix when the math is clear.</p>
+              <p className="mt-2 text-2xl font-extrabold tracking-[-0.03em] text-[#071D3A]">Use the Money Leak Calculator, then automate the path causing the delay.</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <CTALink href="/invoicing-delay-cash-flow-calculator" kind="calculator" location="cashflow_proof_calculator" analyticsEvent="calculator_cta_clicked" analyticsSource="cashflow_control_page" ctaLabel="Use the Money Leak Calculator" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#15803D] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:bg-white/80">

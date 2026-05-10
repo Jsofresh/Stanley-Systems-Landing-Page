@@ -20,16 +20,16 @@ const cards: PlanCard[] = [
     tone: "standard",
     plan: "Cashflow Control Monthly",
     package: plans.cashflowMonthly,
-    bestFor: "Shops that need finished jobs, invoices, and open balances to stop getting stuck.",
-    includes: ["Finished-job to billing-ready handoff", "Billing-ready checks", "Missing billing detail alerts", "Invoice cutoff nudges", "Open-balance visibility", "Weekly or monthly money-leak digest", "Office and owner notifications"],
+    bestFor: "Shops that need customer intake, billing, final bill, and follow-up to stop depending on manual re-entry.",
+    includes: ["Customer intake to billing workflow", "Webhook, form, or job-system handoffs", "Billing-ready checks", "Missing billing detail routing", "Invoice and final-bill path", "Open-balance visibility", "Office and owner notifications"],
     cta: "Start Cashflow Control Monthly",
   },
   {
-    badge: "Save $1,250 first year",
+    badge: "-$1,250",
     tone: "yearly",
     plan: "Cashflow Control Yearly",
     package: plans.cashflowYearly,
-    bestFor: "Shops ready to clean up the job-to-cash path for the year and lower the first-year cost.",
+    bestFor: "Shops ready to automate the intake-to-final-bill path for the year and lower the first-year cost.",
     includes: ["Everything in Cashflow Control Monthly", "Installation waived", "Double audit credit", "Lower first-year net cost", "Annual commitment discount"],
     cta: "Start Cashflow Control Yearly",
   },
@@ -38,13 +38,13 @@ const cards: PlanCard[] = [
     tone: "complete",
     plan: "Repeat Revenue + Cashflow Control Monthly",
     package: plans.completeMonthly,
-    bestFor: "Shops that want collected cash from finished work and more revenue from existing customers.",
-    includes: ["Cashflow Control System", "Repeat Revenue System", "Billing-readiness checks", "Open-balance visibility", "Re-engagement", "Reviews", "Referrals", "Missed-call capture", "Office notifications and digest"],
+    bestFor: "Shops that want the billing workflow automated and more revenue from existing customers.",
+    includes: ["Cashflow Control System", "Repeat Revenue System", "Customer intake to final bill automation", "Open-balance visibility", "Re-engagement", "Reviews", "Referrals", "Missed-call capture", "Office notifications and digest"],
     cta: "Buy Complete Monthly",
     featured: true,
   },
   {
-    badge: "Best value",
+    badge: "-$2,700 · Best value",
     tone: "recommended",
     plan: "Repeat Revenue + Cashflow Control Yearly",
     package: plans.completeYearly,
@@ -86,10 +86,13 @@ export function CashflowControlPricing() {
 function PricingCard({ card }: { card: PlanCard }) {
   const pricingPackage = card.package
   const installDisplay = pricingPackage.waivedSetupDisplay ?? pricingPackage.setupFeeDisplay
+  const isYearly = pricingPackage.billingPeriod === "yearly"
+  const monthlyDisplay = pricingPackage.id === "cashflow_control_yearly" ? "$318/mo" : pricingPackage.id === "both_systems_yearly" ? "$718/mo" : pricingPackage.priceDisplay
+  const billedDisplay = isYearly ? `billed yearly at ${pricingPackage.priceDisplay}` : "monthly billing"
 
   return (
     <article
-      className={`flex min-h-full flex-col rounded-[1.1rem] border p-4 shadow-[0_14px_34px_rgba(33,51,67,0.08)] ${
+      className={`relative flex min-h-full flex-col rounded-[1.1rem] border p-4 shadow-[0_14px_34px_rgba(33,51,67,0.08)] ${
         card.featured
           ? "border-[#15803D] bg-white ring-2 ring-[#A7D8B4]"
           : card.tone === "yearly"
@@ -97,20 +100,21 @@ function PricingCard({ card }: { card: PlanCard }) {
             : "border-[#D5DEE8] bg-white"
       }`}
     >
-      <p className={`mb-4 inline-flex w-fit rounded-full px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] ${badgeClass(card.tone)}`}>{card.badge}</p>
+      <p className={`mb-4 inline-flex min-h-10 w-fit items-center justify-center rounded-full px-4 py-2 text-center text-sm font-extrabold uppercase tracking-[0.08em] ${badgeClass(card.tone)}`}>{card.badge}</p>
       <h3 className="text-lg font-bold leading-tight tracking-[-0.025em] text-[#102033]">{card.plan}</h3>
-      <p className="mt-2 text-[2.25rem] font-bold leading-none tracking-[-0.055em] text-[#102033]">{pricingPackage.priceDisplay}</p>
+      <p className="mt-2 text-[2.25rem] font-bold leading-none tracking-[-0.055em] text-[#102033]">{monthlyDisplay}</p>
+      <p className="mt-1 text-xs font-extrabold uppercase tracking-[0.08em] text-[#607080]">{billedDisplay}</p>
       <p className="mt-2 min-h-[56px] text-sm leading-5 text-[#33475B]">Best for: {card.bestFor}</p>
 
       <div className="mt-3 grid gap-2 border-y border-[#C8D8CE] py-2 text-xs font-semibold leading-5 text-[#33475B]">
-        <div className="rounded-xl bg-[#F8FCF9] px-3 py-2 ring-1 ring-[#E0E9E3]">{installDisplay}</div>
-        <div className="rounded-xl bg-[#E8F6EC] px-3 py-2 font-extrabold text-[#124E25] ring-1 ring-[#B7D8C0]">Audit credit: {pricingPackage.auditCreditDisplay}</div>
-        <div className="rounded-xl bg-white px-3 py-2 font-extrabold text-[#102033] ring-1 ring-[#E0E9E3]">First year after credit: {pricingPackage.firstYearCostAfterAuditCreditDisplay}</div>
+        <div className={`rounded-xl px-3 py-3 text-center font-extrabold ring-1 ${pricingPackage.waivedSetup ? "bg-[#E8F6EC] text-base text-[#124E25] ring-[#9BCDA8] shadow-[0_8px_18px_rgba(21,128,61,0.10)]" : "bg-[#F8FCF9] text-[#33475B] ring-[#E0E9E3]"}`}>{installDisplay}</div>
+        <div className={`rounded-xl bg-[#E8F6EC] px-3 py-3 text-center font-extrabold text-[#124E25] ring-1 ring-[#B7D8C0] ${pricingPackage.auditCredit === 194 ? "text-base shadow-[0_8px_18px_rgba(21,128,61,0.10)]" : "text-xs"}`}>Audit credit: {pricingPackage.auditCreditDisplay}</div>
+        <div className="rounded-xl bg-white px-3 py-2 text-center font-extrabold text-[#102033] ring-1 ring-[#E0E9E3]">First year after credit: {pricingPackage.firstYearCostAfterAuditCreditDisplay}</div>
       </div>
 
-      {pricingPackage.savings ? (
-        <p className="mt-3 rounded-2xl border border-[#B7D8C0] bg-[#F2FBF4] px-3 py-2 text-xs font-extrabold leading-5 text-[#124E25] shadow-[0_10px_22px_rgba(31,122,58,0.08)]">
-          {pricingPackage.savings.display}
+      {pricingPackage.savings && !isYearly ? (
+        <p className="mt-3 rounded-2xl border border-[#B7D8C0] bg-[#F2FBF4] px-3 py-2 text-center text-xs font-extrabold leading-5 text-[#124E25] shadow-[0_10px_22px_rgba(31,122,58,0.08)]">
+          -${pricingPackage.savings.amount.toLocaleString()}
         </p>
       ) : null}
 

@@ -13,14 +13,14 @@ import { WhatGetsAutomated } from "@/components/cashflow-control/WhatGetsAutomat
 export const metadata: Metadata = {
   title: "Cashflow Control System | Stanley Systems",
   description:
-    "Cashflow Control System helps service businesses move finished jobs toward billing, invoice follow-up, and collected cash with fewer manual office checks.",
+    "Cashflow Control System automates the workflow from customer intake, webhook, or invoice request through billing, final bill, follow-up, and collected cash.",
   alternates: {
     canonical: "https://stanley-systems.com/systems/cashflow-control",
   },
   openGraph: {
     title: "Cashflow Control System | Stanley Systems",
     description:
-      "A practical billing and invoice follow-up system for service businesses that need finished work to move toward collected cash faster.",
+      "Automate the customer intake to final bill workflow, route missing information to the right person, and collect cash with less office drag.",
     url: "https://stanley-systems.com/systems/cashflow-control",
     siteName: "Stanley Systems",
     type: "website",

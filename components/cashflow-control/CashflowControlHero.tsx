@@ -13,13 +13,13 @@ export function CashflowControlHero() {
         <div>
           <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Cashflow Control System</p>
           <h1 className="mt-4 max-w-5xl text-[3.05rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#071D3A] sm:text-[4.5rem] lg:text-[5.2rem]">
-            Turn finished jobs into collected cash faster.
+            Automate the path from customer intake to final bill.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-[#334B60] sm:text-xl">
-            Stanley Systems automates the office checks that happen after the work is done, so completed jobs move toward billing, invoice follow-up, and collected cash with fewer manual reminders.
+            Stanley Systems connects the customer request, webhook, form, field job, office handoff, invoice, follow-up, and final bill so your team is not manually re-entering the same information across tools.
           </p>
           <p className="mt-5 max-w-3xl text-base font-bold leading-7 text-[#102033]">
-            Built for service businesses using accounting software plus a field, job, dispatch, CRM, or shop system.
+            When the automation hits missing notes, pricing, photos, approvals, or payment details, it routes the fix to the right office staff instead of letting the job sit.
           </p>
           <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">
             Common setups include Housecall Pro, Jobber, ServiceTitan, FieldEdge, Service Fusion, Workiz, FieldPulse, Yardbook, JobTread, ServiceTrade, Wallace, QuickBooks, Xero, Sage, FreshBooks, Stripe, Square, and similar tools.
@@ -41,8 +41,8 @@ export function CashflowControlHero() {
           <div className="absolute -inset-4 rounded-[2.5rem] bg-[#15803D]/10 blur-3xl" aria-hidden="true" />
           <div className="relative aspect-[1.26/1] overflow-hidden rounded-[2.25rem] shadow-[0_26px_70px_rgba(7,29,58,0.12)] lg:aspect-[1.22/1]">
             <Image
-              src="/images/uploaded/cashflow-control/finished-job-to-cash-collected.jpg"
-              alt="Finished jobs moving through billing ready, invoice sent, and cash collected."
+              src="/images/uploaded/cashflow-control/customer-intake-to-cash-collected.jpg"
+              alt="Customer intake moving through finished job, billing ready, invoice sent, and cash collected."
               fill
               priority
               sizes="(min-width: 1024px) 48vw, 100vw"
