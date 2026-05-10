@@ -10,49 +10,103 @@ const systemCards: Array<{
   bestFor: string
   monthly: PricingPackageId
   yearly: PricingPackageId
+  route: string
 }> = [
   {
     title: "Cashflow Control System",
     bestFor: "Slow invoices, billing handoffs, open balances, job completion gaps, and cash that should already be moving.",
     monthly: "cashflow_control_monthly",
     yearly: "cashflow_control_yearly",
+    route: "/systems/cashflow-control",
   },
   {
     title: "Repeat Revenue System",
     bestFor: "Past customers, missed calls, review asks, referral follow-up, and repeat work that never gets owned.",
     monthly: "repeat_revenue_monthly",
     yearly: "repeat_revenue_yearly",
+    route: "/systems/repeat-revenue",
   },
   {
     title: "Both Systems",
-    bestFor: "Businesses leaking cash after the job and missing customer value after the work is done.",
+    bestFor: "For businesses leaking cash after the job and missing customer value after the work is done.",
     monthly: "both_systems_monthly",
     yearly: "both_systems_yearly",
+    route: "/pricing#both-systems",
   },
 ]
 
-function PriceOption({ packageId }: { packageId: PricingPackageId }) {
-  const offer = pricingPackageById[packageId]
-  const isYearly = offer.billingPeriod === "yearly"
+function monthlyEquivalent(price: number) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(price / 12)
+}
+
+function DiscountLine({ label, value, tone }: { label: string; value: string; tone: "audit" | "install" | "yearly" }) {
+  const styles = {
+    audit: "border-[#ffb4aa] bg-[#fff1ef] text-[#c1121f]",
+    install: "border-[#f9d18b] bg-[#fff7df] text-[#9a5b00]",
+    yearly: "border-[#a8dbff] bg-[#eef8ff] text-[#075985]",
+  }[tone]
 
   return (
-    <div className="rounded-[1.15rem] border border-[#e1ebe4] bg-[#fffdf8] p-4">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#15803D]">{isYearly ? "Yearly" : "Monthly"}</p>
-          <p className="mt-1 text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">{offer.priceDisplay}</p>
-        </div>
-        {offer.savings ? <span className="rounded-full border border-[#cfe8d5] bg-[#f0fbf4] px-3 py-1 text-[11px] font-extrabold leading-4 text-[#116832]">{offer.savings.display}</span> : null}
-      </div>
-      <div className="mt-3 grid gap-2 text-xs font-bold leading-5 text-[#536173]">
-        <div className="flex justify-between gap-3"><span>Audit credit</span><span className="text-[#15803D]">{offer.auditCreditDisplay}</span></div>
-        {offer.waivedSetupDisplay ? <div className="flex justify-between gap-3"><span>Install discount</span><span className="text-[#15803D]">{offer.waivedSetupDisplay}</span></div> : <div className="flex justify-between gap-3"><span>Installation</span><span>{offer.setupFeeDisplay}</span></div>}
-        <div className="flex justify-between gap-3 border-t border-[#e1ebe4] pt-2"><span>First year after audit</span><span className="text-[#071D3A]">{offer.firstYearCostAfterAuditCreditDisplay}</span></div>
-      </div>
-      <CTALink href={offer.stripePaymentLink.url} kind="checkout" location={`workflow_audit_package_${offer.id}`} analyticsEvent="package_checkout_clicked" analyticsSource="workflow_audit_page" packageId={offer.id} packageName={offer.publicName} billingPeriod={offer.billingPeriod} ctaLabel={offer.cta} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-10 w-full items-center justify-center rounded-full border border-[#cfded3] bg-white px-4 py-2 text-xs font-extrabold text-[#071D3A] transition hover:bg-[#f3faf1]">
-        {offer.cta} <ArrowRight className="ml-2 h-3.5 w-3.5" />
-      </CTALink>
+    <div className={`rounded-2xl border px-3 py-2 ${styles}`}>
+      <p className="text-[10px] font-extrabold uppercase tracking-[0.14em] opacity-80">{label}</p>
+      <p className="mt-0.5 text-sm font-black leading-5 tracking-[-0.015em]">{value}</p>
     </div>
+  )
+}
+
+function SystemPathCard({ card }: { card: (typeof systemCards)[number] }) {
+  const monthly = pricingPackageById[card.monthly]
+  const yearly = pricingPackageById[card.yearly]
+  const yearlyMonthly = monthlyEquivalent(yearly.price)
+
+  return (
+    <article className="flex h-full flex-col rounded-[1.45rem] border border-[#dfe8e1] bg-[#fbfcf7] p-5 shadow-[0_14px_38px_rgba(7,29,58,0.04)]">
+      <div>
+        <h4 className="text-xl font-semibold tracking-[-0.025em] text-[#071D3A]">{card.title}</h4>
+        <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{card.bestFor}</p>
+      </div>
+
+      <div className="mt-5 rounded-[1.15rem] border border-[#e1ebe4] bg-white p-4">
+        <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Starts at</p>
+        <div className="mt-1 flex flex-wrap items-end gap-x-2 gap-y-1">
+          <span className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">{monthly.priceDisplay}</span>
+          <span className="pb-1 text-xs font-bold text-[#64748b]">month-to-month</span>
+        </div>
+        <div className="mt-4 grid gap-2">
+          <DiscountLine label="Audit credit" value={`${monthly.auditCreditDisplay} after Workflow Audit`} tone="audit" />
+          <DiscountLine label="Installation fee" value={monthly.setupFeeDisplay} tone="install" />
+        </div>
+      </div>
+
+      <div className="mt-3 rounded-[1.15rem] border-2 border-[#b9e6ca] bg-[#f6fff8] p-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Yearly option</p>
+            <div className="mt-1 flex flex-wrap items-end gap-x-2 gap-y-1">
+              <span className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">{yearlyMonthly}/mo</span>
+              <span className="pb-1 text-xs font-bold text-[#64748b]">paid yearly</span>
+            </div>
+            <p className="mt-1 text-xs font-bold leading-5 text-[#536173]">Billed as {yearly.priceDisplay}. Monthly equivalent shown for easier comparison.</p>
+          </div>
+        </div>
+        <div className="mt-4 grid gap-2">
+          <DiscountLine label="Audit credit" value={`${yearly.auditCreditDisplay} after Workflow Audit`} tone="audit" />
+          <DiscountLine label="Installation discount" value={yearly.waivedSetupDisplay ?? `${yearly.setupFeeDisplay} waived`} tone="install" />
+          {yearly.savings ? <DiscountLine label="Yearly discount" value={yearly.savings.display} tone="yearly" /> : null}
+        </div>
+      </div>
+
+      <div className="mt-auto pt-4">
+        <a href={card.route} className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#cfded3] bg-white px-4 py-2 text-sm font-extrabold text-[#071D3A] transition hover:bg-[#f3faf1]">
+          See {card.title} <ArrowRight className="ml-2 h-3.5 w-3.5" />
+        </a>
+      </div>
+    </article>
   )
 }
 
@@ -90,8 +144,8 @@ export function FitAccessPricing() {
               {includes.map(item => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#86efac]" />{item}</li>)}
             </ul>
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-white/15 bg-white/10 p-4 text-sm font-bold leading-6 text-white"><span className="block text-xs uppercase tracking-[0.13em] text-[#86efac]">Monthly buyer</span>$97 audit credit toward a system.</div>
-              <div className="rounded-2xl border border-[#86efac]/35 bg-[#15803D]/25 p-4 text-sm font-bold leading-6 text-white"><span className="block text-xs uppercase tracking-[0.13em] text-[#86efac]">Yearly buyer</span>$194 credit after the audit.</div>
+              <div className="rounded-2xl border border-[#ffb4aa] bg-[#fff1ef] p-4 text-sm font-black leading-6 text-[#c1121f]"><span className="block text-xs uppercase tracking-[0.13em] text-[#c1121f]">Monthly buyer</span>$97 audit credit toward a system.</div>
+              <div className="rounded-2xl border border-[#ffb4aa] bg-[#fff1ef] p-4 text-sm font-black leading-6 text-[#c1121f]"><span className="block text-xs uppercase tracking-[0.13em] text-[#c1121f]">Yearly buyer</span>$194 credit after the audit.</div>
             </div>
             <CTALink href={auditHref} kind="checkout" location="workflow_audit_pricing" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the $97 Workflow Audit" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#22a34a] focus:outline-none focus:ring-4 focus:ring-[#86efac]/40">Start the $97 Workflow Audit <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
           </aside>
@@ -100,22 +154,18 @@ export function FitAccessPricing() {
         <div className="mt-8 rounded-[2rem] border border-[#d9e5dc] bg-white p-5 shadow-[0_18px_60px_rgba(7,29,58,0.06)]">
           <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
-              <p className={page.eyebrow}>System pricing after the audit</p>
+              <p className={page.eyebrow}>Where the audit can lead</p>
               <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">Pick the system after the leak is clear.</h3>
             </div>
-            <p className="max-w-xl text-sm font-bold leading-6 text-[#536173]">Monthly packages get a $97 audit credit. Yearly packages get a $194 audit credit plus setup waived.</p>
+            <p className="max-w-xl text-sm font-bold leading-6 text-[#536173]">The audit helps decide which path is worth building first. Credits and discounts are highlighted below before the full package pages.</p>
           </div>
           <div className="mt-5 grid gap-4 lg:grid-cols-3">
-            {systemCards.map((card) => (
-              <article key={card.title} className="rounded-[1.45rem] border border-[#dfe8e1] bg-[#fbfcf7] p-4">
-                <h4 className="text-xl font-semibold tracking-[-0.025em] text-[#071D3A]">{card.title}</h4>
-                <p className="mt-2 min-h-[72px] text-sm font-semibold leading-6 text-[#536173]">{card.bestFor}</p>
-                <div className="mt-4 grid gap-3">
-                  <PriceOption packageId={card.monthly} />
-                  <PriceOption packageId={card.yearly} />
-                </div>
-              </article>
-            ))}
+            {systemCards.map((card) => <SystemPathCard key={card.title} card={card} />)}
+          </div>
+          <div className="mt-5 grid gap-3 rounded-[1.4rem] border border-[#f3b7af] bg-[#fff7f6] p-4 text-sm font-extrabold leading-6 text-[#071D3A] md:grid-cols-3">
+            <p><span className="text-[#c1121f]">Red:</span> Workflow Audit credit applied after the audit.</p>
+            <p><span className="text-[#9a5b00]">Gold:</span> installation fee or waived installation discount.</p>
+            <p><span className="text-[#075985]">Blue:</span> yearly package discount / savings.</p>
           </div>
         </div>
 
