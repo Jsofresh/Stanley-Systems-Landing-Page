@@ -198,7 +198,7 @@ const packageDemos: Partial<Record<PricingPackageId, PackageDemo>> = {
 function priceRowsFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
     return [
-      { label: "Paid diagnostic", value: pricingPackage.priceDisplay },
+      { label: "Paid first step", value: pricingPackage.priceDisplay },
       { label: "If you bought the Cash Flow Assessment first", value: "$97 monthly credit or $194 yearly credit after the assessment call" },
     ]
   }
@@ -222,7 +222,7 @@ function priceRowsFor(pricingPackage: PricingPackage) {
 
 function priceNoteFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
-    return `${pricingPackage.priceDisplay} paid diagnostic. If you buy a package within 24 hours after the assessment call, use the assessment credit at checkout.`
+    return `${pricingPackage.priceDisplay} paid first step. If you buy a package within 24 hours after the assessment call, use the assessment credit at checkout.`
   }
 
   const setupCopy = pricingPackage.waivedSetup
@@ -285,10 +285,10 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
     demo: packageDemos[pricingPackage.id],
     helperLine: isAudit
       ? "You leave with a clear money leak map and a recommendation: Cashflow Control System, Repeat Revenue System, both, or neither."
-      : "After checkout, onboarding and fit/access/scope review happen before implementation begins.",
+      : "After checkout, onboarding and fit, access, and scope review happen before the build begins.",
     scopeNote: isAudit
       ? "If no clear fix is found for a qualified business, the Cash Flow Assessment fee is refunded."
-      : "Buying starts onboarding. Implementation proceeds after fit, access, and scope review. If this is not the right fit, Stanley Systems may refund, redirect, or pause before work begins.",
+      : "Buying starts onboarding. The build begins after fit, access, and scope review. If this is not the right fit, Stanley Systems may refund, redirect, or pause before work begins.",
     cta: {
       label: href ? primaryCtaLabelFor(pricingPackage) : "Checkout paused",
       action: href ? "checkout" : "contact",
@@ -343,7 +343,7 @@ export const pricingFAQItems: PricingFAQItem[] = [
   {
     question: "Is the Cash Flow Assessment required before buying a package?",
     answer:
-      "No. The Cash Flow Assessment is the paid diagnostic path when you want Stanley Systems to find the leak before you choose a system. If you already know which path you need, you can buy Cashflow Control System, Repeat Revenue System, or Both Systems directly when checkout is available. Direct purchase still starts onboarding, access review, fit review, and scope confirmation before implementation proceeds.",
+      "No. The Cash Flow Assessment is the paid first step when you want Stanley Systems to find the leak before you choose a system. If you already know which path you need, you can buy Cashflow Control System, Repeat Revenue System, or Both Systems directly when checkout is available. Direct purchase still starts onboarding, access review, fit review, and scope confirmation before the build begins.",
   },
   {
     question: "How does the Cash Flow Assessment credit work?",
@@ -363,12 +363,12 @@ export const pricingFAQItems: PricingFAQItem[] = [
   {
     question: "Can I buy Cashflow Control System or Repeat Revenue System directly?",
     answer:
-      "Yes, when public checkout is available. Direct checkout starts onboarding and implementation intake. Stanley Systems still reviews fit, access, tool constraints, data quality, and requested scope before implementation proceeds. If the selected package is not the right fit, Stanley Systems may redirect you, propose a custom scope, pause the start, or refund before implementation begins.",
+      "Yes, when public checkout is available. Direct checkout starts onboarding and build intake. Stanley Systems still reviews fit, access, tool limits, record quality, and requested scope before the build begins. If the selected package is not the right fit, Stanley Systems may redirect you, propose a custom scope, pause the start, or refund before work begins.",
   },
   {
     question: "What happens after I buy a package?",
     answer:
-      "You receive onboarding instructions so Stanley Systems can confirm your business details, required access, current tools, data quality, implementation fit, and first scope. Implementation proceeds after the required information and access are provided and Stanley Systems confirms the package fit and first scope.",
+      "You receive onboarding instructions so Stanley Systems can confirm your business details, required access, current tools, record quality, build fit, and first scope. The build begins after the required information and access are provided and Stanley Systems confirms the package fit and first scope.",
   },
   {
     question: "What if I buy the wrong package?",

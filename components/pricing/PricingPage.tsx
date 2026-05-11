@@ -173,7 +173,7 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
             copy="Pay once for the year, waive installation, and keep the office handoff tight. Assessment buyers can use the yearly assessment credit."
           />
           <PlanGrid plans={yearlyPlans} />
-          <CheckoutScopeNote copy="Yearly checkout starts onboarding and fit/access/scope review before implementation begins. The Cash Flow Assessment credit only applies under the stated assessment-credit terms." />
+          <CheckoutScopeNote copy="Yearly checkout starts onboarding and fit, access, and scope review before the build begins. The Cash Flow Assessment credit only applies under the stated assessment-credit terms." />
         </section>
 
         <CompareSystems />
