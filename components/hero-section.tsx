@@ -5,8 +5,8 @@ import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 
-const headline = "Make Your Business More Money With Less Office Work"
-const subheadline = "Move finished work into cash faster, keep repeat revenue from slipping, and give the owner fewer office hours to carry."
+const headline = "Your service business is dropping money in places nobody checks."
+const subheadline = "Missed calls. Late invoices. Forgotten follow-ups. Past customers nobody contacts again. Stanley Systems finds the leak and builds the system that stops it."
 
 const heroVideoVersion = "manual-clock-20260507"
 const heroVideo = {
@@ -53,9 +53,9 @@ const navGroups: MegaMenuGroup[] = [
     ],
     featured: {
       title: "Not sure where money is stuck?",
-      copy: "Start with the Workflow Audit before buying a system.",
+      copy: "Start with the Cash Flow Assessment before buying a system.",
       href: "/workflow-audit",
-      cta: "Start with the Workflow Audit",
+      cta: "Start with the Cash Flow Assessment",
     },
   },
   {
@@ -79,20 +79,20 @@ const navGroups: MegaMenuGroup[] = [
       title: "Busy team, messy handoff?",
       copy: "Stanley Systems works around the tools your crews already use.",
       href: "/workflow-audit",
-      cta: "Book the Workflow Audit",
+      cta: "Start the Cash Flow Assessment",
     },
   },
   {
-    label: "Workflow Audit",
+    label: "Assessment",
     href: "/workflow-audit",
     eyebrow: "Find the first fix",
-    summary: "The audit finds the money leak before the system gets built.",
+    summary: "The assessment finds the money leak before the system gets built.",
     widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Workflow Audit", href: "/workflow-audit", description: "Find the money leak before buying a system." },
-      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the audit." },
-      { label: "How the Audit Works", href: "/workflow-audit", description: "Start at the Workflow Audit and see what gets checked." },
+      { label: "Cash Flow Assessment", href: "/workflow-audit", description: "Find the money leak before buying a system." },
+      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the assessment." },
+      { label: "How the assessment works", href: "/workflow-audit", description: "Start at the Cash Flow Assessment and see what gets checked." },
     ],
   },
   {
@@ -341,15 +341,15 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="hidden items-center gap-2 md:flex">
-            <a href="/workflow-audit#packages" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>See the packages</a>
+            <a href="/#systems" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>See the packages</a>
             <CTALink
               href="/workflow-audit"
               kind="systems"
               location="hero_nav_audit"
-              ctaLabel="Book the Workflow Audit"
+              ctaLabel="Start the Cash Flow Assessment"
               className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-3 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-4"
             >
-              Book the Workflow Audit
+              Start the Cash Flow Assessment
             </CTALink>
           </div>
           <button
@@ -445,15 +445,15 @@ export function SiteHeader() {
                   </div>
                 )
               })}
-              <a href="/workflow-audit#packages" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">See the packages</a>
+              <a href="/#systems" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">See the packages</a>
               <CTALink
                 href="/workflow-audit"
                 kind="systems"
                 location="hero_mobile_nav_audit"
-                ctaLabel="Book the Workflow Audit"
+                ctaLabel="Start the Cash Flow Assessment"
                 className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
               >
-                Book the Workflow Audit
+                Start the Cash Flow Assessment
               </CTALink>
             </div>
           </div>
@@ -470,8 +470,8 @@ export function HeroSection() {
       data-audit-section="home.hero"
       data-nav-theme="dark"
       data-audit-priority="5"
-      data-audit-offer="Workflow Audit"
-      data-audit-purpose="Make the owner understand that Stanley Systems helps make more money with less office work."
+      data-audit-offer="Cash Flow Assessment"
+      data-audit-purpose="Make the owner understand that Stanley Systems finds boring money leaks and builds the system that stops them."
       className="relative isolate overflow-hidden bg-[#071422] pt-[100px] text-white"
     >
       <div className="relative min-h-[700px] overflow-hidden md:min-h-[calc(100svh-100px)]">
@@ -493,8 +493,8 @@ export function HeroSection() {
               className="max-w-[700px] text-balance text-[clamp(1.72rem,7vw,2.42rem)] font-bold leading-[0.98] tracking-[-0.036em] text-white md:max-w-[720px] md:text-[clamp(1.85rem,2.47vw,2.76rem)]"
             >
               <span className="md:hidden">{headline}</span>
-              <span className="hidden whitespace-nowrap md:block">Make Your Business More Money</span>
-              <span className="hidden whitespace-nowrap md:block">With Less Office Work</span>
+              <span className="hidden md:block">Your service business is dropping money</span>
+              <span className="hidden md:block">in places nobody checks.</span>
             </h1>
             <p className="mt-7 max-w-[590px] text-pretty text-lg font-semibold leading-8 tracking-[-0.01em] text-[#d3dce7] sm:text-xl">
               {subheadline}
@@ -506,14 +506,14 @@ export function HeroSection() {
                 location="home_hero_primary"
                 analyticsEvent="audit_cta_clicked"
                 analyticsSource="homepage_hero"
-                ctaLabel="Start the Workflow Audit"
+                ctaLabel="Start the Cash Flow Assessment"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                Start the Workflow Audit
+                Start the Cash Flow Assessment
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
               <a
-                href="/workflow-audit#packages"
+                href="/#systems"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 text-base font-bold text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
                 Compare system options
