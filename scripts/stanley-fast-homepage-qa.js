@@ -25,7 +25,7 @@ const sectionSelectors = [
 ];
 
 const expectedImageFragments = [
-  "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-estimated-annual-leak.jpg",
+  "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-60k-to-300k.jpg",
   "/images/uploaded/homepage/cash-flow-rework/service-business-leak-types.jpg",
   "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-vertical-section-bg.jpg",
   "/images/uploaded/homepage/cash-flow-rework/before-after-cash-flow-system.jpg",

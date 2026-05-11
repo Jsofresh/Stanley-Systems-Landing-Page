@@ -1,56 +1,60 @@
-import type * as React from 'react'
-import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
+import type * as React from "react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
-import { CTALink } from '@/components/cta-link'
-import { cn } from '@/lib/utils'
+import { CTALink } from "@/components/cta-link";
+import { cn } from "@/lib/utils";
 
-export type SystemsThatMakeMoneySectionProps = React.HTMLAttributes<HTMLElement>
+export type SystemsThatMakeMoneySectionProps =
+  React.HTMLAttributes<HTMLElement>;
 
 type ProductSystem = {
-  title: string
-  promise: string
-  href: string
-  analyticsLocation: string
-  packageName: string
-  ctaLabel: string
-  visualSrc: string
-  visualAlt: string
-  bullets: readonly string[]
-}
+  title: string;
+  promise: string;
+  href: string;
+  analyticsLocation: string;
+  packageName: string;
+  ctaLabel: string;
+  visualSrc: string;
+  visualAlt: string;
+  bullets: readonly string[];
+};
 
 const systems: ProductSystem[] = [
   {
-    title: 'Cashflow Control System',
-    promise: 'Turn finished work into collected cash faster.',
-    href: '/systems/cashflow-control',
-    analyticsLocation: 'home_systems_cashflow_control',
-    packageName: 'Cashflow Control System',
-    ctaLabel: 'See the Cashflow Control System',
-    visualSrc: '/images/uploaded/homepage/cashflow-control-system.jpg',
-    visualAlt: 'Cashflow Control System visual for moving finished work into collected cash faster.',
+    title: "Cashflow Control System",
+    promise: "Turn finished work into collected cash faster.",
+    href: "/systems/cashflow-control",
+    analyticsLocation: "home_systems_cashflow_control",
+    packageName: "Cashflow Control System",
+    ctaLabel: "See the Cashflow Control System",
+    visualSrc: "/images/uploaded/homepage/cashflow-control-system.jpg",
+    visualAlt:
+      "Cashflow Control System visual for moving finished work into collected cash faster.",
     bullets: [
-      'Completed jobs stop waiting on office follow-up',
-      'Invoices move out faster',
-      'Owners get cleaner cash visibility',
+      "Completed jobs stop waiting on office follow-up",
+      "Invoices move out faster",
+      "Owners get cleaner cash visibility",
     ],
   },
   {
-    title: 'Repeat Revenue System',
-    promise: 'Turn past customers, referrals, reviews, and missed calls into booked work.',
-    href: '/systems/repeat-revenue',
-    analyticsLocation: 'home_systems_repeat_revenue',
-    packageName: 'Repeat Revenue System',
-    ctaLabel: 'See the Repeat Revenue System',
-    visualSrc: '/images/uploaded/homepage/repeat-revenue-system.jpg',
-    visualAlt: 'Repeat Revenue System visual for turning past customers, reviews, referrals, and missed calls into booked work.',
+    title: "Repeat Revenue System",
+    promise:
+      "Turn past customers, referrals, reviews, and missed calls into booked work.",
+    href: "/systems/repeat-revenue",
+    analyticsLocation: "home_systems_repeat_revenue",
+    packageName: "Repeat Revenue System",
+    ctaLabel: "See the Repeat Revenue System",
+    visualSrc: "/images/uploaded/homepage/repeat-revenue-system.jpg",
+    visualAlt:
+      "Repeat Revenue System visual for turning past customers, reviews, referrals, and missed calls into booked work.",
     bullets: [
-      'Past customers get reactivated',
-      'Happy customers create reviews and referrals',
-      'Missed calls get a recovery path',
+      "Past customers get reactivated",
+      "Happy customers create reviews and referrals",
+      "Missed calls get a recovery path",
     ],
   },
-]
+];
 
 function ProductSystemCard({ system }: { system: ProductSystem }) {
   return (
@@ -69,16 +73,24 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
       <div className="p-5 sm:p-6">
         <h3
           style={{ fontFamily: "var(--font-heading)" }}
-          className="text-[27px] font-extrabold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[33px] [font-family:var(--font-heading)]"
+          className="text-[27px] font-extrabold leading-[1.02] tracking-[-0.025em] text-[#071D3A] sm:text-[33px] [font-family:var(--font-heading)]"
         >
           {system.title}
         </h3>
-        <p className="mt-2 max-w-[560px] text-[15px] font-semibold leading-6 text-[#41596C]">{system.promise}</p>
+        <p className="mt-2 max-w-[560px] text-[15px] font-semibold leading-6 text-[#41596C]">
+          {system.promise}
+        </p>
 
         <ul className="mt-4 grid gap-2.5">
           {system.bullets.map((bullet) => (
-            <li key={bullet} className="flex gap-2.5 text-[14px] font-semibold leading-5 text-[#243D52]">
-              <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#08A64B]" aria-hidden="true" />
+            <li
+              key={bullet}
+              className="flex gap-2.5 text-[14px] font-semibold leading-5 text-[#243D52]"
+            >
+              <span
+                className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#08A64B]"
+                aria-hidden="true"
+              />
               <span>{bullet}</span>
             </li>
           ))}
@@ -98,16 +110,22 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
         </CTALink>
       </div>
     </article>
-  )
+  );
 }
 
-export function SystemsThatMakeMoneySection({ className, ...props }: SystemsThatMakeMoneySectionProps) {
+export function SystemsThatMakeMoneySection({
+  className,
+  ...props
+}: SystemsThatMakeMoneySectionProps) {
   return (
     <section
       id="systems"
       data-section="systems-that-move-money"
       data-nav-theme="light"
-      className={cn('relative isolate scroll-mt-28 overflow-hidden bg-[#FBFCF7] px-5 py-8 md:px-8 lg:px-10 lg:py-10', className)}
+      className={cn(
+        "relative isolate scroll-mt-32 overflow-hidden bg-[#FBFCF7] px-5 pb-8 pt-28 md:px-8 md:pt-32 lg:px-10 lg:pb-10 lg:pt-32",
+        className,
+      )}
       aria-labelledby="systems-that-move-money-heading"
       {...props}
     >
@@ -119,11 +137,8 @@ export function SystemsThatMakeMoneySection({ className, ...props }: SystemsThat
             style={{ fontFamily: "var(--font-heading)" }}
             className="text-balance text-[36px] font-extrabold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[46px] lg:text-[52px] [font-family:var(--font-heading)]"
           >
-            Systems that Move Money
+            Systems that make your business money
           </h2>
-          <p className="mx-auto mt-3 max-w-[760px] text-pretty text-[15px] font-medium leading-6 text-[#334B60] sm:text-[16px]">
-            Two focused systems for service businesses that need finished work, old demand, and missed opportunities to turn into cash more reliably.
-          </p>
         </div>
 
         <div className="mt-5 grid gap-4 lg:grid-cols-2 lg:items-stretch">
@@ -133,5 +148,5 @@ export function SystemsThatMakeMoneySection({ className, ...props }: SystemsThat
         </div>
       </div>
     </section>
-  )
+  );
 }

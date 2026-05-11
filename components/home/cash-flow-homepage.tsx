@@ -1,9 +1,10 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { CTALink } from "@/components/cta-link";
 import { pricingPackages } from "@/lib/pricing/source-of-truth";
+import { SystemsThatMakeMoneySection } from "@/components/home/SystemsThatMakeMoneySection";
 
 const calculatorHref = "/invoicing-delay-cash-flow-calculator";
 const assessmentHref = "/workflow-audit";
@@ -33,7 +34,7 @@ const heroSlideshowImages = [
 
 const uploadedHomeImages = {
   calculator: {
-    src: "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-estimated-annual-leak.jpg",
+    src: "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-60k-to-300k.jpg",
     alt: "Annual money left on the table estimate for service businesses",
     width: 1280,
     height: 800,
@@ -168,9 +169,17 @@ function HeroImageSlideshow() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[66%] overflow-hidden lg:block"
+      className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[70%] overflow-hidden lg:block"
     >
-      <div className="absolute inset-y-[5%] right-[-8%] w-[108%] overflow-hidden rounded-l-[4rem]">
+      <div
+        className="absolute inset-y-0 right-[-10%] w-[112%] overflow-hidden"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 16%, #000 34%, #000 82%, rgba(0,0,0,0.42) 92%, transparent 100%)",
+          maskImage:
+            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 16%, #000 34%, #000 82%, rgba(0,0,0,0.42) 92%, transparent 100%)",
+        }}
+      >
         <div className="absolute inset-0 bg-[#071422]" />
         {heroSlideshowImages.map((image, index) => (
           <Image
@@ -184,54 +193,33 @@ function HeroImageSlideshow() {
             style={{ animationDelay: `${index * 5}s` }}
           />
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.96)_10%,rgba(7,20,34,0.72)_22%,rgba(7,20,34,0.26)_42%,rgba(7,20,34,0)_62%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(7,20,34,0)_44%,rgba(7,20,34,0.16)_68%,rgba(7,20,34,0.62)_100%)]" />
-        <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#071422] via-[#071422]/54 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-t from-[#071422] via-[#071422]/58 to-transparent" />
-        <div className="absolute inset-y-0 right-0 w-[14%] bg-gradient-to-l from-[#071422] via-[#071422]/55 to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.98)_15%,rgba(7,20,34,0.84)_28%,rgba(7,20,34,0.46)_45%,rgba(7,20,34,0.08)_68%,rgba(7,20,34,0.34)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(7,20,34,0)_32%,rgba(7,20,34,0.22)_62%,rgba(7,20,34,0.82)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#071422_0%,rgba(7,20,34,0.62)_14%,rgba(7,20,34,0)_34%,rgba(7,20,34,0)_66%,rgba(7,20,34,0.68)_88%,#071422_100%)]" />
+        <div className="absolute inset-y-0 left-0 w-[44%] bg-gradient-to-r from-[#071422] via-[#071422]/82 to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-[24%] bg-gradient-to-l from-[#071422] via-[#071422]/70 to-transparent" />
       </div>
     </div>
   );
 }
 
 function CalculatorLaunchSection() {
-  const quickReasons = [
-    "Free to run before you buy anything",
-    "Uses rough numbers, not perfect records",
-    "Shows which leak is most worth fixing first",
-  ];
-
   return (
-    <PageSection className="relative isolate overflow-hidden bg-[#081827] py-8 text-white md:py-10">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_82%_18%,rgba(83,217,134,0.18),transparent_28%),linear-gradient(90deg,#071422_0%,#0b1d30_100%)]" />
-      <div className="mx-auto flex max-w-[88rem] flex-col gap-6 rounded-[2rem] border border-white/12 bg-white/[0.06] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.25)] md:p-8 lg:flex-row lg:items-center lg:justify-between">
-        <div className="max-w-[780px]">
-          <h2 className="text-balance text-[clamp(2.1rem,3.9vw,4.8rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
-            Start the free Cash Flow Calculator.
-          </h2>
-          <p className="mt-4 max-w-[700px] text-lg font-semibold leading-8 text-[#d8e2ed]">
-            Get a useful estimate before you buy anything. Enter a few rough
-            numbers and see where calls, invoices, follow-ups, and past
-            customers are costing the business real cash.
-          </p>
-          <div className="mt-5 grid gap-2 text-sm font-bold text-[#e8f1f7] sm:grid-cols-3">
-            {quickReasons.map((reason) => (
-              <div key={reason} className="flex items-start gap-2 leading-6">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#78E3A0]" />
-                <span>{reason}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+    <PageSection className="relative isolate overflow-hidden bg-[#081827] py-6 text-white md:py-7 lg:py-8">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_82%_18%,rgba(83,217,134,0.22),transparent_30%),linear-gradient(90deg,#071422_0%,#0b1d30_100%)]" />
+      <div className="mx-auto flex max-w-[88rem] flex-col items-center justify-between gap-5 rounded-[1.7rem] border border-white/12 bg-white/[0.06] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.25)] md:p-6 lg:flex-row">
+        <h2 className="whitespace-normal text-center text-[clamp(2rem,3.2vw,3.7rem)] font-extrabold leading-[0.95] tracking-[-0.025em] lg:whitespace-nowrap lg:text-left">
+          Start the free Cash Flow Calculator.
+        </h2>
         <CTALink
           href={calculatorHref}
           kind="calculator"
           location="home_post_hero_calculator_primary"
           analyticsEvent="calculator_cta_clicked"
           ctaLabel="Start the free calculator"
-          className={`${greenButton} w-full px-8 text-[1.08rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.24)] sm:w-auto`}
+          className={`${greenButton} w-full min-h-[60px] px-10 text-[1.15rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_24px_56px_rgba(83,217,134,0.32)] sm:w-auto`}
         >
-          Start the free calculator <ArrowRight className="ml-2 h-4 w-4" />
+          Start the free calculator <ArrowRight className="ml-2 h-5 w-5" />
         </CTALink>
       </div>
     </PageSection>
@@ -243,56 +231,53 @@ function CalculatorSpine() {
     {
       label: "1",
       title: "Enter rough numbers",
-      copy: "Use your best guess for calls, invoices, and follow-up. No spreadsheet needed.",
+      copy: "Best guesses are enough.",
     },
     {
       label: "2",
       title: "See the annual leak",
-      copy: "The result turns missed calls, late invoices, and quiet past customers into one annual estimate.",
+      copy: "See the yearly money leak.",
     },
     {
       label: "3",
       title: "Pick the first fix",
-      copy: "Use the result to see whether billing, follow-up, or past customers should get fixed first.",
+      copy: "Know what to fix first.",
     },
   ];
 
   return (
     <PageSection
       id="calculator"
-      className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#FBFCF7] text-[#071D3A] lg:py-20"
+      className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#FBFCF7] py-9 text-[#071D3A] md:py-12 lg:py-14"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(8,166,75,0.14),rgba(251,252,247,0)_65%)]" />
-      <div className="mx-auto grid max-w-[88rem] gap-9 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+      <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
-          <h2 className="max-w-[720px] text-balance text-[clamp(2.4rem,5vw,5.4rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-[#071D3A]">
+          <h2 className="max-w-[680px] text-balance text-[clamp(2.15rem,4.4vw,4.75rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-[#071D3A]">
             Get a free estimate of the money left on the table.
           </h2>
-          <p className="mt-5 max-w-[650px] text-lg font-semibold leading-8 text-[#4d6073]">
-            The calculator gives you a number you can use right away. Then
-            Stanley Systems can show which fix pays back first.
-          </p>
-          <div className="mt-7 grid gap-3">
+
+          <div className="mt-5 grid gap-2.5">
             {calculatorSteps.map((step) => (
               <div
                 key={step.title}
-                className="flex gap-4 rounded-[1.35rem] border border-[#dbe9dd] bg-white p-4 shadow-[0_14px_34px_rgba(7,29,58,0.06)]"
+                className="flex gap-3 rounded-[1.1rem] border border-[#dbe9dd] bg-white p-3 shadow-[0_10px_26px_rgba(7,29,58,0.055)]"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-sm font-extrabold text-white">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-sm font-extrabold text-white">
                   {step.label}
                 </span>
                 <div>
                   <h3 className="text-base font-extrabold text-[#071D3A]">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-sm font-semibold leading-6 text-[#607588]">
+                  <p className="mt-0.5 text-sm font-semibold leading-5 text-[#607588]">
                     {step.copy}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <CTALink
               href={calculatorHref}
               kind="calculator"
@@ -320,7 +305,7 @@ function CalculatorSpine() {
         <UploadedSectionImage
           image={uploadedHomeImages.calculator}
           priority
-          className="scale-[1.07] lg:origin-center"
+          className="scale-[0.98] lg:origin-center"
         />
       </div>
     </PageSection>
@@ -332,7 +317,7 @@ function LeakTypesSection() {
     <PageSection className="bg-white text-[#071D3A]">
       <div className="mx-auto max-w-[88rem]">
         <div className="w-full max-w-[95%] lg:max-w-[84rem]">
-          <h2 className="max-w-[95%] text-[clamp(2rem,4.05vw,4.25rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
+          <h2 className="max-w-[95%] text-[clamp(1.8rem,3.65vw,3.85rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
             The leaks are usually boring. That is why they get missed.
           </h2>
           <p className="mt-5 max-w-[95%] text-lg font-semibold leading-8 text-[#536173]">
@@ -342,8 +327,29 @@ function LeakTypesSection() {
         </div>
         <UploadedSectionImage
           image={uploadedHomeImages.leaks}
-          className="mt-9 scale-[1.07] lg:origin-center"
+          className="mt-8 scale-[1.04] lg:origin-center"
         />
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <CTALink
+            href={calculatorHref}
+            kind="calculator"
+            location="home_leaks_primary"
+            analyticsEvent="calculator_cta_clicked"
+            ctaLabel="Start the free calculator"
+            className={`${greenButton} min-h-[58px] px-9 text-[1.08rem]`}
+          >
+            Start the free calculator <ArrowRight className="ml-2 h-5 w-5" />
+          </CTALink>
+          <CTALink
+            href={assessmentHref}
+            kind="systems"
+            location="home_leaks_secondary"
+            ctaLabel="Start the Cash Flow Assessment"
+            className={`${lightButton} min-h-[58px] px-9 text-[1.08rem]`}
+          >
+            Cash Flow Assessment
+          </CTALink>
+        </div>
       </div>
     </PageSection>
   );
@@ -354,20 +360,20 @@ function AssessmentSection() {
   return (
     <PageSection
       id="assessment"
-      className="bg-[#071422] text-white"
+      className="bg-[#071422] py-9 text-white md:py-12 lg:py-14"
       navTheme="dark"
     >
-      <div className="mx-auto grid max-w-[88rem] gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-center">
+      <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[1fr_0.72fr] lg:items-center">
         <div>
-          <h2 className="max-w-[760px] text-balance text-[clamp(2.2rem,5vw,5.4rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
+          <h2 className="max-w-[720px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
             Start with the Cash Flow Assessment.
           </h2>
-          <p className="mt-5 max-w-[650px] text-lg font-semibold leading-8 text-white/72">
+          <p className="mt-4 max-w-[620px] text-base font-semibold leading-7 text-white/72">
             The Cash Flow Assessment is the paid first step. Stanley Systems
             looks at where money is being missed, what it likely costs, and
             which system should be built first.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <CTALink
               href={assessmentHref}
               kind="checkout"
@@ -395,15 +401,7 @@ function AssessmentSection() {
             </CTALink>
           </div>
         </div>
-        <div
-          className="mx-auto w-full max-w-[560px] scale-[1.07] lg:max-w-[590px]"
-          style={{
-            WebkitMaskImage:
-              "radial-gradient(ellipse at center, #000 70%, rgba(0,0,0,0.78) 84%, transparent 100%)",
-            maskImage:
-              "radial-gradient(ellipse at center, #000 70%, rgba(0,0,0,0.78) 84%, transparent 100%)",
-          }}
-        >
+        <div className="relative mx-auto w-full max-w-[450px] overflow-hidden scale-[0.95] rounded-[2.4rem] lg:max-w-[470px]">
           <Image
             src={uploadedHomeImages.assessment.src}
             alt={uploadedHomeImages.assessment.alt}
@@ -412,6 +410,10 @@ function AssessmentSection() {
             className="h-auto w-full object-contain"
             sizes="(min-width: 1024px) 36vw, 100vw"
           />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-[#071422] to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#071422] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#071422] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#071422] to-transparent" />
         </div>
       </div>
     </PageSection>
@@ -650,9 +652,8 @@ export function CashFlowHomepage() {
       <CalculatorSpine />
       <LeakTypesSection />
       <AssessmentSection />
-      <PackageDemosSection />
+      <SystemsThatMakeMoneySection />
       <BeforeAfterProofSection />
-      <TrustSection />
       <FinalCashFlowCTA />
     </>
   );
