@@ -33,6 +33,31 @@ export function PlanCard({ plan, featured = false }: { plan: PricingPlan; featur
       <p className="mt-3 text-base font-extrabold leading-6 text-[#102033]">{plan.promise}</p>
       <p className="mt-1.5 text-sm leading-5 text-[#536173]">{plan.description}</p>
 
+      {plan.demo ? (
+        <div className="mt-4 rounded-2xl border border-[#dbe7dd] bg-[#f8fcf9] p-3 text-sm leading-5 text-[#26374b]">
+          <p><span className="font-extrabold text-[#102033]">Best for: </span>{plan.demo.bestFor}</p>
+          <p className="mt-2"><span className="font-extrabold text-[#102033]">Leak it fixes: </span>{plan.demo.leak}</p>
+          <div className="mt-3 grid gap-3 md:grid-cols-2">
+            <div className="rounded-xl border border-[#f0c8c1] bg-[#fff6f4] p-3">
+              <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#b91c1c]">Before Stanley</p>
+              <ul className="mt-2 grid gap-1.5 text-xs font-semibold leading-5 text-[#33475b]">
+                {plan.demo.before.map((item) => (
+                  <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b91c1c]" />{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-xl border border-[#bfe4c8] bg-white p-3">
+              <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#116832]">After Stanley</p>
+              <ul className="mt-2 grid gap-1.5 text-xs font-semibold leading-5 text-[#33475b]">
+                {plan.demo.after.map((item) => (
+                  <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803d]" />{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <div className="mt-4 rounded-2xl border border-[#e0e8ef] bg-[#f8fbfc] p-3">
         <p className="text-[1.75rem] font-semibold leading-none tracking-[-0.04em] text-[#102033]">{plan.priceDisplay}</p>
         <div className="mt-3 grid gap-1.5">

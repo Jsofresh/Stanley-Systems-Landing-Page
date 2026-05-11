@@ -12,6 +12,13 @@ export type CTAAction = "checkout" | "contact" | "calculator" | "anchor" | "syst
 
 export type PricingPlanKind = "front_door_audit" | "direct_purchase_system"
 
+export type PackageDemo = {
+  bestFor: string
+  leak: string
+  before: string[]
+  after: string[]
+}
+
 export type PricingPlan = {
   id: OfferId
   kind: PricingPlanKind
@@ -24,6 +31,7 @@ export type PricingPlan = {
   priceApproved: boolean
   priceNote: string
   checklist: string[]
+  demo?: PackageDemo
   goodFit?: string[]
   helperLine: string
   scopeNote: string | null
@@ -82,30 +90,30 @@ export type PricingCalculatorContext = {
 }
 
 const directPurchasePromises: Record<PricingPackageId, string> = {
-  workflow_audit: "Buy the diagnostic before you buy the build.",
-  cashflow_control_monthly: "Turn finished work into collected cash faster.",
-  repeat_revenue_monthly: "Get more money from the customers you already earned.",
-  both_systems_monthly: "Fix the billing stall and the repeat-revenue gap together.",
-  cashflow_control_yearly: "Buy the year and remove the installation charge.",
-  repeat_revenue_yearly: "Buy the year and remove the installation charge.",
+  workflow_audit: "Find the leak before you buy the build.",
+  cashflow_control_monthly: "Stop finished work from sitting unpaid.",
+  repeat_revenue_monthly: "Bring past customers back before they buy from someone else.",
+  both_systems_monthly: "Stop the leak before the job and after the job.",
+  cashflow_control_yearly: "Stop the billing leak for the year and remove the installation charge.",
+  repeat_revenue_yearly: "Bring past customers back for the year and remove the installation charge.",
   both_systems_yearly: "Fix both leaks with the best first-year price.",
 }
 
 const directPurchaseDescriptions: Record<PricingPackageId, string> = {
   workflow_audit:
-    "Stanley Systems checks where cash, customers, and office time are stuck, then tells you which system should move first.",
+    "Stanley Systems checks where calls, invoices, follow-ups, and past customers are slipping through, then tells you which system should be built first.",
   cashflow_control_monthly:
-    "For finished work that waits on billing checks, invoice follow-up, open balances, and office handoffs.",
+    "For jobs that are done before the office gets the bill out, follows up, and collects.",
   repeat_revenue_monthly:
-    "For past customers, reviews, referrals, old estimates, seasonal buyers, and missed calls that are not getting a next step.",
+    "For past customers who bought once, stopped hearing from you, and now book with whoever follows up first.",
   both_systems_monthly:
-    "For owners who can already see both leaks and want one onboarding path without paying yearly upfront.",
+    "For owners leaking money before the job is booked and after the customer leaves.",
   cashflow_control_yearly:
-    "Same Cashflow Control implementation, lower first-year cost, installation waived.",
+    "Same billing-leak fix, lower first-year cost, installation waived.",
   repeat_revenue_yearly:
-    "Same Repeat Revenue implementation, lower first-year cost, installation waived.",
+    "Same past-customer follow-up system, lower first-year cost, installation waived.",
   both_systems_yearly:
-    "The combined billing and repeat-revenue rollout with installation waived.",
+    "The combined before-and-after-job fix with installation waived.",
 }
 
 const directPurchaseChecklists: Record<PricingPackageId, string[]> = {
@@ -116,27 +124,27 @@ const directPurchaseChecklists: Record<PricingPackageId, string[]> = {
     "Where Stanley Systems can or cannot fix the leak.",
   ],
   cashflow_control_monthly: [
-    "Finished work to invoice-ready handoff.",
-    "Invoice follow-up and open-balance visibility.",
-    "Office checks around job and billing details.",
+    "Customer recorded, job moves, invoice goes out.",
+    "Payment gets followed up with.",
+    "Missing job details get routed before the bill stalls.",
   ],
   repeat_revenue_monthly: [
-    "Past-customer follow-up.",
-    "Review and referral request rhythm.",
-    "Missed-call and repeat-work opportunities.",
+    "Customer recorded after the first job.",
+    "Follow-up, review, and referral asks go out.",
+    "Repeat work gets booked before a competitor gets it.",
   ],
   both_systems_monthly: [
-    "Cashflow Control System plus Repeat Revenue System.",
-    "One onboarding path for both workstreams.",
-    "Best fit when billing and repeat work both leak money.",
+    "Calls, jobs, billing, and past-customer follow-up in one rollout.",
+    "One onboarding path for both leaks.",
+    "Best fit when money is being dropped before and after the job.",
   ],
   cashflow_control_yearly: [
-    "Same Cashflow Control System implementation.",
+    "Same Cashflow Control System.",
     "Yearly payment with installation waived.",
     "Lower first-year cost than monthly.",
   ],
   repeat_revenue_yearly: [
-    "Same Repeat Revenue System implementation.",
+    "Same Repeat Revenue System.",
     "Yearly payment with installation waived.",
     "Lower first-year cost than monthly.",
   ],
@@ -147,11 +155,51 @@ const directPurchaseChecklists: Record<PricingPackageId, string[]> = {
   ],
 }
 
+
+const packageDemos: Partial<Record<PricingPackageId, PackageDemo>> = {
+  cashflow_control_monthly: {
+    bestFor: "Jobs are getting done before the office gets the bill out.",
+    leak: "Finished work sitting unpaid, late invoices, missing job details, and payment follow-up that depends on memory.",
+    before: ["Customer calls", "Staff writes it down somewhere", "Invoice is late", "Owner finds out late"],
+    after: ["Customer is recorded", "Job moves forward", "Invoice goes out", "Payment gets followed up with"],
+  },
+  cashflow_control_yearly: {
+    bestFor: "Jobs are getting done before the office gets the bill out.",
+    leak: "Finished work sitting unpaid, late invoices, missing job details, and payment follow-up that depends on memory.",
+    before: ["Customer calls", "Staff writes it down somewhere", "Invoice is late", "Owner finds out late"],
+    after: ["Customer is recorded", "Job moves forward", "Invoice goes out", "Payment gets followed up with"],
+  },
+  repeat_revenue_monthly: {
+    bestFor: "Past customers are not being contacted again.",
+    leak: "One-time customers, quiet follow-up, missed review asks, and repeat work going to someone else.",
+    before: ["Customer buys once", "No reminder goes out", "No follow-up happens", "Competitor gets the next job"],
+    after: ["Customer is recorded", "Follow-up is triggered", "Text or email goes out", "Repeat work gets booked"],
+  },
+  repeat_revenue_yearly: {
+    bestFor: "Past customers are not being contacted again.",
+    leak: "One-time customers, quiet follow-up, missed review asks, and repeat work going to someone else.",
+    before: ["Customer buys once", "No reminder goes out", "No follow-up happens", "Competitor gets the next job"],
+    after: ["Customer is recorded", "Follow-up is triggered", "Text or email goes out", "Repeat work gets booked"],
+  },
+  both_systems_monthly: {
+    bestFor: "Money is leaking before and after the job.",
+    leak: "Missed calls, delayed jobs, late invoices, and past customers nobody contacts again.",
+    before: ["Calls get missed", "Jobs get delayed", "Invoices go out late", "Past customers disappear"],
+    after: ["Customers are recorded", "Jobs move", "Billing happens faster", "Past customers get contacted again"],
+  },
+  both_systems_yearly: {
+    bestFor: "Money is leaking before and after the job.",
+    leak: "Missed calls, delayed jobs, late invoices, and past customers nobody contacts again.",
+    before: ["Calls get missed", "Jobs get delayed", "Invoices go out late", "Past customers disappear"],
+    after: ["Customers are recorded", "Jobs move", "Billing happens faster", "Past customers get contacted again"],
+  },
+}
+
 function priceRowsFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
     return [
       { label: "Paid diagnostic", value: pricingPackage.priceDisplay },
-      { label: "If you bought the Workflow Audit first", value: "$97 monthly credit or $194 yearly credit after the audit call" },
+      { label: "If you bought the Cash Flow Assessment first", value: "$97 monthly credit or $194 yearly credit after the assessment call" },
     ]
   }
 
@@ -161,24 +209,29 @@ function priceRowsFor(pricingPackage: PricingPackage) {
       label: pricingPackage.waivedSetup ? "Installation" : "Setup",
       value: pricingPackage.waivedSetupDisplay || pricingPackage.setupFeeDisplay,
     },
-    { label: pricingPackage.auditCreditLabel, value: pricingPackage.auditCreditDisplay },
-    { label: "First year after audit credit", value: pricingPackage.firstYearCostAfterAuditCreditDisplay },
+    {
+      label: pricingPackage.billingPeriod === "yearly"
+        ? "After assessment credit"
+        : "If you bought the Cash Flow Assessment first",
+      value: pricingPackage.auditCreditDisplay,
+    },
+    { label: "First year after assessment credit", value: pricingPackage.firstYearCostAfterAuditCreditDisplay },
     ...(pricingPackage.savings ? [{ label: "Savings", value: pricingPackage.savings.display }] : []),
   ]
 }
 
 function priceNoteFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
-    return `${pricingPackage.priceDisplay} paid diagnostic. If you buy a package within 24 hours after the audit call, use the audit credit at checkout.`
+    return `${pricingPackage.priceDisplay} paid diagnostic. If you buy a package within 24 hours after the assessment call, use the assessment credit at checkout.`
   }
 
   const setupCopy = pricingPackage.waivedSetup
     ? pricingPackage.waivedSetupDisplay
     : pricingPackage.setupFeeDisplay
-  const creditCopy = `${pricingPackage.auditCreditDisplay} audit credit ${pricingPackage.billingPeriod === "yearly" ? "if you bought the Workflow Audit first" : "if you bought the Workflow Audit first"}`
+  const creditCopy = `${pricingPackage.auditCreditDisplay} assessment credit ${pricingPackage.billingPeriod === "yearly" ? "if you bought the Cash Flow Assessment first" : "if you bought the Cash Flow Assessment first"}`
   const savingsCopy = pricingPackage.savings ? ` ${pricingPackage.savings.display}.` : ""
 
-  return `${pricingPackage.priceDisplay} + ${setupCopy}. ${creditCopy}. First year after audit credit: ${pricingPackage.firstYearCostAfterAuditCreditDisplay}.${savingsCopy}`
+  return `${pricingPackage.priceDisplay} + ${setupCopy}. ${creditCopy}. First year after assessment credit: ${pricingPackage.firstYearCostAfterAuditCreditDisplay}.${savingsCopy}`
 }
 
 function checkoutHrefFor(pricingPackage: PricingPackage) {
@@ -199,11 +252,11 @@ function primaryCtaLabelFor(pricingPackage: PricingPackage) {
 
 function secondaryCtaFor(pricingPackage: PricingPackage): PricingPlan["secondaryCta"] {
   if (pricingPackage.publicName === "Cashflow Control System") {
-    return { label: "Learn More", action: "systems", href: "/systems/cashflow-control" }
+    return { label: "See the billing leak", action: "systems", href: "/systems/cashflow-control" }
   }
 
   if (pricingPackage.publicName === "Repeat Revenue System") {
-    return { label: "Learn More", action: "systems", href: "/systems/repeat-revenue" }
+    return { label: "See the repeat leak", action: "systems", href: "/systems/repeat-revenue" }
   }
 
   if (pricingPackage.publicName === "Both Systems") {
@@ -229,11 +282,12 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
     priceApproved: href !== null,
     priceNote: priceNoteFor(pricingPackage),
     checklist: directPurchaseChecklists[pricingPackage.id],
+    demo: packageDemos[pricingPackage.id],
     helperLine: isAudit
       ? "You leave with a clear money leak map and a recommendation: Cashflow Control System, Repeat Revenue System, both, or neither."
       : "After checkout, onboarding and fit/access/scope review happen before implementation begins.",
     scopeNote: isAudit
-      ? "If no clear fix is found for a qualified business, the Workflow Audit fee is refunded."
+      ? "If no clear fix is found for a qualified business, the Cash Flow Assessment fee is refunded."
       : "Buying starts onboarding. Implementation proceeds after fit, access, and scope review. If this is not the right fit, Stanley Systems may refund, redirect, or pause before work begins.",
     cta: {
       label: href ? primaryCtaLabelFor(pricingPackage) : "Checkout paused",
@@ -254,19 +308,23 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
 
 export const workflowAuditOffer: WorkflowAuditOffer = {
   ...planFromPackage(pricingPackageById.workflow_audit),
+  title: "Cash Flow Assessment",
+  shortTitle: "Paid first step",
+  promise: "Find the leak before you buy the build.",
+  description: "Stanley Systems finds where money is being dropped, what it likely costs, and which system should be built first.",
   id: "workflow_audit",
   kind: "front_door_audit",
   contactPathOnly: false,
   cta: {
-    label: pricingPackageById.workflow_audit.cta,
+    label: "Start the Cash Flow Assessment",
     action: "checkout",
     href: pricingPackageById.workflow_audit.stripePaymentLink.url,
   },
   guarantee: {
-    headline: "If Stanley Systems cannot find one clear money leak we can fix, you get your Workflow Audit fee back.",
+    headline: "If Stanley Systems cannot find one clear money leak we can fix, you get your Cash Flow Assessment fee back.",
     qualificationCopy:
       "The guarantee applies to qualified service businesses with enough job, invoice, customer, call, estimate, or review volume for leaks to matter. Stanley Systems needs access to the relevant systems and a reachable decision maker or operations contact during the audit.",
-    scopeCopy: "The refund applies to the Workflow Audit fee only. It does not include a system build.",
+    scopeCopy: "The refund applies to the Cash Flow Assessment fee only. It does not include a system build.",
   },
 }
 
@@ -277,28 +335,28 @@ export const postAuditPlans: PricingPlan[] = pricingPackages
 export const auditCreditTerm: AuditCreditTerm = {
   status: "approved",
   copy:
-    "Bought the Workflow Audit first? Use your audit credit code at checkout. Monthly packages can receive a $97 audit credit; yearly packages can receive a $194 audit credit. The credit is valid once for 24 hours after the audit call.",
-  nonStackingCopy: "If the audit is refunded because no clear fix is found, there is no build credit.",
+    "Bought the Cash Flow Assessment first? Use your assessment credit code at checkout. Monthly packages can receive a $97 assessment credit; yearly packages can receive a $194 assessment credit. The credit is valid once for 24 hours after the assessment call.",
+  nonStackingCopy: "If the assessment is refunded because no clear fix is found, there is no build credit.",
 }
 
 export const pricingFAQItems: PricingFAQItem[] = [
   {
-    question: "Is the Workflow Audit required before buying a package?",
+    question: "Is the Cash Flow Assessment required before buying a package?",
     answer:
-      "No. The Workflow Audit is the paid diagnostic path when you want Stanley Systems to find the leak before you choose a system. If you already know which path you need, you can buy Cashflow Control System, Repeat Revenue System, or Both Systems directly when checkout is available. Direct purchase still starts onboarding, access review, fit review, and scope confirmation before implementation proceeds.",
+      "No. The Cash Flow Assessment is the paid diagnostic path when you want Stanley Systems to find the leak before you choose a system. If you already know which path you need, you can buy Cashflow Control System, Repeat Revenue System, or Both Systems directly when checkout is available. Direct purchase still starts onboarding, access review, fit review, and scope confirmation before implementation proceeds.",
   },
   {
-    question: "How does the Workflow Audit credit work?",
+    question: "How does the Cash Flow Assessment credit work?",
     answer:
-      "If you buy the Workflow Audit first, the audit credit applies once when you buy a package within 24 hours after the audit call. Monthly packages receive a $97 audit credit. Yearly packages receive a $194 audit credit and the installation fee is waived. If the audit is refunded because no clear fix is found, no audit credit or package credit is also owed.",
+      "If you buy the Cash Flow Assessment first, the assessment credit applies once when you buy a package within 24 hours after the assessment call. Monthly packages receive a $97 assessment credit. Yearly packages receive a $194 assessment credit and the installation fee is waived. If the assessment is refunded because no clear fix is found, no assessment credit or package credit is also owed.",
   },
   {
-    question: "What does the Workflow Audit guarantee mean?",
+    question: "What does the Cash Flow Assessment guarantee mean?",
     answer:
-      "If your business qualifies and Stanley Systems cannot find one clear money leak it can reasonably help fix, you get the Workflow Audit fee back. The refund applies to the Workflow Audit fee only. It does not include a free system build, subscription fee, third-party cost, or package credit.",
+      "If your business qualifies and Stanley Systems cannot find one clear money leak it can reasonably help fix, you get the Cash Flow Assessment fee back. The refund applies to the Cash Flow Assessment fee only. It does not include a free system build, subscription fee, third-party cost, or package credit.",
   },
   {
-    question: "Who qualifies for the Workflow Audit guarantee?",
+    question: "Who qualifies for the Cash Flow Assessment guarantee?",
     answer:
       "The guarantee is for active service businesses with enough real job, customer, billing, estimate, review, call, or follow-up activity to inspect. Stanley Systems also needs timely access to the relevant tools or records and a reachable decision maker or operations contact during the audit.",
   },
@@ -323,9 +381,9 @@ export const pricingFAQItems: PricingFAQItem[] = [
       "The package price covers the selected system plan and the setup/onboarding scope described at checkout or in written follow-up. It does not include unlimited custom development, unsupported platform workarounds, third-party software costs, ad spend, legal/compliance advice, or guaranteed revenue, profit, customers, collection, review, ranking, or call-volume results.",
   },
   {
-    question: "Do promotion codes or audit credits always apply?",
+    question: "Do promotion codes or assessment credits always apply?",
     answer:
-      "Promotion code and audit credit availability depends on the active checkout link and Stripe settings at the time of purchase. Audit credit is available once only if you bought the Workflow Audit first and buy a package within 24 hours after the audit call.",
+      "Promotion code and assessment credit availability depends on the active checkout link and Stripe settings at the time of purchase. Assessment credit is available once only if you bought the Cash Flow Assessment first and buy a package within 24 hours after the assessment call.",
   },
   {
     question: "Can Stanley Systems work inside my current tools?",
