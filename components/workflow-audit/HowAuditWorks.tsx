@@ -12,7 +12,7 @@ export function HowAuditWorks() {
           <div className="mx-auto w-full max-w-[760px] overflow-hidden rounded-[1.5rem] border border-[#d9e5dc] bg-white shadow-[0_16px_46px_rgba(7,29,58,0.06)]">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-3-step-process.jpg"
-              alt="Three step Workflow Audit process: walkthrough, data review, and Money Leak Map."
+              alt="Three step Cash Flow Assessment process: walkthrough, data review, and Money Leak Map."
               width={1280}
               height={960}
               sizes="(min-width: 1024px) 55vw, 100vw"

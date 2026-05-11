@@ -198,13 +198,13 @@ export function ProblemSolutionSection() {
             Stop Losing Customers Today
           </h3>
           <p className="text-sm sm:text-base md:text-lg text-white/70 mb-6 sm:mb-8 max-w-2xl mx-auto font-light leading-relaxed">
-            Get a free response time audit and see exactly how many leads you're missing right now.
+            Get a free response time assessment and see exactly how many leads you're missing right now.
           </p>
           <Button
             size="lg"
             className="bg-white text-black rounded-full px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer"
           >
-            Get Free Response Audit
+            Get Free Response Assessment
             <ArrowRight />
           </Button>
         </div>

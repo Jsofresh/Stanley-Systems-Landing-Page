@@ -24,7 +24,7 @@ const proofSteps: ProofStep[] = [
   {
     eyebrow: 'Stanley step',
     title: 'Audit layer confirms it',
-    detail: 'The Workflow Audit turns the gap into a clean operating rule.',
+    detail: 'The Cash Flow Assessment turns the gap into a clean operating rule.',
     Asset: ShieldCheckDisplayAsset,
   },
   {

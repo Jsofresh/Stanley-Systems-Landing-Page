@@ -22,7 +22,7 @@ export type PricingPackage = {
   waivedSetupDisplay: string | null
   auditCredit: number
   auditCreditDisplay: string
-  auditCreditLabel: "Included" | "If you bought the Workflow Audit first" | "After audit credit"
+  auditCreditLabel: "Included" | "If you bought the Cash Flow Assessment first" | "After assessment credit"
   firstYearCostAfterAuditCredit: number
   firstYearCostAfterAuditCreditDisplay: string
   savings: {
@@ -44,8 +44,8 @@ export type PricingPackage = {
 export const pricingPackages: PricingPackage[] = [
   {
     id: "workflow_audit",
-    publicName: "Workflow Audit",
-    shortCheckoutName: "Workflow Audit",
+    publicName: "Cash Flow Assessment",
+    shortCheckoutName: "Cash Flow Assessment",
     price: 97,
     priceDisplay: "$97",
     billingPeriod: "one_time",
@@ -54,13 +54,13 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetup: false,
     waivedSetupDisplay: null,
     auditCredit: 0,
-    auditCreditDisplay: "Credit source: $97 monthly or $194 yearly if a package is bought within 24 hours after the audit call",
+    auditCreditDisplay: "Credit source: $97 monthly or $194 yearly if a package is bought within 24 hours after the assessment call",
     auditCreditLabel: "Included",
     firstYearCostAfterAuditCredit: 97,
     firstYearCostAfterAuditCreditDisplay: "$97",
     savings: null,
     badge: "Paid first step",
-    cta: "Buy the Workflow Audit",
+    cta: "Buy the Cash Flow Assessment",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_WORKFLOW_AUDIT_PAYMENT_LINK",
       url: "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
@@ -69,7 +69,7 @@ export const pricingPackages: PricingPackage[] = [
     analyticsPackageId: "workflow_audit",
     notes: [
       "Find the money leaks before buying a system.",
-      "Audit credit applies once, requires buying the Workflow Audit first, and is valid for 24 hours after the audit call.",
+      "Assessment credit applies once, requires buying the Cash Flow Assessment first, and is valid for 24 hours after the assessment call.",
     ],
   },
   {
@@ -85,7 +85,7 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: null,
     auditCredit: 97,
     auditCreditDisplay: "-$97",
-    auditCreditLabel: "If you bought the Workflow Audit first",
+    auditCreditLabel: "If you bought the Cash Flow Assessment first",
     firstYearCostAfterAuditCredit: 4866,
     firstYearCostAfterAuditCreditDisplay: "$4,866",
     savings: null,
@@ -111,7 +111,7 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: null,
     auditCredit: 97,
     auditCreditDisplay: "-$97",
-    auditCreditLabel: "If you bought the Workflow Audit first",
+    auditCreditLabel: "If you bought the Cash Flow Assessment first",
     firstYearCostAfterAuditCredit: 8616,
     firstYearCostAfterAuditCreditDisplay: "$8,616",
     savings: null,
@@ -137,7 +137,7 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: null,
     auditCredit: 97,
     auditCreditDisplay: "-$97",
-    auditCreditLabel: "If you bought the Workflow Audit first",
+    auditCreditLabel: "If you bought the Cash Flow Assessment first",
     firstYearCostAfterAuditCredit: 11116,
     firstYearCostAfterAuditCreditDisplay: "$11,116",
     savings: {
@@ -167,11 +167,11 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: "$199 installation waived",
     auditCredit: 194,
     auditCreditDisplay: "-$194",
-    auditCreditLabel: "After audit credit",
+    auditCreditLabel: "After assessment credit",
     firstYearCostAfterAuditCredit: 3616,
     firstYearCostAfterAuditCreditDisplay: "$3,616",
     savings: {
-      label: "Compared with Cashflow Control monthly first year after audit credit",
+      label: "Compared with Cashflow Control monthly first year after assessment credit",
       amount: 1250,
       display: "Save $1,250 in year one vs monthly",
     },
@@ -197,11 +197,11 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: "$349 installation waived",
     auditCredit: 194,
     auditCreditDisplay: "-$194",
-    auditCreditLabel: "After audit credit",
+    auditCreditLabel: "After assessment credit",
     firstYearCostAfterAuditCredit: 6496,
     firstYearCostAfterAuditCreditDisplay: "$6,496",
     savings: {
-      label: "Compared with Repeat Revenue monthly first year after audit credit",
+      label: "Compared with Repeat Revenue monthly first year after assessment credit",
       amount: 2120,
       display: "Save $2,120 in year one vs monthly",
     },
@@ -227,11 +227,11 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: "$449 installation waived",
     auditCredit: 194,
     auditCreditDisplay: "-$194",
-    auditCreditLabel: "After audit credit",
+    auditCreditLabel: "After assessment credit",
     firstYearCostAfterAuditCredit: 8416,
     firstYearCostAfterAuditCreditDisplay: "$8,416",
     savings: {
-      label: "Compared with Both Systems monthly first year after audit credit",
+      label: "Compared with Both Systems monthly first year after assessment credit",
       amount: 2700,
       display: "Save $2,700 vs monthly first year",
     },
@@ -265,7 +265,7 @@ export const workflowAuditPricingPackage = pricingPackageById.workflow_audit
 
 export const pricingSourceOfTruthNotes = [
   "Approved public package names are Cashflow Control System and Repeat Revenue System.",
-  "Bought the Workflow Audit first? Use your audit credit code at checkout.",
-  "$97 audit credit applies to monthly plans; $194 audit credit applies to yearly plans; credit is valid for 24 hours after the audit call and applies once.",
+  "Bought the Cash Flow Assessment first? Use your assessment credit code at checkout.",
+  "$97 assessment credit applies to monthly plans; $194 assessment credit applies to yearly plans; credit is valid for 24 hours after the assessment call and applies once.",
   "Use Stripe Payment Links v1 only; do not add Stripe secret keys or custom Checkout Sessions for this rework phase.",
 ]

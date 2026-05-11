@@ -206,7 +206,7 @@ function AssessmentSection() {
             The Cash Flow Assessment is the paid first step. Stanley looks at where money is being dropped, what it likely costs, and which system should be built first.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <CTALink href={assessmentHref} kind="checkout" location="home_assessment_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" className={greenButton}>
+            <CTALink href={assessmentHref} kind="checkout" location="home_assessment_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" className={greenButton}>
               Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
             <CTALink href={calculatorHref} kind="calculator" location="home_assessment_secondary" analyticsEvent="calculator_cta_clicked" ctaLabel="Calculate the leak" className={darkGhostButton}>

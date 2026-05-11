@@ -70,14 +70,14 @@ export function MobileStickyCTA() {
           analyticsEvent="audit_checkout_clicked"
           analyticsSource="mobile_sticky_cta"
           packageId="workflow_audit"
-          packageName="Workflow Audit"
+          packageName="Cash Flow Assessment"
           billingPeriod="one_time"
-          ctaLabel="Buy Audit"
+          ctaLabel="Start Assessment"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center rounded-full bg-[#15803D] px-4 py-3 text-sm font-semibold text-white"
         >
-          Buy Audit
+          Start Assessment
         </CTALink>
       </div>
     </div>

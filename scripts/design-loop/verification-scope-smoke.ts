@@ -33,7 +33,7 @@ mkdirSync(join(syntheticRunDir, "patch-specs"), { recursive: true })
 const syntheticDomPath = join(syntheticRunDir, "dom", "before", "home.hero.json")
 writeFileSync(
   syntheticDomPath,
-  JSON.stringify({ section_id: "home.hero", text: "Workflow Audit copy with AI-powered public language." }, null, 2),
+  JSON.stringify({ section_id: "home.hero", text: "Cash Flow Assessment copy with AI-powered public language." }, null, 2),
 )
 writeJson(join(syntheticRunDir, "section-registry.json"), {
   run_id: syntheticRunId,

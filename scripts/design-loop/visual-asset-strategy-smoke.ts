@@ -103,10 +103,10 @@ const cases: Array<{ name: string; section: SectionEvidence; expectPass: boolean
   {
     name: "justified_code_only_passes",
     section: {
-      section_name: "Workflow Audit",
+      section_name: "Cash Flow Assessment",
       asset_strategy_hint: "code_only",
       code_only_justification: "Simple CTA section with no process visual need.",
-      text: "Workflow Audit. Find where finished work is not turning into collected cash.",
+      text: "Cash Flow Assessment. Find where finished work is not turning into collected cash.",
       visual_summary: "plain typography and CTA",
     },
     expectPass: true,

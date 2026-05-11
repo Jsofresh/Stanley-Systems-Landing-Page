@@ -77,7 +77,7 @@ export function CalculatorPathSection() {
       data-audit-page="/"
       data-audit-section="home.calculator-path"
       data-audit-priority="4"
-      data-audit-offer="Workflow Audit"
+      data-audit-offer="Cash Flow Assessment"
       data-audit-purpose="Move visitors from the calculator diagnostic into the right paid next step."
       className="relative z-10 scroll-mt-28 overflow-hidden bg-[#F7FAF7] px-5 py-12 sm:scroll-mt-32 sm:px-6 sm:py-14 lg:scroll-mt-36 lg:px-8 lg:py-16"
     >
@@ -126,10 +126,10 @@ export function CalculatorPathSection() {
                 location="homepage_calculator_secondary"
                 analyticsEvent="package_compare_clicked"
                 analyticsSource="homepage_calculator_section"
-                ctaLabel="See how the audit works"
+                ctaLabel="See how the assessment works"
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE0C5] bg-white px-6 py-3 text-sm font-semibold text-[#102033] shadow-[0_10px_22px_rgba(16,32,51,0.05)] transition hover:border-[#15803D]/40 hover:bg-[#F2FBF5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:whitespace-nowrap"
               >
-                See how the audit works
+                See how the assessment works
               </CTALink>
             </div>
           </div>
@@ -157,7 +157,7 @@ export function CalculatorPathSection() {
             </div>
 
             <div className="mt-5 rounded-2xl border border-[#CBEED8] bg-[#EEF9F2] p-4 text-sm font-semibold leading-6 text-[#102033]">
-              Use the calculator to pick the money path. The Workflow Audit turns the range into a practical action map before you buy a system.
+              Use the calculator to pick the money path. The Cash Flow Assessment turns the range into a practical action map before you buy a system.
             </div>
           </div>
         </div>

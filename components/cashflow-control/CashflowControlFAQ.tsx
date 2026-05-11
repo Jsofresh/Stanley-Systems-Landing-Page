@@ -5,7 +5,7 @@ const faqs = [
   ["Does this send invoices automatically?", "When the approved workflow and software permissions support it, yes. If a human decision is required first, the automation routes the missing item to the right technician, office staff, manager, or customer contact instead of silently stalling."],
   ["Does this collect money automatically?", "It can automate the path to the final bill and payment follow-up, but it does not guarantee customer payment or replace your payment processor. The system removes the manual office drag that delays billing and cash collection."],
   ["What happens after I buy?", "Stanley Systems confirms fit, access, tool constraints, data quality, and first implementation scope before build work starts. If the selected package is not the right fit, Stanley Systems can redirect, pause, propose custom scope, or refund before implementation begins."],
-  ["How does the Workflow Audit credit work?", "If you buy Cashflow Control or Repeat Revenue after the audit, your $97 audit fee credits toward the system. If you buy yearly, you get a $194 credit."],
+  ["How does the Cash Flow Assessment credit work?", "If you buy Cashflow Control or Repeat Revenue after the assessment, your $97 assessment fee credits toward the system. If you buy yearly, you get a $194 credit."],
   ["What happens if my setup is not a fit?", "Stanley Systems will tell you. If there is not enough volume, software structure, or office workflow for a system to make sense, you should not be pushed into one."],
 ] as const
 

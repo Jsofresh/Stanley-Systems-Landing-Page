@@ -4,7 +4,7 @@ import { CTALink } from "@/components/cta-link"
 import { plans } from "./tokens"
 
 const auditSteps = [
-  ["1", "Pay $97", "Start with the audit."],
+  ["1", "Pay $97", "Start with the assessment."],
   ["2", "Find the leak", "Use the numbers, not a guess."],
   ["3", "Choose the system", "Buy the first fix with confidence."],
   ["4", "Credit applied", "Get $97 monthly or $194 yearly back."],
@@ -16,10 +16,10 @@ export function WorkflowAuditBridge() {
       <div className="mx-auto grid max-w-7xl gap-7 rounded-[1.35rem] border border-[#C8D8CE] bg-[#F8FBF9] p-6 shadow-[0_18px_46px_rgba(33,51,67,0.08)] lg:grid-cols-[1fr_0.82fr] lg:items-center lg:p-8">
         <div>
           <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
-            Buy the audit first. Let the numbers choose the system.
+            Buy the assessment first. Let the numbers choose the system.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#33475B] sm:text-lg">
-            The Workflow Audit checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the first build fixes the leak that actually costs money.
+            The Cash Flow Assessment checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the first build fixes the leak that actually costs money.
           </p>
           <div className="mt-5 grid gap-3 rounded-2xl border border-[#B7D8C0] bg-white p-3 sm:grid-cols-4">
             {auditSteps.map(([step, title, text]) => (
@@ -34,12 +34,12 @@ export function WorkflowAuditBridge() {
             You do not have to guess whether Repeat Revenue System, Cashflow Control System, or both should come first.
           </p>
           <p className="mt-4 max-w-2xl rounded-xl border border-[#B7D8C0] bg-white px-4 py-3 text-sm font-bold leading-6 text-[#124E25]">
-            If Stanley Systems cannot find one clear money leak we can fix, you get your audit fee back and a free Repeat Revenue System.
+            If Stanley Systems cannot find one clear money leak we can fix, you get your assessment fee back and a free Repeat Revenue System.
           </p>
         </div>
 
         <div className="rounded-[1.2rem] border border-[#C8D8CE] bg-white p-5 text-[#102033] shadow-[0_18px_38px_rgba(33,51,67,0.10)] lg:p-6">
-          <h3 className="text-3xl font-bold tracking-[-0.04em]">Your audit credit is visible before you buy.</h3>
+          <h3 className="text-3xl font-bold tracking-[-0.04em]">Your assessment credit is visible before you buy.</h3>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             <div className="rounded-2xl border border-[#D5DEE8] bg-[#F8FCF9] p-4">
               <p className="text-sm font-bold text-[#516F90]">Monthly package</p>
@@ -60,14 +60,14 @@ export function WorkflowAuditBridge() {
             analyticsEvent="audit_checkout_clicked"
             analyticsSource="repeat_revenue_page"
             packageId="workflow_audit"
-            packageName="Workflow Audit"
+            packageName="Cash Flow Assessment"
             billingPeriod="one_time"
-            ctaLabel="Buy the Workflow Audit"
+            ctaLabel="Buy the Cash Flow Assessment"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
           >
-            Buy the Workflow Audit <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Buy the Cash Flow Assessment <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
           <a href="#scope" className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]">
             Read what is included

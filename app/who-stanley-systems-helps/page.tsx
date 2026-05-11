@@ -5,7 +5,7 @@ import { MarketingPageShell } from "@/components/marketing-page-shell"
 export const metadata: Metadata = {
   title: "Who Stanley Systems Helps | Service Business Workflows",
   description:
-    "See which service businesses Stanley Systems helps most, where cash gets stuck, and when the Workflow Audit is a good fit.",
+    "See which service businesses Stanley Systems helps most, where cash gets stuck, and when the Cash Flow Assessment is a good fit.",
   alternates: {
     canonical: "https://stanley-systems.com/who-stanley-systems-helps",
   },

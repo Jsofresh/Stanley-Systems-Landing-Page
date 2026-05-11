@@ -37,27 +37,27 @@ const sections = [
   {
     title: "No professional or guaranteed outcome",
     body:
-      "Website content, examples, calculator estimates, service descriptions, package descriptions, and checkout pages do not create a guarantee of financial performance, revenue recovery, profit, collected cash, customer volume, review volume, search ranking, call volume, team adoption, platform approval, software availability, or operational outcome, except for the express Workflow Audit guarantee described below. Workflow, invoicing, follow-up, review, referral, call-handling, and cashflow improvements depend on the specific systems, data quality, team behavior, platform rules, access permissions, implementation conditions, and follow-through inside each client business.",
+      "Website content, examples, calculator estimates, service descriptions, package descriptions, and checkout pages do not create a guarantee of financial performance, revenue recovery, profit, collected cash, customer volume, review volume, search ranking, call volume, team adoption, platform approval, software availability, or operational outcome, except for the express Cash Flow Assessment guarantee described below. Workflow, invoicing, follow-up, review, referral, call-handling, and cashflow improvements depend on the specific systems, data quality, team behavior, platform rules, access permissions, implementation conditions, and follow-through inside each client business.",
   },
   {
-    title: "Workflow Audit purchase and guarantee terms",
+    title: "Cash Flow Assessment purchase and guarantee terms",
     body:
-      "The Workflow Audit is paid diagnostic work. The Workflow Audit guarantee applies only to qualified businesses that buy the Workflow Audit and provide the access and cooperation needed for Stanley Systems to perform the audit. If Stanley Systems cannot find one clear money leak it can reasonably help fix for a qualified business, Stanley Systems will refund the Workflow Audit fee.",
+      "The Cash Flow Assessment is paid diagnostic work. The Cash Flow Assessment guarantee applies only to qualified businesses that buy the Cash Flow Assessment and provide the access and cooperation needed for Stanley Systems to perform the assessment. If Stanley Systems cannot find one clear money leak it can reasonably help fix for a qualified business, Stanley Systems will refund the Cash Flow Assessment fee.",
   },
   {
-    title: "Workflow Audit guarantee qualification",
+    title: "Cash Flow Assessment guarantee qualification",
     body:
-      "To qualify for the Workflow Audit guarantee, the business must be active and currently operating, have real job, customer, billing, estimate, review, call, or follow-up activity to inspect, use software or records Stanley Systems can reasonably review, identify a reachable decision maker or operations contact, and provide timely access to the systems and information needed for the audit. Stanley Systems may determine that a business does not qualify if there is not enough real workflow activity to inspect, required access is unavailable, the business is outside Stanley Systems' normal service scope, or the requested outcome depends on factors Stanley Systems cannot reasonably evaluate or influence.",
+      "To qualify for the Cash Flow Assessment guarantee, the business must be active and currently operating, have real job, customer, billing, estimate, review, call, or follow-up activity to inspect, use software or records Stanley Systems can reasonably review, identify a reachable decision maker or operations contact, and provide timely access to the systems and information needed for the assessment. Stanley Systems may determine that a business does not qualify if there is not enough real workflow activity to inspect, required access is unavailable, the business is outside Stanley Systems' normal service scope, or the requested outcome depends on factors Stanley Systems cannot reasonably evaluate or influence.",
   },
   {
-    title: "Workflow Audit guarantee scope",
+    title: "Cash Flow Assessment guarantee scope",
     body:
-      "The money-back portion of the guarantee applies to the Workflow Audit fee only. It does not include a free system build, implementation work, third-party software costs, subscription fees, advertising spend, phone/message costs, payment processing fees, package credits, or other outside charges. If the Workflow Audit fee is refunded because no clear fix is found, no audit credit or package credit is also owed.",
+      "The money-back portion of the guarantee applies to the Cash Flow Assessment fee only. It does not include a free system build, implementation work, third-party software costs, subscription fees, advertising spend, phone/message costs, payment processing fees, package credits, or other outside charges. If the Cash Flow Assessment fee is refunded because no clear fix is found, no assessment credit or package credit is also owed.",
   },
   {
-    title: "Audit credit terms",
+    title: "Assessment credit terms",
     body:
-      "If a buyer purchases the Workflow Audit first and later buys a package within 24 hours after the audit call, the audit credit may be applied once to the package purchase according to the active checkout terms. Monthly package purchases receive a $97 audit credit. Yearly package purchases receive a $194 audit credit and the installation fee is waived. Audit credit availability depends on the active checkout link, promotion code, or written Stanley Systems confirmation at the time of purchase. Audit credits are not cash-equivalent, do not stack with a Workflow Audit refund, and are not owed if the Workflow Audit fee is refunded.",
+      "If a buyer purchases the Cash Flow Assessment first and later buys a package within 24 hours after the assessment call, the assessment credit may be applied once to the package purchase according to the active checkout terms. Monthly package purchases receive a $97 assessment credit. Yearly package purchases receive a $194 assessment credit and the installation fee is waived. Assessment credit availability depends on the active checkout link, promotion code, or written Stanley Systems confirmation at the time of purchase. Assessment credits are not cash-equivalent, do not stack with a Cash Flow Assessment refund, and are not owed if the Cash Flow Assessment fee is refunded.",
   },
   {
     title: "Direct package purchase and onboarding review",
@@ -82,7 +82,7 @@ const sections = [
   {
     title: "Service discussions, proposals, checkout, and written scope",
     body:
-      "Submitting a form, scheduling a call, buying a Workflow Audit, buying a package, or exchanging messages with Stanley Systems does not create obligations beyond the specific purchased item and any written scope confirmed by Stanley Systems. Proposals, onboarding plans, implementation recommendations, package redirects, and checkout descriptions are informational until confirmed through checkout terms or a direct written agreement. Stanley Systems reserves the right to decline inquiries, refund purchases, redirect buyers, pause starts, or propose custom terms at its discretion.",
+      "Submitting a form, scheduling a call, buying a Cash Flow Assessment, buying a package, or exchanging messages with Stanley Systems does not create obligations beyond the specific purchased item and any written scope confirmed by Stanley Systems. Proposals, onboarding plans, implementation recommendations, package redirects, and checkout descriptions are informational until confirmed through checkout terms or a direct written agreement. Stanley Systems reserves the right to decline inquiries, refund purchases, redirect buyers, pause starts, or propose custom terms at its discretion.",
   },
   {
     title: "Intellectual property",
@@ -163,7 +163,7 @@ export default function TermsAndConditionsPage() {
               {sections.map((section) => (
                 <div
                   key={section.title}
-                  id={section.title === "Workflow Audit purchase and guarantee terms" ? "audit-guarantee-terms" : undefined}
+                  id={section.title === "Cash Flow Assessment purchase and guarantee terms" ? "audit-guarantee-terms" : undefined}
                   className="scroll-mt-28 border-t border-[#efe7db] pt-8 first:border-t-0 first:pt-0"
                 >
                   <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{section.title}</h2>

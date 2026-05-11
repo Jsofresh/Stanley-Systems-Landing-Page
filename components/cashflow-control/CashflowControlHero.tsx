@@ -25,12 +25,12 @@ export function CashflowControlHero() {
             <CTALink href={plans.cashflowMonthly.stripePaymentLink.url} kind="checkout" location="cashflow_hero_primary" analyticsEvent="package_checkout_clicked" analyticsSource="cashflow_control_page" packageId={plans.cashflowMonthly.analyticsPackageId} packageName="Cashflow Control System" billingPeriod="monthly" ctaLabel="Start Cashflow Control" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full bg-[#15803D] px-7 py-4 text-base font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">
               Start Cashflow Control <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
             </CTALink>
-            <CTALink href={plans.workflowAudit.stripePaymentLink.url} kind="checkout" location="cashflow_hero_audit" analyticsEvent="audit_checkout_clicked" analyticsSource="cashflow_control_page" packageId="workflow_audit" packageName="Workflow Audit" billingPeriod="one_time" ctaLabel="Start with the Workflow Audit" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-7 py-4 text-base font-extrabold text-[#116832] shadow-[0_10px_24px_rgba(16,32,51,0.05)] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">
-              Start with the Workflow Audit
+            <CTALink href={plans.workflowAudit.stripePaymentLink.url} kind="checkout" location="cashflow_hero_audit" analyticsEvent="audit_checkout_clicked" analyticsSource="cashflow_control_page" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start with the Cash Flow Assessment" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-7 py-4 text-base font-extrabold text-[#116832] shadow-[0_10px_24px_rgba(16,32,51,0.05)] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">
+              Start with the Cash Flow Assessment
             </CTALink>
           </div>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#607080]">
-            Your audit fee credits toward Cashflow Control or Repeat Revenue. Yearly buyers get a $194 credit.
+            Your assessment fee credits toward Cashflow Control or Repeat Revenue. Yearly buyers get a $194 credit.
           </p>
         </div>
 

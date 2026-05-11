@@ -34,23 +34,23 @@ const systems = [
 
 const pricingPreview = [
   {
-    name: "Workflow Audit",
+    name: "Cash Flow Assessment",
     price: pricingPackageById.workflow_audit.priceDisplay,
     note: "Paid diagnostic before a build.",
     href: "#final-audit",
-    cta: "See the audit step",
+    cta: "See the assessment step",
   },
   {
     name: "Cashflow Control",
     price: pricingPackageById.cashflow_control_monthly.priceDisplay,
-    note: `${pricingPackageById.cashflow_control_monthly.setupFeeDisplay}. Audit credit can apply.`,
+    note: `${pricingPackageById.cashflow_control_monthly.setupFeeDisplay}. Assessment credit can apply.`,
     href: cashflowHref,
     cta: "View system",
   },
   {
     name: "Repeat Revenue",
     price: pricingPackageById.repeat_revenue_monthly.priceDisplay,
-    note: `${pricingPackageById.repeat_revenue_monthly.setupFeeDisplay}. Audit credit can apply.`,
+    note: `${pricingPackageById.repeat_revenue_monthly.setupFeeDisplay}. Assessment credit can apply.`,
     href: repeatRevenueHref,
     cta: "View system",
   },
@@ -167,10 +167,10 @@ export function PricingSection() {
               location="homepage_pricing_audit"
               analyticsEvent="package_compare_clicked"
               analyticsSource="homepage_pricing_preview"
-              ctaLabel="See how the audit works"
+              ctaLabel="See how the assessment works"
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d6e5ca] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:border-[#15803D]/40 hover:bg-[#f2fbf5]"
             >
-              See how the audit works
+              See how the assessment works
             </CTALink>
           </div>
         </div>

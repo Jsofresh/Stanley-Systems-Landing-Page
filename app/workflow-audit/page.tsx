@@ -9,11 +9,11 @@ import { FitAccessPricing } from "@/components/workflow-audit/FitAccessPricing"
 import { WorkflowAuditFAQ } from "@/components/workflow-audit/WorkflowAuditFAQ"
 
 export const metadata: Metadata = {
-  title: "Workflow Audit | Stanley Systems",
+  title: "Cash Flow Assessment | Stanley Systems",
   description: "Find the money leaks hiding inside your office workflow before buying a system.",
   alternates: { canonical: "https://stanley-systems.com/workflow-audit" },
   openGraph: {
-    title: "Workflow Audit | Stanley Systems",
+    title: "Cash Flow Assessment | Stanley Systems",
     description: "Find the money leaks hiding inside your office workflow before buying a system.",
     url: "https://stanley-systems.com/workflow-audit",
     siteName: "Stanley Systems",

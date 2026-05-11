@@ -260,7 +260,7 @@ export default function StanleySystemsCaseStudyPage() {
                   href="/pricing#workflow-audit"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-slate-100"
                 >
-                  Start with the Workflow Audit
+                  Start with the Cash Flow Assessment
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link

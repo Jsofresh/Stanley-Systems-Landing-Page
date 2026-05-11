@@ -18,14 +18,14 @@ export function RepeatRevenueFAQ() {
               analyticsEvent="audit_checkout_clicked"
               analyticsSource="repeat_revenue_page"
               packageId="workflow_audit"
-              packageName="Workflow Audit"
+              packageName="Cash Flow Assessment"
               billingPeriod="one_time"
-              ctaLabel="Start with the Workflow Audit"
+              ctaLabel="Start with the Cash Flow Assessment"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
             >
-              Start with the Workflow Audit
+              Start with the Cash Flow Assessment
             </CTALink>
             <CTALink
               href={repeatMonthly.stripePaymentLink.url}

@@ -53,18 +53,18 @@ export function RepeatRevenueHero() {
               analyticsEvent="audit_checkout_clicked"
               analyticsSource="repeat_revenue_page"
               packageId="workflow_audit"
-              packageName="Workflow Audit"
+              packageName="Cash Flow Assessment"
               billingPeriod="one_time"
-              ctaLabel="Start with the Workflow Audit"
+              ctaLabel="Start with the Cash Flow Assessment"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-7 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]"
             >
-              Start with the Workflow Audit
+              Start with the Cash Flow Assessment
             </CTALink>
           </div>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#33475B]">
-            Audit credit: $97 off monthly or $194 off yearly. Yearly saves 20% and waives installation.
+            Assessment credit: $97 off monthly or $194 off yearly. Yearly saves 20% and waives installation.
           </p>
         </div>
 

@@ -11,12 +11,12 @@ export function RepeatRevenuePricing() {
             Choose the path that matches the leak.
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#33475B] sm:text-lg">
-            Buy the package that matches the problem you already know, or start with the audit and let the numbers choose the first build.
+            Buy the package that matches the problem you already know, or start with the assessment and let the numbers choose the first build.
           </p>
         </div>
 
         <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-[#B7D8C0] bg-white px-5 py-3 text-center text-sm font-extrabold text-[#124E25] shadow-[0_12px_30px_rgba(33,51,67,0.06)]">
-          Yearly plans show the rounded monthly price first, bill yearly, remove the installation fee, and double the audit credit to $194.
+          Yearly plans show the rounded monthly price first, bill yearly, remove the installation fee, and double the assessment credit to $194.
         </div>
 
         <PackagePricingGrid

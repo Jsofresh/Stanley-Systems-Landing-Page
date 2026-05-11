@@ -4,7 +4,7 @@ const systemLabels: Record<PricingCalculatorContext["recommendedSystem"], string
   cash_collection_system: "Cashflow Control System",
   follow_up_system: "Repeat Revenue System",
   both: "Both Systems",
-  none: "the audit-only path",
+  none: "the assessment-only path",
   unknown: "the Cash Flow Assessment",
 }
 

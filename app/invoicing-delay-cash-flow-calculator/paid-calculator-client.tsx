@@ -261,7 +261,7 @@ export function PaidInvoicingDelayCalculatorClient() {
               </div>
               <p className="mt-3 text-base leading-7 text-slate-600">
                 {highSeverity
-                  ? "When completed work keeps sitting before billing, the business usually feels it in slower cash, office cleanup, and more owner rescue work. If you want, the next step is a short billing audit."
+                  ? "When completed work keeps sitting before billing, the business usually feels it in slower cash, office cleanup, and more owner rescue work. If you want, the next step is a short billing assessment."
                   : "This looks like a fixable office-step issue. Start with the checklist, then book a short review if you want help tightening the billing path."}
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -270,7 +270,7 @@ export function PaidInvoicingDelayCalculatorClient() {
                   onClick={() => track("stanley_paid_calc_booking_cta_clicked", { severity: result.severity, trade })}
                   className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#166534]"
                 >
-                  {highSeverity ? "Book a 15-minute billing audit" : "Book a review call"}
+                  {highSeverity ? "Book a 15-minute billing assessment" : "Book a review call"}
                 </a>
                 <a
                   href="mailto:hello@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist"

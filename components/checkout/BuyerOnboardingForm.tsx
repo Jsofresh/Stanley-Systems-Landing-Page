@@ -7,7 +7,7 @@ import { ArrowRight, CalendarDays, CheckCircle2, ClipboardCheck, Mail, ShieldChe
 import { trackOnboardingFormStarted, trackOnboardingFormSubmitted } from "@/components/posthog-provider"
 
 const whatBoughtOptions = [
-  "Workflow Audit",
+  "Cash Flow Assessment",
   "Cashflow Control System — monthly",
   "Cashflow Control System — yearly",
   "Repeat Revenue System — monthly",
@@ -25,8 +25,8 @@ const accessReadinessOptions = [
 ]
 
 const boughtPrefillMap: Record<string, string> = {
-  workflow_audit: "Workflow Audit",
-  audit: "Workflow Audit",
+  workflow_audit: "Cash Flow Assessment",
+  audit: "Cash Flow Assessment",
   cashflow_control_monthly: "Cashflow Control System — monthly",
   cashflow_control_yearly: "Cashflow Control System — yearly",
   repeat_revenue_monthly: "Repeat Revenue System — monthly",

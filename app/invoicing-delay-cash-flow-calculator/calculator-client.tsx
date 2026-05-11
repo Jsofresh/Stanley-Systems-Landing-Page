@@ -135,7 +135,7 @@ const faqItems = [
   {
     question: "I have been burned by consultants before. Why is this different?",
     answer:
-      "Stanley Systems is not selling a giant strategy deck. The audit finds specific money leaks, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
+      "Stanley Systems is not selling a giant strategy deck. The assessment finds specific money leaks, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
   },
 ]
 

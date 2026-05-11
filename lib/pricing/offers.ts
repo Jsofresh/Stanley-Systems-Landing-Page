@@ -323,7 +323,7 @@ export const workflowAuditOffer: WorkflowAuditOffer = {
   guarantee: {
     headline: "If Stanley Systems cannot find one clear money leak we can fix, you get your Cash Flow Assessment fee back.",
     qualificationCopy:
-      "The guarantee applies to qualified service businesses with enough job, invoice, customer, call, estimate, or review volume for leaks to matter. Stanley Systems needs access to the relevant systems and a reachable decision maker or operations contact during the audit.",
+      "The guarantee applies to qualified service businesses with enough job, invoice, customer, call, estimate, or review volume for leaks to matter. Stanley Systems needs access to the relevant systems and a reachable decision maker or operations contact during the assessment.",
     scopeCopy: "The refund applies to the Cash Flow Assessment fee only. It does not include a system build.",
   },
 }
@@ -358,7 +358,7 @@ export const pricingFAQItems: PricingFAQItem[] = [
   {
     question: "Who qualifies for the Cash Flow Assessment guarantee?",
     answer:
-      "The guarantee is for active service businesses with enough real job, customer, billing, estimate, review, call, or follow-up activity to inspect. Stanley Systems also needs timely access to the relevant tools or records and a reachable decision maker or operations contact during the audit.",
+      "The guarantee is for active service businesses with enough real job, customer, billing, estimate, review, call, or follow-up activity to inspect. Stanley Systems also needs timely access to the relevant tools or records and a reachable decision maker or operations contact during the assessment.",
   },
   {
     question: "Can I buy Cashflow Control System or Repeat Revenue System directly?",

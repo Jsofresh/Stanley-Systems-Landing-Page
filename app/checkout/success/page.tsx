@@ -16,7 +16,7 @@ const nextSteps = [
     copy: "Tell Stanley Systems about your shop, your tools, and the leak you want fixed first.",
   },
   {
-    title: "Book your kickoff or audit call",
+    title: "Book your kickoff or assessment call",
     copy: "Choose a time so Stanley Systems can review the right workflow with you.",
   },
   {
@@ -24,8 +24,8 @@ const nextSteps = [
     copy: "Stanley Systems checks your tools, access needs, and fit before setup begins.",
   },
   {
-    title: "We begin setup or audit",
-    copy: "If you bought the Workflow Audit, Stanley Systems starts the audit. If you bought a system, Stanley Systems starts onboarding and implementation.",
+    title: "We begin setup or assessment",
+    copy: "If you bought the Cash Flow Assessment, Stanley Systems starts the assessment. If you bought a system, Stanley Systems starts onboarding and implementation.",
   },
 ]
 
