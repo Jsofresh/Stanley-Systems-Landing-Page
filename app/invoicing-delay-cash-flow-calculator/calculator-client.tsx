@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react"
+import { CTALink } from "@/components/cta-link"
 import {
   CheckCircleDisplayAsset,
   DollarCircleDisplayAsset,
@@ -129,7 +130,7 @@ const faqItems = [
   {
     question: "What if we are not sure where the real problem is?",
     answer:
-      "That is exactly what the Workflow Audit is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat revenue. You leave knowing which leak matters first.",
+      "That is exactly what the Cash Flow Assessment is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat revenue. You leave knowing which leak matters first.",
   },
   {
     question: "I have been burned by consultants before. Why is this different?",
@@ -713,7 +714,7 @@ export function InvoicingDelayCalculatorClient() {
     const customerRevenueShare = totalImpact > 0 ? customerRevenueImpact / totalImpact : 0
     const bothMeaningful = cashflowShare >= 0.35 && customerRevenueShare >= 0.35
 
-    let recommendedFirstMove = "Use the Workflow Audit to decide which leak gets fixed first."
+    let recommendedFirstMove = "Use the Cash Flow Assessment to decide which leak gets fixed first."
     if (!bothMeaningful && cashflowImpact > 0 && customerRevenueImpact === 0) recommendedFirstMove = "Start with the Cashflow Control System."
     else if (!bothMeaningful && customerRevenueImpact > 0 && cashflowImpact === 0) recommendedFirstMove = "Start with the Repeat Revenue System."
     else if (!bothMeaningful && cashflowShare >= 0.6) recommendedFirstMove = "Start with the Cashflow Control System."
@@ -828,7 +829,7 @@ export function InvoicingDelayCalculatorClient() {
     if (step === "intro") {
       return (
         <StepFrame {...frameProps}
-          title="Find the money already sitting inside your business."
+          title="Find the money left on the table in your business."
           continueLabel="Start the calculator"
         >
           <div className="mx-auto mt-4 box-border w-full max-w-5xl rounded-[1.45rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#effaf2_0%,#ffffff_100%)] p-5 text-left sm:mt-6 sm:rounded-[1.9rem] sm:p-6">
@@ -1077,9 +1078,7 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "results") {
       const summary = resultSummary
-      const ctaLabel = summary.hasMeaningfulLeak
-        ? `Find where ${summary.formattedCTAValue}/month is still stuck`
-        : "Start the Workflow Audit"
+      const ctaLabel = "Start the Cash Flow Assessment"
       const monthlyRange = summary.formattedMonthlyRange
 
       return (
@@ -1089,10 +1088,10 @@ export function InvoicingDelayCalculatorClient() {
               <div className="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2">
                 <div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: "33%" }} />
               </div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Leak summary · 1 of 3</p>
-              <h1 className="mx-auto mt-4 max-w-3xl text-[2.2rem] font-semibold leading-[1.02] tracking-[-0.045em] text-slate-950 sm:text-[3.8rem] lg:text-[4.6rem]">Your business may be leaving</h1>
-              <div className="calculator-result-value mx-auto mt-4 max-w-5xl break-words text-[2.85rem] font-medium leading-[0.96] tracking-[-0.028em] text-[#b42318] [font-variant-numeric:tabular-nums] sm:text-[4.8rem] lg:text-[5.6rem]">{summary.hasMeaningfulLeak ? `${summary.formattedHeadlineRange}/year` : "money on the table"}</div>
-              <p className="mx-auto mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-700 sm:text-xl">{summary.hasMeaningfulLeak ? "inside work, customers, and follow-up you already paid for." : "The safest next step is checking the real records before making a bigger claim."}</p>
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Money left on the table · 1 of 3</p>
+              <h1 className="mx-auto mt-4 max-w-3xl text-[2.2rem] font-semibold leading-[1.02] tracking-[-0.045em] text-slate-950 sm:text-[3.8rem] lg:text-[4.6rem]">Estimated money left on the table</h1>
+              <div className="calculator-result-value mx-auto mt-4 max-w-5xl break-words text-[3.1rem] font-semibold leading-[0.92] tracking-[-0.04em] text-[#b42318] [font-variant-numeric:tabular-nums] sm:text-[5.4rem] lg:text-[6.4rem]">{summary.hasMeaningfulLeak ? `${summary.formattedHeadlineRange}/year` : "money left on the table"}</div>
+              <p className="mx-auto mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-700 sm:text-xl">{summary.hasMeaningfulLeak ? "That is the annual leak estimate from slow invoices, missed calls, forgotten follow-up, and untouched customer records." : "The safest next step is checking the real records before making a bigger claim."}</p>
               <div className="mx-auto mt-7 max-w-3xl rounded-[1.4rem] border border-[#f3b7af] bg-[#fff1ef] p-5 text-left shadow-[0_16px_42px_rgba(180,35,24,0.08)]">
                 <div className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#b42318]">Cost of waiting</div>
                 <p className="mt-2 text-lg font-semibold leading-8 text-slate-950">
@@ -1104,8 +1103,8 @@ export function InvoicingDelayCalculatorClient() {
                 </p>
               </div>
               <div className="mx-auto mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
-                <Link href={auditHref} data-analytics-event="workflow_audit_clicked" data-analytics-source="calculator_result_yearly" data-cta-label={ctaLabel} data-cta-location="calculator_result_yearly" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#166534]">See the packages and audit <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <button type="button" onClick={() => next("resultDiagnosis")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">Continue to what is stuck <ArrowRight className="ml-2 h-4 w-4" /></button>
+                <CTALink href={auditHref} kind="internal_page" location="calculator_result_yearly" analyticsSource="calculator_result_yearly" ctaLabel={ctaLabel} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#166534]">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+                <button type="button" onClick={() => next("resultDiagnosis")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">See what is stuck <ArrowRight className="ml-2 h-4 w-4" /></button>
               </div>
               <button type="button" onClick={back} className="mt-5 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">← Back to inputs</button>
             </div>
@@ -1116,7 +1115,7 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "resultDiagnosis") {
       const summary = resultSummary
-      const ctaLabel = summary.hasMeaningfulLeak ? `Find where ${summary.formattedCTAValue}/month is still stuck` : "Start the Workflow Audit"
+      const ctaLabel = "Start the Cash Flow Assessment"
       return (
         <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6" data-calculator-result-page="diagnosis">
           <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
@@ -1127,8 +1126,8 @@ export function InvoicingDelayCalculatorClient() {
                 <div className="box-border flex flex-col rounded-[1.25rem] border border-[#dcefe0] bg-[#fbfaf7] p-5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]"><div className="flex items-center gap-3"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f4fbf5] [&_[data-stanley-display-asset=true]>img]:scale-[1.2] [&_[data-stanley-display-asset=true]>img]:mix-blend-multiply"><DollarCircleDisplayAsset size={27} decorative /></span><h2 className="min-w-0 text-2xl font-semibold leading-7 tracking-tight text-slate-950">Cash earned, still stuck</h2></div><div className="calculator-result-value mt-3 break-words text-[2.25rem] font-medium leading-[1.02] tracking-[-0.025em] text-slate-950 [font-variant-numeric:tabular-nums] sm:text-[2.85rem]">{summary.formattedCardValues.cashMonthly}/month</div><p className="mt-3 text-base font-semibold leading-7 text-slate-900">Finished jobs are done. Billing and collection are still dragging.</p>{summary.selectedCashDriver ? <p className="mt-3 w-fit max-w-full rounded-full border border-[#dcefe0] bg-white px-3 py-1.5 text-sm font-semibold leading-5 text-slate-800">Biggest drag: {summary.selectedCashDriver.label}</p> : null}<p className="mt-auto pt-4 text-sm font-semibold leading-5 text-slate-500">Annualized cash check value: {summary.formattedCardValues.cashAnnual}</p></div>
                 <div className="box-border flex flex-col rounded-[1.25rem] border border-[#dcefe0] bg-[#fbfaf7] p-5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]"><div className="flex items-center gap-3"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f4fbf5] [&_[data-stanley-display-asset=true]>img]:scale-[1.2] [&_[data-stanley-display-asset=true]>img]:mix-blend-multiply"><UsersDisplayAsset size={27} decorative /></span><h2 className="min-w-0 text-2xl font-semibold leading-7 tracking-tight text-slate-950">Past customers, still untouched</h2></div><div className="calculator-result-value mt-3 break-words text-[2.25rem] font-medium leading-[1.02] tracking-[-0.025em] text-slate-950 [font-variant-numeric:tabular-nums] sm:text-[2.85rem]">{summary.formattedCardValues.customerMonthly}/month</div><p className="mt-3 text-base font-semibold leading-7 text-slate-900">Saved customers and missed calls are not turning into booked jobs.</p>{summary.selectedCustomerDriver ? <p className="mt-3 w-fit max-w-full rounded-full border border-[#dcefe0] bg-white px-3 py-1.5 text-sm font-semibold leading-5 text-slate-800">Biggest drag: {summary.selectedCustomerDriver.label}</p> : null}<p className="mt-auto pt-4 text-sm font-semibold leading-5 text-slate-500">Annualized customer check value: {summary.formattedCardValues.customerAnnual}</p></div>
               </div>
-              <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]"><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><p className="text-sm leading-7 text-slate-700"><span className="font-semibold text-slate-950">Plain English:</span> You already paid for the crew, the customer, and the office time. The money still waits because the follow-up depends on someone remembering. <span className="font-semibold text-slate-950">More leads make this leak bigger.</span></p></div><div className="rounded-[1.15rem] border border-[#bfe5c7] bg-[#eef9f2] p-4 text-left"><div className="text-base font-semibold tracking-tight text-slate-950">Recommended first move: Workflow Audit</div><p className="mt-1 text-sm leading-6 text-slate-700">Check the real records. Find the first leak. Stop the repeat.</p></div></div>
-              <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-center"><Link href={auditHref} data-analytics-event="workflow_audit_clicked" data-analytics-source="calculator_result_diagnosis" data-cta-label={ctaLabel} data-cta-location="calculator_result_diagnosis" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#166534] sm:text-base">{ctaLabel} <ArrowRight className="ml-2 h-4 w-4" /></Link><button type="button" onClick={() => next("resultMath")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-[#f4efe6] sm:text-base">Continue to the math <ArrowRight className="ml-2 h-4 w-4" /></button><button type="button" onClick={() => next("resultMath")} className="inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-xs font-semibold text-slate-500 transition hover:text-slate-900">See the math</button></div>
+              <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]"><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><p className="text-sm leading-7 text-slate-700"><span className="font-semibold text-slate-950">Plain English:</span> You already paid for the crew, the customer, and the office time. The money still waits because the follow-up depends on someone remembering. <span className="font-semibold text-slate-950">More leads make this leak bigger.</span></p></div><div className="rounded-[1.15rem] border border-[#bfe5c7] bg-[#eef9f2] p-4 text-left"><div className="text-base font-semibold tracking-tight text-slate-950">Recommended first move: Cash Flow Assessment</div><p className="mt-1 text-sm leading-6 text-slate-700">Check the real records. Find the first leak. Stop the repeat.</p></div></div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-center"><CTALink href={auditHref} kind="internal_page" location="calculator_result_diagnosis" analyticsSource="calculator_result_diagnosis" ctaLabel={ctaLabel} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#166534] sm:text-base">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink><button type="button" onClick={() => next("resultMath")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-[#f4efe6] sm:text-base">Continue to the math <ArrowRight className="ml-2 h-4 w-4" /></button><button type="button" onClick={() => next("resultMath")} className="inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-xs font-semibold text-slate-500 transition hover:text-slate-900">See the math</button></div>
               <button type="button" onClick={back} className="mt-4 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">← Back to leak summary</button>
             </div>
           </div>
@@ -1138,7 +1137,7 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "resultMath") {
       const summary = resultSummary
-      const ctaLabel = summary.hasMeaningfulLeak ? `Find where ${summary.formattedCTAValue}/month is still stuck` : "Start the Workflow Audit"
+      const ctaLabel = "Start the Cash Flow Assessment"
       return (
         <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6" data-calculator-result-page="math">
           <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
@@ -1147,7 +1146,7 @@ export function InvoicingDelayCalculatorClient() {
               <div className="text-center"><p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Math · 3 of 3</p><h1 className="mx-auto mt-3 max-w-3xl text-[2rem] font-semibold leading-[1.04] tracking-[-0.045em] text-slate-950 sm:text-[3rem] lg:text-[3.5rem]">The math behind the estimate</h1><p className="mx-auto mt-3 max-w-3xl text-sm font-semibold leading-7 text-slate-700 sm:text-lg">These numbers are rounded. They are meant to show where the leak may be, not guarantee exact revenue.</p></div>
               <div className="mt-6 grid gap-4 lg:grid-cols-3"><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Cash earned, still stuck</h2><p className="mt-3 text-sm leading-6 text-slate-700">Estimated monthly drag: <span className="font-semibold text-slate-950">{summary.formattedCardValues.cashMonthly}</span></p><p className="mt-1 text-sm leading-6 text-slate-700">Annualized value: <span className="font-semibold text-slate-950">{summary.formattedCardValues.cashAnnual}</span></p><p className="mt-3 text-sm leading-6 text-slate-600">Driven by slow invoice drag, open balances, billing delay, and manual office checks.</p></div><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Past customers, still untouched</h2><p className="mt-3 text-sm leading-6 text-slate-700">Estimated monthly drag: <span className="font-semibold text-slate-950">{summary.formattedCardValues.customerMonthly}</span></p><p className="mt-1 text-sm leading-6 text-slate-700">Annualized value: <span className="font-semibold text-slate-950">{summary.formattedCardValues.customerAnnual}</span></p><p className="mt-3 text-sm leading-6 text-slate-600">Driven by saved customer records, missed calls, weak repeat follow-up, review gaps, and referral gaps.</p></div><div className="rounded-[1.15rem] border border-[#f3b7af] bg-[#fff1ef] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Combined check</h2><p className="mt-3 text-sm leading-6 text-slate-700">Monthly leak: <span className="font-semibold text-[#b42318]">{summary.formattedMonthlyRange}</span></p><p className="mt-1 text-sm leading-6 text-slate-700">Yearly leak: <span className="font-semibold text-[#b42318]">{summary.formattedHeadlineRange}</span></p><p className="mt-3 text-sm font-semibold leading-6 text-[#b42318]">Cost of waiting: every month the system stays manual, the same leak can repeat.</p></div></div>
               <div className="mt-5 rounded-[1.15rem] border border-[#cfe8d5] bg-[#f4fbf5] p-4 text-left"><div className="text-xs font-semibold uppercase tracking-[0.12em] text-[#15803D]">Monthly leak estimate</div><p className="mt-2 text-base font-semibold leading-7 text-slate-950">{summary.equationText}</p>{summary.equationComponents.length ? <div className="mt-3 flex flex-wrap gap-2">{summary.equationComponents.map((component) => <span key={component.label} className="rounded-full border border-[#bfe5c7] bg-white px-3 py-1 text-xs font-semibold text-slate-700">{component.label}: {component.displayValue}</span>)}</div> : null}</div>
-              <div className="mt-5 grid gap-3 rounded-[1.15rem] border border-[#bfe5c7] bg-[linear-gradient(135deg,#eef9f2_0%,#ffffff_52%,#e9f7ed_100%)] p-4 text-left lg:grid-cols-[1fr_auto] lg:items-center"><div><h2 className="text-xl font-semibold tracking-tight text-slate-950">Want the real records checked?</h2><p className="mt-1 text-sm leading-6 text-slate-700">The calculator estimates the leak. The Workflow Audit checks the actual records and shows what should be fixed first.</p></div><Link href={auditHref} data-analytics-event="workflow_audit_clicked" data-analytics-source="calculator_result_math" data-cta-label={ctaLabel} data-cta-location="calculator_result_math" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#166534] sm:text-base">{ctaLabel} <ArrowRight className="ml-2 h-4 w-4" /></Link></div>
+              <div className="mt-5 grid gap-3 rounded-[1.15rem] border border-[#bfe5c7] bg-[linear-gradient(135deg,#eef9f2_0%,#ffffff_52%,#e9f7ed_100%)] p-4 text-left lg:grid-cols-[1fr_auto] lg:items-center"><div><h2 className="text-xl font-semibold tracking-tight text-slate-950">Want the real records checked?</h2><p className="mt-1 text-sm leading-6 text-slate-700">The calculator estimates the leak. The Cash Flow Assessment checks the actual records and shows what should be fixed first.</p></div><CTALink href={auditHref} kind="internal_page" location="calculator_result_math" analyticsSource="calculator_result_math" ctaLabel={ctaLabel} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#166534] sm:text-base">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink></div>
               <div className="mt-5 flex flex-wrap items-center justify-center gap-2"><button type="button" onClick={back} className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">← Back to results</button><Link href={auditHref} className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-[#f4efe6]">See all packages</Link><Link href="/" className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">Back to site</Link></div>
             </div>
           </div>
