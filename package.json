@@ -32,7 +32,10 @@
     "design-loop:verification-smoke": "node --experimental-strip-types scripts/design-loop/verification-scope-smoke.ts",
     "design-loop:handoff-bridge": "node --experimental-strip-types scripts/design-loop/agent-handoff-bridge.ts",
     "design-loop:handoff-bridge:smoke": "node --experimental-strip-types scripts/design-loop/agent-handoff-bridge-smoke.ts",
-    "design-loop:run": "node --experimental-strip-types scripts/design-loop/run-design-loop.ts"
+    "design-loop:run": "node --experimental-strip-types scripts/design-loop/run-design-loop.ts",
+    "stanley:preview:fast": "bash scripts/stanley-start-fast-preview.sh",
+    "stanley:preview:fast:stop": "bash scripts/stanley-stop-fast-preview.sh",
+    "stanley:qa:home": "node scripts/stanley-fast-homepage-qa.js"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

@@ -26,7 +26,7 @@ export function MobileStickyCTA() {
 
   useEffect(() => {
     const sections = [
-      { element: document.getElementById("audit"), setter: setAuditInView },
+      { element: document.getElementById("audit") ?? document.getElementById("assessment"), setter: setAuditInView },
       { element: document.getElementById("systems"), setter: setSystemsInView },
       { element: document.getElementById("proof"), setter: setProofInView },
     ].filter((item): item is { element: HTMLElement; setter: (value: boolean) => void } => Boolean(item.element))
@@ -75,9 +75,9 @@ export function MobileStickyCTA() {
           ctaLabel="Start $97 Assessment"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex flex-1 items-center justify-center rounded-full bg-[#15803D] px-4 py-3 text-sm font-semibold text-white"
+          className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-full bg-[#15803D] px-3 py-3 text-[13px] font-semibold text-white"
         >
-          Start $97 Assessment
+          Start $97
         </CTALink>
       </div>
     </div>
