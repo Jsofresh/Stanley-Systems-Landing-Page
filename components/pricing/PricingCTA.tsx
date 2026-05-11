@@ -10,7 +10,7 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
         Find the leak before you pay for the fix.
       </h2>
       <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-[#536173] sm:text-lg">
-        Start with the Workflow Audit. Stanley Systems will show you which money leak is worth fixing first.
+        Start with the Cash Flow Assessment. Stanley Systems will show you which money leak is worth fixing first.
       </p>
       <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
         <CTALink
@@ -22,10 +22,10 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
           packageId={primaryOffer.analyticsPackageId}
           packageName={primaryOffer.packageName}
           billingPeriod={primaryOffer.billingPeriod}
-          ctaLabel="Buy the Workflow Audit"
+          ctaLabel="Start the Cash Flow Assessment"
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.24)] transition hover:bg-[#116832] sm:px-8"
         >
-          Buy the Workflow Audit
+          Start the Cash Flow Assessment
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </CTALink>
         <CTALink
@@ -35,7 +35,7 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-bold text-[#102033] shadow-[0_10px_24px_rgba(16,32,51,0.06)] transition hover:bg-[#fbfaf7] sm:px-8"
         >
           <Calculator className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
-          Calculate Your Revenue Leak
+          Calculate the leak
         </CTALink>
       </div>
     </section>

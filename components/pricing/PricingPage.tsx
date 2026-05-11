@@ -85,7 +85,7 @@ function CheckoutScopeNote({ copy }: { copy?: string }) {
   return (
     <p className="mx-auto mt-5 max-w-3xl rounded-2xl border border-[#dbe7dd] bg-[#f6fbf7] px-4 py-3 text-center text-sm font-semibold leading-6 text-[#4d5f55]">
       {copy ||
-        "Package checkout starts onboarding. Stanley Systems reviews fit, access, and scope before implementation begins. If it is not the right fit, Stanley Systems may refund, redirect, or pause before work begins."}
+        "Not sure which leak matters most? Start with the Cash Flow Assessment before buying the wrong system first. If it is not the right fit, Stanley Systems may refund, redirect, or pause before work begins."}
     </p>
   )
 }
@@ -95,19 +95,19 @@ function CompareSystems() {
     {
       title: "Cashflow Control System",
       href: "/systems/cashflow-control",
-      bestWhen: "Best first when finished work is getting stuck before billing, follow-up, or collected cash.",
+      bestWhen: "Calls and billing leak: customer recorded, job moves, invoice and payment follow-up happen.",
       cta: "View Cashflow Control",
     },
     {
       title: "Repeat Revenue System",
       href: "/systems/repeat-revenue",
-      bestWhen: "Best first when past customers, review requests, referrals, missed calls, or repeat work are slipping.",
+      bestWhen: "Past customer leak: follow-up triggers and repeat work gets booked.",
       cta: "View Repeat Revenue",
     },
     {
       title: "Both Systems",
       href: "/pricing#yearly-plans-heading",
-      bestWhen: "Best when the office needs the billing path and the repeat-revenue path fixed in the same rollout.",
+      bestWhen: "Both leaks: money is getting dropped before and after the job.",
       cta: "Compare Both Systems",
       featured: true,
     },
@@ -116,8 +116,8 @@ function CompareSystems() {
   return (
     <section id="compare-systems" className="rounded-[2rem] border border-[#e4ded3] bg-white p-5 shadow-[0_18px_48px_rgba(15,23,42,0.06)] sm:p-7">
       <SectionHeader
-        title="Which system should you buy first?"
-        copy="Choose the system that matches the leak you can already name. If you are not sure, start with the Workflow Audit."
+        title="Which leak are you trying to stop?"
+        copy="Choose the system that matches the leak you can already name. If you are not sure, start with the Cash Flow Assessment."
       />
       <div className="mt-7 grid gap-4 lg:grid-cols-3">
         {systems.map((system) => (
@@ -135,7 +135,7 @@ function CompareSystems() {
         ))}
       </div>
       <p className="mx-auto mt-5 max-w-3xl text-center text-sm font-semibold leading-6 text-[#5f6e7d]">
-        Package checkout starts onboarding. Stanley Systems reviews fit, access, and scope before implementation begins.
+        Not sure which leak matters most? Start with the Cash Flow Assessment before buying the wrong system first.
       </p>
     </section>
   )
@@ -152,15 +152,15 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         {calculatorContext ? <CalculatorHandoffPanel context={calculatorContext} /> : null}
 
-        <section aria-label="Workflow Audit" className="mx-auto w-full max-w-4xl">
+        <section aria-label="Cash Flow Assessment" className="mx-auto w-full max-w-4xl">
           <WorkflowAuditCard offer={workflowAuditOffer} calculatorContext={calculatorContext} />
         </section>
 
         <section aria-labelledby="monthly-plans-heading">
           <SectionHeader
             id="monthly-plans-heading"
-            title="Monthly Plans"
-            copy="Lower upfront commitment. Installation is charged at checkout, and audit buyers can use the monthly audit credit."
+            title="Monthly systems"
+            copy="Build the system, keep it running, and stop the leak from coming back. Installation is charged at checkout, and assessment buyers can use the monthly assessment credit."
           />
           <PlanGrid plans={monthlyPlans} />
           <CheckoutScopeNote />
@@ -169,11 +169,11 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
         <section aria-labelledby="yearly-plans-heading">
           <SectionHeader
             id="yearly-plans-heading"
-            title="Yearly Plans"
-            copy="Best first-year pricing. Installation is waived, and audit buyers can use the yearly audit credit."
+            title="Yearly systems"
+            copy="Pay once for the year, waive installation, and keep the office handoff tight. Assessment buyers can use the yearly assessment credit."
           />
           <PlanGrid plans={yearlyPlans} />
-          <CheckoutScopeNote copy="Yearly checkout starts onboarding and fit/access/scope review before implementation begins. The Workflow Audit credit only applies under the stated audit-credit terms." />
+          <CheckoutScopeNote copy="Yearly checkout starts onboarding and fit/access/scope review before implementation begins. The Cash Flow Assessment credit only applies under the stated assessment-credit terms." />
         </section>
 
         <CompareSystems />

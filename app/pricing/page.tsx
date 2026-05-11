@@ -5,9 +5,9 @@ import { Footer } from "@/components/footer"
 import { PricingPage } from "@/components/pricing"
 
 export const metadata: Metadata = {
-  title: "Pricing | Workflow Audit | Stanley Systems",
+  title: "Pricing | Cash Flow Assessment | Stanley Systems",
   description:
-    "Start with the paid Workflow Audit from Stanley Systems. Find where cash, customers, and office time are leaking before choosing a build path.",
+    "Start with the paid Cash Flow Assessment from Stanley Systems. Find where calls, invoices, follow-ups, and past customers are leaking before choosing a build path.",
 }
 
 type PricingRouteProps = {
