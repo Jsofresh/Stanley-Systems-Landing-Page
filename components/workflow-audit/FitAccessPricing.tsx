@@ -137,7 +137,7 @@ export function FitAccessPricing() {
         </div>
 
         <div data-section="cash-flow-assessment-access-offer" className="mt-5 grid gap-5 lg:grid-cols-[0.66fr_1.2fr] lg:items-center">
-          <div className="mx-auto w-full max-w-[360px] lg:max-w-[390px]">
+          <div className="mx-auto hidden w-full max-w-[360px] sm:block lg:max-w-[390px]">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-how-access-works.jpg"
               alt="How access works for the Cash Flow Assessment: walkthrough, exports or screenshots, or a temporary invited user."
@@ -153,7 +153,7 @@ export function FitAccessPricing() {
             <div className="mt-3 flex items-end gap-2"><span className="text-5xl font-semibold tracking-[-0.04em] text-[#071D3A]">$97</span><span className="pb-2 text-sm font-bold text-[#536173]">paid first step</span></div>
             <p className="mt-3 text-base font-semibold leading-7 text-[#334B60]">Stanley Systems finds where money is being dropped, what it likely costs, and which system should be built first.</p>
             <ul className="mt-5 grid gap-2 text-sm font-semibold leading-5 text-[#334B60] sm:grid-cols-2">
-              {includes.map(item => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#15803D]" />{item}</li>)}
+              {includes.map((item, index) => <li key={item} className={`flex gap-2 ${index > 3 ? "hidden sm:flex" : ""}`}><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#15803D]" />{item}</li>)}
             </ul>
             <div className="mt-5 rounded-2xl border border-[#efb7b0] bg-[#fff6f4] p-4 text-[#b91c1c]">
               <p className="text-xs font-extrabold uppercase tracking-[0.14em]">Assessment credit after purchase</p>
@@ -165,10 +165,21 @@ export function FitAccessPricing() {
 
         <div className="mt-8 rounded-[2rem] border border-[#d9e5dc] bg-white p-5 shadow-[0_18px_60px_rgba(7,29,58,0.06)]">
           <div className="text-center">
-            <h3 className="text-3xl font-semibold tracking-[-0.045em] text-[#071D3A] sm:text-4xl">Pick the system that stops the leak.</h3>
-            <p className="mx-auto mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Each package shows the dropped handoff before Stanley and the working handoff after Stanley. Prices and checkout links come from the current source of truth.</p>
+            <h3 className="text-3xl font-semibold tracking-[-0.045em] text-[#071D3A] sm:text-4xl">System pricing comes after the assessment.</h3>
+            <p className="mx-auto mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">The assessment is the default first step. If the leak is already clear, open the direct system options below.</p>
           </div>
-          <PackagePricingGrid cards={packageCards} locationPrefix="workflow_audit_package_grid" analyticsSource="workflow_audit_page" showAuditSecondary auditHref={assessmentHref} gridClassName="md:grid-cols-2 xl:grid-cols-3" />
+          <details className="mt-5 rounded-[1.4rem] border border-[#cfe8d5] bg-[#f8fcf9] md:hidden">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-4 text-left font-extrabold text-[#071D3A] [&::-webkit-details-marker]:hidden">
+              Direct system options
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-[#e7f6eb] text-xl text-[#116832]">+</span>
+            </summary>
+            <div className="border-t border-[#d9e5dc] px-3 pb-4">
+              <PackagePricingGrid cards={packageCards} locationPrefix="workflow_audit_package_grid" analyticsSource="workflow_audit_page" showAuditSecondary auditHref={assessmentHref} gridClassName="md:grid-cols-2 xl:grid-cols-3" />
+            </div>
+          </details>
+          <div className="hidden md:block">
+            <PackagePricingGrid cards={packageCards} locationPrefix="workflow_audit_package_grid" analyticsSource="workflow_audit_page" showAuditSecondary auditHref={assessmentHref} gridClassName="md:grid-cols-2 xl:grid-cols-3" />
+          </div>
         </div>
 
         <p className="mt-5 text-center text-sm font-semibold leading-6 text-[#536173]">Prefer to buy a system directly? You can buy Cashflow Control System, Repeat Revenue System, or Both Systems when the leak is already clear. Start with the Cash Flow Assessment if you are not sure which system should go first.</p>

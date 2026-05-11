@@ -68,7 +68,7 @@ function getPrice(id: string) {
 
 function PageSection({ id, children, className = "", navTheme = "light" }: { id?: string; children: ReactNode; className?: string; navTheme?: "light" | "dark" }) {
   return (
-    <section id={id} data-nav-theme={navTheme} className={`px-5 py-16 md:px-8 lg:px-10 ${className}`}>
+    <section id={id} data-nav-theme={navTheme} className={`px-5 py-11 md:px-8 md:py-16 lg:px-10 ${className}`}>
       {children}
     </section>
   )
@@ -261,7 +261,10 @@ function PackageDemosSection() {
                   </div>
                   <p className="shrink-0 rounded-full bg-[#eaf7ee] px-3 py-1 text-sm font-extrabold text-[#15803D]">{price?.priceDisplay}</p>
                 </div>
-                <div className="mt-5 grid flex-1 gap-4 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
+                <p className="mt-4 rounded-2xl border border-[#d9e7df] bg-[#f8fcf9] p-3 text-sm font-extrabold leading-6 text-[#244938] md:hidden">
+                  {demo.after[0]} → {demo.after[demo.after.length - 1]}
+                </p>
+                <div className="mt-5 hidden flex-1 gap-4 md:grid md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
                   <div className="rounded-2xl border border-[#f2d4d4] bg-[#fff7f7] p-4">
                     <p className="text-sm font-extrabold text-[#991b1b]">Before</p>
                     <ul className="mt-3 space-y-2">
@@ -304,7 +307,10 @@ function BeforeAfterProofSection() {
             Stanley does not add another idea for the owner to remember. It builds the steps that keep customers, jobs, bills, and follow-ups from getting dropped.
           </p>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <p className="rounded-[1.4rem] border border-[#cae8d2] bg-[#f3fbf5] p-4 text-base font-extrabold leading-6 text-[#244938] md:hidden">
+          Customer recorded → invoice sent → payment followed up → customer brought back.
+        </p>
+        <div className="hidden gap-4 md:grid md:grid-cols-2">
           <div className="rounded-[1.7rem] border border-[#f2d4d4] bg-[#fff7f7] p-5">
             <p className="text-lg font-extrabold text-[#991b1b]">Before</p>
             <div className="mt-4 space-y-3">

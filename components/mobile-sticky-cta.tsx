@@ -61,7 +61,7 @@ export function MobileStickyCTA() {
           location="mobile_sticky_secondary"
           className="inline-flex flex-1 items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-4 py-3 text-sm font-semibold text-slate-900"
         >
-          Call now
+          Call
         </CTAPhoneLink>
         <CTALink
           href={auditHref}
@@ -72,12 +72,12 @@ export function MobileStickyCTA() {
           packageId="workflow_audit"
           packageName="Cash Flow Assessment"
           billingPeriod="one_time"
-          ctaLabel="Start Assessment"
+          ctaLabel="Start $97 Assessment"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center rounded-full bg-[#15803D] px-4 py-3 text-sm font-semibold text-white"
         >
-          Start Assessment
+          Start $97 Assessment
         </CTALink>
       </div>
     </div>

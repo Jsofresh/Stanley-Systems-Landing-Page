@@ -142,42 +142,65 @@ function PackagePricingCardView({
       <p className="mt-4 text-sm leading-5 text-[#33475B]">{card.description}</p>
 
       {card.bestFor && card.leak && card.before && card.after ? (
-        <div className="mt-4 grid gap-3 rounded-2xl border border-[#DDE8E1] bg-[#F8FCF9] p-3 text-xs leading-5 text-[#26374B]">
-          <p><span className="font-extrabold text-[#102033]">Best for: </span>{card.bestFor}</p>
-          <p><span className="font-extrabold text-[#102033]">Leak it fixes: </span>{card.leak}</p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-[#F0C8C1] bg-[#FFF6F4] p-3">
-              <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#B91C1C]">Before Stanley</p>
-              <ul className="mt-2 grid gap-1.5 font-semibold text-[#33475B]">
-                {card.before.map((item) => (
-                  <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#B91C1C]" />{item}</li>
-                ))}
-              </ul>
+        <>
+          <details className="mt-4 rounded-2xl border border-[#DDE8E1] bg-[#F8FCF9] p-3 text-xs leading-5 text-[#26374B] md:hidden">
+            <summary className="cursor-pointer list-none font-extrabold text-[#102033] [&::-webkit-details-marker]:hidden">
+              {card.bestFor}
+              <span className="mt-1 block font-bold text-[#607080]">Open for before/after, fees, and included pieces.</span>
+            </summary>
+            <p className="mt-3"><span className="font-extrabold text-[#102033]">Leak it fixes: </span>{card.leak}</p>
+            <p className="mt-2"><span className="font-black text-[#B91C1C]">Before: </span>{card.before.join(" / ")}</p>
+            <p className="mt-2"><span className="font-black text-[#116832]">After: </span>{card.after.join(" / ")}</p>
+            <div className="mt-3 grid gap-2 border-y border-[#C8D8CE] py-2 font-semibold text-[#33475B]">
+              <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-[#E0E9E3]">{card.install}</div>
+              <div className="rounded-xl bg-[#FFF6F4] px-3 py-2 font-extrabold text-[#B91C1C] ring-1 ring-[#F0C8C1]">{card.credit}</div>
             </div>
-            <div className="rounded-xl border border-[#BFE4C8] bg-white p-3">
-              <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#116832]">After Stanley</p>
-              <ul className="mt-2 grid gap-1.5 font-semibold text-[#33475B]">
-                {card.after.map((item) => (
-                  <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />{item}</li>
-                ))}
-              </ul>
+            <ul className="mt-3 grid gap-1.5 font-semibold text-[#33475B]">
+              {card.bullets.map((feature) => (
+                <li key={feature} className="flex gap-2">
+                  <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
+          <div className="mt-4 hidden gap-3 rounded-2xl border border-[#DDE8E1] bg-[#F8FCF9] p-3 text-xs leading-5 text-[#26374B] md:grid">
+            <p><span className="font-extrabold text-[#102033]">Best for: </span>{card.bestFor}</p>
+            <p><span className="font-extrabold text-[#102033]">Leak it fixes: </span>{card.leak}</p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl border border-[#F0C8C1] bg-[#FFF6F4] p-3">
+                <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#B91C1C]">Before Stanley</p>
+                <ul className="mt-2 grid gap-1.5 font-semibold text-[#33475B]">
+                  {card.before.map((item) => (
+                    <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#B91C1C]" />{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-xl border border-[#BFE4C8] bg-white p-3">
+                <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#116832]">After Stanley</p>
+                <ul className="mt-2 grid gap-1.5 font-semibold text-[#33475B]">
+                  {card.after.map((item) => (
+                    <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       ) : null}
 
-      <div className="mt-3 grid gap-2 border-y border-[#C8D8CE] py-2 text-xs font-semibold leading-5 text-[#33475B]">
+      <div className="mt-3 hidden gap-2 border-y border-[#C8D8CE] py-2 text-xs font-semibold leading-5 text-[#33475B] md:grid">
         <div className="rounded-xl bg-[#F8FCF9] px-3 py-2 ring-1 ring-[#E0E9E3]">{card.install}</div>
         <div className="rounded-xl bg-[#FFF6F4] px-3 py-2 font-extrabold text-[#B91C1C] ring-1 ring-[#F0C8C1]">{card.credit}</div>
       </div>
 
       {discountCallout ? (
-        <p className="mt-3 rounded-2xl border border-[#F0C8C1] bg-[#FFF6F4] px-3 py-3 text-center text-sm font-black leading-5 tracking-[-0.02em] text-[#B91C1C] shadow-[0_10px_22px_rgba(185,28,28,0.08)]">
+        <p className="mt-3 hidden rounded-2xl border border-[#F0C8C1] bg-[#FFF6F4] px-3 py-3 text-center text-sm font-black leading-5 tracking-[-0.02em] text-[#B91C1C] shadow-[0_10px_22px_rgba(185,28,28,0.08)] md:block">
           {discountCallout}
         </p>
       ) : null}
 
-      <ul className="mt-3 grid gap-1.5 text-xs leading-5 text-[#33475B]">
+      <ul className="mt-3 hidden gap-1.5 text-xs leading-5 text-[#33475B] md:grid">
         {card.bullets.map((feature) => (
           <li key={feature} className="flex gap-2">
             <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />

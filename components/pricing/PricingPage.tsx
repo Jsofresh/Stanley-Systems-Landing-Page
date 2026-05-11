@@ -156,7 +156,34 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
           <WorkflowAuditCard offer={workflowAuditOffer} calculatorContext={calculatorContext} />
         </section>
 
-        <section aria-labelledby="monthly-plans-heading">
+        <section aria-label="System pricing after assessment" className="md:hidden">
+          <details className="group rounded-[1.6rem] border border-[#d9e5dc] bg-white shadow-[0_18px_48px_rgba(15,23,42,0.06)]">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-left [&::-webkit-details-marker]:hidden">
+              <span>
+                <span className="block text-2xl font-semibold tracking-[-0.04em] text-[#102033]">System pricing after the assessment</span>
+                <span className="mt-2 block text-sm font-semibold leading-6 text-[#536173]">Collapsed on mobile so the $97 Cash Flow Assessment stays the first move. Open this only if you already know the system you need.</span>
+              </span>
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#e7f6eb] text-xl font-black text-[#116832] group-open:rotate-45">+</span>
+            </summary>
+            <div className="border-t border-[#e4ece6] px-4 pb-5">
+              <SectionHeader
+                id="mobile-monthly-plans-heading"
+                title="Monthly systems"
+                copy="Build the system, keep it running, and stop the leak from coming back."
+              />
+              <PlanGrid plans={monthlyPlans} />
+              <SectionHeader
+                id="mobile-yearly-plans-heading"
+                title="Yearly systems"
+                copy="Pay once for the year, waive installation, and keep the office handoff tight."
+              />
+              <PlanGrid plans={yearlyPlans} />
+              <CheckoutScopeNote />
+            </div>
+          </details>
+        </section>
+
+        <section aria-labelledby="monthly-plans-heading" className="hidden md:block">
           <SectionHeader
             id="monthly-plans-heading"
             title="Monthly systems"
@@ -166,7 +193,7 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
           <CheckoutScopeNote />
         </section>
 
-        <section aria-labelledby="yearly-plans-heading">
+        <section aria-labelledby="yearly-plans-heading" className="hidden md:block">
           <SectionHeader
             id="yearly-plans-heading"
             title="Yearly systems"

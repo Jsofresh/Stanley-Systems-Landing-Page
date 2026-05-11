@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
+import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
 import { PricingPage } from "@/components/pricing"
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function PricingRoute({ searchParams = {} }: PricingRouteProps) {
       <SiteHeader />
       <PricingPage searchParams={searchParams} />
       <Footer />
+      <MobileStickyCTA />
     </>
   )
 }

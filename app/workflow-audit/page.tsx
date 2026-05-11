@@ -7,6 +7,7 @@ import { HowAuditWorks } from "@/components/workflow-audit/HowAuditWorks"
 import { ProofCostCalculator } from "@/components/workflow-audit/ProofCostCalculator"
 import { FitAccessPricing } from "@/components/workflow-audit/FitAccessPricing"
 import { WorkflowAuditFAQ } from "@/components/workflow-audit/WorkflowAuditFAQ"
+import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
 
 export const metadata: Metadata = {
   title: "Cash Flow Assessment | Stanley Systems",
@@ -33,6 +34,7 @@ export default function WorkflowAuditPage() {
         <FitAccessPricing />
         <WorkflowAuditFAQ />
         <Footer />
+        <MobileStickyCTA />
       </main>
     </div>
   )
