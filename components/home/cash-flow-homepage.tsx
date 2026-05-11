@@ -260,7 +260,7 @@ function CalculatorSpine() {
   return (
     <PageSection
       id="calculator"
-      className="relative isolate overflow-hidden bg-[#FBFCF7] text-[#071D3A] lg:py-20"
+      className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#FBFCF7] text-[#071D3A] lg:py-20"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(8,166,75,0.14),rgba(251,252,247,0)_65%)]" />
       <div className="mx-auto grid max-w-[88rem] gap-9 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
@@ -308,7 +308,7 @@ function CalculatorSpine() {
               kind="systems"
               location="home_calculator_spine_secondary"
               ctaLabel="Start the Cash Flow Assessment"
-              className={lightButton}
+              className={`${lightButton} whitespace-nowrap`}
             >
               Cash Flow Assessment
             </CTALink>
