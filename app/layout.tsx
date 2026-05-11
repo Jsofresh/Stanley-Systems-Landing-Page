@@ -79,15 +79,17 @@ const workSans = Work_Sans({
   display: "swap",
 })
 
+const siteTitle = "Stanley Systems | Find and Stop Cash Flow Leaks"
+const siteDescription =
+  "Stanley Systems helps service businesses find the money leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again — then builds the system that stops it."
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://stanley-systems.com"),
-  title: "Stanley Systems | Office Bottleneck Removal for Service Businesses",
-  description:
-    "Stanley Systems helps blue-collar service businesses remove office bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+  title: siteTitle,
+  description: siteDescription,
   openGraph: {
-    title: "Stanley Systems | Office Bottleneck Removal for Service Businesses",
-    description:
-      "Stanley Systems helps blue-collar service businesses remove office bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+    title: siteTitle,
+    description: siteDescription,
     url: "https://stanley-systems.com",
     siteName: "Stanley Systems",
     locale: "en_US",
@@ -95,9 +97,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stanley Systems | Office Bottleneck Removal for Service Businesses",
-    description:
-      "Stanley Systems helps blue-collar service businesses remove office bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+    title: siteTitle,
+    description: siteDescription,
   },
   alternates: {
     canonical: "https://stanley-systems.com",
@@ -124,10 +125,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "Is this going to turn into a big project?",
+        name: "What is the Cash Flow Assessment?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. The starting point is usually one or two fixes that make the clearest difference first.",
+          text: "It is the paid first step where Stanley Systems finds where money is leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again.",
         },
       },
       {
@@ -135,20 +136,20 @@ export default function RootLayout({
         name: "Who is this best for?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Owner-led service businesses where billing, follow-up, office handoffs, or repeat admin are slowing things down.",
+          text: "Owner-led service businesses where cash is being lost in day-to-day gaps like billing delays, missed callbacks, weak follow-up, or dormant customer lists.",
         },
       },
       {
         "@type": "Question",
-        name: "What if we are not sure where the real problem is?",
+        name: "What if we are not sure where the real leak is?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "That is fine. The first call is used to figure out where the bottleneck actually is.",
+          text: "That is exactly what the Cash Flow Assessment is for: it shows where the money is leaking and what system should be built first to stop it.",
         },
       },
       {
         "@type": "Question",
-        name: "Will my team still control the workflow?",
+        name: "Will my team still control the process?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Yes. Your team stays in control, and you own what gets built.",
@@ -156,10 +157,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "How long does setup usually take?",
+        name: "What happens after the assessment?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It depends on the bottleneck, but the goal is to get the first useful fix in place quickly instead of dragging things out.",
+          text: "Stanley Systems turns the highest-value leak into a practical system your business can use to capture more of the money already being earned.",
         },
       },
     ],
@@ -173,8 +174,7 @@ export default function RootLayout({
     url: "https://stanley-systems.com",
     logo: "https://stanley-systems.com/stanley-logo-new.jpg",
     image: "https://stanley-systems.com/stanley-logo-new.jpg",
-    description:
-      "Stanley Systems helps blue-collar service businesses remove office bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+    description: siteDescription,
     telephone: "+16179586372",
     email: "hello@stanley-systems.com",
     areaServed: ["US"],
@@ -188,7 +188,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Stanley Systems",
-    alternateName: "Stanley Systems Automation",
+    alternateName: "Stanley Systems Cash Flow Systems",
     url: "https://stanley-systems.com",
   }
 
