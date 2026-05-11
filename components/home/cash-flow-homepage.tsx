@@ -8,6 +8,29 @@ import { pricingPackages } from "@/lib/pricing/source-of-truth";
 const calculatorHref = "/invoicing-delay-cash-flow-calculator";
 const assessmentHref = "/workflow-audit";
 
+const heroSlideshowImages = [
+  {
+    src: "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg",
+    alt: "Service technician van outside a customer location",
+  },
+  {
+    src: "/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg",
+    alt: "Office dashboard review for a service business",
+  },
+  {
+    src: "/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg",
+    alt: "Business owner monitoring cash flow",
+  },
+  {
+    src: "/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg",
+    alt: "Payment confirmation in a service business office",
+  },
+  {
+    src: "/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg",
+    alt: "Desktop cash flow view for a service business",
+  },
+];
+
 const uploadedHomeImages = {
   calculator: {
     src: "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-estimated-annual-leak.jpg",
@@ -141,52 +164,31 @@ function UploadedSectionImage({
   );
 }
 
-function HeroMovingImageBackground() {
-  const heroImages = [
-    uploadedHomeImages.calculator,
-    uploadedHomeImages.leaks,
-    uploadedHomeImages.assessment,
-    uploadedHomeImages.beforeAfter,
-  ];
-  const strip = [...heroImages, ...heroImages];
-
+function HeroImageSlideshow() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[62%] overflow-hidden opacity-[0.42] lg:block"
+      className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[66%] overflow-hidden lg:block"
     >
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.82)_24%,rgba(7,20,34,0.16)_74%,rgba(7,20,34,0.78)_100%)]" />
-      <div className="absolute right-[-10%] top-[12%] flex w-[140%] rotate-[-5deg] gap-5 animate-slide-left">
-        {strip.map((image, index) => (
-          <div
-            key={`hero-bg-top-${index}`}
-            className="relative h-40 w-64 shrink-0 overflow-hidden rounded-[1.4rem] border border-white/14 bg-white/12 shadow-[0_24px_70px_rgba(0,0,0,0.34)] backdrop-blur"
-          >
-            <Image
-              src={image.src}
-              alt=""
-              fill
-              sizes="18vw"
-              className="object-cover"
-            />
-          </div>
+      <div className="absolute inset-y-[5%] right-[-8%] w-[108%] overflow-hidden rounded-l-[4rem]">
+        <div className="absolute inset-0 bg-[#071422]" />
+        {heroSlideshowImages.map((image, index) => (
+          <Image
+            key={image.src}
+            src={image.src}
+            alt=""
+            fill
+            priority={index === 0}
+            sizes="66vw"
+            className="stanley-hero-slideshow-image object-cover"
+            style={{ animationDelay: `${index * 5}s` }}
+          />
         ))}
-      </div>
-      <div className="absolute right-[-4%] top-[47%] flex w-[140%] rotate-[4deg] gap-5 animate-slide-left [animation-duration:42s] [animation-direction:reverse]">
-        {[...strip].reverse().map((image, index) => (
-          <div
-            key={`hero-bg-bottom-${index}`}
-            className="relative h-44 w-72 shrink-0 overflow-hidden rounded-[1.6rem] border border-white/14 bg-white/12 shadow-[0_24px_70px_rgba(0,0,0,0.34)] backdrop-blur"
-          >
-            <Image
-              src={image.src}
-              alt=""
-              fill
-              sizes="20vw"
-              className="object-cover"
-            />
-          </div>
-        ))}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.96)_10%,rgba(7,20,34,0.72)_22%,rgba(7,20,34,0.26)_42%,rgba(7,20,34,0)_62%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(7,20,34,0)_44%,rgba(7,20,34,0.16)_68%,rgba(7,20,34,0.62)_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#071422] via-[#071422]/54 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[22%] bg-gradient-to-t from-[#071422] via-[#071422]/58 to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-[14%] bg-gradient-to-l from-[#071422] via-[#071422]/55 to-transparent" />
       </div>
     </div>
   );
@@ -523,7 +525,7 @@ export function CashFlowHomepage() {
         className="relative isolate overflow-hidden bg-[#071422] px-5 pb-16 pt-[132px] text-white md:px-8 lg:px-10 lg:pb-24 lg:pt-[150px]"
       >
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_74%_28%,rgba(83,217,134,0.16),transparent_30%),radial-gradient(circle_at_8%_12%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
-        <HeroMovingImageBackground />
+        <HeroImageSlideshow />
         <div className="mx-auto max-w-[92rem]">
           <div className="relative z-10 max-w-[860px]">
             <h1 className="max-w-[850px] text-balance text-[clamp(2.3rem,5.55vw,5.8rem)] font-extrabold leading-[0.91] tracking-[-0.025em] text-white">
