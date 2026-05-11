@@ -196,9 +196,9 @@ function HeroImageSlideshow() {
 
 function CalculatorLaunchSection() {
   const quickReasons = [
-    "Takes rough numbers, not perfect records",
-    "Shows the annual money left on the table",
-    "Points to the first fix worth buying",
+    "Free to run before you buy anything",
+    "Uses rough numbers, not perfect records",
+    "Shows which leak is most worth fixing first",
   ];
 
   return (
@@ -206,24 +206,20 @@ function CalculatorLaunchSection() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_82%_18%,rgba(83,217,134,0.18),transparent_28%),linear-gradient(90deg,#071422_0%,#0b1d30_100%)]" />
       <div className="mx-auto flex max-w-[88rem] flex-col gap-6 rounded-[2rem] border border-white/12 bg-white/[0.06] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.25)] md:p-8 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-[780px]">
-          <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#78E3A0]">
-            Start with the number
-          </p>
-          <h2 className="mt-3 text-balance text-[clamp(2rem,3.8vw,4.6rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
-            Run the calculator before you guess what to fix.
+          <h2 className="text-balance text-[clamp(2.1rem,3.9vw,4.8rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
+            Start the free Cash Flow Calculator.
           </h2>
-          <p className="mt-4 max-w-[660px] text-lg font-semibold leading-8 text-[#d8e2ed]">
-            Enter a few rough numbers to see where calls, invoices, follow-ups,
-            and past customers are costing the business real cash.
+          <p className="mt-4 max-w-[700px] text-lg font-semibold leading-8 text-[#d8e2ed]">
+            Get a useful estimate before you buy anything. Enter a few rough
+            numbers and see where calls, invoices, follow-ups, and past
+            customers are costing the business real cash.
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-5 grid gap-2 text-sm font-bold text-[#e8f1f7] sm:grid-cols-3">
             {quickReasons.map((reason) => (
-              <span
-                key={reason}
-                className="rounded-full border border-white/14 bg-white/8 px-4 py-2 text-sm font-bold text-[#e8f1f7]"
-              >
-                {reason}
-              </span>
+              <div key={reason} className="flex items-start gap-2 leading-6">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#78E3A0]" />
+                <span>{reason}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -232,10 +228,10 @@ function CalculatorLaunchSection() {
           kind="calculator"
           location="home_post_hero_calculator_primary"
           analyticsEvent="calculator_cta_clicked"
-          ctaLabel="Start the calculator"
+          ctaLabel="Start the free calculator"
           className={`${greenButton} w-full px-8 text-[1.08rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.24)] sm:w-auto`}
         >
-          Start the calculator <ArrowRight className="ml-2 h-4 w-4" />
+          Start the free calculator <ArrowRight className="ml-2 h-4 w-4" />
         </CTALink>
       </div>
     </PageSection>
@@ -246,18 +242,18 @@ function CalculatorSpine() {
   const calculatorSteps = [
     {
       label: "1",
-      title: "Use your best guess",
-      copy: "Put in rough call, invoice, and follow-up numbers. No spreadsheet needed.",
+      title: "Enter rough numbers",
+      copy: "Use your best guess for calls, invoices, and follow-up. No spreadsheet needed.",
     },
     {
       label: "2",
       title: "See the annual leak",
-      copy: "The result turns small office misses into one number that is hard to ignore.",
+      copy: "The result turns missed calls, late invoices, and quiet past customers into one annual estimate.",
     },
     {
       label: "3",
       title: "Pick the first fix",
-      copy: "Use the number to decide whether billing, follow-up, or past customers should get fixed first.",
+      copy: "Use the result to see whether billing, follow-up, or past customers should get fixed first.",
     },
   ];
 
@@ -269,15 +265,12 @@ function CalculatorSpine() {
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(8,166,75,0.14),rgba(251,252,247,0)_65%)]" />
       <div className="mx-auto grid max-w-[88rem] gap-9 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">
-            The calculator is the first move
-          </p>
-          <h2 className="mt-3 max-w-[720px] text-balance text-[clamp(2.4rem,5vw,5.4rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-[#071D3A]">
-            See how much money is being left on the table.
+          <h2 className="max-w-[720px] text-balance text-[clamp(2.4rem,5vw,5.4rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-[#071D3A]">
+            Get a free estimate of the money left on the table.
           </h2>
-          <p className="mt-5 max-w-[620px] text-lg font-semibold leading-8 text-[#4d6073]">
-            Do not start with a package. Start with the number. Then Stanley
-            Systems can build the fix that pays back first.
+          <p className="mt-5 max-w-[650px] text-lg font-semibold leading-8 text-[#4d6073]">
+            The calculator gives you a number you can use right away. Then
+            Stanley Systems can show which fix pays back first.
           </p>
           <div className="mt-7 grid gap-3">
             {calculatorSteps.map((step) => (
@@ -305,10 +298,10 @@ function CalculatorSpine() {
               kind="calculator"
               location="home_calculator_spine_primary"
               analyticsEvent="calculator_cta_clicked"
-              ctaLabel="Start the calculator"
+              ctaLabel="Start the free calculator"
               className={`${greenButton} whitespace-nowrap px-7`}
             >
-              Start the calculator <ArrowRight className="ml-2 h-4 w-4" />
+              Start the free calculator <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
             <CTALink
               href={assessmentHref}
@@ -619,7 +612,7 @@ export function CashFlowHomepage() {
       >
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_74%_28%,rgba(83,217,134,0.16),transparent_30%),radial-gradient(circle_at_8%_12%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
         <HeroImageSlideshow />
-        <div className="mx-auto max-w-[92rem]">
+        <div className="mx-auto w-full max-w-[92rem]">
           <div className="relative z-10 max-w-[860px]">
             <h1 className="max-w-[850px] text-balance text-[clamp(2.3rem,5.55vw,5.8rem)] font-extrabold leading-[0.91] tracking-[-0.025em] text-white">
               Find the money your service business is missing.
@@ -634,10 +627,11 @@ export function CashFlowHomepage() {
                 kind="calculator"
                 location="home_hero_primary"
                 analyticsEvent="calculator_cta_clicked"
-                ctaLabel="Start the calculator"
+                ctaLabel="Start the free calculator"
                 className={`${greenButton} px-8 text-[1.05rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02]`}
               >
-                Start the calculator <ArrowRight className="ml-2 h-4 w-4" />
+                Start the free calculator{" "}
+                <ArrowRight className="ml-2 h-4 w-4" />
               </CTALink>
               <CTALink
                 href={assessmentHref}
