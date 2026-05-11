@@ -1,14 +1,14 @@
 import { page } from "./tokens"
 
 const faqs = [
-  ["Is this a sales call?", "No. The Cash Flow Assessment is a paid diagnostic. Stanley Systems reviews your current process and data, then gives you a clear map of where money, time, or follow-up is leaking."],
+  ["Is this a sales call?", "No. The Cash Flow Assessment is a paid first step. Stanley Systems reviews how work moves now, then gives you a clear map of where money, time, or follow-up is leaking."],
   ["Do I have to give Stanley Systems my password?", "No. Do not send passwords. You can use screen share, exports, screenshots, or a temporary invited user."],
   ["What systems might Stanley Systems review?", "Accounting software, field software, CRM, dispatch system, shop system, invoice/payment tools, Google reviews, referral tracking, spreadsheets, and inboxes where follow-up happens."],
-  ["What if I already have reminders turned on?", "That is fine. The assessment checks whether those reminders cover the full handoff from job completion to billing readiness, invoice follow-up, review requests, referrals, and owner visibility."],
+  ["What if I already have reminders turned on?", "That is fine. The assessment checks whether those reminders cover the full handoff from job completion to billing readiness, invoice follow-up, review requests, referrals, and what the owner needs to see."],
   ["What is the Transaction Pattern Review?", "Stanley Systems reviews available job, invoice, estimate, payment, customer, review, and referral data, then summarizes the patterns that point to delayed cash, missed follow-up, repeated office work, or unused customer value."],
-  ["Can I buy Cashflow Control System or Repeat Revenue System without the assessment?", "Yes. The assessment is optional. It is a credited first step for buyers who want the workflow inspected before building."],
+  ["Can I buy Cashflow Control System or Repeat Revenue System without the assessment?", "Yes. The assessment is optional. It is a credited first step for buyers who want the handoff checked before building."],
   ["How does the assessment credit work?", "If you buy Cashflow Control System or Repeat Revenue System after the assessment, your $97 assessment fee credits toward the system. If you buy yearly, you get a $194 credit."],
-  ["What happens if my business is not a fit?", "Stanley Systems will tell you. If there is not enough volume, software structure, or office workflow for a system to make sense, the assessment should not push you into one."],
+  ["What happens if my business is not a fit?", "Stanley Systems will tell you. If there is not enough volume, software setup, or office handoff for a system to make sense, the assessment should not push you into one."],
   ["Does Stanley Systems guarantee more revenue?", "No. The assessment identifies leaks and practical fixes. It does not guarantee customer payment, customer behavior, revenue, profit, or future sales."],
 ]
 

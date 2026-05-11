@@ -47,7 +47,7 @@ export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAudit
         </p>
         {calculatorContext?.source === "calculator" ? (
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[#15803D]">
-            Your calculator handoff is loaded below with rounded, display-safe estimates only.
+            Your calculator result is loaded below with rounded estimates only.
           </p>
         ) : null}
       </div>

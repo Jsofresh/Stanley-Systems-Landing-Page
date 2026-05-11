@@ -7,7 +7,7 @@ export function HowAuditWorks() {
       <div className={page.wrap}>
         <div className="grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
-            <h2 className={page.h2}>A 30-minute walkthrough, then a data-backed money leak map.</h2>
+            <h2 className={page.h2}>A 30-minute walkthrough, then a money leak map from your records.</h2>
           </div>
           <div className="mx-auto w-full max-w-[760px] overflow-hidden rounded-[1.5rem] border border-[#d9e5dc] bg-white shadow-[0_16px_46px_rgba(7,29,58,0.06)]">
             <Image

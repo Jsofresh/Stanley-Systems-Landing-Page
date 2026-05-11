@@ -11,9 +11,9 @@ const includes = [
   "Invoice and payment handoff review",
   "Past customer follow-up review",
   "Money Leak Summary",
-  "Leak Priority Score",
-  "First Fix Recommendation",
-  "System Recommendation",
+  "Which leak matters first",
+  "First fix to make",
+  "System to build first",
 ]
 
 const cashflowDemo = {
@@ -50,7 +50,7 @@ const packageCards: PackagePricingCard[] = [
     cta: "Fix the billing leak",
     secondary: "Start with the assessment",
     tone: "monthly",
-    bullets: ["Customer intake to billing workflow", "Billing-ready checks", "Missing detail routing", "Payment follow-up"],
+    bullets: ["Customer intake to billing path", "Billing-ready checks", "Missing detail routing", "Payment follow-up"],
   },
   {
     badge: "-$1,250",
@@ -120,7 +120,7 @@ const packageCards: PackagePricingCard[] = [
     cta: "Fix both leaks",
     secondary: "Start with the assessment",
     tone: "recommended",
-    bullets: ["Cashflow Control System", "Repeat Revenue System", "Lowest first-year bundle cost", "Best full-system economics"],
+    bullets: ["Cashflow Control System", "Repeat Revenue System", "Lowest first-year bundle cost", "Best first-year price for both"],
   },
 ]
 

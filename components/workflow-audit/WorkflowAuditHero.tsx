@@ -15,10 +15,10 @@ export function WorkflowAuditHero() {
             <div className="relative z-10 max-w-[680px]">
               <p className={page.eyebrow}>Cash Flow Assessment</p>
               <h1 className="mt-2 max-w-[520px] text-[clamp(1.9rem,2.72vw,2.95rem)] font-semibold leading-[1.04] tracking-[-0.034em] text-[#071D3A]">
-                Find the money leaks hiding inside your office workflow.
+                Find the money leaks hiding inside your office handoffs.
               </h1>
               <p className="mt-7 max-w-[560px] text-base font-medium leading-7 text-[#42596C] sm:mt-8 sm:text-lg sm:leading-8 lg:mt-9 xl:mt-10">
-                A $97 paid diagnostic that shows where cash, customers, and office time are slipping before you buy the wrong system.
+                A $97 paid first step that shows where cash, customers, and office time are slipping before you buy the wrong system.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <CTALink href={auditHref} kind="checkout" location="workflow_audit_hero" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" target="_blank" rel="noopener noreferrer" className={page.greenButton}>

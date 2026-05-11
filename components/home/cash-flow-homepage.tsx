@@ -85,10 +85,9 @@ function HeroLeakVisual() {
             <span className="rounded-full bg-[#ef4444]/18 px-3 py-1 text-xs font-extrabold text-[#fecaca]">leak estimate</span>
           </div>
           <p className="mt-3 text-[3.2rem] font-extrabold leading-none tracking-[-0.025em] text-white md:text-[4.4rem]">$180K</p>
-          <p className="mt-2 text-sm font-semibold text-white/58">annual range from delayed billing, missed calls, and untouched customers</p>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {["Missed call", "Late invoice", "Quiet estimate", "Old customer"].map((label) => (
+        <div className="grid gap-3 sm:grid-cols-3">
+          {["Missed call", "Late invoice", "Old customer"].map((label) => (
             <div key={label} className="rounded-2xl border border-white/12 bg-white/[0.06] p-3">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#ef4444] shadow-[0_0_16px_rgba(239,68,68,0.5)]" />
@@ -96,14 +95,6 @@ function HeroLeakVisual() {
               </div>
             </div>
           ))}
-        </div>
-        <div className="rounded-[1.3rem] border border-[#53d986]/26 bg-[#53d986]/10 p-4">
-          <p className="text-sm font-extrabold text-[#b9f7cf]">Stanley path</p>
-          <div className="mt-3 grid gap-2 text-sm font-bold text-white/82 sm:grid-cols-3">
-            <span>Find the leak</span>
-            <span>Show the cost</span>
-            <span>Build the fix</span>
-          </div>
         </div>
       </div>
     </div>

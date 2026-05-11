@@ -75,7 +75,7 @@ const customerSourceMessages: Record<CustomerListSource, { label: string; helper
   scattered: {
     label: "Scattered or not sure",
     helper: "That is a leak by itself. The first fix is building one usable customer list.",
-    firstFix: "The first leak is visibility. Stanley Systems would first build one clean list from the records you already have.",
+    firstFix: "The first leak is the list. Stanley Systems would first build one clean list from the records you already have.",
   },
 }
 
@@ -135,7 +135,7 @@ const faqItems = [
   {
     question: "I have been burned by consultants before. Why is this different?",
     answer:
-      "Stanley Systems is not selling a giant strategy deck. The assessment finds specific money leaks, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
+      "Stanley Systems is not selling a giant strategy deck. The assessment finds specific money leaks, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customers.",
   },
 ]
 
@@ -301,7 +301,7 @@ function createResultSummary(result: ResultSummaryInput & {
   const customerDollarDrivers: ResultDriver[] = [
     {
       key: "repeat-job-opportunity",
-      label: "repeat-job opportunity",
+      label: "repeat-job money",
       meaning: "Past customers can turn into booked jobs when the list gets worked.",
       value: finiteMoney(result.estimatedFollowupOpportunity),
       displayValue: formatMoney(result.estimatedFollowupOpportunity),
@@ -315,14 +315,14 @@ function createResultSummary(result: ResultSummaryInput & {
     },
     {
       key: "conservative-saved-customer-opportunity",
-      label: "conservative saved-customer opportunity",
+      label: "small saved-customer check",
       meaning: "A smaller response from the saved customer list still creates money worth checking.",
       value: finiteMoney(result.conservativeFollowupOpportunity),
       displayValue: formatMoney(result.conservativeFollowupOpportunity),
     },
     {
       key: "bold-saved-customer-opportunity",
-      label: "bold saved-customer opportunity",
+      label: "larger saved-customer check",
       meaning: "A stronger response from the saved customer list makes the leak larger.",
       value: finiteMoney(result.boldFollowupOpportunity),
       displayValue: formatMoney(result.boldFollowupOpportunity),
@@ -367,7 +367,7 @@ function createResultSummary(result: ResultSummaryInput & {
 
   const equationComponents = [
     { label: "Cash drag", value: cashMonthlyLeak, displayValue: formatMonthlyDisplay(cashMonthlyLeak) },
-    { label: "Customer revenue drag", value: customerMonthlyMiddle || customerMonthlyLeakMax, displayValue: formatMonthlyRangeDisplay(customerMonthlyLeakMin, customerMonthlyLeakMax) },
+    { label: "Customer money drag", value: customerMonthlyMiddle || customerMonthlyLeakMax, displayValue: formatMonthlyRangeDisplay(customerMonthlyLeakMin, customerMonthlyLeakMax) },
   ].filter((component) => hasMeaningfulValue(component.value))
 
   const scenarioMeanings: Record<string, string> = {
@@ -833,7 +833,7 @@ export function InvoicingDelayCalculatorClient() {
           continueLabel="Start the calculator"
         >
           <div className="mx-auto mt-4 box-border w-full max-w-5xl rounded-[1.45rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#effaf2_0%,#ffffff_100%)] p-5 text-left sm:mt-6 sm:rounded-[1.9rem] sm:p-6">
-            <div className="text-sm font-bold leading-tight text-[#15803D]">Estimated monthly opportunity worth checking</div>
+            <div className="text-sm font-bold leading-tight text-[#15803D]">Estimated monthly money worth checking</div>
             <div className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-5xl">$3,000 to $25,000+</div>
             <p className="mt-3 text-sm leading-6 text-slate-700">
               The calculator shows which leak is costing the business first: collected cash, follow-up, or both.
@@ -926,7 +926,7 @@ export function InvoicingDelayCalculatorClient() {
       return (
         <StepFrame {...frameProps}
           title="Where is your customer list saved?"
-          body="A messy list does not erase the opportunity. It shows where Stanley Systems starts: getting the list clean enough to use."
+          body="A messy list does not erase the money. It shows where Stanley Systems starts: getting the list clean enough to use."
         >
           <MultiChoiceGrid<CustomerListSource>
             value={customerListSources}
