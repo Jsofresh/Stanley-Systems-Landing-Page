@@ -4,14 +4,14 @@ import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { MarketingPageShell } from "@/components/marketing-page-shell"
 
 export const metadata: Metadata = {
-  title: "Marine Shop Case Study | Stanley Systems",
+  title: "Case Notes | Stanley Systems",
   description:
     "See how Stanley Systems helps a marine shop find money stuck in office workflow, billing handoffs, intake cleanup, and repeat customer follow-up.",
   alternates: {
     canonical: "https://stanley-systems.com/stanley-systems-case-study",
   },
   openGraph: {
-    title: "Marine Shop Case Study | Stanley Systems",
+    title: "Case Notes | Stanley Systems",
     description:
       "A Stanley Systems case study page focused on practical workflow cleanup for a marine shop, including billing handoffs, intake cleanup, and repeat revenue from existing customers.",
     url: "https://stanley-systems.com/stanley-systems-case-study",
@@ -106,10 +106,10 @@ export default function StanleySystemsCaseStudyPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
-              How a Marine Shop Found Money Sitting in Its Office Workflow
+              Case Notes: Money Sitting in the Office Workflow
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-600 sm:text-xl">
-              The work was already getting done. The problem was what happened after the job was finished.
+              A plain-English example of how finished work, billing handoffs, and past-customer follow-up can slow cash down.
             </p>
           </div>
 
@@ -257,7 +257,7 @@ export default function StanleySystemsCaseStudyPage() {
               </div>
               <div className="flex flex-col gap-3 lg:items-end">
                 <Link
-                  href="/pricing#workflow-audit"
+                  href="/workflow-audit#assessment"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-slate-100"
                 >
                   Start with the Cash Flow Assessment

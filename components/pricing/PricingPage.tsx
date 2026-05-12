@@ -73,7 +73,7 @@ function SectionHeader({ id, title, copy }: { id?: string; title: string; copy: 
 
 function PlanGrid({ plans }: { plans: PricingPlan[] }) {
   return (
-    <div className="mt-7 grid gap-5 lg:grid-cols-3">
+    <div className="mt-5 grid gap-4 lg:grid-cols-3">
       {plans.map((plan) => (
         <PlanCard key={plan.id} plan={plan} featured={plan.id === "both_systems_yearly"} />
       ))}
@@ -106,7 +106,7 @@ function CompareSystems() {
     },
     {
       title: "Both Systems",
-      href: "/pricing#yearly-plans-heading",
+      href: "/systems/both-systems",
       bestWhen: "Both leaks: money is getting dropped before and after the job.",
       cta: "Compare Both Systems",
       featured: true,
@@ -149,7 +149,7 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
   return (
     <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
       <PricingHero offer={workflowAuditOffer} calculatorContext={calculatorContext} />
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-10">
         {calculatorContext ? <CalculatorHandoffPanel context={calculatorContext} /> : null}
 
         <section aria-label="Cash Flow Assessment" className="mx-auto w-full max-w-4xl">
@@ -169,13 +169,13 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
               <SectionHeader
                 id="mobile-monthly-plans-heading"
                 title="Monthly systems"
-                copy="Build the system, keep it running, and stop the leak from coming back."
+                copy="Monthly payments with installation at checkout."
               />
               <PlanGrid plans={monthlyPlans} />
               <SectionHeader
                 id="mobile-yearly-plans-heading"
                 title="Yearly systems"
-                copy="Pay once for the year, waive installation, and keep the office handoff tight."
+                copy="One yearly payment with installation waived."
               />
               <PlanGrid plans={yearlyPlans} />
               <CheckoutScopeNote />
@@ -187,7 +187,7 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
           <SectionHeader
             id="monthly-plans-heading"
             title="Monthly systems"
-            copy="Build the system, keep it running, and stop the leak from coming back. Installation is charged at checkout, and assessment buyers can use the monthly assessment credit."
+            copy="Monthly payments with installation at checkout. Assessment buyers can use the monthly assessment credit."
           />
           <PlanGrid plans={monthlyPlans} />
           <CheckoutScopeNote />
@@ -197,7 +197,7 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
           <SectionHeader
             id="yearly-plans-heading"
             title="Yearly systems"
-            copy="Pay once for the year, waive installation, and keep the office handoff tight. Assessment buyers can use the yearly assessment credit."
+            copy="One yearly payment with installation waived. Assessment buyers can use the yearly assessment credit."
           />
           <PlanGrid plans={yearlyPlans} />
           <CheckoutScopeNote copy="Yearly checkout starts onboarding and fit, access, and scope review before the build begins. The Cash Flow Assessment credit only applies under the stated assessment-credit terms." />

@@ -59,7 +59,7 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCredit: 97,
     firstYearCostAfterAuditCreditDisplay: "$97",
     savings: null,
-    badge: "Paid first step",
+    badge: "Cash Flow Assessment",
     cta: "Buy the Cash Flow Assessment",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_WORKFLOW_AUDIT_PAYMENT_LINK",

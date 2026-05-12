@@ -106,14 +106,14 @@ function LeakPathVisual() {
       fadeSize="5%"
       outerFade
       outerFadeColor="rgba(251,252,247,0.9)"
-      wrapperClassName="relative mx-auto w-full max-w-[560px] lg:max-w-[600px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
+      wrapperClassName="relative mx-auto w-full max-w-[560px] transition duration-300 hover:-translate-y-1 hover:scale-[1.015] lg:max-w-[600px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
     />
   )
 }
 
 function Hero() {
   return (
-    <section data-section="cashflow-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-28 sm:pb-16 lg:flex lg:min-h-[calc(100svh-96px)] lg:items-center lg:py-24">
+    <section data-section="cashflow-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-10 pt-24 sm:pb-12 sm:pt-[6.5rem] lg:flex lg:min-h-[calc(100svh-140px)] lg:items-center lg:py-[4.5rem]">
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
       <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center`}>
         <div>
@@ -122,9 +122,6 @@ function Hero() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">
             Cashflow Control keeps jobs moving from customer request to paid bill.
-          </p>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173]">
-            Stanley Systems connects intake, job notes, office checks, invoices, payment follow-up, and owner view so the next billing step does not sit still.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <CheckoutButton pkg={cashflowMonthly} label="Buy Cashflow Control" location="cashflow_hero_primary" />
@@ -263,10 +260,10 @@ function MechanismProof() {
 
 function FitObjections() {
   const questions = [
-    ["Does this replace my field or accounting software?", "No. Stanley Systems sets it up around the tools you already use."],
-    ["What if we are not sure billing is the biggest leak?", "Start with the Cash Flow Assessment. It shows which leak should be fixed first."],
-    ["How soon do we know what gets installed?", "The assessment maps the leak first. Direct system buyers start with setup mapping."],
-    ["Who is this for?", "Service businesses where completed work still depends on office follow-up before cash comes in."],
+    ["Does this replace my field or accounting software?", "No. Stanley Systems sets it up around the tools your team already uses. Cashflow Control connects the steps between job notes, office checks, billing, payment follow-up, and owner visibility. The goal is to remove handoff drag without forcing a new operating system on the business."],
+    ["What if we are not sure billing is the biggest leak?", "Start with the Cash Flow Assessment if the first leak is not obvious. Stanley Systems reviews cash, follow-up, software handoffs, and owner cleanup before recommending the first system. If billing is not the biggest problem, you should not buy Cashflow Control first."],
+    ["How soon do we know what gets installed?", "The assessment maps the leak first. Direct system buyers start with onboarding, access review, and setup mapping before build work begins. Stanley Systems confirms the first safe implementation path before touching live workflow."],
+    ["Who is this for?", "Cashflow Control is for service businesses where completed work still depends on office follow-up before cash comes in. It fits when jobs are done but invoices, missing details, approvals, open balances, or payment follow-up still wait on people remembering. If there is not enough volume or workflow structure, Stanley Systems may recommend a different next step."],
   ]
 
   return (
@@ -283,11 +280,14 @@ function FitObjections() {
           </div>
         </div>
         <div className="grid gap-4">
-          {questions.map(([question, answer]) => (
-            <article key={question} className="rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)]">
-              <h3 className="text-xl font-semibold tracking-[-0.025em] text-[#102033]">{question}</h3>
-              <p className="mt-2 text-sm leading-6 text-[#536173]">{answer}</p>
-            </article>
+          {questions.map(([question, answer], index) => (
+            <details key={question} open={index === 0} className="group rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)] open:border-[#BFE4C8] open:bg-[#F4FBF5]">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold tracking-[-0.025em] text-[#102033] marker:hidden [&::-webkit-details-marker]:hidden">
+                {question}
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-lg font-black text-[#15803D] ring-1 ring-[#CFE8D5] transition group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 text-sm leading-6 text-[#536173]">{answer}</p>
+            </details>
           ))}
         </div>
       </div>

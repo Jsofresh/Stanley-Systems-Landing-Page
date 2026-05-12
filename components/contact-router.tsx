@@ -19,7 +19,7 @@ type RouteId = (typeof routes)[number]["id"]
 export function ContactRouter() {
   const [selected, setSelected] = useState<RouteId>("audit")
   return (
-    <section className="px-4 pb-20 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pt-36">
+    <section className="px-4 pb-16 pt-24 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-3xl">
           <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Contact Stanley Systems</p>
@@ -30,7 +30,7 @@ export function ContactRouter() {
         <div className="mt-8 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="grid gap-4">
             {routes.map((route) => (
-              <button key={route.id} type="button" onClick={() => setSelected(route.id)} className={`rounded-[1.5rem] border p-5 text-left shadow-[0_14px_34px_rgba(7,29,58,0.05)] transition ${selected === route.id ? "border-[#BFE4C8] bg-[#F4FBF5]" : "border-[#DDEBE2] bg-white hover:border-[#CFE8D5]"}`}>
+              <button key={route.id} type="button" onClick={() => setSelected(route.id)} className={`rounded-[1.5rem] border p-5 text-left shadow-[0_14px_34px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] ${selected === route.id ? "border-[#15803D] bg-[#F4FBF5] ring-2 ring-[#CFE8D5]" : "border-[#DDEBE2] bg-white hover:border-[#15803D] hover:bg-[#FBFEFA] hover:shadow-[0_20px_46px_rgba(21,128,61,0.10)]"}`}>
                 <div className="flex gap-4">
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-[#15803D] ring-1 ring-[#CFE8D5]"><route.icon className="h-5 w-5" /></span>
                   <div>
@@ -71,10 +71,10 @@ function AuditPanel() {
         ].map((item) => <li key={item} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" />{item}</li>)}
       </ul>
       <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-        <CTALink href={auditHref} kind="checkout" location="contact_audit_panel" analyticsEvent="audit_checkout_clicked" analyticsSource="contact_router" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">
+        <CTALink href={auditHref} kind="checkout" location="contact_audit_panel" analyticsEvent="audit_checkout_clicked" analyticsSource="contact_router" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)]">
           Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" />
         </CTALink>
-        <Link href="/audit-started" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] hover:bg-[#F4FBF5]">What happens after buying</Link>
+        <Link href="/audit-started" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]">What happens after buying</Link>
       </div>
     </div>
   )
@@ -86,7 +86,7 @@ function BoughtPanel() {
       <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Already bought?</p>
       <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Start your assessment intake.</h2>
       <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">If you already bought the Cash Flow Assessment, use the intake route to send the workflow context Stanley Systems needs before reviewing the revenue path.</p>
-      <Link href="/audit-intake" className="mt-7 inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">Go to assessment intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
+      <Link href="/audit-intake" className="mt-7 inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)]">Go to assessment intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
     </div>
   )
 }
@@ -163,7 +163,7 @@ function PreBuyQuestionForm() {
       <Input label="What kind of service business is this?" value={form.business_type} onChange={(value) => setForm({ ...form, business_type: value })} />
       <label className="block"><span className="mb-2 block text-sm font-bold text-[#102033]">What is getting stuck?*</span><select required value={form.main_issue} onChange={(event) => setForm({ ...form, main_issue: event.target.value })} className="w-full rounded-2xl border border-[#DDEBE2] bg-white px-4 py-3 text-[#071D3A] outline-none focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"><option value="">Choose one</option><option>Invoices going out late</option><option>Getting paid</option><option>Estimate follow-up</option><option>Missed calls</option><option>Review/referral follow-up</option><option>Office handoffs</option><option>Not sure yet</option></select></label>
       <label className="block"><span className="mb-2 block text-sm font-bold text-[#102033]">Short message*</span><textarea required rows={5} value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} className="w-full rounded-2xl border border-[#DDEBE2] bg-white px-4 py-3 text-[#071D3A] outline-none focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10" placeholder="Ask the one thing you need answered before buying." /></label>
-      <button disabled={state === "submitting"} className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832] disabled:opacity-70" type="submit">{state === "submitting" ? "Sending..." : "Ask Stanley Systems"} <HelpCircle className="ml-2 h-4 w-4" /></button>
+      <button disabled={state === "submitting"} className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)] disabled:opacity-70" type="submit">{state === "submitting" ? "Sending..." : "Ask Stanley Systems"} <HelpCircle className="ml-2 h-4 w-4" /></button>
     </form>
   )
 }

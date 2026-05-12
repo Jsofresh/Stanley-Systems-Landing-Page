@@ -90,7 +90,7 @@ export type PricingCalculatorContext = {
 }
 
 const directPurchasePromises: Record<PricingPackageId, string> = {
-  workflow_audit: "Find the leak before you buy the build.",
+  workflow_audit: "Find the leak before you choose a system.",
   cashflow_control_monthly: "Stop finished work from sitting unpaid.",
   repeat_revenue_monthly: "Bring past customers back before they buy from someone else.",
   both_systems_monthly: "Stop the leak before the job and after the job.",
@@ -198,7 +198,7 @@ const packageDemos: Partial<Record<PricingPackageId, PackageDemo>> = {
 function priceRowsFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
     return [
-      { label: "Paid first step", value: pricingPackage.priceDisplay },
+      { label: "Assessment", value: pricingPackage.priceDisplay },
       { label: "If you bought the Cash Flow Assessment first", value: "$97 monthly credit or $194 yearly credit after the assessment call" },
     ]
   }
@@ -222,7 +222,7 @@ function priceRowsFor(pricingPackage: PricingPackage) {
 
 function priceNoteFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
-    return `${pricingPackage.priceDisplay} paid first step. If you buy a package within 24 hours after the assessment call, use the assessment credit at checkout.`
+    return `${pricingPackage.priceDisplay} assessment. If you buy a package within 24 hours after the assessment call, use the assessment credit at checkout.`
   }
 
   const setupCopy = pricingPackage.waivedSetup
@@ -309,9 +309,9 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
 export const workflowAuditOffer: WorkflowAuditOffer = {
   ...planFromPackage(pricingPackageById.workflow_audit),
   title: "Cash Flow Assessment",
-  shortTitle: "Paid first step",
-  promise: "Find the leak before you buy the build.",
-  description: "Stanley Systems finds where money is being dropped, what it likely costs, and which system should be built first.",
+  shortTitle: "Assessment",
+  promise: "Find the leak before you choose a system.",
+  description: "Stanley Systems finds where money is being dropped, what it likely costs, and which payment path fits next.",
   id: "workflow_audit",
   kind: "front_door_audit",
   contactPathOnly: false,

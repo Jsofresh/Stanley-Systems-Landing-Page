@@ -5,18 +5,12 @@ import type { PricingCalculatorContext, WorkflowAuditOffer } from "@/lib/pricing
 
 export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAuditOffer; calculatorContext?: PricingCalculatorContext | null }) {
   return (
-    <section className="px-4 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pt-34">
+    <section className="px-4 pt-24 sm:px-6 sm:pt-28 lg:px-8 lg:pt-[7.5rem]">
       <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#e7e1d6] bg-white px-5 py-8 text-center shadow-[0_24px_70px_rgba(15,23,42,0.075)] sm:rounded-[2.5rem] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
         <h1 className="mx-auto max-w-5xl text-balance text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[4.25rem]">
           Choose the system that stops the money leak.
         </h1>
-        <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-[#536173] sm:text-lg sm:leading-8">
-          Start with the Cash Flow Assessment if you are not sure where money is being dropped. If the leak is already clear, pick the system that fixes it.
-        </p>
-        <p className="mx-auto mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#102033] sm:text-base">
-          Late invoices. Missed calls. Forgotten follow-ups. Past customers nobody contacts again. Or all of it at once.
-        </p>
-        <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+        <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <CTALink
             href={offer.cta.href}
             kind="book_meeting"
@@ -42,9 +36,6 @@ export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAudit
             Calculate the leak
           </CTALink>
         </div>
-        <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-6 text-[#5f6e7d]">
-          The assessment comes first when the leak is not clear. Build work follows the leak Stanley Systems can actually fix.
-        </p>
         {calculatorContext?.source === "calculator" ? (
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[#15803D]">
             Your calculator result is loaded below with rounded estimates only.

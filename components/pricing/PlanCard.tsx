@@ -8,7 +8,7 @@ export function PlanCard({ plan, featured = false }: { plan: PricingPlan; featur
   return (
     <article
       id={plan.id === "workflow_audit" ? "workflow-audit" : plan.id.replaceAll("_", "-")}
-      className={`flex h-full flex-col rounded-[1.35rem] border bg-white p-4 shadow-[0_14px_34px_rgba(15,23,42,0.06)] sm:p-5 ${
+      className={`flex h-full flex-col rounded-[1.25rem] border bg-white p-4 shadow-[0_12px_28px_rgba(15,23,42,0.055)] ${
         featured || isAudit ? "border-[#b8e2c4] ring-1 ring-[#d7f1de]" : "border-[#dfe7ee]"
       }`}
     >
@@ -34,41 +34,10 @@ export function PlanCard({ plan, featured = false }: { plan: PricingPlan; featur
       <p className="mt-1.5 text-sm leading-5 text-[#536173]">{plan.description}</p>
 
       {plan.demo ? (
-        <>
-          <details className="mt-3 rounded-2xl border border-[#dbe7dd] bg-[#f8fcf9] p-3 text-sm leading-5 text-[#26374b] md:hidden">
-            <summary className="cursor-pointer list-none font-extrabold text-[#102033] [&::-webkit-details-marker]:hidden">
-              Best for: {plan.demo.bestFor}
-              <span className="mt-1 block text-xs font-bold text-[#536173]">Tap for before/after details.</span>
-            </summary>
-            <p className="mt-3"><span className="font-extrabold text-[#102033]">Leak it fixes: </span>{plan.demo.leak}</p>
-            <div className="mt-3 grid gap-2 text-xs font-semibold leading-5 text-[#33475b]">
-              <p><span className="font-black text-[#b91c1c]">Before: </span>{plan.demo.before.join(" / ")}</p>
-              <p><span className="font-black text-[#116832]">After: </span>{plan.demo.after.join(" / ")}</p>
-            </div>
-          </details>
-          <div className="mt-4 hidden rounded-2xl border border-[#dbe7dd] bg-[#f8fcf9] p-3 text-sm leading-5 text-[#26374b] md:block">
-            <p><span className="font-extrabold text-[#102033]">Best for: </span>{plan.demo.bestFor}</p>
-            <p className="mt-2"><span className="font-extrabold text-[#102033]">Leak it fixes: </span>{plan.demo.leak}</p>
-            <div className="mt-3 grid gap-3 md:grid-cols-2">
-              <div className="rounded-xl border border-[#f0c8c1] bg-[#fff6f4] p-3">
-                <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#b91c1c]">Before Stanley</p>
-                <ul className="mt-2 grid gap-1.5 text-xs font-semibold leading-5 text-[#33475b]">
-                  {plan.demo.before.map((item) => (
-                    <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b91c1c]" />{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-xl border border-[#bfe4c8] bg-white p-3">
-                <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#116832]">After Stanley</p>
-                <ul className="mt-2 grid gap-1.5 text-xs font-semibold leading-5 text-[#33475b]">
-                  {plan.demo.after.map((item) => (
-                    <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803d]" />{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </>
+        <div className="mt-4 rounded-2xl border border-[#dbe7dd] bg-[#f8fcf9] p-3 text-sm leading-5 text-[#26374b]">
+          <p><span className="font-extrabold text-[#102033]">Best for: </span>{plan.demo.bestFor}</p>
+          <p className="mt-2"><span className="font-extrabold text-[#102033]">Leak it fixes: </span>{plan.demo.leak}</p>
+        </div>
       ) : null}
 
       <div className="mt-4 rounded-2xl border border-[#e0e8ef] bg-[#f8fbfc] p-3">

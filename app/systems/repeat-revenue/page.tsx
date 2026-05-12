@@ -239,10 +239,10 @@ function MechanismProof() {
 
 function FitObjections() {
   const questions = [
-    ["Will this change my main phone number?", "No. Stanley Systems sets it up around the way customers already reach you."],
-    ["Does this guarantee reviews or new customers?", "No. It creates the follow-up path. Customers still choose what they do."],
-    ["What if billing is the bigger leak?", "Start with the Cash Flow Assessment, or choose Cashflow Control if billing is clearly first."],
-    ["Who is this for?", "Service businesses with old customers, happy customers, missed calls, or referral chances that do not get worked every week."],
+    ["Will this change my main phone number?", "No. Stanley Systems works around the phone path customers already use. If call tracking, missed-call routing, or a separate intake number is useful, that gets reviewed before anything changes. The goal is to keep real customer demand visible without breaking the way people already reach you."],
+    ["Does this guarantee reviews or new customers?", "No. Stanley Systems cannot make customers leave reviews, send referrals, or book again. Repeat Revenue creates the follow-up path so happy customers get asked, missed calls get noticed, and past customers are contacted at the right time. Customers still choose what they do."],
+    ["What if billing is the bigger leak?", "Then Repeat Revenue may not be the first system to buy. Start with the Cash Flow Assessment if you are not sure, or choose Cashflow Control when finished work, invoices, and payment follow-up are clearly the bigger problem. Stanley Systems should fix the leak that costs you first."],
+    ["Who is this for?", "Repeat Revenue is for service businesses with old customers, happy customers, missed calls, referrals, or review opportunities that do not get worked every week. It fits best when the business already does good work but follow-up depends on memory. If there is not enough customer volume, Stanley Systems may point you somewhere else."],
   ]
 
   return (
@@ -259,11 +259,14 @@ function FitObjections() {
           </div>
         </div>
         <div className="grid gap-4">
-          {questions.map(([question, answer]) => (
-            <article key={question} className="rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)]">
-              <h3 className="text-xl font-semibold tracking-[-0.025em] text-[#102033]">{question}</h3>
-              <p className="mt-2 text-sm leading-6 text-[#536173]">{answer}</p>
-            </article>
+          {questions.map(([question, answer], index) => (
+            <details key={question} open={index === 0} className="group rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)] open:border-[#BFE4C8] open:bg-[#F4FBF5]">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold tracking-[-0.025em] text-[#102033] marker:hidden [&::-webkit-details-marker]:hidden">
+                {question}
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-lg font-black text-[#15803D] ring-1 ring-[#CFE8D5] transition group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 text-sm leading-6 text-[#536173]">{answer}</p>
+            </details>
           ))}
         </div>
       </div>

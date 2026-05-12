@@ -1,16 +1,20 @@
+import Link from "next/link"
 import { CheckCircle2 } from "lucide-react"
 
 const industries = [
   {
     title: "Plumbing and HVAC",
+    href: "/industries/plumbing",
     body: "Fast jobs create fast billing problems when tech notes, photos, line items, or approvals are missing.",
   },
   {
     title: "Marine and field service",
+    href: "/industries/marine",
     body: "Custom work gets messy when the office has to rebuild the job story before billing or customer updates can happen.",
   },
   {
     title: "Electrical, landscaping, and trades",
+    href: "/industries/electrical",
     body: "Completed work, open estimates, scheduling updates, and customer follow-up get spread across calls, texts, notes, and software.",
   },
 ]
@@ -65,10 +69,11 @@ export function BestFitSection({ className = "" }: { className?: string }) {
 
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
           {industries.map((industry) => (
-            <article key={industry.title} className="rounded-[1.5rem] border border-[#e3ead9] bg-white/90 p-6 shadow-[0_16px_48px_rgba(15,23,42,0.055)]">
+            <Link key={industry.title} href={industry.href} className="rounded-[1.5rem] border border-[#e3ead9] bg-white/90 p-6 shadow-[0_16px_48px_rgba(15,23,42,0.055)] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white hover:shadow-[0_22px_52px_rgba(21,128,61,0.12)]">
               <h3 className="text-xl font-semibold tracking-tight text-slate-950">{industry.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">{industry.body}</p>
-            </article>
+              <span className="mt-4 inline-flex text-sm font-extrabold text-[#116832]">View industry page →</span>
+            </Link>
           ))}
         </div>
 

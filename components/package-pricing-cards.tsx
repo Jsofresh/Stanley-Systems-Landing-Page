@@ -174,7 +174,7 @@ function PackagePricingCardView({
             <p><span className="font-extrabold text-[#102033]">Leak it fixes: </span>{card.leak}</p>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="rounded-xl border border-[#F0C8C1] bg-[#FFF6F4] p-3">
-                <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#B91C1C]">Before Stanley</p>
+                <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#B91C1C]">Before</p>
                 <ul className="mt-2 grid gap-1.5 font-semibold text-[#33475B]">
                   {card.before.map((item) => (
                     <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#B91C1C]" />{item}</li>
@@ -182,7 +182,7 @@ function PackagePricingCardView({
                 </ul>
               </div>
               <div className="rounded-xl border border-[#BFE4C8] bg-white p-3">
-                <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#116832]">After Stanley</p>
+                <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#116832]">After</p>
                 <ul className="mt-2 grid gap-1.5 font-semibold text-[#33475B]">
                   {card.after.map((item) => (
                     <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />{item}</li>

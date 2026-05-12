@@ -49,7 +49,7 @@ const navGroups: MegaMenuGroup[] = [
     items: [
       { label: "Cashflow Control System", href: "/systems/cashflow-control", description: "Turn finished work into collected cash faster." },
       { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "Bring back past customers, reviews, referrals, and missed calls." },
-      { label: "Both Systems", href: "/workflow-audit", description: "Compare the first leak before buying a system." },
+      { label: "Both Systems", href: "/systems/both-systems", description: "Buy both leak systems together." },
     ],
     featured: {
       title: "Not sure where money is stuck?",
@@ -66,14 +66,14 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(620px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-2",
     items: [
-      { label: "HVAC", href: "/who-stanley-systems-helps" },
-      { label: "Plumbing", href: "/who-stanley-systems-helps" },
-      { label: "Electrical", href: "/who-stanley-systems-helps" },
-      { label: "Marine", href: "/marine-service-automation" },
-      { label: "Landscaping", href: "/who-stanley-systems-helps" },
-      { label: "Roofing", href: "/who-stanley-systems-helps" },
-      { label: "General Contractors", href: "/who-stanley-systems-helps" },
-      { label: "Adjacent Service Businesses", href: "/who-stanley-systems-helps" },
+      { label: "HVAC", href: "/industries/hvac" },
+      { label: "Plumbing", href: "/industries/plumbing" },
+      { label: "Electrical", href: "/industries/electrical" },
+      { label: "Marine", href: "/industries/marine" },
+      { label: "Landscaping", href: "/industries/landscaping" },
+      { label: "Roofing", href: "/industries/roofing" },
+      { label: "General Contractors", href: "/industries/general-contractors" },
+      { label: "Adjacent Service Businesses", href: "/industries/adjacent-service-businesses" },
     ],
     featured: {
       title: "Busy team, messy handoff?",
@@ -341,7 +341,7 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="hidden items-center gap-2 md:flex">
-            <a href="/#systems" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>See the packages</a>
+            <a href="/workflow-audit#assessment" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>See the packages</a>
             <CTALink
               href="/workflow-audit"
               kind="systems"
@@ -445,7 +445,7 @@ export function SiteHeader() {
                   </div>
                 )
               })}
-              <a href="/#systems" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">See the packages</a>
+              <a href="/workflow-audit#assessment" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">See the packages</a>
               <CTALink
                 href="/workflow-audit"
                 kind="systems"
@@ -504,7 +504,7 @@ export function HeroSection() {
                 href="/workflow-audit"
                 kind="systems"
                 location="home_hero_primary"
-                analyticsEvent="audit_cta_clicked"
+                analyticsEvent="audit_checkout_clicked"
                 analyticsSource="homepage_hero"
                 ctaLabel="Start the Cash Flow Assessment"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"

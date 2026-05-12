@@ -47,7 +47,14 @@ export async function POST(request: Request) {
       submittedAt: new Date().toISOString(),
     }
 
-    if (payload.form_type === "pre_buy_question") {
+    if (payload.form_type === "assessment_intake") {
+      if (!payload.name || !payload.email || !payload.phone || !payload.company || !payload.problem || !payload.currentProcess) {
+        return NextResponse.json(
+          { ok: false, error: "Missing required fields." },
+          { status: 400 },
+        )
+      }
+    } else if (payload.form_type === "pre_buy_question") {
       if (!payload.name || !payload.email || !payload.company || !payload.problem) {
         return NextResponse.json(
           { ok: false, error: "Missing required fields." },
