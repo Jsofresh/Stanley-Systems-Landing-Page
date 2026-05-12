@@ -11,10 +11,6 @@ const assessmentHref = "/workflow-audit";
 
 const heroSlideshowImages = [
   {
-    src: "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg",
-    alt: "Service technician van outside a customer location",
-  },
-  {
     src: "/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg",
     alt: "Office dashboard review for a service business",
   },
@@ -30,32 +26,37 @@ const heroSlideshowImages = [
     src: "/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg",
     alt: "Desktop cash flow view for a service business",
   },
+  {
+    src: "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg",
+    alt: "Service technician van outside a customer location",
+    objectPosition: "60% center",
+  },
 ];
 
 const uploadedHomeImages = {
   calculator: {
-    src: "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-60k-to-300k.jpg",
-    alt: "Annual money left on the table estimate for service businesses",
+    src: "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-consultation-laptop-meeting.jpg",
+    alt: "Cash Flow Calculator estimate shown on a laptop during a cash-flow consultation",
     width: 1280,
-    height: 800,
+    height: 853,
   },
   leaks: {
-    src: "/images/uploaded/homepage/cash-flow-rework/service-business-leak-types.jpg",
-    alt: "Four common service-business money leaks: missed calls, late invoices, forgotten follow-ups, and past customers",
+    src: "/images/uploaded/homepage/cash-flow-rework/revenue-leak-icons-wasted-payroll-late-invoices-followups-past-customers.jpg",
+    alt: "Revenue leaks from wasted payroll, late invoices, forgotten follow-ups, and past customers",
     width: 1280,
     height: 426,
   },
   assessment: {
-    src: "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-vertical-section-bg.jpg",
-    alt: "Cash Flow Assessment steps: find money leaks, estimate cost, pick first system, avoid the wrong build",
+    src: "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-report-leak-found-6200-mo.jpg",
+    alt: "Cash Flow Assessment report showing a 6200 dollar monthly leak and first fix",
     width: 1024,
     height: 1280,
   },
   beforeAfter: {
-    src: "/images/uploaded/homepage/cash-flow-rework/before-after-cash-flow-system.jpg",
-    alt: "Before and after view of a service business with better customer logging, invoice sending, payment follow-up, and repeat customers",
+    src: "/images/uploaded/homepage/cash-flow-rework/before-after-reviews-customers-payroll-estimates-cash.jpg",
+    alt: "Before and after improvement map for reviews, customers, payroll, estimates, and cash flow",
     width: 1280,
-    height: 589,
+    height: 960,
   },
 };
 
@@ -190,7 +191,10 @@ function HeroImageSlideshow() {
             priority={index === 0}
             sizes="66vw"
             className="stanley-hero-slideshow-image object-cover"
-            style={{ animationDelay: `${index * 5}s` }}
+            style={{
+              animationDelay: `${index * 5}s`,
+              objectPosition: image.objectPosition ?? "center",
+            }}
           />
         ))}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.98)_15%,rgba(7,20,34,0.84)_28%,rgba(7,20,34,0.46)_45%,rgba(7,20,34,0.08)_68%,rgba(7,20,34,0.34)_100%)]" />
@@ -254,7 +258,7 @@ function CalculatorSpine() {
       <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
           <h2 className="max-w-[680px] text-balance text-[clamp(2.15rem,4.4vw,4.75rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-[#071D3A]">
-            Get a free estimate of the money left on the table.
+            Use the free calculator to see what your business is losing.
           </h2>
 
           <div className="mt-5 grid gap-2.5">
