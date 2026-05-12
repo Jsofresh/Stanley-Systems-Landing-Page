@@ -113,14 +113,19 @@ function PackagePricingCardView({
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[#E4EBE6] transition duration-300 group-hover:bg-[#15803D]" />
       <div className="flex items-start justify-between gap-3">
         <div className="w-full">
-          <p className={`${card.badge.startsWith("-") ? "text-center text-lg font-black leading-none tracking-[-0.035em]" : "text-xs font-extrabold uppercase tracking-[0.12em]"} ${badgeClass(card.tone)}`}>
+          {isYearly ? (
+            <p className="mb-2 inline-flex rounded-full bg-[#F1F5F2] px-3 py-1 text-xs font-extrabold text-[#66758A] ring-1 ring-[#DDE8E1]">
+              Yearly
+            </p>
+          ) : null}
+          <p className={`${card.badge.startsWith("-") ? "text-center text-xl font-black leading-none tracking-[-0.035em]" : "text-center text-sm font-extrabold uppercase tracking-[0.12em]"} ${badgeClass(card.tone)}`}>
             {card.badge}
           </p>
-          <h3 className="mt-4 text-xl font-bold leading-tight tracking-[-0.035em] text-[#102033]">{card.name}</h3>
+          <h3 className="mt-4 text-center text-xl font-bold leading-tight tracking-[-0.035em] text-[#102033]">{card.name}</h3>
         </div>
       </div>
-      <p className="mt-3 text-[2.55rem] font-bold leading-none tracking-[-0.06em] text-[#102033]">{display.price}</p>
-      <p className="mt-1 text-xs font-extrabold uppercase tracking-[0.08em] text-[#607080]">{display.note}</p>
+      <p className="mt-3 text-center text-[2.75rem] font-bold leading-none tracking-[-0.06em] text-[#102033]">{display.price}</p>
+      <p className="mt-1 text-center text-sm font-extrabold uppercase tracking-[0.08em] text-[#607080]">{display.note}</p>
 
       <CTALink
         href={pkg.stripePaymentLink.url}
@@ -139,7 +144,7 @@ function PackagePricingCardView({
         {card.cta} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
       </CTALink>
 
-      <p className="mt-4 text-sm leading-5 text-[#33475B]">{card.description}</p>
+      <p className="mt-4 text-center text-sm leading-5 text-[#33475B]">{card.description}</p>
 
       {card.bestFor && card.leak && card.before && card.after ? (
         <>
@@ -189,13 +194,13 @@ function PackagePricingCardView({
         </>
       ) : null}
 
-      <div className="mt-3 hidden gap-2 border-y border-[#C8D8CE] py-2 text-xs font-semibold leading-5 text-[#33475B] md:grid">
-        <div className="rounded-xl bg-[#F8FCF9] px-3 py-2 ring-1 ring-[#E0E9E3]">{card.install}</div>
-        <div className="rounded-xl bg-[#FFF6F4] px-3 py-2 font-extrabold text-[#B91C1C] ring-1 ring-[#F0C8C1]">{card.credit}</div>
+      <div className="mt-3 grid place-items-center gap-2 border-y border-[#C8D8CE] py-2 text-sm font-bold leading-5 text-[#33475B]">
+        <div className="w-fit rounded-xl bg-[#F8FCF9] px-4 py-2 text-center ring-1 ring-[#E0E9E3]">{card.install}</div>
+        <div className="w-fit rounded-xl bg-[#FFF6F4] px-4 py-2 text-center font-extrabold text-[#B91C1C] ring-1 ring-[#F0C8C1]">{card.credit}</div>
       </div>
 
       {discountCallout ? (
-        <p className="mt-3 hidden rounded-2xl border border-[#F0C8C1] bg-[#FFF6F4] px-3 py-3 text-center text-sm font-black leading-5 tracking-[-0.02em] text-[#B91C1C] shadow-[0_10px_22px_rgba(185,28,28,0.08)] md:block">
+        <p className="mt-3 rounded-2xl border border-[#F0C8C1] bg-[#FFF6F4] px-4 py-4 text-center text-lg font-black leading-6 tracking-[-0.03em] text-[#B91C1C] shadow-[0_10px_22px_rgba(185,28,28,0.08)]">
           {discountCallout}
         </p>
       ) : null}

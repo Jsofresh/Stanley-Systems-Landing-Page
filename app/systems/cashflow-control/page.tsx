@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
+import { FadedImage } from "@/components/faded-image"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 import { PackagePricingGrid, type PackagePricingCard } from "@/components/package-pricing-cards"
@@ -95,17 +95,16 @@ const cashflowPricingCards: PackagePricingCard[] = [
 
 function LeakPathVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[720px] lg:max-w-[780px]">
-      <Image
-        src="/images/uploaded/money-leak-map/money-leak-map-delayed-billing-office-time-quiet-estimates-missed-reviews.jpg"
-        alt="Four common money leaks: delayed billing, office time, quiet estimates, and missed review and referral flow."
-        width={960}
-        height={1280}
-        priority
-        sizes="(min-width: 1024px) 48vw, 100vw"
-        className="h-auto w-full object-contain drop-shadow-[0_24px_55px_rgba(7,29,58,0.12)]"
-      />
-    </div>
+    <FadedImage
+      src="/images/uploaded/money-leak-map/money-leak-map-delayed-billing-office-time-quiet-estimates-missed-reviews.jpg"
+      alt="Four common money leaks: delayed billing, office time, quiet estimates, and missed review and referral flow."
+      width={960}
+      height={1280}
+      priority
+      sizes="(min-width: 1024px) 36vw, 100vw"
+      fadeColor="#FBFCF7"
+      wrapperClassName="relative mx-auto w-full max-w-[540px] lg:max-w-[585px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
+    />
   )
 }
 
@@ -116,7 +115,7 @@ function Hero() {
       <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center`}>
         <div>
           <h1 className="max-w-5xl text-[2.25rem] font-semibold leading-[0.96] tracking-[-0.052em] text-[#071D3A] sm:text-[3.45rem] lg:text-[4rem]">
-            Stop finished work from waiting on the office.
+            Cashflow Control turns finished jobs into paid invoices faster.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">
             Cashflow Control keeps jobs moving from customer request to paid bill.
@@ -167,13 +166,14 @@ function LeakProof() {
           </div>
         </div>
         <div className="mx-auto w-full max-w-2xl">
-          <Image
-            src="/images/uploaded/cashflow-control/delayed-billing-office-time-open-balances.jpg"
+          <FadedImage
+            src="/images/uploaded/package-voice-notes/delayed-billing-office-time-open-balances-repeat-cleanup.jpg"
             alt="Delayed billing, office time, and open balances create repeated cleanup work."
             width={1280}
-            height={720}
+            height={960}
             sizes="(min-width: 1024px) 48vw, 100vw"
-            className="h-auto w-full object-contain drop-shadow-[0_22px_50px_rgba(7,29,58,0.12)]"
+            fadeColor="#ffffff"
+            wrapperClassName="drop-shadow-[0_22px_50px_rgba(7,29,58,0.12)]"
           />
         </div>
       </div>
@@ -186,7 +186,7 @@ function Pricing() {
     <section id="cashflow-pricing" data-section="cashflow-pricing" className="scroll-mt-[120px] bg-[#F4FBF5] py-14 sm:py-16">
       <div className={shell}>
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Buy the billing fix.</h2>
+          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Buy Cashflow Control.</h2>
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
             If delayed billing is the leak, buy the system that moves finished work toward invoice and payment faster.
           </p>

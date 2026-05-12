@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
+import { FadedImage } from "@/components/faded-image"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
@@ -11,12 +11,6 @@ import { pricingPackageById, type PricingPackage, type PricingPackageId } from "
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const assessment = pricingPackageById.workflow_audit
-const cashflowMonthly = pricingPackageById.cashflow_control_monthly
-const cashflowYearly = pricingPackageById.cashflow_control_yearly
-const repeatMonthly = pricingPackageById.repeat_revenue_monthly
-const repeatYearly = pricingPackageById.repeat_revenue_yearly
-const bothMonthly = pricingPackageById.both_systems_monthly
-const bothYearly = pricingPackageById.both_systems_yearly
 
 export const metadata: Metadata = {
   title: "Cash Flow Assessment | Stanley Systems",
@@ -68,17 +62,16 @@ function CheckoutButton({
 
 function HeroVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[760px] lg:max-w-[820px]">
-      <Image
-        src="/images/uploaded/money-leak-map/money-leak-map-job-finished-office-check-invoice-sent-cash-collected.jpg"
-        alt="Money leak map preview from finished job to office check, invoice sent, and cash collected."
-        width={1280}
-        height={720}
-        priority
-        sizes="(min-width: 1024px) 48vw, 100vw"
-        className="h-auto w-full object-contain drop-shadow-[0_24px_55px_rgba(7,29,58,0.12)]"
-      />
-    </div>
+    <FadedImage
+      src="/images/uploaded/money-leak-map/money-leak-map-job-finished-office-check-invoice-sent-cash-collected.jpg"
+      alt="Money leak map preview from finished job to office check, invoice sent, and cash collected."
+      width={1280}
+      height={720}
+      priority
+      sizes="(min-width: 1024px) 48vw, 100vw"
+      fadeColor="#FBFCF7"
+      wrapperClassName="relative mx-auto w-full max-w-[760px] lg:max-w-[820px] drop-shadow-[0_24px_55px_rgba(7,29,58,0.12)]"
+    />
   )
 }
 
@@ -92,10 +85,10 @@ function Hero() {
             Find where your office is losing money.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">
-            The Cash Flow Assessment is a $97 paid first step from Stanley Systems.
+            The Cash Flow Assessment shows where office work is costing money, where reviews and referrals are being missed, and where past customers can be brought back.
           </p>
           <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173]">
-            We look at where cash, customers, reviews, referrals, and office time are slipping so the first fix is obvious.
+            You leave with a clear first-fix direction instead of guessing which system should come first.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
@@ -129,7 +122,7 @@ function CheckedLeaks() {
       <div className={`${shell} grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start`}>
         <div>
           <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.25rem]">
-            Money gets lost between the job and the next dollar.
+            Most businesses lose money after the job is done.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
             A job gets done. Then the office has to check details, send the invoice, follow up, ask for the review, ask for the referral, and bring the customer back.
@@ -138,7 +131,7 @@ function CheckedLeaks() {
             Stanley Systems checks those places and shows which one is costing you first.
           </p>
           <div className="mt-6">
-            <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_checked_primary" />
+            <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_checked_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
           </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -174,45 +167,37 @@ function AssessmentPricing() {
         </div>
 
         <div className="mx-auto mt-8 grid max-w-5xl gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
-          <article className="group flex h-full flex-col rounded-[1.8rem] border-2 border-[#15803D] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.13)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_86px_rgba(21,128,61,0.18)] hover:ring-2 hover:ring-[#B7E4C7]">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <h3 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Cash Flow Assessment</h3>
-                <p className="mt-4 text-[4rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A]">$97</p>
-                <p className="mt-2 text-sm font-extrabold text-[#607080]">one time</p>
-              </div>
-              <p className="rounded-2xl bg-[#E7F7EB] px-5 py-4 text-base font-extrabold text-[#116832] transition duration-300 group-hover:bg-[#D9F4E0]">Paid first step</p>
-            </div>
+          <article className="group flex h-full flex-col items-center rounded-[1.8rem] border-2 border-[#15803D] bg-white p-6 text-center shadow-[0_24px_70px_rgba(21,128,61,0.13)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_86px_rgba(21,128,61,0.18)] hover:ring-2 hover:ring-[#B7E4C7]">
+            <h3 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Cash Flow Assessment</h3>
+            <p className="mt-4 text-center text-[4.4rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A]">$97</p>
+            <p className="mt-2 text-center text-sm font-extrabold text-[#607080]">one time</p>
+            <p className="mt-5 rounded-2xl bg-[#E7F7EB] px-5 py-4 text-base font-extrabold text-[#116832] transition duration-300 group-hover:bg-[#D9F4E0]">Cash Flow Assessment</p>
 
-            <ul className="mt-6 grid gap-3 text-sm font-semibold leading-6 text-[#334B60] sm:grid-cols-2">
+            <ul className="mt-6 grid gap-3 text-left text-sm font-semibold leading-6 text-[#334B60] sm:grid-cols-2">
               {deliverables.map((item) => (
                 <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />{item}</li>
               ))}
             </ul>
 
-            <div className="mt-6 rounded-[1.35rem] border border-[#CFE1D4] bg-[#FBFCF7] p-4">
-              <p className="text-base font-semibold leading-7 text-[#334B60]">Monthly system: $97 credit back. Yearly system: $194 credit back.</p>
-            </div>
-
-            <div className="mt-auto pt-6">
-              <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_pricing_primary" />
+            <div className="mt-auto flex w-full justify-center pt-6">
+              <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
             </div>
           </article>
 
           <div className="grid gap-4">
             <article className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]">
-              <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">What this gets you</h3>
+              <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">Your assessment fee comes back as package credit</h3>
               <p className="mt-3 text-sm leading-6 text-[#536173]">
-                You get a plain breakdown of where your office work is losing money, where more past customers can come back, where more clients can be won, where more 5-star Google reviews can be asked for, and where referral leads are being missed.
+                Buy a monthly system after the assessment and get the $97 assessment price credited back. Buy a yearly system and get $194 credited back, so the first step works like a stronger down payment.
               </p>
             </article>
             <article className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]">
-              <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">First-fix direction</h3>
+              <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">What this gets you</h3>
               <p className="mt-3 text-sm leading-6 text-[#536173]">
-                You leave with the first fix Stanley Systems recommends: Cashflow Control, Repeat Revenue, or both systems together.
+                You get where office work is losing money, where past customers can be brought back, where more jobs can come from, where Google reviews are being missed, where referrals and leads are being missed, and which fix should come first.
               </p>
             </article>
-            <Link href="#systems" className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-7 py-4 text-base font-extrabold text-[#116832] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#FBFCF7] hover:shadow-[0_18px_38px_rgba(21,128,61,0.13)]">
+            <Link href="#systems" className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-7 py-4 text-xl font-extrabold text-[#116832] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#FBFCF7] hover:shadow-[0_18px_38px_rgba(21,128,61,0.13)]">
               See system options
             </Link>
           </div>
@@ -235,9 +220,6 @@ function HowItWorks() {
       <div className={`${shell} grid gap-8 lg:grid-cols-[1.04fr_0.96fr] lg:items-center`}>
         <div>
           <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">A short walkthrough. A clear next step.</h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            The assessment is quick and practical. You use the records that show where office work is losing money and where more revenue, reviews, referrals, and repeat customers are sitting.
-          </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {steps.map(([title, body]) => (
               <article key={title} className="rounded-[1.35rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)]">
@@ -247,101 +229,87 @@ function HowItWorks() {
             ))}
           </div>
         </div>
-        <div className="rounded-[2rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 shadow-[0_24px_70px_rgba(7,29,58,0.08)]">
-          <div className="rounded-[1.5rem] bg-white p-5">
-            <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">Money Leak Summary</h3>
-            <div className="mt-5 grid gap-3">
-              {[
-                ["Leak found", "Invoices wait for missing job details."],
-                ["Cost signal", "Billed money can fall out of view after work is done."],
-                ["First fix", "Start with the billing path before adding follow-up."],
-              ].map(([label, detail]) => (
-                <div key={label} className="grid gap-3 rounded-2xl border border-[#DDEBE2] bg-[#FBFCF7] p-4 sm:grid-cols-[8rem_1fr] sm:items-center">
-                  <p className="text-sm font-extrabold uppercase tracking-[0.08em] text-[#15803D]">{label}</p>
-                  <p className="text-sm font-semibold leading-6 text-[#334B60]">{detail}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 rounded-2xl bg-[#E7F7EB] p-4 text-sm font-semibold leading-6 text-[#116832]">
-              You leave with the next paid move, not a long discovery deck.
-            </div>
-          </div>
-        </div>
+        <FadedImage
+          src="/images/uploaded/package-voice-notes/money-leak-summary.jpg"
+          alt="Money Leak Summary showing the leak found, cost signal, and first fix."
+          width={1280}
+          height={960}
+          sizes="(min-width: 1024px) 42vw, 100vw"
+          fadeColor="#ffffff"
+          wrapperClassName="rounded-[1.25rem] drop-shadow-[0_24px_70px_rgba(7,29,58,0.08)]"
+        />
       </div>
     </section>
   )
 }
 
 function NextSteps() {
-  const paths = [
+  const bothPath = {
+    title: "Both Systems",
+    credit: "Assessment credit: -$97 monthly / -$194 yearly",
+    body: "Use both when billing and customer follow-up are both leaving money on the table every month.",
+    href: "/pricing",
+    label: "See both systems",
+  }
+
+  const systemPaths = [
     {
       title: "Cashflow Control",
-      monthly: `${cashflowMonthly.priceDisplay} + ${cashflowMonthly.setupFeeDisplay}`,
-      yearly: `${cashflowYearly.priceDisplay} · ${cashflowYearly.savings?.display ?? "yearly discount"} · ${cashflowYearly.waivedSetupDisplay}`,
-      credit: "Assessment credit: -$97 monthly or -$194 yearly",
-      body: "Choose this when late invoices, missing job details, payment follow-up, or open balances are costing money first.",
+      credit: "Assessment credit: -$97 monthly / -$194 yearly",
+      body: "Late invoices, missing job details, payment follow-up, and open balances move faster.",
       href: "/systems/cashflow-control",
       label: "View Cashflow Control",
     },
     {
       title: "Repeat Revenue",
-      monthly: `${repeatMonthly.priceDisplay} + ${repeatMonthly.setupFeeDisplay}`,
-      yearly: `${repeatYearly.priceDisplay} · ${repeatYearly.savings?.display ?? "yearly discount"} · ${repeatYearly.waivedSetupDisplay}`,
-      credit: "Assessment credit: -$97 monthly or -$194 yearly",
-      body: "Choose this when past customers, reviews, referrals, missed calls, and new leads are the fastest money to recover.",
+      credit: "Assessment credit: -$97 monthly / -$194 yearly",
+      body: "Past customers, reviews, referrals, missed calls, and follow-up start creating more booked work.",
       href: "/systems/repeat-revenue",
       label: "View Repeat Revenue",
-    },
-    {
-      title: "Both Systems",
-      monthly: `${bothMonthly.priceDisplay} + ${bothMonthly.setupFeeDisplay}`,
-      yearly: `${bothYearly.priceDisplay} · ${bothYearly.savings?.display ?? "yearly discount"} · ${bothYearly.waivedSetupDisplay}`,
-      credit: "Assessment credit: -$97 monthly or -$194 yearly",
-      body: "Choose both when billing and customer follow-up are both leaving money on the table every month.",
-      href: "/pricing",
-      label: "See pricing",
     },
   ]
 
   const questions = [
-    ["Does this replace my field or accounting software?", "No. Stanley Systems looks at the workflow around the tools you already use."],
-    ["What if I already know what I want?", "You can still buy a system directly. The assessment is for owners who want the first fix chosen from the leak."],
-    ["Do I need to share passwords?", "No. Use screen share, exports, screenshots, or a temporary invited user."],
-    ["What happens after the call?", "You get the money leak map and the first-fix recommendation so the next click is obvious."],
+    ["Does this replace my field or accounting software?", "No. Stanley Systems looks at the work around the tools you already use. The goal is to find where jobs, invoices, reviews, referrals, and follow-up are getting missed, then point you to the right fix."],
+    ["What if I already know what I want?", "You can buy Cashflow Control or Repeat Revenue directly. The assessment is for owners who want the numbers to confirm which leak should be fixed first and how the assessment credit should be used."],
+    ["Do I need to share passwords?", "No. Start with screen share, exports, screenshots, or a temporary invited user if access is needed. Stanley Systems only asks for the access needed to understand the workflow and avoids unnecessary sensitive access."],
+    ["What happens after the call?", "You get the money leak map and the first-fix recommendation. The next step is clear: Cashflow Control, Repeat Revenue, or both systems if both leaks are costing you money."],
   ]
+
+  const cardClass = "rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]"
+
+  const SystemCard = ({ path }: { path: typeof bothPath }) => (
+    <article className={cardClass}>
+      <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
+        <div>
+          <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">{path.title}</h3>
+          <p className="mt-2 text-base font-extrabold text-[#116832]">{path.credit}</p>
+          <p className="mt-3 text-sm leading-6 text-[#536173]">{path.body}</p>
+        </div>
+        <Link href={path.href} className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#CFE8D5] bg-[#FBFCF7] px-6 py-3 text-base font-extrabold text-[#102033] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5] hover:shadow-[0_16px_34px_rgba(21,128,61,0.12)]">
+          {path.label}
+        </Link>
+      </div>
+    </article>
+  )
 
   return (
     <section id="systems" data-section="cash-flow-assessment-next-steps" className="scroll-mt-[120px] bg-[#FBFCF7] py-14 sm:py-16">
       <div className={shell}>
-        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Start with the fix that pays back first.</h2>
-            <div className="mt-4 space-y-3 text-base leading-7 text-[#536173] sm:text-lg">
-              <p>If the leak is delayed billing, choose Cashflow Control.</p>
-              <p>If the leak is past customers, reviews, referrals, or missed calls, choose Repeat Revenue.</p>
-              <p>If both leaks are costing money, choose both systems.</p>
-            </div>
+            <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Start where the money comes back fastest.</h2>
             <div className="mt-6">
-              <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_next_steps_primary" />
+              <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_next_steps_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+            </div>
+            <div className="mt-5">
+              <SystemCard path={bothPath} />
             </div>
           </div>
 
           <div className="grid gap-4">
-            {paths.map((path) => (
-              <article key={path.title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]">
-                <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
-                  <div>
-                    <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">{path.title}</h3>
-                    <p className="mt-1 text-sm font-extrabold text-[#116832]">Monthly: {path.monthly}</p>
-                    <p className="mt-1 text-sm font-extrabold text-[#B91C1C]">Yearly: {path.yearly}</p>
-                    <p className="mt-1 text-sm font-extrabold text-[#102033]">{path.credit}</p>
-                    <p className="mt-3 text-sm leading-6 text-[#536173]">{path.body}</p>
-                  </div>
-                  <Link href={path.href} className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#CFE8D5] bg-[#FBFCF7] px-5 py-3 text-sm font-extrabold text-[#102033] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5] hover:shadow-[0_16px_34px_rgba(21,128,61,0.12)]">
-                    {path.label}
-                  </Link>
-                </div>
-              </article>
+            {systemPaths.map((path) => (
+              <SystemCard key={path.title} path={path} />
             ))}
           </div>
         </div>

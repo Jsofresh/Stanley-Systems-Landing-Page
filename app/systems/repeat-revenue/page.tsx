@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
+import { FadedImage } from "@/components/faded-image"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 import { PackagePricingGrid, type PackagePricingCard } from "@/components/package-pricing-cards"
@@ -95,17 +95,16 @@ const repeatPricingCards: PackagePricingCard[] = [
 
 function FollowUpLoopVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[760px] lg:max-w-[820px]">
-      <Image
+    <FadedImage
         src="/images/repeat-revenue/repeat-revenue-loop.jpg"
         alt="Repeat Revenue loop connecting past customers, review asks, referrals, and missed calls to more follow-up opportunities."
         width={1280}
         height={960}
         priority
         sizes="(min-width: 1024px) 48vw, 100vw"
-        className="h-auto w-full object-contain drop-shadow-[0_24px_55px_rgba(7,29,58,0.12)]"
+        fadeColor="#FBFCF7"
+        wrapperClassName="relative mx-auto w-full max-w-[760px] lg:max-w-[820px] drop-shadow-[0_24px_55px_rgba(7,29,58,0.12)]"
       />
-    </div>
   )
 }
 
@@ -116,13 +115,13 @@ function Hero() {
       <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
         <div>
           <h1 className="max-w-5xl text-[2.45rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#071D3A] sm:text-[3.9rem] lg:text-[4.5rem]">
-            Get more work from customers you already earned.
+            Repeat Revenue turns happy customers into more jobs.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">
             Repeat Revenue brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they go cold.
           </p>
           <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173]">
-            Stanley Systems turns old records and finished jobs into the next clear ask.
+            Stanley Systems helps good jobs create the next review, referral, follow-up, returned customer, and booked job.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <CheckoutButton pkg={repeatMonthly} label="Buy Repeat Revenue" location="repeat_revenue_hero_primary" />
@@ -149,10 +148,10 @@ function LeakProof() {
       <div className={`${shell} grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
         <div>
           <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.25rem]">
-            Where is the next job slipping away?
+            Stop losing jobs you already earned.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            Past customers can go quiet. Good jobs can finish without a Google review ask. Happy customers can forget to refer you. Missed calls can go cold before the office follows up. Repeat Revenue turns those moments into a repeatable cycle: better reviews, more referrals, more returned customers, and more leads from work you already earned.
+            Past customers go quiet. Reviews do not get asked for. Referrals depend on memory. Missed calls and follow-up fall through when the office gets busy. Repeat Revenue fixes the cycle so good work creates more reviews, more referrals, more returned customers, and more booked jobs.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link href="#plans" className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#102033] px-6 py-3 text-sm font-extrabold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#071D3A] hover:shadow-[0_18px_38px_rgba(16,32,51,0.2)]">
@@ -162,13 +161,14 @@ function LeakProof() {
           </div>
         </div>
         <div className="mx-auto w-full max-w-2xl">
-          <Image
-            src="/images/repeat-revenue/result-past-customers.png"
+          <FadedImage
+            src="/images/uploaded/package-voice-notes/past-customers-reviews-referrals-follow-up-booked-again.jpg"
             alt="Past customer records becoming booked jobs through a clear follow-up path."
-            width={1536}
-            height={1024}
+            width={1280}
+            height={960}
             sizes="(min-width: 1024px) 48vw, 100vw"
-            className="h-auto w-full object-contain drop-shadow-[0_22px_50px_rgba(7,29,58,0.12)]"
+            fadeColor="#ffffff"
+            wrapperClassName="drop-shadow-[0_22px_50px_rgba(7,29,58,0.12)]"
           />
         </div>
       </div>
@@ -181,7 +181,7 @@ function Pricing() {
     <section id="plans" data-section="repeat-revenue-pricing" className="scroll-mt-[120px] bg-[#F4FBF5] py-14 sm:py-16">
       <div className={shell}>
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Buy the follow-up system.</h2>
+          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Buy Repeat Revenue.</h2>
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
             If follow-up is the leak, buy the system that brings customers back and turns good work into reviews, referrals, calls, and booked jobs.
           </p>
