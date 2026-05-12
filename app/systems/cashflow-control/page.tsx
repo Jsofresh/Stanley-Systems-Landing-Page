@@ -96,21 +96,24 @@ const cashflowPricingCards: PackagePricingCard[] = [
 function LeakPathVisual() {
   return (
     <FadedImage
-      src="/images/uploaded/money-leak-map/money-leak-map-delayed-billing-office-time-quiet-estimates-missed-reviews.jpg"
-      alt="Four common money leaks: delayed billing, office time, quiet estimates, and missed review and referral flow."
-      width={960}
-      height={1280}
+      src="/images/uploaded/package-voice-notes/delayed-billing-office-time-quiet-estimates-missed-review-referral-flow.jpg"
+      alt="Delayed billing, office time, quiet estimates, and missed review and referral flow shown as one clean cashflow-control map."
+      width={1280}
+      height={960}
       priority
-      sizes="(min-width: 1024px) 29vw, 100vw"
+      sizes="(min-width: 1024px) 37vw, 100vw"
       fadeColor="#FBFCF7"
-      wrapperClassName="relative mx-auto w-full max-w-[432px] lg:max-w-[468px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
+      fadeSize="5%"
+      outerFade
+      outerFadeColor="rgba(251,252,247,0.9)"
+      wrapperClassName="relative mx-auto w-full max-w-[560px] lg:max-w-[600px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
     />
   )
 }
 
 function Hero() {
   return (
-    <section data-section="cashflow-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-28 sm:pb-16 lg:pt-28">
+    <section data-section="cashflow-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-28 sm:pb-16 lg:flex lg:min-h-[calc(100svh-96px)] lg:items-center lg:py-24">
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
       <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center`}>
         <div>

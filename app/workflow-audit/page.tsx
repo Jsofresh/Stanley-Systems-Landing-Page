@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { FadedImage } from "@/components/faded-image"
@@ -69,7 +69,11 @@ function HeroVisual() {
       height={960}
       priority
       sizes="(min-width: 1024px) 48vw, 100vw"
+      imageClassName="h-auto w-full object-contain [mask-image:radial-gradient(ellipse_at_center,#000_58%,rgba(0,0,0,0.94)_70%,rgba(0,0,0,0.62)_84%,transparent_100%)]"
       fadeColor="#FBFCF7"
+      fadeSize="12%"
+      outerFade
+      outerFadeColor="rgba(251,252,247,0.98)"
       wrapperClassName="relative mx-auto w-full max-w-[760px] lg:max-w-[820px] drop-shadow-[0_24px_55px_rgba(7,29,58,0.12)]"
     />
   )
@@ -112,16 +116,22 @@ function CheckedLeaks() {
     ["Old customers", "Past work can hide the easiest next sale when records are not worked."],
     ["Reviews and referrals", "Happy customers often finish the job without the right ask."],
     ["Estimates", "Open estimates can sit with no clear follow-up path."],
-    ["Invoices", "Finished work can wait for details, office checks, or approval."],
-    ["Open balances", "Money already billed can fall out of view."],
-    ["Office steps", "Money often gets lost between the completed job, office work, invoice, follow-up, reviews, and referrals."],
+    ["Invoices and balances", "Finished work and billed money can sit when details, checks, or follow-up fall out of view."],
   ]
 
   return (
-    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-14 sm:py-16">
-      <div className={`${shell} grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start`}>
-        <div>
-          <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.25rem]">
+    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-12 sm:py-14 lg:min-h-[calc(100svh-96px)] lg:py-12 lg:flex lg:items-center">
+      <div className={`${shell} grid gap-8 lg:grid-cols-[1.16fr_0.84fr] lg:items-center`}>
+        <div className="order-2 grid gap-4 sm:grid-cols-2 lg:order-1 lg:grid-cols-6">
+          {leaks.map(([title, body], index) => (
+            <article key={title} className={`rounded-[1.35rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 text-center shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)] ${index < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}>
+              <h3 className="text-xl font-semibold leading-tight tracking-[-0.025em] text-[#102033]">{title}</h3>
+              <p className="mx-auto mt-3 max-w-[16rem] text-sm leading-6 text-[#536173]">{body}</p>
+            </article>
+          ))}
+        </div>
+        <div className="order-1 lg:order-2 lg:pl-4">
+          <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.25rem] lg:text-[3.4rem]">
             Most businesses lose money after the job is done.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
@@ -133,15 +143,6 @@ function CheckedLeaks() {
           <div className="mt-6">
             <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_checked_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
           </div>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {leaks.map(([title, body]) => (
-            <article key={title} className="rounded-[1.35rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)]">
-              <CheckCircle2 className="h-6 w-6 text-[#15803D]" aria-hidden="true" />
-              <h3 className="mt-5 text-xl font-semibold leading-tight tracking-[-0.025em] text-[#102033]">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-[#536173]">{body}</p>
-            </article>
-          ))}
         </div>
       </div>
     </section>
