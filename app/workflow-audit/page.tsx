@@ -63,10 +63,10 @@ function CheckoutButton({
 function HeroVisual() {
   return (
     <FadedImage
-      src="/images/uploaded/money-leak-map/money-leak-map-job-finished-office-check-invoice-sent-cash-collected.jpg"
-      alt="Money leak map preview from finished job to office check, invoice sent, and cash collected."
+      src="/images/uploaded/package-voice-notes/verified-customer-paid-invoices-referrals.jpg"
+      alt="Verified customers, paid invoices, and referral opportunities from the Cash Flow Assessment."
       width={1280}
-      height={720}
+      height={960}
       priority
       sizes="(min-width: 1024px) 48vw, 100vw"
       fadeColor="#FBFCF7"

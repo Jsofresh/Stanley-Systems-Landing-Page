@@ -101,9 +101,9 @@ function LeakPathVisual() {
       width={960}
       height={1280}
       priority
-      sizes="(min-width: 1024px) 36vw, 100vw"
+      sizes="(min-width: 1024px) 29vw, 100vw"
       fadeColor="#FBFCF7"
-      wrapperClassName="relative mx-auto w-full max-w-[540px] lg:max-w-[585px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
+      wrapperClassName="relative mx-auto w-full max-w-[432px] lg:max-w-[468px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
     />
   )
 }
