@@ -62,31 +62,34 @@ function parseCalculatorContext(searchParams: PricingSearchParams): PricingCalcu
   }
 }
 
-function SectionHeader({ id, title, copy }: { id?: string; title: string; copy: string }) {
+function SectionHeader({ id, title, copy }: { id?: string; title: string; copy?: string }) {
   return (
     <div id={id} className="mx-auto max-w-3xl text-center">
       <h2 className="text-[2rem] font-semibold leading-tight tracking-[-0.03em] text-[#102033] sm:text-5xl">{title}</h2>
-      <p className="mt-3 text-base leading-7 text-[#536173] sm:text-lg">{copy}</p>
+      {copy ? <p className="mt-3 text-base leading-7 text-[#536173] sm:text-lg">{copy}</p> : null}
     </div>
   )
 }
 
-function PlanGrid({ plans }: { plans: PricingPlan[] }) {
+function GroupedPlanGrid({ monthlyPlans, yearlyPlans }: { monthlyPlans: PricingPlan[]; yearlyPlans: PricingPlan[] }) {
+  const groups = monthlyPlans.map((monthlyPlan) => {
+    const prefix = monthlyPlan.id.replace("_monthly", "")
+    return {
+      key: prefix,
+      monthlyPlan,
+      yearlyPlan: yearlyPlans.find((plan) => plan.id === `${prefix}_yearly`),
+    }
+  })
+
   return (
     <div className="mt-5 grid gap-4 lg:grid-cols-3">
-      {plans.map((plan) => (
-        <PlanCard key={plan.id} plan={plan} featured={plan.id === "both_systems_yearly"} />
+      {groups.map(({ key, monthlyPlan, yearlyPlan }) => (
+        <div key={key} className="grid gap-3">
+          <PlanCard plan={monthlyPlan} />
+          {yearlyPlan ? <PlanCard plan={yearlyPlan} featured={yearlyPlan.id === "both_systems_yearly"} /> : null}
+        </div>
       ))}
     </div>
-  )
-}
-
-function CheckoutScopeNote({ copy }: { copy?: string }) {
-  return (
-    <p className="mx-auto mt-5 max-w-3xl rounded-2xl border border-[#dbe7dd] bg-[#f6fbf7] px-4 py-3 text-center text-sm font-semibold leading-6 text-[#4d5f55]">
-      {copy ||
-        "Not sure which leak matters most? Start with the Cash Flow Assessment before buying the wrong system first. If it is not the right fit, Stanley Systems may refund, redirect, or pause before work begins."}
-    </p>
   )
 }
 
@@ -134,9 +137,6 @@ function CompareSystems() {
           </Link>
         ))}
       </div>
-      <p className="mx-auto mt-5 max-w-3xl text-center text-sm font-semibold leading-6 text-[#5f6e7d]">
-        Not sure which leak matters most? Start with the Cash Flow Assessment before buying the wrong system first.
-      </p>
     </section>
   )
 }
@@ -167,18 +167,10 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
             </summary>
             <div className="border-t border-[#e4ece6] px-4 pb-5">
               <SectionHeader
-                id="mobile-monthly-plans-heading"
-                title="Monthly systems"
-                copy="Monthly payments with installation at checkout."
+                id="mobile-plans-heading"
+                title="System packages"
               />
-              <PlanGrid plans={monthlyPlans} />
-              <SectionHeader
-                id="mobile-yearly-plans-heading"
-                title="Yearly systems"
-                copy="One yearly payment with installation waived."
-              />
-              <PlanGrid plans={yearlyPlans} />
-              <CheckoutScopeNote />
+              <GroupedPlanGrid monthlyPlans={monthlyPlans} yearlyPlans={yearlyPlans} />
             </div>
           </details>
         </section>
@@ -186,21 +178,9 @@ export function PricingPage({ searchParams }: { searchParams: PricingSearchParam
         <section aria-labelledby="monthly-plans-heading" className="hidden md:block">
           <SectionHeader
             id="monthly-plans-heading"
-            title="Monthly systems"
-            copy="Monthly payments with installation at checkout. Assessment buyers can use the monthly assessment credit."
+            title="System packages"
           />
-          <PlanGrid plans={monthlyPlans} />
-          <CheckoutScopeNote />
-        </section>
-
-        <section aria-labelledby="yearly-plans-heading" className="hidden md:block">
-          <SectionHeader
-            id="yearly-plans-heading"
-            title="Yearly systems"
-            copy="One yearly payment with installation waived. Assessment buyers can use the yearly assessment credit."
-          />
-          <PlanGrid plans={yearlyPlans} />
-          <CheckoutScopeNote copy="Yearly checkout starts onboarding and fit, access, and scope review before the build begins. The Cash Flow Assessment credit only applies under the stated assessment-credit terms." />
+          <GroupedPlanGrid monthlyPlans={monthlyPlans} yearlyPlans={yearlyPlans} />
         </section>
 
         <CompareSystems />

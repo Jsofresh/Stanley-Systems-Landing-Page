@@ -244,10 +244,8 @@ function disabledReasonFor(pricingPackage: PricingPackage) {
 }
 
 function primaryCtaLabelFor(pricingPackage: PricingPackage) {
-  if (pricingPackage.publicName === "Cashflow Control System") return "Buy Cashflow Control"
-  if (pricingPackage.publicName === "Repeat Revenue System") return "Buy Repeat Revenue"
-  if (pricingPackage.publicName === "Both Systems") return "Buy Both Systems"
-  return pricingPackage.cta
+  if (pricingPackage.id === "workflow_audit") return pricingPackage.cta
+  return "Buy this package"
 }
 
 function secondaryCtaFor(pricingPackage: PricingPackage): PricingPlan["secondaryCta"] {
