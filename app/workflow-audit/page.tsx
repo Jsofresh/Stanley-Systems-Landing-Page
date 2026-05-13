@@ -85,14 +85,11 @@ function Hero() {
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
       <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
         <div className="text-center">
-          <h1 className="mx-auto max-w-5xl text-[2.55rem] font-semibold leading-[0.95] tracking-[-0.056em] text-[#071D3A] sm:text-[4rem] lg:text-[4.7rem]">
+          <h1 className="mx-auto max-w-5xl text-[2.17rem] font-semibold leading-[0.95] tracking-[-0.04em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4rem]">
             Find where your office is losing money.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">
             The Cash Flow Assessment shows where office work is costing money, where reviews and referrals are being missed, and where past customers can be brought back.
-          </p>
-          <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-[#536173]">
-            You leave with a clear first-fix direction instead of guessing which system should come first.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
