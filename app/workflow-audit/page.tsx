@@ -295,36 +295,46 @@ function NextSteps() {
   )
 
   return (
-    <section id="systems" data-section="cash-flow-assessment-next-steps" className="scroll-mt-[120px] bg-[#FBFCF7] py-14 sm:py-16">
-      <div className={shell}>
-        <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Start where the money comes back fastest.</h2>
-            <div className="mt-6">
-              <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_next_steps_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+    <>
+      <section id="systems" data-section="cash-flow-assessment-next-steps" className="scroll-mt-[120px] bg-[#FBFCF7] py-20 sm:py-24 lg:py-28">
+        <div className={shell}>
+          <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+            <div>
+              <h2 className="max-w-2xl text-[2.65rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem]">Start where the money comes back fastest.</h2>
+              <div className="mt-8">
+                <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_next_steps_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+              </div>
+              <div className="mt-7">
+                <SystemCard path={bothPath} />
+              </div>
             </div>
-            <div className="mt-5">
-              <SystemCard path={bothPath} />
+
+            <div className="grid gap-5">
+              {systemPaths.map((path) => (
+                <SystemCard key={path.title} path={path} />
+              ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid gap-4">
-            {systemPaths.map((path) => (
-              <SystemCard key={path.title} path={path} />
+      <section data-section="cash-flow-assessment-faq" className="bg-white py-14 sm:py-16">
+        <div className={shell}>
+          <div className="max-w-3xl">
+            <h2 className="text-[2.15rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-4xl">Assessment questions</h2>
+            <p className="mt-3 text-base leading-7 text-[#536173]">Quick answers before you send the intake or buy a system directly.</p>
+          </div>
+          <div className="mt-8 grid gap-4 lg:grid-cols-4">
+            {questions.map(([question, answer]) => (
+              <article key={question} className="rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)]">
+                <h3 className="text-lg font-semibold tracking-[-0.025em] text-[#102033]">{question}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#536173]">{answer}</p>
+              </article>
             ))}
           </div>
         </div>
-
-        <div className="mt-8 grid gap-4 lg:grid-cols-4">
-          {questions.map(([question, answer]) => (
-            <article key={question} className="rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)]">
-              <h3 className="text-lg font-semibold tracking-[-0.025em] text-[#102033]">{question}</h3>
-              <p className="mt-2 text-sm leading-6 text-[#536173]">{answer}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 
