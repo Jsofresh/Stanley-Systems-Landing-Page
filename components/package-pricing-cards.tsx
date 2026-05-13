@@ -57,6 +57,7 @@ export function PackagePricingGrid({
   showAuditSecondary = false,
   auditHref,
   gridClassName = "lg:grid-cols-4",
+  primaryCtaClassName = "",
 }: {
   cards: PackagePricingCard[]
   locationPrefix: string
@@ -64,6 +65,7 @@ export function PackagePricingGrid({
   showAuditSecondary?: boolean
   auditHref?: string
   gridClassName?: string
+  primaryCtaClassName?: string
 }) {
   return (
     <div className={`mt-7 grid gap-5 ${gridClassName}`}>
@@ -75,6 +77,7 @@ export function PackagePricingGrid({
           analyticsSource={analyticsSource}
           showAuditSecondary={showAuditSecondary}
           auditHref={auditHref}
+          primaryCtaClassName={primaryCtaClassName}
         />
       ))}
     </div>
@@ -87,12 +90,14 @@ function PackagePricingCardView({
   analyticsSource,
   showAuditSecondary,
   auditHref,
+  primaryCtaClassName,
 }: {
   card: PackagePricingCard
   locationPrefix: string
   analyticsSource: string
   showAuditSecondary: boolean
   auditHref?: string
+  primaryCtaClassName: string
 }) {
   const pkg = card.package
   const isYearly = pkg.billingPeriod === "yearly"
@@ -139,7 +144,7 @@ function PackagePricingCardView({
         ctaLabel={card.cta}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#15803D] px-4 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(21,128,61,0.18)] transition duration-300 hover:bg-[#116832] group-hover:shadow-[0_16px_34px_rgba(21,128,61,0.28)]"
+        className={`mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#15803D] px-4 py-3 text-sm font-bold text-white shadow-[0_12px_26px_rgba(21,128,61,0.18)] transition duration-300 hover:bg-[#116832] group-hover:shadow-[0_16px_34px_rgba(21,128,61,0.28)] ${primaryCtaClassName}`}
       >
         {card.cta} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
       </CTALink>

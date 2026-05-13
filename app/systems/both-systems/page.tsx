@@ -13,41 +13,32 @@ const bothMonthly = pricingPackageById.both_systems_monthly
 const bothYearly = pricingPackageById.both_systems_yearly
 const assessment = pricingPackageById.workflow_audit
 
-const bothDemo = {
-  bestFor: "Money is leaking before and after the job.",
-  leak: "Missed calls, delayed jobs, late invoices, and past customers nobody contacts again.",
-  before: ["Calls get missed", "Jobs get delayed", "Invoices go out late", "Past customers disappear"],
-  after: ["Customers are recorded", "Jobs move", "Billing happens faster", "Past customers get contacted again"],
-}
-
 const bothSystemCards: PackagePricingCard[] = [
   {
     badge: "Most complete monthly",
     name: "Both Systems",
     package: bothMonthly,
-    description: "Fix the billing leak and the repeat-customer leak in one rollout.",
-    ...bothDemo,
+    description: "Fixes billing delays and repeat-customer follow-up.",
     install: "$449 installation",
     credit: "Assessment credit: -$97",
     callout: "-$197/mo bundle savings",
-    cta: "Fix both leaks",
+    cta: "Buy the package",
     secondary: "Start with the assessment",
     tone: "complete",
-    bullets: ["Cashflow Control System", "Repeat Revenue System", "Billing workflow", "Customer follow-up"],
+    bullets: ["Bills and payment follow-up move faster.", "Past customers get contacted again."],
   },
   {
     badge: "-$2,700 · Best value",
     name: "Both Systems Yearly",
     package: bothYearly,
-    description: "The full before-and-after-job fix with the best first-year price.",
-    ...bothDemo,
+    description: "Same two-system fix with the best first-year price.",
     install: "Installation waived",
     credit: "Assessment credit: -$194",
     callout: "-$2,700 first-year package savings",
-    cta: "Fix both leaks",
+    cta: "Buy the yearly package",
     secondary: "Start with the assessment",
     tone: "recommended",
-    bullets: ["Cashflow Control System", "Repeat Revenue System", "Lowest first-year bundle cost", "Best first-year price for both"],
+    bullets: ["Cashflow Control System included.", "Repeat Revenue System included."],
   },
 ]
 
@@ -117,10 +108,8 @@ export default function BothSystemsPage() {
           <div className={shell}>
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="text-[2rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[2.55rem]">Buy Both Systems.</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Pricing and checkout links come directly from the Stanley Systems pricing source of truth.</p>
             </div>
-            <PackagePricingGrid cards={bothSystemCards} locationPrefix="both_systems_pricing" analyticsSource="both_systems_page" showAuditSecondary auditHref={assessment.stripePaymentLink.url} gridClassName="lg:grid-cols-2 [&_article]:text-center [&_li]:justify-center [&_li]:text-center [&_summary]:text-center" />
-            <p className="mx-auto mt-6 max-w-3xl text-center text-sm font-semibold leading-6 text-[#536173]">Not sure both leaks should be fixed first? Start with the Cash Flow Assessment before buying the wrong system.</p>
+            <PackagePricingGrid cards={bothSystemCards} locationPrefix="both_systems_pricing" analyticsSource="both_systems_page" showAuditSecondary auditHref={assessment.stripePaymentLink.url} gridClassName="lg:grid-cols-2 [&_article]:text-center [&_li]:justify-center [&_li]:text-center [&_summary]:text-center" primaryCtaClassName="!min-h-14 !py-4 !text-base !font-extrabold" />
           </div>
         </section>
 
