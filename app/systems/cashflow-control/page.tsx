@@ -113,11 +113,11 @@ function LeakPathVisual() {
 
 function Hero() {
   return (
-    <section data-section="cashflow-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-10 pt-24 sm:pb-12 sm:pt-[6.5rem] lg:flex lg:min-h-[calc(100svh-140px)] lg:items-center lg:py-[4.5rem]">
+    <section data-section="cashflow-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-10 pt-[6.7rem] sm:pb-12 sm:pt-[7.2rem] lg:flex lg:min-h-[calc(100svh-140px)] lg:items-center lg:pb-[3.5rem] lg:pt-[6.25rem]">
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
       <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center`}>
         <div>
-          <h1 className="max-w-5xl text-[2.25rem] font-semibold leading-[0.96] tracking-[-0.052em] text-[#071D3A] sm:text-[3.45rem] lg:text-[4rem]">
+          <h1 className="max-w-4xl text-[1.58rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[2.42rem] lg:text-[2.8rem]">
             Cashflow Control turns finished jobs into paid invoices faster.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">

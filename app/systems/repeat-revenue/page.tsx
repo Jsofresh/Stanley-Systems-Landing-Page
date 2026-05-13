@@ -110,17 +110,14 @@ function FollowUpLoopVisual() {
 
 function Hero() {
   return (
-    <section id="hero" data-section="repeat-revenue-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-28 sm:pb-16 lg:pt-28">
+    <section id="hero" data-section="repeat-revenue-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-[7.9rem] sm:pb-16 lg:pt-[8rem]">
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
       <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
         <div>
-          <h1 className="max-w-5xl text-[2.45rem] font-semibold leading-[0.95] tracking-[-0.055em] text-[#071D3A] sm:text-[3.9rem] lg:text-[4.5rem]">
+          <h1 className="max-w-4xl text-[1.72rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[2.73rem] lg:text-[3.15rem]">
             Repeat Revenue turns happy customers into more jobs.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">
-            Repeat Revenue brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they go cold.
-          </p>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173]">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60] sm:text-xl">
             Stanley Systems helps good jobs create the next review, referral, follow-up, returned customer, and booked job.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
