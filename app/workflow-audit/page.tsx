@@ -63,10 +63,10 @@ function CheckoutButton({
 function HeroVisual() {
   return (
     <FadedImage
-      src="/images/uploaded/package-voice-notes/verified-customer-paid-invoices-referrals.jpg"
-      alt="Verified customers, paid invoices, and referral opportunities from the Cash Flow Assessment."
+      src="/images/uploaded/2026-05-13-jaden/plumbing-owner-office-time-delayed-invoices-leaking-cash-quiet-estimates-old-customers.jpg"
+      alt="Service business owner reviewing delayed invoices, quiet estimates, and cash leaks in the office."
       width={1280}
-      height={960}
+      height={961}
       priority
       sizes="(min-width: 1024px) 48vw, 100vw"
       imageClassName="h-auto w-full object-contain [mask-image:radial-gradient(ellipse_at_center,#000_58%,rgba(0,0,0,0.94)_70%,rgba(0,0,0,0.62)_84%,transparent_100%)]"
@@ -84,23 +84,23 @@ function Hero() {
     <section data-section="cash-flow-assessment-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-28 sm:pb-16 lg:pt-28">
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
       <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
-        <div>
-          <h1 className="max-w-5xl text-[2.55rem] font-semibold leading-[0.95] tracking-[-0.056em] text-[#071D3A] sm:text-[4rem] lg:text-[4.7rem]">
+        <div className="text-center">
+          <h1 className="mx-auto max-w-5xl text-[2.55rem] font-semibold leading-[0.95] tracking-[-0.056em] text-[#071D3A] sm:text-[4rem] lg:text-[4.7rem]">
             Find where your office is losing money.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">
             The Cash Flow Assessment shows where office work is costing money, where reviews and referrals are being missed, and where past customers can be brought back.
           </p>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173]">
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-[#536173]">
             You leave with a clear first-fix direction instead of guessing which system should come first.
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
             <Link href="#assessment" className="inline-flex min-h-12 min-w-[13.5rem] items-center justify-center whitespace-nowrap rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] shadow-[0_10px_24px_rgba(16,32,51,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5] hover:shadow-[0_18px_36px_rgba(21,128,61,0.14)]">
               See what you get
             </Link>
           </div>
-          <p className="mt-4 max-w-xl text-sm font-semibold leading-6 text-[#607080]">
+          <p className="mx-auto mt-4 max-w-xl text-sm font-semibold leading-6 text-[#607080]">
             Your assessment fee credits toward Cashflow Control or Repeat Revenue. Yearly buyers get a $194 credit.
           </p>
         </div>
@@ -120,7 +120,7 @@ function CheckedLeaks() {
   ]
 
   return (
-    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-12 sm:py-14 lg:min-h-[calc(100svh-96px)] lg:py-12 lg:flex lg:items-center">
+    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-9 sm:py-10 lg:py-10">
       <div className={`${shell} grid gap-8 lg:grid-cols-[1.16fr_0.84fr] lg:items-center`}>
         <div className="order-2 grid gap-4 sm:grid-cols-2 lg:order-1 lg:grid-cols-6">
           {leaks.map(([title, body], index) => (

@@ -107,7 +107,7 @@ export function IndustryPage({ slug }: { slug: IndustrySlug }) {
     <>
       <SiteHeader />
       <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-white text-[#071D3A]">
-        <section className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-24 sm:pt-28 lg:py-24">
+        <section className="relative overflow-hidden bg-[#FBFCF7] pb-12 pt-32 sm:pt-36 lg:pb-24 lg:pt-36">
           <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
           <div className={`${shell} relative grid gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
             <div>

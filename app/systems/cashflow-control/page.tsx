@@ -96,10 +96,10 @@ const cashflowPricingCards: PackagePricingCard[] = [
 function LeakPathVisual() {
   return (
     <FadedImage
-      src="/images/uploaded/package-voice-notes/delayed-billing-office-time-quiet-estimates-missed-review-referral-flow.jpg"
-      alt="Delayed billing, office time, quiet estimates, and missed review and referral flow shown as one clean cashflow-control map."
+      src="/images/uploaded/2026-05-13-jaden/delayed-billing-office-time-quiet-estimates-missed-review-referral-flow-simple.jpg"
+      alt="Simple delayed billing, quiet estimates, and missed review referral flow for Cashflow Control."
       width={1280}
-      height={960}
+      height={954}
       priority
       sizes="(min-width: 1024px) 37vw, 100vw"
       fadeColor="#FBFCF7"
