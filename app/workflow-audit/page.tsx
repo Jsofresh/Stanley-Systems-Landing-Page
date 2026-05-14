@@ -7,6 +7,7 @@ import { FadedImage } from "@/components/faded-image"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
+import { MoneyLeakChecksForm } from "@/components/money-leak-checks-form"
 import { pricingPackageById, type PricingPackage, type PricingPackageId } from "@/lib/pricing/source-of-truth"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
@@ -100,6 +101,13 @@ function Hero() {
           <p className="mx-auto mt-4 max-w-xl text-sm font-semibold leading-6 text-[#607080]">
             Your assessment fee credits toward Cashflow Control or Repeat Revenue. Yearly buyers get a $194 credit.
           </p>
+          <div className="mx-auto mt-4 grid max-w-xl gap-2 rounded-[1.35rem] border border-[#DDEBE2] bg-white/80 p-4 text-sm font-bold leading-6 text-[#536173] shadow-[0_12px_30px_rgba(7,29,58,0.05)] sm:grid-cols-[1fr_auto] sm:items-center sm:text-left">
+            <span>Want one answer before you pay? Ask before buying and we’ll help you decide whether the assessment is the right first step.</span>
+            <span className="flex flex-wrap justify-center gap-2 sm:justify-end">
+              <a href="tel:+16179586372" className="rounded-full border border-[#CFE8D5] bg-white px-3 py-2 text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Call before buying</a>
+              <Link href="/contact?path=pre-buy" className="rounded-full bg-[#102033] px-3 py-2 text-white transition hover:bg-[#071D3A]">Ask one question</Link>
+            </span>
+          </div>
         </div>
         <HeroVisual />
       </div>
@@ -198,6 +206,15 @@ function AssessmentPricing() {
             <Link href="#systems" className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-7 py-4 text-xl font-extrabold text-[#116832] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#FBFCF7] hover:shadow-[0_18px_38px_rgba(21,128,61,0.13)]">
               See system options
             </Link>
+            <article className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]">
+              <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">Want to talk before buying?</h3>
+              <p className="mt-3 text-sm leading-6 text-[#536173]">If Stanley Systems looks like it might fit, but you want one answer before you pay, call or send a quick note. We’ll help you decide whether the Cash Flow Assessment is the right next step.</p>
+              <p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">You may first speak with our phone assistant so we can route the conversation quickly.</p>
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                <a href="tel:+16179586372" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-5 py-2.5 text-sm font-extrabold text-white transition hover:bg-[#116832]">Call before buying</a>
+                <Link href="/contact?path=pre-buy" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-5 py-2.5 text-sm font-extrabold text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Ask one question</Link>
+              </div>
+            </article>
           </div>
         </div>
       </div>
@@ -270,6 +287,9 @@ function NextSteps() {
   const questions = [
     ["Does this replace my field or accounting software?", "No. Stanley Systems looks at the work around the tools you already use. The goal is to find where jobs, invoices, reviews, referrals, and follow-up are getting missed, then point you to the right fix."],
     ["What if I already know what I want?", "You can buy Cashflow Control or Repeat Revenue directly. The assessment is for owners who want the numbers to confirm which leak should be fixed first and how the assessment credit should be used."],
+    ["What if I am not sure the assessment is right for me?", "Ask one question before buying. If Stanley Systems can answer it quickly, we will. If the answer requires checking your real records, the Cash Flow Assessment is the right next step."],
+    ["Will I talk to a person?", "Yes. You may first speak with our phone assistant so Stanley Systems can route the conversation quickly, but the assessment is reviewed by Stanley Systems before a system recommendation is made."],
+    ["What if I only want the weekly leak checks?", "Use the leak checks if you are not ready to buy. They help you spot billing, follow-up, review, referral, missed-call, and past-customer leaks before you commit to an assessment."],
     ["Do I need to share passwords?", "No. Start with screen share, exports, screenshots, or a temporary invited user if access is needed. Stanley Systems only asks for the access needed to understand the workflow and avoids unnecessary sensitive access."],
     ["What happens after the call?", "You get the money leak map and the first-fix recommendation. The next step is clear: Cashflow Control, Repeat Revenue, or both systems if both leaks are costing you money."],
   ]
@@ -329,6 +349,7 @@ function NextSteps() {
               </article>
             ))}
           </div>
+          <MoneyLeakChecksForm source="workflow-audit-money-leak-checks" pageSource="workflow_audit_money_leak_checks" className="mt-8" />
         </div>
       </section>
     </>

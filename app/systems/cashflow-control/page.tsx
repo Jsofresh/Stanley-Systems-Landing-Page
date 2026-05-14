@@ -7,6 +7,7 @@ import { FadedImage } from "@/components/faded-image"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 import { PackagePricingGrid, type PackagePricingCard } from "@/components/package-pricing-cards"
+import { MoneyLeakChecksForm } from "@/components/money-leak-checks-form"
 import { pricingPackageById, type PricingPackage, type PricingPackageId } from "@/lib/pricing/source-of-truth"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
@@ -135,6 +136,7 @@ function Hero() {
           <p className="mt-4 max-w-xl text-sm font-semibold leading-6 text-[#607080]">
             Not sure this is the first fix? Buy the $97 Cash Flow Assessment and credit it toward the system.
           </p>
+          <p className="mt-3 max-w-xl text-sm font-bold leading-6 text-[#607080]">Want one answer before buying the system? <Link href="/contact?path=pre-buy" className="text-[#116832] underline underline-offset-4">Ask before buying</Link> and Stanley Systems will point you to the assessment if the first fix is not obvious.</p>
         </div>
         <LeakPathVisual />
       </div>
@@ -280,6 +282,14 @@ function FitObjections() {
           </div>
         </div>
         <div className="grid gap-4">
+          <article className="rounded-[1.35rem] border border-[#BFE4C8] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
+            <h3 className="text-xl font-semibold tracking-[-0.025em] text-[#102033]">Ask before buying Cashflow Control</h3>
+            <p className="mt-3 text-sm leading-6 text-[#536173]">If billing is clearly the leak, buy the system. If you are unsure, ask one question or start the Cash Flow Assessment before paying for the wrong fix.</p>
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+              <Link href="/contact?path=pre-buy" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-5 py-2.5 text-sm font-extrabold text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Ask one question</Link>
+              <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cashflow_control_money_leak_checks_fit_assessment_support" className="border border-[#CFE8D5] bg-[#15803D] text-white hover:-translate-y-0.5 hover:bg-[#116832]" />
+            </div>
+          </article>
           {questions.map(([question, answer], index) => (
             <details key={question} open={index === 0} className="group rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_18px_42px_rgba(21,128,61,0.1)] open:border-[#BFE4C8] open:bg-[#F4FBF5]">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold tracking-[-0.025em] text-[#102033] marker:hidden [&::-webkit-details-marker]:hidden">
@@ -289,6 +299,9 @@ function FitObjections() {
               <p className="mt-3 text-sm leading-6 text-[#536173]">{answer}</p>
             </details>
           ))}
+        </div>
+        <div className="lg:col-span-2">
+          <MoneyLeakChecksForm source="cashflow-control-money-leak-checks" pageSource="cashflow_control_money_leak_checks" headline="Get one billing leak to check each week" body="Invoices, open balances, missing job details, payment follow-up, and office handoffs — simple checks you can use before you buy Cashflow Control." className="mt-2" />
         </div>
       </div>
     </section>

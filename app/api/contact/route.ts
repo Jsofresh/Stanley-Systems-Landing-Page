@@ -25,6 +25,14 @@ export async function POST(request: Request) {
       business_type: clean(body?.business_type),
       main_issue: clean(body?.main_issue),
       message: clean(body?.message),
+      intent: clean(body?.intent) || clean(body?.form_type),
+      source_page: clean(body?.source_page) || clean(body?.page) || clean(body?.current_path),
+      source_section: clean(body?.source_section) || clean(body?.source),
+      question: clean(body?.question) || clean(body?.message),
+      current_system: clean(body?.current_system),
+      consent: clean(body?.consent),
+      timestamp: clean(body?.timestamp) || clean(body?.submitted_at) || new Date().toISOString(),
+      website: clean(body?.website),
       page_source: clean(body?.page_source),
       current_path: clean(body?.current_path),
       businessType: clean(body?.businessType),
@@ -47,6 +55,10 @@ export async function POST(request: Request) {
       submittedAt: new Date().toISOString(),
     }
 
+    if (payload.website) {
+      return NextResponse.json({ ok: true, message: "Thanks. Stanley Systems received your note.", delivery: "filtered" })
+    }
+
     if (payload.form_type === "assessment_intake") {
       if (!payload.name || !payload.email || !payload.phone || !payload.company || !payload.problem || !payload.currentProcess) {
         return NextResponse.json(
@@ -58,6 +70,13 @@ export async function POST(request: Request) {
       if (!payload.name || !payload.email || !payload.company || !payload.problem) {
         return NextResponse.json(
           { ok: false, error: "Missing required fields." },
+          { status: 400 },
+        )
+      }
+    } else if (payload.form_type === "money_leak_checks") {
+      if (!payload.email || !payload.phone) {
+        return NextResponse.json(
+          { ok: false, error: "Email and phone are required for leak checks." },
           { status: 400 },
         )
       }

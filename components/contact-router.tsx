@@ -1,30 +1,37 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ArrowRight, CheckCircle2, HelpCircle, MailQuestion, ReceiptText } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
+import { MoneyLeakChecksForm } from "@/components/money-leak-checks-form"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 const routes = [
-  { id: "audit", title: "Start the Cash Flow Assessment", body: "Best if cash, follow-up, invoices, estimates, reviews, referrals, or office handoffs are getting stuck.", cta: "Start the Cash Flow Assessment", icon: ReceiptText },
-  { id: "question", title: "Ask before buying", body: "Not sure whether the assessment fits your business? Send a short note first.", cta: "Ask a quick question", icon: MailQuestion },
-  { id: "bought", title: "Already bought?", body: "Book your walkthrough or finish your assessment intake.", cta: "Continue assessment setup", icon: CheckCircle2 },
+  { id: "audit", title: "Start the Cash Flow Assessment", body: "Best if cash, invoices, estimates, reviews, referrals, missed calls, or past customers are already getting stuck.", cta: "Start the Cash Flow Assessment", icon: ReceiptText },
+  { id: "question", title: "Want to talk before buying?", body: "If Stanley Systems looks like it might fit, but you want one answer before you pay, call or send a quick note.", cta: "Ask one question", icon: MailQuestion },
+  { id: "bought", title: "Already bought?", body: "Send the intake details Stanley Systems needs before reviewing the money leak.", cta: "Continue assessment setup", icon: CheckCircle2 },
 ] as const
 
 type RouteId = (typeof routes)[number]["id"]
 
 export function ContactRouter() {
   const [selected, setSelected] = useState<RouteId>("audit")
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const path = params.get("path") || params.get("route")
+    if (path === "pre-buy" || path === "question") setSelected("question")
+  }, [])
+
   return (
     <section className="px-4 pb-16 pt-24 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-3xl">
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Contact Stanley Systems</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Get the right next step.</h1>
-          <p className="mt-5 text-lg leading-8 text-[#536173]">Choose whether you are ready to start the paid Cash Flow Assessment, need one answer before buying, or already bought and need intake.</p>
+          <h1 className="text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Get the right next step.</h1>
+          <p className="mt-5 text-lg leading-8 text-[#536173]">Ready to find the leak, need one answer before buying, or already paid and need intake? Choose the path that matches where you are.</p>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
@@ -42,7 +49,7 @@ export function ContactRouter() {
               </button>
             ))}
             <div className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 text-sm font-semibold leading-6 text-[#536173]">
-              Direct email is still available: <a href="mailto:hello@stanley-systems.com" className="font-extrabold text-[#116832] underline underline-offset-4">hello@stanley-systems.com</a>
+              Prefer email? Send the one question to <a href="mailto:hello@stanley-systems.com" className="font-extrabold text-[#116832] underline underline-offset-4">hello@stanley-systems.com</a>.
             </div>
           </div>
 
@@ -52,6 +59,12 @@ export function ContactRouter() {
             {selected === "bought" ? <BoughtPanel /> : null}
           </div>
         </div>
+
+        <MoneyLeakChecksForm
+          source="contact-money-leak-checks"
+          pageSource="contact_money_leak_checks"
+          className="mt-8"
+        />
       </div>
     </section>
   )
@@ -62,12 +75,12 @@ function AuditPanel() {
     <div>
       
       <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Find the first revenue leak before buying a system.</h2>
-      <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">The Cash Flow Assessment is the paid diagnostic first step. Stanley Systems reviews your workflow, looks for the first meaningful leak, and credits the fee toward Cashflow Control or Repeat Revenue if you buy a system after the assessment.</p>
+      <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">The Cash Flow Assessment is the paid diagnostic first step. Stanley Systems checks where money is being lost, which leak should be fixed first, and whether Cashflow Control, Repeat Revenue, both, or neither is the right next move.</p>
       <ul className="mt-5 space-y-3 text-sm font-semibold leading-6 text-[#536173]">
         {[
-          "For service businesses with real job, billing, customer, call, estimate, or follow-up activity.",
-          "Assessment fee credits toward Cashflow Control or Repeat Revenue; yearly buyers get a $194 credit.",
-          "No fake scheduler link: checkout starts the assessment path, then intake gathers workflow context.",
+          "For service businesses with real job, billing, customer, call, estimate, review, referral, or follow-up activity.",
+          "Your assessment fee credits toward Cashflow Control or Repeat Revenue if you buy a system after the assessment.",
+          "Checkout starts the assessment path. Intake gathers the workflow context before the review.",
         ].map((item) => <li key={item} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" />{item}</li>)}
       </ul>
       <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -76,6 +89,7 @@ function AuditPanel() {
         </CTALink>
         <Link href="/audit-started" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]">What happens after buying</Link>
       </div>
+      <p className="mt-4 text-sm font-bold leading-6 text-[#607080]">Need one answer first? Use “Want to talk before buying?” and ask the exact question stopping the purchase.</p>
     </div>
   )
 }
@@ -135,7 +149,7 @@ function PreBuyQuestionForm() {
       const result = await response.json().catch(() => null)
       if (!response.ok || !result?.ok) throw new Error(result?.error || "Could not send question.")
       setState("success")
-      setMessage(result?.message || "Thanks. Stanley Systems received your question.")
+      setMessage(result?.message || "Thanks. Stanley Systems received your question. If it belongs in the Cash Flow Assessment, we’ll point you there instead of guessing.")
       setForm({ name: "", business: "", email: "", phone: "", business_type: "", main_issue: "", message: "" })
     } catch (error) {
       setState("error")
@@ -148,7 +162,7 @@ function PreBuyQuestionForm() {
       <div>
         <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Ask before buying</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Ask before buying the assessment.</h2>
-        <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">Short questions only. If you need workflow diagnosis, start the Cash Flow Assessment.</p>
+        <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">If Stanley Systems looks like it might fit, but you want one answer before you pay, call or send a quick note. We’ll help you decide whether the Cash Flow Assessment is the right next step.</p><p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">You may first speak with our phone assistant so we can route the conversation quickly.</p><p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">Short questions only. If you need diagnosis, buy the Cash Flow Assessment so Stanley Systems can check the real workflow.</p>
       </div>
       {state === "success" ? <p className="rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-3 text-sm font-bold text-[#116832]">{message}</p> : null}
       {state === "error" ? <p className="rounded-2xl border border-red-200 bg-red-50 p-3 text-sm font-bold text-red-800">{message}</p> : null}
@@ -158,12 +172,13 @@ function PreBuyQuestionForm() {
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <Input label="Email*" type="email" value={form.email} onChange={(value) => setForm({ ...form, email: value })} required />
-        <Input label="Phone" type="tel" value={form.phone} onChange={(value) => setForm({ ...form, phone: value })} />
+        <Input label="Phone*" type="tel" value={form.phone} onChange={(value) => setForm({ ...form, phone: value })} required />
       </div>
       <Input label="What kind of service business is this?" value={form.business_type} onChange={(value) => setForm({ ...form, business_type: value })} />
       <label className="block"><span className="mb-2 block text-sm font-bold text-[#102033]">What is getting stuck?*</span><select required value={form.main_issue} onChange={(event) => setForm({ ...form, main_issue: event.target.value })} className="w-full rounded-2xl border border-[#DDEBE2] bg-white px-4 py-3 text-[#071D3A] outline-none focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"><option value="">Choose one</option><option>Invoices going out late</option><option>Getting paid</option><option>Estimate follow-up</option><option>Missed calls</option><option>Review/referral follow-up</option><option>Office handoffs</option><option>Not sure yet</option></select></label>
       <label className="block"><span className="mb-2 block text-sm font-bold text-[#102033]">Short message*</span><textarea required rows={5} value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} className="w-full rounded-2xl border border-[#DDEBE2] bg-white px-4 py-3 text-[#071D3A] outline-none focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10" placeholder="Ask the one thing you need answered before buying." /></label>
-      <button disabled={state === "submitting"} className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)] disabled:opacity-70" type="submit">{state === "submitting" ? "Sending..." : "Ask Stanley Systems"} <HelpCircle className="ml-2 h-4 w-4" /></button>
+      <button disabled={state === "submitting"} className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)] disabled:opacity-70" type="submit">{state === "submitting" ? "Sending..." : "Ask one question"} <HelpCircle className="ml-2 h-4 w-4" /></button>
+      <a href="tel:+16179586372" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]">Call before buying</a>
     </form>
   )
 }

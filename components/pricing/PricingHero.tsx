@@ -10,6 +10,7 @@ export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAudit
         <h1 className="mx-auto max-w-5xl text-balance text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[4.25rem]">
           Choose the system that stops the money leak.
         </h1>
+        <p className="mx-auto mt-5 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Start with the Cash Flow Assessment if you want Stanley Systems to find the first leak before you choose a system. Buy directly only if the problem is already obvious.</p>
         <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <CTALink
             href={offer.cta.href}
@@ -36,6 +37,7 @@ export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAudit
             Calculate the leak
           </CTALink>
         </div>
+        <p className="mx-auto mt-4 max-w-2xl text-sm font-bold leading-6 text-[#607080]">Need one answer before you pay? <a href="/contact?path=pre-buy" className="text-[#116832] underline underline-offset-4">Ask before buying</a> and we’ll tell you whether the assessment is the right next step.</p>
         {calculatorContext?.source === "calculator" ? (
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[#15803D]">
             Your calculator result is loaded below with rounded estimates only.
