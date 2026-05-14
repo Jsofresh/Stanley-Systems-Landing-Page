@@ -263,6 +263,7 @@ function FitObjections() {
             <p className="mt-3 text-sm leading-6 text-[#536173]">If past customers and missed follow-up are clearly the leak, buy the system. If billing might be the bigger problem, ask one question or start the Cash Flow Assessment first.</p>
             <div className="mt-4 flex flex-col gap-2 sm:flex-row">
               <Link href="/contact?path=pre-buy" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-5 py-2.5 text-sm font-extrabold text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Ask one question</Link>
+              <a href="tel:+16179586372" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-5 py-2.5 text-sm font-extrabold text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Call before buying</a>
               <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="repeat_revenue_money_leak_checks_fit_assessment_support" className="border border-[#CFE8D5] bg-[#15803D] text-white hover:-translate-y-0.5 hover:bg-[#116832]" />
             </div>
           </article>
@@ -277,7 +278,7 @@ function FitObjections() {
           ))}
         </div>
         <div className="lg:col-span-2">
-          <MoneyLeakChecksForm source="repeat-revenue-money-leak-checks" pageSource="repeat_revenue_money_leak_checks" headline="Get one follow-up leak to check each week" body="Past customers, reviews, referrals, missed calls, and quiet follow-up — simple checks you can use before you buy Repeat Revenue." className="mt-2" />
+          <MoneyLeakChecksForm source="repeat-revenue-money-leak-checks" pageSource="repeat_revenue_money_leak_checks" headline="Get your first follow-up leak check" body="Past customers, reviews, referrals, missed calls, and quiet follow-up — one practical check you can use before you buy Repeat Revenue." className="mt-2" />
         </div>
       </div>
     </section>

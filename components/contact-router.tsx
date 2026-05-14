@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 import { ArrowRight, CheckCircle2, HelpCircle, MailQuestion, ReceiptText } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
-import { MoneyLeakChecksForm } from "@/components/money-leak-checks-form"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
@@ -24,6 +23,8 @@ export function ContactRouter() {
     const params = new URLSearchParams(window.location.search)
     const path = params.get("path") || params.get("route")
     if (path === "pre-buy" || path === "question") setSelected("question")
+    if (path === "bought" || path === "intake") setSelected("bought")
+    if (path === "audit" || path === "assessment") setSelected("audit")
   }, [])
 
   return (
@@ -49,7 +50,7 @@ export function ContactRouter() {
               </button>
             ))}
             <div className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 text-sm font-semibold leading-6 text-[#536173]">
-              Prefer email? Send the one question to <a href="mailto:hello@stanley-systems.com" className="font-extrabold text-[#116832] underline underline-offset-4">hello@stanley-systems.com</a>.
+              Prefer email? Send the one question to <a href="mailto:hello@stanley-systems.com" className="font-extrabold text-[#116832] underline underline-offset-4">hello@stanley-systems.com</a>. Calls may be answered by our assistant so we can route your question quickly.
             </div>
           </div>
 
@@ -59,12 +60,6 @@ export function ContactRouter() {
             {selected === "bought" ? <BoughtPanel /> : null}
           </div>
         </div>
-
-        <MoneyLeakChecksForm
-          source="contact-money-leak-checks"
-          pageSource="contact_money_leak_checks"
-          className="mt-8"
-        />
       </div>
     </section>
   )
@@ -97,8 +92,7 @@ function AuditPanel() {
 function BoughtPanel() {
   return (
     <div>
-      <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Already bought?</p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Start your assessment intake.</h2>
+      <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Start your assessment intake.</h2>
       <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">If you already bought the Cash Flow Assessment, use the intake route to send the workflow context Stanley Systems needs before reviewing the revenue path.</p>
       <Link href="/audit-intake" className="mt-7 inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)]">Go to assessment intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
     </div>
@@ -160,8 +154,7 @@ function PreBuyQuestionForm() {
   return (
     <form onSubmit={submit} className="grid gap-4">
       <div>
-        <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Ask before buying</p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Ask before buying the assessment.</h2>
+        <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Want to talk before buying?</h2>
         <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">If Stanley Systems looks like it might fit, but you want one answer before you pay, call or send a quick note. We’ll help you decide whether the Cash Flow Assessment is the right next step.</p><p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">You may first speak with our phone assistant so we can route the conversation quickly.</p><p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">Short questions only. If you need diagnosis, buy the Cash Flow Assessment so Stanley Systems can check the real workflow.</p>
       </div>
       {state === "success" ? <p className="rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-3 text-sm font-bold text-[#116832]">{message}</p> : null}

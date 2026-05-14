@@ -13,9 +13,9 @@ type MoneyLeakChecksFormProps = {
   className?: string
 }
 
-const defaultHeadline = "Get one money leak to check each week"
-const defaultBody = "Billing, follow-up, reviews, referrals, missed calls, and past customers — simple checks you can use even before you buy."
-const defaultHelper = "No filler. Just one leak to check, one way to spot it, and one next move."
+const defaultHeadline = "Get your first money leak check"
+const defaultBody = "Billing, follow-up, reviews, referrals, missed calls, and past customers — one practical check you can use before you buy."
+const defaultHelper = "No filler. One leak to check, one way to spot it, and one next move."
 const fallbackEmail = "hello@stanley-systems.com"
 
 export function MoneyLeakChecksForm({
@@ -56,7 +56,7 @@ export function MoneyLeakChecksForm({
         current_path: window.location.pathname,
         page: window.location.pathname,
         referrer: document.referrer || "",
-        consent: "Stanley Systems can send practical money leak checks using the email and phone provided.",
+        consent: "Stanley Systems can send practical money leak checks using the email provided and phone if included.",
         timestamp: new Date().toISOString(),
         submitted_at: new Date().toISOString(),
         utm_source: params.get("utm_source") || "",
@@ -100,8 +100,8 @@ export function MoneyLeakChecksForm({
             <input type="email" required value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} className="w-full rounded-2xl border border-[#DDEBE2] bg-white px-4 py-3 text-[#071D3A] outline-none focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10" />
           </label>
           <label className="block">
-            <span className="mb-2 block text-sm font-bold text-[#102033]">Phone*</span>
-            <input type="tel" required value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} className="w-full rounded-2xl border border-[#DDEBE2] bg-white px-4 py-3 text-[#071D3A] outline-none focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10" />
+            <span className="mb-2 block text-sm font-bold text-[#102033]">Phone, optional</span>
+            <input type="tel" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} className="w-full rounded-2xl border border-[#DDEBE2] bg-white px-4 py-3 text-[#071D3A] outline-none focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10" />
           </label>
           <label className="block">
             <span className="mb-2 block text-sm font-bold text-[#102033]">Current system, optional</span>
@@ -111,8 +111,8 @@ export function MoneyLeakChecksForm({
             Website
             <input tabIndex={-1} autoComplete="off" value={form.website} onChange={(event) => setForm({ ...form, website: event.target.value })} />
           </label>
-          <button disabled={state === "submitting"} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)] disabled:opacity-70" type="submit">
-            {state === "submitting" ? "Sending..." : "Send me the leak checks"} <ArrowRight className="ml-2 h-4 w-4" />
+          <button disabled={state === "submitting"} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5] disabled:opacity-70" type="submit">
+            {state === "submitting" ? "Sending..." : "Send me the first leak check"} <ArrowRight className="ml-2 h-4 w-4" />
           </button>
           <p className="text-xs font-semibold leading-5 text-[#607080]">Stanley Systems will send practical leak checks. No filler.</p>
         </form>
