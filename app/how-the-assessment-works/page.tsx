@@ -16,10 +16,10 @@ export const metadata: Metadata = {
 }
 
 const steps = [
-  ["What gets checked", "Calls, invoices, follow-ups, reviews, referrals, past customers, office handoffs, and the places money gets missed after work is done."],
-  ["What you receive", "A full fix list for every money leak found, the likely cost, and which fix should happen first."],
+  ["What gets checked", "Calls, estimates, invoices, payment follow-up, reviews, referrals, past customers, office handoffs, and where work gets stuck."],
+  ["What you receive", "The actual problems, the likely cost, the full fix list, and what should be built first."],
   ["How the sprint connects", "The $97 assessment becomes a $194 credit toward the $1,500 Systems Installation Sprint."],
-  ["How specific fixes get handled", "Some valuable fixes are too specific to list publicly. If the assessment finds one and it fits the sprint scope, Stanley Systems can build it."],
+  ["How specific fixes get handled", "Some valuable fixes are too specific to list publicly. If the assessment finds a gap that matters to your shop, the Sprint can build around it."],
 ]
 
 export default function HowAssessmentWorksPage() {
@@ -58,10 +58,10 @@ export default function HowAssessmentWorksPage() {
             <div className="rounded-[2rem] border border-[#BFE4C8] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.13)]">
               <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Next step</p>
               <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Ready when you want the actual fix list.</h3>
-              <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">If you already know you need diagnosis, start the Cash Flow Assessment. If you still have one simple pre-buy question, ask first.</p>
+              <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">If you already know you need diagnosis, start the Cash Flow Assessment. If you still have a simple question, ask us first.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Link href="/workflow-audit" className={greenButton}>Start the Assessment</Link>
-                <Link href="/contact?path=pre-buy" className={lightButton}>Ask one question</Link>
+                <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment</Link>
+                <Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link>
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { MarketingPageShell } from "@/components/marketing-page-shell"
 
 export const metadata: Metadata = {
   title: "Cash Flow Assessment Intake | Stanley Systems",
-  description: "Send the workflow context Stanley Systems needs after buying the Cash Flow Assessment.",
+  description: "Send the work details Stanley Systems needs after buying the Cash Flow Assessment.",
 }
 
 const intakeGroups = [
@@ -31,13 +31,13 @@ export default function AuditIntakePage() {
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
             <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Assessment intake</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Send the workflow context before the assessment.</h1>
-            <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Use this after buying the Cash Flow Assessment. The intake gives Stanley Systems enough context to review cash, follow-up, software handoffs, and the first leak worth fixing.</p>
+            <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Send the work details before the assessment.</h1>
+            <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Use this after buying the Cash Flow Assessment. The intake gives Stanley Systems enough detail to review cash, follow-up, software handoffs, and what should be fixed first.</p>
           </div>
 
           <section className="mt-7 rounded-[2rem] border border-[#DDEBE2] bg-[#FBFEFA] p-5 shadow-[0_18px_48px_rgba(7,29,58,0.06)] sm:p-6 lg:p-8">
             <h2 className="text-2xl font-extrabold tracking-[-0.03em] text-[#071D3A]">Information to send</h2>
-            <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">Send your contact info and the workflow details below. The form uses the existing Stanley Systems contact notification path when the webhook is configured.</p>
+            <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-[#536173]">Send the details below so Stanley Systems can review how work moves through the business.</p>
 
             <AuditIntakeForm />
 

@@ -61,7 +61,7 @@ export function AuditIntakeForm() {
         <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
         <div>
           <h3 className="text-lg font-extrabold tracking-[-0.02em] text-[#071D3A]">Contact info</h3>
-          <p className="mt-1 text-sm font-semibold leading-6 text-[#536173]">Stanley Systems will contact you as soon as possible. Fill in the workflow context too so the first reply is useful.</p>
+          <p className="mt-1 text-sm font-semibold leading-6 text-[#536173]">Stanley Systems will contact you as soon as possible. Add how work moves now so the first reply is useful.</p>
         </div>
       </div>
 
@@ -96,7 +96,7 @@ export function AuditIntakeForm() {
         <textarea className={`${fieldClass} min-h-24 resize-y`} name="moneyStuck" required placeholder="Late invoices, open balances, missed reviews, old customers going quiet..." />
       </label>
       <label className="mt-3 grid gap-1 text-xs font-black uppercase tracking-[0.12em] text-[#607080]">
-        Workflow context
+        How work moves now
         <textarea className={`${fieldClass} min-h-28 resize-y`} name="workflowContext" required placeholder="Tools used, who handles billing, invoice timing, review/referral process, preferred access method..." />
       </label>
 

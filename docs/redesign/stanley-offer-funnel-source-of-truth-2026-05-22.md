@@ -25,8 +25,8 @@ This document is the approved offer and funnel source of truth for the next Stan
 4. **Monthly Control Plan**
    - Optional only after the Systems Installation Sprint.
    - Not a standalone retainer.
-   - Purpose: post-Sprint monitoring/maintenance for systems Stanley Systems already built.
-   - Price range: **$147–$297/month**, based on how many automations/systems Stanley Systems built and monitors.
+   - Purpose: after-Sprint control for systems Stanley Systems already built: checked, adjusted, and kept working.
+   - Price range: **$147–$347/month**, based on how many automations/systems and automations Stanley Systems installed.
    - If the client declines Monthly Control, Stanley Systems hands over controls for what was built and the client owns upkeep/updates.
 
 ## Cash Flow Assessment rules
@@ -98,7 +98,7 @@ Rules:
 - Pricing hero/subcopy should remove big free-calculator emphasis and avoid listing prices before cards if that creates clutter.
 - Monthly Control should be one card/section, not old multi-card pricing behavior.
 - Monthly Control must be shown as post-Sprint only, not standalone.
-- Monthly Control price range: $147–$297/month based on systems/automations built and monitored.
+- Monthly Control price range: $147–$347/month based on systems/automations built and monitored.
 - Jaden will create new Stripe payment links. Until those exist, do not invent new payment URLs.
 - Remove old public direct package checkout rendering for Cashflow Control, Repeat Revenue, and Both Systems unless Jaden re-approves it.
 - Keep old payment/link records dormant or placeholder-safe internally if needed to avoid breaking code during implementation.

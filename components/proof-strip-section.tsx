@@ -99,12 +99,12 @@ export function ProofStripSection() {
           packageId="workflow_audit"
           packageName="Cash Flow Assessment"
           billingPeriod="one_time"
-          ctaLabel="Buy the Cash Flow Assessment"
+          ctaLabel="Start the Cash Flow Assessment"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] sm:px-8"
         >
-          Buy the Cash Flow Assessment
+          Start the Cash Flow Assessment
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </CTALink>
         <CTALink

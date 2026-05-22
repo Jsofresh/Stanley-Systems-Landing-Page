@@ -535,7 +535,7 @@ function BeforeAfterProofSection() {
             How your business improves with Stanley Systems.
           </h2>
           <p className="mt-5 max-w-[620px] text-lg font-semibold leading-8 text-[#536173]">
-            Stanley Systems builds the office layer that gets bills out faster,
+            Stanley Systems fixes the office work that gets bills out faster,
             keeps payment follow-up moving, and brings past customers back.
           </p>
         </div>
@@ -646,7 +646,7 @@ export function CashFlowHomepage() {
                 ctaLabel="Start the Cash Flow Assessment"
                 className={darkGhostButton}
               >
-                Cash Flow Assessment
+                Start the Cash Flow Assessment
               </CTALink>
             </div>
           </div>

@@ -89,14 +89,14 @@ export function Footer() {
             rel="noopener noreferrer"
             data-analytics-event="audit_checkout_clicked"
             data-analytics-source="site_footer"
-            data-cta-label="Buy the Cash Flow Assessment"
+            data-cta-label="Start the Cash Flow Assessment"
             data-cta-location="footer_top_workflow_audit"
             data-package-id="workflow_audit"
             data-package-name="Cash Flow Assessment"
             data-billing-period="one_time"
             className="inline-flex items-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#166534] sm:text-base"
           >
-            Buy the Cash Flow Assessment
+            Start the Cash Flow Assessment
           </a>
         </div>
       </div>
@@ -151,7 +151,7 @@ export function Footer() {
       </div>
 
       <div className="mt-8 hidden w-full border-t border-slate-200 pt-6 md:block">
-        <p className="text-center text-xs text-slate-400">Buy the Cash Flow Assessment, contact us with unusual questions, or tap the phone number if you want the fastest answer.</p>
+        <p className="text-center text-xs text-slate-400">Start the Cash Flow Assessment, ask us a question, or call if you want the fastest answer.</p>
       </div>
     </footer>
   )

@@ -62,12 +62,12 @@ export function WorkflowAuditFallback() {
             packageId="workflow_audit"
             packageName="Cash Flow Assessment"
             billingPeriod="one_time"
-            ctaLabel="Buy the Cash Flow Assessment"
+            ctaLabel="Start the Cash Flow Assessment"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
           >
-            Buy the Cash Flow Assessment <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Start the Cash Flow Assessment <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
           <a href="#scope" className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]">
             Read what is included

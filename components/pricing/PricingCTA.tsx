@@ -39,7 +39,7 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
           Calculate the leak
         </CTALink>
       </div>
-      <p className="mx-auto mt-5 max-w-2xl text-sm font-bold leading-6 text-[#607080]">Still hesitating? <a href="/contact?path=pre-buy" className="text-[#116832] underline underline-offset-4">Ask one question before buying.</a></p>
+      <p className="mx-auto mt-5 max-w-2xl text-sm font-bold leading-6 text-[#607080]">Still hesitating? <a href="/contact?path=pre-buy" className="text-[#116832] underline underline-offset-4">Ask us a question before buying.</a></p>
       <MoneyLeakChecksForm source="pricing-money-leak-checks" pageSource="pricing_money_leak_checks" className="mt-8 text-left" />
     </section>
   )

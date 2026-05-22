@@ -230,7 +230,7 @@ export function Phase3HomepageSections() {
             <p className="mt-5 max-w-[45rem] text-lg font-medium leading-8 text-white/72">The assessment maps the current office path, identifies the leak, and turns the fix into a build plan you can understand.</p>
             <div className="mt-8">
               <CTAGroup
-                primary={{ href: auditHref, label: "Book the Cash Flow Assessment" }}
+                primary={{ href: auditHref, label: "Start the Cash Flow Assessment" }}
                 secondary={{ href: calculatorHref, label: "Find the Revenue Leaks" }}
                 className="justify-start"
               />

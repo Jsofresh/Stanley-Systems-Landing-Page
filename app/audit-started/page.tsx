@@ -6,15 +6,15 @@ import { MarketingPageShell } from "@/components/marketing-page-shell"
 
 export const metadata: Metadata = {
   title: "Cash Flow Assessment Started | Stanley Systems",
-  description: "Book the walkthrough after paying for the Stanley Systems Cash Flow Assessment.",
+  description: "Complete the intake after paying for the Stanley Systems Cash Flow Assessment.",
 }
 
 const steps = [
   "Payment received",
-  "Book walkthrough",
+  "Complete intake",
   "Complete assessment intake",
   "Share screen, exports, screenshots, or temporary user access if needed",
-  "Receive Money Leak Map",
+  "Receive assessment findings and fix list",
 ]
 
 export default function AuditStartedPage() {
@@ -23,8 +23,8 @@ export default function AuditStartedPage() {
       <main className="px-4 pb-20 pt-32 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl rounded-[2rem] border border-[#DDEBE2] bg-white p-7 shadow-[0_20px_60px_rgba(7,29,58,0.08)] sm:p-10">
           <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Cash Flow Assessment</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Your Cash Flow Assessment is paid. Book the walkthrough next.</h1>
-          <p className="mt-5 text-lg font-semibold leading-8 text-[#536173]">Choose a 30-minute time with Stanley Systems so we can walk through how your office handles jobs, invoices, estimates, follow-up, reviews, referrals, and handoffs today.</p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Your Cash Flow Assessment is paid. Complete the intake next.</h1>
+          <p className="mt-5 text-lg font-semibold leading-8 text-[#536173]">Complete the intake so Stanley Systems can review how your office handles jobs, invoices, estimates, follow-up, reviews, referrals, and handoffs today.</p>
 
           <div className="mt-8 rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFEFA] p-5">
             <h2 className="text-xl font-extrabold tracking-[-0.02em] text-[#071D3A]">Assessment progress</h2>
@@ -39,8 +39,8 @@ export default function AuditStartedPage() {
           </div>
 
           <div className="mt-8 rounded-[1.5rem] border border-[#CFE8D5] bg-[#F4FBF5] p-5 text-sm font-semibold leading-6 text-[#536173]">
-            <p className="font-extrabold text-[#071D3A]">Scheduler note</p>
-            <p className="mt-2">No verified scheduler URL is currently hardcoded here. Use the assessment intake route now; the booking-link value can be wired from config when the scheduler destination is finalized.</p>
+            <p className="font-extrabold text-[#071D3A]">Next step</p>
+            <p className="mt-2">Complete the intake form and Stanley Systems will send the next step.</p>
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

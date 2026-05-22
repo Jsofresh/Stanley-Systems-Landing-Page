@@ -10,7 +10,7 @@ export default function BlogPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
-              Practical writing on bottlenecks, workflows, and operational cleanup.
+              Plain-English articles on billing delays, missed follow-up, reviews, referrals, and service-business handoffs.
             </h1>
             <p className="mt-5 text-lg leading-8 text-slate-600">
               Plain-English articles for service-business owners who want to understand where the drag is coming from and what a clean fix actually looks like.

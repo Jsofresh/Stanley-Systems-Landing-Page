@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cash Flow Assessment | Stanley Systems",
     description:
-      "Find the money leak in your office work, records, invoices, reviews, referrals, and follow-up.",
+      "Find where office work is slowing down cash, reviews, referrals, and repeat jobs.",
     url: "https://stanley-systems.com/workflow-audit",
     siteName: "Stanley Systems",
     type: "website",
@@ -93,7 +93,7 @@ function Hero() {
             The Cash Flow Assessment shows where office work is costing money, where reviews and referrals are being missed, and where past customers can be brought back.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-            <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
+            <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
             <Link href="#assessment" className="inline-flex min-h-12 min-w-[13.5rem] items-center justify-center whitespace-nowrap rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] shadow-[0_10px_24px_rgba(16,32,51,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5] hover:shadow-[0_18px_36px_rgba(21,128,61,0.14)]">
               See what you get
             </Link>
@@ -102,10 +102,10 @@ function Hero() {
             Your $97 assessment becomes a $194 credit toward the Systems Installation Sprint.
           </p>
           <div className="mx-auto mt-4 grid max-w-xl gap-2 rounded-[1.35rem] border border-[#DDEBE2] bg-white/80 p-4 text-sm font-bold leading-6 text-[#536173] shadow-[0_12px_30px_rgba(7,29,58,0.05)] sm:grid-cols-[1fr_auto] sm:items-center sm:text-left">
-            <span>Want one answer before you pay? Ask before buying and we’ll help you decide whether the assessment is the right first step.</span>
+            <span>Not sure if this fits? Ask us a question and Stanley Systems will help you decide whether the assessment is the right first step.</span>
             <span className="flex flex-wrap justify-center gap-2 sm:justify-end">
               <a href="tel:+16179586372" className="rounded-full border border-[#CFE8D5] bg-white px-3 py-2 text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Call before buying</a>
-              <Link href="/contact?path=pre-buy" className="rounded-full bg-[#102033] px-3 py-2 text-white transition hover:bg-[#071D3A]">Ask one question</Link>
+              <Link href="/contact?path=pre-buy" className="rounded-full bg-[#102033] px-3 py-2 text-white transition hover:bg-[#071D3A]">Ask us a question</Link>
             </span>
           </div>
         </div>
@@ -137,16 +137,16 @@ function CheckedLeaks() {
         </div>
         <div className="order-1 lg:order-2 lg:pl-4">
           <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.25rem] lg:text-[3.4rem]">
-            Most businesses lose money after the job is done.
+            Office work can slow down cash, reviews, referrals, and repeat jobs.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            A job gets done. Then the office has to check details, send the invoice, follow up, ask for the review, ask for the referral, and bring the customer back.
+            Calls, estimates, job handoffs, invoices, payment follow-up, reviews, referrals, and past customers can all get stuck when the next step is not owned.
           </p>
           <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173]">
-            Stanley Systems checks those places and gives you the full fix list for every money leak found.
+            Stanley Systems checks those places and gives you the actual problems, the full fix list, and what should be built first.
           </p>
           <div className="mt-6">
-            <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_checked_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+            <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_checked_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
           </div>
         </div>
       </div>
@@ -156,10 +156,10 @@ function CheckedLeaks() {
 
 function AssessmentPricing() {
   const deliverables = [
-    "A breakdown of where office work is leaking money",
+    "A breakdown of where office work is slowing cash",
     "Where past customers can be brought back",
     "Where more clients, reviews, referrals, and leads are being missed",
-    "The full fix list for every money leak found",
+    "The full fix list for every problem found",
   ]
 
   return (
@@ -168,7 +168,7 @@ function AssessmentPricing() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Start here for $97.</h2>
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
-            Buy the Cash Flow Assessment. Stanley Systems shows where money is being missed, what it likely costs, the full fix list, and what should be built first.
+            Start the Cash Flow Assessment. Stanley Systems shows where money is being missed, what it likely costs, the full fix list, and what should be built first.
           </p>
         </div>
 
@@ -186,7 +186,7 @@ function AssessmentPricing() {
             </ul>
 
             <div className="mt-auto flex w-full justify-center pt-6">
-              <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+              <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
             </div>
           </article>
 
@@ -200,7 +200,7 @@ function AssessmentPricing() {
             <article className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]">
               <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">What this gets you</h3>
               <p className="mt-3 text-sm leading-6 text-[#536173]">
-                You get where office work is losing money, where past customers can be brought back, where more jobs can come from, where Google reviews are being missed, where referrals and leads are being missed, and the full fix list for every problem found.
+                You get the actual problems, what they likely cost, the full fix list, and what should be built first.
               </p>
             </article>
             <Link href="#systems" className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-7 py-4 text-xl font-extrabold text-[#116832] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#FBFCF7] hover:shadow-[0_18px_38px_rgba(21,128,61,0.13)]">
@@ -208,11 +208,11 @@ function AssessmentPricing() {
             </Link>
             <article className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]">
               <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">Want to talk before buying?</h3>
-              <p className="mt-3 text-sm leading-6 text-[#536173]">If Stanley Systems looks like it might fit, but you want one answer before you pay, call or send a quick note. We’ll help you decide whether the Cash Flow Assessment is the right next step.</p>
-              <p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">You may first speak with our phone assistant so we can route the conversation quickly.</p>
+              <p className="mt-3 text-sm leading-6 text-[#536173]">Not sure if this fits? Ask us a question. Stanley Systems will help you decide whether the Cash Flow Assessment is the right next step.</p>
+              <p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">You may first speak with our phone assistant so Stanley Systems can route the question quickly.</p>
               <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                 <a href="tel:+16179586372" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-5 py-2.5 text-sm font-extrabold text-white transition hover:bg-[#116832]">Call before buying</a>
-                <Link href="/contact?path=pre-buy" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-5 py-2.5 text-sm font-extrabold text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Ask one question</Link>
+                <Link href="/contact?path=pre-buy" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-5 py-2.5 text-sm font-extrabold text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Ask us a question</Link>
               </div>
             </article>
           </div>
@@ -226,7 +226,7 @@ function HowItWorks() {
   const steps = [
     ["Walkthrough", "You show how work moves now, where details are checked, and where the office has to remember."],
     ["Record Review", "We review records that show stuck cash, past customer chances, more customer opportunities, Google review asks, referrals, and follow-up gaps."],
-    ["Money Leak Map", "You get a plain map of the leaks, why they matter, and what should happen next."],
+    ["Money Leak Map", "You get a plain map of the leaks, why they matter, and what should be fixed first."],
     ["Build Priority", "You know what should be built first and whether Cashflow Control, Repeat Revenue, both systems, or a specific fix is the right next step."],
   ]
 
@@ -287,10 +287,10 @@ function NextSteps() {
   const questions = [
     ["Does this replace my field or accounting software?", "No. Stanley Systems looks at the work around the tools you already use. The goal is to find where jobs, invoices, reviews, referrals, and follow-up are getting missed, then point you to the right fix."],
     ["What if I already know what I want?", "Start with the Cash Flow Assessment so Stanley Systems can confirm the full fix list and the right build path before the Systems Installation Sprint."],
-    ["What if I am not sure the assessment is right for me?", "Ask one question before buying. If Stanley Systems can answer it quickly, we will. If the answer requires checking your real records, the Cash Flow Assessment is the right next step."],
+    ["What if I am not sure the assessment is right for me?", "Ask us a question before buying. If Stanley Systems can answer it quickly, we will. If the answer requires checking your real records, the Cash Flow Assessment is the right next step."],
     ["Will I talk to a person?", "Yes. You may first speak with our phone assistant so Stanley Systems can route the conversation quickly, but the assessment is reviewed by Stanley Systems before a system recommendation is made."],
     ["What if I only want the weekly leak checks?", "Use the leak checks if you are not ready to buy. They help you spot billing, follow-up, review, referral, missed-call, and past-customer leaks before you commit to an assessment."],
-    ["Do I need to share passwords?", "No. Start with screen share, exports, screenshots, or a temporary invited user if access is needed. Stanley Systems only asks for the access needed to understand the workflow and avoids unnecessary sensitive access."],
+    ["Do I need to share passwords?", "No. Start with screen share, exports, screenshots, or a temporary invited user if access is needed. Stanley Systems only asks for the access needed to understand how work moves now."],
     ["What happens after the call?", "You get the money leak map, the full fix list, and the build priority. The next step is clear: Cashflow Control, Repeat Revenue, both systems, or a specific fix if that is what the assessment finds."],
   ]
 
@@ -317,9 +317,9 @@ function NextSteps() {
         <div className={shell}>
           <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
             <div>
-              <h2 className="max-w-2xl text-[2.65rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem]">Start where the money comes back fastest.</h2>
+              <h2 className="max-w-2xl text-[2.65rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem]">Start with the fix list before you pay for a build.</h2>
               <div className="mt-8">
-                <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_next_steps_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+                <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_next_steps_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
               </div>
               <div className="mt-7">
                 <SystemCard path={bothPath} />

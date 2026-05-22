@@ -126,7 +126,7 @@ const industryCopy: Record<IndustrySlug, {
       position: "center",
     },
     leaks: ["Owner or office manager has become the backup system.", "Work is done but billing, payment, or follow-up still waits.", "Customers are earned once and then allowed to go cold."],
-    systems: ["Cashflow Control when completed work is not turning into cash fast enough.", "Repeat Revenue when past customers, reviews, referrals, or missed calls are being wasted."],
+    systems: ["Cashflow Control when billing, follow-up, handoffs, or collected cash are slowing down.", "Repeat Revenue when past customers, reviews, referrals, or missed calls are being wasted."],
   },
 }
 
