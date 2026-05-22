@@ -25,11 +25,18 @@ export function MobileStickyCTA() {
   }, [])
 
   useEffect(() => {
-    const sections = [
+    const rawSections = [
       { element: document.getElementById("audit") ?? document.getElementById("assessment"), setter: setAuditInView },
       { element: document.getElementById("systems"), setter: setSystemsInView },
       { element: document.getElementById("proof"), setter: setProofInView },
-    ].filter((item): item is { element: HTMLElement; setter: (value: boolean) => void } => Boolean(item.element))
+    ]
+    const sections: Array<{ element: HTMLElement; setter: (value: boolean) => void }> = []
+
+    rawSections.forEach((section) => {
+      if (section.element) {
+        sections.push({ element: section.element, setter: section.setter })
+      }
+    })
 
     if (!sections.length) return
 
@@ -72,12 +79,12 @@ export function MobileStickyCTA() {
           packageId="workflow_audit"
           packageName="Cash Flow Assessment"
           billingPeriod="one_time"
-          ctaLabel="Start $97 Assessment"
+          ctaLabel="Start the Cash Flow Assessment"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-full bg-[#15803D] px-3 py-3 text-[13px] font-semibold text-white"
         >
-          Start $97
+          Start Assessment
         </CTALink>
       </div>
     </div>

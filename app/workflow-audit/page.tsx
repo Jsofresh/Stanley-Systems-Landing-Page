@@ -99,7 +99,7 @@ function Hero() {
             </Link>
           </div>
           <p className="mx-auto mt-4 max-w-xl text-sm font-semibold leading-6 text-[#607080]">
-            Your assessment fee credits toward Cashflow Control or Repeat Revenue. Yearly buyers get a $194 credit.
+            Your $97 assessment becomes a $194 credit toward the Systems Installation Sprint.
           </p>
           <div className="mx-auto mt-4 grid max-w-xl gap-2 rounded-[1.35rem] border border-[#DDEBE2] bg-white/80 p-4 text-sm font-bold leading-6 text-[#536173] shadow-[0_12px_30px_rgba(7,29,58,0.05)] sm:grid-cols-[1fr_auto] sm:items-center sm:text-left">
             <span>Want one answer before you pay? Ask before buying and we’ll help you decide whether the assessment is the right first step.</span>
@@ -143,7 +143,7 @@ function CheckedLeaks() {
             A job gets done. Then the office has to check details, send the invoice, follow up, ask for the review, ask for the referral, and bring the customer back.
           </p>
           <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173]">
-            Stanley Systems checks those places and shows which one is costing you first.
+            Stanley Systems checks those places and gives you the full fix list for every money leak found.
           </p>
           <div className="mt-6">
             <CheckoutButton pkg={assessment} label="Start Cash Flow Assessment" location="cash_flow_assessment_checked_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
@@ -159,7 +159,7 @@ function AssessmentPricing() {
     "A breakdown of where office work is leaking money",
     "Where past customers can be brought back",
     "Where more clients, reviews, referrals, and leads are being missed",
-    "A short list of what to fix first",
+    "The full fix list for every money leak found",
   ]
 
   return (
@@ -168,7 +168,7 @@ function AssessmentPricing() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Start here for $97.</h2>
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
-            Buy the Cash Flow Assessment. Stanley Systems shows where money is being lost and which paid fix should come first.
+            Buy the Cash Flow Assessment. Stanley Systems shows where money is being missed, what it likely costs, the full fix list, and what should be built first.
           </p>
         </div>
 
@@ -194,13 +194,13 @@ function AssessmentPricing() {
             <article className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]">
               <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">Your assessment fee comes back as package credit</h3>
               <p className="mt-3 text-sm leading-6 text-[#536173]">
-                Buy a monthly system after the assessment and get the $97 assessment price credited back. Buy a yearly system and get $194 credited back, so the first step works like a stronger down payment.
+                The $97 Cash Flow Assessment becomes a $194 credit toward the Systems Installation Sprint.
               </p>
             </article>
             <article className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]">
               <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">What this gets you</h3>
               <p className="mt-3 text-sm leading-6 text-[#536173]">
-                You get where office work is losing money, where past customers can be brought back, where more jobs can come from, where Google reviews are being missed, where referrals and leads are being missed, and which fix should come first.
+                You get where office work is losing money, where past customers can be brought back, where more jobs can come from, where Google reviews are being missed, where referrals and leads are being missed, and the full fix list for every problem found.
               </p>
             </article>
             <Link href="#systems" className="inline-flex min-h-14 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-7 py-4 text-xl font-extrabold text-[#116832] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#FBFCF7] hover:shadow-[0_18px_38px_rgba(21,128,61,0.13)]">
@@ -226,8 +226,8 @@ function HowItWorks() {
   const steps = [
     ["Walkthrough", "You show how work moves now, where details are checked, and where the office has to remember."],
     ["Record Review", "We review records that show stuck cash, past customer chances, more customer opportunities, Google review asks, referrals, and follow-up gaps."],
-    ["Money Leak Map", "You get a plain map of the first leak, why it matters, and what should happen next."],
-    ["First Fix Decision", "You know what change to make first and whether Cashflow Control, Repeat Revenue, or both systems is the right next step."],
+    ["Money Leak Map", "You get a plain map of the leaks, why they matter, and what should happen next."],
+    ["Build Priority", "You know what should be built first and whether Cashflow Control, Repeat Revenue, both systems, or a specific fix is the right next step."],
   ]
 
   return (
@@ -261,7 +261,7 @@ function HowItWorks() {
 function NextSteps() {
   const bothPath = {
     title: "Both Systems",
-    credit: "Assessment credit: -$97 monthly / -$194 yearly",
+    credit: "$194 assessment credit toward the Systems Installation Sprint",
     body: "Use both when billing and customer follow-up are both leaving money on the table every month.",
     href: "/pricing",
     label: "See both systems",
@@ -270,14 +270,14 @@ function NextSteps() {
   const systemPaths = [
     {
       title: "Cashflow Control",
-      credit: "Assessment credit: -$97 monthly / -$194 yearly",
+      credit: "$194 assessment credit toward the Systems Installation Sprint",
       body: "Late invoices, missing job details, payment follow-up, and open balances move faster.",
       href: "/systems/cashflow-control",
       label: "View Cashflow Control",
     },
     {
       title: "Repeat Revenue",
-      credit: "Assessment credit: -$97 monthly / -$194 yearly",
+      credit: "$194 assessment credit toward the Systems Installation Sprint",
       body: "Past customers, reviews, referrals, missed calls, and follow-up start creating more booked work.",
       href: "/systems/repeat-revenue",
       label: "View Repeat Revenue",
@@ -286,12 +286,12 @@ function NextSteps() {
 
   const questions = [
     ["Does this replace my field or accounting software?", "No. Stanley Systems looks at the work around the tools you already use. The goal is to find where jobs, invoices, reviews, referrals, and follow-up are getting missed, then point you to the right fix."],
-    ["What if I already know what I want?", "You can buy Cashflow Control or Repeat Revenue directly. The assessment is for owners who want the numbers to confirm which leak should be fixed first and how the assessment credit should be used."],
+    ["What if I already know what I want?", "Start with the Cash Flow Assessment so Stanley Systems can confirm the full fix list and the right build path before the Systems Installation Sprint."],
     ["What if I am not sure the assessment is right for me?", "Ask one question before buying. If Stanley Systems can answer it quickly, we will. If the answer requires checking your real records, the Cash Flow Assessment is the right next step."],
     ["Will I talk to a person?", "Yes. You may first speak with our phone assistant so Stanley Systems can route the conversation quickly, but the assessment is reviewed by Stanley Systems before a system recommendation is made."],
     ["What if I only want the weekly leak checks?", "Use the leak checks if you are not ready to buy. They help you spot billing, follow-up, review, referral, missed-call, and past-customer leaks before you commit to an assessment."],
     ["Do I need to share passwords?", "No. Start with screen share, exports, screenshots, or a temporary invited user if access is needed. Stanley Systems only asks for the access needed to understand the workflow and avoids unnecessary sensitive access."],
-    ["What happens after the call?", "You get the money leak map and the first-fix recommendation. The next step is clear: Cashflow Control, Repeat Revenue, or both systems if both leaks are costing you money."],
+    ["What happens after the call?", "You get the money leak map, the full fix list, and the build priority. The next step is clear: Cashflow Control, Repeat Revenue, both systems, or a specific fix if that is what the assessment finds."],
   ]
 
   const cardClass = "rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_16px_42px_rgba(7,29,58,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-[#15803D] hover:shadow-[0_20px_48px_rgba(21,128,61,0.11)]"
@@ -339,7 +339,7 @@ function NextSteps() {
         <div className={shell}>
           <div className="max-w-3xl">
             <h2 className="text-[2.15rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-4xl">Assessment questions</h2>
-            <p className="mt-3 text-base leading-7 text-[#536173]">Quick answers before you send the intake or buy a system directly.</p>
+            <p className="mt-3 text-base leading-7 text-[#536173]">Quick answers before you send the intake or start the assessment.</p>
           </div>
           <div className="mt-8 grid gap-4 lg:grid-cols-4">
             {questions.map(([question, answer]) => (

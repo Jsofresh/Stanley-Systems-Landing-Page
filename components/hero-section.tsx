@@ -85,14 +85,14 @@ const navGroups: MegaMenuGroup[] = [
   {
     label: "Assessment",
     href: "/workflow-audit",
-    eyebrow: "Find the first fix",
-    summary: "The assessment finds the money leak before the system gets built.",
+    eyebrow: "Find the fix list",
+    summary: "The assessment finds the money leaks and shows what should be built first.",
     widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Cash Flow Assessment", href: "/workflow-audit", description: "Find the money leak before buying a system." },
+      { label: "Cash Flow Assessment", href: "/workflow-audit", description: "Get the full fix list before the build path." },
       { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the assessment." },
-      { label: "How the assessment works", href: "/workflow-audit", description: "Start at the Cash Flow Assessment and see what gets checked." },
+      { label: "How the assessment works", href: "/how-the-assessment-works", description: "See what gets checked before starting." },
     ],
   },
   {
@@ -341,7 +341,7 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="hidden items-center gap-2 md:flex">
-            <a href="/workflow-audit#assessment" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>See the packages</a>
+            <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How it works</a>
             <CTALink
               href="/workflow-audit"
               kind="systems"
@@ -445,7 +445,7 @@ export function SiteHeader() {
                   </div>
                 )
               })}
-              <a href="/workflow-audit#assessment" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">See the packages</a>
+              <a href="/how-the-assessment-works" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">How the Assessment Works</a>
               <CTALink
                 href="/workflow-audit"
                 kind="systems"

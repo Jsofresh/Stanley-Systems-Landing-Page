@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { CTALink } from "@/components/cta-link";
 import { pricingPackages } from "@/lib/pricing/source-of-truth";
@@ -373,9 +373,9 @@ function AssessmentSection() {
             Start with the Cash Flow Assessment.
           </h2>
           <p className="mt-4 max-w-[620px] text-base font-semibold leading-7 text-white/72">
-            The Cash Flow Assessment is the paid first step. Stanley Systems
-            looks at where money is being missed, what it likely costs, and
-            which system should be built first.
+            Stanley Systems shows where money is being missed, what it likely
+            costs, how to fix every problem found, and which fix should happen
+            first.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <CTALink
@@ -576,9 +576,9 @@ function FinalCashFlowCTA() {
           Stop letting finished work and good customers slip away.
         </h2>
         <p className="mx-auto mt-6 max-w-[720px] text-lg font-semibold leading-8 text-white/70">
-          Use the calculator, see the money left on the table, then start the
-          Cash Flow Assessment. Stanley Systems will show which billing,
-          follow-up, or repeat-customer system should be fixed first.
+          The calculator gives you the rough signal. The Cash Flow Assessment
+          shows the actual problems, the full fix list, and what should be
+          built first.
         </p>
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <CTALink
@@ -624,8 +624,8 @@ export function CashFlowHomepage() {
               Find the money your service business is missing.
             </h1>
             <p className="mt-7 max-w-[620px] text-pretty text-lg font-semibold leading-8 text-[#d3dce7] sm:text-xl">
-              See where calls, invoices, follow-ups, and past customers are
-              costing the business real cash.
+              Run the free calculator. See what calls, invoices, follow-ups,
+              reviews, referrals, and past customers cost your business.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <CTALink

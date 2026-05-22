@@ -69,12 +69,12 @@ function AuditPanel() {
   return (
     <div>
       
-      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Find the first revenue leak before buying a system.</h2>
-      <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">The Cash Flow Assessment is the paid diagnostic first step. Stanley Systems checks where money is being lost, which leak should be fixed first, and whether Cashflow Control, Repeat Revenue, both, or neither is the right next move.</p>
+      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Start with the Cash Flow Assessment.</h2>
+      <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">Stanley Systems finds the leaks, gives you the fix list, and can build the systems your business needs next.</p>
       <ul className="mt-5 space-y-3 text-sm font-semibold leading-6 text-[#536173]">
         {[
           "For service businesses with real job, billing, customer, call, estimate, review, referral, or follow-up activity.",
-          "Your assessment fee credits toward Cashflow Control or Repeat Revenue if you buy a system after the assessment.",
+          "Your assessment fee becomes a $194 credit toward the Systems Installation Sprint.",
           "Checkout starts the assessment path. Intake gathers the workflow context before the review.",
         ].map((item) => <li key={item} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" />{item}</li>)}
       </ul>
