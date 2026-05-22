@@ -341,7 +341,6 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="hidden items-center gap-2 md:flex">
-            <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How it works</a>
             <CTALink
               href="/workflow-audit"
               kind="systems"
@@ -351,6 +350,7 @@ export function SiteHeader() {
             >
               Start the Cash Flow Assessment
             </CTALink>
+            <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How it Works</a>
           </div>
           <button
             type="button"
