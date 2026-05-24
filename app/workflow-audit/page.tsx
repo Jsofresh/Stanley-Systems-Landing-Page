@@ -177,61 +177,61 @@ function SampleOutput() {
 
 function AssessmentPricing() {
   const deliverables = [
-    "A short walkthrough of your office process",
-    "A review of invoices, estimates, follow-up, reviews, referrals, and past customers",
-    "A map of each office-side leak and process problem found",
-    "How to fix every problem Stanley Systems identifies",
-    "Expected results from the fixes",
-    "The first build recommendation",
+    "Office-side leak map",
+    "Fix list for every problem found",
+    "Expected result of each fix",
+    "First build recommendation",
   ]
 
-  const facts = [
-    ["What happens after you start", "Stanley Systems uses the intake, walkthrough, and records to build a full office-side breakdown of what is getting missed, delayed, or repeated."],
-    ["What you need to provide", "Start with the walkthrough. If records are needed, use screen share, exports, screenshots, or a temporary invited user. Do not send passwords."],
-    ["What you get even before a build", "You get the leak map, the problems identified, how each one should be fixed, the expected result, and the first build recommendation."],
-    ["If you hire Stanley Systems to build", "Your $97 assessment fee becomes a $194 credit toward installation."],
+  const steps = [
+    "You show us how calls, estimates, invoices, follow-up, reviews, referrals, and past customers are handled now.",
+    "We review the process and records to find where money gets missed, delayed, or left untouched.",
+    "You get the leak map, fix list, expected results, and first build recommendation.",
   ]
 
   return (
     <section id="assessment" data-section="cash-flow-assessment-pricing" className="scroll-mt-[120px] bg-[#F4FBF5] py-14 sm:py-16">
       <div className={shell}>
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Start here: $97 Cash Flow Assessment</h2>
+          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.035em] text-[#071D3A] sm:text-5xl">Start here: $97 Cash Flow Assessment</h2>
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
-            Buy the assessment when you want Stanley Systems to map what is broken on the office side, show how each problem should be fixed, and make the first build decision obvious.
+            Stanley Systems maps the office-side leaks costing you money, shows how to fix each one, and tells you what should be built first.
           </p>
         </div>
 
         <div className="mx-auto mt-8 grid max-w-6xl gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
-          <article className="flex h-full flex-col rounded-[1.8rem] border-2 border-[#15803D] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.13)]">
+          <article className="flex h-full flex-col rounded-[1.8rem] border-2 border-[#15803D] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.13)] sm:p-7">
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <h3 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Cash Flow Assessment</h3>
-                <p className="mt-2 text-sm font-extrabold text-[#607080]">paid first step</p>
-              </div>
+              <h3 className="max-w-[15rem] text-3xl font-semibold leading-none tracking-[-0.04em] text-[#102033]">Cash Flow Assessment</h3>
               <p className="text-[4.2rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A]">$97</p>
             </div>
-            <p className="mt-5 rounded-2xl bg-[#E7F7EB] px-5 py-4 text-base font-extrabold leading-6 text-[#116832]">
-              The assessment fee is credited back at double value toward installation if Stanley Systems builds the fix.
+            <p className="mt-5 text-base font-semibold leading-7 text-[#334B60]">
+              You are buying a clear breakdown of what is broken, what it is costing you, how to fix it, and what to do first.
             </p>
             <ul className="mt-6 grid gap-3 text-left text-sm font-semibold leading-6 text-[#334B60] sm:grid-cols-2">
               {deliverables.map((item) => (
                 <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />{item}</li>
               ))}
             </ul>
-            <div className="mt-auto flex w-full justify-center pt-6">
+            <div className="mt-auto flex w-full justify-center pt-7">
               <CheckoutButton pkg={assessment} label="Start the $97 Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
             </div>
+            <p className="mx-auto mt-4 max-w-md text-center text-sm font-semibold leading-6 text-[#607080]">
+              If Stanley Systems builds the fix, your $97 becomes a $194 installation credit.
+            </p>
           </article>
 
-          <div className="grid gap-3">
-            {facts.map(([title, body]) => (
-              <article key={title} className="rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
-                <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#102033]">{title}</h3>
-                <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
-              </article>
-            ))}
-          </div>
+          <article className="rounded-[1.8rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_14px_36px_rgba(7,29,58,0.045)] sm:p-7 lg:flex lg:flex-col lg:justify-center">
+            <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">What happens after you start</h3>
+            <ol className="mt-6 grid gap-5">
+              {steps.map((body, index) => (
+                <li key={body} className="flex gap-4 text-base font-semibold leading-7 text-[#334B60]">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#E7F7EB] text-sm font-black text-[#116832]">{index + 1}</span>
+                  <span>{body}</span>
+                </li>
+              ))}
+            </ol>
+          </article>
         </div>
       </div>
     </section>
