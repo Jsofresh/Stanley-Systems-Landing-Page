@@ -127,7 +127,7 @@ export function Footer() {
                   {section.links.map((link) => (
                     <li key={link.title}>
                       {link.external ? (
-                        <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="inline-flex max-w-full items-center break-words transition-all duration-300 hover:text-slate-900">
+                        <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className={`inline-flex max-w-full items-center transition-all duration-300 hover:text-slate-900 ${link.href.startsWith("tel:") ? "whitespace-nowrap" : "break-words"}`}>
                           {link.icon && <link.icon className="me-1 size-4 shrink-0" />}
                           <span className="min-w-0">{link.title}</span>
                         </a>
