@@ -106,11 +106,11 @@ function Hero() {
 
 function CheckedLeaks() {
   const stages = [
-    { label: "Demand", title: "Calls & estimates", body: "Find calls and estimate requests that never receive proper follow-up." },
-    { label: "Sales", title: "Open estimates", body: "See which quotes have no clear owner, reminder, or next step." },
-    { label: "Billing", title: "Jobs & invoices", body: "Spot completed jobs that are stuck before invoicing." },
-    { label: "Cash", title: "Payment follow-up", body: "Identify invoices that need reminders, escalation, or a cleaner handoff." },
-    { label: "Growth", title: "Reviews & referrals", body: "Turn past customers into reviews, referrals, and repeat work." },
+    { title: "Calls & estimates", body: "Find the calls, website requests, and estimate opportunities that never get a proper follow-up path." },
+    { title: "Open estimates", body: "See which quotes are sitting without a clear owner, reminder, or next step to win the job." },
+    { title: "Jobs & invoices", body: "Spot completed work that gets stuck before the invoice is ready, sent, or followed up." },
+    { title: "Payment follow-up", body: "Identify unpaid invoices that need reminders, escalation, or a cleaner handoff to collection." },
+    { title: "Reviews & referrals", body: "Turn happy customers and past buyers into reviews, referrals, reminders, and repeat work." },
   ]
 
   return (
@@ -128,11 +128,9 @@ function CheckedLeaks() {
         <div className="mx-auto mt-10 max-w-6xl">
           <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
             {stages.map((stage, index) => (
-              <li key={stage.title} className={`relative rounded-[1.6rem] border border-[#DDEBE2] bg-[#FBFCF7] p-6 shadow-[0_16px_40px_rgba(7,29,58,0.045)] ${index < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}>
-                <div className="mb-7 h-1.5 w-16 rounded-full bg-[#15803D]" aria-hidden="true" />
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-[#15803D]">{stage.label}</p>
-                <h3 className="mt-3 text-[1.55rem] font-semibold leading-7 tracking-[-0.04em] text-[#102033]">{stage.title}</h3>
-                <p className="mt-4 max-w-md text-[0.95rem] font-medium leading-6 text-[#536173]">{stage.body}</p>
+              <li key={stage.title} className={`relative flex min-h-[15rem] flex-col items-center justify-center rounded-[1.6rem] border border-[#DDEBE2] bg-[#FBFCF7] p-7 text-center shadow-[0_16px_40px_rgba(7,29,58,0.045)] ${index < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}>
+                <h3 className="max-w-sm text-[1.85rem] font-semibold leading-[1.05] tracking-[-0.045em] text-[#102033] sm:text-[2rem]">{stage.title}</h3>
+                <p className="mt-5 max-w-sm text-base font-semibold leading-7 text-[#536173]">{stage.body}</p>
               </li>
             ))}
           </ol>
