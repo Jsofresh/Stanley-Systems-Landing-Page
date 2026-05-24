@@ -109,18 +109,26 @@ export default function HowAssessmentWorksPage() {
         </section>
 
         <section data-section="assessment-how-checks" className="bg-white py-14 sm:py-16">
-          <div className={`${shell} grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start`}>
-            <div>
+          <div className={shell}>
+            <div className="grid gap-4 border-b border-[#DDEBE2] pb-6 lg:grid-cols-[0.72fr_1fr] lg:items-end">
               <h2 className="text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.01em] text-[#071D3A] sm:text-5xl sm:tracking-[-0.04em]">What Stanley Systems checks</h2>
-              <p className="mt-4 max-w-xl text-base leading-7 text-[#536173] sm:text-lg">
+              <p className="max-w-2xl text-base leading-7 text-[#536173] sm:text-lg lg:justify-self-end">
                 The assessment follows the path money takes through a service business: from first call to paid invoice, review, referral, and repeat customer.
               </p>
             </div>
-            <div className="grid gap-3">
-              {whatWeCheck.map(([title, body]) => (
-                <article key={title} className="rounded-[1.25rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5">
-                  <h3 className="text-xl font-semibold tracking-[-0.005em] text-[#102033] sm:tracking-[-0.03em]">{title}</h3>
-                  <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
+            <div className="mt-7 grid gap-3 md:grid-cols-2 lg:grid-cols-6">
+              {whatWeCheck.map(([title, body], index) => (
+                <article
+                  key={title}
+                  className={`rounded-[1.35rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 shadow-[0_12px_30px_rgba(7,29,58,0.035)] ${index < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#E7F7EB] text-xs font-black text-[#116832]">{index + 1}</span>
+                    <div>
+                      <h3 className="text-xl font-semibold tracking-[-0.005em] text-[#102033] sm:tracking-[-0.03em]">{title}</h3>
+                      <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>
