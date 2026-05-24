@@ -128,7 +128,7 @@ export default function RootLayout({
         name: "What is the Cash Flow Assessment?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It is the paid first step where Stanley Systems finds where money is leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again.",
+          text: "It is a $97 assessment where Stanley Systems finds where money is leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again.",
         },
       },
       {
