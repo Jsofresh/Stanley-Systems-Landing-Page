@@ -519,7 +519,7 @@ function StepFrame({
             </button>
             <Link
               href="/"
-              className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#d8d1c4] bg-white/70 px-4 py-2 text-sm font-semibold text-slate-500 transition hover:border-[#bfc8bd] hover:bg-[#fbfaf7] hover:text-slate-800 sm:min-h-11"
+              className="inline-flex min-h-10 items-center justify-center px-3 py-2 text-sm font-semibold text-slate-500 underline underline-offset-4 transition hover:text-slate-800 sm:min-h-11"
             >
               Back to site
             </Link>

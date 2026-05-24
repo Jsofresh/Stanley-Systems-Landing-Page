@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://stanley-systems.com/how-the-assessment-works" },
 }
 
-function AssessmentCheckout({ location, className = greenButton, children = "Start the $97 Assessment" }: { location: string; className?: string; children?: ReactNode }) {
+function AssessmentCheckout({ location, className = greenButton, children = "Start the Cash Flow Assessment" }: { location: string; className?: string; children?: ReactNode }) {
   return (
     <CTALink
       href={assessment.stripePaymentLink.url}
@@ -32,7 +32,7 @@ function AssessmentCheckout({ location, className = greenButton, children = "Sta
       packageId={assessment.analyticsPackageId}
       packageName={assessment.publicName}
       billingPeriod="one_time"
-      ctaLabel={typeof children === "string" ? children : "Start the $97 Assessment"}
+      ctaLabel={typeof children === "string" ? children : "Start the Cash Flow Assessment"}
       target="_blank"
       rel="noopener noreferrer"
       className={className}
@@ -87,9 +87,9 @@ export default function HowAssessmentWorksPage() {
               </p>
               <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
                 <AssessmentCheckout location="how_assessment_hero_primary">
-                  Start the $97 Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </AssessmentCheckout>
-                <Link href="/invoicing-delay-cash-flow-calculator" className={lightButton}>Estimate leaks first</Link>
+                <Link href="/invoicing-delay-cash-flow-calculator" className={lightButton}>Use the free calculator</Link>
               </div>
             </div>
 
@@ -164,7 +164,7 @@ export default function HowAssessmentWorksPage() {
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <AssessmentCheckout location="how_assessment_output_primary" />
-                <Link href="/workflow-audit#assessment" className={lightButton}>Review the $97 details</Link>
+                <Link href="/workflow-audit#assessment" className={lightButton}>See assessment details</Link>
               </div>
             </div>
             <div className="rounded-[2rem] border border-[#BFE4C8] bg-[#F4FBF5] p-6 shadow-[0_20px_60px_rgba(7,29,58,0.06)] sm:p-7">
@@ -196,11 +196,11 @@ export default function HowAssessmentWorksPage() {
               </div>
             </div>
             <div className="mt-8 rounded-[1.6rem] border border-[#BFE4C8] bg-white p-6 text-center shadow-[0_18px_52px_rgba(7,29,58,0.055)]">
-              <h2 className="text-3xl font-semibold tracking-[-0.01em] text-[#102033] sm:tracking-[-0.04em]">Start with the $97 assessment.</h2>
+              <h2 className="text-3xl font-semibold tracking-[-0.01em] text-[#102033] sm:tracking-[-0.04em]">Start with the Cash Flow Assessment.</h2>
               <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems will find the office-side leaks, show the fix list, and tell you which fix should happen first.</p>
               <div className="mt-5 flex justify-center">
                 <AssessmentCheckout location="how_assessment_final_primary">
-                  Start the $97 Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </AssessmentCheckout>
               </div>
             </div>

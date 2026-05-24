@@ -1,7 +1,7 @@
 import { page } from "./tokens"
 
 const faqs = [
-  ["Is this a sales call?", "No. The Cash Flow Assessment is a paid first step. Stanley Systems reviews how work moves now, then gives you a clear map of where money, time, or follow-up is leaking."],
+  ["Is this a sales call?", "No. Stanley Systems reviews how work moves now, then gives you a clear map of where money, time, or follow-up is leaking."],
   ["Do I have to give Stanley Systems my password?", "No. Do not send passwords. You can use screen share, exports, screenshots, or a temporary invited user."],
   ["What systems might Stanley Systems review?", "Accounting software, field software, CRM, dispatch system, shop system, invoice/payment tools, Google reviews, referral tracking, spreadsheets, and inboxes where follow-up happens."],
   ["What if I already have reminders turned on?", "That is fine. The assessment checks whether those reminders cover the full handoff from job completion to billing readiness, invoice follow-up, review requests, referrals, and what the owner needs to see."],

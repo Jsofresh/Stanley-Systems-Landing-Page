@@ -62,7 +62,7 @@ export default function MarineServiceAutomationPage() {
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link href="/invoicing-delay-cash-flow-calculator" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#c8d8cd] bg-white px-6 py-3 text-base font-bold text-[#071D3A] transition hover:bg-[#f3faf1]">
-                  Run the calculator
+                  Use the free calculator
                 </Link>
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function MarineServiceAutomationPage() {
               <div>
                 <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#53d986]">Example workflows</p>
                 <h2 className="mt-3 text-[2.35rem] font-semibold leading-[1] tracking-[-0.05em] sm:text-[3.4rem]">Simple paths that stop the office from remembering everything.</h2>
-                <p className="mt-4 text-base font-medium leading-7 text-[#d7e5dc]">No giant software migration. No giant software migration. Just cleaner next steps around the work the marine shop already does.</p>
+                <p className="mt-4 text-base font-medium leading-7 text-[#d7e5dc]">Cleaner next steps around the calls, estimates, billing, and seasonal follow-up the marine shop already handles.</p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {workflows.map((workflow) => (

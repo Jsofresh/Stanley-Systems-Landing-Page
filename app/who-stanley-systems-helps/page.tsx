@@ -1,28 +1,62 @@
 import type { Metadata } from "next"
-import { BestFitSection } from "@/components/best-fit-section"
-import { MarketingPageShell } from "@/components/marketing-page-shell"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { SiteHeader } from "@/components/hero-section"
+import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "Who Stanley Systems Helps | Service Business Workflows",
-  description:
-    "See which service businesses Stanley Systems helps most, where cash gets stuck, and when the Cash Flow Assessment is a good fit.",
-  alternates: {
-    canonical: "https://stanley-systems.com/who-stanley-systems-helps",
-  },
-  openGraph: {
-    title: "Who Stanley Systems Helps | Service Business Workflows",
-    description:
-      "Stanley Systems helps service businesses find late invoices, stale estimates, messy handoffs, and owner cleanup inside the tools they already use.",
-    url: "https://stanley-systems.com/who-stanley-systems-helps",
-    siteName: "Stanley Systems",
-    type: "article",
-  },
+  description: "See which service businesses Stanley Systems helps most and when the Cash Flow Assessment is a good fit.",
 }
+
+const industries = ["Marine service", "Plumbing", "HVAC", "Electrical", "Roofing", "Landscaping", "General contractors", "Adjacent service businesses"]
+const costs = ["Finished work waits before billing.", "Open estimates go cold.", "Reviews and referrals depend on memory.", "Past customers are not brought back."]
 
 export default function WhoStanleySystemsHelpsPage() {
   return (
-    <MarketingPageShell>
-      <BestFitSection className="pb-16 pt-28 sm:pt-32 lg:pt-36" />
-    </MarketingPageShell>
+    <>
+      <SiteHeader />
+      <main className="bg-[#F7F4EC] text-[#102033]">
+      <section className="mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 lg:px-8 lg:pt-24">
+        <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Who Stanley Systems helps</p>
+            <h1 className="mt-4 max-w-5xl text-[2.3rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem] lg:text-[4.25rem]">Service businesses with good work and leaky office handoffs.</h1>
+            <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">Stanley Systems is a fit when calls, estimates, invoices, follow-up, reviews, referrals, or past customers are costing money after the work is already earned.</p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832]">Ask a question</Link>
+            </div>
+          </div>
+          <div className="rounded-[2rem] bg-[#071D3A] p-6 text-white shadow-[0_24px_70px_rgba(7,29,58,0.14)] sm:p-8">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#84D99A]">What this can cost before anyone notices</p>
+            <h2 className="mt-3 text-[2.25rem] font-semibold leading-none tracking-[-0.05em]">$5k–$25k/mo</h2>
+            <p className="mt-3 text-base font-medium leading-7 text-[#DDEBE2]">Not as one dramatic mistake. As repeated office gaps that make earned revenue move too slowly or disappear quietly.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid gap-8 rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_18px_54px_rgba(7,29,58,0.06)] sm:p-8 lg:grid-cols-2">
+          <div>
+            <h2 className="text-[2rem] font-semibold leading-[1.03] tracking-[-0.04em] text-[#071D3A] sm:text-[2.75rem]">Usually a fit when the office is the bottleneck.</h2>
+            <ul className="mt-5 space-y-3">
+              {costs.map((item) => <li key={item} className="border-b border-[#E5EEE7] pb-3 text-base font-semibold leading-7 text-[#34495F] last:border-b-0">{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">Industries Stanley Systems can help</h2>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {industries.map((industry) => <span key={industry} className="rounded-full border border-[#DDEBE2] bg-[#F8FBF9] px-3 py-2 text-sm font-bold text-[#34495F]">{industry}</span>)}
+            </div>
+            <div className="mt-6 rounded-2xl bg-[#F4FBF5] p-5 ring-1 ring-[#CFE8D5]">
+              <p className="text-sm font-semibold leading-6 text-[#536173]">If the team does field work, office work, billing, estimates, and repeat customer follow-up, the Cash Flow Assessment can show which leak matters first.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </main>
+      <Footer />
+    </>
   )
 }

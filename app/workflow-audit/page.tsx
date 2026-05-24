@@ -92,7 +92,7 @@ function Hero() {
             For $97, Stanley Systems reviews your calls, estimates, invoices, follow-up, reviews, referrals, and past customers — then shows what to fix first.
           </p>
           <div className="mt-7 flex justify-center lg:justify-start">
-            <CheckoutButton pkg={assessment} label="Start the $97 Assessment" location="cash_flow_assessment_hero_primary" />
+            <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
           </div>
           <p className="mx-auto mt-4 max-w-xl text-sm font-semibold leading-6 text-[#607080] lg:mx-0">
             No software switch. No passwords needed to start. Your assessment can be credited toward the build.
@@ -186,7 +186,7 @@ function AssessmentPricing() {
   const steps = [
     "You show us how calls, estimates, invoices, follow-up, reviews, referrals, and past customers are handled now.",
     "We review the process and records to find where money gets missed, delayed, or left untouched.",
-    "You get the leak map, fix list, expected results, and first build recommendation.",
+    "You get the leak map, fix list, expected results, and which fix should happen first.",
   ]
 
   return (
@@ -214,7 +214,7 @@ function AssessmentPricing() {
               ))}
             </ul>
             <div className="mt-auto flex w-full justify-center pt-7">
-              <CheckoutButton pkg={assessment} label="Start the $97 Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+              <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
             </div>
             <p className="mx-auto mt-4 max-w-md text-center text-sm font-semibold leading-6 text-[#607080]">
               If Stanley Systems builds the fix, your $97 becomes a $194 installation credit.
@@ -280,7 +280,7 @@ function NextSteps() {
     ["Do I need to share passwords?", "No. Do not send passwords. You can start with screen share, exports, screenshots, or a temporary invited user if access is needed."],
     ["Does this replace my current software?", "No. Stanley Systems looks at the handoffs around the tools you already use."],
     ["Will I talk to a real person?", "Yes. The assessment is reviewed by Stanley Systems before a recommendation is made."],
-    ["What happens after the assessment?", "You get the leak map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and the first build recommendation. If Stanley Systems builds the fix, the $97 assessment becomes a $194 installation credit."],
+    ["What happens after the assessment?", "You get the leak map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and which fix should happen first. If Stanley Systems builds the fix, the $97 assessment becomes a $194 installation credit."],
     ["What if I already know what I want?", "You can still start with the assessment to confirm the full fix list before installation, or talk before buying if you need a quick route check."],
   ]
 
@@ -303,7 +303,7 @@ function NextSteps() {
             ))}
           </div>
           <div className="mt-8 flex justify-center">
-            <CheckoutButton pkg={assessment} label="Start the $97 Assessment" location="cash_flow_assessment_next_steps_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+            <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_next_steps_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
           </div>
         </div>
       </section>
