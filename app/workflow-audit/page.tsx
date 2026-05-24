@@ -81,15 +81,15 @@ function HeroVisual() {
 }
 function Hero() {
   return (
-    <section data-section="cash-flow-assessment-hero" className="relative overflow-hidden bg-[#FBFCF7] pb-10 pt-24 sm:pb-14 lg:pt-28">
+    <section data-section="cash-flow-assessment-hero" className="relative flex min-h-[100svh] overflow-hidden bg-[#FBFCF7] pb-10 pt-24 sm:pb-14 lg:pt-28">
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
-      <div className={`${shell} relative grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
+      <div className={`${shell} relative grid flex-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
         <div className="text-center lg:text-left">
-          <h1 className="mx-auto max-w-5xl text-[2.17rem] font-semibold leading-[0.96] tracking-[-0.04em] text-[#071D3A] sm:text-[3.25rem] lg:mx-0 lg:text-[3.85rem]">
+          <h1 className="mx-auto max-w-5xl text-[2.17rem] font-semibold leading-[0.96] tracking-[-0.04em] text-[#071D3A] sm:text-[3.25rem] lg:mx-0 lg:text-[4.15rem]">
             Find the office leaks costing you cash, reviews, and repeat jobs.
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#334B60] lg:mx-0">
-            For $97, Stanley Systems reviews your calls, estimates, invoices, follow-up, reviews, referrals, and past customers — then shows what to fix first.
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#334B60] lg:mx-0 lg:text-xl lg:leading-9">
+            The $97 Cash Flow Assessment gives you a full office-side map of where the business is losing money, what each leak affects, and how to fix every problem Stanley Systems finds.
           </p>
           <div className="mt-7 flex justify-center lg:justify-start">
             <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
@@ -105,33 +105,41 @@ function Hero() {
 }
 
 function CheckedLeaks() {
-  const leaks = [
-    "Missed calls that never became jobs",
-    "Open estimates with no follow-up",
-    "Invoices sent late or not chased",
-    "Customers never asked for reviews or referrals",
-    "Past customers nobody has contacted in months",
+  const stages = [
+    { label: "Demand", title: "Calls and estimate requests", body: "Which opportunities never make it into a real follow-up path." },
+    { label: "Sales", title: "Open estimates", body: "Which quoted jobs are waiting on memory, texts, or no owner-visible next step." },
+    { label: "Billing", title: "Job details and invoices", body: "Where completed work gets stuck before the invoice is ready, sent, or chased." },
+    { label: "Cash", title: "Balances and payment follow-up", body: "Which invoices need reminders, escalation, or a clearer handoff." },
+    { label: "Growth", title: "Reviews, referrals, and past customers", body: "Which happy customers and old buyers are not being turned into future work." },
   ]
 
   return (
-    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-10 sm:py-12">
-      <div className={`${shell} grid gap-7 lg:grid-cols-[0.88fr_1.12fr] lg:items-center`}>
-        <div>
-          <h2 className="max-w-3xl text-[2.2rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3rem]">
+    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-14 sm:py-16">
+      <div className={shell}>
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-[2.2rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3rem]">
             Where the assessment looks
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            The point is not to admire the mess. It is to find the places where normal office handoffs are quietly costing the owner money.
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
+            Stanley Systems follows the money path from the first call through the next repeat job, then marks where cash, customers, or office time are slipping.
           </p>
         </div>
-        <ul className="grid gap-3 sm:grid-cols-2">
-          {leaks.map((item) => (
-            <li key={item} className="flex gap-3 rounded-2xl border border-[#DDEBE2] bg-[#FBFCF7] px-4 py-3 text-base font-bold leading-6 text-[#102033]">
-              <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#15803D]" />
-              {item}
-            </li>
-          ))}
-        </ul>
+
+        <div className="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-[#DDEBE2] bg-[#FBFCF7] p-4 shadow-[0_24px_70px_rgba(7,29,58,0.055)] sm:p-6 lg:p-7">
+          <ol className="grid gap-3 lg:grid-cols-5 lg:gap-0">
+            {stages.map((stage, index) => (
+              <li key={stage.title} className="relative rounded-[1.35rem] bg-white p-5 shadow-[0_10px_26px_rgba(7,29,58,0.045)] lg:rounded-none lg:bg-transparent lg:shadow-none lg:first:rounded-l-[1.35rem] lg:last:rounded-r-[1.35rem]">
+                {index < stages.length - 1 ? <span aria-hidden="true" className="absolute right-0 top-8 hidden h-px w-8 translate-x-4 bg-[#BFE4C8] lg:block" /> : null}
+                <div className="flex items-center gap-3 lg:block">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#E7F7EB] text-sm font-black text-[#116832]">{index + 1}</span>
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-[#15803D] lg:mt-4">{stage.label}</p>
+                </div>
+                <h3 className="mt-4 text-xl font-semibold leading-6 tracking-[-0.035em] text-[#102033]">{stage.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{stage.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   )
@@ -146,8 +154,8 @@ function SampleOutput() {
   ]
 
   return (
-    <section data-section="cash-flow-assessment-sample-output" className="bg-[#FBFCF7] py-12 sm:py-14">
-      <div className={`${shell} grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
+    <section data-section="cash-flow-assessment-sample-output" className="flex min-h-[100svh] bg-[#FBFCF7] py-12 sm:py-14 lg:py-20">
+      <div className={`${shell} grid flex-1 gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
         <div>
           <h2 className="max-w-3xl text-[2.3rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.2rem]">
             You leave with a clear first fix, not another vague consultation.
@@ -180,7 +188,7 @@ function AssessmentPricing() {
     "Office-side leak map",
     "Fix list for every problem found",
     "Expected result of each fix",
-    "First build recommendation",
+    "First fix priority",
   ]
 
   const steps = [
