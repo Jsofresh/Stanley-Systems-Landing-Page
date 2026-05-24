@@ -94,9 +94,6 @@ function Hero() {
           <div className="mt-7 flex justify-center lg:justify-start">
             <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
           </div>
-          <p className="mx-auto mt-4 max-w-xl text-sm font-semibold leading-6 text-[#607080] lg:mx-0">
-            No software switch. No passwords needed to start. Your assessment can be credited toward the build.
-          </p>
         </div>
         <HeroVisual />
       </div>
@@ -120,9 +117,6 @@ function CheckedLeaks() {
           <h2 className="text-[2.2rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3rem]">
             Where the assessment looks
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            Stanley Systems follows the money path from the first call through the next repeat job, then marks where cash, customers, or office time are slipping.
-          </p>
         </div>
 
         <div className="mx-auto mt-10 max-w-6xl">
@@ -141,13 +135,6 @@ function CheckedLeaks() {
 }
 
 function SampleOutput() {
-  const output = [
-    "Map of each office-side leak found",
-    "Fix list for every problem identified",
-    "Expected result of each fix",
-    "First build priority",
-  ]
-
   return (
     <section data-section="cash-flow-assessment-sample-output" className="flex min-h-[100svh] bg-[#FBFCF7] py-12 sm:py-14 lg:py-20">
       <div className={`${shell} grid flex-1 gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
@@ -158,20 +145,16 @@ function SampleOutput() {
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
             The Cash Flow Assessment gives you a full map of the office-side leaks and process problems Stanley Systems finds, how to fix each one, and what those fixes are expected to change.
           </p>
-          <ul className="mt-5 grid gap-2 text-base font-bold leading-6 text-[#102033] sm:grid-cols-2">
-            {output.map((item) => (
-              <li key={item} className="flex gap-2"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#15803D]" />{item}</li>
-            ))}
-          </ul>
         </div>
         <FadedImage
           src="/images/uploaded/package-voice-notes/money-leak-summary.jpg"
           alt="Sample Money Leak Summary showing the leak found, cost signal, first fix, and next move."
           width={1280}
           height={960}
-          sizes="(min-width: 1024px) 46vw, 100vw"
+          sizes="(min-width: 1024px) 46vw, 112vw"
           fadeColor="#FBFCF7"
-          wrapperClassName="rounded-[1.25rem] drop-shadow-[0_24px_70px_rgba(7,29,58,0.08)]"
+          wrapperClassName="-mx-8 rounded-[1.25rem] drop-shadow-[0_24px_70px_rgba(7,29,58,0.08)] sm:mx-0"
+          imageClassName="h-auto w-full scale-[1.08] object-contain sm:scale-100"
         />
       </div>
     </section>
@@ -186,23 +169,14 @@ function AssessmentPricing() {
     "First fix priority",
   ]
 
-  const steps = [
-    "You show us how calls, estimates, invoices, follow-up, reviews, referrals, and past customers are handled now.",
-    "We review the process and records to find where money gets missed, delayed, or left untouched.",
-    "You get the leak map, fix list, expected results, and which fix should happen first.",
-  ]
-
   return (
     <section id="assessment" data-section="cash-flow-assessment-pricing" className="scroll-mt-[120px] bg-[#F4FBF5] py-14 sm:py-16">
       <div className={shell}>
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.035em] text-[#071D3A] sm:text-5xl">Start here: $97 Cash Flow Assessment</h2>
-          <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
-            Stanley Systems maps the office-side leaks costing you money, shows how to fix each one, and tells you what should be built first.
-          </p>
         </div>
 
-        <div className="mx-auto mt-8 grid max-w-6xl gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
+        <div className="mx-auto mt-8 max-w-2xl">
           <article className="flex h-full flex-col rounded-[1.8rem] border-2 border-[#15803D] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.13)] sm:p-7">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h3 className="max-w-[15rem] text-3xl font-semibold leading-none tracking-[-0.04em] text-[#102033]">Cash Flow Assessment</h3>
@@ -224,17 +198,6 @@ function AssessmentPricing() {
             </p>
           </article>
 
-          <article className="rounded-[1.8rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_14px_36px_rgba(7,29,58,0.045)] sm:p-7 lg:flex lg:flex-col lg:justify-center">
-            <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">What happens after you start</h3>
-            <ol className="mt-6 grid gap-5">
-              {steps.map((body, index) => (
-                <li key={body} className="flex gap-4 text-base font-semibold leading-7 text-[#334B60]">
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#E7F7EB] text-sm font-black text-[#116832]">{index + 1}</span>
-                  <span>{body}</span>
-                </li>
-              ))}
-            </ol>
-          </article>
         </div>
       </div>
     </section>
