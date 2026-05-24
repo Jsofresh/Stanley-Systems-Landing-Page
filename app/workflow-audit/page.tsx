@@ -106,11 +106,11 @@ function Hero() {
 
 function CheckedLeaks() {
   const stages = [
-    { label: "Demand", title: "Calls and estimate requests", body: "Which opportunities never make it into a real follow-up path." },
-    { label: "Sales", title: "Open estimates", body: "Which quoted jobs are waiting on memory, texts, or no owner-visible next step." },
-    { label: "Billing", title: "Job details and invoices", body: "Where completed work gets stuck before the invoice is ready, sent, or chased." },
-    { label: "Cash", title: "Balances and payment follow-up", body: "Which invoices need reminders, escalation, or a clearer handoff." },
-    { label: "Growth", title: "Reviews, referrals, and past customers", body: "Which happy customers and old buyers are not being turned into future work." },
+    { label: "Demand", title: "Calls & estimates", body: "Find calls and estimate requests that never receive proper follow-up." },
+    { label: "Sales", title: "Open estimates", body: "See which quotes have no clear owner, reminder, or next step." },
+    { label: "Billing", title: "Jobs & invoices", body: "Spot completed jobs that are stuck before invoicing." },
+    { label: "Cash", title: "Payment follow-up", body: "Identify invoices that need reminders, escalation, or a cleaner handoff." },
+    { label: "Growth", title: "Reviews & referrals", body: "Turn past customers into reviews, referrals, and repeat work." },
   ]
 
   return (
@@ -125,13 +125,14 @@ function CheckedLeaks() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-[#DDEBE2] bg-[#FBFCF7] p-3 shadow-[0_24px_70px_rgba(7,29,58,0.055)] sm:p-4 lg:p-5">
-          <ol className="grid gap-3 md:grid-cols-2 lg:grid-cols-5">
-            {stages.map((stage) => (
-              <li key={stage.title} className="relative flex min-h-[13.5rem] flex-col rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_10px_26px_rgba(7,29,58,0.045)] lg:min-h-[15.5rem]">
+        <div className="mx-auto mt-10 max-w-6xl">
+          <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+            {stages.map((stage, index) => (
+              <li key={stage.title} className={`relative rounded-[1.6rem] border border-[#DDEBE2] bg-[#FBFCF7] p-6 shadow-[0_16px_40px_rgba(7,29,58,0.045)] ${index < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}>
+                <div className="mb-7 h-1.5 w-16 rounded-full bg-[#15803D]" aria-hidden="true" />
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-[#15803D]">{stage.label}</p>
-                <h3 className="mt-4 text-xl font-semibold leading-6 tracking-[-0.035em] text-[#102033]">{stage.title}</h3>
-                <p className="mt-auto pt-5 text-sm font-semibold leading-6 text-[#536173]">{stage.body}</p>
+                <h3 className="mt-3 text-[1.55rem] font-semibold leading-7 tracking-[-0.04em] text-[#102033]">{stage.title}</h3>
+                <p className="mt-4 max-w-md text-[0.95rem] font-medium leading-6 text-[#536173]">{stage.body}</p>
               </li>
             ))}
           </ol>
