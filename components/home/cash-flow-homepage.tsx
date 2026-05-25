@@ -208,47 +208,6 @@ function HeroImageSlideshow() {
   );
 }
 
-function OfferPathSection() {
-  const steps = [
-    { title: "Free Calculator", body: "See where money may be delayed, missed, or wasted." },
-    { title: "Cash Flow Assessment — $97", body: "Stanley Systems maps the office-side leaks, what they likely cost, and what should be fixed first." },
-    { title: "Systems Installation Sprint — $1,500", body: "Stanley Systems builds the systems your business chooses from the assessment plan." },
-    { title: "Monthly Control — optional after launch", body: "Keep installed systems checked, adjusted, and working as the business changes.", later: true },
-  ];
-
-  return (
-    <PageSection className="bg-white text-[#071D3A]">
-      <div className="mx-auto max-w-[88rem]">
-        <div className="max-w-[900px]">
-          <h2 className="text-balance text-[clamp(2.05rem,4.35vw,4.55rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
-            Find the leak. Map the fix. Build the system.
-          </h2>
-          <p className="mt-4 max-w-[760px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">
-            Start free. If the leak is real, get the assessment. If you want Stanley Systems to build the systems, the Sprint is next.
-          </p>
-        </div>
-        <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {steps.map((step, index) => (
-            <article key={step.title} className={`rounded-[1.45rem] border p-5 shadow-[0_14px_36px_rgba(7,29,58,0.055)] ${step.later ? "border-[#e4ece6] bg-white/70" : "border-[#d9e7df] bg-[#FBFCF7]"}`}>
-              <span className={`grid h-9 w-9 place-items-center rounded-full text-sm font-extrabold ${step.later ? "bg-[#f1f5f0] text-[#607080]" : "bg-[#E7F7EB] text-[#116832]"}`}>{step.later ? "Later" : index + 1}</span>
-              <h3 className="mt-4 text-[1.28rem] font-extrabold leading-tight tracking-[-0.025em] text-[#071D3A]">{step.title}</h3>
-              <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{step.body}</p>
-            </article>
-          ))}
-        </div>
-        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <CTALink href={calculatorHref} kind="calculator" location="home_offer_path_calculator" analyticsEvent="calculator_cta_clicked" ctaLabel="Run the free calculator" className={`${greenButton} px-7`}>
-            Run the free calculator <ArrowRight className="ml-2 h-4 w-4" />
-          </CTALink>
-          <CTALink href={sprintHref} kind="systems" location="home_offer_path_sprint" ctaLabel="See how the Sprint works" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">
-            See how the Sprint works
-          </CTALink>
-        </div>
-      </div>
-    </PageSection>
-  );
-}
-
 function CalculatorLaunchSection() {
   return (
     <PageSection className="relative isolate overflow-hidden bg-[#081827] py-6 text-white md:py-7 lg:py-8">
@@ -739,7 +698,6 @@ export function CashFlowHomepage() {
           </div>
         </div>
       </section>
-      <OfferPathSection />
       <CalculatorSpine />
       <AssessmentSection />
       <SprintSection />
