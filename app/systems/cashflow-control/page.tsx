@@ -38,14 +38,14 @@ function CashflowHeroVisual() {
       fadeSize="5%"
       outerFade
       outerFadeColor="rgba(251,252,247,0.9)"
-      wrapperClassName="relative mx-auto w-full max-w-[560px] transition duration-300 hover:-translate-y-1 hover:scale-[1.015] lg:max-w-[640px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
+      wrapperClassName="relative mx-auto hidden w-full max-w-[560px] transition duration-300 hover:-translate-y-1 hover:scale-[1.015] lg:block lg:max-w-[640px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
     />
   )
 }
 
 function BuildImage() {
   return (
-    <div className="relative mx-auto w-full max-w-[760px] drop-shadow-[0_26px_54px_rgba(7,29,58,0.10)]">
+    <div className="relative mx-auto hidden w-full max-w-[760px] drop-shadow-[0_26px_54px_rgba(7,29,58,0.10)] lg:block">
       <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_50%_50%,rgba(244,251,245,0.92),rgba(244,251,245,0)_68%)] blur-2xl" aria-hidden="true" />
       <Image src="/preview/images/uploaded/2026-05-25-jaden/job-details-bill-readiness-unpaid-invoices-exception-routing.jpg" alt="Cashflow Control workflow showing job details, bill readiness, unpaid invoices, and exception routing." width={1280} height={960} sizes="(min-width: 1024px) 52vw, 100vw" className="relative h-auto w-full rounded-[1.2rem] object-contain" />
     </div>

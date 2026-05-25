@@ -91,12 +91,14 @@ export default function SystemPage() {
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </div>
             </div>
-            <ImageCard
-              src="/images/uploaded/2026-05-25-jaden/repeat-revenue-follow-up-review-referral-routing.jpg"
-              alt="Repeat Revenue follow-up, review, referral, and response routing workflow."
-              width={1280}
-              height={720}
-            />
+            <div className="hidden lg:block">
+              <ImageCard
+                src="/images/uploaded/2026-05-25-jaden/repeat-revenue-follow-up-review-referral-routing.jpg"
+                alt="Repeat Revenue follow-up, review, referral, and response routing workflow."
+                width={1280}
+                height={720}
+              />
+            </div>
           </div>
         </section>
       </main>
