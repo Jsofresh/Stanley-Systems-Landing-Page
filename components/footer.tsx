@@ -4,7 +4,6 @@ import type React from "react"
 import type { ReactNode } from "react"
 import { FacebookIcon, LinkedinIcon, Phone } from "lucide-react"
 import Link from "next/link"
-import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 interface FooterLink {
   title: string
@@ -20,7 +19,6 @@ interface FooterSection {
 
 const STANLEY_FACEBOOK_URL = "https://www.facebook.com/stanleysystems/"
 const STANLEY_LINKEDIN_URL = "https://www.linkedin.com/company/stanley-systems/"
-const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
 const footerLinks: FooterSection[] = [
   {
@@ -47,10 +45,8 @@ const footerLinks: FooterSection[] = [
     links: [
       { title: "How we work", href: "/how-stanley-systems-works" },
       { title: "Pricing", href: "/pricing" },
-      { title: "Systems", href: "/systems" },
       { title: "Proof", href: "/stanley-systems-case-study" },
       { title: "Blog", href: "/blog" },
-      { title: "Contact", href: "/contact" },
     ],
   },
   {
@@ -59,7 +55,6 @@ const footerLinks: FooterSection[] = [
       { title: "Privacy Policy", href: "/privacy-policy" },
       { title: "Terms and Conditions", href: "/terms-and-conditions" },
       { title: "Safety", href: "/safety" },
-      { title: "Contact", href: "/contact" },
     ],
   },
   {
@@ -78,28 +73,7 @@ export function Footer() {
     <footer data-nav-theme="light" className="relative mx-auto flex w-[calc(100%-2rem)] max-w-[1380px] flex-col items-center rounded-t-[2rem] border-t border-slate-200 bg-white px-5 py-6 shadow-[0_-10px_30px_rgba(15,23,42,0.04)] md:w-[calc(100%-3rem)] md:rounded-t-[3rem] md:px-8 md:py-8 lg:py-10 xl:px-10">
       <div className="absolute left-1/2 right-1/2 top-0 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 blur" />
 
-      <div className="mb-6 hidden w-full rounded-[1.5rem] border border-[#dfe7ee] bg-[#f8fbfc] px-5 py-4 text-center shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:block sm:px-6">
-        <p className="mb-3 text-sm font-semibold text-slate-600">Start with the Cash Flow Assessment, see how the Sprint works, or ask us a question.</p>
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-          <a
-            href={auditHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-analytics-event="audit_checkout_clicked"
-            data-analytics-source="site_footer"
-            data-cta-label="Start the Cash Flow Assessment"
-            data-cta-location="footer_top_workflow_audit"
-            data-package-id="workflow_audit"
-            data-package-name="Cash Flow Assessment"
-            data-billing-period="one_time"
-            className="inline-flex items-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#166534] sm:text-base"
-          >
-            Start the Cash Flow Assessment
-          </a>
-          <Link href="/systems-installation-sprint" className="text-sm font-bold text-[#116832] underline underline-offset-4">See how the Sprint works</Link>
-          <Link href="/contact?path=pre-buy" className="text-sm font-bold text-[#116832] underline underline-offset-4">Ask us a question</Link>
-        </div>
-      </div>
+
 
       <div className="grid w-full gap-4 md:gap-8 xl:grid-cols-[1.1fr_3.4fr] xl:gap-12">
         <AnimatedContainer className="hidden space-y-4 md:block">
@@ -150,9 +124,6 @@ export function Footer() {
         <p className="text-sm text-slate-500">© {new Date().getFullYear()} Stanley Systems. All rights reserved.</p>
       </div>
 
-      <div className="mt-8 hidden w-full border-t border-slate-200 pt-6 md:block">
-        <p className="text-center text-xs text-slate-400">Start with the Cash Flow Assessment, see how the Sprint works, or ask us a question.</p>
-      </div>
     </footer>
   )
 }

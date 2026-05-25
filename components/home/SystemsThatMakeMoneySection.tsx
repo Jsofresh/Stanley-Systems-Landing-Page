@@ -23,7 +23,7 @@ type ProductSystem = {
 const systems: ProductSystem[] = [
   {
     title: "Cashflow Control System",
-    promise: "Turn finished work into collected cash faster.",
+    promise: "Get finished work billed, followed up, and paid faster.",
     href: "/systems/cashflow-control",
     analyticsLocation: "home_systems_cashflow_control",
     packageName: "Cashflow Control System",
@@ -32,15 +32,14 @@ const systems: ProductSystem[] = [
     visualAlt:
       "Cashflow Control System visual for moving finished work into collected cash faster.",
     bullets: [
-      "Completed jobs stop waiting on office follow-up",
       "Invoices move out faster",
-      "Owners get cleaner cash visibility",
+      "Payment follow-up stays visible",
     ],
   },
   {
     title: "Repeat Revenue System",
     promise:
-      "Turn past customers, referrals, reviews, and missed calls into booked work.",
+      "Turn missed calls, happy customers, reviews, referrals, and past customers into more booked work.",
     href: "/systems/repeat-revenue",
     analyticsLocation: "home_systems_repeat_revenue",
     packageName: "Repeat Revenue System",
@@ -49,9 +48,8 @@ const systems: ProductSystem[] = [
     visualAlt:
       "Repeat Revenue System visual for turning past customers, reviews, referrals, and missed calls into booked work.",
     bullets: [
-      "Past customers get reactivated",
       "Happy customers create reviews and referrals",
-      "Missed calls get a recovery path",
+      "Past customers get a follow-up path",
     ],
   },
 ];
@@ -65,7 +63,7 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
           alt={system.visualAlt}
           width={1536}
           height={1024}
-          className="h-[220px] w-full object-contain p-2 sm:h-[260px] lg:h-[300px]"
+          className="h-[190px] w-full object-contain p-2 sm:h-[220px] lg:h-[245px]"
           loading="eager"
         />
       </div>
@@ -103,9 +101,9 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
           analyticsEvent="system_detail_clicked"
           packageName={system.packageName}
           ctaLabel={system.ctaLabel}
-          className="mt-5 inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-2.5 text-[13px] font-bold text-white shadow-[0_10px_20px_rgba(7,29,58,0.06)] transition hover:-translate-y-0.5 hover:border-[#116832] hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B] sm:w-auto"
+          className="mt-5 inline-flex items-center text-[14px] font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B]"
         >
-          {system.ctaLabel}
+          {system.title.includes("Cashflow") ? "See Cashflow Control" : "See Repeat Revenue"}
           <ArrowRight className="ml-2 h-3.5 w-3.5" aria-hidden="true" />
         </CTALink>
       </div>
@@ -123,7 +121,7 @@ export function SystemsThatMakeMoneySection({
       data-section="systems-that-move-money"
       data-nav-theme="light"
       className={cn(
-        "relative isolate scroll-mt-32 overflow-hidden bg-[#FBFCF7] px-5 pb-8 pt-28 md:px-8 md:pt-32 lg:px-10 lg:pb-10 lg:pt-32",
+        "relative isolate scroll-mt-32 overflow-hidden bg-[#FBFCF7] px-5 py-12 md:px-8 md:py-16 lg:px-10",
         className,
       )}
       aria-labelledby="systems-that-move-money-heading"
@@ -135,10 +133,13 @@ export function SystemsThatMakeMoneySection({
           <h2
             id="systems-that-move-money-heading"
             style={{ fontFamily: "var(--font-heading)" }}
-            className="text-balance text-[36px] font-extrabold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[46px] lg:text-[52px] [font-family:var(--font-heading)]"
+            className="text-balance text-[34px] font-extrabold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[44px] lg:text-[50px] [font-family:var(--font-heading)]"
           >
-            Systems that make your business money
+            Two main systems Stanley Systems can build
           </h2>
+          <p className="mx-auto mt-3 max-w-[560px] text-base font-semibold leading-7 text-[#536173]">
+            The assessment decides which parts matter most.
+          </p>
         </div>
 
         <div className="mt-5 grid gap-4 lg:grid-cols-2 lg:items-stretch">

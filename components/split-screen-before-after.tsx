@@ -700,7 +700,7 @@ export function SplitScreenBeforeAfter() {
                   </h2>
 
                   <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-                    Never miss a lead with intelligent phone automation that handles unlimited calls around the clock.
+                    Never miss a lead with a phone follow-up path that handles calls around the clock.
                     Book test drives, answer questions, and qualify leads automatically.
                   </p>
 

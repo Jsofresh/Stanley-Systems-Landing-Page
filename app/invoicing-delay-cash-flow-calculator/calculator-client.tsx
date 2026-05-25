@@ -66,17 +66,17 @@ const customerSourceMessages: Record<CustomerListSource, { label: string; helper
   quickbooks: {
     label: "QuickBooks or accounting",
     helper: "Customer records exist, but the list needs cleanup before follow-up.",
-    firstFix: "The records exist. The first fix is cleaning them into a follow-up-ready list.",
+    firstFix: "The records exist. The priority is cleaning them into a follow-up-ready list.",
   },
   spreadsheet: {
     label: "Spreadsheet or contact list",
     helper: "Usable, but likely needs cleanup before it becomes a repeat revenue system.",
-    firstFix: "The list exists. The first fix is cleaning it into a follow-up-ready list.",
+    firstFix: "The list exists. The priority is cleaning it into a follow-up-ready list.",
   },
   scattered: {
     label: "Scattered or not sure",
-    helper: "That is a leak by itself. The first fix is building one usable customer list.",
-    firstFix: "The first leak is the list. Stanley Systems would first build one clean list from the records you already have.",
+    helper: "That is a leak by itself. The priority is building a usable customer list.",
+    firstFix: "The list is the leak. Stanley Systems would start by building one clean list from the records you already have.",
   },
 }
 
@@ -980,7 +980,7 @@ export function InvoicingDelayCalculatorClient() {
           <div className="mx-auto mt-5 grid box-border w-full min-w-0 max-w-full gap-3 rounded-[1.45rem] border border-[#cfe8d5] bg-[#f4fbf5] p-5 text-left sm:grid-cols-[0.85fr_1.15fr] sm:items-center lg:max-w-5xl">
             <p className="text-2xl font-semibold leading-tight text-[#15803D] sm:text-3xl">500 to 3,000 saved records can hide serious repeat work.</p>
             <p className="text-sm leading-6 text-slate-700">
-              We count each saved customer once so the estimate does not double-count the same record. The first fix is getting the list clean enough to use.
+              We count each saved customer once so the estimate does not double-count the same record. The priority is getting the list clean enough to use.
             </p>
           </div>
         </StepFrame>

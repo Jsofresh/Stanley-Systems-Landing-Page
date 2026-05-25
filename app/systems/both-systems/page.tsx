@@ -32,7 +32,7 @@ export default function BothSystemsPage() {
           <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center`}>
             <div>
               <h1 className="max-w-5xl text-[2.08rem] font-semibold leading-[0.96] tracking-[-0.035em] text-[#071D3A] sm:text-[3.23rem] lg:text-[3.78rem]">Cashflow Control and Repeat Revenue are separate systems. They work best together.</h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">One system keeps jobs, billing, payment follow-up, and cash moving. The other brings past customers, reviews, referrals, missed calls, and customer follow-up back into booked work.</p>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">Cashflow Control keeps jobs, billing, payment follow-up, and cash moving. Repeat Revenue brings past customers, reviews, referrals, missed calls, and customer follow-up back into booked work.</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 <Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link>

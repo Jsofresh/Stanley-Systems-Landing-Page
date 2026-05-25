@@ -35,7 +35,7 @@ export function FinalCTASection() {
               That is how service businesses lose money without noticing it.
             </p>
             <p className="mt-2 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
-              The Cash Flow Assessment finds the first leak, shows what it is costing, and gives you the first fix to make.
+              The Cash Flow Assessment finds the leak, shows what it is costing, and gives you the fix list to act on.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -86,7 +86,7 @@ export function FinalCTASection() {
 
             <div className="mt-4 rounded-[22px] border border-[#b9dec3] bg-[#eaf7ee] p-5">
               <p className="text-[23px] font-extrabold leading-tight tracking-[-0.04em] text-[#102033]">
-                Cash Flow Assessment finds the first leak to fix.
+                Cash Flow Assessment shows what to fix first.
               </p>
               <p className="mt-2 text-[14px] font-semibold leading-6 text-[#365044]">
                 Delayed invoices. Open estimates. Old customers. Missed calls.

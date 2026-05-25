@@ -408,7 +408,7 @@ export function FirstFixWrenchDisplayAsset(props: DisplayAssetProps) {
     <StanleyDisplayAsset
       {...props}
       src="/visual-kit/display-assets/first-fix-wrench-display.png"
-      defaultAlt="First fix wrench display asset"
+      defaultAlt="Build priority wrench display asset"
     />
   )
 }

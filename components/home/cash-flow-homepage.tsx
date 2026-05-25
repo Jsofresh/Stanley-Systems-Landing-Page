@@ -212,34 +212,37 @@ function OfferPathSection() {
   const steps = [
     { title: "Free Calculator", body: "See where money may be delayed, missed, or wasted." },
     { title: "Cash Flow Assessment — $97", body: "Stanley Systems maps the office-side leaks, what they likely cost, and what should be fixed first." },
-    { title: "Systems Installation Sprint — $1,500", body: "Stanley Systems builds the systems your business chooses to put in place after the assessment." },
-    { title: "Monthly Control — optional after the Sprint", body: "Keep the systems checked, adjusted, and from quietly breaking as the business keeps running." },
+    { title: "Systems Installation Sprint — $1,500", body: "Stanley Systems builds the systems your business chooses from the assessment plan." },
+    { title: "Monthly Control — optional after launch", body: "Keep installed systems checked, adjusted, and working as the business changes.", later: true },
   ];
 
   return (
     <PageSection className="bg-white text-[#071D3A]">
       <div className="mx-auto max-w-[88rem]">
-        <div className="grid gap-6 lg:grid-cols-[0.84fr_1.16fr] lg:items-end">
-          <h2 className="max-w-[780px] text-balance text-[clamp(2.05rem,4.6vw,4.9rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
+        <div className="max-w-[900px]">
+          <h2 className="text-balance text-[clamp(2.05rem,4.35vw,4.55rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
             Find the leak. Map the fix. Build the system.
           </h2>
-          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-            <CTALink href={calculatorHref} kind="calculator" location="home_offer_path_calculator" analyticsEvent="calculator_cta_clicked" ctaLabel="Run the free calculator" className={`${greenButton} px-7`}>
-              Run the free calculator <ArrowRight className="ml-2 h-4 w-4" />
-            </CTALink>
-            <CTALink href={sprintHref} kind="systems" location="home_offer_path_sprint" ctaLabel="See how the Sprint works" className={`${lightButton} px-7`}>
-              See how the Sprint works
-            </CTALink>
-          </div>
+          <p className="mt-4 max-w-[760px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">
+            Start free. If the leak is real, get the assessment. If you want Stanley Systems to build the systems, the Sprint is next.
+          </p>
         </div>
         <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {steps.map((step, index) => (
-            <article key={step.title} className="rounded-[1.45rem] border border-[#d9e7df] bg-[#FBFCF7] p-5 shadow-[0_14px_36px_rgba(7,29,58,0.055)]">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-[#E7F7EB] text-sm font-extrabold text-[#116832]">{index + 1}</span>
-              <h3 className="mt-4 text-[1.35rem] font-extrabold leading-tight tracking-[-0.025em] text-[#071D3A]">{step.title}</h3>
+            <article key={step.title} className={`rounded-[1.45rem] border p-5 shadow-[0_14px_36px_rgba(7,29,58,0.055)] ${step.later ? "border-[#e4ece6] bg-white/70" : "border-[#d9e7df] bg-[#FBFCF7]"}`}>
+              <span className={`grid h-9 w-9 place-items-center rounded-full text-sm font-extrabold ${step.later ? "bg-[#f1f5f0] text-[#607080]" : "bg-[#E7F7EB] text-[#116832]"}`}>{step.later ? "Later" : index + 1}</span>
+              <h3 className="mt-4 text-[1.28rem] font-extrabold leading-tight tracking-[-0.025em] text-[#071D3A]">{step.title}</h3>
               <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{step.body}</p>
             </article>
           ))}
+        </div>
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <CTALink href={calculatorHref} kind="calculator" location="home_offer_path_calculator" analyticsEvent="calculator_cta_clicked" ctaLabel="Run the free calculator" className={`${greenButton} px-7`}>
+            Run the free calculator <ArrowRight className="ml-2 h-4 w-4" />
+          </CTALink>
+          <CTALink href={sprintHref} kind="systems" location="home_offer_path_sprint" ctaLabel="See how the Sprint works" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">
+            See how the Sprint works
+          </CTALink>
         </div>
       </div>
     </PageSection>
@@ -408,7 +411,7 @@ function AssessmentSection() {
     >
       <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[1fr_0.72fr] lg:items-center">
         <div>
-          <h2 className="max-w-[720px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
+          <h2 className="max-w-[720px] text-balance text-[clamp(2rem,4vw,4.25rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
             Start with the Cash Flow Assessment.
           </h2>
           <p className="mt-4 max-w-[680px] text-base font-semibold leading-7 text-white/72">
@@ -449,19 +452,21 @@ function AssessmentSection() {
             </CTALink>
           </div>
         </div>
-        <div className="relative mx-auto w-full max-w-[450px] overflow-hidden scale-[0.95] rounded-[2.4rem] lg:max-w-[470px]">
-          <Image
-            src={uploadedHomeImages.assessment.src}
-            alt={uploadedHomeImages.assessment.alt}
-            width={uploadedHomeImages.assessment.width}
-            height={uploadedHomeImages.assessment.height}
-            className="h-auto w-full object-contain"
-            sizes="(min-width: 1024px) 36vw, 100vw"
-          />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-[#071422] to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#071422] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#071422] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#071422] to-transparent" />
+        <div className="rounded-[2rem] border border-white/12 bg-white/[0.07] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.20)] sm:p-6">
+          <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#53d986]">Sample Assessment Output</p>
+          <div className="mt-5 grid gap-3">
+            {[
+              ["Leak found", "Late invoice handoff"],
+              ["Cost", "Cash delayed 3–7 days"],
+              ["Fix", "Billing-ready alert + missing-info checklist"],
+              ["Build priority", "High"],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.08] p-4">
+                <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-white/52">{label}</p>
+                <p className="mt-1 text-lg font-extrabold leading-snug text-white">{value}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </PageSection>
@@ -469,40 +474,38 @@ function AssessmentSection() {
 }
 
 function SprintSection() {
-  const items = [
-    "Build Cashflow Control, Repeat Revenue, or both.",
-    "Install the mix of systems your assessment calls for.",
-    "Clean up handoffs between calls, estimates, jobs, invoices, payments, reviews, referrals, and past customers.",
-    "Connect the tools, records, reminders, and follow-up steps your team actually uses.",
+  const cards = [
+    ["Cash gets cleaned up", "Invoices, billing handoffs, payment follow-up, and visibility."],
+    ["Customers get followed up", "Missed calls, reviews, referrals, past customers, and repeat work."],
+    ["The workflow gets installed", "Tools, reminders, handoffs, testing, and documentation."],
   ];
   return (
-    <PageSection id="sprint" className="bg-[#FBFCF7] text-[#071D3A]">
-      <div className="mx-auto grid max-w-[88rem] gap-7 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
-        <div>
-          <h2 className="max-w-[760px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
-            Then Stanley Systems builds the systems your business needs.
-          </h2>
-          <p className="mt-5 max-w-[650px] text-lg font-semibold leading-8 text-[#536173]">
-            The Cash Flow Assessment gives you the map. The Systems Installation Sprint turns that map into working systems for cash, follow-up, reviews, referrals, repeat work, and office handoffs.
-          </p>
-          <p className="mt-4 max-w-[620px] rounded-2xl border border-[#D8E8DE] bg-white p-4 text-sm font-extrabold leading-6 text-[#244938]">
-            Systems Installation Sprint: $1,500. Scope can include Cashflow Control, Repeat Revenue, both, a scoped mix, or another agreed Stanley Systems system.
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+    <PageSection id="sprint" className="bg-[#FBFCF7] py-10 text-[#071D3A] md:py-14 lg:py-16">
+      <div className="mx-auto max-w-[88rem]">
+        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+          <div>
+            <h2 className="max-w-[760px] text-balance text-[clamp(2rem,4.1vw,4.35rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
+              Then Stanley Systems builds what the assessment shows you need.
+            </h2>
+            <p className="mt-4 max-w-[650px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">
+              The Sprint turns the assessment plan into live workflows, handoffs, reminders, and controls your team can use.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
             <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="See how the Sprint works" className={`${greenButton} px-8`}>
               See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
-            <CTALink href={assessmentHref} kind="systems" location="home_sprint_secondary" ctaLabel="Start the Cash Flow Assessment" className={lightButton}>
+            <CTALink href={assessmentHref} kind="systems" location="home_sprint_secondary" ctaLabel="Start the Cash Flow Assessment" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">
               Start the Cash Flow Assessment
             </CTALink>
           </div>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {items.map((item) => (
-            <div key={item} className="rounded-[1.35rem] border border-[#d9e7df] bg-white p-5 shadow-[0_14px_36px_rgba(7,29,58,0.055)]">
-              <CheckCircle2 className="h-5 w-5 text-[#15803D]" />
-              <p className="mt-3 text-sm font-bold leading-6 text-[#334B60]">{item}</p>
-            </div>
+        <div className="mt-7 grid gap-4 md:grid-cols-3">
+          {cards.map(([title, body]) => (
+            <article key={title} className="rounded-[1.35rem] border border-[#d9e7df] bg-white p-5 shadow-[0_14px_36px_rgba(7,29,58,0.055)]">
+              <h3 className="text-xl font-extrabold tracking-[-0.02em] text-[#071D3A]">{title}</h3>
+              <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -515,7 +518,7 @@ function PackageDemosSection() {
     <PageSection id="systems" className="bg-[#f4f7f4] text-[#071D3A]">
       <div className="mx-auto max-w-[88rem]">
         <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
-          <h2 className="max-w-[760px] text-balance text-[clamp(2.1rem,4.8vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
+          <h2 className="max-w-[760px] text-balance text-[clamp(2rem,4vw,4.25rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
             Pick the system that fixes the right business problem.
           </h2>
           <p className="max-w-[650px] text-lg font-semibold leading-8 text-[#536173]">
@@ -621,9 +624,8 @@ function BeforeAfterProofSection() {
             How your business improves with Stanley Systems.
           </h2>
           <p className="mt-5 max-w-[620px] text-lg font-semibold leading-8 text-[#536173]">
-            Stanley Systems fixes the office work between customer requests,
-            estimates, scheduling, billing, payment follow-up, reviews,
-            referrals, and repeat work.
+            The goal is simple: get more work booked, get bills out faster,
+            collect cash sooner, and bring good customers back.
           </p>
         </div>
         <UploadedSectionImage
@@ -663,9 +665,7 @@ function FinalCashFlowCTA() {
           Stop letting cash, follow-up, and good customers slip through the cracks.
         </h2>
         <p className="mx-auto mt-6 max-w-[720px] text-lg font-semibold leading-8 text-white/70">
-          Run the free calculator for a rough signal. Start the Cash Flow Assessment
-          when you want the full map. If you want Stanley Systems to build the
-          systems, the Sprint is the next step.
+          Start with the Cash Flow Assessment when you want the full map. If you are not ready yet, run the free calculator first.
         </p>
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <CTALink
@@ -684,7 +684,7 @@ function FinalCashFlowCTA() {
             location="home_final_secondary"
             analyticsEvent="calculator_cta_clicked"
             ctaLabel="Run the free calculator"
-            className={darkGhostButton}
+            className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-white underline decoration-white/35 underline-offset-4 transition hover:text-[#53d986]"
           >
             Run the free calculator
           </CTALink>
@@ -740,7 +740,6 @@ export function CashFlowHomepage() {
         </div>
       </section>
       <OfferPathSection />
-      <CalculatorLaunchSection />
       <CalculatorSpine />
       <AssessmentSection />
       <SprintSection />

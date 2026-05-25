@@ -315,7 +315,6 @@ export function SiteHeader() {
             <a href="/systems/cashflow-control" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Cashflow Control</a>
             <a href="/systems/repeat-revenue" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Repeat Revenue</a>
             <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Calculator</a>
-            <a href="/pricing" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Pricing</a>
             <a href="/contact" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
           </div>
         </div>

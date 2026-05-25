@@ -22,7 +22,7 @@ export function AuditOutputCard({
   const rows = [
     revenueLeak ? ['Estimated revenue leak', revenueLeak] : null,
     drag ? ['Estimated drag', drag] : null,
-    firstFix ? ['First fix', firstFix] : null,
+    firstFix ? ['Build priority', firstFix] : null,
   ].filter(Boolean) as [string, string][]
 
   return (

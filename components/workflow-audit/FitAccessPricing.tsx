@@ -12,7 +12,7 @@ const includes = [
   "Past customer follow-up review",
   "Money Leak Summary",
   "Which leak matters first",
-  "First fix to make",
+  "Build priority",
   "System to build first",
 ]
 

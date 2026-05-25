@@ -45,9 +45,9 @@ export default function SystemPage() {
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60] sm:text-xl">Use this system category when past customers, reviews, referrals, missed calls, and follow-up are not being worked consistently.</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
+                <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">See how the Sprint works</Link>
               </div>
-              <p className="mt-4 max-w-xl text-sm font-bold leading-6 text-[#607080]">Customers can choose individual automations, but Repeat Revenue works best when the billing, customer record, and follow-up handoffs are clean too.</p>
+              <p className="mt-4 max-w-xl text-sm font-bold leading-6 text-[#607080]">The assessment shows which follow-up gaps matter most, then the Sprint can build the parts your business needs.</p>
             </div>
             <div className="rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_22px_60px_rgba(7,29,58,0.08)]">
               <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">This system helps when:</h2>
@@ -61,7 +61,7 @@ export default function SystemPage() {
         <section data-section="repeat-systems" className="bg-white py-14 sm:py-16">
           <div className={shell}>
             <div className="mx-auto max-w-4xl text-center">
-              <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Bring past customers back without making it cheap marketing automation.</h2>
+              <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Bring past customers back with follow-up your team can actually trust.</h2>
               <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems builds practical follow-up around the work your shop already did: missed calls, completed jobs, review requests, referral asks, past-customer reminders, and the next booked job.</p>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -82,7 +82,6 @@ export default function SystemPage() {
               <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">If the assessment shows missed calls, reviews, referrals, past customers, or follow-up are not being worked consistently, the Systems Installation Sprint can build Repeat Revenue as part of the agreed scope.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">

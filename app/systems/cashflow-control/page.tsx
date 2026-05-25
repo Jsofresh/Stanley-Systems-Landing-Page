@@ -61,10 +61,10 @@ export default function SystemPage() {
           <div className={`${shell} relative grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
             <div>
               <h1 className="max-w-4xl text-[2.1rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.1rem] lg:text-[3.7rem]">Turn finished work into collected cash faster</h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60] sm:text-xl">Cash gets slowed down long before the invoice is overdue. Cashflow Control automates the handoffs from customer intake to completed work, invoicing, follow-up, and collected payment.</p>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60] sm:text-xl">Cashflow Control keeps customer requests, job details, invoices, and payment follow-up moving so finished work turns into collected cash faster.</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
+                <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">See how the Sprint works</Link>
               </div>
             </div>
             <CashflowHeroVisual />
@@ -95,7 +95,6 @@ export default function SystemPage() {
               <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">If the assessment shows billing, payment follow-up, or office handoffs are slowing cash down, the Systems Installation Sprint can build Cashflow Control as part of the agreed scope.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">

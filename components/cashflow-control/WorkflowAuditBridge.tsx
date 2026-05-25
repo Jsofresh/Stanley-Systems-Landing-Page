@@ -6,7 +6,7 @@ import { plans } from "./tokens"
 const auditSteps = [
   ["1", "Pay $97", "Start with the assessment."],
   ["2", "Find the leak", "Use the numbers, not a guess."],
-  ["3", "Choose the system", "Buy the first fix with confidence."],
+  ["3", "Choose the system", "Choose the build priority with confidence."],
   ["4", "Credit applied", "Get $97 monthly or $194 yearly back."],
 ] as const
 
@@ -19,7 +19,7 @@ export function WorkflowAuditBridge() {
             Buy the assessment first. Let the numbers choose the system.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#33475B] sm:text-lg">
-            The Cash Flow Assessment checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the first build fixes the leak that actually costs money.
+            The Cash Flow Assessment checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the build priority matches the leak that actually costs money.
           </p>
           <div className="mt-5 grid gap-3 rounded-2xl border border-[#B7D8C0] bg-white p-3 sm:grid-cols-4">
             {auditSteps.map(([step, title, text]) => (
@@ -34,7 +34,7 @@ export function WorkflowAuditBridge() {
             You do not have to guess whether Repeat Revenue System, Cashflow Control System, or both should come first.
           </p>
           <p className="mt-4 max-w-2xl rounded-xl border border-[#B7D8C0] bg-white px-4 py-3 text-sm font-bold leading-6 text-[#124E25]">
-            If Stanley Systems cannot find one clear money leak we can fix, you get your assessment fee back and a free Repeat Revenue System.
+            If Stanley Systems cannot find a clear money leak we can fix, you get your assessment fee back and a free Repeat Revenue System.
           </p>
         </div>
 

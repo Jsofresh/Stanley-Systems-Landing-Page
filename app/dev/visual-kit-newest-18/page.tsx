@@ -45,7 +45,7 @@ const newest18: Array<{
     file: 'first-fix-wrench-display.png',
     component: 'FirstFixWrenchDisplayAsset',
     source: 'file_557---305a758c-13db-4b61-99a1-ca1eafd4f0b5.jpg',
-    role: 'First fix / wrench check',
+    role: 'Build priority / wrench check',
     Component: FirstFixWrenchDisplayAsset,
   },
   {

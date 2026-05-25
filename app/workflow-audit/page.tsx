@@ -194,7 +194,7 @@ function AssessmentPricing() {
               <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
             </div>
             <p className="mx-auto mt-4 max-w-md text-center text-sm font-semibold leading-6 text-[#607080]">
-              If Stanley Systems builds the fix, your $97 becomes a $194 installation credit.
+              If you move forward with the Sprint, your $97 assessment counts as a $194 credit.
             </p>
           </article>
 
@@ -220,7 +220,6 @@ function SprintBridge() {
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The Cash Flow Assessment gives you the map: what is broken, what it likely costs, how to fix it, and what should be worked on first. If you want Stanley Systems to install the systems instead of doing it yourself, the Systems Installation Sprint is the next step.</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_sprint_bridge_secondary" className="border border-[#CFE8D5] bg-white text-[#116832] hover:border-[#15803D] hover:bg-[#F4FBF5]" />
           </div>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -275,7 +274,7 @@ function NextSteps() {
     ["Do I need to share passwords?", "No. Do not send passwords. You can start with screen share, exports, screenshots, or a temporary invited user if access is needed."],
     ["Does this replace my current software?", "No. Stanley Systems looks at the handoffs around the tools you already use."],
     ["Will I talk to a real person?", "Yes. The assessment is reviewed by Stanley Systems before a recommendation is made."],
-    ["What happens after the assessment?", "You get the leak map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and what should be worked on first. If Stanley Systems builds the systems, the $97 assessment becomes a $194 Sprint credit."],
+    ["What happens after the assessment?", "You get the leak map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and what should be worked on first. If you move forward with the Sprint, your $97 assessment counts as a $194 credit."],
     ["What if I already know what I want?", "You can still start with the assessment to confirm the full fix list before installation, or talk before buying if you need a quick route check."],
   ]
 
@@ -311,9 +310,9 @@ function NextSteps() {
               <div className="mt-5 rounded-[1.35rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5">
                 <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#102033]">Talk before buying</h3>
                 <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">If you need a quick route check before paying, call or ask a question. Keep the diagnosis inside the assessment.</p>
-                <div className="mt-4 flex flex-col gap-2 sm:flex-row lg:flex-col">
-                  <a href="tel:+16179586372" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-5 py-2.5 text-sm font-extrabold text-white transition hover:bg-[#116832]">Talk before buying</a>
-                  <Link href="/contact?path=pre-buy" className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-5 py-2.5 text-sm font-extrabold text-[#116832] transition hover:border-[#15803D] hover:bg-[#F4FBF5]">Ask a question</Link>
+                <div className="mt-4 flex flex-col gap-2 text-sm font-extrabold sm:flex-row lg:flex-col">
+                  <a href="tel:+16179586372" className="text-[#116832] underline underline-offset-4">Talk before buying</a>
+                  <Link href="/contact?path=pre-buy" className="text-[#116832] underline underline-offset-4">Ask a question</Link>
                 </div>
               </div>
             </div>

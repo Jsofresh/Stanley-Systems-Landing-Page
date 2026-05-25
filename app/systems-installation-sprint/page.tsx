@@ -12,35 +12,45 @@ const lightButton = "inline-flex min-h-12 items-center justify-center rounded-fu
 
 export const metadata: Metadata = {
   title: "Systems Installation Sprint | Stanley Systems",
-  description: "Turn the Cash Flow Assessment into working systems for cash, follow-up, reviews, referrals, repeat work, and office handoffs.",
+  description: "Turn the Cash Flow Assessment into workflows, reminders, handoffs, templates, automations, and tool setup.",
   alternates: { canonical: "https://stanley-systems.com/systems-installation-sprint" },
 }
 
-const buildCards = [
-  {
-    title: "Cashflow Control can include:",
-    items: ["Customer request/intake handoffs", "Job detail checks", "Billing-ready alerts", "Invoice movement", "Payment follow-up", "Owner/manager visibility"],
-  },
-  {
-    title: "Repeat Revenue can include:",
-    items: ["Missed-call recovery", "Past-customer follow-up", "Review asks", "Referral asks", "Private feedback routing", "Repeat-work reminders"],
-  },
-  {
-    title: "Custom/specific build scope can include:",
-    items: ["Shop-specific handoffs", "Tool-specific workflows", "Process gaps found in the assessment", "Additional systems by agreement"],
-  },
+const snapshot = ["Sprint plan from assessment", "Buildout of agreed systems", "Testing before launch", "Simple documentation", "Optional Monthly Control recommendation"]
+const fitBullets = ["Jobs get finished, but billing waits.", "Estimates go cold without enough follow-up.", "Reviews and referrals depend on memory.", "Past customers are not contacted again.", "The team uses tools, but the handoffs still break."]
+const process = [
+  ["1", "Start with the Cash Flow Assessment", "Stanley Systems finds the leaks, delays, handoff gaps, and follow-up problems."],
+  ["2", "Choose what to build", "You pick the systems that matter most based on the assessment."],
+  ["3", "Stanley Systems installs the agreed workflows", "Handoffs, reminders, templates, automations, tracking, and documentation get built."],
+  ["4", "Test, launch, and hand off", "The system gets checked before your team uses it."],
 ]
-
-const included = ["Sprint plan from the assessment", "Build of agreed systems", "Tool/workflow setup", "Handoff rules", "Testing", "Documentation", "Launch review", "Optional Monthly Control recommendation"]
+const examples = [
+  ["Billing-ready handoff", "Job complete → missing-info check → billing alert → invoice follow-up."],
+  ["Review and referral follow-up", "Happy customer → review ask → referral ask → private feedback route."],
+  ["Past-customer repeat work", "Old customer list → reminder schedule → reply routing → booked work tracking."],
+]
+const buildCards = [
+  ["Cashflow Control", "Customer request handoffs, job detail checks, billing-ready alerts, invoice movement, payment follow-up, and owner visibility."],
+  ["Repeat Revenue", "Missed-call recovery, past-customer follow-up, review asks, referral asks, private feedback routing, and repeat-work reminders."],
+  ["Scoped custom build", "Shop-specific handoffs, tool-specific workflows, process gaps from the assessment, and additional systems by agreement."],
+]
+const included = [
+  ["Build of agreed systems", "Stanley Systems installs the workflows, reminders, handoffs, and tool setup approved from the assessment."],
+  ["Tool/workflow setup", "The build fits around the tools and records your team already uses."],
+  ["Handoff rules", "The next person knows what needs to happen and when a human should step in."],
+  ["Testing", "The system is checked before your team relies on it."],
+  ["Documentation", "Your team gets simple notes on what was built and how it works."],
+  ["Launch review", "Stanley Systems reviews the finished build and next support recommendation."],
+]
 
 export default function SystemsInstallationSprintPage() {
   return (
     <>
       <SiteHeader />
       <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-[#FBFCF7] text-[#071D3A]">
-        <section className="relative overflow-hidden pb-12 pt-32 sm:pb-16 lg:pt-36">
+        <section className="relative overflow-hidden pb-10 pt-32 sm:pb-14 lg:pt-36">
           <div className="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_70%)]" aria-hidden="true" />
-          <div className={`${shell} relative grid gap-9 lg:grid-cols-[1fr_0.82fr] lg:items-center`}>
+          <div className={`${shell} relative grid gap-8 lg:grid-cols-[1fr_0.78fr] lg:items-center`}>
             <div>
               <h1 className="max-w-5xl text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.35rem]">
                 Turn the Cash Flow Assessment into working systems.
@@ -50,47 +60,84 @@ export default function SystemsInstallationSprintPage() {
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link>
+                <Link href="/contact?path=pre-buy" className={lightButton}>Ask if the Sprint is right for us</Link>
               </div>
             </div>
-            <div className="rounded-[2rem] border border-[#BFE4C8] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.12)] sm:p-8">
-              <h2 className="text-3xl font-semibold leading-tight tracking-[-0.04em] text-[#102033]">Systems Installation Sprint starts at $1,500.</h2>
-              <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">The final scope depends on what the assessment finds and what the business chooses to build.</p>
-              <p className="mt-4 rounded-2xl bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">Your Cash Flow Assessment can count as a $194 credit toward the Sprint.</p>
+            <div className="rounded-[2rem] border border-[#BFE4C8] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.12)] sm:p-7">
+              <h2 className="text-3xl font-semibold leading-tight tracking-[-0.04em] text-[#102033]">Systems Installation Sprint</h2>
+              <p className="mt-1 text-[2.35rem] font-semibold tracking-[-0.06em] text-[#071D3A]">Starts at $1,500</p>
+              <ul className="mt-5 grid gap-2 text-sm font-bold leading-6 text-[#334B60]">
+                {snapshot.map((item) => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#15803D]" />{item}</li>)}
+              </ul>
+              <p className="mt-5 rounded-2xl bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">Assessment credit can apply toward the Sprint.</p>
+              <Link href="/workflow-audit" className={`mt-5 w-full ${greenButton}`}>Start with the Assessment</Link>
             </div>
           </div>
         </section>
 
-        <section className="bg-white py-14 sm:py-16">
+        <section className="bg-white py-12 sm:py-14">
+          <div className={`${shell} grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-center`}>
+            <div className="rounded-[1.7rem] border border-[#DDEBE2] bg-[#FBFCF7] p-6 shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">What “systems” means here</h2>
+              <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">By systems, we mean the workflows, reminders, handoffs, tracking rules, templates, and tool setup that keep customer requests, billing, follow-up, reviews, referrals, and repeat work from slipping through the cracks.</p>
+            </div>
+            <div>
+              <h2 className="text-[2.05rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Built for service businesses where the work gets done, but the follow-up slips.</h2>
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                {fitBullets.map((item) => <li key={item} className="rounded-[1.15rem] border border-[#DDEBE2] bg-white p-4 text-sm font-bold leading-6 text-[#334B60]">{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#F4FBF5] py-12 sm:py-14">
+          <div className={shell}>
+            <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">How the Sprint works</h2>
+            <ol className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {process.map(([number, title, body]) => <li key={title} className="rounded-[1.35rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)]"><span className="grid h-9 w-9 place-items-center rounded-full bg-[#E7F7EB] text-sm font-black text-[#116832]">{number}</span><h3 className="mt-4 text-xl font-semibold tracking-[-0.03em] text-[#102033]">{title}</h3><p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p></li>)}
+            </ol>
+          </div>
+        </section>
+
+        <section className="bg-white py-12 sm:py-14">
           <div className={shell}>
             <div className="mx-auto max-w-4xl text-center">
-              <h2 className="text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">The Sprint can include Cashflow Control, Repeat Revenue, or both.</h2>
+              <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What a finished Sprint can look like</h2>
+            </div>
+            <div className="mt-7 grid gap-4 lg:grid-cols-3">
+              {examples.map(([title, body]) => <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-6 shadow-[0_12px_30px_rgba(7,29,58,0.04)]"><h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">{title}</h3><p className="mt-4 text-base font-semibold leading-7 text-[#536173]">{body}</p></article>)}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-[#FBFCF7] py-12 sm:py-14">
+          <div className={shell}>
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">The Sprint can include Cashflow Control, Repeat Revenue, both, or a scoped custom build.</h2>
               <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Every business has a different mix of cash, customer, follow-up, and office handoff problems. The Sprint is scoped around what the assessment finds and what the business chooses to build.</p>
             </div>
             <div className="mt-8 grid gap-4 lg:grid-cols-3">
-              {buildCards.map((card) => (
-                <article key={card.title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-6 shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
-                  <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">{card.title}</h3>
-                  <ul className="mt-4 grid gap-2 text-sm font-semibold leading-6 text-[#536173]">
-                    {card.items.map((item) => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#15803D]" />{item}</li>)}
-                  </ul>
-                </article>
-              ))}
+              {buildCards.map(([title, body]) => <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_12px_30px_rgba(7,29,58,0.04)]"><h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">{title}</h3><p className="mt-4 text-sm font-semibold leading-6 text-[#536173]">{body}</p></article>)}
             </div>
           </div>
         </section>
 
-        <section className="bg-[#F4FBF5] py-14 sm:py-16">
-          <div className={`${shell} grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start`}>
+        <section className="bg-[#F4FBF5] py-12 sm:py-14">
+          <div className={`${shell} grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-start`}>
             <div>
-              <h2 className="text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What is included</h2>
+              <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What is included</h2>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {included.map((item) => <div key={item} className="rounded-2xl border border-[#DDEBE2] bg-white p-4 text-sm font-extrabold leading-6 text-[#334B60] shadow-[0_10px_24px_rgba(7,29,58,0.035)]">{item}</div>)}
+                {included.map(([title, body]) => <div key={title} className="rounded-2xl border border-[#DDEBE2] bg-white p-4 shadow-[0_10px_24px_rgba(7,29,58,0.035)]"><h3 className="text-base font-extrabold text-[#102033]">{title}</h3><p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p></div>)}
               </div>
             </div>
             <div className="rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_18px_52px_rgba(7,29,58,0.06)]">
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">What it is not</h2>
               <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">The Sprint is not a vague consulting call, a cheap automation bundle, or a one-step fix. It is the implementation period where Stanley Systems builds the agreed systems after the assessment.</p>
+              <div className="mt-6 rounded-2xl bg-[#F4FBF5] p-4">
+                <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#102033]">Pricing</h3>
+                <p className="mt-2 text-sm font-bold leading-6 text-[#536173]">Systems Installation Sprint starts at $1,500. The final scope depends on what the assessment finds and what the business chooses to build.</p>
+                <p className="mt-3 text-sm font-extrabold leading-6 text-[#116832]">Your Cash Flow Assessment can count as a $194 credit toward the Sprint.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -98,10 +145,10 @@ export default function SystemsInstallationSprintPage() {
         <section className="bg-[#071422] py-14 text-white sm:py-16" data-nav-theme="dark">
           <div className={`${shell} text-center`}>
             <h2 className="mx-auto max-w-4xl text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-5xl">Ready to map the leaks first?</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">Start with the Cash Flow Assessment. If you want Stanley Systems to install the systems instead of doing it yourself, the Sprint is the next step.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">Start with the Cash Flow Assessment. If the Sprint is the right build step, Stanley Systems can install the systems from that plan.</p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
               <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              <Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-white/12">Ask us a question</Link>
+              <Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-white/12">Ask if the Sprint is right for us</Link>
             </div>
           </div>
         </section>
