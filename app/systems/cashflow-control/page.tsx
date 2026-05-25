@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { FadedImage } from "@/components/faded-image"
 import { Footer } from "@/components/footer"
@@ -8,7 +9,6 @@ import { SiteHeader } from "@/components/hero-section"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
-const lightButton = "inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]"
 
 export const metadata: Metadata = {
   title: "Cashflow Control | Stanley Systems",
@@ -25,21 +25,13 @@ const automations = [
   ["Shop-specific fixes", "Fix the gaps that show up in your office, your software, and your team’s process."],
 ]
 
-const buildBullets = [
-  "Capture job details the office needs.",
-  "Show what is ready to bill.",
-  "Keep invoice and payment follow-up visible.",
-  "Route exceptions to a human.",
-  "Give the team a cleaner handoff.",
-]
-
 function CashflowHeroVisual() {
   return (
     <FadedImage
-      src="/images/uploaded/2026-05-13-jaden/delayed-billing-office-time-quiet-estimates-missed-review-referral-flow-green-stars.jpg"
-      alt="Visual showing delayed billing, quiet estimates, and missed review and referral follow-up in a service business office."
-      width={1280}
-      height={954}
+      src="/images/uploaded/2026-05-25-jaden/cashflow-control-job-to-cash.jpg"
+      alt="Cashflow Control job-to-cash workflow showing a customer request moving to job details, invoice, payment follow-up, and collected cash."
+      width={1254}
+      height={1254}
       priority
       sizes="(min-width: 1024px) 42vw, 100vw"
       fadeColor="#FBFCF7"
@@ -48,6 +40,22 @@ function CashflowHeroVisual() {
       outerFadeColor="rgba(251,252,247,0.9)"
       wrapperClassName="relative mx-auto w-full max-w-[560px] transition duration-300 hover:-translate-y-1 hover:scale-[1.015] lg:max-w-[640px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
     />
+  )
+}
+
+function ImageCard() {
+  return (
+    <div className="relative mx-auto w-full max-w-[720px] drop-shadow-[0_26px_54px_rgba(7,29,58,0.10)]">
+      <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_50%_50%,rgba(244,251,245,0.92),rgba(244,251,245,0)_68%)] blur-2xl" aria-hidden="true" />
+      <Image
+        src="/images/uploaded/2026-05-25-jaden/job-details-invoice-follow-up-human-handoff.jpg"
+        alt="Cashflow Control workflow showing job details, invoice follow-up, and human handoff routing."
+        width={1280}
+        height={960}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        className="relative h-auto w-full rounded-[1.2rem] object-contain"
+      />
+    </div>
   )
 }
 
@@ -92,14 +100,12 @@ export default function SystemPage() {
           <div className={`${shell} grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-center`}>
             <div>
               <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">How Cashflow Control gets built</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">If the assessment shows billing, payment follow-up, or office handoffs are slowing cash down, the Systems Installation Sprint can build Cashflow Control as part of the agreed scope.</p>
+              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems builds the workflow from job details to invoice, payment follow-up, exception routing, and owner visibility so cash does not depend on memory, scattered notes, or someone remembering the next step.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </div>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {buildBullets.map((item) => <div key={item} className="rounded-[1.25rem] border border-[#DDEBE2] bg-white p-4 text-sm font-bold leading-6 text-[#334B60] shadow-[0_10px_24px_rgba(7,29,58,0.035)]"><CheckCircle2 className="mb-3 h-5 w-5 text-[#15803D]" />{item}</div>)}
-            </div>
+            <ImageCard />
           </div>
         </section>
       </main>
