@@ -5,6 +5,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { CTALink } from "@/components/cta-link";
 import { pricingPackages } from "@/lib/pricing/source-of-truth";
 import { SystemsThatMakeMoneySection } from "@/components/home/SystemsThatMakeMoneySection";
+import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee";
 
 const calculatorHref = "/invoicing-delay-cash-flow-calculator";
 const assessmentHref = "/workflow-audit";
@@ -654,7 +655,7 @@ export function CashFlowHomepage() {
         data-audit-page="/"
         data-audit-section="home.hero"
         data-nav-theme="dark"
-        className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[#071422] px-5 pb-16 pt-[132px] text-white md:px-8 lg:px-10 lg:pb-24 lg:pt-[150px]"
+        className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[#071422] px-5 pb-24 pt-[132px] text-white md:px-8 md:pb-32 lg:px-10 lg:pb-36 lg:pt-[150px]"
       >
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_74%_28%,rgba(83,217,134,0.16),transparent_30%),radial-gradient(circle_at_8%_12%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
         <HeroImageSlideshow />
@@ -690,6 +691,9 @@ export function CashFlowHomepage() {
               </CTALink>
             </div>
           </div>
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden border-t border-white/10 bg-[#071422]/92 py-2.5 backdrop-blur-xl md:block md:py-3" data-section="home-hero-logo-conveyor">
+          <SoftwareLogoMarquee />
         </div>
       </section>
       <CalculatorSpine />
