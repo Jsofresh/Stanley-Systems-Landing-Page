@@ -370,20 +370,14 @@ function AssessmentSection() {
     >
       <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[1fr_0.72fr] lg:items-center">
         <div>
-          <h2 className="max-w-[720px] text-balance text-[clamp(2rem,4vw,4.25rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
+          <h2 className="max-w-[720px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
             Start with the Cash Flow Assessment.
           </h2>
-          <p className="mt-4 max-w-[680px] text-base font-semibold leading-7 text-white/72">
+          <p className="mt-4 max-w-[620px] text-base font-semibold leading-7 text-white/72">
             Stanley Systems shows where money is being missed, what it likely
-            costs, how to fix every problem found, and what should be worked on
-            first. You can use the assessment yourself, or use it as the plan
-            for a Systems Installation Sprint.
+            costs, how to fix every problem found, and which fix should happen
+            first.
           </p>
-          <ul className="mt-5 grid max-w-[720px] gap-2 text-sm font-semibold leading-6 text-white/78 sm:grid-cols-2">
-            {["Office-side leak map", "Fix list for every problem found", "Expected result of each fix", "Build priorities if Stanley Systems installs it"].map((item) => (
-              <li key={item} className="flex gap-2 rounded-2xl border border-white/10 bg-white/7 px-3 py-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#53d986]" />{item}</li>
-            ))}
-          </ul>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <CTALink
               href={assessmentHref}
@@ -401,36 +395,36 @@ function AssessmentSection() {
               <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
             <CTALink
-              href={sprintHref}
-              kind="systems"
+              href={calculatorHref}
+              kind="calculator"
               location="home_assessment_secondary"
-              ctaLabel="See how the Sprint works"
+              analyticsEvent="calculator_cta_clicked"
+              ctaLabel="Calculate the leak"
               className={darkGhostButton}
             >
-              See how the Sprint works
+              Calculate the leak
             </CTALink>
           </div>
         </div>
-        <div className="rounded-[2rem] border border-white/12 bg-white/[0.07] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.20)] sm:p-6">
-          <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#53d986]">Sample Assessment Output</p>
-          <div className="mt-5 grid gap-3">
-            {[
-              ["Leak found", "Late invoice handoff"],
-              ["Cost", "Cash delayed 3–7 days"],
-              ["Fix", "Billing-ready alert + missing-info checklist"],
-              ["Build priority", "High"],
-            ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.08] p-4">
-                <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-white/52">{label}</p>
-                <p className="mt-1 text-lg font-extrabold leading-snug text-white">{value}</p>
-              </div>
-            ))}
-          </div>
+        <div className="relative mx-auto w-full max-w-[450px] overflow-hidden scale-[0.95] rounded-[2.4rem] lg:max-w-[470px]">
+          <Image
+            src={uploadedHomeImages.assessment.src}
+            alt={uploadedHomeImages.assessment.alt}
+            width={uploadedHomeImages.assessment.width}
+            height={uploadedHomeImages.assessment.height}
+            className="h-auto w-full object-contain"
+            sizes="(min-width: 1024px) 36vw, 100vw"
+          />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-[#071422] to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#071422] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#071422] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#071422] to-transparent" />
         </div>
       </div>
     </PageSection>
   );
 }
+
 
 function SprintSection() {
   const cards = [
