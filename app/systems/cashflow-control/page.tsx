@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+const uploadedImagePath = (src: string) => `${process.env.NEXT_PUBLIC_BASE_PATH || ""}${src}`
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ const automations = [
 function CashflowHeroVisual() {
   return (
     <FadedImage
-      src="/images/uploaded/2026-05-25-jaden/cashflow-control-job-to-cash.jpg"
+      src={uploadedImagePath("/images/uploaded/2026-05-25-jaden/cashflow-control-job-to-cash.jpg")}
       alt="Cashflow Control job-to-cash workflow showing a customer request moving to job details, invoice, payment follow-up, and collected cash."
       width={1254}
       height={1254}
@@ -47,7 +48,7 @@ function BuildImage() {
   return (
     <div className="relative mx-auto w-full max-w-[760px] drop-shadow-[0_26px_54px_rgba(7,29,58,0.10)]">
       <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_50%_50%,rgba(244,251,245,0.92),rgba(244,251,245,0)_68%)] blur-2xl" aria-hidden="true" />
-      <Image src="/images/uploaded/2026-05-25-jaden/job-details-bill-readiness-unpaid-invoices-exception-routing.jpg" alt="Cashflow Control workflow showing job details, bill readiness, unpaid invoices, and exception routing." width={1280} height={960} sizes="(min-width: 1024px) 52vw, 100vw" className="relative h-auto w-full rounded-[1.2rem] object-contain" />
+      <Image src={uploadedImagePath("/images/uploaded/2026-05-25-jaden/job-details-bill-readiness-unpaid-invoices-exception-routing.jpg")} alt="Cashflow Control workflow showing job details, bill readiness, unpaid invoices, and exception routing." width={1280} height={960} sizes="(min-width: 1024px) 52vw, 100vw" className="relative h-auto w-full rounded-[1.2rem] object-contain" />
     </div>
   )
 }
