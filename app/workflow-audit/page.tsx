@@ -88,9 +88,6 @@ function Hero() {
           <h1 className="mx-auto max-w-5xl text-[2.17rem] font-semibold leading-[0.96] tracking-[-0.04em] text-[#071D3A] sm:text-[3.25rem] lg:mx-0 lg:text-[4.15rem]">
             Find the office leaks costing you cash, reviews, and repeat jobs.
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#334B60] lg:mx-0 lg:text-xl lg:leading-9">
-            The $97 Cash Flow Assessment gives you a full office-side map of where the business is losing money, what each leak affects, and how to fix every problem Stanley Systems finds.
-          </p>
           <div className="mt-7 flex justify-center lg:justify-start">
             <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
           </div>
@@ -151,10 +148,10 @@ function SampleOutput() {
           alt="Sample Money Leak Summary showing the leak found, cost signal, build priority, and next move."
           width={1280}
           height={960}
-          sizes="(min-width: 1024px) 46vw, 112vw"
+          sizes="(min-width: 1024px) 46vw, 100vw"
           fadeColor="#FBFCF7"
-          wrapperClassName="-mx-8 rounded-[1.25rem] drop-shadow-[0_24px_70px_rgba(7,29,58,0.08)] sm:mx-0"
-          imageClassName="h-auto w-full scale-[1.08] object-contain sm:scale-100"
+          wrapperClassName="mx-auto w-full max-w-full overflow-hidden rounded-[1.25rem] drop-shadow-[0_24px_70px_rgba(7,29,58,0.08)]"
+          imageClassName="h-auto w-full object-contain"
         />
       </div>
     </section>

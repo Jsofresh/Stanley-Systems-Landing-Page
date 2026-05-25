@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
@@ -16,13 +16,6 @@ export const metadata: Metadata = {
   description: "Turn the Cash Flow Assessment into approved workflows, reminders, handoffs, templates, tracking, documentation, and tool setup.",
   alternates: { canonical: "https://stanley-systems.com/systems-installation-sprint" },
 }
-
-const process = [
-  ["1", "Start with the Cash Flow Assessment", "We look at where work, money, customers, and follow-up move through the business."],
-  ["2", "Choose what you want installed", "You approve the Sprint scope before anything is built."],
-  ["3", "Stanley Systems builds the approved system", "Workflows, reminders, handoffs, templates, tracking, and documentation get installed around your real business process."],
-  ["4", "Test, launch, and hand off", "The system gets checked before your business runs it."],
-]
 
 const installedItems = [
   ["Cashflow Control", "Billing handoffs, invoice readiness, payment follow-up, and owner visibility installed around the tools your team already uses."],
@@ -60,18 +53,6 @@ export default function SystemsInstallationSprintPage() {
               <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_50%_50%,rgba(251,252,247,0.95),rgba(251,252,247,0)_68%)] blur-2xl" aria-hidden="true" />
               <Image src="/preview/images/uploaded/2026-05-25-jaden/office-software-workflow-automation-setup.jpg" alt="Office software workflow automation setup for a Systems Installation Sprint." width={1280} height={960} priority sizes="(min-width: 1024px) 38vw, 100vw" className="relative mx-auto h-auto max-h-[620px] w-full rounded-[1.2rem] object-contain" />
             </div>
-          </div>
-        </section>
-
-        <section data-section="sprint-builds" className="bg-white py-12 sm:py-14">
-          <div className={`${shell} grid gap-7 lg:grid-cols-[0.78fr_1.22fr] lg:items-center`}>
-            <div>
-              <h2 className="text-[2.05rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Built for service businesses that want the office side to run as clean as the field work.</h2>
-              <p className="mt-5 text-base font-semibold leading-7 text-[#536173] sm:text-lg">Your team already knows how to do the work. The Sprint installs the office-side system that keeps the request, job, invoice, follow-up, and visibility from depending on memory.</p>
-            </div>
-            <ol className="grid gap-3 sm:grid-cols-2">
-              {process.map(([number, title, body]) => <li key={title} className="rounded-[1.15rem] border border-[#DDEBE2] bg-[#FBFCF7] p-4 text-sm font-bold leading-6 text-[#334B60]"><span className="mr-2 inline-grid h-7 w-7 place-items-center rounded-full bg-[#E7F7EB] text-xs font-black text-[#116832]">{number}</span><span className="text-[#102033]">{title}</span><p className="mt-2 font-semibold text-[#536173]">{body}</p></li>)}
-            </ol>
           </div>
         </section>
 
