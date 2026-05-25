@@ -844,7 +844,7 @@ export function InvoicingDelayCalculatorClient() {
             <div className="text-sm font-bold leading-tight text-[#15803D]">Takes 2 minutes. Rough numbers only. No passwords or sensitive financials.</div>
             <div className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-5xl">$3,000 to $25,000+</div>
             <p className="mt-3 text-sm leading-6 text-slate-700">
-              The calculator shows which leak is costing the business first: collected cash, follow-up, or both. Based on common cash, billing, follow-up, and repeat-customer gaps in service businesses.
+              See whether cash delays, missed follow-up, or both are costing you money.
             </p>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-[#d8ecd9] bg-white p-4 text-sm leading-6 text-slate-700">
@@ -983,12 +983,6 @@ export function InvoicingDelayCalculatorClient() {
               </div>
               <p className="mt-3 text-sm leading-6 text-slate-500">Use your service call, maintenance visit, repair, seasonal service, or repeat job.</p>
             </div>
-          </div>
-          <div className="mx-auto mt-5 grid box-border w-full min-w-0 max-w-full gap-3 rounded-[1.45rem] border border-[#cfe8d5] bg-[#f4fbf5] p-5 text-left sm:grid-cols-[0.85fr_1.15fr] sm:items-center lg:max-w-5xl">
-            <p className="text-2xl font-semibold leading-tight text-[#15803D] sm:text-3xl">500 to 3,000 saved records can hide serious repeat work.</p>
-            <p className="text-sm leading-6 text-slate-700">
-              We count each saved customer once so the estimate does not double-count the same record. The priority is getting the list clean enough to use.
-            </p>
           </div>
         </StepFrame>
       )
