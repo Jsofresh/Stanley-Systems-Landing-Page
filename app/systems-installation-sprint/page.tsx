@@ -8,7 +8,6 @@ import { SiteHeader } from "@/components/hero-section"
 import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-const uploadedImagePath = (src: string) => `${process.env.NEXT_PUBLIC_BASE_PATH || ""}${src}`
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
 const lightButton = "inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]"
 
@@ -59,7 +58,7 @@ export default function SystemsInstallationSprintPage() {
             </div>
             <div className="relative mx-auto w-full max-w-[560px] drop-shadow-[0_26px_54px_rgba(7,29,58,0.10)]">
               <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_50%_50%,rgba(251,252,247,0.95),rgba(251,252,247,0)_68%)] blur-2xl" aria-hidden="true" />
-              <Image src={uploadedImagePath("/images/uploaded/2026-05-25-jaden/office-software-workflow-automation-setup.jpg")} alt="Office software workflow automation setup for a Systems Installation Sprint." width={1280} height={960} priority sizes="(min-width: 1024px) 38vw, 100vw" className="relative mx-auto h-auto max-h-[620px] w-full rounded-[1.2rem] object-contain" />
+              <Image src="/preview/images/uploaded/2026-05-25-jaden/office-software-workflow-automation-setup.jpg" alt="Office software workflow automation setup for a Systems Installation Sprint." width={1280} height={960} priority sizes="(min-width: 1024px) 38vw, 100vw" className="relative mx-auto h-auto max-h-[620px] w-full rounded-[1.2rem] object-contain" />
             </div>
           </div>
         </section>
