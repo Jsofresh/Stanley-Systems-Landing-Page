@@ -135,7 +135,7 @@ export function SystemsThatMakeMoneySection({
             style={{ fontFamily: "var(--font-heading)" }}
             className="text-balance text-[34px] font-extrabold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[44px] lg:text-[50px] [font-family:var(--font-heading)]"
           >
-            Two main systems Stanley Systems can build
+            Systems That Make Your Business Money
           </h2>
           <p className="mx-auto mt-3 max-w-[560px] text-base font-semibold leading-7 text-[#536173]">
             The assessment decides which parts matter most.
