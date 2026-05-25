@@ -183,7 +183,7 @@ function AssessmentPricing() {
               <p className="text-[4.2rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A]">$97</p>
             </div>
             <p className="mt-5 text-base font-semibold leading-7 text-[#334B60]">
-              You are buying a clear breakdown of what is broken, what it is costing you, how to fix it, and what should be worked on first.
+              You are buying a clear breakdown of what is happening now, what it is costing you, how to fix it, and what Stanley Systems can build from it.
             </p>
             <ul className="mt-6 grid gap-3 text-left text-sm font-semibold leading-6 text-[#334B60] sm:grid-cols-2">
               {deliverables.map((item) => (
@@ -217,7 +217,7 @@ function SprintBridge() {
       <div className={`${shell} grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center`}>
         <div>
           <h2 className="text-[2.25rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build it for you?</h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The Cash Flow Assessment gives you the map: what is broken, what it likely costs, how to fix it, and what should be worked on first. If you want Stanley Systems to install the systems instead of doing it yourself, the Systems Installation Sprint is the next step.</p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The Cash Flow Assessment gives you the map: what is happening now, what it is costing, and what Stanley Systems can build from it. If you want Stanley Systems to install the approved systems instead of doing it yourself, the Systems Installation Sprint is the next step.</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </div>
@@ -246,7 +246,7 @@ function HowItWorks() {
         <div>
           <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">What happens after you start</h2>
           <p className="mt-4 max-w-xl text-base leading-7 text-[#536173] sm:text-lg">
-            This is the paid product that shows what Stanley Systems found, how each issue should be fixed, and what should be worked on first.
+            This is the paid product that shows what Stanley Systems found, how each issue should be fixed, and what can be built from it.
           </p>
         </div>
         <ol className="grid gap-3 sm:grid-cols-2">
@@ -274,7 +274,7 @@ function NextSteps() {
     ["Do I need to share passwords?", "No. Do not send passwords. You can start with screen share, exports, screenshots, or a temporary invited user if access is needed."],
     ["Does this replace my current software?", "No. Stanley Systems looks at the handoffs around the tools you already use."],
     ["Will I talk to a real person?", "Yes. The assessment is reviewed by Stanley Systems before a recommendation is made."],
-    ["What happens after the assessment?", "You get the leak map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and what should be worked on first. If you move forward with the Sprint, your $97 assessment counts as a $194 credit."],
+    ["What happens after the assessment?", "You get the map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and what can be built from it. If you move forward with the Sprint, your $97 assessment counts as a $194 credit."],
     ["What if I already know what I want?", "You can still start with the assessment to confirm the full fix list before installation, or talk before buying if you need a quick route check."],
   ]
 

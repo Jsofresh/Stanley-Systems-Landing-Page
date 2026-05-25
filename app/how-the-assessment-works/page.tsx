@@ -46,10 +46,10 @@ const timeline = [
   ["1", "Buy the assessment", "You start the paid Cash Flow Assessment. It is the product, not a pretext for a sales call."],
   ["2", "Share how the office works", "A walkthrough, screen share, exports, screenshots, or temporary invited access can be used. Do not send passwords."],
   ["3", "Stanley Systems reviews the money path", "Calls, estimates, jobs, invoices, payment follow-up, reviews, referrals, past customers, and office handoffs get checked."],
-  ["4", "Receive the map", "You get what is broken, what it likely costs, how to fix it, and what should be worked on first."],
+  ["4", "Receive the map", "You get what is happening now, what it is costing, and what Stanley Systems can build from it."],
 ]
 const prep = ["No passwords needed", "Best available records are enough", "Screen share can work", "Exports or screenshots can help", "Your current tools stay in place"]
-const deliverables = ["Office-side leak map", "Fix list for every problem found", "Likely payoff of each fix", "Build priorities", "Sprint bridge if you want Stanley Systems to build"]
+const deliverables = ["Office-side map", "Fix list for every problem found", "Likely payoff of each fix", "Build options", "Sprint bridge if you want Stanley Systems to build"]
 const faqs = [
   ["Do I need to know the exact problem first?", "No. You only need to show how calls, estimates, invoices, follow-up, and customer records work today."],
   ["Do I need to share passwords?", "No. Do not send passwords. Use screen share, exports, screenshots, or temporary invited access if records are needed."],
@@ -63,7 +63,7 @@ function SprintBridge() {
       <div className={`${shell} grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
         <div>
           <h2 className="text-[2.05rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build it for you?</h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The Cash Flow Assessment gives the map: what is broken, what it likely costs, how to fix it, and what should be worked on first. If you want Stanley Systems to install the systems instead of doing it yourself, the Systems Installation Sprint is the next step.</p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The Cash Flow Assessment gives the map: what is happening now, what it is costing, and what Stanley Systems can build from it. If you want Stanley Systems to install the approved systems instead of doing it yourself, the Systems Installation Sprint is the next step.</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href="/systems-installation-sprint" className={greenButton}>See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </div>
@@ -166,7 +166,7 @@ export default function HowAssessmentWorksPage() {
             </div>
             <div className="mt-8 rounded-[1.6rem] border border-[#BFE4C8] bg-[#F4FBF5] p-6 text-center shadow-[0_18px_52px_rgba(7,29,58,0.055)]">
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Ready to start?</h2>
-              <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems will find the office-side leaks, show the fix list, and tell you what should be worked on first.</p>
+              <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems will map the office-side issues, show the fix list, and explain what can be built from it.</p>
               <div className="mt-5 flex justify-center">
                 <AssessmentCheckout location="how_assessment_final_primary">
                   Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />

@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 }
 
 const process = [
-  ["1", "Start with the Cash Flow Assessment", "Stanley Systems finds the leaks, delays, handoff gaps, and follow-up problems."],
-  ["2", "Choose what to build", "You approve the Sprint scope before anything is built."],
-  ["3", "Stanley Systems installs the agreed workflows", "Handoffs, reminders, templates, automations, tracking, and documentation get built."],
+  ["1", "Start with the Cash Flow Assessment", "Stanley Systems looks at how work, money, customers, and follow-up move through the business."],
+  ["2", "Choose what you want installed", "You approve the Sprint scope before anything is built."],
+  ["3", "Stanley Systems builds the approved systems", "Workflows, reminders, templates, automations, tracking, and documentation get installed around your real business process."],
   ["4", "Test, launch, and hand off", "The system gets checked before your team uses it."],
 ]
 
@@ -70,11 +70,11 @@ export default function SystemsInstallationSprintPage() {
         <section data-section="sprint-builds" className="bg-white py-12 sm:py-14">
           <div className={`${shell} grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-center`}>
             <div className="rounded-[1.7rem] border border-[#DDEBE2] bg-[#FBFCF7] p-6 shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">What Stanley Systems actually builds</h2>
-              <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">Stanley Systems builds the workflows, reminders, handoffs, tracking, templates, and tool setup that move work from customer request to final bill — then keep reviews, referrals, and past-customer follow-up from depending on memory.</p>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">What Stanley Systems installs</h2>
+              <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">Stanley Systems installs the workflows, reminders, handoffs, tracking, templates, and tool setup that help the office side keep up with the work your business is already doing.</p>
             </div>
             <div>
-              <h2 className="text-[2.05rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Built for service businesses where the work gets done, but the follow-up slips.</h2>
+              <h2 className="text-[2.05rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Built for service businesses that already do good work — and want the systems around that work to keep up.</h2>
               <ol className="mt-6 grid gap-3 sm:grid-cols-2">
                 {process.map(([number, title, body]) => <li key={title} className="rounded-[1.15rem] border border-[#DDEBE2] bg-white p-4 text-sm font-bold leading-6 text-[#334B60]"><span className="mr-2 inline-grid h-7 w-7 place-items-center rounded-full bg-[#E7F7EB] text-xs font-black text-[#116832]">{number}</span><span className="text-[#102033]">{title}</span><p className="mt-2 font-semibold text-[#536173]">{body}</p></li>)}
               </ol>
@@ -85,8 +85,8 @@ export default function SystemsInstallationSprintPage() {
         <section data-section="sprint-finished-output" className="bg-[#F4FBF5] py-12 sm:py-14">
           <div className={shell}>
             <div className="mx-auto max-w-4xl text-center">
-              <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What a finished Sprint can put in place</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Every Sprint is scoped from the assessment, but the finished build can include workflows like these:</p>
+              <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Systems the Installation Sprint puts in place</h2>
+              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Your Sprint is scoped around the system or mix of systems you want installed. These are common builds Stanley Systems puts in place for service businesses.</p>
             </div>
             <div className="mt-7 grid gap-4 lg:grid-cols-5">
               {finishedSprintCards.map(([title, body]) => <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)]"><h3 className="text-xl font-semibold tracking-[-0.035em] text-[#102033]">{title}</h3><p className="mt-4 text-sm font-semibold leading-6 text-[#536173]">{body}</p></article>)}
@@ -101,7 +101,7 @@ export default function SystemsInstallationSprintPage() {
               <p className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-[#102033]">Systems Installation Sprint at $1,500.</p>
             </div>
             <div className="rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_18px_52px_rgba(7,29,58,0.06)]">
-              <p className="text-base font-semibold leading-7 text-[#536173]">Most Sprints focus on the highest-cost workflow found in the assessment: customer invoice/request to final bill, estimate follow-up, reviews/referrals, past-customer follow-up, or a scoped custom workflow.</p>
+              <p className="text-base font-semibold leading-7 text-[#536173]">The Systems Installation Sprint is scoped around the workflow or mix of workflows you approve before the build starts. Common builds include customer request to final bill, estimate follow-up, reviews and referrals, repeat-customer follow-up, owner/team visibility, or a custom workflow your business needs.</p>
               <p className="mt-4 text-base font-extrabold leading-7 text-[#116832]">Before anything is built, you approve the Sprint scope. Your Cash Flow Assessment can count as a $194 credit toward the Sprint.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
