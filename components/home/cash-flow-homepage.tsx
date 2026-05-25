@@ -215,7 +215,7 @@ function CalculatorLaunchSection() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_82%_18%,rgba(83,217,134,0.22),transparent_30%),linear-gradient(90deg,#071422_0%,#0b1d30_100%)]" />
       <div className="mx-auto flex max-w-[88rem] flex-col items-center justify-between gap-5 rounded-[1.7rem] border border-white/12 bg-white/[0.06] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.25)] md:p-6 lg:flex-row">
         <h2 className="whitespace-normal text-center text-[clamp(2rem,3.2vw,3.7rem)] font-extrabold leading-[0.95] tracking-[-0.025em] lg:whitespace-nowrap lg:text-left">
-          Start the free Cash Flow Calculator.
+          Try the free Cash Flow Calculator
         </h2>
         <CTALink
           href={calculatorHref}
@@ -260,7 +260,7 @@ function CalculatorSpine() {
       <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
           <h2 className="max-w-[680px] text-balance text-[clamp(2.15rem,4.4vw,4.75rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-[#071D3A]">
-            Start the free Cash Flow Calculator.
+            Try the free Cash Flow Calculator
           </h2>
 
           <div className="mt-5 grid gap-2.5">
@@ -305,7 +305,7 @@ function CalculatorSpine() {
             </CTALink>
           </div>
           <p className="mt-4 text-sm font-semibold text-[#607588]">
-            No perfect numbers needed. Use your best guess.
+            Takes 2 minutes. Rough numbers only. No passwords or sensitive financials.
           </p>
         </div>
         <UploadedSectionImage
@@ -439,15 +439,15 @@ function SprintSection() {
         <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <div>
             <h2 className="max-w-[760px] text-balance text-[clamp(2rem,4.1vw,4.35rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
-              Then Stanley Systems builds what the assessment shows you need.
+              Stanley Systems Builds What Your Business Needs
             </h2>
             <p className="mt-4 max-w-[650px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">
-              The Sprint turns the assessment plan into live workflows, handoffs, reminders, and controls your team can use.
+              If you want implementation, the Cash Flow Assessment shapes the Sprint. Stanley Systems then installs the approved mix of workflows your business needs.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-            <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="See how the Sprint works" className={`${greenButton} px-8`}>
-              See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" />
+            <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="How the Sprint works" className={`${lightButton} px-8`}>
+              How the Sprint works <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
             <CTALink href={assessmentHref} kind="systems" location="home_sprint_secondary" ctaLabel="Start the Cash Flow Assessment" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">
               Start the Cash Flow Assessment
@@ -473,7 +473,7 @@ function PackageDemosSection() {
       <div className="mx-auto max-w-[88rem]">
         <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <h2 className="max-w-[760px] text-balance text-[clamp(2rem,4vw,4.25rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
-            Pick the system that fixes the right business problem.
+            Systems That Make Your Business Money
           </h2>
           <p className="max-w-[650px] text-lg font-semibold leading-8 text-[#536173]">
             Cashflow Control gets bills and payment follow-up moving faster.
@@ -504,9 +504,9 @@ function PackageDemosSection() {
                     kind="systems"
                     location={`home_package_${demo.priceId}_assessment`}
                     ctaLabel="Cash Flow Assessment"
-                    className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-5 text-sm font-extrabold text-white shadow-[0_16px_32px_rgba(21,128,61,0.22)] transition group-hover:bg-[#116f35] hover:-translate-y-0.5"
+                    className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d5e5da] bg-white px-5 text-sm font-extrabold text-[#116832] transition hover:bg-[#f4fbf6]"
                   >
-                    Cash Flow Assessment
+                    Start the Cash Flow Assessment
                   </CTALink>
                   <p className="mt-3 rounded-full bg-[#eaf7ee] px-3 py-1 text-center text-xs font-extrabold text-[#15803D]">
                     {price?.setupFeeDisplay} · Assessment credit available

@@ -43,7 +43,8 @@ const footerLinks: FooterSection[] = [
   {
     label: "Company",
     links: [
-      { title: "How we work", href: "/how-stanley-systems-works" },
+      { title: "About", href: "/about" },
+      { title: "How Stanley Systems Works", href: "/how-stanley-systems-works" },
       { title: "Pricing", href: "/pricing" },
       { title: "Proof", href: "/stanley-systems-case-study" },
       { title: "Blog", href: "/blog" },

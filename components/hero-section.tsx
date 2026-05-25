@@ -47,9 +47,9 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(690px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-[1fr_230px]",
     items: [
+      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Turn the assessment plan into working systems." },
       { label: "Cashflow Control System", href: "/systems/cashflow-control", description: "Turn finished work into collected cash faster." },
       { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "Bring back past customers, reviews, referrals, and missed calls." },
-      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Turn the assessment plan into working systems." },
     ],
     featured: {
       title: "Not sure where money is stuck?",
@@ -364,7 +364,7 @@ export function SiteHeader() {
             >
               Start the Cash Flow Assessment
             </CTALink>
-            <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How it Works</a>
+            <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How the Assessment Works</a>
           </div>
           <button
             type="button"

@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 }
 
 const automations = [
-  ["Past customer follow-up", "Bring old customers back with simple reminders and next-step messages."],
-  ["Review asks", "Ask happy customers while the good job is still fresh."],
-  ["Referral asks", "Give trusted customers a clean way to send the next lead."],
+  ["Past customer follow-up", "Past customers get timed follow-up instead of disappearing after the job is done."],
+  ["Review asks", "Stanley Systems can automatically ask happy customers for a Google review after a completed job, while they are most likely to respond."],
+  ["Referral asks", "The referral system gives customers a reason to send friends your way, creating more customer opportunities from work you already earned."],
   ["Missed-call recovery", "Keep new demand from disappearing when the office is busy."],
-  ["Private feedback routing", "Catch unhappy feedback before it turns into a public problem."],
+  ["Private feedback routing", "Unhappy replies get routed privately so your team can respond before the issue becomes a public review."],
   ["Shop-specific follow-up", "Build the follow-up gaps that matter in your shop, even when they are too specific to list publicly."],
 ]
 
