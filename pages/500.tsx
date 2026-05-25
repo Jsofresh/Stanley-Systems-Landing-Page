@@ -8,3 +8,7 @@ export default function Custom500() {
     </main>
   )
 }
+
+export async function getStaticProps() {
+  return { props: {} }
+}
