@@ -22,7 +22,15 @@ const automations = [
   ["Invoice movement", "Keep completed work moving toward billing instead of sitting in office memory."],
   ["Payment follow-up", "Keep open balances visible until the next follow-up is owned."],
   ["Owner visibility", "Show what is stuck, who owns it, and what needs attention."],
-  ["Shop-specific fixes", "Fix the weird gaps that only show up in your office, your software, and your team’s process."],
+  ["Shop-specific fixes", "Fix the gaps that show up in your office, your software, and your team’s process."],
+]
+
+const buildBullets = [
+  "Capture job details the office needs.",
+  "Show what is ready to bill.",
+  "Keep invoice and payment follow-up visible.",
+  "Route exceptions to a human.",
+  "Give the team a cleaner handoff.",
 ]
 
 function CashflowHeroVisual() {
@@ -56,7 +64,7 @@ export default function SystemPage() {
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60] sm:text-xl">Cash gets slowed down long before the invoice is overdue. Cashflow Control automates the handoffs from customer intake to completed work, invoicing, follow-up, and collected payment.</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/contact?path=pre-buy" className={lightButton}>Ask a question</Link>
+                <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
               </div>
             </div>
             <CashflowHeroVisual />
@@ -80,20 +88,18 @@ export default function SystemPage() {
           </div>
         </section>
 
-        <section data-section="cashflow-sprint-bridge" className="bg-[#F4FBF5] py-14 sm:py-16">
-          <div className={`${shell} grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
+        <section data-section="cashflow-sprint-build" className="bg-[#F4FBF5] py-14 sm:py-16">
+          <div className={`${shell} grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-center`}>
             <div>
-              <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">The Sprint is not limited to this page.</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Every shop leaks money in a different place. Some need faster billing. Some need better follow-up. Some need old customers, reviews, referrals, or missed calls cleaned up. The Cash Flow Assessment shows what is actually slowing the business down, then Stanley Systems builds the fix that fits.</p>
-              <p className="mt-3 text-sm font-bold leading-6 text-[#607080]">Some fixes are too specific to list on a public page. If the assessment finds a gap that matters to your shop, the Sprint can build around it.</p>
-            </div>
-            <div className="rounded-[2rem] border border-[#BFE4C8] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.13)]">
-              <h3 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Install the systems your business needs most.</h3>
-              <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">The Systems Installation Sprint can include fixes from Cashflow Control, Repeat Revenue, or a shop-specific need found in the assessment.</p>
+              <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">How Cashflow Control gets built</h2>
+              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">If the assessment shows billing, payment follow-up, or office handoffs are slowing cash down, the Systems Installation Sprint can build Cashflow Control as part of the agreed scope.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/how-the-assessment-works" className={lightButton}>See how it works</Link>
+                <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
               </div>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {buildBullets.map((item) => <div key={item} className="rounded-[1.25rem] border border-[#DDEBE2] bg-white p-4 text-sm font-bold leading-6 text-[#334B60] shadow-[0_10px_24px_rgba(7,29,58,0.035)]"><CheckCircle2 className="mb-3 h-5 w-5 text-[#15803D]" />{item}</div>)}
             </div>
           </div>
         </section>

@@ -8,6 +8,7 @@ import { SystemsThatMakeMoneySection } from "@/components/home/SystemsThatMakeMo
 
 const calculatorHref = "/invoicing-delay-cash-flow-calculator";
 const assessmentHref = "/workflow-audit";
+const sprintHref = "/systems-installation-sprint";
 
 const heroSlideshowImages = [
   {
@@ -48,7 +49,7 @@ const uploadedHomeImages = {
   },
   assessment: {
     src: "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-report-leak-found-6200-mo.jpg",
-    alt: "Cash Flow Assessment report showing a 6200 dollar monthly leak and first fix",
+    alt: "Cash Flow Assessment report showing a 6200 dollar monthly leak and build priority",
     width: 1024,
     height: 1280,
   },
@@ -207,6 +208,44 @@ function HeroImageSlideshow() {
   );
 }
 
+function OfferPathSection() {
+  const steps = [
+    { title: "Free Calculator", body: "See where money may be delayed, missed, or wasted." },
+    { title: "Cash Flow Assessment — $97", body: "Stanley Systems maps the office-side leaks, what they likely cost, and what should be fixed first." },
+    { title: "Systems Installation Sprint — $1,500", body: "Stanley Systems builds the systems your business chooses to put in place after the assessment." },
+    { title: "Monthly Control — optional after the Sprint", body: "Keep the systems checked, adjusted, and from quietly breaking as the business keeps running." },
+  ];
+
+  return (
+    <PageSection className="bg-white text-[#071D3A]">
+      <div className="mx-auto max-w-[88rem]">
+        <div className="grid gap-6 lg:grid-cols-[0.84fr_1.16fr] lg:items-end">
+          <h2 className="max-w-[780px] text-balance text-[clamp(2.05rem,4.6vw,4.9rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
+            Find the leak. Map the fix. Build the system.
+          </h2>
+          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <CTALink href={calculatorHref} kind="calculator" location="home_offer_path_calculator" analyticsEvent="calculator_cta_clicked" ctaLabel="Run the free calculator" className={`${greenButton} px-7`}>
+              Run the free calculator <ArrowRight className="ml-2 h-4 w-4" />
+            </CTALink>
+            <CTALink href={sprintHref} kind="systems" location="home_offer_path_sprint" ctaLabel="See how the Sprint works" className={`${lightButton} px-7`}>
+              See how the Sprint works
+            </CTALink>
+          </div>
+        </div>
+        <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {steps.map((step, index) => (
+            <article key={step.title} className="rounded-[1.45rem] border border-[#d9e7df] bg-[#FBFCF7] p-5 shadow-[0_14px_36px_rgba(7,29,58,0.055)]">
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-[#E7F7EB] text-sm font-extrabold text-[#116832]">{index + 1}</span>
+              <h3 className="mt-4 text-[1.35rem] font-extrabold leading-tight tracking-[-0.025em] text-[#071D3A]">{step.title}</h3>
+              <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </PageSection>
+  );
+}
+
 function CalculatorLaunchSection() {
   return (
     <PageSection className="relative isolate overflow-hidden bg-[#081827] py-6 text-white md:py-7 lg:py-8">
@@ -220,10 +259,10 @@ function CalculatorLaunchSection() {
           kind="calculator"
           location="home_post_hero_calculator_primary"
           analyticsEvent="calculator_cta_clicked"
-          ctaLabel="Start the free calculator"
+          ctaLabel="Run the free calculator"
           className={`${greenButton} w-full min-h-[60px] px-10 text-[1.15rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_24px_56px_rgba(83,217,134,0.32)] sm:w-auto`}
         >
-          Start the free calculator <ArrowRight className="ml-2 h-5 w-5" />
+          Run the free calculator <ArrowRight className="ml-2 h-5 w-5" />
         </CTALink>
       </div>
     </PageSection>
@@ -240,12 +279,12 @@ function CalculatorSpine() {
     {
       label: "2",
       title: "See the annual leak",
-      copy: "See the yearly money leak.",
+      copy: "See where money may be delayed, missed, or wasted.",
     },
     {
       label: "3",
-      title: "Pick the first fix",
-      copy: "Know what to fix first.",
+      title: "See what to check first",
+      copy: "Know whether cash, follow-up, or both need a closer look.",
     },
   ];
 
@@ -258,7 +297,7 @@ function CalculatorSpine() {
       <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
           <h2 className="max-w-[680px] text-balance text-[clamp(2.15rem,4.4vw,4.75rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-[#071D3A]">
-            Use the free calculator to see what your business is losing.
+            Start the free Cash Flow Calculator.
           </h2>
 
           <div className="mt-5 grid gap-2.5">
@@ -287,10 +326,10 @@ function CalculatorSpine() {
               kind="calculator"
               location="home_calculator_spine_primary"
               analyticsEvent="calculator_cta_clicked"
-              ctaLabel="Start the free calculator"
+              ctaLabel="Run the free calculator"
               className={`${greenButton} whitespace-nowrap px-7`}
             >
-              Start the free calculator <ArrowRight className="ml-2 h-4 w-4" />
+              Run the free calculator <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
             <CTALink
               href={assessmentHref}
@@ -299,7 +338,7 @@ function CalculatorSpine() {
               ctaLabel="Start the Cash Flow Assessment"
               className={`${lightButton} whitespace-nowrap`}
             >
-              Cash Flow Assessment
+              Start the Cash Flow Assessment
             </CTALink>
           </div>
           <p className="mt-4 text-sm font-semibold text-[#607588]">
@@ -339,10 +378,10 @@ function LeakTypesSection() {
             kind="calculator"
             location="home_leaks_primary"
             analyticsEvent="calculator_cta_clicked"
-            ctaLabel="Start the free calculator"
+            ctaLabel="Run the free calculator"
             className={`${greenButton} min-h-[58px] px-9 text-[1.08rem]`}
           >
-            Start the free calculator <ArrowRight className="ml-2 h-5 w-5" />
+            Run the free calculator <ArrowRight className="ml-2 h-5 w-5" />
           </CTALink>
           <CTALink
             href={assessmentHref}
@@ -372,11 +411,17 @@ function AssessmentSection() {
           <h2 className="max-w-[720px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
             Start with the Cash Flow Assessment.
           </h2>
-          <p className="mt-4 max-w-[620px] text-base font-semibold leading-7 text-white/72">
+          <p className="mt-4 max-w-[680px] text-base font-semibold leading-7 text-white/72">
             Stanley Systems shows where money is being missed, what it likely
-            costs, how to fix every problem found, and which fix should happen
-            first.
+            costs, how to fix every problem found, and what should be worked on
+            first. You can use the assessment yourself, or use it as the plan
+            for a Systems Installation Sprint.
           </p>
+          <ul className="mt-5 grid max-w-[720px] gap-2 text-sm font-semibold leading-6 text-white/78 sm:grid-cols-2">
+            {["Office-side leak map", "Fix list for every problem found", "Expected result of each fix", "Build priorities if Stanley Systems installs it"].map((item) => (
+              <li key={item} className="flex gap-2 rounded-2xl border border-white/10 bg-white/7 px-3 py-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#53d986]" />{item}</li>
+            ))}
+          </ul>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <CTALink
               href={assessmentHref}
@@ -394,14 +439,13 @@ function AssessmentSection() {
               <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
             <CTALink
-              href={calculatorHref}
-              kind="calculator"
+              href={sprintHref}
+              kind="systems"
               location="home_assessment_secondary"
-              analyticsEvent="calculator_cta_clicked"
-              ctaLabel="Calculate the leak"
+              ctaLabel="See how the Sprint works"
               className={darkGhostButton}
             >
-              Calculate the leak
+              See how the Sprint works
             </CTALink>
           </div>
         </div>
@@ -418,6 +462,48 @@ function AssessmentSection() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#071422] to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#071422] to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#071422] to-transparent" />
+        </div>
+      </div>
+    </PageSection>
+  );
+}
+
+function SprintSection() {
+  const items = [
+    "Build Cashflow Control, Repeat Revenue, or both.",
+    "Install the mix of systems your assessment calls for.",
+    "Clean up handoffs between calls, estimates, jobs, invoices, payments, reviews, referrals, and past customers.",
+    "Connect the tools, records, reminders, and follow-up steps your team actually uses.",
+  ];
+  return (
+    <PageSection id="sprint" className="bg-[#FBFCF7] text-[#071D3A]">
+      <div className="mx-auto grid max-w-[88rem] gap-7 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
+        <div>
+          <h2 className="max-w-[760px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
+            Then Stanley Systems builds the systems your business needs.
+          </h2>
+          <p className="mt-5 max-w-[650px] text-lg font-semibold leading-8 text-[#536173]">
+            The Cash Flow Assessment gives you the map. The Systems Installation Sprint turns that map into working systems for cash, follow-up, reviews, referrals, repeat work, and office handoffs.
+          </p>
+          <p className="mt-4 max-w-[620px] rounded-2xl border border-[#D8E8DE] bg-white p-4 text-sm font-extrabold leading-6 text-[#244938]">
+            Systems Installation Sprint: $1,500. Scope can include Cashflow Control, Repeat Revenue, both, a scoped mix, or another agreed Stanley Systems system.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="See how the Sprint works" className={`${greenButton} px-8`}>
+              See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" />
+            </CTALink>
+            <CTALink href={assessmentHref} kind="systems" location="home_sprint_secondary" ctaLabel="Start the Cash Flow Assessment" className={lightButton}>
+              Start the Cash Flow Assessment
+            </CTALink>
+          </div>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {items.map((item) => (
+            <div key={item} className="rounded-[1.35rem] border border-[#d9e7df] bg-white p-5 shadow-[0_14px_36px_rgba(7,29,58,0.055)]">
+              <CheckCircle2 className="h-5 w-5 text-[#15803D]" />
+              <p className="mt-3 text-sm font-bold leading-6 text-[#334B60]">{item}</p>
+            </div>
+          ))}
         </div>
       </div>
     </PageSection>
@@ -535,8 +621,9 @@ function BeforeAfterProofSection() {
             How your business improves with Stanley Systems.
           </h2>
           <p className="mt-5 max-w-[620px] text-lg font-semibold leading-8 text-[#536173]">
-            Stanley Systems fixes the office work that gets bills out faster,
-            keeps payment follow-up moving, and brings past customers back.
+            Stanley Systems fixes the office work between customer requests,
+            estimates, scheduling, billing, payment follow-up, reviews,
+            referrals, and repeat work.
           </p>
         </div>
         <UploadedSectionImage
@@ -573,12 +660,12 @@ function FinalCashFlowCTA() {
     <PageSection className="bg-[#071422] text-white" navTheme="dark">
       <div className="mx-auto max-w-[82rem] text-center">
         <h2 className="mx-auto max-w-[900px] text-balance text-[clamp(2.4rem,6vw,6rem)] font-extrabold leading-[0.92] tracking-[-0.025em]">
-          Stop letting finished work and good customers slip away.
+          Stop letting cash, follow-up, and good customers slip through the cracks.
         </h2>
         <p className="mx-auto mt-6 max-w-[720px] text-lg font-semibold leading-8 text-white/70">
-          The calculator gives you the rough signal. The Cash Flow Assessment
-          shows the actual problems, the full fix list, and what should be
-          built first.
+          Run the free calculator for a rough signal. Start the Cash Flow Assessment
+          when you want the full map. If you want Stanley Systems to build the
+          systems, the Sprint is the next step.
         </p>
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <CTALink
@@ -596,10 +683,10 @@ function FinalCashFlowCTA() {
             kind="calculator"
             location="home_final_secondary"
             analyticsEvent="calculator_cta_clicked"
-            ctaLabel="Calculate the leak"
+            ctaLabel="Run the free calculator"
             className={darkGhostButton}
           >
-            Calculate the leak
+            Run the free calculator
           </CTALink>
         </div>
       </div>
@@ -633,10 +720,10 @@ export function CashFlowHomepage() {
                 kind="calculator"
                 location="home_hero_primary"
                 analyticsEvent="calculator_cta_clicked"
-                ctaLabel="Start the free calculator"
+                ctaLabel="Run the free calculator"
                 className={`${greenButton} px-8 text-[1.05rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02]`}
               >
-                Start the free calculator{" "}
+                Run the free calculator{" "}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </CTALink>
               <CTALink
@@ -652,10 +739,11 @@ export function CashFlowHomepage() {
           </div>
         </div>
       </section>
+      <OfferPathSection />
       <CalculatorLaunchSection />
       <CalculatorSpine />
-      <LeakTypesSection />
       <AssessmentSection />
+      <SprintSection />
       <SystemsThatMakeMoneySection />
       <BeforeAfterProofSection />
       <FinalCashFlowCTA />

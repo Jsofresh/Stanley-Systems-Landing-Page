@@ -28,6 +28,7 @@ const footerLinks: FooterSection[] = [
     links: [
       { title: "Cashflow Control System", href: "/systems/cashflow-control" },
       { title: "Repeat Revenue System", href: "/systems/repeat-revenue" },
+      { title: "Systems Installation Sprint", href: "/systems-installation-sprint" },
       { title: "Speed up invoicing", href: "/speed-up-invoicing-for-service-businesses" },
       { title: "Missed estimate follow-up", href: "/missed-estimate-follow-up-for-service-businesses" },
       { title: "Office handoff problems", href: "/office-handoff-problems-in-field-service-businesses" },
@@ -46,7 +47,7 @@ const footerLinks: FooterSection[] = [
     links: [
       { title: "How we work", href: "/how-stanley-systems-works" },
       { title: "Pricing", href: "/pricing" },
-      { title: "Systems", href: "/#systems" },
+      { title: "Systems", href: "/systems" },
       { title: "Proof", href: "/stanley-systems-case-study" },
       { title: "Blog", href: "/blog" },
       { title: "Contact", href: "/contact" },
@@ -78,11 +79,8 @@ export function Footer() {
       <div className="absolute left-1/2 right-1/2 top-0 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-300 blur" />
 
       <div className="mb-6 hidden w-full rounded-[1.5rem] border border-[#dfe7ee] bg-[#f8fbfc] px-5 py-4 text-center shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:block sm:px-6">
+        <p className="mb-3 text-sm font-semibold text-slate-600">Start with the Cash Flow Assessment, see how the Sprint works, or ask us a question.</p>
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-          <a href="tel:+16179586372" className="inline-flex items-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6] sm:text-base">
-            <Phone className="mr-2 h-4 w-4" />
-            Call now
-          </a>
           <a
             href={auditHref}
             target="_blank"
@@ -98,6 +96,8 @@ export function Footer() {
           >
             Start the Cash Flow Assessment
           </a>
+          <Link href="/systems-installation-sprint" className="text-sm font-bold text-[#116832] underline underline-offset-4">See how the Sprint works</Link>
+          <Link href="/contact?path=pre-buy" className="text-sm font-bold text-[#116832] underline underline-offset-4">Ask us a question</Link>
         </div>
       </div>
 
@@ -151,7 +151,7 @@ export function Footer() {
       </div>
 
       <div className="mt-8 hidden w-full border-t border-slate-200 pt-6 md:block">
-        <p className="text-center text-xs text-slate-400">Start the Cash Flow Assessment, ask us a question, or call if you want the fastest answer.</p>
+        <p className="text-center text-xs text-slate-400">Start with the Cash Flow Assessment, see how the Sprint works, or ask us a question.</p>
       </div>
     </footer>
   )

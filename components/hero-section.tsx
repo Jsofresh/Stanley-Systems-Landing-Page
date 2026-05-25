@@ -41,15 +41,15 @@ type MegaMenuGroup = {
 const navGroups: MegaMenuGroup[] = [
   {
     label: "Systems",
-    href: "/#systems",
+    href: "/systems",
     eyebrow: "Revenue Systems",
-    summary: "Pick the system by the leak: cash stuck after the job, or customers slipping after the first sale.",
+    summary: "Cash, follow-up, and office handoff systems Stanley Systems can build after the assessment.",
     widthClass: "w-[min(690px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-[1fr_230px]",
     items: [
       { label: "Cashflow Control System", href: "/systems/cashflow-control", description: "Turn finished work into collected cash faster." },
       { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "Bring back past customers, reviews, referrals, and missed calls." },
-      { label: "Both Systems", href: "/systems/both-systems", description: "Buy both leak systems together." },
+      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Turn the assessment plan into working systems." },
     ],
     featured: {
       title: "Not sure where money is stuck?",
@@ -86,13 +86,27 @@ const navGroups: MegaMenuGroup[] = [
     label: "Assessment",
     href: "/workflow-audit",
     eyebrow: "Find the fix list",
-    summary: "The assessment finds the money leaks and shows what should be built first.",
+    summary: "Use the calculator, buy the assessment, then use the Sprint if you want Stanley Systems to build it.",
     widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Cash Flow Assessment", href: "/workflow-audit", description: "Get the full fix list before the build path." },
-      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the assessment." },
-      { label: "How the assessment works", href: "/how-the-assessment-works", description: "See what gets checked before starting." },
+      { label: "Free Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the assessment." },
+      { label: "Cash Flow Assessment", href: "/workflow-audit", description: "Get what is broken, what it costs, and how to fix it." },
+      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Have Stanley Systems build the agreed systems." },
+      { label: "How the Assessment Works", href: "/how-the-assessment-works", description: "See what gets checked before starting." },
+    ],
+  },
+  {
+    label: "Pricing",
+    href: "/pricing",
+    eyebrow: "Diagnose, build, maintain",
+    summary: "Start with the assessment, build during the Sprint, and keep systems working after launch.",
+    widthClass: "w-[min(420px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-1",
+    items: [
+      { label: "Pricing", href: "/pricing", description: "See the assessment, Sprint, and Monthly Control ladder." },
+      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Starts at $1,500 after assessment scope." },
+      { label: "Ask us a question", href: "/contact?path=pre-buy", description: "Ask before buying if you need a quick route check." },
     ],
   },
   {
@@ -301,6 +315,7 @@ export function SiteHeader() {
             <a href="/systems/cashflow-control" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Cashflow Control</a>
             <a href="/systems/repeat-revenue" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Repeat Revenue</a>
             <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Calculator</a>
+            <a href="/pricing" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Pricing</a>
             <a href="/contact" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
           </div>
         </div>

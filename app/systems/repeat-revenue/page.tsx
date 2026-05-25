@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
-import { FadedImage } from "@/components/faded-image"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 
@@ -25,6 +24,13 @@ const automations = [
   ["Shop-specific follow-up", "Build the follow-up gaps that matter in your shop, even when they are too specific to list publicly."],
 ]
 const leakCards = ["Past customers are not contacted again.", "Reviews and referrals depend on memory.", "Missed calls go cold before anyone owns the next step.", "Good jobs end without creating the next lead."]
+const buildBullets = [
+  "Follow up with missed calls before the lead disappears.",
+  "Ask happy customers for reviews while the job is fresh.",
+  "Give customers a clean referral path.",
+  "Bring past customers back before they go cold.",
+  "Route replies and exceptions to the right person.",
+]
 
 export default function SystemPage() {
   return (
@@ -39,7 +45,7 @@ export default function SystemPage() {
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60] sm:text-xl">Use this system category when past customers, reviews, referrals, missed calls, and follow-up are not being worked consistently.</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link>
+                <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
               </div>
               <p className="mt-4 max-w-xl text-sm font-bold leading-6 text-[#607080]">Customers can choose individual automations, but Repeat Revenue works best when the billing, customer record, and follow-up handoffs are clean too.</p>
             </div>
@@ -69,19 +75,18 @@ export default function SystemPage() {
           </div>
         </section>
 
-        <section data-section="repeat-sprint-bridge" className="bg-[#F4FBF5] py-14 sm:py-16">
-          <div className={`${shell} grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
+        <section data-section="repeat-sprint-build" className="bg-[#F4FBF5] py-14 sm:py-16">
+          <div className={`${shell} grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-center`}>
             <div>
-              <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">The Sprint can include Repeat Revenue, Cashflow Control, or both.</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Some shops need old customers and referrals cleaned up first. Some need faster billing before follow-up can work. The Cash Flow Assessment shows what is actually slowing the business down, then Stanley Systems builds the fix that fits.</p>
-            </div>
-            <div className="rounded-[2rem] border border-[#BFE4C8] bg-white p-6 shadow-[0_24px_70px_rgba(21,128,61,0.13)]">
-              <h3 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Build the follow-up system your shop will actually use.</h3>
-              <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">The Systems Installation Sprint builds the first full version of the systems your business chooses to put in place.</p>
+              <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">How Repeat Revenue gets built</h2>
+              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">If the assessment shows missed calls, reviews, referrals, past customers, or follow-up are not being worked consistently, the Systems Installation Sprint can build Repeat Revenue as part of the agreed scope.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/how-the-assessment-works" className={lightButton}>See how it works</Link>
+                <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
               </div>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {buildBullets.map((item) => <div key={item} className="rounded-[1.25rem] border border-[#DDEBE2] bg-white p-4 text-sm font-bold leading-6 text-[#334B60] shadow-[0_10px_24px_rgba(7,29,58,0.035)]"><CheckCircle2 className="mb-3 h-5 w-5 text-[#15803D]" />{item}</div>)}
             </div>
           </div>
         </section>
