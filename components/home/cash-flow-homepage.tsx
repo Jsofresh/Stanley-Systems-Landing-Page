@@ -299,7 +299,7 @@ function CalculatorSpine() {
               kind="systems"
               location="home_calculator_spine_secondary"
               ctaLabel="Start the Cash Flow Assessment"
-              className={`${lightButton} hidden whitespace-nowrap sm:inline-flex`}
+              className={`${lightButton} !hidden whitespace-nowrap sm:!inline-flex`}
             >
               Start the Cash Flow Assessment
             </CTALink>
