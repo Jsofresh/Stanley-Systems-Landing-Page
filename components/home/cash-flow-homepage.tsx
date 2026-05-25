@@ -692,7 +692,7 @@ export function CashFlowHomepage() {
             </div>
           </div>
         </div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden border-t border-white/10 bg-[#071422]/92 py-2.5 backdrop-blur-xl md:block md:py-3" data-section="home-hero-logo-conveyor">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden border-t border-white/10 bg-[#071422]/92 py-3 backdrop-blur-xl md:block md:py-4" data-section="home-hero-logo-conveyor">
           <SoftwareLogoMarquee />
         </div>
       </section>

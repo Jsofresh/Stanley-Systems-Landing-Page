@@ -53,12 +53,6 @@ const logos: LogoLockup[] = [
     textClass: "font-extrabold tracking-[-0.045em] [font-family:var(--font-manrope),Arial,sans-serif]",
   },
   {
-    name: "ServiceTitan",
-    markSrc: "/brand-logos/marks/servicetitan.ico",
-    source: "official-site",
-    textClass: "font-extrabold tracking-[-0.055em] [font-family:var(--font-manrope),Arial,sans-serif]",
-  },
-  {
     name: "Housecall Pro",
     markSrc: "/brand-logos/marks/housecall-pro.png",
     source: "official-site",
@@ -114,7 +108,7 @@ function LogoMark({ logo }: { logo: LogoLockup }) {
         alt=""
         loading="eager"
         decoding="async"
-        className={`h-6 w-6 shrink-0 object-contain ${logo.markSrc.endsWith(".svg") ? "" : "brightness-0 invert grayscale"} md:h-7 md:w-7 ${logo.markClass ?? ""}`}
+        className={`h-6 w-6 shrink-0 object-contain brightness-0 invert grayscale md:h-7 md:w-7 ${logo.markClass ?? ""}`}
       />
     )
   }
