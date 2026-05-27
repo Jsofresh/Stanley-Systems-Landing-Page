@@ -43,11 +43,11 @@ export default function SystemPage() {
           eyebrow="Cashflow Control System"
           title="Automate the Office Path From Customer Request to Paid Job"
           subheading="Cashflow Control moves job details through your office systems automatically, cuts down on re-entering the same information, and alerts the right staff when missing info, billing steps, or payment follow-up need attention."
-          imageSrc="/images/uploaded/package-heroes/stanley-systems-office-dashboard-team.jpg"
+          imageSrc="/images/uploaded/package-heroes/stanley-systems-cashflow-control-office-automation.jpg"
           imageAlt="Service business office team reviewing a Stanley Systems dashboard for customer requests, job details, billing steps, and payment follow-up."
           imageWidth={1280}
           imageHeight={720}
-          objectPosition="54% center"
+          objectPosition="center center"
           primaryHref="/workflow-audit"
           primaryLabel="Start the Cash Flow Assessment"
           secondaryHref="/systems-installation-sprint"

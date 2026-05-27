@@ -51,11 +51,11 @@ export default function SystemPage() {
           eyebrow="Repeat Revenue System"
           title="Turn Good Customers Into Reviews, Referrals, and the Next Job"
           subheading="Repeat Revenue keeps past customers, review asks, referral asks, reminders, and missed-call recovery moving so work you already earned keeps creating more booked jobs."
-          imageSrc="/images/uploaded/package-heroes/all-pro-homeowner-review-calls-dashboard.jpg"
+          imageSrc="/images/uploaded/package-heroes/all-pro-repeat-revenue-review-flywheel.jpg"
           imageAlt="Service business owner reviewing homeowner follow-up, review requests, referral asks, and repeat-job reminders."
           imageWidth={1280}
           imageHeight={720}
-          objectPosition="58% center"
+          objectPosition="center center"
           primaryHref="/workflow-audit"
           primaryLabel="Start the Cash Flow Assessment"
           secondaryHref="/systems-installation-sprint"

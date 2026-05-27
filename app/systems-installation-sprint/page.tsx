@@ -38,11 +38,13 @@ export default function SystemsInstallationSprintPage() {
           eyebrow="Systems Installation Sprint"
           title="Get the Workflow Installed, Tested, and Handed Off"
           subheading="The Cash Flow Assessment shapes the Sprint. Then Stanley Systems installs the approved workflows, reminders, handoffs, templates, and tracking so your team can use the system in the business."
-          imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-automation-workflows.jpg"
+          imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-office-automation.jpg"
           imageAlt="Stanley Systems sprint plan and automation workflows being installed for a service business office."
           imageWidth={1280}
-          imageHeight={960}
-          objectPosition="58% center"
+          imageHeight={720}
+          objectPosition="0% center"
+          imageClassName=""
+          imageTransform="translateX(24%) scale(1.22)"
           primaryHref="/workflow-audit"
           primaryLabel="Start the Cash Flow Assessment"
           secondaryHref="/contact?path=pre-buy"
