@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react"
 
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
+import { PackageHero } from "@/components/package-hero"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
@@ -46,25 +47,26 @@ export default function SystemPage() {
     <>
       <SiteHeader />
       <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-white text-[#071D3A]">
-        <section data-section="repeat-hero" className="relative flex min-h-[calc(100svh-1rem)] items-center overflow-hidden bg-[#FBFCF7] pb-12 pt-[7.5rem] sm:pb-16 lg:min-h-screen lg:pt-[8rem]">
-          <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
-          <div className={`${shell} relative grid w-full gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center`}>
-            <div>
-              <h1 className="max-w-4xl text-[2.1rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.1rem] lg:text-[3.7rem]">Repeat Revenue turns good work into reviews, referrals, and the next job.</h1>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">See how the Sprint works</Link>
-              </div>
-            </div>
-            <ImageCard
-              src="/images/uploaded/2026-05-25-jaden/repeat-revenue-customer-loop.jpg"
-              alt="Repeat Revenue customer loop showing follow-up, review asks, referral asks, and repeat work."
-              width={1280}
-              height={960}
-              priority
-            />
-          </div>
-        </section>
+        <PackageHero
+          eyebrow="Repeat Revenue System"
+          title="Turn Good Customers Into Reviews, Referrals, and the Next Job"
+          subheading="Repeat Revenue keeps past customers, review asks, referral asks, reminders, and missed-call recovery moving so work you already earned keeps creating more booked jobs."
+          imageSrc="/images/uploaded/package-heroes/all-pro-homeowner-review-calls-dashboard.jpg"
+          imageAlt="Service business owner reviewing homeowner follow-up, review requests, referral asks, and repeat-job reminders."
+          imageWidth={1280}
+          imageHeight={720}
+          objectPosition="58% center"
+          primaryHref="/workflow-audit"
+          primaryLabel="Start the Cash Flow Assessment"
+          secondaryHref="/systems-installation-sprint"
+          secondaryLabel="See how the Sprint works"
+          cards={[
+            { label: "47 customers ready for follow-up", detail: "Past buyers are not left cold." },
+            { label: "12 review requests queued", detail: "Good jobs turn into public proof." },
+            { label: "5 repeat jobs booked", detail: "Old customers come back again." },
+            { label: "Referral ask scheduled", detail: "Happy customers get prompted at the right time." },
+          ]}
+        />
 
         <section data-section="repeat-systems" className="bg-white py-14 sm:py-16">
           <div className={shell}>
@@ -86,7 +88,7 @@ export default function SystemPage() {
           <div className={`${shell} grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-center`}>
             <div>
               <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">How Repeat Revenue gets built</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems does the build for you: mapping the follow-up gaps, setting up the workflows, reminders, handoffs, and visibility that turn completed work into controlled cashflow inside the business.</p>
+              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems does the build for you: mapping the follow-up gaps, setting up the workflows, reminders, handoffs, and checks that bring past customers back and ask good customers for reviews or referrals.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </div>

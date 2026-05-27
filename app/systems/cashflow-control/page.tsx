@@ -3,9 +3,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
-import { FadedImage } from "@/components/faded-image"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
+import { PackageHero } from "@/components/package-hero"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
@@ -25,29 +25,11 @@ const automations = [
   ["Shop-specific fixes", "Fix the gaps that show up in your office, your software, and your team’s process."],
 ]
 
-function CashflowHeroVisual() {
-  return (
-    <FadedImage
-      src="/preview/images/uploaded/2026-05-25-jaden/cashflow-control-job-to-cash.jpg"
-      alt="Cashflow Control job-to-cash workflow showing a customer request moving to job details, invoice, payment follow-up, and collected cash."
-      width={1254}
-      height={1254}
-      priority
-      sizes="(min-width: 1024px) 42vw, 100vw"
-      fadeColor="#FBFCF7"
-      fadeSize="5%"
-      outerFade
-      outerFadeColor="rgba(251,252,247,0.9)"
-      wrapperClassName="relative mx-auto hidden w-full max-w-[560px] transition duration-300 hover:-translate-y-1 hover:scale-[1.015] lg:block lg:max-w-[640px] drop-shadow-[0_20px_48px_rgba(7,29,58,0.10)]"
-    />
-  )
-}
-
 function BuildImage() {
   return (
     <div className="relative mx-auto hidden w-full max-w-[760px] drop-shadow-[0_26px_54px_rgba(7,29,58,0.10)] lg:block">
       <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_50%_50%,rgba(244,251,245,0.92),rgba(244,251,245,0)_68%)] blur-2xl" aria-hidden="true" />
-      <Image src="/preview/images/uploaded/2026-05-25-jaden/job-details-bill-readiness-unpaid-invoices-exception-routing.jpg" alt="Cashflow Control workflow showing job details, bill readiness, unpaid invoices, and exception routing." width={1280} height={960} sizes="(min-width: 1024px) 52vw, 100vw" className="relative h-auto w-full rounded-[1.2rem] object-contain" />
+      <Image src="/images/uploaded/2026-05-25-jaden/job-details-bill-readiness-unpaid-invoices-exception-routing.jpg" alt="Cashflow Control workflow showing job details, bill readiness, unpaid invoices, and exception routing." width={1280} height={960} sizes="(min-width: 1024px) 52vw, 100vw" className="relative h-auto w-full rounded-[1.2rem] object-contain" />
     </div>
   )
 }
@@ -57,20 +39,27 @@ export default function SystemPage() {
     <>
       <SiteHeader />
       <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-white text-[#071D3A]">
-        <section data-section="cashflow-hero" className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#FBFCF7] pb-12 pt-[7.5rem] sm:pb-16 lg:pt-[8rem]">
-          <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
-          <div className={`${shell} relative grid w-full gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
-            <div>
-              <h1 className="max-w-4xl text-[2.1rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.1rem] lg:text-[3.7rem]">Turn finished work into collected cash faster</h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60] sm:text-xl">Cashflow Control keeps customer requests, job details, invoices, and payment follow-up moving so finished work turns into collected cash faster.</p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">See how the Sprint works</Link>
-              </div>
-            </div>
-            <CashflowHeroVisual />
-          </div>
-        </section>
+        <PackageHero
+          eyebrow="Cashflow Control System"
+          title="Automate the Office Path From Customer Request to Paid Job"
+          subheading="Cashflow Control moves job details through your office systems automatically, cuts down on re-entering the same information, and alerts the right staff when missing info, billing steps, or payment follow-up need attention."
+          imageSrc="/images/uploaded/package-heroes/stanley-systems-office-dashboard-team.jpg"
+          imageAlt="Service business office team reviewing a Stanley Systems dashboard for customer requests, job details, billing steps, and payment follow-up."
+          imageWidth={1280}
+          imageHeight={720}
+          objectPosition="54% center"
+          primaryHref="/workflow-audit"
+          primaryLabel="Start the Cash Flow Assessment"
+          secondaryHref="/systems-installation-sprint"
+          secondaryLabel="See how the Sprint works"
+          cards={[
+            { label: "Request captured", detail: "New customer work starts in the system." },
+            { label: "Job details complete", detail: "Notes, photos, and billing info move forward." },
+            { label: "Office handoff ready", detail: "The right staff sees what needs attention." },
+            { label: "Billing step queued", detail: "The next money step is not left to memory." },
+            { label: "Payment follow-up due", detail: "Open balances stay visible until paid." },
+          ]}
+        />
 
         <section data-section="cashflow-systems" className="flex min-h-[100svh] items-center bg-white py-14 sm:py-16">
           <div className={shell}>

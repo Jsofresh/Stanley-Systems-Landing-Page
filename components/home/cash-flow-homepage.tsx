@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, ReceiptText, UsersRound, Wrench } from "lucide-react";
 
 import { CTALink } from "@/components/cta-link";
 import { pricingPackages } from "@/lib/pricing/source-of-truth";
@@ -429,36 +429,63 @@ function AssessmentSection() {
 
 function SprintSection() {
   const cards = [
-    ["Cash gets cleaned up", "Invoices, billing handoffs, payment follow-up, and visibility."],
-    ["Customers get followed up", "Missed calls, reviews, referrals, past customers, and repeat work."],
-    ["The workflow gets installed", "Tools, reminders, handoffs, testing, and documentation."],
+    { title: "Cash gets cleaned up", body: "Invoices, billing handoffs, payment follow-up, and visibility.", Icon: ReceiptText },
+    { title: "Customers get followed up", body: "Missed calls, reviews, referrals, past customers, and repeat work.", Icon: UsersRound },
+    { title: "The workflow gets installed", body: "Tools, reminders, handoffs, testing, and documentation.", Icon: Wrench },
   ];
   return (
-    <PageSection id="sprint" className="bg-[#FBFCF7] py-10 text-[#071D3A] md:py-14 lg:py-16">
+    <PageSection id="sprint" className="relative isolate overflow-hidden bg-[#FBFCF7] py-9 text-[#071D3A] md:py-11 lg:py-12">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_18%,rgba(83,217,134,0.16),transparent_28%),linear-gradient(180deg,#FBFCF7_0%,#F7FBF5_100%)]" />
+      <div className="pointer-events-none absolute right-[-10%] top-16 -z-10 h-[28rem] w-[42rem] rounded-[5rem] bg-[#EAF7EE]/62 blur-3xl" />
       <div className="mx-auto max-w-[88rem]">
-        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[0.96fr_0.84fr] lg:items-center">
           <div>
-            <h2 className="max-w-[760px] text-balance text-[clamp(2rem,4.1vw,4.35rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">
-              Stanley Systems Builds What Your Business Needs
+            <h2 className="max-w-[680px] text-balance text-[clamp(2.05rem,4.45vw,4rem)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+              Stanley Systems builds what your business needs
             </h2>
-            <p className="mt-4 max-w-[650px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">
+            <p className="mt-5 max-w-[650px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">
               If you want implementation, the Cash Flow Assessment shapes the Sprint. Stanley Systems then installs the approved mix of workflows your business needs.
             </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="How the Sprint works" className={`${lightButton} px-8`}>
+                How the Sprint works <ArrowRight className="ml-2 h-4 w-4" />
+              </CTALink>
+              <CTALink href={assessmentHref} kind="systems" location="home_sprint_secondary" ctaLabel="Start the Cash Flow Assessment" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">
+                Start the Cash Flow Assessment
+              </CTALink>
+            </div>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-            <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="How the Sprint works" className={`${lightButton} px-8`}>
-              How the Sprint works <ArrowRight className="ml-2 h-4 w-4" />
-            </CTALink>
-            <CTALink href={assessmentHref} kind="systems" location="home_sprint_secondary" ctaLabel="Start the Cash Flow Assessment" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">
-              Start the Cash Flow Assessment
-            </CTALink>
+          <div className="relative overflow-hidden rounded-[2rem] border border-[#cfe8d5] bg-white p-5 shadow-[0_22px_70px_rgba(7,29,58,0.08)]">
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#15803D] via-[#53D986] to-transparent" />
+            <div className="flex items-center gap-3">
+              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#EAF7EE] text-[#15803D]"><ClipboardCheck className="h-5 w-5" /></span>
+              <div>
+                <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Sprint preview</p>
+                <p className="text-sm font-semibold leading-6 text-[#536173]">Assessment findings become working office systems.</p>
+              </div>
+            </div>
+            <div className="mt-5 grid gap-3">
+              {["Map the leak", "Install the workflow", "Hand it to the team"].map((item, index) => (
+                <div key={item} className="flex items-center gap-3 rounded-[1.1rem] border border-[#e1efe5] bg-[#FBFCF7] p-3">
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-xs font-black text-[#15803D] shadow-[0_8px_18px_rgba(7,29,58,0.06)]">0{index + 1}</span>
+                  <span className="text-sm font-extrabold text-[#071D3A]">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="mt-7 grid gap-4 md:grid-cols-3">
-          {cards.map(([title, body]) => (
-            <article key={title} className="rounded-[1.35rem] border border-[#d9e7df] bg-white p-5 shadow-[0_14px_36px_rgba(7,29,58,0.055)]">
-              <h3 className="text-xl font-extrabold tracking-[-0.02em] text-[#071D3A]">{title}</h3>
-              <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
+        <div className="relative mt-8 grid gap-4 md:grid-cols-3">
+          <div className="pointer-events-none absolute left-[12%] right-[12%] top-12 hidden h-px bg-[#9ed9b2]/70 md:block" />
+          {cards.map(({ title, body, Icon }, index) => (
+            <article key={title} className="relative rounded-[1.4rem] border border-[#cfe8d5] bg-white p-7 shadow-[0_18px_48px_rgba(7,29,58,0.07)]">
+              <div className="absolute inset-x-7 top-0 h-1 rounded-b-full bg-[#15803D]/28" />
+              {index < cards.length - 1 ? <span className="absolute -right-3 top-10 z-10 hidden rounded-full bg-[#FBFCF7] px-2 text-lg font-black text-[#15803D] md:block">→</span> : null}
+              <div className="flex items-center justify-between gap-4">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#EAF7EE] text-[#15803D]"><Icon className="h-5 w-5" /></span>
+                <span className="text-sm font-black tracking-[-0.02em] text-[#15803D]">0{index + 1}</span>
+              </div>
+              <h3 className="mt-5 text-2xl font-extrabold tracking-[-0.025em] text-[#071D3A]">{title}</h3>
+              <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
             </article>
           ))}
         </div>

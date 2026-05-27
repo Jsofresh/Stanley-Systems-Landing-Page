@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
+import { PackageHero } from "@/components/package-hero"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
@@ -34,27 +34,27 @@ export default function SystemsInstallationSprintPage() {
     <>
       <SiteHeader />
       <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-[#FBFCF7] text-[#071D3A]">
-        <section data-section="sprint-hero" className="relative overflow-hidden pb-10 pt-32 sm:pb-14 lg:pt-36">
-          <div className="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_70%)]" aria-hidden="true" />
-          <div className={`${shell} relative grid gap-8 lg:grid-cols-[0.98fr_0.82fr] lg:items-center`}>
-            <div>
-              <h1 className="max-w-5xl text-[2.1rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.25rem] lg:text-[4.05rem]">
-                Get Customer Requests, Invoices, Final Bills, 5 Star Reviews, and Referrals Instantly
-              </h1>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-[#334B60] sm:text-xl">
-                The Cash Flow Assessment helps shape the Sprint. Then Stanley Systems installs the approved mix of workflows your business needs — from billing and customer requests to reviews, referrals, repeat work, and team visibility.
-              </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link>
-              </div>
-            </div>
-            <div className="relative mx-auto w-full max-w-[560px] drop-shadow-[0_26px_54px_rgba(7,29,58,0.10)]">
-              <div className="pointer-events-none absolute -inset-8 rounded-[3rem] bg-[radial-gradient(circle_at_50%_50%,rgba(251,252,247,0.95),rgba(251,252,247,0)_68%)] blur-2xl" aria-hidden="true" />
-              <Image src="/preview/images/uploaded/2026-05-25-jaden/office-software-workflow-automation-setup.jpg" alt="Office software workflow automation setup for a Systems Installation Sprint." width={1280} height={960} priority sizes="(min-width: 1024px) 38vw, 100vw" className="relative mx-auto h-auto max-h-[620px] w-full rounded-[1.2rem] object-contain" />
-            </div>
-          </div>
-        </section>
+        <PackageHero
+          eyebrow="Systems Installation Sprint"
+          title="Get the Workflow Installed, Tested, and Handed Off"
+          subheading="The Cash Flow Assessment shapes the Sprint. Then Stanley Systems installs the approved workflows, reminders, handoffs, templates, and tracking so your team can use the system in the business."
+          imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-automation-workflows.jpg"
+          imageAlt="Stanley Systems sprint plan and automation workflows being installed for a service business office."
+          imageWidth={1280}
+          imageHeight={960}
+          objectPosition="58% center"
+          primaryHref="/workflow-audit"
+          primaryLabel="Start the Cash Flow Assessment"
+          secondaryHref="/contact?path=pre-buy"
+          secondaryLabel="Ask us a question"
+          cards={[
+            { label: "Leak mapped", detail: "The highest-cost office gap is clear." },
+            { label: "Workflow installed", detail: "The system is built around your real process." },
+            { label: "Team handoff ready", detail: "Your staff can see what to do next." },
+            { label: "Automation live", detail: "Reminders and handoffs are working." },
+            { label: "Sprint plan complete", detail: "The build is documented and handed off." },
+          ]}
+        />
 
         <section data-section="sprint-finished-output" className="bg-[#F4FBF5] py-12 sm:py-14">
           <div className={shell}>
