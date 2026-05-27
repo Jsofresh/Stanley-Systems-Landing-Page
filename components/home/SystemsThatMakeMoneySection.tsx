@@ -138,7 +138,7 @@ export function SystemsThatMakeMoneySection({
             Systems That Make Your Business Money
           </h2>
           <p className="mx-auto mt-3 max-w-[560px] text-base font-semibold leading-7 text-[#536173]">
-            The assessment decides which parts matter most.
+            Find whether your business needs faster billing, cleaner follow-up, more repeat work, or all of it.
           </p>
         </div>
 

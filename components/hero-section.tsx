@@ -47,7 +47,7 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(690px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-[1fr_230px]",
     items: [
-      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Turn the assessment plan into working systems." },
+      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Turn the assessment map into systems that move cash and customers forward." },
       { label: "Cashflow Control System", href: "/systems/cashflow-control", description: "Turn finished work into collected cash faster." },
       { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "Bring back past customers, reviews, referrals, and missed calls." },
     ],

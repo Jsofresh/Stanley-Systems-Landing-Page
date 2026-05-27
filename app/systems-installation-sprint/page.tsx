@@ -13,7 +13,7 @@ const lightButton = "inline-flex min-h-12 items-center justify-center rounded-fu
 
 export const metadata: Metadata = {
   title: "Systems Installation Sprint | Stanley Systems",
-  description: "Turn the Cash Flow Assessment into approved workflows, reminders, handoffs, templates, tracking, documentation, and tool setup.",
+  description: "Turn the Cash Flow Assessment into billing, follow-up, review, referral, and repeat-customer systems your team can use.",
   alternates: { canonical: "https://stanley-systems.com/systems-installation-sprint" },
 }
 
@@ -36,8 +36,8 @@ export default function SystemsInstallationSprintPage() {
       <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-[#FBFCF7] text-[#071D3A]">
         <PackageHero
           eyebrow="Systems Installation Sprint"
-          title="Get the Workflow Installed, Tested, and Handed Off"
-          subheading="The Cash Flow Assessment shapes the Sprint. Then Stanley Systems installs the approved workflows, reminders, handoffs, templates, and tracking so your team can use the system in the business."
+          title="Get the Systems Installed That Move Cash and Customers Forward"
+          subheading="Get the systems your office needs to bill faster, follow up cleaner, request more reviews, create more referrals, and bring past customers back. Stanley Systems installs, tests, and hands off the approved systems inside the tools your team already uses."
           imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-office-automation.jpg"
           imageAlt="Stanley Systems sprint plan and automation workflows being installed for a service business office."
           imageWidth={1280}
@@ -64,7 +64,7 @@ export default function SystemsInstallationSprintPage() {
           <div className={shell}>
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What Gets Installed for Your Business</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems installs the Repeat Revenue System, Cashflow Control System, both, or the specific pieces your business needs directly into your existing workflows. Your team keeps using the tools it already knows; the work just moves with fewer misses.</p>
+              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems installs Cashflow Control, Repeat Revenue, both, or the specific pieces your business needs inside the tools your team already uses. The goal is simple: faster billing, cleaner follow-up, more reviews, more referrals, and more repeat-customer work.</p>
             </div>
             <div className="mt-7 grid gap-4 lg:grid-cols-3">
               {installedItems.map(([title, body]) => <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_12px_30px_rgba(7,29,58,0.04)]"><h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">{title}</h3><p className="mt-4 text-sm font-semibold leading-6 text-[#536173]">{body}</p></article>)}

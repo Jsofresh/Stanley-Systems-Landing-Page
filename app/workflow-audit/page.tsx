@@ -140,7 +140,7 @@ function SampleOutput() {
             You leave with the map, not another vague consultation.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            The Cash Flow Assessment gives you a full map of the office-side leaks and process problems Stanley Systems finds, how to fix each one, and what those fixes are expected to change.
+            The Cash Flow Assessment gives you a clear map of where money is getting stuck, how to fix each problem, and what each fix is expected to improve.
           </p>
         </div>
         <FadedImage
@@ -214,7 +214,7 @@ function SprintBridge() {
       <div className={`${shell} grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center`}>
         <div>
           <h2 className="text-[2.25rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build it for you?</h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The Cash Flow Assessment gives you the map: what is happening now, what it is costing, and what Stanley Systems can build from it. If you want Stanley Systems to install the approved systems instead of doing it yourself, the Systems Installation Sprint is the next step.</p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The assessment shows what is costing you money. The Sprint builds the fix — faster billing, cleaner follow-up, more reviews, more referrals, repeat-customer reminders, or the approved mix your business needs.</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </div>

@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "removedCalcSub": true,
+    "removedSystemsSub": true,
+    "systemsTitle": true,
+    "assessMask": "radial-gradient(rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0.66) 68%, rgba(0, 0, 0, 0.24) 82%, rgba(0, 0, 0, 0) 100%)",
+    "annualMask": "radial-gradient(rgb(0, 0, 0) 58%, rgba(0, 0, 0, 0.72) 76%, rgba(0, 0, 0, 0) 100%)",
+    "annualLoaded": true,
+    "overflow": 0
+  },
+  "bad": [],
+  "errs": [],
+  "failures": []
+}

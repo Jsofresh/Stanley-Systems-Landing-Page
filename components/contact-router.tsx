@@ -9,7 +9,7 @@ import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 const routes = [
-  { id: "audit", title: "Start the Cash Flow Assessment", body: "Best if cash, invoices, estimates, reviews, referrals, missed calls, or past customers are already getting stuck.", cta: "Start the Cash Flow Assessment", icon: ReceiptText },
+  { id: "audit", title: "Start the Cash Flow Assessment", body: "Best if invoices, estimates, missed calls, reviews, referrals, past customers, or cash are getting stuck in the office.", cta: "Start the Cash Flow Assessment", icon: ReceiptText },
   { id: "question", title: "Want to talk before buying?", body: "Not sure if this fits? Ask us a question before you start.", cta: "Ask us a question", icon: MailQuestion },
   { id: "bought", title: "Already bought?", body: "Send the intake details Stanley Systems needs before reviewing the money leak.", cta: "Continue assessment setup", icon: CheckCircle2 },
 ] as const
@@ -31,7 +31,7 @@ export function ContactRouter() {
     <section className="px-4 pb-16 pt-24 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-3xl">
-          <h1 className="text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Get the right next step.</h1>
+          <h1 className="text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Find the right path to stop the office leaks.</h1>
           <p className="mt-5 text-lg leading-8 text-[#536173]">Start the Cash Flow Assessment, see how it works, ask us a question, or continue assessment setup.</p>
         </div>
 

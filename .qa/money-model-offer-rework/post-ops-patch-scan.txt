@@ -1,0 +1,160 @@
+== targeted forbidden strings ==
+app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1086:        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6" data-calculator-result-page="yearly-leak">
+app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1107:                <CTALink href={auditHref} kind="internal_page" location="calculator_result_yearly" analyticsSource="calculator_result_yearly" ctaLabel={ctaLabel} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#166534]">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1149:              <div className="mt-6 grid gap-4 lg:grid-cols-3"><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Cash earned, still stuck</h2><p className="mt-3 text-sm leading-6 text-slate-700">Estimated monthly drag: <span className="font-semibold text-slate-950">{summary.formattedCardValues.cashMonthly}</span></p><p className="mt-1 text-sm leading-6 text-slate-700">Annualized value: <span className="font-semibold text-slate-950">{summary.formattedCardValues.cashAnnual}</span></p><p className="mt-3 text-sm leading-6 text-slate-600">Driven by slow invoice drag, open balances, billing delay, and manual office checks.</p></div><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Past customers, still untouched</h2><p className="mt-3 text-sm leading-6 text-slate-700">Estimated monthly drag: <span className="font-semibold text-slate-950">{summary.formattedCardValues.customerMonthly}</span></p><p className="mt-1 text-sm leading-6 text-slate-700">Annualized value: <span className="font-semibold text-slate-950">{summary.formattedCardValues.customerAnnual}</span></p><p className="mt-3 text-sm leading-6 text-slate-600">Driven by saved customer records, missed calls, weak repeat follow-up, review gaps, and referral gaps.</p></div><div className="rounded-[1.15rem] border border-[#f3b7af] bg-[#fff1ef] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Combined check</h2><p className="mt-3 text-sm leading-6 text-slate-700">Monthly leak: <span className="font-semibold text-[#b42318]">{summary.formattedMonthlyRange}</span></p><p className="mt-1 text-sm leading-6 text-slate-700">Yearly leak: <span className="font-semibold text-[#b42318]">{summary.formattedHeadlineRange}</span></p><p className="mt-3 text-sm font-semibold leading-6 text-[#b42318]">Cost of waiting: every month the system stays manual, the same leak can repeat.</p></div></div>
+app/workflow-audit/page.tsx:102:            Your assessment fee credits toward Cashflow Control or Repeat Revenue. Yearly buyers get a $194 credit.
+app/workflow-audit/page.tsx:197:                Buy a monthly system after the assessment and get the $97 assessment price credited back. Buy a yearly system and get $194 credited back, so the first step works like a stronger down payment.
+app/workflow-audit/page.tsx:264:    credit: "Assessment credit: -$97 monthly / -$194 yearly",
+app/workflow-audit/page.tsx:273:      credit: "Assessment credit: -$97 monthly / -$194 yearly",
+app/workflow-audit/page.tsx:280:      credit: "Assessment credit: -$97 monthly / -$194 yearly",
+app/field-service-automation/page.tsx:96:                Stanley Systems starts with the real handoff problem, tightens the workflow in plain English, and then automates the version the team can actually use without creating more confusion.
+app/terms-and-conditions/page.tsx:60:      "If a buyer purchases the Cash Flow Assessment first and later buys a package within 24 hours after the assessment call, the assessment credit may be applied once to the package purchase according to the active checkout terms. Monthly package purchases receive a $97 assessment credit. Yearly package purchases receive a $194 assessment credit and the installation fee is waived. Assessment credit availability depends on the active checkout link, promotion code, or written Stanley Systems confirmation at the time of purchase. Assessment credits are not cash-equivalent, do not stack with a Cash Flow Assessment refund, and are not owed if the Cash Flow Assessment fee is refunded.",
+app/blog/posts.ts:94:      "A narrative-first look at how trade estimates go cold and what automated follow-up looks like when it still feels human.",
+app/blog/posts.ts:124:        heading: "What automated follow-up looks like when it still feels human",
+app/blog/posts.ts:226:      "A practical explanation of why automation projects fail when businesses automate bad workflows instead of fixing the handoff first.",
+app/blog/posts.ts:255:          "The smarter approach is less flashy and much more effective. First, define the workflow in plain English. Second, remove unnecessary steps and tighten the handoff. Third, decide what should be captured once and where it belongs. Then automate the clean version of the process.",
+app/blog/posts.ts:277:          "It also helps public search surfaces place Stanley Systems correctly. The message becomes clear: this is not generic tech consulting. Stanley Systems helps service businesses clean up the workflow first and automate the version the team can actually follow."
+app/blog/posts.ts:297:      "Most business owners do not just want something automated. They want to know they are not creating a new dependency, a mystery system, or a fragile setup nobody on the team understands. That is where trust matters.",
+components/pricing/PlanCard.tsx:7:  if (plan.billingPeriod !== "yearly" || !plan.priceDisplay) {
+components/pricing/PlanCard.tsx:11:  const yearlyAmount = Number(plan.priceDisplay.replace(/[^0-9.]/g, ""))
+components/pricing/PlanCard.tsx:12:  if (!Number.isFinite(yearlyAmount) || yearlyAmount <= 0) {
+components/pricing/PlanCard.tsx:13:    return { price: plan.priceDisplay, note: "Billed yearly" }
+components/pricing/PlanCard.tsx:17:    price: `$${Math.round(yearlyAmount / 12).toLocaleString("en-US")}/mo`,
+components/pricing/PlanCard.tsx:18:    note: `Billed yearly at ${plan.priceDisplay}`,
+components/workflow-audit/ProblemObjection.tsx:14:              src="/images/uploaded/money-leak-map/money-leak-map-workflow-stanley-systems-automates.jpg"
+components/workflow-audit/ProblemObjection.tsx:15:              alt="Money Leak Map showing the workflow Stanley Systems automates."
+components/workflow-audit/FitAccessPricing.tsx:58:    package: pricingPackageById.cashflow_control_yearly,
+components/workflow-audit/FitAccessPricing.tsx:66:    tone: "yearly",
+components/workflow-audit/FitAccessPricing.tsx:67:    bullets: ["Everything in monthly", "Lower first-year cost", "Yearly billing", "Cash collection workflow"],
+components/workflow-audit/FitAccessPricing.tsx:86:    package: pricingPackageById.repeat_revenue_yearly,
+components/workflow-audit/FitAccessPricing.tsx:94:    tone: "yearly",
+components/workflow-audit/FitAccessPricing.tsx:114:    package: pricingPackageById.both_systems_yearly,
+components/workflow-audit/WorkflowAuditHero.tsx:37:                  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Yearly bonus</p>
+components/workflow-audit/WorkflowAuditHero.tsx:38:                  <p className="mt-1 text-sm font-bold leading-6 text-[#071D3A]">Buy yearly after the assessment and the credit doubles to <span className="text-[#15803D]">$194</span>.</p>
+components/workflow-audit/WorkflowAuditFAQ.tsx:10:  ["How does the assessment credit work?", "If you buy Cashflow Control System or Repeat Revenue System after the assessment, your $97 assessment fee credits toward the system. If you buy yearly, you get a $194 credit."],
+components/repeat-revenue/WorkflowAuditFallback.tsx:10:  ["4", "Credit applied", "Get $97 monthly or $194 yearly back."],
+components/repeat-revenue/WorkflowAuditFallback.tsx:51:              <p className="mt-3 text-sm font-bold text-[#516F90]">Yearly package</p>
+components/checkout/BuyerOnboardingForm.tsx:12:  "Cashflow Control System — yearly",
+components/checkout/BuyerOnboardingForm.tsx:14:  "Repeat Revenue System — yearly",
+components/checkout/BuyerOnboardingForm.tsx:15:  "Both Systems — yearly",
+components/checkout/BuyerOnboardingForm.tsx:31:  cashflow_control_yearly: "Cashflow Control System — yearly",
+components/checkout/BuyerOnboardingForm.tsx:33:  repeat_revenue_yearly: "Repeat Revenue System — yearly",
+components/checkout/BuyerOnboardingForm.tsx:34:  both_systems_yearly: "Both Systems — yearly",
+components/home/cash-flow-homepage.tsx:243:      copy: "See the yearly money leak.",
+components/home/cash-flow-homepage.tsx:562:          goal is simple: automate office work from customer intake to final
+components/what-stanley-fixes-section.tsx:33:            We automate the repetitive backend work that slows down service businesses. That usually means invoicing, follow-ups, job data flow, and visibility into what is getting stuck.
+components/cashflow-control/WorkflowAuditBridge.tsx:10:  ["4", "Credit applied", "Get $97 monthly or $194 yearly back."],
+components/cashflow-control/WorkflowAuditBridge.tsx:51:              <p className="mt-3 text-sm font-bold text-[#516F90]">Yearly package</p>
+components/cashflow-control/CashflowControlFAQ.tsx:4:  ["What gets automated?", "Stanley Systems can automate intake routing, job-detail handoffs, billing-readiness checks, missing-info requests, invoice paths, payment follow-up, open-balance visibility, exception alerts, and money-leak summaries. The exact automation depends on your software permissions and workflow. The assessment or onboarding step decides what is safe to automate first."],
+components/cashflow-control/CashflowControlFAQ.tsx:6:  ["Does this collect money automatically?", "It can automate the path to the final bill and payment follow-up, but it does not guarantee customer payment or replace your payment processor. The system removes the manual office drag that delays billing and cash collection. Customers still choose when and whether they pay."],
+components/cashflow-control/CashflowControlFAQ.tsx:8:  ["How does the Cash Flow Assessment credit work?", "If you buy Cashflow Control or Repeat Revenue after the assessment, your $97 assessment fee credits toward the system. If you buy yearly, you get a $194 credit. The credit follows the stated assessment-credit terms and checkout path."],
+components/cashflow-control/tokens.ts:17:  cashflowYearly: pricingPackageById.cashflow_control_yearly,
+components/cashflow-control/tokens.ts:19:  completeYearly: pricingPackageById.both_systems_yearly,
+components/cashflow-control/WhatGetsAutomated.tsx:14:            src="/images/uploaded/cashflow-control/stanley-automates-entire-billing-lifecycle.jpg"
+components/cashflow-control/WhatGetsAutomated.tsx:15:            alt="Stanley Systems automates the entire billing lifecycle from customer intake to cash collected."
+components/cashflow-control/ObjectionGap.tsx:11:              Your tools hold the pieces. Stanley Systems automates the path between them.
+components/cashflow-control/ObjectionGap.tsx:18:            src="/images/uploaded/cashflow-control/automates-the-workflow.jpg"
+components/cashflow-control/ObjectionGap.tsx:19:            alt="Cashflow Control automates the workflow and flags missing billing details before cash gets stuck."
+components/phase3-homepage-sections.tsx:261:              ["What gets automated?", "The handoffs: status changes, invoice readiness, reminders, follow-up triggers, owner views, and exception paths."],
+components/package-pricing-cards.tsx:20:  tone: "monthly" | "yearly" | "complete" | "recommended"
+components/package-pricing-cards.tsx:26:  if (tone === "yearly") return "text-[#B91C1C]"
+components/package-pricing-cards.tsx:91:  const isYearly = pkg.billingPeriod === "yearly"
+components/package-pricing-cards.tsx:102:          : isYearly
+components/package-pricing-cards.tsx:110:          {isYearly ? (
+components/package-pricing-cards.tsx:112:              Yearly
+lib/pricing/source-of-truth.ts:10:  | "cashflow_control_yearly"
+lib/pricing/source-of-truth.ts:11:  | "repeat_revenue_yearly"
+lib/pricing/source-of-truth.ts:12:  | "both_systems_yearly"
+lib/pricing/source-of-truth.ts:14:export type PricingBillingPeriod = "one_time" | "monthly" | "yearly"
+lib/pricing/source-of-truth.ts:60:    setupFeeDisplay: "No setup fee",
+lib/pricing/source-of-truth.ts:90:    setupFeeDisplay: "No separate setup fee",
+lib/pricing/source-of-truth.ts:204:  cashflow_control_yearly: basePricingPackageById.cashflow_control,
+lib/pricing/source-of-truth.ts:205:  repeat_revenue_yearly: basePricingPackageById.repeat_revenue,
+lib/pricing/source-of-truth.ts:206:  both_systems_yearly: basePricingPackageById.both_systems,
+lib/pricing/source-of-truth.ts:215:export const yearlyPricingPackages: PricingPackage[] = []
+== pricing strings ==
+app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1095:              <p className="mx-auto mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-700 sm:text-xl">{summary.hasMeaningfulLeak ? "The calculator is a rough check. It shows where money may be stuck. The Cash Flow Assessment checks the actual records and turns the result into a Money Leak Map." : "The calculator did not find a large public estimate from these answers. The safest next step is checking the real records before making a bigger claim."}</p>
+app/workflow-audit/page.tsx:229:    ["Money Leak Map", "You get a plain map of the first leak, why it matters, and what should happen next."],
+app/stanley-systems-case-study/page.tsx:53:      "If 8 to 12 completed jobs per month are slowed down by missing details, billing cleanup, or handoff issues, and the average job is worth $750 to $1,500, the shop can have $6,000 to $18,000 in monthly cash movement slowed down by office friction.",
+app/stanley-systems-case-study/page.tsx:85:      "At $750 to $1,500 per job, 15 to 30 returning customers can create $11,250 to $45,000 in recovered service revenue from customers the shop already had.",
+app/audit-started/page.tsx:17:  "Receive Money Leak Map",
+app/dev/visual-kit-newest-18/page.tsx:69:    role: 'Money Leak Map / report',
+app/systems/repeat-revenue/page.tsx:119:            The $97 Cash Flow Assessment counts as $194 toward the Money Leak Recovery Sprint if Stanley Systems finds a problem worth fixing and you move forward.
+app/systems/cashflow-control/page.tsx:122:            Not sure this is the first fix? Start the $97 Cash Flow Assessment and it counts as $194 toward the sprint.
+app/systems/cashflow-control/page.tsx:193:              If Stanley Systems finds a problem worth fixing and you move forward, the assessment counts as $194 toward the Money Leak Recovery Sprint.
+app/systems/both-systems/page.tsx:23:    callout: "-$197/mo bundle savings",
+components/pricing-section.tsx:11:  ["Cash Flow Assessment", "Get the Money Leak Map."],
+components/pricing-section.tsx:20:    note: "Money Leak Map. $97 counts double as a $194 sprint credit.",
+components/pricing-section.tsx:23:    name: "Money Leak Recovery Sprint",
+components/pricing-section.tsx:29:    price: "$197/mo–$497/mo",
+components/pricing-section.tsx:41:      data-audit-offer="Money leak calculator, Cash Flow Assessment, Money Leak Recovery Sprint, Ongoing Control Plans"
+components/pricing/PricingHero.tsx:13:        <p className="mx-auto mt-5 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems gives service-business owners a clear money path: free calculator, $97 Cash Flow Assessment, $1,500 recovery sprint, then monthly control if you want the fix watched after that.</p>
+components/pricing/PricingPage.tsx:96:    <section id="money-leak-recovery-sprint" aria-label="Money Leak Recovery Sprint" className="rounded-[2.25rem] border border-[#b8d9c0] bg-[linear-gradient(180deg,#ffffff_0%,#f4fbf5_100%)] p-5 shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:p-8 lg:p-10">
+components/pricing/PricingPage.tsx:140:          <p className="mt-2 text-sm font-bold text-[#607080]">Main paid fix after the Money Leak Map</p>
+components/workflow-audit/HowAuditWorks.tsx:13:            {["Walkthrough", "Record review", "Money Leak Map"].map((step, index) => (
+components/workflow-audit/HowAuditWorks.tsx:23:              alt="Three step Cash Flow Assessment process: walkthrough, data review, and Money Leak Map."
+components/workflow-audit/ProblemObjection.tsx:15:              alt="Money Leak Map showing the workflow Stanley Systems automates."
+components/workflow-audit/FitAccessPricing.tsx:13:  "Money Leak Map",
+components/workflow-audit/FitAccessPricing.tsx:136:          <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">The assessment finds where money is being dropped, produces the Money Leak Map, and points to the first fix.</p>
+components/workflow-audit/FitAccessPricing.tsx:169:            <p className="mx-auto mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">The assessment is the default first step. After the Money Leak Map and sprint, choose the monthly control path worth watching.</p>
+components/workflow-audit/ProofCostCalculator.tsx:23:              alt="Money Leak Map showing delayed billing, quiet estimates, and review flow leaks that can cost more than the assessment."
+components/workflow-audit/WorkflowAuditHero.tsx:43:            <aside aria-label="Money Leak Map cash collection workflow preview" className="relative mx-auto flex min-h-[520px] w-full max-w-[690px] items-center justify-center lg:min-h-[600px] lg:max-w-none lg:justify-end">
+components/workflow-audit/WorkflowAuditHero.tsx:46:                alt="Money Leak Map preview showing job finished, office check, invoice sent, and cash collected."
+components/repeat-revenue/tokens.ts:158:  ["How does the assessment credit work?", "The Cash Flow Assessment costs $97. If Stanley Systems finds a problem worth fixing and you move forward, it counts as $194 toward the Money Leak Recovery Sprint."],
+components/repeat-revenue/RepeatRevenueHero.tsx:64:            The $97 Cash Flow Assessment counts as $194 toward the Money Leak Recovery Sprint if Stanley Systems finds a problem worth fixing and you move forward.
+components/repeat-revenue/RepeatRevenuePricing.tsx:19:          The Cash Flow Assessment counts as $194 toward the Money Leak Recovery Sprint when Stanley Systems finds a problem worth fixing and you move forward.
+components/how-it-works-section.tsx:131:                  Money Leak Map
+components/cashflow-control/CashflowControlHero.tsx:33:            The $97 Cash Flow Assessment counts as $194 toward the Money Leak Recovery Sprint if Stanley Systems finds a problem worth fixing and you move forward.
+components/cashflow-control/CashflowControlPricing.tsx:40:            Cashflow Control is the monthly watch after the Money Leak Recovery Sprint. Stanley Systems keeps the billing steps moving so finished work turns into collected cash.
+components/cashflow-control/CashflowControlPricing.tsx:45:          Start with the Cash Flow Assessment if you want Stanley Systems to check the records first. The $97 assessment counts as $194 toward the sprint.
+lib/pricing/source-of-truth.ts:64:    auditCreditDisplay: "$97 counts double as a $194 credit toward the Money Leak Recovery Sprint",
+lib/pricing/source-of-truth.ts:78:      "Produces a Money Leak Map before the fix is scoped.",
+lib/pricing/source-of-truth.ts:79:      "$97 counts double as a $194 credit toward the Money Leak Recovery Sprint.",
+lib/pricing/source-of-truth.ts:84:    publicName: "Money Leak Recovery Sprint",
+lib/pricing/source-of-truth.ts:87:    priceDisplay: "$1,500",
+lib/pricing/source-of-truth.ts:117:    priceDisplay: "$197/mo",
+lib/pricing/source-of-truth.ts:127:    firstYearCostAfterAuditCreditDisplay: "$197/mo",
+lib/pricing/source-of-truth.ts:144:    priceDisplay: "$297/mo",
+lib/pricing/source-of-truth.ts:154:    firstYearCostAfterAuditCreditDisplay: "$297/mo",
+lib/pricing/source-of-truth.ts:171:    priceDisplay: "$497/mo",
+lib/pricing/source-of-truth.ts:181:    firstYearCostAfterAuditCreditDisplay: "$497/mo",
+lib/pricing/source-of-truth.ts:222:  "Public ladder: Free Money Leak Calculator -> Cash Flow Assessment -> Money Leak Recovery Sprint -> Ongoing Control Plans.",
+lib/pricing/source-of-truth.ts:223:  "Cash Flow Assessment produces a Money Leak Map.",
+lib/pricing/source-of-truth.ts:224:  "$97 counts double as a $194 credit toward the Money Leak Recovery Sprint.",
+lib/pricing/offers.ts:106:    promise: "Get the Money Leak Map before you spend on the fix.",
+lib/pricing/offers.ts:109:      "Money Leak Map",
+lib/pricing/offers.ts:120:    description: "The Money Leak Recovery Sprint is for owners who are done guessing. Stanley Systems uses the Money Leak Map to pick the first leak, clean up the path around it, and get the team moving the same way each time.",
+lib/pricing/offers.ts:122:      "First leak selected from the Money Leak Map",
+lib/pricing/offers.ts:162:      { label: "Output", value: "Money Leak Map" },
+lib/pricing/offers.ts:181:  if (pricingPackage.id === "workflow_audit") return "$97 Cash Flow Assessment. You get a Money Leak Map, and $97 counts double as a $194 credit toward the Money Leak Recovery Sprint."
+lib/pricing/offers.ts:182:  if (pricingPackage.id === "money_leak_recovery_sprint") return "$1,500 sprint. Use /contact?path=pre-buy until an approved sprint checkout exists."
+lib/pricing/offers.ts:246:  copy: "$97 counts double as a $194 credit toward the $1,500 Money Leak Recovery Sprint when the assessment comes first.",
+lib/pricing/offers.ts:253:    answer: "Start with the free Money Leak Calculator if you want a rough check. If the leak looks real, buy the $97 Cash Flow Assessment so Stanley Systems can check the records and build a Money Leak Map.",
+lib/pricing/offers.ts:257:    answer: "You get a Money Leak Map. Stanley Systems checks jobs, invoices, calls, follow-up, and saved customers, then points to the first leak worth fixing.",
+lib/pricing/offers.ts:261:    answer: "Yes. The $97 assessment counts double as a $194 credit toward the $1,500 Money Leak Recovery Sprint when the assessment came first.",
+lib/pricing/offers.ts:264:    question: "What is the Money Leak Recovery Sprint?",
+lib/pricing/offers.ts:265:    answer: "It is the main paid fix after the Money Leak Map. Stanley Systems picks the first leak, cleans up the path around it, and gets the team moving the same way each time.",
+== status ==
+ M app/invoicing-delay-cash-flow-calculator/calculator-client.tsx
+ M app/systems/both-systems/page.tsx
+ M app/systems/cashflow-control/page.tsx
+ M app/systems/repeat-revenue/page.tsx
+ M components/cashflow-control/CashflowControlHero.tsx
+ M components/cashflow-control/CashflowControlPricing.tsx
+ M components/cashflow-control/ProofCost.tsx
+ M components/mobile-sticky-cta.tsx
+ M components/package-pricing-cards.tsx
+ M components/pricing-section.tsx
+ M components/pricing/PricingCTA.tsx
+ M components/pricing/PricingHero.tsx
+ M components/pricing/PricingPage.tsx
+ M components/repeat-revenue/RepeatRevenueFAQ.tsx
+ M components/repeat-revenue/RepeatRevenueHero.tsx
+ M components/repeat-revenue/RepeatRevenuePricing.tsx
+ M components/repeat-revenue/tokens.ts
+ M components/workflow-audit/FitAccessPricing.tsx
+ M components/workflow-audit/tokens.ts
+ M lib/pricing/offers.ts
+ M lib/pricing/source-of-truth.ts
+?? .qa/
+?? .worktrees/

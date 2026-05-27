@@ -1,0 +1,432 @@
+{
+  "url": "http://127.0.0.1:3233/",
+  "probes": [
+    {
+      "sec": 1,
+      "elapsedMs": 1000,
+      "active": [
+        0
+      ],
+      "state": [
+        {
+          "index": 0,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg",
+          "opacity": 1,
+          "animationDelay": "0s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1032.1650390625,
+            "height": 582.993896484375,
+            "left": 486.73773193359375,
+            "top": 30.581146240234375
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg"
+        },
+        {
+          "index": 1,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg",
+          "opacity": 0,
+          "animationDelay": "5s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg"
+        },
+        {
+          "index": 2,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg",
+          "opacity": 0,
+          "animationDelay": "10s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg"
+        },
+        {
+          "index": 3,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg",
+          "opacity": 0,
+          "animationDelay": "15s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg"
+        },
+        {
+          "index": 4,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg",
+          "opacity": 0,
+          "animationDelay": "20s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg"
+        }
+      ]
+    },
+    {
+      "sec": 6,
+      "elapsedMs": 6000,
+      "active": [
+        1
+      ],
+      "state": [
+        {
+          "index": 0,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg",
+          "opacity": 0,
+          "animationDelay": "0s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1038.77294921875,
+            "height": 586.726318359375,
+            "left": 483.43377685546875,
+            "top": 28.714996337890625
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg"
+        },
+        {
+          "index": 1,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg",
+          "opacity": 1,
+          "animationDelay": "5s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1031.641845703125,
+            "height": 582.6983642578125,
+            "left": 486.9993896484375,
+            "top": 30.72894287109375
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg"
+        },
+        {
+          "index": 2,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg",
+          "opacity": 0,
+          "animationDelay": "10s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg"
+        },
+        {
+          "index": 3,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg",
+          "opacity": 0,
+          "animationDelay": "15s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg"
+        },
+        {
+          "index": 4,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg",
+          "opacity": 0,
+          "animationDelay": "20s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg"
+        }
+      ]
+    },
+    {
+      "sec": 11,
+      "elapsedMs": 11000,
+      "active": [
+        2
+      ],
+      "state": [
+        {
+          "index": 0,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg",
+          "opacity": 0,
+          "animationDelay": "0s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1040.18115234375,
+            "height": 587.5216064453125,
+            "left": 482.729736328125,
+            "top": 28.31732177734375
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg"
+        },
+        {
+          "index": 1,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg",
+          "opacity": 0,
+          "animationDelay": "5s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1038.801025390625,
+            "height": 586.7420654296875,
+            "left": 483.4197998046875,
+            "top": 28.70709228515625
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg"
+        },
+        {
+          "index": 2,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg",
+          "opacity": 1,
+          "animationDelay": "10s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1030.876953125,
+            "height": 582.266357421875,
+            "left": 487.38177490234375,
+            "top": 30.944915771484375
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg"
+        },
+        {
+          "index": 3,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg",
+          "opacity": 0,
+          "animationDelay": "15s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg"
+        },
+        {
+          "index": 4,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg",
+          "opacity": 0,
+          "animationDelay": "20s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg"
+        }
+      ]
+    },
+    {
+      "sec": 16,
+      "elapsedMs": 16000,
+      "active": [
+        3
+      ],
+      "state": [
+        {
+          "index": 0,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg",
+          "opacity": 0,
+          "animationDelay": "0s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1042.998046875,
+            "height": 589.1126708984375,
+            "left": 481.3212890625,
+            "top": 27.52178955078125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg"
+        },
+        {
+          "index": 1,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg",
+          "opacity": 0,
+          "animationDelay": "5s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1040.32763671875,
+            "height": 587.6043701171875,
+            "left": 482.65643310546875,
+            "top": 28.27593994140625
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg"
+        },
+        {
+          "index": 2,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg",
+          "opacity": 0,
+          "animationDelay": "10s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1038.833740234375,
+            "height": 586.760498046875,
+            "left": 483.4034423828125,
+            "top": 28.697845458984375
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg"
+        },
+        {
+          "index": 3,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg",
+          "opacity": 1,
+          "animationDelay": "15s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1030.04248046875,
+            "height": 581.794921875,
+            "left": 487.79913330078125,
+            "top": 31.1806640625
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg"
+        },
+        {
+          "index": 4,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg",
+          "opacity": 0,
+          "animationDelay": "20s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1026.421875,
+            "height": 579.75,
+            "left": 489.609375,
+            "top": 32.203125
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg"
+        }
+      ]
+    },
+    {
+      "sec": 21,
+      "elapsedMs": 21000,
+      "active": [
+        4
+      ],
+      "state": [
+        {
+          "index": 0,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg",
+          "opacity": 0,
+          "animationDelay": "0s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1044.771484375,
+            "height": 590.1142578125,
+            "left": 480.4345703125,
+            "top": 27.020965576171875
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg"
+        },
+        {
+          "index": 1,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg",
+          "opacity": 0,
+          "animationDelay": "5s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1043.18798828125,
+            "height": 589.219970703125,
+            "left": 481.22625732421875,
+            "top": 27.468109130859375
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-office-dashboard-review.jpg"
+        },
+        {
+          "index": 2,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg",
+          "opacity": 0,
+          "animationDelay": "10s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1040.5126953125,
+            "height": 587.7088623046875,
+            "left": 482.56396484375,
+            "top": 28.22369384765625
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-owner-monitoring-cashflow.jpg"
+        },
+        {
+          "index": 3,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg",
+          "opacity": 0,
+          "animationDelay": "15s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1038.883056640625,
+            "height": 586.788330078125,
+            "left": 483.3787841796875,
+            "top": 28.683929443359375
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-payment-confirmation-office.jpg"
+        },
+        {
+          "index": 4,
+          "src": "http://127.0.0.1:3233/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg",
+          "opacity": 1,
+          "animationDelay": "20s",
+          "complete": true,
+          "naturalWidth": 1280,
+          "rect": {
+            "width": 1028.96435546875,
+            "height": 581.1861572265625,
+            "left": 488.33807373046875,
+            "top": 31.48504638671875
+          },
+          "expected": "/images/uploaded/homepage/hero-slideshow/hero-desktop-cashflow-view.jpg"
+        }
+      ]
+    }
+  ],
+  "overflow": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440
+  },
+  "bad": [],
+  "errs": [],
+  "failures": []
+}

@@ -1,0 +1,97 @@
+{
+  "sections": [
+    {
+      "i": 0,
+      "text": "Find the money your service business is missing.\n\nSee where calls, invoices, follow-ups, and past customers are costing the business real cash.\n\nStart the calculator\nCash Flow Asse",
+      "rect": {
+        "top": 0,
+        "height": 900,
+        "bottom": 900
+      }
+    },
+    {
+      "i": 1,
+      "text": "START WITH THE NUMBER\n\nRun the calculator before you guess what to fix.\n\nA few best guesses show where calls, invoices, follow-ups, and past customers are costing the business real",
+      "rect": {
+        "top": 900,
+        "height": 512.84375,
+        "bottom": 1412.84375
+      }
+    },
+    {
+      "i": 2,
+      "text": "THE CALCULATOR IS THE FIRST MOVE\n\nSee how much money is being left on the table.\n\nDo not start with a package. Start with the number. Then Stanley Systems can build the fix that pa",
+      "rect": {
+        "top": 1412.84375,
+        "height": 974.859375,
+        "bottom": 2387.703125
+      }
+    },
+    {
+      "i": 3,
+      "text": "The leaks are usually boring. That is why they get missed.\n\nMost service businesses do not lose money in one dramatic way. They lose it in small handoffs that break every week.",
+      "rect": {
+        "top": 2387.703125,
+        "height": 779.40625,
+        "bottom": 3167.109375
+      }
+    },
+    {
+      "i": 4,
+      "text": "Start with the Cash Flow Assessment.\n\nThe Cash Flow Assessment is the paid first step. Stanley Systems looks at where money is being missed, what it likely costs, and which system ",
+      "rect": {
+        "top": 3167.109375,
+        "height": 865.5,
+        "bottom": 4032.609375
+      }
+    },
+    {
+      "i": 5,
+      "text": "Pick the system that fixes the right business problem.\n\nCashflow Control gets bills and payment follow-up moving faster. Repeat Revenue brings past customers back. Start with the a",
+      "rect": {
+        "top": 4032.609375,
+        "height": 1073.375,
+        "bottom": 5105.984375
+      }
+    },
+    {
+      "i": 6,
+      "text": "How your business improves with Stanley Systems.\n\nStanley Systems builds the office layer that gets bills out faster, keeps payment follow-up moving, and brings past customers back",
+      "rect": {
+        "top": 5105.984375,
+        "height": 506.625,
+        "bottom": 5612.609375
+      }
+    },
+    {
+      "i": 7,
+      "text": "Built for service businesses that want bills out faster and customers coming back.\n\nStanley Systems is for service businesses with real office work, invoice delays, customer follow",
+      "rect": {
+        "top": 5612.609375,
+        "height": 430.875,
+        "bottom": 6043.484375
+      }
+    },
+    {
+      "i": 8,
+      "text": "Stop letting finished work and good customers slip away.\n\nUse the calculator, see the money left on the table, then start the Cash Flow Assessment. Stanley Systems will show which ",
+      "rect": {
+        "top": 6043.484375,
+        "height": 574.453125,
+        "bottom": 6617.9375
+      }
+    }
+  ],
+  "checks": {
+    "heroHeight": 900,
+    "viewportHeight": 900,
+    "heroPrimary": "Start the calculator ",
+    "hasLaunch": true,
+    "hasFunnel": true,
+    "calculatorLinks": 6,
+    "overflow": 0
+  },
+  "bad": [],
+  "errs": [],
+  "failures": []
+}

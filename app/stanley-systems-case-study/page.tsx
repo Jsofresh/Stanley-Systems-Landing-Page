@@ -93,7 +93,7 @@ export default function StanleySystemsCaseStudyPage() {
           </div>
           <div className="rounded-[2rem] bg-[#F4FBF5] p-6 ring-1 ring-[#CFE8D5] sm:p-8">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Already have tools but still feel the drag?</h2>
-            <p className="mt-3 text-base font-medium leading-7 text-[#536173]">Start with the Cash Flow Assessment. Stanley Systems will show where the office-side leaks are and which fix should happen first.</p>
+            <p className="mt-3 text-base font-medium leading-7 text-[#536173]">Start with the Cash Flow Assessment. Stanley Systems will show where the office work is costing money and which fix should happen first.</p>
             <Link href="/workflow-audit#assessment" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832]">Start the Cash Flow Assessment</Link>
           </div>
         </div>

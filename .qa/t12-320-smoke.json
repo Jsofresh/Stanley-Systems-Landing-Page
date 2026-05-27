@@ -1,0 +1,137 @@
+[
+  {
+    "route": "/",
+    "fold": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile320-home-fold.png",
+    "full": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile320-home-full.png",
+    "metrics": {
+      "scrollHeight": 11475,
+      "bodyWidth": 320,
+      "innerWidth": 320,
+      "hasHorizontalOverflow": false,
+      "overflow": [],
+      "tapSmall": [
+        {
+          "text": "+1 (617) 958-6372",
+          "w": 118,
+          "h": 18,
+          "top": 9,
+          "visible": true
+        },
+        {
+          "text": "Stanley Systems",
+          "w": 154,
+          "h": 40,
+          "top": 49,
+          "visible": true
+        },
+        {
+          "text": "Open menu",
+          "w": 40,
+          "h": 40,
+          "top": 49,
+          "visible": true
+        }
+      ]
+    },
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  },
+  {
+    "route": "/pricing",
+    "fold": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile320-pricing-fold.png",
+    "full": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile320-pricing-full.png",
+    "metrics": {
+      "scrollHeight": 13699,
+      "bodyWidth": 320,
+      "innerWidth": 320,
+      "hasHorizontalOverflow": false,
+      "overflow": [],
+      "tapSmall": [
+        {
+          "text": "+1 (617) 958-6372",
+          "w": 118,
+          "h": 18,
+          "top": 9,
+          "visible": true
+        },
+        {
+          "text": "Stanley Systems",
+          "w": 154,
+          "h": 40,
+          "top": 49,
+          "visible": true
+        },
+        {
+          "text": "Open menu",
+          "w": 40,
+          "h": 40,
+          "top": 49,
+          "visible": true
+        }
+      ]
+    },
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  },
+  {
+    "route": "/workflow-audit",
+    "fold": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile320-workflow-audit-fold.png",
+    "full": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile320-workflow-audit-full.png",
+    "metrics": {
+      "scrollHeight": 13969,
+      "bodyWidth": 320,
+      "innerWidth": 320,
+      "hasHorizontalOverflow": false,
+      "overflow": [],
+      "tapSmall": [
+        {
+          "text": "+1 (617) 958-6372",
+          "w": 118,
+          "h": 18,
+          "top": 9,
+          "visible": true
+        },
+        {
+          "text": "Stanley Systems",
+          "w": 154,
+          "h": 40,
+          "top": 49,
+          "visible": true
+        },
+        {
+          "text": "Open menu",
+          "w": 40,
+          "h": 40,
+          "top": 49,
+          "visible": true
+        }
+      ]
+    },
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  },
+  {
+    "route": "/invoicing-delay-cash-flow-calculator",
+    "fold": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile320-invoicing-delay-cash-flow-calculator-fold.png",
+    "full": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile320-invoicing-delay-cash-flow-calculator-full.png",
+    "metrics": {
+      "scrollHeight": 852,
+      "bodyWidth": 320,
+      "innerWidth": 320,
+      "hasHorizontalOverflow": false,
+      "overflow": [],
+      "tapSmall": []
+    },
+    "consoleMessages": [
+      "warning: [.WebGL-0x78400118800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x78400118800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x78400118800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x78400118800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    ],
+    "badResponses": [],
+    "pageErrors": []
+  }
+]

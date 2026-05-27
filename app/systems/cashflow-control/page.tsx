@@ -42,7 +42,7 @@ export default function SystemPage() {
         <PackageHero
           eyebrow="Cashflow Control System"
           title="Automate the Office Path From Customer Request to Paid Job"
-          subheading="Cashflow Control moves job details through your office systems automatically, cuts down on re-entering the same information, and alerts the right staff when missing info, billing steps, or payment follow-up need attention."
+          subheading="Turn customer requests into paid jobs faster. Cashflow Control moves job information through the office automatically, reduces duplicate entry, and alerts the right staff when missing info, billing, or payment follow-up needs attention."
           imageSrc="/images/uploaded/package-heroes/stanley-systems-cashflow-control-office-automation.jpg"
           imageAlt="Service business office team reviewing a Stanley Systems dashboard for customer requests, job details, billing steps, and payment follow-up."
           imageWidth={1280}
@@ -64,7 +64,7 @@ export default function SystemPage() {
         <section data-section="cashflow-systems" className="flex min-h-[100svh] items-center bg-white py-14 sm:py-16">
           <div className={shell}>
             <div className="mx-auto max-w-4xl text-center">
-              <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Find what is slowing your money down. Pick the pieces that fix it.</h2>
+              <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Find where cash is getting stuck. Build the pieces that move it forward.</h2>
               <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Every shop leaks cash in a different place. Some jobs stall before billing. Some invoices go out late. Some balances never get followed up. Stanley Systems helps identify the gaps, then builds the pieces that keep the next step moving.</p>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

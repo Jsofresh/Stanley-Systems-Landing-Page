@@ -1,0 +1,15 @@
+[ENOENT] Command failed with ENOENT: pnpm install
+spawnSync pnpm ENOENT
+
+pnpm: Command failed with ENOENT: pnpm install
+spawnSync pnpm ENOENT
+    at getFinalError (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:28776:14)
+    at makeError (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:31083:21)
+    at getSyncResult (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:32927:10)
+    at spawnSubprocessSync (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:32887:14)
+    at execaCoreSync (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:32817:23)
+    at callBoundExeca (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:35345:23)
+    at boundExeca (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:35322:49)
+    at sync (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:35477:14)
+    at runPnpmCli (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:211260:5)
+    at runDepsStatusCheck (file:///home/jaden/.cache/node/corepack/v1/pnpm/11.1.2/dist/pnpm.mjs:212964:7)

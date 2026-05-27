@@ -1,0 +1,190 @@
+{
+  "url": "http://127.0.0.1:3233/",
+  "outDir": ".qa/fast-homepage-20260511-220750",
+  "elapsedSeconds": 13.643,
+  "failures": [],
+  "results": [
+    {
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1100
+      },
+      "badResponses": [],
+      "consoleErrors": [],
+      "imageState": [
+        {
+          "fragment": "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-estimated-annual-leak.jpg",
+          "count": 1,
+          "states": [
+            {
+              "complete": true,
+              "naturalWidth": 1280,
+              "naturalHeight": 800,
+              "rect": {
+                "width": 835.8372802734375,
+                "height": 522.39404296875,
+                "top": -3169.931396484375,
+                "left": 583.4876708984375
+              }
+            }
+          ]
+        },
+        {
+          "fragment": "/images/uploaded/homepage/cash-flow-rework/service-business-leak-types.jpg",
+          "count": 1,
+          "states": [
+            {
+              "complete": true,
+              "naturalWidth": 1280,
+              "naturalHeight": 426,
+              "rect": {
+                "width": 1455.2001953125,
+                "height": 484.3087158203125,
+                "top": -2174.357421875,
+                "left": -15.60003662109375
+              }
+            }
+          ]
+        },
+        {
+          "fragment": "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-vertical-section-bg.jpg",
+          "count": 1,
+          "states": [
+            {
+              "complete": true,
+              "naturalWidth": 1024,
+              "naturalHeight": 1280,
+              "rect": {
+                "width": 631.300048828125,
+                "height": 789.125,
+                "top": -1603.703125,
+                "left": 777.1781005859375
+              }
+            }
+          ]
+        },
+        {
+          "fragment": "/images/uploaded/homepage/cash-flow-rework/before-after-cash-flow-system.jpg",
+          "count": 1,
+          "states": [
+            {
+              "complete": true,
+              "naturalWidth": 1280,
+              "naturalHeight": 589,
+              "rect": {
+                "width": 866.80029296875,
+                "height": 398.8592529296875,
+                "top": 350.85943603515625,
+                "left": 553.552978515625
+              }
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440
+      },
+      "textChecks": {
+        "cashFlowAssessment": true,
+        "moneyLeftOnTable": true,
+        "stanleySystems": true,
+        "publicStanleyBareCount": 0
+      },
+      "failures": []
+    },
+    {
+      "viewport": {
+        "name": "mobile",
+        "width": 390,
+        "height": 900
+      },
+      "badResponses": [],
+      "consoleErrors": [],
+      "imageState": [
+        {
+          "fragment": "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-estimated-annual-leak.jpg",
+          "count": 1,
+          "states": [
+            {
+              "complete": true,
+              "naturalWidth": 1280,
+              "naturalHeight": 800,
+              "rect": {
+                "width": 374.5,
+                "height": 234.0625,
+                "top": -3512.3125,
+                "left": 7.7499847412109375
+              }
+            }
+          ]
+        },
+        {
+          "fragment": "/images/uploaded/homepage/cash-flow-rework/service-business-leak-types.jpg",
+          "count": 1,
+          "states": [
+            {
+              "complete": true,
+              "naturalWidth": 1280,
+              "naturalHeight": 426,
+              "rect": {
+                "width": 374.5,
+                "height": 124.63818359375,
+                "top": -2926.811279296875,
+                "left": 7.7499847412109375
+              }
+            }
+          ]
+        },
+        {
+          "fragment": "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-vertical-section-bg.jpg",
+          "count": 1,
+          "states": [
+            {
+              "complete": true,
+              "naturalWidth": 1024,
+              "naturalHeight": 1280,
+              "rect": {
+                "width": 374.5,
+                "height": 468.125,
+                "top": -2307.40625,
+                "left": 7.7499847412109375
+              }
+            }
+          ]
+        },
+        {
+          "fragment": "/images/uploaded/homepage/cash-flow-rework/before-after-cash-flow-system.jpg",
+          "count": 1,
+          "states": [
+            {
+              "complete": true,
+              "naturalWidth": 1280,
+              "naturalHeight": 589,
+              "rect": {
+                "width": 374.5,
+                "height": 172.32012939453125,
+                "top": 363.98834228515625,
+                "left": 7.7499847412109375
+              }
+            }
+          ]
+        }
+      ],
+      "overflow": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "bodyScrollWidth": 390
+      },
+      "textChecks": {
+        "cashFlowAssessment": true,
+        "moneyLeftOnTable": true,
+        "stanleySystems": true,
+        "publicStanleyBareCount": 0
+      },
+      "failures": []
+    }
+  ]
+}

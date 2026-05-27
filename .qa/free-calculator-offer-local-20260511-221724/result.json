@@ -1,0 +1,16 @@
+{
+  "checks": {
+    "heroHeight": 720,
+    "viewportHeight": 720,
+    "heroH1X": 40,
+    "hcta": "Start the free calculator ",
+    "freeCalculator": true,
+    "launchGift": true,
+    "noEyebrow": true,
+    "funnel": true,
+    "overflow": 0
+  },
+  "bad": [],
+  "errs": [],
+  "failures": []
+}

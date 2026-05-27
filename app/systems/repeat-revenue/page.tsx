@@ -50,7 +50,7 @@ export default function SystemPage() {
         <PackageHero
           eyebrow="Repeat Revenue System"
           title="Turn Good Customers Into Reviews, Referrals, and the Next Job"
-          subheading="Repeat Revenue keeps past customers, review asks, referral asks, reminders, and missed-call recovery moving so work you already earned keeps creating more booked jobs."
+          subheading="Bring past customers back, ask happy customers for reviews, create more referral chances, and recover missed calls before they disappear. Repeat Revenue turns work you already earned into more booked jobs."
           imageSrc="/images/uploaded/package-heroes/all-pro-repeat-revenue-review-flywheel.jpg"
           imageAlt="Service business owner reviewing homeowner follow-up, review requests, referral asks, and repeat-job reminders."
           imageWidth={1280}

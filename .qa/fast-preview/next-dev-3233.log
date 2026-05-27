@@ -1,0 +1,1038 @@
+
+> my-v0-project@0.1.0 dev
+> next dev --turbo -H 127.0.0.1 -p 3233
+
+  ▲ Next.js 14.2.25 (turbo)
+  - Local:        http://127.0.0.1:3233
+  - Network:      http://127.0.0.1:3233
+  - Environments: .env.local
+
+ ✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+ ✓ Ready in 1200ms
+ ○ Compiling / ...
+ ✓ Compiled / in 4.1s
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET / 200 in 4390ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET / 200 in 157ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /workflow-audit in 489ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /workflow-audit 200 in 684ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /systems/cashflow-control in 298ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems/cashflow-control 200 in 470ms
+ ✓ Compiled /_not-found/page in 306ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /preview/images/uploaded/2026-05-25-jaden/cashflow-control-job-to-cash.jpg 404 in 495ms
+ GET /preview/images/uploaded/2026-05-25-jaden/job-details-bill-readiness-unpaid-invoices-exception-routing.jpg 404 in 263ms
+ ✓ Compiled in 258ms
+ ✓ Compiled /systems/cashflow-control in 38ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /systems/repeat-revenue in 277ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems/repeat-revenue 200 in 396ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ○ Compiling /systems-installation-sprint ...
+ ✓ Compiled /systems-installation-sprint in 602ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems-installation-sprint 200 in 1008ms
+ ✓ Compiled /systems/repeat-revenue in 180ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /_not-found/page in 211ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /preview/images/uploaded/2026-05-25-jaden/office-software-workflow-automation-setup.jpg 404 in 431ms
+ ✓ Compiled /systems-installation-sprint in 53ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /how-the-assessment-works in 352ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /how-the-assessment-works 200 in 457ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /pricing in 290ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /pricing 200 in 375ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /pricing in 47ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled in 577ms
+ ✓ Compiled / in 35ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET / 200 in 250ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /workflow-audit in 84ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /workflow-audit 200 in 314ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /systems/cashflow-control in 29ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems/cashflow-control 200 in 171ms
+ ✓ Compiled /_not-found/page in 123ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /preview/images/uploaded/2026-05-25-jaden/cashflow-control-job-to-cash.jpg 404 in 376ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /preview/images/uploaded/2026-05-25-jaden/job-details-bill-readiness-unpaid-invoices-exception-routing.jpg 404 in 344ms
+ ✓ Compiled /systems/repeat-revenue in 20ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems/repeat-revenue 200 in 161ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /systems-installation-sprint in 77ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems-installation-sprint 200 in 260ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /preview/images/uploaded/2026-05-25-jaden/office-software-workflow-automation-setup.jpg 404 in 318ms
+ ✓ Compiled /how-the-assessment-works in 24ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /how-the-assessment-works 200 in 182ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /pricing in 31ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /pricing 200 in 186ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled in 197ms
+ ✓ Compiled / in 27ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET / 200 in 281ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /workflow-audit in 37ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /workflow-audit 200 in 243ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems/cashflow-control 200 in 88ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /preview/images/uploaded/2026-05-25-jaden/cashflow-control-job-to-cash.jpg 404 in 225ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /preview/images/uploaded/2026-05-25-jaden/job-details-bill-readiness-unpaid-invoices-exception-routing.jpg 404 in 180ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems/repeat-revenue 200 in 82ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /systems-installation-sprint 200 in 96ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /preview/images/uploaded/2026-05-25-jaden/office-software-workflow-automation-setup.jpg 404 in 185ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /how-the-assessment-works 200 in 80ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled /pricing in 19ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ GET /pricing 200 in 167ms
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ⚠ ./
+Failed to find font override values for font `Nunito Sans`
+Skipping generating a fallback font.
+
+
+ ✓ Compiled in 104ms
+ ✓ Compiled in 159ms

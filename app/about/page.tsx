@@ -12,7 +12,7 @@ const lightButton = "inline-flex min-h-12 items-center justify-center rounded-fu
 
 export const metadata: Metadata = {
   title: "About Stanley Systems | Founder-Led Diagnosis and Hands-On Build",
-  description: "Stanley Systems helps service businesses find office-side cash, billing, follow-up, review, referral, and repeat-customer leaks before building the systems that fix them.",
+  description: "Stanley Systems helps service businesses find office cash, billing, follow-up, review, referral, and repeat-customer leaks before building the systems that fix them.",
   alternates: { canonical: "https://stanley-systems.com/about" },
 }
 
@@ -39,10 +39,10 @@ export default function AboutPage() {
             <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#15803D]">About Stanley Systems</p>
               <h1 className="mt-4 max-w-5xl text-[2.35rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.35rem]">
-                Founder-led diagnosis. Hands-on build.
+                Practical diagnosis. Hands-on systems that fix the office leaks.
               </h1>
               <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-[#334B60] sm:text-xl">
-                Stanley Systems exists because service businesses do good work in the field, then lose money in the office side: late invoices, weak handoffs, missed follow-up, quiet review gaps, forgotten referrals, and past customers nobody contacts again.
+                Stanley Systems exists because service businesses do good work in the field, then lose money in the office work behind the job: late invoices, weak handoffs, missed follow-up, quiet review gaps, forgotten referrals, and past customers nobody contacts again.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -84,7 +84,7 @@ export default function AboutPage() {
         <section className="bg-[#071422] py-14 text-white sm:py-16" data-nav-theme="dark">
           <div className={`${shell} text-center`}>
             <h2 className="mx-auto max-w-4xl text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-5xl">If you want the fix, start by finding the leak.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">The Cash Flow Assessment maps where office-side money is getting stuck, what each issue likely costs, and what to fix first.</p>
+            <p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">The Cash Flow Assessment maps where office work is getting money stuck, what each issue likely costs, and what to fix first.</p>
             <div className="mt-7 flex justify-center">
               <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </div>

@@ -51,10 +51,10 @@ export default function MarineServiceAutomationPage() {
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#15803D]">Marine service automation</p>
               <h1 className="mt-4 max-w-4xl text-[2.9rem] font-semibold leading-[0.98] tracking-[-0.055em] text-[#071D3A] sm:text-[4.5rem] lg:text-[5rem]">
-                Marine service shops lose money in the handoffs.
+                Marine Service Systems That Move Cash Before the Season Slips Away
               </h1>
               <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-[#42596C] sm:text-xl">
-                Missed calls, slow estimates, delayed invoicing, and seasonal follow-up do not look dramatic day to day. They quietly turn earned demand into owner stress, office backtracking, and late cash.
+                Get more jobs billed, followed up, reviewed, referred, and rebooked before the season slips away. Marine service shops lose money when missed calls, slow estimates, delayed invoicing, and seasonal follow-up depend on memory.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white shadow-[0_18px_42px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">

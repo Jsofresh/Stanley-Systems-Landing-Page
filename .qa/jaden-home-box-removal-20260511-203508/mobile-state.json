@@ -1,0 +1,255 @@
+{
+  "badResponses": [],
+  "consoleErrors": [],
+  "imageState": [
+    {
+      "src": "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-estimated-annual-leak.jpg",
+      "count": 5,
+      "states": [
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 374.5,
+            "height": 234.0625,
+            "top": 927.90625,
+            "left": 7.7499847412109375
+          }
+        }
+      ]
+    },
+    {
+      "src": "/images/uploaded/homepage/cash-flow-rework/service-business-leak-types.jpg",
+      "count": 5,
+      "states": [
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 374.5,
+            "height": 124.63818359375,
+            "top": 1517.954345703125,
+            "left": 7.7499847412109375
+          }
+        }
+      ]
+    },
+    {
+      "src": "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-card.jpg",
+      "count": 5,
+      "states": [
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 374.5,
+            "height": 468.125,
+            "top": 2137.359375,
+            "left": 7.7499847412109375
+          }
+        }
+      ]
+    },
+    {
+      "src": "/images/uploaded/homepage/cash-flow-rework/before-after-cash-flow-system.jpg",
+      "count": 5,
+      "states": [
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "left": 0
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 374.5,
+            "height": 172.3203125,
+            "top": 4808.75390625,
+            "left": 7.7499847412109375
+          }
+        }
+      ]
+    }
+  ],
+  "overflow": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "bodyScrollWidth": 390
+  }
+}

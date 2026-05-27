@@ -30,8 +30,8 @@ export default function SystemsIndexPage() {
         <section className="relative overflow-hidden pb-12 pt-32 sm:pb-16 lg:pt-36">
           <div className="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_70%)]" aria-hidden="true" />
           <div className={`${shell} relative text-center`}>
-            <h1 className="mx-auto max-w-5xl text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.25rem]">Systems Stanley Systems can build for cash, follow-up, and repeat work.</h1>
-            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-[#334B60] sm:text-xl">The Cash Flow Assessment shows which systems matter most. Some businesses need faster billing. Some need better follow-up. Some need both.</p>
+            <h1 className="mx-auto max-w-5xl text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.25rem]">Systems that help service businesses bill faster, follow up cleaner, get more reviews, create more referrals, and bring past customers back.</h1>
+            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-[#334B60] sm:text-xl">Some businesses are losing money before the invoice goes out. Some are losing it after the job, when reviews, referrals, and past customers are not followed up. Stanley Systems finds the biggest gap, then builds the system that fixes it.</p>
           </div>
         </section>
 

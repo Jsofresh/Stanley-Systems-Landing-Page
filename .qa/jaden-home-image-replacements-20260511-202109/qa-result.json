@@ -1,0 +1,6 @@
+{
+  "outDir": ".qa/jaden-home-image-replacements-20260511-202109",
+  "failures": [
+    "mobile: bad image state {\"src\":\"/images/uploaded/homepage/cash-flow-rework/before-after-cash-flow-system.jpg\",\"count\":5,\"states\":[{\"complete\":false,\"naturalWidth\":0,\"naturalHeight\":0,\"rect\":{\"width\":0,\"height\":0,\"top\":0,\"left\":0}},{\"complete\":false,\"naturalWidth\":0,\"naturalHeight\":0,\"rect\":{\"width\":0,\"height\":0,\"top\":0,\"left\":0}},{\"complete\":false,\"naturalWidth\":0,\"naturalHeight\":0,\"rect\":{\"width\":0,\"height\":0,\"top\":0,\"left\":0}},{\"complete\":false,\"naturalWidth\":0,\"naturalHeight\":0,\"rect\":{\"width\":0,\"height\":0,\"top\":0,\"left\":0}},{\"complete\":false,\"naturalWidth\":0,\"naturalHeight\":0,\"rect\":{\"width\":324,\"height\":149.078125,\"top\":4887.28125,\"left\":33}}]}"
+  ]
+}

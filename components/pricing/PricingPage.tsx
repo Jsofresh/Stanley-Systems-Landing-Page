@@ -47,10 +47,10 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
       <section className="px-4 pt-24 sm:px-6 sm:pt-28 lg:px-8 lg:pt-[7.25rem]">
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#e7e1d6] bg-white px-5 py-7 text-center shadow-[0_24px_70px_rgba(15,23,42,0.075)] sm:rounded-[2.5rem] sm:px-8 lg:px-12">
           <h1 className="mx-auto max-w-4xl text-balance text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[3.65rem]">
-            Pricing starts with the Cash Flow Assessment.
+            Start by finding where money is getting stuck.
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">
-            The assessment shows what is broken and what to fix. The Sprint builds the systems if you want Stanley Systems to install them.
+            The Cash Flow Assessment shows where cash, customers, billing, follow-up, reviews, referrals, and repeat work are getting stuck. The Sprint builds the approved systems to fix the highest-value problems first.
           </p>
           <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -73,7 +73,7 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
             <StepLabel>Step 2: Build</StepLabel>
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Systems Installation Sprint — starts at $1,500</h2>
             <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">
-              Stanley Systems turns the assessment plan into working systems for cash, follow-up, reviews, referrals, repeat work, and office handoffs.
+              Stanley Systems installs systems that help your business bill faster, follow up cleaner, request more reviews, create more referrals, bring past customers back, and keep cash moving.
             </p>
             <BulletList items={sprintIncludes} />
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">

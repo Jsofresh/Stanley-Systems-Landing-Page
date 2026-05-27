@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 export default function FieldServiceAutomationPage() {
   return <ProblemPageTemplate
     eyebrow="Field service automation"
-    title="Most field service tools create more places the office has to check."
-    intro="Stanley Systems connects the handoffs so the office knows what is ready, missing, and next."
+    title="Field Service Automation That Moves Jobs, Cash, and Follow-Up Forward"
+    intro="Get jobs billed faster, follow-up handled cleaner, and fewer details lost between the field and office. Stanley Systems connects the handoffs so your team knows what is ready, missing, and next."
     symptoms={["Field notes are in one place, photos somewhere else, and questions in texts.", "Estimate follow-up depends on memory after the quote is sent.", "Billing waits because the office has to clarify what happened."]}
     costTitle="Automation only helps when it removes the handoff drag."
     costBody="Adding another tool does not fix cash flow if the office still has to hunt for what is ready, missing, and overdue."
