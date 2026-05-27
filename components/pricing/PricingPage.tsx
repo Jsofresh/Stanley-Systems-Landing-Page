@@ -50,7 +50,7 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
             Start by finding where money is getting stuck.
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">
-            The Cash Flow Assessment shows where cash, customers, billing, follow-up, reviews, referrals, and repeat work are getting stuck. The Sprint builds the approved systems to fix the highest-value problems first.
+            The Cash Flow Assessment shows where cash, customers, billing, follow-up, reviews, referrals, and repeat work are getting stuck. The Sprint builds the approved billing, follow-up, review, referral, or repeat-customer systems first.
           </p>
           <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>

@@ -44,8 +44,8 @@ Stanley Systems helps service business owners fix those leaks with installed wor
 The current public ladder is:
 
 1. Free calculator: estimate how much cash is being delayed or lost through invoicing and workflow drag. URL: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
-2. Cash Flow Assessment: a $97 assessment that maps the highest-cost office leaks and identifies what should be fixed first. URL: https://stanley-systems.com/workflow-audit
-3. Systems Installation Sprint: a $1,500 focused installation sprint that turns the assessment into a practical workflow build. URL: https://stanley-systems.com/systems-installation-sprint
+2. Cash Flow Assessment: a $97 assessment that maps the office leaks and shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first. URL: https://stanley-systems.com/workflow-audit
+3. Systems Installation Sprint: a $1,500 focused installation sprint that turns the assessment into installed systems your team can use. URL: https://stanley-systems.com/systems-installation-sprint
 4. Optional ongoing control: for businesses that want Stanley Systems to keep improving, monitoring, and controlling the installed office system after the sprint.
 
 Public system options include Cashflow Control, Repeat Revenue, and buying both systems where appropriate.
@@ -84,7 +84,7 @@ Typical problems:
 
 Canonical URL: https://stanley-systems.com/systems-installation-sprint
 
-The Systems Installation Sprint is the build phase after the Cash Flow Assessment. Stanley Systems builds, tests, documents, and hands off the approved workflow so the team can use it. The sprint can install Cashflow Control, Repeat Revenue, both, or a scoped mix based on the assessment.
+The Systems Installation Sprint is the build phase after the Cash Flow Assessment. Stanley Systems builds, tests, documents, and hands off the approved systems so the team can use them. The sprint can install Cashflow Control, Repeat Revenue, both, or a scoped mix of billing, follow-up, review, referral, or repeat-customer systems based on the assessment.
 
 ## AI-Assisted Office Automation Positioning
 

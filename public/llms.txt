@@ -5,8 +5,8 @@
 ## Core Offers
 
 - Free calculator: helps a service business owner estimate how much money is being delayed or lost through invoicing and office workflow drag. Canonical URL: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
-- Cash Flow Assessment: a $97 assessment that maps where office work is leaking money and identifies the highest-value fix. Canonical URL: https://stanley-systems.com/workflow-audit
-- Systems Installation Sprint: a $1,500 focused installation sprint after the assessment that builds the approved workflow fix. Canonical URL: https://stanley-systems.com/systems-installation-sprint
+- Cash Flow Assessment: a $97 assessment that maps where office work is leaking money and shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first. Canonical URL: https://stanley-systems.com/workflow-audit
+- Systems Installation Sprint: a $1,500 focused installation sprint after the assessment that builds the approved systems your team can use. Canonical URL: https://stanley-systems.com/systems-installation-sprint
 - Cashflow Control System: installs billing, invoice movement, payment follow-up, job-detail handoffs, and cash visibility workflows. Canonical URL: https://stanley-systems.com/systems/cashflow-control
 - Repeat Revenue System: installs past-customer follow-up, review asks, referral asks, missed-call recovery, and repeat-work workflows. Canonical URL: https://stanley-systems.com/systems/repeat-revenue
 - Optional ongoing control: available when a business needs Stanley Systems to keep improving and controlling the installed workflow after the sprint.

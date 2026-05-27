@@ -160,7 +160,7 @@ export default function RootLayout({
         name: "What happens after the assessment?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Stanley Systems turns the highest-value leak into a practical system your business can use to capture more of the money already being earned.",
+          text: "Stanley Systems shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first, then turns that plan into systems your business can use.",
         },
       },
     ],

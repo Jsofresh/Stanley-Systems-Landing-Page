@@ -24,7 +24,7 @@ const installedItems = [
 ]
 
 const timeline = [
-  ["Assessment completed", "We find the highest-cost workflow to fix first."],
+  ["Assessment completed", "The assessment shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first."],
   ["Scope approved", "You approve what gets installed before the build starts."],
   ["Sprint installed and handed off", "Stanley Systems builds, tests, and hands off the workflow so your team can use it."],
 ]

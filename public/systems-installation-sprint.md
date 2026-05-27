@@ -2,9 +2,9 @@
 
 Canonical HTML page: https://stanley-systems.com/systems-installation-sprint
 
-The Systems Installation Sprint is the focused build phase after the Cash Flow Assessment. Stanley Systems turns the assessment into a practical workflow your team can use.
+The Systems Installation Sprint is the focused build phase after the Cash Flow Assessment. Stanley Systems turns the assessment into practical systems your team can use.
 
-The sprint can install Cashflow Control, Repeat Revenue, both, or a scoped mix of systems depending on the highest-value leak found in the assessment.
+The sprint can install Cashflow Control, Repeat Revenue, both, or a scoped mix of billing, follow-up, review, referral, or repeat-customer systems based on what the assessment shows should be installed first.
 
 The public sprint price is $1,500. The sprint can include workflow buildout, reminders, handoffs, templates, tracking, testing, documentation, and handoff around the approved build.
 
