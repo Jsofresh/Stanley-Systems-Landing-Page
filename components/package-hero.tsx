@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import type { ReactNode } from "react"
+import type { CSSProperties, ReactNode } from "react"
 import { ArrowRight } from "lucide-react"
 
 export type PackageHeroCard = {
@@ -22,8 +22,10 @@ type PackageHeroProps = {
   secondaryLabel?: string
   children?: ReactNode
   objectPosition?: string
+  mobileObjectPosition?: string
   imageClassName?: string
   imageTransform?: string
+  mobileImageTransform?: string
 }
 
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_18px_42px_rgba(21,128,61,0.26)] transition hover:-translate-y-0.5 hover:bg-[#116832] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FBFCF7]"
@@ -42,9 +44,18 @@ export function PackageHero({
   secondaryLabel,
   children,
   objectPosition = "center",
+  mobileObjectPosition,
   imageClassName = "",
   imageTransform,
+  mobileImageTransform,
 }: PackageHeroProps) {
+  const imageStyle = {
+    "--package-hero-object-position": objectPosition,
+    "--package-hero-object-position-mobile": mobileObjectPosition ?? objectPosition,
+    "--package-hero-transform": imageTransform ?? "none",
+    "--package-hero-transform-mobile": mobileImageTransform ?? imageTransform ?? "none",
+  } as CSSProperties
+
   return (
     <section
       data-section="package-hero"
@@ -57,8 +68,8 @@ export function PackageHero({
         height={imageHeight}
         priority
         sizes="100vw"
-        className={`absolute inset-0 -z-30 h-full w-full object-cover ${imageClassName}`}
-        style={{ objectPosition, transform: imageTransform, transformOrigin: "center" }}
+        className={`absolute inset-0 -z-30 h-full w-full object-cover [object-position:var(--package-hero-object-position-mobile)] [transform:var(--package-hero-transform-mobile)] sm:[object-position:var(--package-hero-object-position)] sm:[transform:var(--package-hero-transform)] ${imageClassName}`}
+        style={imageStyle}
       />
 
       <div

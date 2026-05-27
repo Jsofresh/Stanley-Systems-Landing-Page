@@ -43,8 +43,10 @@ export default function SystemsInstallationSprintPage() {
           imageWidth={1280}
           imageHeight={720}
           objectPosition="0% center"
+          mobileObjectPosition="35% center"
           imageClassName=""
           imageTransform="translateX(24%) scale(1.22)"
+          mobileImageTransform="none"
           primaryHref="/workflow-audit"
           primaryLabel="Start the Cash Flow Assessment"
           secondaryHref="/contact?path=pre-buy"
