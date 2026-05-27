@@ -1,5 +1,122 @@
 User-agent: *
 Allow: /
 Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: Claude-User
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: Bingbot
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: MicrosoftPreview
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: GPTBot
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /car-dealerships
+Disallow: /api/
+Disallow: /dev/
+Disallow: /checkout/
+Disallow: /remotion
+Disallow: /remotion-link
+Disallow: /audit-intake
+Disallow: /audit-started
 
 Sitemap: https://stanley-systems.com/sitemap.xml

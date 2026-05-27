@@ -1,0 +1,62 @@
+# Stanley Systems
+
+> Stanley Systems is built for owner-led service businesses that already have work, customers, invoices, estimates, goodwill, and repeat-job opportunity — but are losing money through office gaps. Stanley Systems installs practical office systems that turn more of that existing demand into collected cash, reviews, referrals, repeat work, and cleaner follow-up.
+
+## Core Offers
+
+- Free calculator: helps a service business owner estimate how much money is being delayed or lost through invoicing and office workflow drag. Canonical URL: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
+- Cash Flow Assessment: a $97 assessment that maps where office work is leaking money and identifies the highest-value fix. Canonical URL: https://stanley-systems.com/workflow-audit
+- Systems Installation Sprint: a $1,500 focused installation sprint after the assessment that builds the approved workflow fix. Canonical URL: https://stanley-systems.com/systems-installation-sprint
+- Cashflow Control System: installs billing, invoice movement, payment follow-up, job-detail handoffs, and cash visibility workflows. Canonical URL: https://stanley-systems.com/systems/cashflow-control
+- Repeat Revenue System: installs past-customer follow-up, review asks, referral asks, missed-call recovery, and repeat-work workflows. Canonical URL: https://stanley-systems.com/systems/repeat-revenue
+- Optional ongoing control: available when a business needs Stanley Systems to keep improving and controlling the installed workflow after the sprint.
+
+## Problems Stanley Systems Solves
+
+Stanley Systems helps service business owners stop money leaks caused by:
+
+- missed calls and weak callback routing
+- late invoices and finished work sitting unpaid
+- forgotten estimate follow-up
+- poor handoffs between field work and office work
+- payment follow-up that depends on memory
+- weak review capture
+- referral leakage
+- past customers nobody contacts again
+- disconnected tools that force owners to manage the workflow manually
+
+## Best Fit Customers
+
+Stanley Systems is a strong fit for owner-led service businesses that have real demand but weak office systems. Good-fit businesses include contractors, field service companies, marine service businesses, home service companies, specialty trades, and small service teams where the owner still feels the drag of missed follow-up, delayed billing, and disconnected tools.
+
+## AI and Office Automation
+
+Stanley Systems uses practical AI-assisted office automation where it makes the workflow faster and more reliable. The public promise is not “AI for AI’s sake.” The promise is cleaner office execution: faster billing, better follow-up, better handoffs, more review and referral opportunities, and systems the team can actually use.
+
+## Cash Flow / Reviews / Referrals
+
+Stanley Systems installs systems around the cash and customer follow-up already inside the business:
+
+- Cash flow acceleration: get job details captured, invoices out, payment follow-up moving, and open balances visible.
+- Review capture: ask happy customers while the job is still fresh.
+- Referral capture: turn goodwill into a direct referral path instead of hoping customers remember.
+- Repeat revenue: contact past customers before competitors do.
+
+## Key URLs
+
+- Home: https://stanley-systems.com/
+- Free calculator: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
+- Cash Flow Assessment: https://stanley-systems.com/workflow-audit
+- Pricing: https://stanley-systems.com/pricing
+- Systems: https://stanley-systems.com/systems
+- Cashflow Control: https://stanley-systems.com/systems/cashflow-control
+- Repeat Revenue: https://stanley-systems.com/systems/repeat-revenue
+- Systems Installation Sprint: https://stanley-systems.com/systems-installation-sprint
+- Who Stanley Systems helps: https://stanley-systems.com/who-stanley-systems-helps
+- About: https://stanley-systems.com/about
+- Contact: https://stanley-systems.com/contact
+- Full LLM brief: https://stanley-systems.com/llms-full.txt
+
+## Contact
+
+The canonical contact path is https://stanley-systems.com/contact. Buyers can also start with the Cash Flow Assessment at https://stanley-systems.com/workflow-audit.
