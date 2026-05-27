@@ -8,6 +8,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -19,6 +22,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: ChatGPT-User
 Allow: /
@@ -30,6 +36,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: PerplexityBot
 Allow: /
@@ -41,6 +50,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: Perplexity-User
 Allow: /
@@ -52,6 +64,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: Claude-SearchBot
 Allow: /
@@ -63,6 +78,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: Claude-User
 Allow: /
@@ -74,6 +92,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: Bingbot
 Allow: /
@@ -85,6 +106,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: MicrosoftPreview
 Allow: /
@@ -96,6 +120,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: GPTBot
 Allow: /
@@ -107,6 +134,9 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 User-agent: ClaudeBot
 Allow: /
@@ -118,5 +148,8 @@ Disallow: /remotion
 Disallow: /remotion-link
 Disallow: /audit-intake
 Disallow: /audit-started
+Disallow: /bookAppointment
+Disallow: /checkAvailability
+Disallow: /escalateToHuman
 
 Sitemap: https://stanley-systems.com/sitemap.xml
