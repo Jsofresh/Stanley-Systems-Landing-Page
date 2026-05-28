@@ -75,6 +75,11 @@ const sections = [
       "Stanley Systems keeps information only as long as it is reasonably useful for inquiry handling, client communication, service delivery, billing, legal compliance, recordkeeping, or legitimate business operations. The exact retention period may vary depending on the nature of the relationship, the type of information involved, and whether continuing retention is needed for operational or legal reasons.",
   },
   {
+    title: "Data Deletion",
+    body:
+      "Users can request deletion of app-connected data by contacting jaden@stanley-systems.com. Stanley Systems will review deletion requests and delete app-connected data that is no longer needed for legitimate business, security, billing, legal, or recordkeeping purposes.",
+  },
+  {
     title: "Data security",
     body:
       "Stanley Systems uses reasonable administrative, technical, and operational measures to protect information from unauthorized access, misuse, or disclosure. No internet transmission or storage system can be guaranteed to be completely secure, but reasonable efforts are made to protect sensitive business and contact data in the normal course of operations.",
@@ -117,7 +122,12 @@ export default function PrivacyPolicyPage() {
             <div className="mt-10 space-y-8">
               {sections.map((section) => (
                 <div key={section.title} className="border-t border-[#efe7db] pt-8 first:border-t-0 first:pt-0">
-                  <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{section.title}</h2>
+                  <h2
+                    id={section.title === "Data Deletion" ? "data-deletion" : undefined}
+                    className="scroll-mt-28 text-2xl font-semibold tracking-tight text-slate-900"
+                  >
+                    {section.title}
+                  </h2>
                   <p className="mt-3 text-base leading-8 text-slate-600">{section.body}</p>
                 </div>
               ))}
