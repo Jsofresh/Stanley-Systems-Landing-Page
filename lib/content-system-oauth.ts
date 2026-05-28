@@ -47,7 +47,7 @@ const PLATFORM_CONFIGS: Record<string, Omit<PlatformConfig, "key">> = {
     clientId: "LINKEDIN_CLIENT_ID",
     clientSecret: "LINKEDIN_CLIENT_SECRET",
     redirectUri: "LINKEDIN_REDIRECT_URI",
-    scopes: ["openid", "profile", "email", "w_member_social"],
+    scopes: ["openid", "profile", "email", "w_organization_social", "r_organization_social", "w_member_social", "r_member_social"],
     tokenAuth: "body",
   },
   x: {
@@ -144,11 +144,15 @@ async function readJson(file: string): Promise<JsonMap> {
 
 async function writeJson600(file: string, data: JsonMap) {
   await fs.mkdir(path.dirname(file), { recursive: true, mode: 0o700 })
-  const tmp = path.join(path.dirname(file), `.${path.basename(file)}.${process.pid}.${Date.now()}`)
-  await fs.writeFile(tmp, `${JSON.stringify(data, null, 2)}\n`, { mode: 0o600 })
-  await fs.chmod(tmp, 0o600)
-  await fs.rename(tmp, file)
-  await fs.chmod(file, 0o600)
+  const tmp = path.join(path.dirname(file), `.${path.basename(file)}.${process.pid}.${Date.now()}.${crypto.randomUUID()}`)
+  try {
+    await fs.writeFile(tmp, `${JSON.stringify(data, null, 2)}\n`, { mode: 0o600 })
+    await fs.chmod(tmp, 0o600)
+    await fs.rename(tmp, file)
+    await fs.chmod(file, 0o600)
+  } finally {
+    await fs.rm(tmp, { force: true }).catch(() => {})
+  }
 }
 
 function pruneStates(states: JsonMap) {
@@ -241,9 +245,9 @@ async function bearerGet(url: string, accessToken: string, params?: Record<strin
   }
 }
 
-async function fetchMetadata(platform: string, tokenFields: JsonMap) {
+async function fetchMetadata(platform: string, tokenFields: JsonMap, env: EnvMap) {
   const access = tokenFields.access_token
-  const metadata: JsonMap = { account_ids: [], page_ids: [], channel_ids: [] }
+  const metadata: JsonMap = { account_ids: [], page_ids: [], channel_ids: [], organization_ids: [] }
   if (!access) return metadata
   if (platform === "youtube") {
     const data = await bearerGet("https://www.googleapis.com/youtube/v3/channels", access, { part: "id", mine: "true" })
@@ -251,6 +255,20 @@ async function fetchMetadata(platform: string, tokenFields: JsonMap) {
   } else if (platform === "linkedin") {
     const data = await bearerGet("https://api.linkedin.com/v2/userinfo", access)
     if (data?.sub) metadata.account_ids = [String(data.sub)]
+
+    const configuredOrganizationId = env.LINKEDIN_ORGANIZATION_ID
+    const vanityLookup = await bearerGet("https://api.linkedin.com/v2/organizations", access, { q: "vanityName", vanityName: "stanley-systems" })
+    const vanityOrganizationIds = (vanityLookup?.elements || []).map((org: any) => org.id).filter(Boolean).map(String)
+    const adminLookup = await bearerGet("https://api.linkedin.com/v2/organizationAcls", access, {
+      q: "roleAssignee",
+      role: "ADMINISTRATOR",
+      projection: "(elements*(organization~(id,localizedName,vanityName)))",
+    })
+    const adminOrganizationIds = (adminLookup?.elements || [])
+      .map((entry: any) => entry?.["organization~"]?.id || String(entry?.organization || "").replace("urn:li:organization:", ""))
+      .filter(Boolean)
+      .map(String)
+    metadata.organization_ids = Array.from(new Set([configuredOrganizationId, ...vanityOrganizationIds, ...adminOrganizationIds].filter(Boolean).map(String)))
   } else if (platform === "x") {
     const data = await bearerGet("https://api.twitter.com/2/users/me", access)
     if (data?.data?.id) metadata.account_ids = [String(data.data.id)]
@@ -291,7 +309,7 @@ export async function handleCallback(platform: string, requestUrl: string) {
       connected_at: Math.floor(Date.now() / 1000),
       scopes_requested: cfg.scopes,
       tokens: tokenFields,
-      metadata: await fetchMetadata(platform, tokenFields),
+      metadata: await fetchMetadata(platform, tokenFields, env),
     }
     await writeJson600(TOKEN_FILE, tokens)
     return { ok: true, status: 200, platformName: cfg.name }
@@ -320,6 +338,7 @@ export async function integrationReadiness(platform: string) {
       account_ids: metadata.account_ids || [],
       page_ids: metadata.page_ids || [],
       channel_ids: metadata.channel_ids || [],
+      organization_ids: metadata.organization_ids || [],
     }
   }
   if (platform === "posthog") {

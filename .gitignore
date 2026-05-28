@@ -61,6 +61,20 @@ Thumbs.db
 # Local environment files
 .env.local
 .env.*.local
+*.env
+
+# Content System secrets / OAuth token state
+.openclaw/secrets/content-system/*
+oauth-states.json
+oauth-tokens.json
+
+# Google credential JSON files
+*service-account*.json
+*service_account*.json
+*google-credentials*.json
+*google_credentials*.json
+*google-service-account*.json
+*google_service_account*.json
 
 # Reference materials (often copyrighted)
 references/
