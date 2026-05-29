@@ -1114,7 +1114,7 @@
   animation-delay: 640ms;
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), print {
   [data-calculator-result-page] h1,
   [data-calculator-result-page] h2,
   [data-calculator-result-page] p,

@@ -160,10 +160,10 @@ function SampleOutput() {
 
 function AssessmentPricing() {
   const deliverables = [
-    "Office-side leak map",
-    "Fix list for every problem found",
-    "Expected result of each fix",
-    "Build priorities if Stanley Systems installs it",
+    "Professional Stanley Systems money-leak report",
+    "Current workflow map and ideal workflow map",
+    "Fix list for every office step and handoff",
+    "Expected result and ROI for each fix",
   ]
 
   return (
@@ -180,7 +180,7 @@ function AssessmentPricing() {
               <p className="text-[4.2rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A]">$97</p>
             </div>
             <p className="mt-5 text-base font-semibold leading-7 text-[#334B60]">
-              You are buying a clear breakdown of what is happening now, what it is costing you, how to fix it, and what Stanley Systems can build from it.
+              You are buying a clear breakdown of what is happening now, what it is costing, what should be fixed, and what each fix is expected to improve.
             </p>
             <ul className="mt-6 grid gap-3 text-left text-sm font-semibold leading-6 text-[#334B60] sm:grid-cols-2">
               {deliverables.map((item) => (
@@ -191,7 +191,7 @@ function AssessmentPricing() {
               <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
             </div>
             <p className="mx-auto mt-4 max-w-md text-center text-sm font-semibold leading-6 text-[#607080]">
-              If you move forward with the Sprint, your $97 assessment counts as a $194 credit.
+              If the assessment is useful and you want Stanley Systems to build the fix for you, we credit double the assessment fee toward your Installation Sprint.
             </p>
           </article>
 
@@ -204,9 +204,9 @@ function AssessmentPricing() {
 function SprintBridge() {
   const bullets = [
     "Use the assessment to fix the problems yourself.",
-    "Or use it as the build plan for the Sprint.",
-    "The Sprint can include Cashflow Control, Repeat Revenue, both, or a scoped mix of systems.",
-    "Your assessment can count as a $194 credit toward the Sprint.",
+    "Use it as the build plan for the Sprint if you want Stanley Systems to install the fix.",
+    "The Sprint can include faster billing, cleaner follow-up, reviews, referrals, repeat-customer reminders, or a scoped mix.",
+    "Double the assessment fee can be credited toward the Sprint.",
   ]
 
   return (
@@ -214,7 +214,8 @@ function SprintBridge() {
       <div className={`${shell} grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center`}>
         <div>
           <h2 className="text-[2.25rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build it for you?</h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The assessment shows what is costing you money. The Sprint builds the fix — faster billing, cleaner follow-up, more reviews, more referrals, repeat-customer reminders, or the approved mix your business needs.</p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The assessment shows what is costing you money. The Sprint builds the fix: faster billing, cleaner follow-up, more reviews, more referrals, repeat-customer reminders, or the specific mix your business needs.</p>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">Use the assessment to fix the problems yourself, or use it as the build plan for the Sprint.</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </div>
@@ -231,10 +232,10 @@ function SprintBridge() {
 
 function HowItWorks() {
   const steps = [
-    "You show us how calls, estimates, invoices, and follow-up work now.",
-    "We review the records and find where money gets stuck.",
-    "You get a map of the leaks, fixes, and expected results.",
-    "You decide which systems Stanley Systems should build.",
+    "You show how calls, estimates, invoices, follow-up, reviews, referrals, and repeat work move now.",
+    "Stanley Systems reviews the records and finds where money gets stuck.",
+    "You get a money-leak report, workflow map, fix list, and expected results.",
+    "You decide whether to fix it yourself or have Stanley Systems build the systems for you.",
   ]
 
   return (
@@ -243,7 +244,13 @@ function HowItWorks() {
         <div>
           <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">What happens after you start</h2>
           <p className="mt-4 max-w-xl text-base leading-7 text-[#536173] sm:text-lg">
-            This is the paid product that shows what Stanley Systems found, how each issue should be fixed, and what can be built from it.
+            After checkout, Stanley Systems reviews how calls, estimates, invoices, follow-up, reviews, referrals, and repeat work move through your office, then turns it into a practical money-leak report.
+          </p>
+          <p className="mt-4 max-w-xl rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">
+            You stay in control: any access needed for the assessment is temporary, used only for the review, and removable by you at any time.
+          </p>
+          <p className="mt-3 max-w-xl text-sm font-semibold leading-6 text-[#536173]">
+            After checkout, Stanley Systems will email and call you to schedule the assessment and collect the details needed to review your office flow.
           </p>
         </div>
         <ol className="grid gap-3 sm:grid-cols-2">
@@ -267,11 +274,11 @@ function NextSteps() {
   ]
 
   const questions = [
-    ["What happens after I buy?", "You start the assessment intake, then Stanley Systems uses the walkthrough and records to find the money leaks and the build priorities."],
-    ["Do I need to share passwords?", "No. Do not send passwords. You can start with screen share, exports, screenshots, or a temporary invited user if access is needed."],
+    ["What happens after I buy?", "After checkout, Stanley Systems will email and call you to schedule the assessment intake. You’ll walk through how calls, estimates, invoices, payments, follow-up, reviews, referrals, and repeat work move through your office. Then Stanley Systems reviews the records and sends your money-leak report, workflow map, fix list, and build priorities."],
+    ["Do I need to share passwords?", "No. Do not send passwords. A temporary invited user is usually the fastest way for Stanley Systems to review accurate records, but you can start with a screen share, exports, or screenshots. You control what is shared and can remove access at any time."],
     ["Does this replace my current software?", "No. Stanley Systems looks at the handoffs around the tools you already use."],
     ["Will I talk to a real person?", "Yes. The assessment is reviewed by Stanley Systems before a recommendation is made."],
-    ["What happens after the assessment?", "You get the map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and what can be built from it. If you move forward with the Sprint, your $97 assessment counts as a $194 credit."],
+    ["What happens after the assessment?", "You get the map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and what should be fixed first. If the assessment is useful and you want Stanley Systems to build the fix for you, we credit double the assessment fee toward your Installation Sprint."],
     ["What if I already know what I want?", "You can still start with the assessment to confirm the full fix list before installation, or talk before buying if you need a quick route check."],
   ]
 
@@ -282,7 +289,7 @@ function NextSteps() {
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">After the assessment, the fix usually falls into one of three buckets</h2>
             <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
-              You do not need to compare systems before buying the assessment. The assessment shows which systems and handoffs matter most.
+              You leave with the useful fixes and priorities. If you want Stanley Systems to build it, the Sprint uses the assessment as the build plan.
             </p>
           </div>
           <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-3">

@@ -2,16 +2,15 @@
 
 Canonical HTML page: https://stanley-systems.com/workflow-audit
 
-The Cash Flow Assessment is the $97 front-door offer from Stanley Systems. It helps a service business owner find where office work is causing money to get stuck before buying a system.
+The Cash Flow Assessment is the $97 front-door offer from Stanley Systems. It shows what is actually happening inside the office: where calls, estimates, invoices, follow-up, reviews, referrals, and repeat work are getting stuck.
 
-Stanley Systems reviews leaks around calls, estimates, jobs, invoices, payment follow-up, reviews, referrals, and past-customer follow-up. The output is a clear map of what is costing money, how each issue should be fixed, what the fix is expected to improve, and which system should be built first.
+The assessment deliverable is a professional Stanley Systems money-leak report with the current workflow map, ideal workflow map, data points, calculations, fix list, expected results, and build priorities.
 
-The assessment is the right first step when the owner knows money is being dropped somewhere in the office workflow but does not yet know whether billing, estimate follow-up, review capture, referral capture, missed-call recovery, repeat-customer follow-up, or a connected workflow issue should be installed first.
-
-After the assessment, the build path can move into the Systems Installation Sprint.
+If the assessment is useful and the buyer wants Stanley Systems to build the fix, double the assessment fee is credited toward the Installation Sprint.
 
 Key related URLs:
 
+- Calculator: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
 - Pricing: https://stanley-systems.com/pricing
 - Systems Installation Sprint: https://stanley-systems.com/systems-installation-sprint
 - Contact: https://stanley-systems.com/contact

@@ -84,10 +84,10 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
 
           <article className={card}>
             <StepLabel>Step 3: Maintain</StepLabel>
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Monthly Control — quoted after Sprint</h2>
-            <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">Optional support after installation. Pricing depends on the number of workflows, tools, and support needs.</p>
-            <p className="mt-4 rounded-2xl bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">Monthly Control is optional after launch. It is not sold by itself.</p>
-            <Link href="/contact?path=pre-buy" className={`mt-6 w-full ${lightButton}`}>Ask about Monthly Control</Link>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Ongoing Control — quoted after Sprint</h2>
+            <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">The Sprint gets the system installed. Ongoing Control keeps it working as the shop changes: monitoring issues, updating the office flow, improving reminders and handoffs, and helping staff use the system correctly.</p>
+            <p className="mt-4 rounded-2xl bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">Ongoing Control is optional after launch. It is not sold by itself.</p>
+            <Link href="/contact?path=pre-buy" className={`mt-6 w-full ${lightButton}`}>Ask about Ongoing Control</Link>
           </article>
         </section>
 

@@ -17,7 +17,7 @@ const faqSchema = {
       name: "Do we need to switch software?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No. Stanley Systems works around the tools your team already uses whenever possible. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, Wallace, or your current setup. The point is to fix the gaps where work, billing, follow-up, and customer records fall through.",
+        text: "No. Stanley Systems works around the tools your team already uses whenever possible. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, or your current setup. The point is to fix the gaps where work, billing, follow-up, and customer records fall through.",
       },
     },
     {

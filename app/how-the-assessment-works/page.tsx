@@ -59,7 +59,7 @@ const timeline = [
   {
     title: "Show how the office works now",
     body: "Stanley Systems reviews how calls, estimates, invoices, customer records, payment follow-up, reviews, referrals, and past customers are handled today.",
-    note: "You can use a walkthrough, screen share, screenshots, exports, or temporary invited access. Do not send passwords.",
+    note: "You stay in control: any access needed for the assessment is temporary, used only for the review, and removable by you at any time.",
   },
   {
     title: "Stanley Systems finds where money is getting stuck",
@@ -67,7 +67,7 @@ const timeline = [
   },
   {
     title: "You receive the map",
-    body: "You get a clear map of where money is getting stuck, what each problem is costing, how to fix them, and what Stanley Systems can build to fix it.",
+    body: "You get a clear map of where money is getting stuck, what each problem is costing, what should be fixed, and what each fix is expected to improve.",
   },
 ]
 
@@ -76,15 +76,15 @@ const deliverables = [
   ["Problem list", "The places where money, time, customers, or follow-up are slipping through the cracks."],
   ["Cost of each issue", "A plain-English look at what each problem may be costing your business."],
   ["Fix priority", "What should be fixed first, what can wait, and what is not worth overbuilding."],
-  ["What Stanley Systems can build to fix it", "Which systems should be installed first and what Stanley Systems can build to make the biggest difference first."],
+  ["Build plan if you want help", "If you do not want to build it yourself, Stanley Systems can use the assessment to scope the Installation Sprint."],
 ]
 
 const faqs = [
   ["Do I need to know the exact problem first?", "No. You only need to show how your office handles calls, estimates, invoices, follow-up, customer records, reviews, and past customers today. Stanley Systems looks for the problems from there."],
   ["Do I need perfect reports or clean data?", "No. Best available records are enough. Screen shares, screenshots, exports, or walkthroughs can all help."],
-  ["Do I need to share passwords?", "No. Do not send passwords. If access is needed, use screen share, exports, screenshots, or temporary invited access."],
+  ["Do I need to share passwords?", "No. Do not send passwords. A temporary invited user is usually the fastest way for Stanley Systems to review accurate records, but you can start with a screen share, exports, or screenshots. You control what is shared and can remove access at any time."],
   ["Is this a software replacement?", "No. Stanley Systems looks at the handoffs around the tools you already use. The goal is to find where money, customers, and follow-up are getting stuck."],
-  ["What if I want Stanley Systems to build the fixes?", "If you move forward with the Systems Installation Sprint, your assessment can count as a $194 credit toward the build."],
+  ["What if I want Stanley Systems to build the fixes?", "If the assessment is useful and you want Stanley Systems to build the fix for you, we credit double the assessment fee toward your Installation Sprint."],
 ]
 
 function SprintBridge() {
@@ -94,10 +94,10 @@ function SprintBridge() {
         <div>
           <h2 className="text-[2.05rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build it for you?</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            The assessment shows what is costing you money. The Sprint is where Stanley Systems builds the fix — billing, follow-up, reviews, referrals, repeat-customer work, or the approved mix your business needs.
+            The assessment shows what is costing you money. The Sprint builds the fix: faster billing, cleaner follow-up, more reviews, more referrals, repeat-customer reminders, or the specific mix your business needs.
           </p>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#536173] sm:text-base">
-            The Sprint can include Cashflow Control, Repeat Revenue, both, or a scoped mix based on what the assessment shows.
+            Use the assessment to fix the problems yourself, or use it as the build plan for the Sprint.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href="/systems-installation-sprint" className={greenButton}>See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -110,7 +110,7 @@ function SprintBridge() {
             <li>Use the map as the build plan for Stanley Systems to install the systems.</li>
           </ul>
           <p className="mt-5 rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">
-            If you move forward with the Sprint, your assessment can count as a $194 credit toward the build.
+            If the assessment is useful and you want Stanley Systems to build the fix for you, we credit double the assessment fee toward your Installation Sprint.
           </p>
         </div>
       </div>
@@ -178,7 +178,7 @@ export default function HowAssessmentWorksPage() {
             <div>
               <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What you get from the assessment</h2>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-                The Cash Flow Assessment gives you a practical map your business can use whether you fix the problems yourself or ask Stanley Systems to build from the plan.
+                The Cash Flow Assessment gives you a professional Stanley Systems document: the leaks, the cost, the workflow map, the data behind the estimate, the fix list, and the expected result of each fix.
               </p>
               <p className="mt-5 text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">You receive:</p>
             </div>

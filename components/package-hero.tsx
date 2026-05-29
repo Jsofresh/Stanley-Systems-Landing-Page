@@ -21,6 +21,7 @@ type PackageHeroProps = {
   secondaryHref?: string
   secondaryLabel?: string
   children?: ReactNode
+  contentAlign?: "left" | "center"
   objectPosition?: string
   mobileObjectPosition?: string
   imageClassName?: string
@@ -43,12 +44,15 @@ export function PackageHero({
   secondaryHref,
   secondaryLabel,
   children,
+  contentAlign = "left",
   objectPosition = "center",
   mobileObjectPosition,
   imageClassName = "",
   imageTransform,
   mobileImageTransform,
 }: PackageHeroProps) {
+  const isCentered = contentAlign === "center"
+
   const imageStyle = {
     "--package-hero-object-position": objectPosition,
     "--package-hero-object-position-mobile": mobileObjectPosition ?? objectPosition,
@@ -86,15 +90,15 @@ export function PackageHero({
       />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(720px-9rem)] w-full max-w-7xl items-center py-8 sm:py-10 lg:min-h-[calc(720px-10rem)] lg:py-14">
-        <div className="max-w-[610px]">
+        <div className={isCentered ? "mx-auto max-w-[820px] text-center" : "max-w-[610px]"}>
           <h1 className="text-balance text-[2.55rem] font-semibold leading-[0.93] tracking-[-0.052em] text-[#071D3A] drop-shadow-[0_1px_0_rgba(255,255,255,0.42)] sm:text-[3.8rem] lg:text-[5rem]">
             {title}
           </h1>
-          <p className="mt-5 max-w-[580px] text-lg font-semibold leading-8 text-[#2d4052] sm:text-xl">
+          <p className={isCentered ? "mx-auto mt-5 max-w-[680px] text-lg font-semibold leading-8 text-[#2d4052] sm:text-xl" : "mt-5 max-w-[580px] text-lg font-semibold leading-8 text-[#2d4052] sm:text-xl"}>
             {subheading}
           </p>
           {children}
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className={isCentered ? "mt-7 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap" : "mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap"}>
             <Link href={primaryHref} className={greenButton}>
               {primaryLabel} <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

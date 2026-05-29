@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 const installedItems = [
-  ["Cashflow Control", "Billing handoffs, invoice readiness, payment follow-up, and owner visibility installed around the tools your team already uses."],
+  ["Cashflow Control", "Billing handoffs, invoice readiness, payment follow-up, and a clear way to see what is waiting installed around the tools your team already uses."],
   ["Repeat Revenue", "Past-customer follow-up, review asks, referral asks, private feedback routing, and missed-call recovery installed as a dependable workflow."],
   ["Scoped workflow pieces", "When your assessment points to a narrower gap, Stanley Systems can install the specific reminders, templates, handoffs, and tracking your business needs."],
 ]
@@ -26,7 +26,7 @@ const installedItems = [
 const timeline = [
   ["Assessment completed", "The assessment shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first."],
   ["Scope approved", "You approve what gets installed before the build starts."],
-  ["Sprint installed and handed off", "Stanley Systems builds, tests, and hands off the workflow so your team can use it."],
+  ["Sprint installed and put live", "Stanley Systems builds, tests, and puts the approved workflow live inside your current tools so your team can use it."],
 ]
 
 export default function SystemsInstallationSprintPage() {
@@ -37,7 +37,8 @@ export default function SystemsInstallationSprintPage() {
         <PackageHero
           eyebrow="Systems Installation Sprint"
           title="Get the Systems Installed That Move Cash and Customers Forward"
-          subheading="Get the systems your office needs to bill faster, follow up cleaner, request more reviews, create more referrals, and bring past customers back. Stanley Systems installs, tests, and hands off the approved systems inside the tools your team already uses."
+          subheading="Start with the Cash Flow Assessment. The Sprint is scoped after Stanley Systems reviews your office flow, then Stanley Systems installs the approved systems inside the tools your team already uses."
+          contentAlign="center"
           imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-office-team-van.jpg"
           imageAlt="Stanley Systems office team reviewing a sprint plan with a service van outside."
           imageWidth={1280}
@@ -54,9 +55,9 @@ export default function SystemsInstallationSprintPage() {
           cards={[
             { label: "Leak mapped", detail: "The highest-cost office gap is clear." },
             { label: "Workflow installed", detail: "The system is built around your real process." },
-            { label: "Team handoff ready", detail: "Your staff can see what to do next." },
-            { label: "Automation live", detail: "Reminders and handoffs are working." },
-            { label: "Sprint plan complete", detail: "The build is documented and handed off." },
+            { label: "Staff can use it", detail: "Your team can see what to do next." },
+            { label: "Workflow live", detail: "Reminders and handoffs are working." },
+            { label: "Sprint complete", detail: "The approved systems are tested and running." },
           ]}
         />
 
@@ -78,8 +79,8 @@ export default function SystemsInstallationSprintPage() {
             <div className="mx-auto max-w-4xl overflow-hidden rounded-[2.3rem] border border-[#9ED9B2] bg-white shadow-[0_30px_100px_rgba(7,29,58,0.14)]">
               <div className="bg-[#071422] px-6 py-5 text-white sm:px-8"><p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#53D986]">Build phase</p><h2 className="mt-2 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Systems Installation Sprint</h2></div>
               <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-                <div><p className="text-[4rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A]">$1,500</p><p className="mt-3 text-base font-extrabold text-[#116832]">One focused installation sprint after the Cash Flow Assessment.</p></div>
-                <div><p className="text-base font-semibold leading-7 text-[#536173]">Includes scoped workflow buildout, reminders, handoffs, templates, tracking, testing, documentation, and handoff around the approved business process.</p><p className="mt-4 rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">Your Cash Flow Assessment can count as a $194 credit toward the Sprint.</p><div className="mt-6 flex flex-col gap-3 sm:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link></div></div>
+                <div><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#116832]">standard installation: $1,500</p><p className="mt-3 text-base font-extrabold text-[#116832]">The Cash Flow Assessment sets the build scope. Stanley Systems installs the approved systems inside your current tools.</p></div>
+                <div><p className="text-base font-semibold leading-7 text-[#536173]">Includes the scoped workflow buildout, reminders, handoffs, templates, tracking, testing, and live setup inside the approved business process. Stanley Systems makes sure the system is running inside the tools your team already uses.</p><p className="mt-4 rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">The Sprint is complete when the approved systems are set up, tested, and running inside your current tools, so they are live in your office workflow.</p><div className="mt-6 flex flex-col gap-3 sm:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link></div></div>
               </div>
             </div>
           </div>
@@ -93,7 +94,7 @@ export default function SystemsInstallationSprintPage() {
           </div>
         </section>
 
-        <section data-section="sprint-final-cta" className="bg-[#071422] py-14 text-white sm:py-16" data-nav-theme="dark"><div className={`${shell} text-center`}><h2 className="mx-auto max-w-4xl text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-5xl">Ready to see what should be installed first?</h2><p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">Start with the Cash Flow Assessment. If the Sprint is right, Stanley Systems can build from that plan.</p><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-white/12">Ask us a question</Link></div></div></section>
+        <section data-section="sprint-final-cta" className="bg-[#071422] py-14 text-white sm:py-16" data-nav-theme="dark"><div className={`${shell} text-center`}><h2 className="mx-auto max-w-4xl text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-5xl">Ready to see what should be installed first?</h2><p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">Start with the Cash Flow Assessment. If the Sprint is the right move, Stanley Systems can install the systems from that plan.</p><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-white/12">Ask us a question</Link></div></div></section>
       </main>
       <Footer />
       <MobileStickyCTA />
