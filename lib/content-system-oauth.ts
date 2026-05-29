@@ -44,15 +44,18 @@ const PLATFORM_CONFIGS: Record<string, Omit<PlatformConfig, "key">> = {
     name: "LinkedIn",
     authUrl: "https://www.linkedin.com/oauth/v2/authorization",
     tokenUrl: "https://www.linkedin.com/oauth/v2/accessToken",
-    clientId: "LINKEDIN_CLIENT_ID",
-    clientSecret: "LINKEDIN_CLIENT_SECRET",
+    // LinkedIn Community Management API must live on its own app. Use the
+    // dedicated org/page app credentials here so Content System cannot silently
+    // authorize a member/personal-posting app for Stanley page publishing.
+    clientId: "LINKEDIN_ORG_CLIENT_ID",
+    clientSecret: "LINKEDIN_ORG_CLIENT_SECRET",
     redirectUri: "LINKEDIN_REDIRECT_URI",
-    scopes: ["openid", "profile", "email", "w_organization_social", "r_organization_social", "w_member_social", "r_member_social"],
+    scopes: ["openid", "profile", "email", "r_organization_social", "w_organization_social"],
     tokenAuth: "body",
   },
   x: {
     name: "X",
-    authUrl: "https://twitter.com/i/oauth2/authorize",
+    authUrl: "https://x.com/i/oauth2/authorize",
     tokenUrl: "https://api.twitter.com/2/oauth2/token",
     clientId: "X_OAUTH2_CLIENT_ID",
     clientSecret: "X_OAUTH2_CLIENT_SECRET",
@@ -237,7 +240,15 @@ async function bearerGet(url: string, accessToken: string, params?: Record<strin
   try {
     const requestUrl = new URL(url)
     for (const [key, value] of Object.entries(params || {})) requestUrl.searchParams.set(key, value)
-    const response = await fetch(requestUrl, { headers: { Authorization: `Bearer ${accessToken}`, Accept: "application/json" }, cache: "no-store" })
+    const response = await fetch(requestUrl, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        Accept: "application/json",
+        "LinkedIn-Version": "202411",
+        "X-Restli-Protocol-Version": "2.0.0",
+      },
+      cache: "no-store",
+    })
     if (!response.ok) return null
     return response.json()
   } catch {
@@ -329,7 +340,21 @@ export async function integrationReadiness(platform: string) {
     const metadata = entry.metadata || {}
     const tokenNames = Object.keys(entry.tokens || {})
     const missing = new Set(missingFields)
-    if (!tokenNames.some((key) => key === "access_token" || key === "refresh_token")) missing.add(`${platform.toUpperCase()}_OAUTH_CONNECTION`)
+    const hasToken = tokenNames.some((key) => key === "access_token" || key === "refresh_token")
+    if (!hasToken) missing.add(`${platform.toUpperCase()}_OAUTH_CONNECTION`)
+    if (platform === "linkedin") {
+      const tokenScope = String(entry.tokens?.scope || "")
+      const requestedScopes = Array.isArray(entry.scopes_requested) ? entry.scopes_requested : []
+      const hasOrgScope = tokenScope.includes("w_organization_social") || requestedScopes.includes("w_organization_social")
+      const orgIds = metadata.organization_ids || []
+      // Stanley content must publish to the Stanley Systems Page, not the
+      // connecting member's personal feed. Keep readiness false until the token
+      // has organization posting scope and a concrete organization id.
+      if (!hasOrgScope || !orgIds.length) {
+        missing.add("LINKEDIN_ORGANIZATION_ID")
+        missing.add("LINKEDIN_ORG_OAUTH_CONNECTION")
+      }
+    }
     return {
       platform,
       ready: missing.size === 0,
