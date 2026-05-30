@@ -668,6 +668,7 @@ export function InvoicingDelayCalculatorClient() {
   const [missedCallsPerMonth, setMissedCallsPerMonth] = useState("12")
   const [isCalculating, setIsCalculating] = useState(false)
   const calculatingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const completedNotificationSentRef = useRef(false)
 
   const stepIndex = STEP_ORDER.indexOf(step)
   const progress = step === "intro" ? 6 : Math.round((stepIndex / (STEP_ORDER.length - 1)) * 100)
@@ -756,6 +757,98 @@ export function InvoicingDelayCalculatorClient() {
   }, [invoiceValue, jobsPerMonth, delayDays, hoursLost, unbilledJobs, correctionRate, totalSavedCustomerRecords, repeatJobValue, uncontactedCustomerRate, reviewFollowup, referralFollowup, missedCallsPerMonth, missedCallRecovery, customerListSources])
 
   const resultSummary = useMemo(() => createResultSummary(result), [result])
+
+  useEffect(() => {
+    if (step !== "results" || completedNotificationSentRef.current) return
+
+    completedNotificationSentRef.current = true
+
+    const urlParams = new URLSearchParams(window.location.search)
+    const visitorIdKey = "stanley_calculator_visitor_id"
+    const sessionId = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`
+    let visitorId = window.localStorage.getItem(visitorIdKey)
+    if (!visitorId) {
+      visitorId = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `visitor-${Date.now()}-${Math.random().toString(16).slice(2)}`
+      window.localStorage.setItem(visitorIdKey, visitorId)
+    }
+
+    const payload = {
+      completed_at: new Date().toISOString(),
+      source_page: window.location.pathname,
+      visitor_id: visitorId,
+      session_id: sessionId,
+      inputs: {
+        average_invoice_value: Number(invoiceValue) || 0,
+        jobs_per_month: Number(jobsPerMonth) || 0,
+        invoice_delay_days: Number(delayDays) || 0,
+        office_hours_lost_per_job: Number(hoursLost) || 0,
+        unbilled_jobs: Number(unbilledJobs) || 0,
+        correction_rate_percent: Number(correctionRate) || 0,
+        customer_list_sources: customerListSources,
+        saved_customer_records: Number(totalSavedCustomerRecords) || 0,
+        average_repeat_job_value: Number(repeatJobValue) || 0,
+        uncontacted_customer_rate: uncontactedCustomerRate,
+        review_followup: reviewFollowup,
+        referral_followup: referralFollowup,
+        missed_call_recovery: missedCallRecovery,
+        missed_calls_per_month: Number(missedCallsPerMonth) || 0,
+      },
+      results: {
+        total_monthly_leak_min: resultSummary.totalMonthlyLeakMin,
+        total_monthly_leak_max: resultSummary.totalMonthlyLeakMax,
+        total_annual_leak_min: resultSummary.totalAnnualLeakMin,
+        total_annual_leak_max: resultSummary.totalAnnualLeakMax,
+        cash_monthly_leak: resultSummary.cashMonthlyLeak,
+        customer_monthly_leak_min: resultSummary.customerMonthlyLeakMin,
+        customer_monthly_leak_max: resultSummary.customerMonthlyLeakMax,
+        estimated_underworked_customers: resultSummary.estimatedUnderworkedCustomers,
+        recommended_first_move: result.recommendedFirstMove,
+        biggest_cash_driver: resultSummary.selectedCashDriver?.label ?? "",
+        biggest_customer_driver: resultSummary.selectedCustomerDriver?.label ?? "",
+        formatted_headline_range: resultSummary.formattedHeadlineRange,
+        formatted_monthly_range: resultSummary.formattedMonthlyRange,
+      },
+      attribution: {
+        referrer: document.referrer,
+        utm_source: urlParams.get("utm_source") ?? "",
+        utm_medium: urlParams.get("utm_medium") ?? "",
+        utm_campaign: urlParams.get("utm_campaign") ?? "",
+        utm_content: urlParams.get("utm_content") ?? "",
+        utm_term: urlParams.get("utm_term") ?? "",
+      },
+    }
+
+    const body = JSON.stringify(payload)
+    if (navigator.sendBeacon) {
+      const sent = navigator.sendBeacon("/api/calculator-completed", new Blob([body], { type: "application/json" }))
+      if (sent) return
+    }
+
+    fetch("/api/calculator-completed", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+      keepalive: true,
+    }).catch(() => {})
+  }, [
+    step,
+    invoiceValue,
+    jobsPerMonth,
+    delayDays,
+    hoursLost,
+    unbilledJobs,
+    correctionRate,
+    customerListSources,
+    totalSavedCustomerRecords,
+    repeatJobValue,
+    uncontactedCustomerRate,
+    reviewFollowup,
+    referralFollowup,
+    missedCallRecovery,
+    missedCallsPerMonth,
+    result,
+    resultSummary,
+  ])
 
   useEffect(() => {
     return () => {
