@@ -1172,7 +1172,7 @@ export function InvoicingDelayCalculatorClient() {
 
     if (step === "results") {
       const summary = resultSummary
-      const ctaLabel = "Start the Cash Flow Assessment: $97"
+      const ctaLabel = "Start the Cash Flow Assessment"
       const monthlyRange = summary.formattedMonthlyRange
 
       return (
@@ -1197,13 +1197,13 @@ export function InvoicingDelayCalculatorClient() {
                   <p className="text-sm font-semibold leading-6 text-slate-700">Cost of waiting: the records need to be checked before the leak repeats.</p>
                 )}
               </div>
-              <div className="mx-auto mt-8 max-w-3xl">
-                <button type="button" onClick={() => next("resultDiagnosis")} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#166534]">See what is stuck <ArrowRight className="ml-2 h-4 w-4" /></button>
-                <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">View the detailed breakdown.</p>
-              </div>
-              <div className="mx-auto mt-6 max-w-3xl rounded-[1.35rem] border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-center">
-                <CTALink href={auditHref} kind="internal_page" location="calculator_result_yearly" analyticsSource="calculator_result_yearly" ctaLabel={ctaLabel} className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-[#116832] ring-1 ring-[#BFE4C8] transition hover:bg-[#FBFCF7]">Start the Cash Flow Assessment: $97 <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+              <div className="mx-auto mt-8 max-w-3xl rounded-[1.35rem] border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-center">
+                <CTALink href={auditHref} kind="internal_page" location="calculator_result_yearly" analyticsSource="calculator_result_yearly" ctaLabel={ctaLabel} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#166534]">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
                 <p className="mt-3 text-sm font-semibold leading-6 text-slate-700">Replace this estimate with a real office money-leak report.</p>
+              </div>
+              <div className="mx-auto mt-5 max-w-3xl">
+                <button type="button" onClick={() => next("resultDiagnosis")} className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">See what is stuck <ArrowRight className="ml-2 h-4 w-4" /></button>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">View the detailed breakdown.</p>
               </div>
               <button type="button" onClick={back} className="mt-5 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">← Back to inputs</button>
             </div>

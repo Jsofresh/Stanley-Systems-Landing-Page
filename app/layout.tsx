@@ -82,6 +82,8 @@ const workSans = Work_Sans({
 const siteTitle = "Stanley Systems | Find and Stop Cash Flow Leaks"
 const siteDescription =
   "Stanley Systems helps service businesses find the money leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again — then builds the system that stops it."
+const siteLogoPath = "/stanley-systems-logo-reference.jpg"
+const siteLogoUrl = `https://stanley-systems.com${siteLogoPath}`
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stanley-systems.com"),
@@ -92,6 +94,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     url: "https://stanley-systems.com",
     siteName: "Stanley Systems",
+    images: [{ url: siteLogoPath, width: 1024, height: 1024, alt: "Stanley Systems logo" }],
     locale: "en_US",
     type: "website",
   },
@@ -99,6 +102,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
+    images: [siteLogoPath],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   alternates: {
     canonical: "https://stanley-systems.com",
@@ -172,8 +180,8 @@ export default function RootLayout({
     name: "Stanley Systems",
     legalName: "Stanley Systems",
     url: "https://stanley-systems.com",
-    logo: "https://stanley-systems.com/stanley-logo-new.jpg",
-    image: "https://stanley-systems.com/stanley-logo-new.jpg",
+    logo: siteLogoUrl,
+    image: siteLogoUrl,
     description: siteDescription,
     telephone: "+16179586372",
     email: "hello@stanley-systems.com",

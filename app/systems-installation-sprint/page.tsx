@@ -2,14 +2,17 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
+import { CTALink } from "@/components/cta-link"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
 import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
 import { PackageHero } from "@/components/package-hero"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
 const lightButton = "inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]"
+const auditCheckoutHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
 export const metadata: Metadata = {
   title: "Systems Installation Sprint | Stanley Systems",
@@ -38,7 +41,7 @@ export default function SystemsInstallationSprintPage() {
           eyebrow="Systems Installation Sprint"
           title="Get the Systems Installed That Move Cash and Customers Forward"
           subheading="Start with the Cash Flow Assessment. The Sprint is scoped after Stanley Systems reviews your office flow, then Stanley Systems installs the approved systems inside the tools your team already uses."
-          contentAlign="center"
+          contentAlign="left"
           imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-office-team-van.jpg"
           imageAlt="Stanley Systems office team reviewing a sprint plan with a service van outside."
           imageWidth={1280}
@@ -76,11 +79,30 @@ export default function SystemsInstallationSprintPage() {
         <section data-section="sprint-pricing" className="relative overflow-hidden bg-[#FBFCF7] py-14 sm:py-16">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(83,217,134,0.18),transparent_35%)]" />
           <div className={`${shell} relative`}>
-            <div className="mx-auto max-w-4xl overflow-hidden rounded-[2.3rem] border border-[#9ED9B2] bg-white shadow-[0_30px_100px_rgba(7,29,58,0.14)]">
-              <div className="bg-[#071422] px-6 py-5 text-white sm:px-8"><p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#53D986]">Build phase</p><h2 className="mt-2 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Systems Installation Sprint</h2></div>
-              <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-                <div><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#116832]">standard installation: $1,500</p><p className="mt-3 text-base font-extrabold text-[#116832]">The Cash Flow Assessment sets the build scope. Stanley Systems installs the approved systems inside your current tools.</p></div>
-                <div><p className="text-base font-semibold leading-7 text-[#536173]">Includes the scoped workflow buildout, reminders, handoffs, templates, tracking, testing, and live setup inside the approved business process. Stanley Systems makes sure the system is running inside the tools your team already uses.</p><p className="mt-4 rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">The Sprint is complete when the approved systems are set up, tested, and running inside your current tools, so they are live in your office workflow.</p><div className="mt-6 flex flex-col gap-3 sm:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link></div></div>
+            <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.3rem] border border-[#9ED9B2] bg-white shadow-[0_30px_100px_rgba(7,29,58,0.14)]">
+              <div className="bg-[#071422] px-6 py-6 text-center text-white sm:px-8 sm:py-7">
+                <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#53D986]">Build phase</p>
+                <h2 className="mx-auto mt-2 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Systems Installation Sprint</h2>
+              </div>
+              <div className="grid gap-4 p-5 sm:p-7">
+                <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+                  <div className="rounded-[1.45rem] border border-[#BFE4C8] bg-[linear-gradient(135deg,#F4FBF5_0%,#ffffff_58%,#EAF8EE_100%)] p-5 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.86)] sm:p-6 lg:text-left">
+                    <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#116832]">standard installation: $1,500</p>
+                    <p className="mt-3 text-[1.6rem] font-semibold leading-[1.08] tracking-[-0.035em] text-[#071D3A] sm:text-[2rem]">The Cash Flow Assessment sets the build scope.</p>
+                  </div>
+                  <div className="rounded-[1.45rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 sm:p-6">
+                    <p className="text-[1.35rem] font-semibold leading-[1.15] tracking-[-0.03em] text-[#071D3A] sm:text-[1.65rem]">Stanley Systems installs the approved systems inside your current tools.</p>
+                  </div>
+                </div>
+                <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+                  <div className="rounded-[1.45rem] border border-[#E1E9DE] bg-[#FBFCF7] p-5 sm:p-6">
+                    <p className="text-base font-semibold leading-7 text-[#536173]">Includes the scoped workflow buildout, reminders, handoffs, templates, tracking, testing, and live setup inside the approved business process. Stanley Systems makes sure the system is running inside the tools your team already uses.</p>
+                  </div>
+                  <div className="rounded-[1.45rem] border border-[#CFE8D5] bg-[#F4FBF5] p-5 sm:p-6">
+                    <p className="text-sm font-extrabold leading-6 text-[#116832]">The Sprint is complete when the approved systems are set up, tested, and running inside your current tools, so they are live in your office workflow.</p>
+                    <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -94,7 +116,7 @@ export default function SystemsInstallationSprintPage() {
           </div>
         </section>
 
-        <section data-section="sprint-final-cta" className="bg-[#071422] py-14 text-white sm:py-16" data-nav-theme="dark"><div className={`${shell} text-center`}><h2 className="mx-auto max-w-4xl text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-5xl">Ready to see what should be installed first?</h2><p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">Start with the Cash Flow Assessment. If the Sprint is the right move, Stanley Systems can install the systems from that plan.</p><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-white/12">Ask us a question</Link></div></div></section>
+        <section data-section="sprint-final-cta" className="bg-[#071422] py-14 text-white sm:py-16" data-nav-theme="dark"><div className={`${shell} text-center`}><h2 className="mx-auto max-w-4xl text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-5xl">Ready to see what should be installed first?</h2><p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">Start with the Cash Flow Assessment. If the Sprint is the right move, Stanley Systems can install the systems from that plan.</p><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><CTALink href={auditCheckoutHref} kind="checkout" location="sprint_final_cta" analyticsEvent="audit_checkout_clicked" analyticsSource="systems_installation_sprint" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink><Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-white/12">Ask us a question</Link></div></div></section>
       </main>
       <Footer />
       <MobileStickyCTA />
