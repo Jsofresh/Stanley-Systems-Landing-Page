@@ -39,6 +39,10 @@ export async function POST(request: Request) {
     const results = cleanRecord(body?.results)
     const attribution = cleanRecord(body?.attribution)
 
+    if (!Object.keys(inputs).length || !Object.keys(results).length) {
+      return NextResponse.json({ ok: false, error: "Missing calculator completion fields." }, { status: 400 })
+    }
+
     const completedAt = cleanString(body?.completed_at) || new Date().toISOString()
     const sourcePage = cleanString(body?.source_page) || "/invoicing-delay-cash-flow-calculator"
     const visitorId = cleanString(body?.visitor_id)
@@ -50,6 +54,7 @@ export async function POST(request: Request) {
     const totalAnnualMax = cleanNumber(results.total_annual_leak_max)
 
     const payload = {
+      telegram_alert_type: "calculator_completed",
       status: "calculator_completed",
       form_type: "calculator_completed",
       source: "stanley-website-calculator",

@@ -16,6 +16,8 @@ export async function POST(request: Request) {
     const body = await request.json()
 
     const payload = {
+      telegram_alert_type: "paid_buyer_onboarding",
+      form_type: "paid_buyer_onboarding",
       name: clean(body?.name),
       business: clean(body?.business),
       email: clean(body?.email),
@@ -30,6 +32,7 @@ export async function POST(request: Request) {
       smsConsent: cleanBoolean(body?.smsConsent),
       source: clean(body?.source) || "paid-buyer-onboarding-form",
       page: clean(body?.page) || "/checkout/onboarding",
+      submitted_at: clean(body?.submitted_at) || new Date().toISOString(),
       submittedAt: new Date().toISOString(),
     }
 

@@ -11,11 +11,16 @@ function cleanBoolean(value: unknown) {
   return value === true
 }
 
+function cleanAlertType(body: Record<string, unknown>) {
+  return clean(body?.telegram_alert_type) || clean(body?.form_type) || clean(body?.status) || "contact_form"
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
 
     const payload = {
+      telegram_alert_type: cleanAlertType(body ?? {}),
       name: clean(body?.name),
       email: clean(body?.email),
       phone: clean(body?.phone),
@@ -74,9 +79,9 @@ export async function POST(request: Request) {
         )
       }
     } else if (payload.form_type === "money_leak_checks") {
-      if (!payload.email || !payload.phone) {
+      if (!payload.email) {
         return NextResponse.json(
-          { ok: false, error: "Email and phone are required for leak checks." },
+          { ok: false, error: "Email is required for leak checks." },
           { status: 400 },
         )
       }

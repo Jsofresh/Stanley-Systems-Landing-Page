@@ -46,6 +46,7 @@ export function MoneyLeakChecksForm({
       const params = new URLSearchParams(window.location.search)
       const payload = {
         ...form,
+        telegram_alert_type: "money_leak_checks",
         form_type: "money_leak_checks",
         intent: "nurture_money_leak_checks",
         status: "nurture_leak_checks",

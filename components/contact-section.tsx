@@ -77,6 +77,8 @@ export function ContactSection() {
         },
         body: JSON.stringify({
           ...formData,
+          telegram_alert_type: "cash_flow_assessment_application",
+          form_type: "cash_flow_assessment_application",
           source: "contact-page-form",
           page: "/contact",
         }),

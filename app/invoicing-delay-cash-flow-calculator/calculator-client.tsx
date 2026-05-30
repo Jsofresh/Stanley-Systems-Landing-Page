@@ -773,6 +773,8 @@ export function InvoicingDelayCalculatorClient() {
     }
 
     const payload = {
+      telegram_alert_type: "calculator_completed",
+      form_type: "calculator_completed",
       completed_at: new Date().toISOString(),
       source_page: window.location.pathname,
       visitor_id: visitorId,

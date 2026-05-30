@@ -174,6 +174,8 @@ export function BuyerOnboardingForm() {
         },
         body: JSON.stringify({
           ...formData,
+          telegram_alert_type: "paid_buyer_onboarding",
+          form_type: "paid_buyer_onboarding",
           source: "paid-buyer-onboarding-form",
           page: "/checkout/onboarding",
         }),

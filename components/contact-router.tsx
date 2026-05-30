@@ -125,6 +125,7 @@ function PreBuyQuestionForm() {
         businessType: form.business_type,
         bottleneck: form.main_issue,
         currentProcess: form.message,
+        telegram_alert_type: "pre_buy_question",
         status: "pre_buy_question",
         form_type: "pre_buy_question",
         page_source: "contact_pre_buy_question",

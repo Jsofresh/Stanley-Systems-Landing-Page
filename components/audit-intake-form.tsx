@@ -19,6 +19,7 @@ export function AuditIntakeForm() {
     setMessage("")
 
     const payload = {
+      telegram_alert_type: "assessment_intake",
       form_type: "assessment_intake",
       status: "assessment_intake_submitted",
       source: "audit-intake-page",
