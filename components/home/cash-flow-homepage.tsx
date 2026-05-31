@@ -430,16 +430,16 @@ function AssessmentSection() {
 function SprintSection() {
   const visuals = [
     {
-      src: "/images/uploaded/homepage/systems-needs/cash-gets-cleaned-up-cash-visibility-visual.jpg",
-      alt: "Cash visibility system showing invoices, billing handoffs, and payment follow-up",
+      src: "/images/uploaded/homepage/systems-needs/invoice-collected-revenue-growth.jpg",
+      alt: "Simple invoice paid and collected revenue growth visual",
     },
     {
-      src: "/images/uploaded/homepage/systems-needs/customers-get-followed-up-review-referral-repeat-visual.jpg",
-      alt: "Customer follow-up system showing reviews, referrals, and repeat customer work",
+      src: "/images/uploaded/homepage/systems-needs/follow-up-review-referral.jpg",
+      alt: "Simple follow-up, review, and referral visual",
     },
     {
-      src: "/images/uploaded/homepage/systems-needs/workflow-gets-installed-connected-tools-visual.jpg",
-      alt: "Connected office workflow showing tools, reminders, handoffs, and documentation",
+      src: "/images/uploaded/homepage/systems-needs/workflow-active-tools-reminders-docs.jpg",
+      alt: "Simple active workflow connected to tools, reminders, and documents visual",
     },
   ];
   return (
@@ -468,8 +468,8 @@ function SprintSection() {
               <Image
                 src={visual.src}
                 alt={visual.alt}
-                width={1254}
-                height={1254}
+                width={1280}
+                height={960}
                 sizes="(min-width: 768px) 31vw, 100vw"
                 className="h-auto w-full object-cover"
               />
