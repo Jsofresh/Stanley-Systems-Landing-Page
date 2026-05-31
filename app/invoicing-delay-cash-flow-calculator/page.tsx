@@ -66,8 +66,8 @@ export const metadata: Metadata = {
 
 export default function InvoicingDelayCashFlowCalculatorPage() {
   return (
-    <div className="min-h-screen overflow-x-clip bg-[#f7f7f4]">
-      <main className="relative min-h-screen overflow-x-clip bg-gradient-to-b from-[#f8f8f5] via-white to-[#f4f4f1]">
+    <div className="min-h-screen overflow-x-clip bg-[#f5f2ea]">
+      <main className="relative min-h-screen overflow-x-clip bg-[radial-gradient(circle_at_50%_-10%,rgba(21,128,61,0.12),rgba(255,255,255,0)_36%),linear-gradient(180deg,#faf8f1_0%,#ffffff_45%,#f3efe5_100%)]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}

@@ -481,44 +481,49 @@ function StepFrame({
   compact?: boolean
 }) {
   return (
-    <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6">
-      <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1240px] items-center justify-center">
-        <div className={`box-border w-full max-w-full overflow-hidden rounded-[1.65rem] border border-[#e8dfd0] bg-white/96 shadow-[0_22px_80px_rgba(15,23,42,0.10)] backdrop-blur sm:rounded-[2.25rem] lg:rounded-[2.5rem] ${compact ? "p-4 sm:p-5 lg:p-4" : "p-4 sm:p-7 lg:p-9"}`}>
-          <div className="mb-5 sm:mb-6">
-            <div className="h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2">
-              <div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: `${progress}%` }} />
+    <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 pb-28 pt-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8" data-calculator-root="true" data-calculator-step={step}>
+      <div className="pointer-events-none absolute inset-x-2 top-4 h-40 rounded-[2.5rem] bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.13),rgba(255,255,255,0)_68%)] sm:inset-x-8 lg:top-8" aria-hidden="true" />
+      <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1320px] items-center justify-center">
+        <div className={`relative box-border w-full max-w-full overflow-visible rounded-[1.75rem] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(253,252,247,0.96)_100%)] shadow-[0_28px_90px_rgba(7,20,34,0.13),0_1px_0_rgba(255,255,255,0.9)_inset] backdrop-blur sm:overflow-hidden sm:rounded-[2.35rem] lg:rounded-[2.75rem] ${compact ? "p-4 sm:p-6 lg:p-7" : "p-4 sm:p-8 lg:p-10"}`}>
+          <div className="mb-6 rounded-full border border-[#ece4d5] bg-[#f7f3ea] p-1 shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] sm:mb-8">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-[#ebe3d5] sm:h-2.5">
+              <div className="h-full rounded-full bg-[linear-gradient(90deg,#15803D_0%,#53d986_100%)] shadow-[0_0_22px_rgba(21,128,61,0.22)] transition-all duration-500" style={{ width: `${progress}%` }} />
             </div>
           </div>
 
-          <div className="mx-auto max-w-4xl space-y-3 text-center sm:space-y-4">
-            <h1 className={`font-semibold leading-[1.04] tracking-tight text-slate-900 lg:leading-[1.01] ${compact ? "text-[1.45rem] sm:text-[2rem] lg:text-[2.35rem]" : "text-[1.7rem] sm:text-[2.7rem] lg:text-[3.45rem]"}`}>{title}</h1>
-            {body ? <p className={`mx-auto max-w-3xl text-sm leading-6 text-slate-600 sm:leading-7 ${compact ? "sm:text-base lg:text-[0.98rem]" : "sm:text-lg lg:text-[1.05rem] lg:leading-8"}`}>{body}</p> : null}
+          <div className="mx-auto max-w-5xl space-y-3 text-center sm:space-y-4">
+            <h1 className={`font-semibold leading-[1.02] tracking-[-0.045em] text-[#071422] lg:leading-[0.98] ${compact ? "text-[1.55rem] sm:text-[2.25rem] lg:text-[2.85rem]" : "text-[1.95rem] sm:text-[3rem] lg:text-[4.1rem]"}`}>{title}</h1>
+            {body ? <p className={`mx-auto max-w-3xl text-[0.94rem] font-medium leading-6 text-[#506171] sm:leading-7 ${compact ? "sm:text-base lg:text-[1.02rem]" : "sm:text-lg lg:text-[1.08rem] lg:leading-8"}`}>{body}</p> : null}
           </div>
 
           {children}
 
-          <div className="mt-6 grid w-full max-w-full grid-cols-1 gap-3 sm:mt-7 sm:grid-cols-[1fr_1fr_auto] sm:items-center lg:mt-8">
-            <button
-              type="button"
-              onClick={onBack}
-              className={`inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-[#f4efe6] ${step === "intro" ? "invisible" : ""}`}
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back
-            </button>
+          <div className="mx-auto mt-7 grid w-full max-w-md grid-cols-1 gap-3 sm:mt-9 sm:max-w-none sm:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)_auto] sm:items-center lg:mt-10">
+            {step === "intro" ? (
+              <div className="hidden sm:block" aria-hidden="true" />
+            ) : (
+              <button
+                type="button"
+                onClick={onBack}
+                className="order-2 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#e0d8ca] bg-white/85 px-5 py-3 text-sm font-semibold text-[#405163] shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] transition hover:bg-[#f4efe6] sm:order-1"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back
+              </button>
+            )}
             <button
               type="button"
               data-calculator-next="true"
               onClick={onNext}
               disabled={!canContinue}
-              className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#116832] disabled:cursor-not-allowed disabled:opacity-50"
+              className="order-1 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-[linear-gradient(180deg,#179447_0%,#116832_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24),0_1px_0_rgba(255,255,255,0.26)_inset] transition hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(21,128,61,0.28),0_1px_0_rgba(255,255,255,0.26)_inset] disabled:cursor-not-allowed disabled:opacity-50 sm:order-2"
             >
               {continueLabel}
               <ArrowRight className="ml-2 h-4 w-4" />
             </button>
             <Link
               href="/"
-              className="inline-flex min-h-10 items-center justify-center px-3 py-2 text-sm font-semibold text-slate-500 underline underline-offset-4 transition hover:text-slate-800 sm:min-h-11"
+              className="order-3 inline-flex min-h-11 items-center justify-center px-3 py-2 text-sm font-semibold text-slate-400 underline underline-offset-4 transition hover:text-slate-700"
             >
               Back to site
             </Link>
@@ -545,20 +550,20 @@ function BigNumberInput({ value, onChange, prefix, suffix }: { value: string; on
 
   return (
     <div
-      className="mx-auto mt-7 box-border w-full max-w-3xl rounded-[1.45rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-5 shadow-[0_18px_50px_rgba(15,23,42,0.05)] sm:mt-8 sm:rounded-[1.9rem] sm:px-8 sm:py-8 lg:max-w-4xl lg:px-10 lg:py-10"
+      className="mx-auto mt-8 box-border w-full max-w-3xl cursor-text rounded-[1.6rem] border border-[#ded5c4] bg-[linear-gradient(180deg,#fffefa_0%,#f8f4eb_100%)] p-2 shadow-[0_22px_55px_rgba(7,20,34,0.08),0_1px_0_rgba(255,255,255,0.95)_inset] transition focus-within:border-[#15803D] focus-within:shadow-[0_26px_62px_rgba(7,20,34,0.11),0_0_0_5px_rgba(21,128,61,0.09)] sm:mt-10 sm:rounded-[2.1rem] lg:max-w-4xl"
       onClick={() => inputRef.current?.focus()}
     >
-      <div className="flex min-h-[68px] min-w-0 items-center justify-center gap-1 text-4xl font-semibold text-slate-900 sm:min-h-[86px] sm:gap-3 sm:text-6xl lg:min-h-[96px] lg:text-[4.6rem]">
-        {prefix ? <span className="shrink-0 text-slate-400">{prefix}</span> : null}
+      <div className="flex min-h-[82px] min-w-0 items-center justify-center gap-2 rounded-[1.25rem] bg-white px-3 text-5xl font-semibold text-[#071422] ring-1 ring-[#efe6d8] sm:min-h-[112px] sm:gap-4 sm:rounded-[1.65rem] sm:px-7 sm:text-7xl lg:min-h-[128px] lg:text-[5.4rem]">
+        {prefix ? <span className="shrink-0 text-[#9b8f7d]">{prefix}</span> : null}
         <input
           ref={inputRef}
           value={value}
           onChange={(e) => onChange(e.target.value.replace(/[^0-9.]/g, ""))}
           inputMode="decimal"
           enterKeyHint="next"
-          className="min-w-0 flex-1 bg-transparent px-1 text-center outline-none"
+          className="min-w-0 flex-1 bg-transparent px-1 text-center tracking-[-0.045em] outline-none"
         />
-        {suffix ? <span className="shrink-0 text-lg text-slate-400 sm:text-3xl lg:text-4xl">{suffix}</span> : null}
+        {suffix ? <span className="shrink-0 rounded-full bg-[#f3efe6] px-3 py-1 text-base font-bold tracking-normal text-[#6f6557] sm:text-2xl lg:text-3xl">{suffix}</span> : null}
       </div>
     </div>
   )
@@ -576,7 +581,7 @@ function ChoiceGrid<T extends string>({
   compact?: boolean
 }) {
   return (
-    <div className={`mx-auto grid w-full gap-3 sm:grid-cols-2 ${compact ? "mt-3 max-w-full" : "mt-7 max-w-5xl sm:mt-8"}`}>
+    <div className={`mx-auto grid w-full gap-3.5 sm:grid-cols-2 ${compact ? "mt-4 max-w-full" : "mt-8 max-w-5xl sm:mt-10"}`}>
       {options.map((option) => {
         const selected = option.value === value
         return (
@@ -584,19 +589,19 @@ function ChoiceGrid<T extends string>({
             key={option.value}
             type="button"
             onClick={() => onChange(option.value)}
-            className={`box-border w-full min-w-0 rounded-[1.05rem] border px-4 text-left transition sm:rounded-[1.25rem] ${compact ? "py-3 sm:px-4 sm:py-3" : "py-3.5 sm:px-5 sm:py-4"} ${
+            className={`relative box-border w-full min-w-0 overflow-hidden rounded-[1.15rem] border px-4 text-left transition sm:rounded-[1.35rem] ${compact ? "py-3.5 sm:px-4 sm:py-4" : "py-4 sm:px-5 sm:py-5"} ${
               selected
-                ? "border-[#15803D]/40 bg-[#eef9f2] shadow-[0_14px_35px_rgba(21,128,61,0.12)]"
-                : "border-[#e8dfd0] bg-white hover:border-[#cfe8d5] hover:bg-[#fbfaf7]"
+                ? "border-[#15803D] bg-[linear-gradient(180deg,#f0fbf3_0%,#ffffff_100%)] shadow-[0_18px_38px_rgba(21,128,61,0.16),inset_4px_0_0_#15803D] ring-2 ring-[#15803D]/15"
+                : "border-[#e7dfd1] bg-white/92 shadow-[0_10px_24px_rgba(7,20,34,0.035)] hover:border-[#b8dfc2] hover:bg-[#fbfaf7]"
             }`}
           >
             <div className="flex min-w-0 items-start gap-3">
-              <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${selected ? "border-[#15803D] bg-[#15803D] text-white" : "border-[#d8d1c4] bg-white text-transparent"}`}>
-                <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border shadow-[0_1px_0_rgba(255,255,255,0.8)_inset] ${selected ? "border-[#15803D] bg-[#15803D] text-white" : "border-[#d8d1c4] bg-white text-transparent"}`}>
+                <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
               </span>
               <span className="min-w-0">
-                <span className="block text-sm font-semibold leading-5 text-slate-900 sm:text-base sm:leading-6">{option.label}</span>
-                {option.detail ? <span className="mt-1 block text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">{option.detail}</span> : null}
+                <span className="block text-[0.94rem] font-semibold leading-5 text-[#071422] sm:text-base sm:leading-6">{option.label}</span>
+                {option.detail ? <span className="mt-1.5 block text-xs font-medium leading-5 text-[#5f6f7e] sm:text-sm sm:leading-6">{option.detail}</span> : null}
               </span>
             </div>
           </button>
@@ -616,7 +621,7 @@ function MultiChoiceGrid<T extends string>({
   options: Array<{ value: T; label: string; detail?: string }>
 }) {
   return (
-    <div className="mx-auto mt-7 grid w-full max-w-5xl gap-3 sm:mt-8 sm:grid-cols-2">
+    <div className="mx-auto mt-8 grid w-full max-w-5xl gap-3.5 sm:mt-10 sm:grid-cols-2">
       {options.map((option) => {
         const selected = value.includes(option.value)
         return (
@@ -628,19 +633,19 @@ function MultiChoiceGrid<T extends string>({
               const next = selected ? value.filter((item) => item !== option.value) : [...value, option.value]
               onChange(next.length ? next : [option.value])
             }}
-            className={`box-border w-full min-w-0 rounded-[1.05rem] border px-4 py-3.5 text-left transition sm:rounded-[1.25rem] sm:px-5 sm:py-4 ${
+            className={`relative box-border w-full min-w-0 overflow-hidden rounded-[1.15rem] border px-4 py-4 text-left transition sm:rounded-[1.35rem] sm:px-5 sm:py-5 ${
               selected
-                ? "border-[#15803D]/40 bg-[#eef9f2] shadow-[0_14px_35px_rgba(21,128,61,0.12)]"
-                : "border-[#e8dfd0] bg-white hover:border-[#cfe8d5] hover:bg-[#fbfaf7]"
+                ? "border-[#15803D] bg-[linear-gradient(180deg,#f0fbf3_0%,#ffffff_100%)] shadow-[0_18px_38px_rgba(21,128,61,0.16),inset_4px_0_0_#15803D] ring-2 ring-[#15803D]/15"
+                : "border-[#e7dfd1] bg-white/92 shadow-[0_10px_24px_rgba(7,20,34,0.035)] hover:border-[#b8dfc2] hover:bg-[#fbfaf7]"
             }`}
           >
             <div className="flex min-w-0 items-start gap-3">
-              <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${selected ? "border-[#15803D] bg-[#15803D] text-white" : "border-[#d8d1c4] bg-white text-transparent"}`}>
-                <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border shadow-[0_1px_0_rgba(255,255,255,0.8)_inset] ${selected ? "border-[#15803D] bg-[#15803D] text-white" : "border-[#d8d1c4] bg-white text-transparent"}`}>
+                <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
               </span>
               <span className="min-w-0">
-                <span className="block text-sm font-semibold leading-5 text-slate-900 sm:text-base sm:leading-6">{option.label}</span>
-                {option.detail ? <span className="mt-1 block text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">{option.detail}</span> : null}
+                <span className="block text-[0.94rem] font-semibold leading-5 text-[#071422] sm:text-base sm:leading-6">{option.label}</span>
+                {option.detail ? <span className="mt-1.5 block text-xs font-medium leading-5 text-[#5f6f7e] sm:text-sm sm:leading-6">{option.detail}</span> : null}
               </span>
             </div>
           </button>
@@ -908,14 +913,14 @@ export function InvoicingDelayCalculatorClient() {
 
   if (isCalculating || step === "calculating") {
     return (
-      <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6" data-calculator-loading="true">
+      <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8" data-calculator-loading="true" data-calculator-root="true">
         <style>{`
           .calculator-load-bar { animation: calculatorLoad ${CALCULATOR_LOADING_DURATION_MS}ms cubic-bezier(.22,.74,.22,1) forwards; }
           @keyframes calculatorLoad { from { transform: translateX(-100%); } to { transform: translateX(0%); } }
           @media (prefers-reduced-motion: reduce) { .calculator-load-bar { animation-duration: 900ms; } }
         `}</style>
         <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
-          <div className="box-border w-full max-w-3xl overflow-hidden rounded-[1.8rem] border border-[#d9efe2] bg-[#071422] p-6 text-center text-white shadow-[0_30px_100px_rgba(7,20,34,0.24)] sm:rounded-[2.4rem] sm:p-10">
+          <div className="box-border w-full max-w-3xl overflow-hidden rounded-[1.9rem] border border-[#d9efe2]/35 bg-[radial-gradient(circle_at_50%_0%,rgba(83,217,134,0.18),rgba(7,20,34,0)_48%),#071422] p-7 text-center text-white shadow-[0_34px_110px_rgba(7,20,34,0.30),0_1px_0_rgba(255,255,255,0.10)_inset] sm:rounded-[2.5rem] sm:p-11">
             <div className="mx-auto h-2 w-full max-w-xl overflow-hidden rounded-full bg-white/12 ring-1 ring-white/10">
               <div className="calculator-load-bar h-full w-full origin-left rounded-full bg-[#53d986] shadow-[0_0_28px_rgba(83,217,134,0.42)]" />
             </div>
@@ -1049,8 +1054,8 @@ export function InvoicingDelayCalculatorClient() {
           title="How much money is sitting in your saved customer list?"
           body="Old customers are not cold leads. A repeat customer costs about 1/5 what a new customer costs to win. If nobody is following up with the list your business already owns, money is sitting idle."
         >
-          <div className="mx-auto mt-8 grid w-full min-w-0 max-w-full gap-4 lg:max-w-5xl lg:grid-cols-2">
-            <div className="box-border w-full min-w-0 max-w-full rounded-[1.45rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left sm:rounded-[1.6rem] sm:p-5">
+          <div className="mx-auto mt-8 grid w-full min-w-0 max-w-full gap-4 sm:mt-10 lg:max-w-5xl lg:grid-cols-2">
+            <div className="box-border w-full min-w-0 max-w-full rounded-[1.45rem] border border-[#e7dfd1] bg-[linear-gradient(180deg,#fffefa_0%,#f8f4eb_100%)] p-4 text-left shadow-[0_14px_34px_rgba(7,20,34,0.055)] sm:rounded-[1.7rem] sm:p-6">
               <label className="block text-sm font-semibold leading-6 text-slate-700">
                 Saved customer records
               </label>
@@ -1058,21 +1063,21 @@ export function InvoicingDelayCalculatorClient() {
                 value={totalSavedCustomerRecords}
                 onChange={(e) => setTotalSavedCustomerRecords(e.target.value.replace(/[^0-9.]/g, ""))}
                 inputMode="decimal"
-                className="mt-4 box-border w-full max-w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 text-3xl font-semibold text-slate-900 outline-none focus:border-[#15803D]"
+                className="mt-4 box-border w-full max-w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 text-3xl font-semibold tracking-[-0.035em] text-[#071422] outline-none shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
               />
               <p className="mt-3 text-sm leading-6 text-slate-500">
                 Count unique customers saved in job software, CRM, QuickBooks, accounting, spreadsheets, contact lists, or old files.
               </p>
             </div>
-            <div className="box-border w-full min-w-0 max-w-full rounded-[1.45rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left sm:rounded-[1.6rem] sm:p-5">
+            <div className="box-border w-full min-w-0 max-w-full rounded-[1.45rem] border border-[#e7dfd1] bg-[linear-gradient(180deg,#fffefa_0%,#f8f4eb_100%)] p-4 text-left shadow-[0_14px_34px_rgba(7,20,34,0.055)] sm:rounded-[1.7rem] sm:p-6">
               <label className="text-sm font-semibold leading-6 text-slate-700">What is a typical repeat job worth?</label>
-              <div className="mt-4 flex min-w-0 items-center rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 focus-within:border-[#15803D]">
+              <div className="mt-4 flex min-w-0 items-center rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] transition focus-within:border-[#15803D] focus-within:ring-4 focus-within:ring-[#15803D]/10">
                 <span className="shrink-0 text-3xl font-semibold text-slate-400">$</span>
                 <input
                   value={repeatJobValue}
                   onChange={(e) => setRepeatJobValue(e.target.value.replace(/[^0-9.]/g, ""))}
                   inputMode="decimal"
-                  className="min-w-0 flex-1 bg-transparent px-2 text-3xl font-semibold text-slate-900 outline-none"
+                  className="min-w-0 flex-1 bg-transparent px-2 text-3xl font-semibold tracking-[-0.035em] text-[#071422] outline-none"
                 />
               </div>
               <p className="mt-3 text-sm leading-6 text-slate-500">Use your service call, maintenance visit, repair, seasonal service, or repeat job.</p>
@@ -1108,8 +1113,8 @@ export function InvoicingDelayCalculatorClient() {
           body="This does not add a guaranteed dollar claim. It tells Stanley Systems whether happy customers are turning into proof, referrals, and booked work."
           compact
         >
-          <div className="mx-auto mt-6 grid w-full max-w-5xl gap-4 lg:grid-cols-2">
-            <div className="box-border w-full rounded-[1.35rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 sm:p-5">
+          <div className="mx-auto mt-6 grid w-full max-w-5xl gap-4 sm:mt-8 lg:grid-cols-2">
+            <div className="box-border w-full rounded-[1.45rem] border border-[#e7dfd1] bg-[linear-gradient(180deg,#fffefa_0%,#f8f4eb_100%)] p-4 shadow-[0_14px_34px_rgba(7,20,34,0.055)] sm:p-5">
               <div className="text-sm font-semibold text-slate-700">Do happy customers get asked for a Google review?</div>
               <ChoiceGrid<SimpleSystem>
                 value={reviewFollowup}
@@ -1123,7 +1128,7 @@ export function InvoicingDelayCalculatorClient() {
                 ]}
               />
             </div>
-            <div className="box-border w-full rounded-[1.35rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 sm:p-5">
+            <div className="box-border w-full rounded-[1.45rem] border border-[#e7dfd1] bg-[linear-gradient(180deg,#fffefa_0%,#f8f4eb_100%)] p-4 shadow-[0_14px_34px_rgba(7,20,34,0.055)] sm:p-5">
               <div className="text-sm font-semibold text-slate-700">Do good reviews turn into referral asks?</div>
               <ChoiceGrid<SimpleSystem>
                 value={referralFollowup}
@@ -1158,13 +1163,13 @@ export function InvoicingDelayCalculatorClient() {
               detail: setting.helper,
             }))}
           />
-          <div className="mx-auto mt-7 box-border w-full max-w-xl rounded-[1.45rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left sm:rounded-[1.6rem] sm:p-5">
+          <div className="mx-auto mt-7 box-border w-full max-w-xl rounded-[1.45rem] border border-[#e7dfd1] bg-[linear-gradient(180deg,#fffefa_0%,#f8f4eb_100%)] p-4 text-left shadow-[0_14px_34px_rgba(7,20,34,0.055)] sm:rounded-[1.7rem] sm:p-6">
             <label className="text-sm font-semibold leading-6 text-slate-700">Missed calls per month</label>
             <input
               value={missedCallsPerMonth}
               onChange={(e) => setMissedCallsPerMonth(e.target.value.replace(/[^0-9.]/g, ""))}
               inputMode="decimal"
-              className="mt-4 box-border w-full max-w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 text-3xl font-semibold text-slate-900 outline-none focus:border-[#15803D]"
+              className="mt-4 box-border w-full max-w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 text-3xl font-semibold tracking-[-0.035em] text-[#071422] outline-none shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
             />
             <p className="mt-3 text-sm leading-6 text-slate-500">Use the number of real calls the office misses or answers too late in a normal month.</p>
           </div>
@@ -1178,15 +1183,15 @@ export function InvoicingDelayCalculatorClient() {
       const monthlyRange = summary.formattedMonthlyRange
 
       return (
-        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6" data-calculator-result-page="yearly-leak">
-          <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1120px] items-center justify-center">
-            <div className="box-border w-full overflow-hidden rounded-[1.65rem] border border-[#e8dfd0] bg-white p-4 text-center shadow-[0_22px_80px_rgba(15,23,42,0.10)] sm:rounded-[2.25rem] sm:p-7 lg:rounded-[2.5rem] lg:p-9">
+        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8" data-calculator-result-page="yearly-leak" data-calculator-root="true" data-calculator-results="true">
+          <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
+            <div className="box-border w-full overflow-hidden rounded-[1.75rem] border border-white/80 bg-[linear-gradient(180deg,#fffefa_0%,#ffffff_50%,#fbf7ef_100%)] p-4 text-center shadow-[0_30px_95px_rgba(7,20,34,0.13),0_1px_0_rgba(255,255,255,0.9)_inset] sm:rounded-[2.35rem] sm:p-8 lg:rounded-[2.75rem] lg:p-10">
               <div className="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2">
                 <div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: "33%" }} />
               </div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Money left on the table · 1 of 3</p>
               <h1 className="mx-auto mt-4 max-w-3xl text-[2.05rem] font-semibold leading-[1.02] tracking-[-0.045em] text-slate-950 sm:text-[3.55rem] lg:text-[4.3rem]">Estimated money left on the table</h1>
-              <div className="calculator-result-value mx-auto mt-4 max-w-5xl break-words text-[3.1rem] font-semibold leading-[0.92] tracking-[-0.04em] text-[#b42318] [font-variant-numeric:tabular-nums] sm:text-[5.4rem] lg:text-[6.4rem]">{summary.hasMeaningfulLeak ? `${summary.formattedHeadlineRange}/year` : "money left on the table"}</div>
+              <div className="calculator-result-value mx-auto mt-5 max-w-5xl break-words rounded-[1.35rem] bg-[linear-gradient(180deg,#fff7f5_0%,#ffffff_100%)] px-3 py-4 text-[3.25rem] font-semibold leading-[0.92] tracking-[-0.055em] text-[#a82418] shadow-[inset_0_0_0_1px_rgba(244,183,175,0.72),0_18px_45px_rgba(180,35,24,0.08)] [font-variant-numeric:tabular-nums] sm:text-[5.7rem] lg:text-[6.8rem]">{summary.hasMeaningfulLeak ? `${summary.formattedHeadlineRange}/year` : "money left on the table"}</div>
               <p className="mx-auto mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-700 sm:text-xl">{summary.hasMeaningfulLeak ? "That is the annual leak estimate from slow invoices, missed calls, forgotten follow-up, and untouched customer records." : "The safest next step is checking the real records before making a bigger claim."}</p>
               <div className="mx-auto mt-7 max-w-3xl rounded-[1.4rem] border border-[#f3b7af] bg-[#fff1ef] p-4 text-center shadow-[0_16px_42px_rgba(180,35,24,0.08)] sm:p-5">
                 {summary.hasMeaningfulLeak ? (
@@ -1199,12 +1204,12 @@ export function InvoicingDelayCalculatorClient() {
                   <p className="text-sm font-semibold leading-6 text-slate-700">Cost of waiting: the records need to be checked before the leak repeats.</p>
                 )}
               </div>
-              <div className="mx-auto mt-8 max-w-3xl rounded-[1.35rem] border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-center">
-                <CTALink href={auditHref} kind="internal_page" location="calculator_result_yearly" analyticsSource="calculator_result_yearly" ctaLabel={ctaLabel} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-semibold text-white transition hover:bg-[#166534]">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+              <div className="mx-auto mt-8 max-w-3xl rounded-[1.55rem] border border-[#bfe5c7] bg-[linear-gradient(135deg,#eef9f2_0%,#ffffff_58%,#e9f7ed_100%)] p-4 text-center shadow-[0_18px_44px_rgba(21,128,61,0.13)] sm:p-5">
+                <CTALink href={auditHref} kind="internal_page" location="calculator_result_yearly" analyticsSource="calculator_result_yearly" ctaLabel={ctaLabel} data-calculator-assessment-cta="true" className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-[linear-gradient(180deg,#179447_0%,#116832_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24),0_1px_0_rgba(255,255,255,0.26)_inset] transition hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(21,128,61,0.28),0_1px_0_rgba(255,255,255,0.26)_inset]">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
                 <p className="mt-3 text-sm font-semibold leading-6 text-slate-700">Replace this estimate with a real office money-leak report.</p>
               </div>
               <div className="mx-auto mt-5 max-w-3xl">
-                <button type="button" onClick={() => next("resultDiagnosis")} className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]">See what is stuck <ArrowRight className="ml-2 h-4 w-4" /></button>
+                <button type="button" onClick={() => next("resultDiagnosis")} className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white/85 px-6 py-3 text-base font-semibold text-[#405163] transition hover:bg-[#f4efe6]">See what is stuck <ArrowRight className="ml-2 h-4 w-4" /></button>
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">View the detailed breakdown.</p>
               </div>
               <button type="button" onClick={back} className="mt-5 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">← Back to inputs</button>
@@ -1218,7 +1223,7 @@ export function InvoicingDelayCalculatorClient() {
       const summary = resultSummary
       const ctaLabel = "Start the Cash Flow Assessment"
       return (
-        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6" data-calculator-result-page="diagnosis">
+        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8" data-calculator-result-page="diagnosis" data-calculator-root="true" data-calculator-results="true">
           <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
             <div className="box-border w-full overflow-hidden rounded-[1.65rem] border border-[#e8dfd0] bg-white p-4 shadow-[0_22px_80px_rgba(15,23,42,0.10)] sm:rounded-[2.25rem] sm:p-6 lg:rounded-[2.5rem] lg:p-7">
               <div className="mb-5 h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2"><div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: "66%" }} /></div>
@@ -1245,7 +1250,7 @@ export function InvoicingDelayCalculatorClient() {
       }
 
       return (
-        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-5 lg:px-8 lg:py-6 print:min-h-0 print:bg-white print:px-0 print:py-0" data-calculator-result-page="math">
+        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8 print:min-h-0 print:bg-white print:px-0 print:py-0" data-calculator-result-page="math" data-calculator-root="true" data-calculator-results="true">
           <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center print:block print:min-h-0 print:max-w-none">
             <div className="box-border w-full overflow-hidden rounded-[1.65rem] border border-[#e8dfd0] bg-white p-4 shadow-[0_22px_80px_rgba(15,23,42,0.10)] sm:rounded-[2.25rem] sm:p-6 lg:rounded-[2.5rem] lg:p-7 print:overflow-visible print:rounded-none print:border-0 print:p-0 print:shadow-none">
               <div className="mb-5 h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2 print:hidden"><div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: "100%" }} /></div>
