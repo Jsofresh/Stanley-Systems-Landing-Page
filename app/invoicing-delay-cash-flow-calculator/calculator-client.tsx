@@ -31,7 +31,7 @@ type StepKey =
   | "resultMath";
 
 const auditHref = "/workflow-audit"
-const CALCULATOR_LOADING_DURATION_MS = 6400
+const CALCULATOR_LOADING_DURATION_MS = 2000
 
 const STEP_ORDER: StepKey[] = [
   "intro",
@@ -553,17 +553,17 @@ function BigNumberInput({ value, onChange, prefix, suffix }: { value: string; on
       className="mx-auto mt-8 box-border w-full max-w-3xl cursor-text rounded-[1.6rem] border border-[#ded5c4] bg-[linear-gradient(180deg,#fffefa_0%,#f8f4eb_100%)] p-2 shadow-[0_22px_55px_rgba(7,20,34,0.08),0_1px_0_rgba(255,255,255,0.95)_inset] transition focus-within:border-[#15803D] focus-within:shadow-[0_26px_62px_rgba(7,20,34,0.11),0_0_0_5px_rgba(21,128,61,0.09)] sm:mt-10 sm:rounded-[2.1rem] lg:max-w-4xl"
       onClick={() => inputRef.current?.focus()}
     >
-      <div className="flex min-h-[82px] min-w-0 items-center justify-center gap-2 rounded-[1.25rem] bg-white px-3 text-5xl font-semibold text-[#071422] ring-1 ring-[#efe6d8] sm:min-h-[112px] sm:gap-4 sm:rounded-[1.65rem] sm:px-7 sm:text-7xl lg:min-h-[128px] lg:text-[5.4rem]">
-        {prefix ? <span className="shrink-0 text-[#9b8f7d]">{prefix}</span> : null}
+      <div className="relative flex min-h-[82px] min-w-0 items-center justify-center rounded-[1.25rem] bg-white px-3 text-5xl font-semibold text-[#071422] ring-1 ring-[#efe6d8] sm:min-h-[112px] sm:rounded-[1.65rem] sm:px-7 sm:text-7xl lg:min-h-[128px] lg:text-[5.4rem]">
+        {prefix ? <span className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-[#9b8f7d] sm:left-8">{prefix}</span> : null}
         <input
           ref={inputRef}
           value={value}
           onChange={(e) => onChange(e.target.value.replace(/[^0-9.]/g, ""))}
           inputMode="decimal"
           enterKeyHint="next"
-          className="min-w-0 flex-1 bg-transparent px-1 text-center tracking-[-0.045em] outline-none"
+          className={`w-full min-w-0 bg-transparent text-center tracking-[-0.045em] outline-none ${prefix ? "px-16 sm:px-24" : "px-4"}`}
         />
-        {suffix ? <span className="shrink-0 rounded-full bg-[#f3efe6] px-3 py-1 text-base font-bold tracking-normal text-[#6f6557] sm:text-2xl lg:text-3xl">{suffix}</span> : null}
+        {suffix ? <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-[#f3efe6] px-3 py-0.5 text-xs font-bold tracking-normal text-[#6f6557] sm:bottom-3 sm:text-sm lg:text-base">{suffix}</span> : null}
       </div>
     </div>
   )
@@ -917,15 +917,15 @@ export function InvoicingDelayCalculatorClient() {
         <style>{`
           .calculator-load-bar { animation: calculatorLoad ${CALCULATOR_LOADING_DURATION_MS}ms cubic-bezier(.22,.74,.22,1) forwards; }
           @keyframes calculatorLoad { from { transform: translateX(-100%); } to { transform: translateX(0%); } }
-          @media (prefers-reduced-motion: reduce) { .calculator-load-bar { animation-duration: 900ms; } }
+          @media (prefers-reduced-motion: reduce) { .calculator-load-bar { animation-duration: ${CALCULATOR_LOADING_DURATION_MS}ms; } }
         `}</style>
         <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
-          <div className="box-border w-full max-w-3xl overflow-hidden rounded-[1.9rem] border border-[#d9efe2]/35 bg-[radial-gradient(circle_at_50%_0%,rgba(83,217,134,0.18),rgba(7,20,34,0)_48%),#071422] p-7 text-center text-white shadow-[0_34px_110px_rgba(7,20,34,0.30),0_1px_0_rgba(255,255,255,0.10)_inset] sm:rounded-[2.5rem] sm:p-11">
-            <div className="mx-auto h-2 w-full max-w-xl overflow-hidden rounded-full bg-white/12 ring-1 ring-white/10">
+          <div className="box-border w-full max-w-3xl overflow-hidden rounded-[1.9rem] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,246,239,0.96)_100%)] p-7 text-center text-[#071422] shadow-[0_34px_110px_rgba(7,20,34,0.18),0_1px_0_rgba(255,255,255,0.90)_inset] sm:rounded-[2.5rem] sm:p-11">
+            <div className="mx-auto h-2 w-full max-w-xl overflow-hidden rounded-full bg-[#e8e0d2] ring-1 ring-[#d9d0bf]">
               <div className="calculator-load-bar h-full w-full origin-left rounded-full bg-[#53d986] shadow-[0_0_28px_rgba(83,217,134,0.42)]" />
             </div>
             <h1 className="mt-8 text-[2.4rem] font-semibold leading-none tracking-[-0.045em] sm:text-[4rem]">Calculating...</h1>
-            <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-[#d7e5dc] sm:text-xl">Finding where revenue is still stuck.</p>
+            <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-[#506171] sm:text-xl">Finding where revenue is still stuck.</p>
           </div>
         </div>
       </section>
@@ -939,20 +939,12 @@ export function InvoicingDelayCalculatorClient() {
           title="Find the money left on the table in your business."
           continueLabel="Calculate my revenue leak"
         >
-          <div className="mx-auto mt-4 box-border w-full max-w-5xl rounded-[1.45rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#effaf2_0%,#ffffff_100%)] p-5 text-center sm:mt-6 sm:rounded-[1.9rem] sm:p-6">
+          <div className="mx-auto mt-4 box-border w-full max-w-3xl rounded-[1.45rem] border border-[#cfe8d5] bg-[linear-gradient(180deg,#effaf2_0%,#ffffff_100%)] p-6 text-center sm:mt-6 sm:rounded-[1.9rem] sm:p-8">
             <div className="text-sm font-bold leading-tight text-[#15803D]">Takes 2 minutes. Rough numbers only. No passwords or sensitive financials.</div>
             <div className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-5xl">$3,000 to $25,000+</div>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-700">
               See how much your office work is costing the business every month.
             </p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-[#d8ecd9] bg-white p-4 text-sm leading-6 text-slate-700">
-                <span className="font-semibold text-slate-950">Cashflow Control System:</span> turn finished work into collected cash faster.
-              </div>
-              <div className="rounded-2xl border border-[#d8ecd9] bg-white p-4 text-sm leading-6 text-slate-700">
-                <span className="font-semibold text-slate-950">Repeat Revenue System:</span> get more money from customers already earned.
-              </div>
-            </div>
           </div>
         </StepFrame>
       )
