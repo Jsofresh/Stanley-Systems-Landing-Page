@@ -39,8 +39,8 @@ export default function SystemsInstallationSprintPage() {
       <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-[#FBFCF7] text-[#071D3A]">
         <PackageHero
           eyebrow="Systems Installation Sprint"
-          title="Get the Systems Installed That Move Cash and Customers Forward"
-          subheading="Start with the Cash Flow Assessment. The Sprint is scoped after Stanley Systems reviews your office flow, then Stanley Systems installs the approved systems inside the tools your team already uses."
+          title="Get Paid Faster. Follow Up Cleaner. Win More Repeat Work."
+          subheading="Start with the Cash Flow Assessment to see where money and customers are slipping through the office. Then Stanley Systems installs the approved systems that help your team automate office work, follow up instantly, collect more 5 star reviews, and bring past customers back."
           contentAlign="left"
           imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-office-team-van.jpg"
           imageAlt="Stanley Systems office team reviewing a sprint plan with a service van outside."
@@ -76,33 +76,37 @@ export default function SystemsInstallationSprintPage() {
           </div>
         </section>
 
-        <section data-section="sprint-pricing" className="relative overflow-hidden bg-[#FBFCF7] py-14 sm:py-16">
+        <section data-section="sprint-pricing" data-motion-exempt className="relative scroll-mt-32 overflow-hidden bg-[#FBFCF7] py-14 sm:py-16">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(83,217,134,0.18),transparent_35%)]" />
           <div className={`${shell} relative`}>
-            <div className="mx-auto max-w-5xl overflow-hidden rounded-[2.3rem] border border-[#9ED9B2] bg-white shadow-[0_30px_100px_rgba(7,29,58,0.14)]">
-              <div className="bg-[#071422] px-6 py-6 text-center text-white sm:px-8 sm:py-7">
-                <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#53D986]">Build phase</p>
-                <h2 className="mx-auto mt-2 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Systems Installation Sprint</h2>
+            <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#DDEBE2] bg-white shadow-[0_30px_100px_rgba(7,29,58,0.12)] sm:rounded-[2.4rem]">
+              <div className="relative overflow-hidden bg-[#071422] px-5 py-8 text-center text-white sm:px-8 sm:py-10">
+                <div className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(circle_at_8%_42%,rgba(83,217,134,0.24),transparent_18%),radial-gradient(circle_at_92%_40%,rgba(83,217,134,0.20),transparent_18%),linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.07)_50%,transparent_100%)]" />
+                <div className="relative flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-5">
+                  <span className="rounded-full border border-white/70 px-5 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-white">Standard installation</span>
+                  <span className="text-sm font-black uppercase tracking-[0.12em] text-[#53D986] sm:text-base">Starting at $1,500</span>
+                </div>
+                <h2 className="relative mx-auto mt-4 max-w-5xl text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.025em] [word-spacing:0.04em] sm:text-6xl sm:leading-[0.94] sm:tracking-[-0.055em] sm:[word-spacing:normal] lg:text-7xl">Systems Installation Sprint</h2>
               </div>
-              <div className="grid gap-4 p-5 sm:p-7">
-                <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
-                  <div className="rounded-[1.45rem] border border-[#BFE4C8] bg-[linear-gradient(135deg,#F4FBF5_0%,#ffffff_58%,#EAF8EE_100%)] p-5 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.86)] sm:p-6 lg:text-left">
-                    <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#116832]">standard installation: $1,500</p>
-                    <p className="mt-3 text-[1.6rem] font-semibold leading-[1.08] tracking-[-0.035em] text-[#071D3A] sm:text-[2rem]">The Cash Flow Assessment sets the build scope.</p>
-                  </div>
-                  <div className="rounded-[1.45rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 sm:p-6">
-                    <p className="text-[1.35rem] font-semibold leading-[1.15] tracking-[-0.03em] text-[#071D3A] sm:text-[1.65rem]">Stanley Systems installs the approved systems inside your current tools.</p>
-                  </div>
+
+              <div className="grid gap-4 p-4 sm:p-6 lg:grid-cols-2 lg:gap-5 lg:p-7">
+                <div className="rounded-[1.45rem] border border-[#9ED9B2] bg-[linear-gradient(135deg,#F4FBF5_0%,#ffffff_58%,#EAF8EE_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:p-8 lg:min-h-[218px]">
+                  <p className="text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.02em] [word-spacing:0.03em] text-[#071D3A] sm:text-[2.75rem] sm:leading-[1.05] sm:tracking-[-0.052em] sm:[word-spacing:normal] lg:text-[3.05rem]">Get repeat customers and faster payments.</p>
                 </div>
-                <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-                  <div className="rounded-[1.45rem] border border-[#E1E9DE] bg-[#FBFCF7] p-5 sm:p-6">
-                    <p className="text-base font-semibold leading-7 text-[#536173]">Includes the scoped workflow buildout, reminders, handoffs, templates, tracking, testing, and live setup inside the approved business process. Stanley Systems makes sure the system is running inside the tools your team already uses.</p>
-                  </div>
-                  <div className="rounded-[1.45rem] border border-[#CFE8D5] bg-[#F4FBF5] p-5 sm:p-6">
-                    <p className="text-sm font-extrabold leading-6 text-[#116832]">The Sprint is complete when the approved systems are set up, tested, and running inside your current tools, so they are live in your office workflow.</p>
-                    <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/contact?path=pre-buy" className={lightButton}>Ask us a question</Link></div>
-                  </div>
+                <div className="rounded-[1.45rem] border border-[#A7D7EC] bg-[linear-gradient(135deg,#F7FBFF_0%,#ffffff_56%,#EAF6FF_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:p-8 lg:min-h-[218px]">
+                  <p className="text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.02em] [word-spacing:0.03em] text-[#071D3A] sm:text-[2.75rem] sm:leading-[1.05] sm:tracking-[-0.052em] sm:[word-spacing:normal] lg:text-[3.05rem]">Built, tested, and live in your current workflow.</p>
                 </div>
+                <div className="rounded-[1.45rem] border border-[#E1E9DE] bg-white p-6 sm:p-8 lg:min-h-[178px]">
+                  <p className="text-base font-medium leading-7 text-[#102033] sm:text-lg sm:leading-8">Turns the approved assessment plan into office systems that move billing, payment follow-up, reviews, referrals, and past customers inside the tools your team already uses.</p>
+                </div>
+                <div className="rounded-[1.45rem] border border-[#BFE4C8] bg-[#F4FBF5] p-6 sm:p-8 lg:min-h-[178px]">
+                  <p className="text-base font-medium leading-7 text-[#102033] sm:text-lg sm:leading-8">The Sprint is complete when the approved systems are set up, tested, and running where your team already works. No new software or skills needed.</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3 px-4 pb-7 pt-1 sm:flex-row sm:justify-center sm:px-6 lg:px-7 lg:pb-8 lg:pt-0">
+                <Link href="/workflow-audit" className={`${greenButton} sm:min-w-[360px]`}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Link href="/contact?path=pre-buy" className={`${lightButton} sm:min-w-[280px]`}>Ask us a question</Link>
               </div>
             </div>
           </div>
