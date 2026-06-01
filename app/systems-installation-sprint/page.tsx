@@ -91,10 +91,10 @@ export default function SystemsInstallationSprintPage() {
 
               <div className="grid gap-4 p-4 sm:p-6 lg:grid-cols-2 lg:gap-5 lg:p-7">
                 <div className="rounded-[1.45rem] border border-[#9ED9B2] bg-[linear-gradient(135deg,#F4FBF5_0%,#ffffff_58%,#EAF8EE_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:p-8 lg:min-h-[218px]">
-                  <p className="text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.02em] [word-spacing:0.03em] text-[#071D3A] sm:text-[2.75rem] sm:leading-[1.05] sm:tracking-[-0.052em] sm:[word-spacing:normal] lg:text-[3.05rem]">Get repeat customers and faster payments.</p>
+                  <p className="text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.025em] [word-spacing:0.03em] text-[#071D3A] sm:text-[3.05rem] sm:leading-[1.02] sm:tracking-[-0.055em] sm:[word-spacing:normal] lg:text-[3.45rem] xl:text-[3.6rem]">Get repeat customers and faster payments.</p>
                 </div>
                 <div className="rounded-[1.45rem] border border-[#A7D7EC] bg-[linear-gradient(135deg,#F7FBFF_0%,#ffffff_56%,#EAF6FF_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:p-8 lg:min-h-[218px]">
-                  <p className="text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.02em] [word-spacing:0.03em] text-[#071D3A] sm:text-[2.75rem] sm:leading-[1.05] sm:tracking-[-0.052em] sm:[word-spacing:normal] lg:text-[3.05rem]">Built, tested, and live in your current workflow.</p>
+                  <p className="text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.025em] [word-spacing:0.03em] text-[#071D3A] sm:text-[3.05rem] sm:leading-[1.02] sm:tracking-[-0.055em] sm:[word-spacing:normal] lg:text-[3.45rem] xl:text-[3.6rem]">Built, tested, and live in your current workflow.</p>
                 </div>
                 <div className="rounded-[1.45rem] border border-[#E1E9DE] bg-white p-6 sm:p-8 lg:min-h-[178px]">
                   <p className="text-base font-medium leading-7 text-[#102033] sm:text-lg sm:leading-8">Turns the approved assessment plan into office systems that move billing, payment follow-up, reviews, referrals, and past customers inside the tools your team already uses.</p>
