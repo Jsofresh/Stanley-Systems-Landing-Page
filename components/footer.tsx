@@ -2,7 +2,7 @@
 import Image from "next/image"
 import type React from "react"
 import type { ReactNode } from "react"
-import { FacebookIcon, LinkedinIcon, Phone } from "lucide-react"
+import { LinkedinIcon, Phone } from "lucide-react"
 import Link from "next/link"
 
 interface FooterLink {
@@ -17,7 +17,11 @@ interface FooterSection {
   links: FooterLink[]
 }
 
-const STANLEY_FACEBOOK_URL = "https://www.facebook.com/stanleysystems/"
+const STANLEY_YOUTUBE_URL = "https://www.youtube.com/@stanley-systems"
+const STANLEY_TIKTOK_URL = "https://www.tiktok.com/@stanleysystems"
+const STANLEY_INSTAGRAM_URL = "https://www.instagram.com/stanleysystems/"
+const STANLEY_FACEBOOK_URL = "https://www.facebook.com/people/Stanley-Systems/61588396156836/"
+const STANLEY_X_URL = "https://x.com/StanleySystems_"
 const STANLEY_LINKEDIN_URL = "https://www.linkedin.com/company/stanley-systems/"
 
 const footerLinks: FooterSection[] = [
@@ -63,7 +67,11 @@ const footerLinks: FooterSection[] = [
     links: [
       { title: "Call: +1 (617) 958-6372", href: "tel:+16179586372", external: true, icon: Phone },
       { title: "hello@stanley-systems.com", href: "mailto:hello@stanley-systems.com", external: true },
-      { title: "Facebook", href: STANLEY_FACEBOOK_URL, icon: FacebookIcon, external: true },
+      { title: "YouTube", href: STANLEY_YOUTUBE_URL, external: true },
+      { title: "TikTok", href: STANLEY_TIKTOK_URL, external: true },
+      { title: "Instagram", href: STANLEY_INSTAGRAM_URL, external: true },
+      { title: "Facebook", href: STANLEY_FACEBOOK_URL, external: true },
+      { title: "X", href: STANLEY_X_URL, external: true },
       { title: "LinkedIn", href: STANLEY_LINKEDIN_URL, icon: LinkedinIcon, external: true },
     ],
   },
@@ -102,7 +110,7 @@ export function Footer() {
                   {section.links.map((link) => (
                     <li key={link.title}>
                       {link.external ? (
-                        <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className={`inline-flex max-w-full items-center transition-all duration-300 hover:text-slate-900 ${link.href.startsWith("tel:") ? "whitespace-nowrap" : "break-words"}`}>
+                        <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined} aria-label={link.title === "X" ? "Stanley Systems on X" : undefined} className={`inline-flex max-w-full items-center transition-all duration-300 hover:text-slate-900 ${link.href.startsWith("tel:") ? "whitespace-nowrap" : "break-words"}`}>
                           {link.icon && <link.icon className="me-1 size-4 shrink-0" />}
                           <span className="min-w-0">{link.title}</span>
                         </a>
