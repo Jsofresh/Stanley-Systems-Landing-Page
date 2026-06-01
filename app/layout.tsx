@@ -4,7 +4,6 @@ import { Suspense } from "react"
 import "./globals.css"
 import { PageTransition } from "@/components/page-transition"
 import { NavigationTransition } from "@/components/navigation-transition"
-import { Dancing_Script, Caveat, Inter, Manrope, Montserrat, Nunito_Sans, Space_Grotesk, Work_Sans } from "next/font/google"
 import localFont from "next/font/local"
 
 const neueMontreal = localFont({
@@ -30,54 +29,16 @@ const neueMontreal = localFont({
   preload: true,
 })
 
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  variable: "--font-dancing-script",
-  display: "swap",
-})
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  display: "swap",
-})
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-  display: "swap",
-})
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["700", "800"],
-  variable: "--font-logo",
-  display: "swap",
-})
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-})
-
-const nunitoSans = Nunito_Sans({
-  subsets: ["latin"],
-  variable: "--font-nunito-sans",
-  display: "swap",
-})
-
-const workSans = Work_Sans({
-  subsets: ["latin"],
-  variable: "--font-work-sans",
-  display: "swap",
-})
+const fontAliases = {
+  "--font-dancing-script": "var(--font-neue-montreal)",
+  "--font-caveat": "var(--font-neue-montreal)",
+  "--font-manrope": "var(--font-neue-montreal)",
+  "--font-logo": "var(--font-neue-montreal)",
+  "--font-inter": "var(--font-neue-montreal)",
+  "--font-space-grotesk": "var(--font-neue-montreal)",
+  "--font-nunito-sans": "var(--font-neue-montreal)",
+  "--font-work-sans": "var(--font-neue-montreal)",
+} as React.CSSProperties
 
 const siteTitle = "Stanley Systems | Find and Stop Cash Flow Leaks"
 const siteDescription =
@@ -216,7 +177,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={`font-sans antialiased ${neueMontreal.variable} ${dancingScript.variable} ${caveat.variable} ${manrope.variable} ${montserrat.variable} ${inter.variable} ${spaceGrotesk.variable} ${nunitoSans.variable} ${workSans.variable}`}>
+      <body className={`font-sans antialiased ${neueMontreal.variable}`} style={fontAliases}>
         <Suspense fallback={null}>
           <NavigationTransition />
           <PageTransition>{children}</PageTransition>
