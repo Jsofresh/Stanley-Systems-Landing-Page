@@ -35,6 +35,29 @@ const heroSlideshowImages = [
   },
 ];
 
+const mobileHeroSlideshowImages = [
+  {
+    src: "/images/uploaded/homepage/mobile-hero-slideshow/field-service-owner-by-van-with-tablet.jpg",
+    alt: "Field service owner standing by a van with a tablet",
+    objectPosition: "58% center",
+  },
+  {
+    src: "/images/uploaded/homepage/mobile-hero-slideshow/service-owner-in-office-checking-payments.jpg",
+    alt: "Service business owner checking payments in the office",
+    objectPosition: "54% center",
+  },
+  {
+    src: "/images/uploaded/homepage/mobile-hero-slideshow/contractor-reviewing-cashflow-dashboard.jpg",
+    alt: "Contractor reviewing a cash flow dashboard",
+    objectPosition: "55% center",
+  },
+  {
+    src: "/images/uploaded/homepage/mobile-hero-slideshow/field-service-owner-at-cashflow-workstation.jpg",
+    alt: "Field service owner working at a cash flow workstation",
+    objectPosition: "55% center",
+  },
+];
+
 const uploadedHomeImages = {
   calculator: {
     src: "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-consultation-laptop-meeting.jpg",
@@ -170,42 +193,79 @@ function UploadedSectionImage({
 
 function HeroImageSlideshow() {
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[70%] overflow-hidden lg:block"
-    >
+    <>
       <div
-        className="absolute inset-y-0 right-[-10%] w-[112%] overflow-hidden"
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 16%, #000 34%, #000 82%, rgba(0,0,0,0.42) 92%, transparent 100%)",
-          maskImage:
-            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 16%, #000 34%, #000 82%, rgba(0,0,0,0.42) 92%, transparent 100%)",
-        }}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden lg:hidden"
       >
         <div className="absolute inset-0 bg-[#071422]" />
-        {heroSlideshowImages.map((image, index) => (
-          <Image
-            key={image.src}
-            src={image.src}
-            alt=""
-            fill
-            priority={index === 0}
-            sizes="66vw"
-            className="stanley-hero-slideshow-image object-cover"
-            style={{
-              animationDelay: `${index * 5}s`,
-              objectPosition: image.objectPosition ?? "center",
-            }}
-          />
-        ))}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.98)_15%,rgba(7,20,34,0.84)_28%,rgba(7,20,34,0.46)_45%,rgba(7,20,34,0.08)_68%,rgba(7,20,34,0.34)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(7,20,34,0)_32%,rgba(7,20,34,0.22)_62%,rgba(7,20,34,0.82)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#071422_0%,rgba(7,20,34,0.62)_14%,rgba(7,20,34,0)_34%,rgba(7,20,34,0)_66%,rgba(7,20,34,0.68)_88%,#071422_100%)]" />
-        <div className="absolute inset-y-0 left-0 w-[44%] bg-gradient-to-r from-[#071422] via-[#071422]/82 to-transparent" />
-        <div className="absolute inset-y-0 right-0 w-[24%] bg-gradient-to-l from-[#071422] via-[#071422]/70 to-transparent" />
+        <div
+          className="absolute right-[-14%] top-[50%] h-[86svh] w-[78vw] -translate-y-1/2 overflow-hidden opacity-100 blur-[0.35px] saturate-[0.94]"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 12%, rgba(0,0,0,0.85) 25%, #000 38%, #000 100%)",
+            maskImage:
+              "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 12%, rgba(0,0,0,0.85) 25%, #000 38%, #000 100%)",
+          }}
+        >
+          {mobileHeroSlideshowImages.map((image, index) => (
+            <Image
+              key={`mobile-${image.src}`}
+              src={image.src}
+              alt=""
+              fill
+              priority={index === 0}
+              sizes="78vw"
+              className="stanley-hero-slideshow-image stanley-hero-slideshow-image--mobile object-cover"
+              style={{
+                animationDelay: `${index * 6}s`,
+                objectPosition: image.objectPosition,
+              }}
+            />
+          ))}
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,#071422_42%,rgba(7,20,34,0.76)_56%,rgba(7,20,34,0.28)_74%,rgba(7,20,34,0.04)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#071422_0%,rgba(7,20,34,0.52)_10%,rgba(7,20,34,0.04)_36%,rgba(7,20,34,0.16)_78%,#071422_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_82%_46%,rgba(83,217,134,0.1),transparent_36%)]" />
       </div>
-    </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[70%] overflow-hidden lg:block"
+      >
+        <div
+          className="absolute inset-y-0 right-[-10%] w-[112%] overflow-hidden"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 16%, #000 34%, #000 82%, rgba(0,0,0,0.42) 92%, transparent 100%)",
+            maskImage:
+              "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 16%, #000 34%, #000 82%, rgba(0,0,0,0.42) 92%, transparent 100%)",
+          }}
+        >
+          <div className="absolute inset-0 bg-[#071422]" />
+          {heroSlideshowImages.map((image, index) => (
+            <Image
+              key={image.src}
+              src={image.src}
+              alt=""
+              fill
+              priority={index === 0}
+              sizes="66vw"
+              className="stanley-hero-slideshow-image object-cover"
+              style={{
+                animationDelay: `${index * 5}s`,
+                objectPosition: image.objectPosition ?? "center",
+              }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.98)_15%,rgba(7,20,34,0.84)_28%,rgba(7,20,34,0.46)_45%,rgba(7,20,34,0.08)_68%,rgba(7,20,34,0.34)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(7,20,34,0)_32%,rgba(7,20,34,0.22)_62%,rgba(7,20,34,0.82)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,#071422_0%,rgba(7,20,34,0.62)_14%,rgba(7,20,34,0)_34%,rgba(7,20,34,0)_66%,rgba(7,20,34,0.68)_88%,#071422_100%)]" />
+          <div className="absolute inset-y-0 left-0 w-[44%] bg-gradient-to-r from-[#071422] via-[#071422]/82 to-transparent" />
+          <div className="absolute inset-y-0 right-0 w-[24%] bg-gradient-to-l from-[#071422] via-[#071422]/70 to-transparent" />
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -676,11 +736,11 @@ export function CashFlowHomepage() {
             <h1 className="max-w-[850px] text-balance text-[clamp(2.3rem,5.55vw,5.8rem)] font-extrabold leading-[0.91] tracking-[-0.025em] text-white">
               Find the money your service business is missing.
             </h1>
-            <p className="mt-7 max-w-[620px] text-pretty text-lg font-semibold leading-8 text-[#d3dce7] sm:text-xl">
+            <p className="mt-7 hidden max-w-[620px] text-pretty text-lg font-semibold leading-8 text-[#d3dce7] sm:block sm:text-xl">
               Run the free calculator. See what calls, invoices, follow-ups,
               reviews, referrals, and past customers cost your business.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-[14svh] flex flex-col gap-3 sm:mt-9 sm:flex-row">
               <CTALink
                 href={calculatorHref}
                 kind="calculator"

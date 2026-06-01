@@ -455,6 +455,35 @@
   will-change: opacity, transform;
 }
 
+@keyframes stanley-hero-slideshow-mobile-soft {
+  0% {
+    opacity: 0;
+    transform: scale(1.018);
+  }
+  5% {
+    opacity: 0.94;
+    transform: scale(1.006);
+  }
+  21% {
+    opacity: 0.94;
+    transform: scale(1);
+  }
+  28% {
+    opacity: 0;
+    transform: scale(1.012);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.018);
+  }
+}
+
+.stanley-hero-slideshow-image--mobile {
+  animation-duration: 24s;
+  animation-name: stanley-hero-slideshow-mobile-soft;
+  filter: brightness(1.02) contrast(0.98) saturate(0.94);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .stanley-hero-slideshow-image {
     animation: none;
