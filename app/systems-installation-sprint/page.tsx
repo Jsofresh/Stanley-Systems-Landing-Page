@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowDown, ArrowRight, BarChart3, Check, ClipboardCheck, FileText, GitBranch, Rocket, ShieldCheck } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { Footer } from "@/components/footer"
@@ -30,6 +30,18 @@ const timeline = [
   ["Assessment completed", "The assessment shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first."],
   ["Scope approved", "You approve what gets installed before the build starts."],
   ["Sprint installed and put live", "Stanley Systems builds, tests, and puts the approved workflow live inside your current tools so your team can use it."],
+]
+
+const sprintProcessSteps = [
+  { title: "Assessment", body: "We map your current processes and cash flow gaps.", Icon: FileText },
+  { title: "Workflow Build", body: "We build the systems inside the tools your team already uses.", Icon: GitBranch },
+  { title: "Testing", body: "We test everything end-to-end so it works exactly as it should.", Icon: ClipboardCheck },
+  { title: "Live Workflow", body: "Your systems are live and running in your daily workflow.", Icon: Rocket },
+]
+
+const sprintOutcomes = [
+  { title: "Get repeat customers and faster payments.", Icon: BarChart3 },
+  { title: "Built, tested, and live in your current workflow.", Icon: ShieldCheck },
 ]
 
 export default function SystemsInstallationSprintPage() {
@@ -76,39 +88,70 @@ export default function SystemsInstallationSprintPage() {
           </div>
         </section>
 
-        <section data-section="sprint-pricing" data-motion-exempt className="relative scroll-mt-32 overflow-hidden bg-[#FBFCF7] py-14 sm:py-16">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(83,217,134,0.18),transparent_35%)]" />
+        <section data-section="sprint-pricing" data-motion-exempt className="relative scroll-mt-32 overflow-hidden bg-white py-9 sm:py-11 lg:py-12">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_14%,rgba(83,217,134,0.07),transparent_36%)]" />
           <div className={`${shell} relative`}>
-            <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#DDEBE2] bg-white shadow-[0_30px_100px_rgba(7,29,58,0.12)] sm:rounded-[2.4rem]">
-              <div className="relative overflow-hidden bg-[#071422] px-5 py-8 text-center text-white sm:px-8 sm:py-10">
-                <div className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(circle_at_8%_42%,rgba(83,217,134,0.24),transparent_18%),radial-gradient(circle_at_92%_40%,rgba(83,217,134,0.20),transparent_18%),linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.07)_50%,transparent_100%)]" />
-                <div className="relative flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-5">
-                  <span className="rounded-full border border-white/70 px-5 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-white">Standard installation</span>
-                  <span className="text-sm font-black uppercase tracking-[0.12em] text-[#53D986] sm:text-base">Starting at $1,500</span>
-                </div>
-                <h2 className="relative mx-auto mt-4 max-w-5xl text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.025em] [word-spacing:0.04em] sm:text-6xl sm:leading-[0.94] sm:tracking-[-0.055em] sm:[word-spacing:normal] lg:text-7xl">Systems Installation Sprint</h2>
+            <div className="mx-auto max-w-[78rem] text-center">
+              <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-5">
+                <span className="hidden rounded-[0.72rem] border border-[#E2EADF] bg-white/82 px-5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-[#15803D] shadow-[0_10px_24px_rgba(7,29,58,0.03)] sm:inline-flex">Standard installation</span>
+                <span className="rounded-[0.72rem] border border-[#E2EADF] bg-white/82 px-5 py-2 text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-[#15803D] shadow-[0_10px_24px_rgba(7,29,58,0.03)]">Starting at $1,500</span>
               </div>
 
-              <div className="grid gap-4 p-4 sm:p-6 lg:grid-cols-2 lg:gap-5 lg:p-7">
-                <div className="rounded-[1.45rem] border border-[#9ED9B2] bg-[linear-gradient(135deg,#F4FBF5_0%,#ffffff_58%,#EAF8EE_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:p-8 lg:min-h-[218px]">
-                  <p className="text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.025em] [word-spacing:0.03em] text-[#071D3A] sm:text-[3.05rem] sm:leading-[1.02] sm:tracking-[-0.055em] sm:[word-spacing:normal] lg:text-[3.45rem] xl:text-[3.6rem]">Get repeat customers and faster payments.</p>
-                </div>
-                <div className="rounded-[1.45rem] border border-[#A7D7EC] bg-[linear-gradient(135deg,#F7FBFF_0%,#ffffff_56%,#EAF6FF_100%)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:p-8 lg:min-h-[218px]">
-                  <p className="text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.025em] [word-spacing:0.03em] text-[#071D3A] sm:text-[3.05rem] sm:leading-[1.02] sm:tracking-[-0.055em] sm:[word-spacing:normal] lg:text-[3.45rem] xl:text-[3.6rem]">Built, tested, and live in your current workflow.</p>
-                </div>
-                <div className="rounded-[1.45rem] border border-[#E1E9DE] bg-white p-6 sm:p-8 lg:min-h-[178px]">
-                  <p className="text-base font-medium leading-7 text-[#102033] sm:text-lg sm:leading-8">Turns the approved assessment plan into office systems that move billing, payment follow-up, reviews, referrals, and past customers inside the tools your team already uses.</p>
-                </div>
-                <div className="rounded-[1.45rem] border border-[#BFE4C8] bg-[#F4FBF5] p-6 sm:p-8 lg:min-h-[178px]">
-                  <p className="text-base font-medium leading-7 text-[#102033] sm:text-lg sm:leading-8">The Sprint is complete when the approved systems are set up, tested, and running where your team already works. No new software or skills needed.</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 px-4 pb-7 pt-1 sm:flex-row sm:justify-center sm:px-6 lg:px-7 lg:pb-8 lg:pt-0">
-                <Link href="/workflow-audit" className={`${greenButton} sm:min-w-[360px]`}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                <Link href="/contact?path=pre-buy" className={`${lightButton} sm:min-w-[280px]`}>Ask us a question</Link>
+              <h2 className="mx-auto mt-4 max-w-6xl text-[2.85rem] font-semibold leading-[0.96] tracking-[-0.06em] text-[#071D3A] sm:text-[4.8rem] md:whitespace-nowrap lg:text-[5.75rem] xl:text-[6.2rem]">Systems Installation Sprint</h2>
+              <div className="mx-auto mt-5 flex w-64 items-center justify-center gap-0">
+                <span className="h-px flex-1 bg-[#DDEBE2]" />
+                <span className="h-[3px] w-10 rounded-full bg-[#15803D]" />
+                <span className="h-px flex-1 bg-[#DDEBE2]" />
               </div>
             </div>
+
+            <div className="relative mt-8 grid gap-5 lg:grid-cols-4 lg:gap-8">
+              {sprintProcessSteps.map(({ title, body, Icon }, index) => (
+                <article key={title} className="relative rounded-[1.35rem] border border-[#DDEBE2] bg-white px-5 py-6 text-center shadow-[0_18px_44px_rgba(7,29,58,0.07)] sm:px-6 sm:py-7 lg:min-h-[270px]">
+                  {index < sprintProcessSteps.length - 1 ? (
+                    <div className="pointer-events-none absolute left-[calc(100%-0.35rem)] top-[5.6rem] z-10 hidden w-9 items-center lg:flex" aria-hidden="true">
+                      <span className="h-px flex-1 bg-[#15803D]" />
+                      <ArrowRight className="-ml-1 h-7 w-7 text-[#15803D]" strokeWidth={1.9} />
+                    </div>
+                  ) : null}
+                  {index < sprintProcessSteps.length - 1 ? (
+                    <div className="pointer-events-none absolute -bottom-5 left-1/2 z-10 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full border border-[#BFE4C8] bg-white text-[#15803D] shadow-[0_10px_20px_rgba(21,128,61,0.10)] lg:hidden" aria-hidden="true">
+                      <ArrowDown className="h-5 w-5" strokeWidth={2.2} />
+                    </div>
+                  ) : null}
+                  <div className="mx-auto grid h-[5.45rem] w-[5.45rem] place-items-center rounded-[1rem] border border-[#E2EEE2] bg-[linear-gradient(135deg,#F2FAF4_0%,#ffffff_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.95)]">
+                    <div className="relative">
+                      <Icon className="h-11 w-11 text-[#126C38]" strokeWidth={1.85} />
+                      <span className="absolute -bottom-2 -right-3 grid h-8 w-8 place-items-center rounded-full bg-[#15803D] text-white shadow-[0_8px_18px_rgba(21,128,61,0.28)]">
+                        <Check className="h-5 w-5" strokeWidth={3} />
+                      </span>
+                    </div>
+                  </div>
+                  <h3 className="mt-5 text-[1.65rem] font-semibold leading-[1.02] tracking-[-0.05em] text-[#071D3A] sm:text-[1.9rem] lg:text-[1.78rem] xl:text-[1.95rem]">{title}</h3>
+                  <p className="mx-auto mt-3 max-w-[14rem] text-[0.98rem] font-medium leading-6 text-[#334B60]">{body}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-7 grid gap-5 lg:grid-cols-2">
+              {sprintOutcomes.map(({ title, Icon }) => (
+                <article key={title} className="flex flex-col items-start gap-5 rounded-[1.35rem] border border-[#DDEBE2] bg-white px-6 py-6 text-left shadow-[0_16px_40px_rgba(7,29,58,0.05)] sm:flex-row sm:items-center sm:px-8 lg:min-h-[136px]">
+                  <div className="grid h-[4.8rem] w-[4.8rem] shrink-0 place-items-center rounded-[0.95rem] border border-[#E2EEE2] bg-[linear-gradient(135deg,#F2FAF4_0%,#ffffff_100%)]">
+                    <Icon className="h-10 w-10 text-[#15803D]" strokeWidth={1.85} />
+                  </div>
+                  <h3 className="max-w-[31rem] text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.05em] text-[#071D3A] sm:text-[2.2rem] lg:text-[2.2rem] xl:text-[2.3rem]">{title}</h3>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href="/workflow-audit" className={`${greenButton} w-full sm:w-auto sm:min-w-[360px]`}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/contact?path=pre-buy" className={`${lightButton} w-full sm:w-auto sm:min-w-[280px]`}>Ask us a question</Link>
+            </div>
+            <p className="mt-4 flex flex-col items-center justify-center gap-2 text-center text-sm font-medium leading-6 text-[#334B60] sm:flex-row">
+              <span className="grid h-5 w-5 place-items-center rounded-full border border-[#9ED9B2] text-[#15803D]"><Check className="h-3.5 w-3.5" strokeWidth={3} /></span>
+              <span>One clear process. No new software. Built around how your team already works.</span>
+            </p>
           </div>
         </section>
 
