@@ -102,14 +102,16 @@ function AssessmentDemoVideo() {
   return (
     <section id="demo" data-section="cash-flow-assessment-demo-video" className="bg-white py-10 sm:py-12 lg:py-14">
       <div className={shell}>
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.8rem] border border-[#DDEBE2] bg-[#071D3A] shadow-[0_28px_80px_rgba(7,29,58,0.16)]">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Watch the Cash Flow Assessment in action.</h2>
+        </div>
+        <div className="mx-auto mt-7 w-full max-w-7xl overflow-hidden rounded-[1.9rem] border border-[#DDEBE2] bg-[#071D3A] shadow-[0_30px_86px_rgba(7,29,58,0.18)]">
           <video
             className="block aspect-video w-full bg-[#071D3A] object-cover"
             src="/cashflow-assessment-demo.mp4"
             controls
             playsInline
             preload="metadata"
-            poster="/images/uploaded/package-voice-notes/money-leak-summary.jpg"
           />
         </div>
         <div className="mt-7 flex justify-center">
