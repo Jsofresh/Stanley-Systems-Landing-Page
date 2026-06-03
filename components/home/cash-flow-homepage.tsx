@@ -426,10 +426,10 @@ function AssessmentSection() {
   return (
     <PageSection
       id="assessment"
-      className="bg-[#071422] py-9 text-white md:py-12 lg:py-14"
+      className="bg-[#071422] py-7 text-white md:py-9 lg:py-10"
       navTheme="dark"
     >
-      <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[1fr_0.72fr] lg:items-center">
+      <div className="mx-auto grid max-w-[88rem] gap-5 lg:grid-cols-[1fr_0.66fr] lg:items-center">
         <div>
           <h2 className="max-w-[720px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
             Start with the Cash Flow Assessment.
@@ -467,7 +467,7 @@ function AssessmentSection() {
             </CTALink>
           </div>
         </div>
-        <div className="relative mx-auto w-full max-w-[450px] overflow-hidden scale-[0.95] rounded-[2.4rem] lg:max-w-[470px]">
+        <div className="relative mx-auto w-full max-w-[390px] overflow-hidden scale-[0.92] rounded-[2.4rem] lg:max-w-[420px]">
           <Image
             src={uploadedHomeImages.assessment.src}
             alt={uploadedHomeImages.assessment.alt}

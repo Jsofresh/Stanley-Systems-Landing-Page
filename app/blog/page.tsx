@@ -17,7 +17,7 @@ export default function BlogPage() {
     <>
       <SiteHeader />
       <main className="bg-[#F7F4EC] text-[#102033]">
-        <section className="mx-auto max-w-7xl px-4 pb-10 pt-20 sm:px-6 lg:px-8 lg:pt-24">
+        <section className="mx-auto max-w-7xl px-4 pb-10 pt-32 sm:px-6 sm:pt-36 lg:px-8 lg:pt-40">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Stanley Systems articles</p>
           <h1 className="mt-4 max-w-4xl text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem] lg:text-[4.2rem]">Plain-English fixes for billing delays, handoffs, and missed follow-up.</h1>
           <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">Read how service businesses lose money after the work is already earned — and what cleaner office systems change.</p>

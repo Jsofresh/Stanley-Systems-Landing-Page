@@ -81,7 +81,7 @@ function HeroVisual() {
 }
 function Hero() {
   return (
-    <section data-section="cash-flow-assessment-hero" className="relative flex min-h-[100svh] overflow-hidden bg-[#FBFCF7] pb-10 pt-24 sm:pb-14 lg:pt-28">
+    <section data-section="cash-flow-assessment-hero" className="relative flex overflow-hidden bg-[#FBFCF7] pb-8 pt-32 sm:pb-10 sm:pt-36 lg:pt-40">
       <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_68%)]" aria-hidden="true" />
       <div className={`${shell} relative grid flex-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center`}>
         <div className="text-center lg:text-left">
@@ -108,7 +108,7 @@ function CheckedLeaks() {
   ]
 
   return (
-    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-14 sm:py-16">
+    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-10 sm:py-12">
       <div className={shell}>
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-[2.2rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3rem]">
@@ -116,10 +116,10 @@ function CheckedLeaks() {
           </h2>
         </div>
 
-        <div className="mx-auto mt-10 max-w-6xl">
+        <div className="mx-auto mt-7 max-w-6xl">
           <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
             {stages.map((stage, index) => (
-              <li key={stage.title} className={`relative flex min-h-[15rem] flex-col items-center justify-center rounded-[1.6rem] border border-[#DDEBE2] bg-[#FBFCF7] p-7 text-center shadow-[0_16px_40px_rgba(7,29,58,0.045)] ${index < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}>
+              <li key={stage.title} className={`relative flex min-h-[12.5rem] flex-col items-center justify-center rounded-[1.6rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 text-center shadow-[0_16px_40px_rgba(7,29,58,0.045)] sm:p-6 ${index < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}>
                 <h3 className="max-w-sm text-[1.85rem] font-semibold leading-[1.05] tracking-[-0.045em] text-[#102033] sm:text-[2rem]">{stage.title}</h3>
                 <p className="mt-5 max-w-sm text-base font-semibold leading-7 text-[#536173]">{stage.body}</p>
               </li>
@@ -133,8 +133,8 @@ function CheckedLeaks() {
 
 function SampleOutput() {
   return (
-    <section data-section="cash-flow-assessment-sample-output" className="flex min-h-[100svh] bg-[#FBFCF7] py-12 sm:py-14 lg:py-20">
-      <div className={`${shell} grid flex-1 gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
+    <section data-section="cash-flow-assessment-sample-output" className="bg-[#FBFCF7] py-10 sm:py-12 lg:py-14">
+      <div className={`${shell} grid gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
         <div>
           <h2 className="max-w-3xl text-[2.3rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.2rem]">
             You leave with the map, not another vague consultation.
@@ -167,7 +167,7 @@ function AssessmentPricing() {
   ]
 
   return (
-    <section id="assessment" data-section="cash-flow-assessment-pricing" className="scroll-mt-[120px] bg-[#F4FBF5] py-14 sm:py-16">
+    <section id="assessment" data-section="cash-flow-assessment-pricing" className="scroll-mt-[120px] bg-[#F4FBF5] py-10 sm:py-12">
       <div className={shell}>
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.035em] text-[#071D3A] sm:text-5xl">Start here: $97 Cash Flow Assessment</h2>

@@ -32,7 +32,7 @@ export default function StanleySystemsCaseStudyPage() {
     <>
       <SiteHeader />
       <main className="bg-[#F7F4EC] text-[#102033]">
-      <section className="mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 lg:px-8 lg:pb-16 lg:pt-24">
+      <section className="mx-auto max-w-7xl px-4 pb-12 pt-32 sm:px-6 sm:pt-36 lg:px-8 lg:pb-16 lg:pt-40">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Case study</p>

@@ -9,7 +9,16 @@ export const metadata: Metadata = {
   description: "See which service businesses Stanley Systems helps most and when the Cash Flow Assessment is a good fit.",
 }
 
-const industries = ["Marine service", "Plumbing", "HVAC", "Electrical", "Roofing", "Landscaping", "General contractors", "Adjacent service businesses"]
+const industries = [
+  { name: "Marine service", href: "/industries/marine", leak: "Custom jobs, parts, notes, invoices, and seasonal follow-up can scatter fast." },
+  { name: "Plumbing", href: "/industries/plumbing", leak: "Urgent calls and fast jobs need a clean path into billing, reviews, and referrals." },
+  { name: "HVAC", href: "/industries/hvac", leak: "Service calls, tune-ups, invoices, and old customers need follow-up before the season moves on." },
+  { name: "Electrical", href: "/industries/electrical", leak: "Requests, estimates, approvals, job notes, and invoices get expensive when they split across tools." },
+  { name: "Roofing", href: "/industries/roofing", leak: "Leads, estimates, storm work, billing, review asks, and referrals need ownership." },
+  { name: "Landscaping", href: "/industries/landscaping", leak: "Seasonal work, add-ons, quotes, billing, and reactivation cannot depend on memory." },
+  { name: "General contractors", href: "/industries/general-contractors", leak: "Approvals, photos, details, billing readiness, and past-customer follow-up need one office path." },
+  { name: "Adjacent service businesses", href: "/industries/adjacent-service-businesses", leak: "If jobs, customers, billing, and follow-up move through an office, money can leak there." },
+]
 const costs = ["Finished work waits before billing.", "Open estimates go cold.", "Reviews and referrals depend on memory.", "Past customers are not brought back."]
 
 export default function WhoStanleySystemsHelpsPage() {
@@ -46,8 +55,25 @@ export default function WhoStanleySystemsHelpsPage() {
           </div>
           <div>
             <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">Industries Stanley Systems can help</h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {industries.map((industry) => <span key={industry} className="rounded-full border border-[#DDEBE2] bg-[#F8FBF9] px-3 py-2 text-sm font-bold text-[#34495F]">{industry}</span>)}
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {industries.map((industry) => (
+                <Link
+                  key={industry.name}
+                  href={industry.href}
+                  className="group relative overflow-hidden rounded-[1.25rem] border border-[#DDEBE2] bg-[#FBFCF7] p-4 shadow-[0_10px_28px_rgba(7,29,58,0.045)] transition hover:-translate-y-0.5 hover:border-[#9ED9B2] hover:bg-white hover:shadow-[0_18px_44px_rgba(21,128,61,0.1)]"
+                >
+                  <span className="pointer-events-none absolute right-[-2.25rem] top-[-2.25rem] h-24 w-24 rounded-full bg-[#E4F6E9] transition group-hover:scale-125" aria-hidden="true" />
+                  <span className="relative flex items-start justify-between gap-4">
+                    <span>
+                      <span className="block text-lg font-semibold leading-tight tracking-[-0.03em] text-[#071D3A]">{industry.name}</span>
+                      <span className="mt-2 block text-sm font-semibold leading-6 text-[#536173]">{industry.leak}</span>
+                    </span>
+                    <span className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[#15803D] ring-1 ring-[#CFE8D5] transition group-hover:bg-[#15803D] group-hover:text-white">
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                  </span>
+                </Link>
+              ))}
             </div>
             <div className="mt-6 rounded-2xl bg-[#F4FBF5] p-5 ring-1 ring-[#CFE8D5]">
               <p className="text-sm font-semibold leading-6 text-[#536173]">If the team does field work, office work, billing, estimates, and repeat customer follow-up, the Cash Flow Assessment can show which leak matters first.</p>
