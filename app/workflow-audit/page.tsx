@@ -98,61 +98,23 @@ function Hero() {
   )
 }
 
-function CheckedLeaks() {
-  const stages = [
-    { title: "Calls & estimates", body: "Find the calls, website requests, and estimate opportunities that never get a proper follow-up path." },
-    { title: "Open estimates", body: "See which quotes are sitting without a clear owner, reminder, or next step to win the job." },
-    { title: "Jobs & invoices", body: "Spot completed work that gets stuck before the invoice is ready, sent, or followed up." },
-    { title: "Payment follow-up", body: "Identify unpaid invoices that need reminders, escalation, or a cleaner handoff to collection." },
-    { title: "Reviews & referrals", body: "Turn happy customers and past buyers into reviews, referrals, reminders, and repeat work." },
-  ]
-
+function AssessmentDemoVideo() {
   return (
-    <section id="checked" data-section="cash-flow-assessment-checked" className="bg-white py-10 sm:py-12">
+    <section id="demo" data-section="cash-flow-assessment-demo-video" className="bg-white py-10 sm:py-12 lg:py-14">
       <div className={shell}>
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-[2.2rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3rem]">
-            Where the assessment looks
-          </h2>
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.8rem] border border-[#DDEBE2] bg-[#071D3A] shadow-[0_28px_80px_rgba(7,29,58,0.16)]">
+          <video
+            className="block aspect-video w-full bg-[#071D3A] object-cover"
+            src="/cashflow-assessment-demo.mp4"
+            controls
+            playsInline
+            preload="metadata"
+            poster="/images/uploaded/package-voice-notes/money-leak-summary.jpg"
+          />
         </div>
-
-        <div className="mx-auto mt-7 max-w-6xl">
-          <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
-            {stages.map((stage, index) => (
-              <li key={stage.title} className={`relative flex min-h-[12.5rem] flex-col items-center justify-center rounded-[1.6rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5 text-center shadow-[0_16px_40px_rgba(7,29,58,0.045)] sm:p-6 ${index < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}>
-                <h3 className="max-w-sm text-[1.85rem] font-semibold leading-[1.05] tracking-[-0.045em] text-[#102033] sm:text-[2rem]">{stage.title}</h3>
-                <p className="mt-5 max-w-sm text-base font-semibold leading-7 text-[#536173]">{stage.body}</p>
-              </li>
-            ))}
-          </ol>
+        <div className="mt-7 flex justify-center">
+          <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_demo_video_primary" />
         </div>
-      </div>
-    </section>
-  )
-}
-
-function SampleOutput() {
-  return (
-    <section data-section="cash-flow-assessment-sample-output" className="bg-[#FBFCF7] py-10 sm:py-12 lg:py-14">
-      <div className={`${shell} grid gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:items-center`}>
-        <div>
-          <h2 className="max-w-3xl text-[2.3rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.2rem]">
-            You leave with the map, not another vague consultation.
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            The Cash Flow Assessment gives you a clear map of where money is getting stuck, how to fix each problem, and what each fix is expected to improve.
-          </p>
-        </div>
-        <FadedImage
-          src="/images/uploaded/package-voice-notes/money-leak-summary.jpg"
-          alt="Sample Money Leak Summary showing the leak found, cost signal, build priority, and next move."
-          width={1280}
-          height={960}
-          sizes="(min-width: 1024px) 46vw, 100vw"
-          fadeColor="#FBFCF7"
-          wrapperClassName="mx-auto w-full max-w-full overflow-hidden rounded-[1.25rem] drop-shadow-[0_24px_70px_rgba(7,29,58,0.08)]"
-          imageClassName="h-auto w-full object-contain"
-        />
       </div>
     </section>
   )
@@ -202,28 +164,12 @@ function AssessmentPricing() {
 }
 
 function SprintBridge() {
-  const bullets = [
-    "Use the assessment to fix the problems yourself.",
-    "Use it as the build plan for the Sprint if you want Stanley Systems to install the fix.",
-    "The Sprint can include faster billing, cleaner follow-up, reviews, referrals, repeat-customer reminders, or a scoped mix.",
-    "Double the assessment fee can be credited toward the Sprint.",
-  ]
-
   return (
     <section data-section="cash-flow-assessment-sprint-bridge" className="bg-white py-12 sm:py-14">
-      <div className={`${shell} grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center`}>
-        <div>
-          <h2 className="text-[2.25rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build it for you?</h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">The assessment shows what is costing you money. The Sprint builds the fix: faster billing, cleaner follow-up, more reviews, more referrals, repeat-customer reminders, or the specific mix your business needs.</p>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">Use the assessment to fix the problems yourself, or use it as the build plan for the Sprint.</p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </div>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {bullets.map((item) => (
-            <div key={item} className="rounded-[1.25rem] border border-[#DDEBE2] bg-[#FBFCF7] p-4 text-sm font-bold leading-6 text-[#334B60] shadow-[0_10px_24px_rgba(7,29,58,0.035)]">{item}</div>
-          ))}
+      <div className={`${shell} text-center`}>
+        <h2 className="mx-auto max-w-4xl text-[2.25rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build the plan for you?</h2>
+        <div className="mt-7 flex justify-center">
+          <Link href="/systems-installation-sprint" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
         </div>
       </div>
     </section>
@@ -352,8 +298,7 @@ export default function WorkflowAuditPage() {
       <SiteHeader />
       <main data-nav-theme="light" className="relative bg-[#FBFCF7] [&_section[id]]:scroll-mt-[120px]">
         <Hero />
-        <CheckedLeaks />
-        <SampleOutput />
+        <AssessmentDemoVideo />
         <AssessmentPricing />
         <SprintBridge />
         <HowItWorks />
