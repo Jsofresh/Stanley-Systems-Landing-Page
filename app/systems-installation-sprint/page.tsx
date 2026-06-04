@@ -20,12 +20,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://stanley-systems.com/systems-installation-sprint" },
 }
 
-const installedItems = [
-  ["Cashflow Control", "Billing handoffs, invoice readiness, payment follow-up, and a clear way to see what is waiting installed around the tools your team already uses."],
-  ["Repeat Revenue", "Past-customer follow-up, review asks, referral asks, private feedback routing, and missed-call recovery installed as a dependable workflow."],
-  ["Scoped workflow pieces", "When your assessment points to a narrower gap, Stanley Systems can install the specific reminders, templates, handoffs, and tracking your business needs."],
-]
-
 const timeline = [
   ["Assessment completed", "The assessment shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first."],
   ["Scope approved", "You approve what gets installed before the build starts."],
@@ -80,10 +74,16 @@ export default function SystemsInstallationSprintPage() {
           <div className={shell}>
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What Gets Installed for Your Business</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems installs Cashflow Control, Repeat Revenue, both, or the specific pieces your business needs inside the tools your team already uses. The goal is simple: faster billing, cleaner follow-up, more reviews, more referrals, and more repeat-customer work.</p>
             </div>
-            <div className="mt-7 grid gap-4 lg:grid-cols-3">
-              {installedItems.map(([title, body]) => <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_12px_30px_rgba(7,29,58,0.04)]"><h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">{title}</h3><p className="mt-4 text-sm font-semibold leading-6 text-[#536173]">{body}</p></article>)}
+            <div className="mx-auto mt-7 max-w-5xl overflow-hidden rounded-[1.6rem] border border-[#DDEBE2] bg-[#071422] shadow-[0_24px_70px_rgba(7,29,58,0.14)]">
+              <video
+                className="block aspect-video w-full bg-[#071422]"
+                src="/videos/installation-sprint-professional-captions.mp4"
+                title="What Gets Installed for Your Business"
+                controls
+                playsInline
+                preload="metadata"
+              />
             </div>
           </div>
         </section>
