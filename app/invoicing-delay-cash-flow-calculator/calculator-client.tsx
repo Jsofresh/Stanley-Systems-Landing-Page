@@ -1212,7 +1212,7 @@ export function InvoicingDelayCalculatorClient() {
               <h1 className="mx-auto mt-4 max-w-2xl text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.045em] sm:text-[4rem]">Your office cost estimate is almost ready.</h1>
               <div className="mx-auto mt-5 flex max-w-2xl flex-col items-center gap-3 rounded-[1.35rem] border border-[#bfe5c7] bg-[linear-gradient(135deg,#eef9f2_0%,#ffffff_58%,#e9f7ed_100%)] px-4 py-4 text-center shadow-[0_18px_46px_rgba(21,128,61,0.12),0_1px_0_rgba(255,255,255,0.9)_inset] sm:flex-row sm:justify-center sm:px-5 sm:py-4 sm:text-left">
                 <div className="flex shrink-0 items-center gap-2 rounded-full border border-[#bfe5c7] bg-white px-3 py-2 shadow-[0_10px_24px_rgba(21,128,61,0.09)]">
-                  <span className="text-sm font-extrabold tracking-[-0.02em] text-slate-400 line-through">$97</span>
+                  <span className="text-sm font-extrabold tracking-[-0.02em] text-slate-400 line-through">$29</span>
                   <span className="rounded-full bg-[#15803D] px-3 py-1 text-xs font-extrabold uppercase tracking-[0.14em] text-white shadow-[0_8px_18px_rgba(21,128,61,0.22)]">Free</span>
                 </div>
                 <p className="text-sm font-semibold leading-6 text-[#264637] sm:text-base">
