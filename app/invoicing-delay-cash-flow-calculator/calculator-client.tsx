@@ -1208,9 +1208,14 @@ export function InvoicingDelayCalculatorClient() {
               <div className="mb-6 h-2 w-full overflow-hidden rounded-full bg-[#e8e0d2] ring-1 ring-[#d9d0bf]">
                 <div className="h-full w-full rounded-full bg-[#53d986] shadow-[0_0_28px_rgba(83,217,134,0.42)]" />
               </div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Estimate ready</p>
-              <h1 className="mx-auto mt-4 max-w-2xl text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.045em] sm:text-[4rem]">Your office cost estimate is ready.</h1>
-              <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-[#506171] sm:text-lg">
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Estimate almost ready</p>
+              <h1 className="mx-auto mt-4 max-w-2xl text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.045em] sm:text-[4rem]">Your office cost estimate is almost ready.</h1>
+              <div className="mx-auto mt-5 max-w-2xl rounded-[1.35rem] border border-[#bfe5c7] bg-[linear-gradient(135deg,#eef9f2_0%,#ffffff_62%,#e9f7ed_100%)] px-4 py-4 text-left shadow-[0_16px_40px_rgba(21,128,61,0.10)] sm:px-5 sm:py-5">
+                <p className="text-base font-semibold leading-7 text-[#264637] sm:text-lg">
+                  Stanley Systems built this as a paid diagnostic tool. For now, we’re making it free so service business owners can see what normal office work and missed follow-up are costing each month.
+                </p>
+              </div>
+              <p className="mx-auto mt-5 max-w-xl text-base font-semibold leading-7 text-[#506171] sm:text-lg">
                 Enter your info to see the result and get a copy sent to your inbox.
               </p>
 
