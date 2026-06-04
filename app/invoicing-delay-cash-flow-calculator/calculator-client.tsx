@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { type FormEvent, useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
@@ -26,6 +26,7 @@ type StepKey =
   | "reviews"
   | "missedCalls"
   | "calculating"
+  | "claimReport"
   | "results"
   | "resultDiagnosis"
   | "resultMath";
@@ -46,6 +47,7 @@ const STEP_ORDER: StepKey[] = [
   "followup",
   "reviews",
   "missedCalls",
+  "claimReport",
   "results",
   "resultDiagnosis",
   "resultMath",
@@ -671,6 +673,10 @@ export function InvoicingDelayCalculatorClient() {
   const [referralFollowup, setReferralFollowup] = useState<SimpleSystem>("no")
   const [missedCallRecovery, setMissedCallRecovery] = useState<MissedCallRecovery>("voicemail")
   const [missedCallsPerMonth, setMissedCallsPerMonth] = useState("12")
+  const [leadName, setLeadName] = useState("")
+  const [leadBusinessName, setLeadBusinessName] = useState("")
+  const [leadEmail, setLeadEmail] = useState("")
+  const [leadFormTouched, setLeadFormTouched] = useState(false)
   const [isCalculating, setIsCalculating] = useState(false)
   const calculatingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const completedNotificationSentRef = useRef(false)
@@ -815,6 +821,12 @@ export function InvoicingDelayCalculatorClient() {
         formatted_headline_range: resultSummary.formattedHeadlineRange,
         formatted_monthly_range: resultSummary.formattedMonthlyRange,
       },
+      lead_contact: {
+        name: leadName.trim(),
+        business_name: leadBusinessName.trim(),
+        work_email: leadEmail.trim(),
+        report_delivery_requested: true,
+      },
       attribution: {
         referrer: document.referrer,
         utm_source: urlParams.get("utm_source") ?? "",
@@ -853,6 +865,9 @@ export function InvoicingDelayCalculatorClient() {
     referralFollowup,
     missedCallRecovery,
     missedCallsPerMonth,
+    leadName,
+    leadBusinessName,
+    leadEmail,
     result,
     resultSummary,
   ])
@@ -884,7 +899,7 @@ export function InvoicingDelayCalculatorClient() {
       const duration = reduceMotion ? 900 : CALCULATOR_LOADING_DURATION_MS
       calculatingTimerRef.current = setTimeout(() => {
         setIsCalculating(false)
-        setStep("results")
+        setStep("claimReport")
         window.scrollTo({ top: 0, behavior: "smooth" })
       }, duration)
       return
@@ -907,6 +922,21 @@ export function InvoicingDelayCalculatorClient() {
       setStep(STEP_ORDER[idx - 1])
       window.scrollTo({ top: 0, behavior: "smooth" })
     }
+  }
+
+
+  const trimmedLeadName = leadName.trim()
+  const trimmedLeadBusinessName = leadBusinessName.trim()
+  const trimmedLeadEmail = leadEmail.trim()
+  const leadEmailLooksValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedLeadEmail)
+  const canShowResult = Boolean(trimmedLeadName && trimmedLeadBusinessName && leadEmailLooksValid)
+
+  function submitLeadGate(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setLeadFormTouched(true)
+    if (!canShowResult) return
+    setStep("results")
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   const frameProps = { progress, step, onBack: back, onNext: () => next() }
@@ -1166,6 +1196,70 @@ export function InvoicingDelayCalculatorClient() {
             <p className="mt-3 text-sm leading-6 text-slate-500">Use the number of real calls the office misses or answers too late in a normal month.</p>
           </div>
         </StepFrame>
+      )
+    }
+
+
+    if (step === "claimReport") {
+      return (
+        <section className="relative min-h-screen w-full max-w-full overflow-x-clip px-3 py-4 sm:px-5 sm:py-6 lg:px-8 lg:py-8" data-calculator-claim-report="true" data-calculator-root="true">
+          <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-[1180px] items-center justify-center">
+            <form onSubmit={submitLeadGate} className="box-border w-full max-w-3xl overflow-hidden rounded-[1.9rem] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,246,239,0.96)_100%)] p-5 text-center text-[#071422] shadow-[0_34px_110px_rgba(7,20,34,0.18),0_1px_0_rgba(255,255,255,0.90)_inset] sm:rounded-[2.5rem] sm:p-9">
+              <div className="mb-6 h-2 w-full overflow-hidden rounded-full bg-[#e8e0d2] ring-1 ring-[#d9d0bf]">
+                <div className="h-full w-full rounded-full bg-[#53d986] shadow-[0_0_28px_rgba(83,217,134,0.42)]" />
+              </div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Estimate ready</p>
+              <h1 className="mx-auto mt-4 max-w-2xl text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.045em] sm:text-[4rem]">Your office cost estimate is ready.</h1>
+              <p className="mx-auto mt-4 max-w-xl text-base font-semibold leading-7 text-[#506171] sm:text-lg">
+                Enter your info to see the result and get a copy sent to your inbox.
+              </p>
+
+              <div className="mx-auto mt-7 grid max-w-xl gap-3 text-left">
+                <label className="block">
+                  <span className="text-sm font-bold text-slate-700">Your name</span>
+                  <input
+                    value={leadName}
+                    onChange={(e) => setLeadName(e.target.value)}
+                    autoComplete="name"
+                    className="mt-2 box-border w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-3.5 text-base font-semibold text-[#071422] outline-none shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-bold text-slate-700">Business name</span>
+                  <input
+                    value={leadBusinessName}
+                    onChange={(e) => setLeadBusinessName(e.target.value)}
+                    autoComplete="organization"
+                    className="mt-2 box-border w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-3.5 text-base font-semibold text-[#071422] outline-none shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-bold text-slate-700">Work email</span>
+                  <input
+                    value={leadEmail}
+                    onChange={(e) => setLeadEmail(e.target.value)}
+                    type="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    className="mt-2 box-border w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-3.5 text-base font-semibold text-[#071422] outline-none shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+                  />
+                </label>
+                {leadFormTouched && !canShowResult ? (
+                  <p className="rounded-2xl border border-[#f3b7af] bg-[#fff1ef] px-4 py-3 text-sm font-semibold leading-6 text-[#b42318]">Add your name, business name, and a valid work email to show the result.</p>
+                ) : null}
+              </div>
+
+              <button
+                type="submit"
+                className="mx-auto mt-6 inline-flex min-h-14 w-full max-w-xl items-center justify-center rounded-full bg-[linear-gradient(180deg,#179447_0%,#116832_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24),0_1px_0_rgba(255,255,255,0.26)_inset] transition hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(21,128,61,0.28),0_1px_0_rgba(255,255,255,0.26)_inset]"
+              >
+                Show My Result <ArrowRight className="ml-2 h-4 w-4" />
+              </button>
+              <p className="mx-auto mt-3 max-w-xl text-sm font-semibold leading-6 text-slate-600">No spam. Just your result and helpful follow-up based on what the calculator finds.</p>
+              <button type="button" onClick={back} className="mt-5 inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">← Back to inputs</button>
+            </form>
+          </div>
+        </section>
       )
     }
 

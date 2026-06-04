@@ -38,6 +38,7 @@ export async function POST(request: Request) {
     const inputs = cleanRecord(body?.inputs)
     const results = cleanRecord(body?.results)
     const attribution = cleanRecord(body?.attribution)
+    const leadContact = cleanRecord(body?.lead_contact)
 
     if (!Object.keys(inputs).length || !Object.keys(results).length) {
       return NextResponse.json({ ok: false, error: "Missing calculator completion fields." }, { status: 400 })
@@ -64,6 +65,12 @@ export async function POST(request: Request) {
       submitted_at: completedAt,
       visitor_id: visitorId,
       session_id: sessionId,
+      lead_contact: {
+        name: cleanString(leadContact.name),
+        business_name: cleanString(leadContact.business_name),
+        work_email: cleanString(leadContact.work_email),
+        report_delivery_requested: Boolean(leadContact.report_delivery_requested),
+      },
       inputs: {
         average_invoice_value: cleanNumber(inputs.average_invoice_value),
         jobs_per_month: cleanNumber(inputs.jobs_per_month),
@@ -107,6 +114,9 @@ export async function POST(request: Request) {
         "🧮 Calculator completed",
         `Monthly leak: ${moneyRange(totalMonthlyMin, totalMonthlyMax)}`,
         `Annual leak: ${moneyRange(totalAnnualMin, totalAnnualMax)}`,
+        cleanString(leadContact.name) ? `Name: ${cleanString(leadContact.name)}` : "",
+        cleanString(leadContact.business_name) ? `Business: ${cleanString(leadContact.business_name)}` : "",
+        cleanString(leadContact.work_email) ? `Email: ${cleanString(leadContact.work_email)}` : "",
         `Cash drag: ${money(results.cash_monthly_leak)}/mo`,
         `Customer drag: ${moneyRange(results.customer_monthly_leak_min, results.customer_monthly_leak_max)}/mo`,
         `Jobs/mo: ${cleanNumber(inputs.jobs_per_month).toLocaleString()}`,
