@@ -47,6 +47,20 @@ function typeOfSubmission(src) {
   return String(value(src, ["telegram_alert_type", "form_type", "status", "source"], "unknown"))
 }
 
+function calculatorStartedMessage(src) {
+  if (src.telegram_message) return escapeHtml(src.telegram_message)
+  const inputs = src.inputs || {}
+  return [
+    "🟢 Calculator started",
+    `Page: ${page(src)}`,
+    `Avg invoice: ${escapeHtml(money(inputs.average_invoice_value))}`,
+    `Jobs/mo: ${escapeHtml(value(inputs, ["jobs_per_month"], "Not provided"))}`,
+    `Invoice delay: ${escapeHtml(value(inputs, ["invoice_delay_days"], "Not provided"))} days`,
+    `Visitor: ${optional(src, ["visitor_id"])}`,
+    `Started: ${submitted(src)}`,
+  ].join("\n")
+}
+
 function calculatorMessage(src) {
   if (src.telegram_message) return escapeHtml(src.telegram_message)
   const results = src.results || {}
@@ -69,6 +83,10 @@ function buildStanleyTelegramMessage(input, options = {}) {
   const src = input?.body || input || {}
   const prefix = options.prefix ? `${options.prefix}\n` : ""
   const kind = typeOfSubmission(src)
+
+  if (kind === "calculator_started") {
+    return prefix + calculatorStartedMessage(src)
+  }
 
   if (kind === "calculator_completed") {
     return prefix + calculatorMessage(src)

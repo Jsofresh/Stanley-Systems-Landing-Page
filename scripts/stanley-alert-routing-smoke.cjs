@@ -7,6 +7,20 @@ const fixedTime = "2026-05-30T13:00:00.000Z"
 
 const fixtures = [
   {
+    name: "calculator started",
+    payload: {
+      telegram_alert_type: "calculator_started",
+      form_type: "calculator_started",
+      source_page: "/invoicing-delay-cash-flow-calculator",
+      visitor_id: "visitor-123",
+      inputs: { jobs_per_month: 25, average_invoice_value: 1200, invoice_delay_days: 4 },
+      started_at: fixedTime,
+    },
+    title: "🟢 Calculator started",
+    mustInclude: ["Page: /invoicing-delay-cash-flow-calculator", "Avg invoice: $1,200", "Jobs/mo: 25", "Invoice delay: 4 days", "Visitor: visitor-123"],
+    mustNotInclude: ["🟢 New Stanley website form lead", "Name: Not captured", "Company: Not captured"],
+  },
+  {
     name: "calculator with telegram_message",
     payload: {
       telegram_alert_type: "calculator_completed",
@@ -158,6 +172,7 @@ for (const fixture of fixtures) {
 const repo = path.resolve(__dirname, "..")
 const sourceChecks = [
   ["app/api/contact/route.ts", 'telegram_alert_type: cleanAlertType'],
+  ["app/api/calculator-started/route.ts", 'telegram_alert_type: "calculator_started"'],
   ["app/api/calculator-completed/route.ts", 'telegram_alert_type: "calculator_completed"'],
   ["app/api/checkout/onboarding/route.ts", 'telegram_alert_type: "paid_buyer_onboarding"'],
   ["components/money-leak-checks-form.tsx", 'telegram_alert_type: "money_leak_checks"'],
@@ -166,6 +181,7 @@ const sourceChecks = [
   ["components/audit-intake-form.tsx", 'telegram_alert_type: "assessment_intake"'],
   ["components/checkout/BuyerOnboardingForm.tsx", 'telegram_alert_type: "paid_buyer_onboarding"'],
   ["app/invoicing-delay-cash-flow-calculator/calculator-client.tsx", 'telegram_alert_type: "calculator_completed"'],
+  ["app/invoicing-delay-cash-flow-calculator/calculator-client.tsx", 'telegram_alert_type: "calculator_started"'],
 ]
 for (const [relativePath, expected] of sourceChecks) {
   const contents = fs.readFileSync(path.join(repo, relativePath), "utf8")

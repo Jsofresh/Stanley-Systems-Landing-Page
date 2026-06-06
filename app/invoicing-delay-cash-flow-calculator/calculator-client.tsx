@@ -679,6 +679,7 @@ export function InvoicingDelayCalculatorClient() {
   const [leadFormTouched, setLeadFormTouched] = useState(false)
   const [isCalculating, setIsCalculating] = useState(false)
   const calculatingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const startedNotificationSentRef = useRef(false)
   const completedNotificationSentRef = useRef(false)
 
   const stepIndex = STEP_ORDER.indexOf(step)
@@ -878,7 +879,64 @@ export function InvoicingDelayCalculatorClient() {
     }
   }, [])
 
+  function notifyCalculatorStarted() {
+    if (startedNotificationSentRef.current) return
+    startedNotificationSentRef.current = true
+
+    const urlParams = new URLSearchParams(window.location.search)
+    const visitorIdKey = "stanley_calculator_visitor_id"
+    const sessionId = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`
+    let visitorId = window.localStorage.getItem(visitorIdKey)
+    if (!visitorId) {
+      visitorId = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `visitor-${Date.now()}-${Math.random().toString(16).slice(2)}`
+      window.localStorage.setItem(visitorIdKey, visitorId)
+    }
+
+    const payload = {
+      telegram_alert_type: "calculator_started",
+      form_type: "calculator_started",
+      started_at: new Date().toISOString(),
+      source_page: window.location.pathname,
+      visitor_id: visitorId,
+      session_id: sessionId,
+      inputs: {
+        average_invoice_value: Number(invoiceValue) || 0,
+        jobs_per_month: Number(jobsPerMonth) || 0,
+        invoice_delay_days: Number(delayDays) || 0,
+        office_hours_lost_per_job: Number(hoursLost) || 0,
+        unbilled_jobs: Number(unbilledJobs) || 0,
+        correction_rate_percent: Number(correctionRate) || 0,
+        saved_customer_records: Number(totalSavedCustomerRecords) || 0,
+        average_repeat_job_value: Number(repeatJobValue) || 0,
+        missed_calls_per_month: Number(missedCallsPerMonth) || 0,
+      },
+      attribution: {
+        referrer: document.referrer,
+        utm_source: urlParams.get("utm_source") ?? "",
+        utm_medium: urlParams.get("utm_medium") ?? "",
+        utm_campaign: urlParams.get("utm_campaign") ?? "",
+        utm_content: urlParams.get("utm_content") ?? "",
+        utm_term: urlParams.get("utm_term") ?? "",
+      },
+    }
+
+    const body = JSON.stringify(payload)
+    if (navigator.sendBeacon) {
+      const sent = navigator.sendBeacon("/api/calculator-started", new Blob([body], { type: "application/json" }))
+      if (sent) return
+    }
+
+    fetch("/api/calculator-started", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+      keepalive: true,
+    }).catch(() => {})
+  }
+
   function next(nextStep?: StepKey) {
+    if (step === "intro") notifyCalculatorStarted()
+
     if (step === "corrections" && !nextStep) {
       const parsed = Number(correctionRate)
       setCorrectionRate(Number.isFinite(parsed) ? String(boundNumber(parsed, 0, 100)) : "0")
