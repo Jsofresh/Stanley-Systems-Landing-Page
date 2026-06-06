@@ -46,7 +46,6 @@ export default function SystemsInstallationSprintPage() {
         <PackageHero
           eyebrow="Systems Installation Sprint"
           title="Get Paid Faster. Follow Up Cleaner. Win More Repeat Work."
-          subheading="Start with the Cash Flow Assessment to see where money and customers are slipping through the office. Then Stanley Systems installs the approved systems that help your team automate office work, follow up instantly, collect more 5 star reviews, and bring past customers back."
           contentAlign="left"
           imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-office-team-van.jpg"
           imageAlt="Stanley Systems office team reviewing a sprint plan with a service van outside."

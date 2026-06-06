@@ -10,7 +10,7 @@ export type PackageHeroCard = {
 
 type PackageHeroProps = {
   title: string
-  subheading: string
+  subheading?: string
   imageSrc: string
   imageAlt: string
   imageWidth: number
@@ -94,9 +94,11 @@ export function PackageHero({
           <h1 className="text-balance text-[2.55rem] font-semibold leading-[0.93] tracking-[-0.052em] text-[#071D3A] drop-shadow-[0_1px_0_rgba(255,255,255,0.42)] sm:text-[3.8rem] lg:text-[5rem]">
             {title}
           </h1>
-          <p className={isCentered ? "mx-auto mt-5 max-w-[680px] text-lg font-semibold leading-8 text-[#2d4052] sm:text-xl" : "mt-5 max-w-[580px] text-lg font-semibold leading-8 text-[#2d4052] sm:text-xl"}>
-            {subheading}
-          </p>
+          {subheading ? (
+            <p className={isCentered ? "mx-auto mt-5 max-w-[680px] text-lg font-semibold leading-8 text-[#2d4052] sm:text-xl" : "mt-5 max-w-[580px] text-lg font-semibold leading-8 text-[#2d4052] sm:text-xl"}>
+              {subheading}
+            </p>
+          ) : null}
           {children}
           <div className={isCentered ? "mt-7 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap" : "mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap"}>
             <Link href={primaryHref} className={greenButton}>
