@@ -140,25 +140,32 @@ function AssessmentPricing() {
         <div className="mx-auto mt-8 max-w-3xl">
           <article className="relative overflow-hidden rounded-[2rem] border border-[#BFE4C8] bg-white shadow-[0_26px_80px_rgba(21,128,61,0.14)]">
             <div className="absolute inset-x-0 top-0 h-1.5 bg-[#15803D]" aria-hidden="true" />
-            <div className="grid gap-6 p-6 sm:p-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-              <div className="rounded-[1.45rem] bg-[#F4FBF5] p-5 ring-1 ring-[#CFE8D5]">
-                <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Paid first step</p>
-                <h3 className="mt-3 text-3xl font-semibold leading-none tracking-[-0.04em] text-[#102033]">Cash Flow Assessment</h3>
-                <p className="mt-5 text-[4.6rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A]">$97</p>
-                <p className="mt-4 text-base font-bold leading-7 text-[#334B60]">
+            <div className="grid gap-3 p-4 sm:gap-6 sm:p-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+              <div className="rounded-[1.35rem] bg-[#F4FBF5] p-4 ring-1 ring-[#CFE8D5] sm:rounded-[1.45rem] sm:p-5">
+                <h3 className="text-2xl font-semibold leading-none tracking-[-0.04em] text-[#102033] sm:text-3xl">Cash Flow Assessment</h3>
+                <div className="mt-3 flex items-end gap-2 sm:mt-5 sm:block">
+                  <p className="text-[3.25rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A] sm:text-[4.6rem]">$97</p>
+                  <p className="mb-1 flex-1 whitespace-nowrap rounded-full bg-[#E7F7EB] px-2 py-1.5 text-center text-[0.7rem] font-extrabold leading-4 text-[#116832] sm:hidden">
+                    $194 credit toward your Sprint
+                  </p>
+                </div>
+                <div className="mt-3 sm:hidden">
+                  <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_pricing_mobile_top" className="w-full min-w-0 bg-[#15803D] px-5 py-3 text-sm text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+                </div>
+                <p className="mt-3 text-sm font-bold leading-6 text-[#334B60] sm:mt-4 sm:text-base sm:leading-7">
                   You get the leak, the cost, the fix list, and the first move to make.
                 </p>
               </div>
 
               <div>
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   {deliverables.map(([title, body], index) => (
-                    <div key={title} className="rounded-[1.15rem] border border-[#DDEBE2] bg-[#FBFCF7] p-4">
-                      <div className="flex items-start gap-3">
-                        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#E7F7EB] text-xs font-black text-[#116832]">{index + 1}</span>
+                    <div key={title} className="rounded-[1rem] border border-[#DDEBE2] bg-[#FBFCF7] p-3 sm:rounded-[1.15rem] sm:p-4">
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#E7F7EB] text-[0.68rem] font-black text-[#116832] sm:h-8 sm:w-8 sm:text-xs">{index + 1}</span>
                         <div>
-                          <h4 className="text-base font-extrabold leading-6 text-[#102033]">{title}</h4>
-                          <p className="mt-1 text-sm font-semibold leading-6 text-[#536173]">{body}</p>
+                          <h4 className="text-[0.82rem] font-extrabold leading-4 tracking-[-0.015em] text-[#102033] sm:text-base sm:leading-6 sm:tracking-normal">{title}</h4>
+                          <p className="mt-1 hidden text-sm font-semibold leading-6 text-[#536173] sm:block">{body}</p>
                         </div>
                       </div>
                     </div>
@@ -166,7 +173,7 @@ function AssessmentPricing() {
                 </div>
               </div>
             </div>
-            <div className="border-t border-[#DDEBE2] bg-[#FBFCF7] px-6 py-5 sm:px-7">
+            <div className="hidden border-t border-[#DDEBE2] bg-[#FBFCF7] px-6 py-5 sm:block sm:px-7">
               <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
                 <p className="rounded-full bg-[#E7F7EB] px-4 py-2 text-center text-sm font-extrabold text-[#116832]">
                   $194 assessment credit counts toward your Sprint.
