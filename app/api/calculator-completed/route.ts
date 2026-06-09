@@ -4,6 +4,8 @@ const WEBHOOK_URL = process.env.STANLEY_CALCULATOR_COMPLETED_WEBHOOK_URL || proc
 
 type JsonRecord = Record<string, unknown>
 
+const WEBHOOK_TIMEOUT_MS = 8000
+
 function cleanString(value: unknown) {
   return typeof value === "string" ? value.trim().slice(0, 500) : ""
 }
@@ -75,6 +77,10 @@ export async function POST(request: Request) {
         average_invoice_value: cleanNumber(inputs.average_invoice_value),
         jobs_per_month: cleanNumber(inputs.jobs_per_month),
         invoice_delay_days: cleanNumber(inputs.invoice_delay_days),
+        software_transfer_frequency: cleanString(inputs.software_transfer_frequency),
+        software_transfer_hours_per_week: cleanNumber(inputs.software_transfer_hours_per_week),
+        office_process_hours_per_week: cleanNumber(inputs.office_process_hours_per_week),
+        missing_details_frequency: cleanString(inputs.missing_details_frequency),
         office_hours_lost_per_job: cleanNumber(inputs.office_hours_lost_per_job),
         unbilled_jobs: cleanNumber(inputs.unbilled_jobs),
         correction_rate_percent: cleanNumber(inputs.correction_rate_percent),
@@ -93,11 +99,17 @@ export async function POST(request: Request) {
         total_annual_leak_min: totalAnnualMin,
         total_annual_leak_max: totalAnnualMax,
         cash_monthly_leak: cleanNumber(results.cash_monthly_leak),
+        software_transfer_monthly_cost: cleanNumber(results.software_transfer_monthly_cost),
+        office_process_monthly_cost: cleanNumber(results.office_process_monthly_cost),
+        invoice_cleanup_monthly_cost: cleanNumber(results.invoice_cleanup_monthly_cost),
+        missing_details_monthly_cost: cleanNumber(results.missing_details_monthly_cost),
+        office_process_cost_total: cleanNumber(results.office_process_cost_total),
         customer_monthly_leak_min: cleanNumber(results.customer_monthly_leak_min),
         customer_monthly_leak_max: cleanNumber(results.customer_monthly_leak_max),
         estimated_underworked_customers: cleanNumber(results.estimated_underworked_customers),
         recommended_first_move: cleanString(results.recommended_first_move),
         biggest_cash_driver: cleanString(results.biggest_cash_driver),
+        biggest_office_process_driver: cleanString(results.biggest_office_process_driver),
         biggest_customer_driver: cleanString(results.biggest_customer_driver),
         formatted_headline_range: cleanString(results.formatted_headline_range),
         formatted_monthly_range: cleanString(results.formatted_monthly_range),
@@ -118,10 +130,17 @@ export async function POST(request: Request) {
         cleanString(leadContact.business_name) ? `Business: ${cleanString(leadContact.business_name)}` : "",
         cleanString(leadContact.work_email) ? `Email: ${cleanString(leadContact.work_email)}` : "",
         `Cash drag: ${money(results.cash_monthly_leak)}/mo`,
+        `Office process cost: ${money(results.office_process_cost_total)}/mo`,
+        `Moving info between software: ${money(results.software_transfer_monthly_cost)}/mo`,
+        `Missing details/rework: ${money(results.missing_details_monthly_cost)}/mo`,
         `Customer drag: ${moneyRange(results.customer_monthly_leak_min, results.customer_monthly_leak_max)}/mo`,
         `Jobs/mo: ${cleanNumber(inputs.jobs_per_month).toLocaleString()}`,
         `Avg invoice: ${money(inputs.average_invoice_value)}`,
         `Saved customers: ${cleanNumber(inputs.saved_customer_records).toLocaleString()}`,
+        `Software transfer: ${cleanString(inputs.software_transfer_frequency) || "Not captured"}`,
+        `Transfer hrs/wk: ${cleanNumber(inputs.software_transfer_hours_per_week).toLocaleString()}`,
+        `Office process hrs/wk: ${cleanNumber(inputs.office_process_hours_per_week).toLocaleString()}`,
+        `Missing details: ${cleanString(inputs.missing_details_frequency) || "Not captured"}`,
         `Missed calls/mo: ${cleanNumber(inputs.missed_calls_per_month).toLocaleString()}`,
         cleanString(results.recommended_first_move) ? `First move: ${cleanString(results.recommended_first_move)}` : "",
         visitorId ? `Visitor: ${visitorId}` : "",
@@ -136,6 +155,7 @@ export async function POST(request: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(WEBHOOK_TIMEOUT_MS),
     })
 
     if (!webhookResponse.ok) {

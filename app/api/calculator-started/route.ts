@@ -7,6 +7,8 @@ const WEBHOOK_URL =
 
 type JsonRecord = Record<string, unknown>
 
+const WEBHOOK_TIMEOUT_MS = 8000
+
 function cleanString(value: unknown) {
   return typeof value === "string" ? value.trim().slice(0, 500) : ""
 }
@@ -54,6 +56,10 @@ export async function POST(request: Request) {
         average_invoice_value: cleanNumber(inputs.average_invoice_value),
         jobs_per_month: cleanNumber(inputs.jobs_per_month),
         invoice_delay_days: cleanNumber(inputs.invoice_delay_days),
+        software_transfer_frequency: cleanString(inputs.software_transfer_frequency),
+        software_transfer_hours_per_week: cleanNumber(inputs.software_transfer_hours_per_week),
+        office_process_hours_per_week: cleanNumber(inputs.office_process_hours_per_week),
+        missing_details_frequency: cleanString(inputs.missing_details_frequency),
         office_hours_lost_per_job: cleanNumber(inputs.office_hours_lost_per_job),
         unbilled_jobs: cleanNumber(inputs.unbilled_jobs),
         correction_rate_percent: cleanNumber(inputs.correction_rate_percent),
@@ -75,6 +81,10 @@ export async function POST(request: Request) {
         `Avg invoice: ${money(inputs.average_invoice_value)}`,
         `Jobs/mo: ${cleanNumber(inputs.jobs_per_month).toLocaleString()}`,
         `Invoice delay: ${cleanNumber(inputs.invoice_delay_days).toLocaleString()} days`,
+        `Software transfer: ${cleanString(inputs.software_transfer_frequency) || "Not captured"}`,
+        `Transfer hrs/wk: ${cleanNumber(inputs.software_transfer_hours_per_week).toLocaleString()}`,
+        `Office process hrs/wk: ${cleanNumber(inputs.office_process_hours_per_week).toLocaleString()}`,
+        `Missing details: ${cleanString(inputs.missing_details_frequency) || "Not captured"}`,
         `Visitor: ${visitorId || "Not provided"}`,
       ].join("\n"),
     }
@@ -87,6 +97,7 @@ export async function POST(request: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(WEBHOOK_TIMEOUT_MS),
     })
 
     if (!webhookResponse.ok) {

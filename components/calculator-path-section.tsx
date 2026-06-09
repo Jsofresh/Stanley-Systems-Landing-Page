@@ -89,7 +89,7 @@ export function CalculatorPathSection() {
             </h2>
 
             <p className="mt-5 max-w-[35rem] text-base leading-7 text-[#47566C] sm:text-lg sm:leading-8">
-              $50K-$300K may be sitting in customers you already paid to acquire. Late cash steals growth money, weak follow-up lets competitors outpace you, and the owner becomes the backup system.
+              $50K-$300K may be sitting in customers you already paid to acquire. Late cash steals growth money, weak follow-up lets competitors outpace you, and normal office processes quietly cost more than they look like.
             </p>
 
             <div className="mt-6 grid max-w-[42rem] gap-3">

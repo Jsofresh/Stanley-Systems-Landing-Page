@@ -14,9 +14,9 @@ const painPoints = [
     icon: MessagesSquare,
   },
   {
-    title: "The owner becomes the backup system",
+    title: "Normal office processes cost more than they look like",
     description:
-      "Too much depends on one person remembering what was promised, what got scheduled, and what still needs attention.",
+      "Too much time goes into moving information between software, checking missing details, and remembering what still needs attention.",
     icon: Brain,
   },
   {

@@ -50,11 +50,11 @@ const faqSchema = {
 export const metadata: Metadata = {
   title: "Revenue Leak Calculator | Stanley Systems",
   description:
-    "Estimate money sitting inside slow invoices, open estimates, missed calls, and saved customer records nobody is following up with.",
+    "Estimate money sitting inside normal office processes, software handoffs, slow invoices, missed calls, and saved customer records nobody is following up with.",
   openGraph: {
     title: "Revenue Leak Calculator | Stanley Systems",
     description:
-      "Find cashflow and customer revenue leaks already sitting inside your service business.",
+      "Find office process, cashflow, and customer revenue leaks already sitting inside your service business.",
     url: "https://stanley-systems.com/invoicing-delay-cash-flow-calculator",
     siteName: "Stanley Systems",
     type: "website",

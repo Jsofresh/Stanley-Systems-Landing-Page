@@ -37,7 +37,7 @@ const moneyPain = [
 const fitSignals = [
   "Invoices go out later than they should after the work is already complete.",
   "Estimate follow-up depends on someone remembering to do it.",
-  "The owner or office manager has become the backup system.",
+  "Job details live across calls, texts, notes, whiteboards, and software.",
   "Job details live across calls, texts, notes, whiteboards, and software.",
   "The team already has tools, but the workflow between those tools still breaks.",
 ]

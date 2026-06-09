@@ -125,7 +125,7 @@ const industryCopy: Record<IndustrySlug, {
       alt: "Exterior cleaning pressure washer truck at a customer property.",
       position: "center",
     },
-    leaks: ["Owner or office manager has become the backup system.", "Work is done but billing, payment, or follow-up still waits.", "Customers are earned once and then allowed to go cold."],
+    leaks: ["Job details live across calls, texts, notes, whiteboards, and software.", "Work is done but billing, payment, or follow-up still waits.", "Customers are earned once and then allowed to go cold."],
     systems: ["Cashflow Control when billing, follow-up, handoffs, or collected cash are slowing down.", "Repeat Revenue when past customers, reviews, referrals, or missed calls are being wasted."],
   },
 }

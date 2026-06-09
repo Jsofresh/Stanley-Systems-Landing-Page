@@ -14,10 +14,12 @@ import {
 
 type StepKey =
   | "intro"
+  | "softwareTransfer"
   | "invoice"
   | "jobs"
   | "delay"
   | "hours"
+  | "missingDetails"
   | "unbilled"
   | "corrections"
   | "customerSource"
@@ -36,10 +38,12 @@ const CALCULATOR_LOADING_DURATION_MS = 2000
 
 const STEP_ORDER: StepKey[] = [
   "intro",
+  "softwareTransfer",
   "invoice",
   "jobs",
   "delay",
   "hours",
+  "missingDetails",
   "unbilled",
   "corrections",
   "customerSource",
@@ -57,6 +61,10 @@ type CustomerListSource = "crm" | "quickbooks" | "spreadsheet" | "scattered"
 type UncontactedCustomerRate = "none" | "most" | "half" | "small" | "unsure"
 type SimpleSystem = "no" | "manual" | "yes" | "unsure"
 type MissedCallRecovery = "nothing" | "voicemail" | "manual" | "automatic" | "unsure"
+type SoftwareTransferFrequency = "none" | "light" | "moderate" | "heavy" | "unsure"
+type MissingDetailsFrequency = "rare" | "weekly" | "daily" | "mostJobs" | "unsure"
+
+const OFFICE_HOURLY_COST = 35
 
 const customerSourceMessages: Record<CustomerListSource, { label: string; helper: string; firstFix: string }> = {
   crm: {
@@ -95,6 +103,22 @@ const missedCallSettings: Record<MissedCallRecovery, { multiplier: number; label
   manual: { multiplier: 0.4, label: "Someone calls back manually", helper: "Better than nothing, but it depends on memory and timing." },
   automatic: { multiplier: 0.15, label: "Automatic text reply and office alert", helper: "A fast reply catches more of the work before it disappears." },
   unsure: { multiplier: 0.6, label: "Not sure", helper: "If nobody knows, use a conservative missed-call gap." },
+}
+
+const softwareTransferSettings: Record<SoftwareTransferFrequency, { multiplier: number; label: string; helper: string }> = {
+  none: { multiplier: 0, label: "Almost none", helper: "Most systems already stay updated without manual copying." },
+  light: { multiplier: 0.75, label: "A little each week", helper: "Some copying between tools, but it does not dominate office time." },
+  moderate: { multiplier: 1, label: "Several hours per week", helper: "The office regularly moves job, customer, billing, or payment info between systems." },
+  heavy: { multiplier: 1.25, label: "Every day", helper: "Manual transfer between tools is part of normal office work." },
+  unsure: { multiplier: 0.9, label: "Not sure", helper: "If nobody knows, count a conservative amount of transfer time." },
+}
+
+const missingDetailsSettings: Record<MissingDetailsFrequency, { rate: number; label: string; helper: string }> = {
+  rare: { rate: 0.03, label: "Rarely", helper: "Most records are ready when the office needs them." },
+  weekly: { rate: 0.08, label: "A few times a week", helper: "Enough to slow billing, updates, or follow-up." },
+  daily: { rate: 0.14, label: "Daily", helper: "Missing details are a normal part of office cleanup." },
+  mostJobs: { rate: 0.22, label: "Most jobs", helper: "The office often has to rebuild the job story before it can move." },
+  unsure: { rate: 0.1, label: "Not sure", helper: "Use a conservative estimate until the records are checked." },
 }
 
 
@@ -176,6 +200,11 @@ function formatRoundedRange(low: number, high: number, kind: "monthly" | "annual
 
 type ResultSummaryInput = {
   delayedCashDrag: number
+  softwareTransferCost: number
+  officeProcessCost: number
+  invoiceCleanupCost: number
+  missingDetailsCost: number
+  officeProcessCostTotal: number
   officeTimeCost: number
   stuckUnbilledValue: number
   correctionLoss: number
@@ -285,11 +314,32 @@ function createResultSummary(result: ResultSummaryInput & {
       displayValue: formatMoney(result.stuckUnbilledValue),
     },
     {
+      key: "software-transfer",
+      label: "moving information between software",
+      meaning: "Office time is being spent transferring job, customer, billing, or payment information between tools.",
+      value: finiteMoney(result.softwareTransferCost),
+      displayValue: formatMoney(result.softwareTransferCost),
+    },
+    {
+      key: "office-process-time",
+      label: "regular office process time",
+      meaning: "Scheduling, updates, invoice prep, payment follow-up, and closeout tasks are consuming paid office time.",
+      value: finiteMoney(result.officeProcessCost),
+      displayValue: formatMoney(result.officeProcessCost),
+    },
+    {
       key: "office-cleanup",
-      label: "office cleanup time",
+      label: "invoice and job cleanup time",
       meaning: "Paid admin time is being spent fixing records instead of moving money.",
-      value: finiteMoney(result.officeTimeCost),
-      displayValue: formatMoney(result.officeTimeCost),
+      value: finiteMoney(result.invoiceCleanupCost),
+      displayValue: formatMoney(result.invoiceCleanupCost),
+    },
+    {
+      key: "missing-details",
+      label: "missing details and rework",
+      meaning: "Missing job or customer details are slowing billing, updates, and follow-up.",
+      value: finiteMoney(result.missingDetailsCost),
+      displayValue: formatMoney(result.missingDetailsCost),
     },
     {
       key: "correction-drag",
@@ -368,7 +418,11 @@ function createResultSummary(result: ResultSummaryInput & {
       : `${formatMonthlyRangeDisplay(totalMonthlyLeakMin, totalMonthlyLeakMax)} is built from these leak areas.`
 
   const equationComponents = [
-    { label: "Cash drag", value: cashMonthlyLeak, displayValue: formatMonthlyDisplay(cashMonthlyLeak) },
+    { label: "Moving information between software", value: result.softwareTransferCost, displayValue: formatMonthlyDisplay(result.softwareTransferCost) },
+    { label: "Regular office process time", value: result.officeProcessCost, displayValue: formatMonthlyDisplay(result.officeProcessCost) },
+    { label: "Invoice and job cleanup time", value: result.invoiceCleanupCost, displayValue: formatMonthlyDisplay(result.invoiceCleanupCost) },
+    { label: "Missing details and rework", value: result.missingDetailsCost, displayValue: formatMonthlyDisplay(result.missingDetailsCost) },
+    { label: "Delayed billing and unbilled work", value: result.delayedCashDrag + result.stuckUnbilledValue, displayValue: formatMonthlyDisplay(result.delayedCashDrag + result.stuckUnbilledValue) },
     { label: "Customer money drag", value: customerMonthlyMiddle || customerMonthlyLeakMax, displayValue: formatMonthlyRangeDisplay(customerMonthlyLeakMin, customerMonthlyLeakMax) },
   ].filter((component) => hasMeaningfulValue(component.value))
 
@@ -411,7 +465,7 @@ function createResultSummary(result: ResultSummaryInput & {
     cashDrivers.some((driver) => driver.key === "slow-invoice-drag") ? "Which invoices are aging without the right follow-up" : undefined,
     result.estimatedUnderworkedCustomers > 0 ? "Which customer records are worth reactivating first" : undefined,
     missedCallImpact ? "Which missed calls are becoming lost work" : undefined,
-    cashDrivers.some((driver) => ["office-cleanup", "correction-drag"].includes(driver.key)) ? "Which office handoff keeps causing the leak" : undefined,
+    cashDrivers.some((driver) => ["software-transfer", "office-process-time", "office-cleanup", "missing-details", "correction-drag"].includes(driver.key)) ? "Which office process keeps causing the leak" : undefined,
   ].filter(Boolean) as string[]
 
   return {
@@ -438,6 +492,7 @@ function createResultSummary(result: ResultSummaryInput & {
     },
     formattedCTAValue,
     selectedCashDriver,
+    selectedOfficeProcessDriver: cashDrivers.find((driver) => ["software-transfer", "office-process-time", "office-cleanup", "missing-details"].includes(driver.key)),
     selectedCustomerDriver,
     cashDrivers,
     customerDollarDrivers,
@@ -662,6 +717,10 @@ export function InvoicingDelayCalculatorClient() {
   const [invoiceValue, setInvoiceValue] = useState("1200")
   const [jobsPerMonth, setJobsPerMonth] = useState("25")
   const [delayDays, setDelayDays] = useState("4")
+  const [softwareTransferFrequency, setSoftwareTransferFrequency] = useState<SoftwareTransferFrequency>("moderate")
+  const [softwareTransferHoursPerWeek, setSoftwareTransferHoursPerWeek] = useState("5")
+  const [officeProcessHoursPerWeek, setOfficeProcessHoursPerWeek] = useState("8")
+  const [missingDetailsFrequency, setMissingDetailsFrequency] = useState<MissingDetailsFrequency>("weekly")
   const [hoursLost, setHoursLost] = useState("0.5")
   const [unbilledJobs, setUnbilledJobs] = useState("3")
   const [correctionRate, setCorrectionRate] = useState("20")
@@ -690,6 +749,8 @@ export function InvoicingDelayCalculatorClient() {
     const jobs = Number(jobsPerMonth) || 0
     const days = Number(delayDays) || 0
     const hours = Number(hoursLost) || 0
+    const transferHoursWeekly = Math.max(Number(softwareTransferHoursPerWeek) || 0, 0)
+    const officeProcessHoursWeekly = Math.max(Number(officeProcessHoursPerWeek) || 0, 0)
     const unbilled = Number(unbilledJobs) || 0
     const correction = (Number(correctionRate) || 0) / 100
     const savedRecords = Math.max(Number(totalSavedCustomerRecords) || 0, 0)
@@ -698,11 +759,20 @@ export function InvoicingDelayCalculatorClient() {
 
     const monthlyBilledValue = invoice * jobs
     const delayedCashDrag = monthlyBilledValue * (days / 30)
+    const transferSetting = softwareTransferSettings[softwareTransferFrequency]
+    const missingSetting = missingDetailsSettings[missingDetailsFrequency]
+    const softwareTransferMonthlyHours = transferHoursWeekly * 4.33 * transferSetting.multiplier
+    const softwareTransferCost = softwareTransferMonthlyHours * OFFICE_HOURLY_COST
     const monthlyLaborHours = jobs * hours
-    const officeTimeCost = monthlyLaborHours * 35
+    const invoiceCleanupCost = monthlyLaborHours * OFFICE_HOURLY_COST
+    const officeProcessMonthlyHours = officeProcessHoursWeekly * 4.33
+    const officeProcessCost = officeProcessMonthlyHours * OFFICE_HOURLY_COST * 0.65
+    const missingDetailsCost = monthlyBilledValue * missingSetting.rate * 0.025
+    const officeProcessCostTotal = softwareTransferCost + invoiceCleanupCost + officeProcessCost + missingDetailsCost
+    const officeTimeCost = officeProcessCostTotal
     const stuckUnbilledValue = invoice * unbilled
     const correctionLoss = monthlyBilledValue * correction * 0.03
-    const cashflowImpact = delayedCashDrag + officeTimeCost + stuckUnbilledValue + correctionLoss
+    const cashflowImpact = delayedCashDrag + officeProcessCostTotal + stuckUnbilledValue + correctionLoss
 
     const rate = uncontactedCustomerSettings[uncontactedCustomerRate]
     const estimatedUnderworkedCustomers = Math.round(savedRecords * rate.rate)
@@ -737,6 +807,13 @@ export function InvoicingDelayCalculatorClient() {
       monthlyBilledValue,
       delayedCashDrag,
       monthlyLaborHours,
+      softwareTransferMonthlyHours,
+      softwareTransferCost,
+      invoiceCleanupCost,
+      officeProcessMonthlyHours,
+      officeProcessCost,
+      missingDetailsCost,
+      officeProcessCostTotal,
       officeTimeCost,
       stuckUnbilledValue,
       correctionLoss,
@@ -766,7 +843,7 @@ export function InvoicingDelayCalculatorClient() {
       customerSourceLabel: customerListSources.map((source) => customerSourceMessages[source].label).join(", "),
       uncontactedLabel: rate.label,
     }
-  }, [invoiceValue, jobsPerMonth, delayDays, hoursLost, unbilledJobs, correctionRate, totalSavedCustomerRecords, repeatJobValue, uncontactedCustomerRate, reviewFollowup, referralFollowup, missedCallsPerMonth, missedCallRecovery, customerListSources])
+  }, [invoiceValue, jobsPerMonth, delayDays, softwareTransferFrequency, softwareTransferHoursPerWeek, officeProcessHoursPerWeek, missingDetailsFrequency, hoursLost, unbilledJobs, correctionRate, totalSavedCustomerRecords, repeatJobValue, uncontactedCustomerRate, reviewFollowup, referralFollowup, missedCallsPerMonth, missedCallRecovery, customerListSources])
 
   const resultSummary = useMemo(() => createResultSummary(result), [result])
 
@@ -795,6 +872,10 @@ export function InvoicingDelayCalculatorClient() {
         average_invoice_value: Number(invoiceValue) || 0,
         jobs_per_month: Number(jobsPerMonth) || 0,
         invoice_delay_days: Number(delayDays) || 0,
+        software_transfer_frequency: softwareTransferFrequency,
+        software_transfer_hours_per_week: Number(softwareTransferHoursPerWeek) || 0,
+        office_process_hours_per_week: Number(officeProcessHoursPerWeek) || 0,
+        missing_details_frequency: missingDetailsFrequency,
         office_hours_lost_per_job: Number(hoursLost) || 0,
         unbilled_jobs: Number(unbilledJobs) || 0,
         correction_rate_percent: Number(correctionRate) || 0,
@@ -813,11 +894,17 @@ export function InvoicingDelayCalculatorClient() {
         total_annual_leak_min: resultSummary.totalAnnualLeakMin,
         total_annual_leak_max: resultSummary.totalAnnualLeakMax,
         cash_monthly_leak: resultSummary.cashMonthlyLeak,
+        software_transfer_monthly_cost: result.softwareTransferCost,
+        office_process_monthly_cost: result.officeProcessCost,
+        invoice_cleanup_monthly_cost: result.invoiceCleanupCost,
+        missing_details_monthly_cost: result.missingDetailsCost,
+        office_process_cost_total: result.officeProcessCostTotal,
         customer_monthly_leak_min: resultSummary.customerMonthlyLeakMin,
         customer_monthly_leak_max: resultSummary.customerMonthlyLeakMax,
         estimated_underworked_customers: resultSummary.estimatedUnderworkedCustomers,
         recommended_first_move: result.recommendedFirstMove,
         biggest_cash_driver: resultSummary.selectedCashDriver?.label ?? "",
+        biggest_office_process_driver: resultSummary.selectedOfficeProcessDriver?.label ?? "",
         biggest_customer_driver: resultSummary.selectedCustomerDriver?.label ?? "",
         formatted_headline_range: resultSummary.formattedHeadlineRange,
         formatted_monthly_range: resultSummary.formattedMonthlyRange,
@@ -855,6 +942,10 @@ export function InvoicingDelayCalculatorClient() {
     invoiceValue,
     jobsPerMonth,
     delayDays,
+    softwareTransferFrequency,
+    softwareTransferHoursPerWeek,
+    officeProcessHoursPerWeek,
+    missingDetailsFrequency,
     hoursLost,
     unbilledJobs,
     correctionRate,
@@ -903,6 +994,10 @@ export function InvoicingDelayCalculatorClient() {
         average_invoice_value: Number(invoiceValue) || 0,
         jobs_per_month: Number(jobsPerMonth) || 0,
         invoice_delay_days: Number(delayDays) || 0,
+        software_transfer_frequency: softwareTransferFrequency,
+        software_transfer_hours_per_week: Number(softwareTransferHoursPerWeek) || 0,
+        office_process_hours_per_week: Number(officeProcessHoursPerWeek) || 0,
+        missing_details_frequency: missingDetailsFrequency,
         office_hours_lost_per_job: Number(hoursLost) || 0,
         unbilled_jobs: Number(unbilledJobs) || 0,
         correction_rate_percent: Number(correctionRate) || 0,
@@ -1031,8 +1126,39 @@ export function InvoicingDelayCalculatorClient() {
             <div className="text-sm font-bold leading-tight text-[#15803D]">Takes 2 minutes. Rough numbers only. No passwords or sensitive financials.</div>
             <div className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-5xl">$3,000 to $25,000+</div>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-700">
-              See how much your office work is costing the business every month.
+              See what normal office processes are costing your business — moving information between software, chasing missing details, billing delays, and follow-up that never gets done.
             </p>
+          </div>
+        </StepFrame>
+      )
+    }
+
+    if (step === "softwareTransfer") {
+      return (
+        <StepFrame {...frameProps}
+          title="How much time does your team spend moving information between software?"
+          body="Think job software, QuickBooks, email, texts, spreadsheets, payment tools, and customer records. The cost is not the software. The cost is the manual transfer between them."
+          compact
+        >
+          <ChoiceGrid<SoftwareTransferFrequency>
+            value={softwareTransferFrequency}
+            onChange={setSoftwareTransferFrequency}
+            compact
+            options={Object.entries(softwareTransferSettings).map(([value, setting]) => ({
+              value: value as SoftwareTransferFrequency,
+              label: setting.label,
+              detail: setting.helper,
+            }))}
+          />
+          <div className="mx-auto mt-7 box-border w-full max-w-xl rounded-[1.45rem] border border-[#e7dfd1] bg-[linear-gradient(180deg,#fffefa_0%,#f8f4eb_100%)] p-4 text-left shadow-[0_14px_34px_rgba(7,20,34,0.055)] sm:rounded-[1.7rem] sm:p-6">
+            <label className="text-sm font-semibold leading-6 text-slate-700">Hours per week moving information between software</label>
+            <input
+              value={softwareTransferHoursPerWeek}
+              onChange={(e) => setSoftwareTransferHoursPerWeek(e.target.value.replace(/[^0-9.]/g, ""))}
+              inputMode="decimal"
+              className="mt-4 box-border w-full max-w-full rounded-2xl border border-[#d8d1c4] bg-white px-4 py-4 text-3xl font-semibold tracking-[-0.035em] text-[#071422] outline-none shadow-[0_1px_0_rgba(255,255,255,0.9)_inset] transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+            />
+            <p className="mt-3 text-sm leading-6 text-slate-500">Use the normal weekly time spent copying, checking, updating, or reconciling information across tools.</p>
           </div>
         </StepFrame>
       )
@@ -1074,10 +1200,32 @@ export function InvoicingDelayCalculatorClient() {
     if (step === "hours") {
       return (
         <StepFrame {...frameProps}
-          title="How much office time gets burned just to send one invoice?"
-          body="Think re-entry, missing details, cleanup, and chasing field info that should have been ready the first time."
+          title="How much regular office process time happens each week?"
+          body="Scheduling updates, customer updates, invoice prep, estimate follow-up, payment follow-up, job closeout, and checking records all count here."
         >
-          <BigNumberInput value={hoursLost} onChange={setHoursLost} suffix="hrs" />
+          <BigNumberInput value={officeProcessHoursPerWeek} onChange={setOfficeProcessHoursPerWeek} suffix="hrs/wk" />
+          <div className="mx-auto mt-7 box-border w-full max-w-xl rounded-[1.45rem] border border-[#e7dfd1] bg-white/80 p-4 text-left text-sm leading-6 text-slate-600 shadow-[0_10px_24px_rgba(7,20,34,0.035)]">
+            This counts ordinary office process time. The next question separates out invoice-specific cleanup so the estimate stays grounded.
+          </div>
+        </StepFrame>
+      )
+    }
+
+    if (step === "missingDetails") {
+      return (
+        <StepFrame {...frameProps}
+          title="How often does office work wait on missing job or customer details?"
+          body="Count missing photos, notes, approvals, job status, customer info, payment details, material notes, or anything the office has to track down before work can move."
+        >
+          <ChoiceGrid<MissingDetailsFrequency>
+            value={missingDetailsFrequency}
+            onChange={setMissingDetailsFrequency}
+            options={Object.entries(missingDetailsSettings).map(([value, setting]) => ({
+              value: value as MissingDetailsFrequency,
+              label: setting.label,
+              detail: setting.helper,
+            }))}
+          />
         </StepFrame>
       )
     }
@@ -1345,7 +1493,7 @@ export function InvoicingDelayCalculatorClient() {
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Money left on the table · 1 of 3</p>
               <h1 className="mx-auto mt-4 max-w-3xl text-[2.05rem] font-semibold leading-[1.02] tracking-[-0.045em] text-slate-950 sm:text-[3.55rem] lg:text-[4.3rem]">Estimated money left on the table</h1>
               <div className="calculator-result-value mx-auto mt-5 max-w-5xl break-words rounded-[1.35rem] bg-[linear-gradient(180deg,#fff7f5_0%,#ffffff_100%)] px-3 py-4 text-[3.25rem] font-semibold leading-[0.92] tracking-[-0.055em] text-[#a82418] shadow-[inset_0_0_0_1px_rgba(244,183,175,0.72),0_18px_45px_rgba(180,35,24,0.08)] [font-variant-numeric:tabular-nums] sm:text-[5.7rem] lg:text-[6.8rem]">{summary.hasMeaningfulLeak ? `${summary.formattedHeadlineRange}/year` : "money left on the table"}</div>
-              <p className="mx-auto mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-700 sm:text-xl">{summary.hasMeaningfulLeak ? "That is the annual leak estimate from slow invoices, missed calls, forgotten follow-up, and untouched customer records." : "The safest next step is checking the real records before making a bigger claim."}</p>
+              <p className="mx-auto mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-700 sm:text-xl">{summary.hasMeaningfulLeak ? "That is the annual leak estimate from normal office processes, billing delays, missed calls, forgotten follow-up, and untouched customer records." : "The safest next step is checking the real records before making a bigger claim."}</p>
               <div className="mx-auto mt-7 max-w-3xl rounded-[1.4rem] border border-[#f3b7af] bg-[#fff1ef] p-4 text-center shadow-[0_16px_42px_rgba(180,35,24,0.08)] sm:p-5">
                 {summary.hasMeaningfulLeak ? (
                   <div className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 text-slate-950">
@@ -1382,7 +1530,7 @@ export function InvoicingDelayCalculatorClient() {
               <div className="mb-5 h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2"><div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: "66%" }} /></div>
               <div className="text-center"><p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">What is stuck · 2 of 3</p><h1 className="mx-auto mt-3 max-w-3xl text-[2rem] font-semibold leading-[1.04] tracking-[-0.045em] text-slate-950 sm:text-[3rem] lg:text-[3.6rem]">Where the money is getting stuck</h1></div>
               <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                <div className="box-border flex flex-col rounded-[1.25rem] border border-[#dcefe0] bg-[#fbfaf7] p-5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]"><div className="flex items-center gap-3"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f4fbf5] [&_[data-stanley-display-asset=true]>img]:scale-[1.2] [&_[data-stanley-display-asset=true]>img]:mix-blend-multiply"><DollarCircleDisplayAsset size={27} decorative /></span><h2 className="min-w-0 text-2xl font-semibold leading-7 tracking-tight text-slate-950">Cash earned, still stuck</h2></div><div className="calculator-result-value mt-3 break-words text-[2.25rem] font-medium leading-[1.02] tracking-[-0.025em] text-slate-950 [font-variant-numeric:tabular-nums] sm:text-[2.85rem]">{summary.formattedCardValues.cashMonthly}/month</div><p className="mt-3 text-base font-semibold leading-7 text-slate-900">Finished jobs are done. Billing and collection are still dragging.</p>{summary.selectedCashDriver ? <p className="mt-3 w-fit max-w-full rounded-full border border-[#dcefe0] bg-white px-3 py-1.5 text-sm font-semibold leading-5 text-slate-800">Biggest drag: {summary.selectedCashDriver.label}</p> : null}<p className="mt-auto pt-4 text-sm font-semibold leading-5 text-slate-500">Annualized cash check value: {summary.formattedCardValues.cashAnnual}</p></div>
+                <div className="box-border flex flex-col rounded-[1.25rem] border border-[#dcefe0] bg-[#fbfaf7] p-5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]"><div className="flex items-center gap-3"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f4fbf5] [&_[data-stanley-display-asset=true]>img]:scale-[1.2] [&_[data-stanley-display-asset=true]>img]:mix-blend-multiply"><DollarCircleDisplayAsset size={27} decorative /></span><h2 className="min-w-0 text-2xl font-semibold leading-7 tracking-tight text-slate-950">Office process and cash drag</h2></div><div className="calculator-result-value mt-3 break-words text-[2.25rem] font-medium leading-[1.02] tracking-[-0.025em] text-slate-950 [font-variant-numeric:tabular-nums] sm:text-[2.85rem]">{summary.formattedCardValues.cashMonthly}/month</div><p className="mt-3 text-base font-semibold leading-7 text-slate-900">Normal office processes, billing, cleanup, and collection are still dragging.</p>{summary.selectedCashDriver ? <p className="mt-3 w-fit max-w-full rounded-full border border-[#dcefe0] bg-white px-3 py-1.5 text-sm font-semibold leading-5 text-slate-800">Biggest drag: {summary.selectedCashDriver.label}</p> : null}<p className="mt-auto pt-4 text-sm font-semibold leading-5 text-slate-500">Annualized office/cash check value: {summary.formattedCardValues.cashAnnual}</p></div>
                 <div className="box-border flex flex-col rounded-[1.25rem] border border-[#dcefe0] bg-[#fbfaf7] p-5 text-left shadow-[0_14px_38px_rgba(15,23,42,0.055)]"><div className="flex items-center gap-3"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#cfe8d5] bg-[#f4fbf5] [&_[data-stanley-display-asset=true]>img]:scale-[1.2] [&_[data-stanley-display-asset=true]>img]:mix-blend-multiply"><UsersDisplayAsset size={27} decorative /></span><h2 className="min-w-0 text-2xl font-semibold leading-7 tracking-tight text-slate-950">Past customers, still untouched</h2></div><div className="calculator-result-value mt-3 break-words text-[2.25rem] font-medium leading-[1.02] tracking-[-0.025em] text-slate-950 [font-variant-numeric:tabular-nums] sm:text-[2.85rem]">{summary.formattedCardValues.customerMonthly}/month</div><p className="mt-3 text-base font-semibold leading-7 text-slate-900">Saved customers and missed calls are not turning into booked jobs.</p>{summary.selectedCustomerDriver ? <p className="mt-3 w-fit max-w-full rounded-full border border-[#dcefe0] bg-white px-3 py-1.5 text-sm font-semibold leading-5 text-slate-800">Biggest drag: {summary.selectedCustomerDriver.label}</p> : null}<p className="mt-auto pt-4 text-sm font-semibold leading-5 text-slate-500">Annualized customer check value: {summary.formattedCardValues.customerAnnual}</p></div>
               </div>
               <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_0.9fr]"><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><p className="text-sm leading-7 text-slate-700"><span className="font-semibold text-slate-950">Plain English:</span> You already paid for the crew, the customer, and the office time. The money still waits because the follow-up depends on someone remembering. <span className="font-semibold text-slate-950">More leads make this leak bigger.</span></p></div><div className="rounded-[1.15rem] border border-[#bfe5c7] bg-[#eef9f2] p-4 text-left"><div className="text-base font-semibold tracking-tight text-slate-950">Recommended first move: Cash Flow Assessment</div><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Check the real records. Map where cash, follow-up, reviews, referrals, and repeat work are getting stuck. Leave with the exact fixes.</p></div></div>
@@ -1408,7 +1556,7 @@ export function InvoicingDelayCalculatorClient() {
             <div className="box-border w-full overflow-hidden rounded-[1.65rem] border border-[#e8dfd0] bg-white p-4 shadow-[0_22px_80px_rgba(15,23,42,0.10)] sm:rounded-[2.25rem] sm:p-6 lg:rounded-[2.5rem] lg:p-7 print:overflow-visible print:rounded-none print:border-0 print:p-0 print:shadow-none">
               <div className="mb-5 h-1.5 w-full overflow-hidden rounded-full bg-[#efe9dc] sm:h-2 print:hidden"><div className="h-full rounded-full bg-[#15803D] transition-all duration-500" style={{ width: "100%" }} /></div>
               <div className="text-center print:hidden"><p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Math · 3 of 3</p><h1 className="mx-auto mt-3 max-w-3xl text-[1.75rem] font-semibold leading-[1.14] tracking-[-0.04em] text-slate-950 sm:text-[3rem] sm:leading-[1.06] lg:text-[3.5rem]">The math behind the estimate</h1><p className="mx-auto mt-3 max-w-3xl text-sm font-semibold leading-7 text-slate-700 sm:text-lg">These numbers are rounded. They are meant to show where the leak may be, not guarantee exact revenue.</p></div>
-              <div className="mt-6 grid gap-4 lg:grid-cols-3 print:hidden"><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Cash earned, still stuck</h2><p className="mt-3 text-sm leading-6 text-slate-700">Estimated monthly drag: <span className="font-semibold text-slate-950">{summary.formattedCardValues.cashMonthly}</span></p><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Annualized value: <span className="font-semibold text-slate-950">{summary.formattedCardValues.cashAnnual}</span></p><p className="mt-3 text-sm leading-6 text-slate-600">Driven by slow invoice drag, open balances, billing delay, and manual office checks.</p></div><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Past customers, still untouched</h2><p className="mt-3 text-sm leading-6 text-slate-700">Estimated monthly drag: <span className="font-semibold text-slate-950">{summary.formattedCardValues.customerMonthly}</span></p><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Annualized value: <span className="font-semibold text-slate-950">{summary.formattedCardValues.customerAnnual}</span></p><p className="mt-3 text-sm leading-6 text-slate-600">Driven by saved customer records, missed calls, weak repeat follow-up, review gaps, and referral gaps.</p></div><div className="rounded-[1.15rem] border border-[#f3b7af] bg-[#fff1ef] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Combined check</h2><p className="mt-3 text-sm leading-6 text-slate-700">Monthly leak: <span className="font-semibold text-[#b42318]">{summary.formattedMonthlyRange}</span></p><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Yearly leak: <span className="font-semibold text-[#b42318]">{summary.formattedHeadlineRange}</span></p><p className="mt-3 text-sm font-semibold leading-6 text-[#b42318]">Cost of waiting: every month the system stays manual, the same leak can repeat.</p></div></div>
+              <div className="mt-6 grid gap-4 lg:grid-cols-3 print:hidden"><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Cash earned, still stuck</h2><p className="mt-3 text-sm leading-6 text-slate-700">Estimated monthly drag: <span className="font-semibold text-slate-950">{summary.formattedCardValues.cashMonthly}</span></p><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Annualized value: <span className="font-semibold text-slate-950">{summary.formattedCardValues.cashAnnual}</span></p><p className="mt-3 text-sm leading-6 text-slate-600">Driven by moving information between software, regular office process time, missing details, billing delay, and manual office checks.</p></div><div className="rounded-[1.15rem] border border-[#e8dfd0] bg-[#fbfaf7] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Past customers, still untouched</h2><p className="mt-3 text-sm leading-6 text-slate-700">Estimated monthly drag: <span className="font-semibold text-slate-950">{summary.formattedCardValues.customerMonthly}</span></p><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Annualized value: <span className="font-semibold text-slate-950">{summary.formattedCardValues.customerAnnual}</span></p><p className="mt-3 text-sm leading-6 text-slate-600">Driven by saved customer records, missed calls, weak repeat follow-up, review gaps, and referral gaps.</p></div><div className="rounded-[1.15rem] border border-[#f3b7af] bg-[#fff1ef] p-4 text-left"><h2 className="text-lg font-semibold text-slate-950">Combined check</h2><p className="mt-3 text-sm leading-6 text-slate-700">Monthly leak: <span className="font-semibold text-[#b42318]">{summary.formattedMonthlyRange}</span></p><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Yearly leak: <span className="font-semibold text-[#b42318]">{summary.formattedHeadlineRange}</span></p><p className="mt-3 text-sm font-semibold leading-6 text-[#b42318]">Cost of waiting: every month the system stays manual, the same leak can repeat.</p></div></div>
               <div className="mt-5 rounded-[1.15rem] border border-[#cfe8d5] bg-[#f4fbf5] p-4 text-left print:hidden"><div className="text-xs font-semibold uppercase tracking-[0.12em] text-[#15803D]">Monthly leak estimate</div><p className="mt-2 text-sm font-semibold leading-6 text-slate-700 sm:text-base sm:leading-7">{summary.equationText}</p>{summary.equationComponents.length ? <div className="mt-3 grid gap-2 sm:grid-cols-2">{summary.equationComponents.map((component) => <span key={component.label} className="flex items-center justify-between gap-3 rounded-2xl border border-[#bfe5c7] bg-white px-3 py-2 text-xs font-semibold text-slate-700 sm:text-sm"><span>{component.label}</span><span className="shrink-0 font-extrabold text-slate-950">{component.displayValue}</span></span>)}</div> : null}</div>
               <div className="mt-5 grid gap-3 rounded-[1.15rem] border border-[#bfe5c7] bg-[linear-gradient(135deg,#eef9f2_0%,#ffffff_52%,#e9f7ed_100%)] p-4 text-left lg:grid-cols-[1fr_auto] lg:items-center print:hidden"><div><h2 className="text-xl font-semibold tracking-tight text-slate-950">Want the real records checked?</h2><p className="mt-1 text-base font-semibold leading-7 text-slate-800">The calculator estimates the size of the leak. The assessment checks the records, maps the office flow, and shows what should be fixed first.</p></div><CTALink href="/how-the-assessment-works" kind="internal_page" location="calculator_result_math" analyticsSource="calculator_result_math" ctaLabel={ctaLabel} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#166534] sm:text-base">See how the Cash Flow Assessment works <ArrowRight className="ml-2 h-4 w-4" /></CTALink></div>
               <div className="mt-5 rounded-[1.15rem] border border-[#DDEBE2] bg-white p-4 text-left shadow-[0_10px_24px_rgba(7,29,58,0.035)] print:hidden"><div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center"><div><h2 className="text-xl font-semibold tracking-tight text-slate-950">Download your results</h2><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Opens a clean Stanley Systems result sheet you can save as a PDF from the print dialog.</p></div><button type="button" onClick={downloadResults} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-[#F4FBF5] px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:bg-[#E7F7EB]">Download your results</button></div></div>

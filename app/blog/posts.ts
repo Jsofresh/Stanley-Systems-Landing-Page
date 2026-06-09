@@ -52,7 +52,7 @@ export const posts: BlogPost[] = [
           "change orders are approved verbally but not recorded cleanly",
           "materials and labor notes arrive late or in inconsistent formats",
           "the office has to chase the field team to fill in gaps",
-          "owners end up acting as the backup system"
+          "normal office processes quietly cost more than they look like"
         ],
       },
       {
