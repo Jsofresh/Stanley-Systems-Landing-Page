@@ -2,7 +2,7 @@
 
 > **For Hermes / Codex:** This is a build plan only. Do not deploy, restart PM2, edit n8n directly, touch secrets, or change protected systems unless Jaden explicitly authorizes implementation/deploy in the current session.
 
-**Goal:** Keep the existing Revenue Leak Calculator structure, but add a stronger normal-office-process-cost layer with “moving information between software” moved to the front, while preserving current opportunity-cost math for past-customer follow-up, reactivation, missed calls, reviews, and referrals.
+**Goal:** Keep the existing Office Work Cost Calculator structure, but add a stronger normal-office-process-cost layer with “moving information between software” moved to the front, while preserving current opportunity-cost math for past-customer follow-up, reactivation, missed calls, reviews, and referrals.
 
 **Current target repo:** `/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page`
 
@@ -162,9 +162,9 @@ Potential CTA:
 
 or keep current:
 
-> Calculate my revenue leak
+> Calculate my office work cost
 
-Recommendation: keep `Calculate my revenue leak` if the current page already performs well; it is clearer than changing the whole calculator identity.
+Recommendation: keep `Calculate my office work cost` if the current page already performs well; it is clearer than changing the whole calculator identity.
 
 ### New step: `softwareTransfer`
 

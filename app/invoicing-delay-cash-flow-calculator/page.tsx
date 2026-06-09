@@ -17,7 +17,7 @@ const faqSchema = {
       name: "Do we need to switch software?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No. Stanley Systems works around the tools your team already uses whenever possible. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, or your current setup. The point is to fix the gaps where work, billing, follow-up, and customer records fall through.",
+        text: "No. Stanley Systems installs a control layer on top of your existing software and office systems. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, or your current setup. The point is to remove costly manual office work across billing, follow-up, customer records, and software handoffs.",
       },
     },
     {
@@ -33,7 +33,7 @@ const faqSchema = {
       name: "What if we are not sure where the real problem is?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "That is exactly what the Cash Flow Assessment is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat revenue. You leave knowing which leak matters first.",
+        text: "That is exactly what the Office Process Assessment is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat revenue. You leave knowing which leak matters first.",
       },
     },
     {
@@ -48,13 +48,13 @@ const faqSchema = {
 }
 
 export const metadata: Metadata = {
-  title: "Revenue Leak Calculator | Stanley Systems",
+  title: "Office Work Cost Calculator | Stanley Systems",
   description:
-    "Estimate money sitting inside normal office processes, software handoffs, slow invoices, missed calls, and saved customer records nobody is following up with.",
+    "See what manual admin work, delayed billing, duplicate entry, missed follow-up, and software handoffs may be costing your service business each month.",
   openGraph: {
-    title: "Revenue Leak Calculator | Stanley Systems",
+    title: "Office Work Cost Calculator | Stanley Systems",
     description:
-      "Find office process, cashflow, and customer revenue leaks already sitting inside your service business.",
+      "Stanley Systems installs a control layer on top of your existing software and office systems to reduce costly manual office work.",
     url: "https://stanley-systems.com/invoicing-delay-cash-flow-calculator",
     siteName: "Stanley Systems",
     type: "website",

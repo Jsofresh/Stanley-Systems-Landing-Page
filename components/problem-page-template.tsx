@@ -49,7 +49,7 @@ export function ProblemPageTemplate({
             <h1 className="mt-4 max-w-5xl text-[2.25rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.15rem]">{title}</h1>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">{intro}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/workflow-audit" className={primaryButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/workflow-audit" className={primaryButton}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
               <Link href="/invoicing-delay-cash-flow-calculator" className={secondaryButton}>Use the free calculator</Link>
             </div>
           </div>
@@ -89,7 +89,7 @@ export function ProblemPageTemplate({
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">How Stanley Systems fixes it</p>
             <h2 className="mt-3 text-[2rem] font-semibold leading-[1.03] tracking-[-0.04em] text-[#071D3A] sm:text-[2.75rem]">{fixTitle}</h2>
-            <Link href="/workflow-audit" className={`mt-6 ${primaryButton}`}>Start the Cash Flow Assessment</Link>
+            <Link href="/workflow-audit" className={`mt-6 ${primaryButton}`}>Get the Office Process Assessment</Link>
           </div>
           <ul className="space-y-3">
             {fixes.map((fix) => (

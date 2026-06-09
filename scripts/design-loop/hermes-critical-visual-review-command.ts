@@ -382,7 +382,7 @@ export function buildHermesPrompt(packet: CriticalReviewPacket, stanleyWebsiteRe
     "Harsh website critique standard:",
     "- Ask first: would a skeptical HVAC, plumbing, electrical, marine, landscaping, or field-service owner trust Stanley Systems after seeing this on a phone? If no, fail.",
     "- The site must lead with money, time, owner relief, collected revenue, repeat customers, reviews, referrals, captured calls, missed work, fewer delayed invoices, and less office rescue work.",
-    "- The public first step is the Cash Flow Assessment. Package 1 is Cash Flow Collection System. Package 2 is Repeat Revenue System.",
+    "- The public first step is the Office Process Assessment. Package 1 is Cash Flow Collection System. Package 2 is Repeat Revenue System.",
     "- The buyer is a skeptical service-business owner, not a SaaS buyer.",
     "- Copy must be clear, not clever. Use Stanley Systems publicly, not Stanley shorthand.",
     "- Public copy must not make AI, Hermes, Codex, OpenClaw, Twilio, n8n, QBO API, or HCP API the star.",

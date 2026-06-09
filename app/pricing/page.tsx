@@ -6,9 +6,9 @@ import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
 import { PricingPage } from "@/components/pricing"
 
 export const metadata: Metadata = {
-  title: "Pricing | Cash Flow Assessment | Stanley Systems",
+  title: "Pricing | Office Process Assessment | Stanley Systems",
   description:
-    "Start with the paid Cash Flow Assessment from Stanley Systems. Find where calls, invoices, follow-ups, and past customers are leaking before choosing a build path.",
+    "Start with the paid Office Process Assessment from Stanley Systems. Find where calls, invoices, follow-ups, and past customers are leaking before choosing a build path.",
 }
 
 type PricingRouteProps = {

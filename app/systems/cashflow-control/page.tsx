@@ -49,7 +49,7 @@ export default function SystemPage() {
           imageHeight={720}
           objectPosition="center center"
           primaryHref="/workflow-audit"
-          primaryLabel="Start the Cash Flow Assessment"
+          primaryLabel="Get the Office Process Assessment"
           secondaryHref="/systems-installation-sprint"
           secondaryLabel="See how the Sprint works"
           cards={[
@@ -78,7 +78,7 @@ export default function SystemPage() {
             <div>
               <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">How Cashflow Control gets built</h2>
               <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems builds the workflow around your real job process: job details get captured, billing readiness becomes visible, unpaid invoices stay in view, and exceptions route to the right person before cash gets stuck.</p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row"><Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link></div>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row"><Link href="/workflow-audit" className={greenButton}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link></div>
             </div>
             <BuildImage />
           </div>

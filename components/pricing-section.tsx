@@ -34,7 +34,7 @@ const systems = [
 
 const pricingPreview = [
   {
-    name: "Cash Flow Assessment",
+    name: "Office Process Assessment",
     price: pricingPackageById.workflow_audit.priceDisplay,
     note: "Paid diagnostic before a build.",
     href: "#final-audit",
@@ -155,10 +155,10 @@ export function PricingSection() {
               location="homepage_pricing_calculator"
               analyticsEvent="calculator_cta_clicked"
               analyticsSource="homepage_pricing_preview"
-              ctaLabel="Calculate my revenue leak"
+              ctaLabel="Calculate my office work cost"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_16px_30px_rgba(21,128,61,0.18)] transition hover:bg-[#116832]"
             >
-              Calculate my revenue leak
+              Calculate my office work cost
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </CTALink>
             <CTALink

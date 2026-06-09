@@ -22,7 +22,7 @@ export type PricingPackage = {
   waivedSetupDisplay: string | null
   auditCredit: number
   auditCreditDisplay: string
-  auditCreditLabel: "Included" | "If you bought the Cash Flow Assessment first" | "After assessment credit"
+  auditCreditLabel: "Included" | "If you bought the Office Process Assessment first" | "After assessment credit"
   firstYearCostAfterAuditCredit: number
   firstYearCostAfterAuditCreditDisplay: string
   savings: {
@@ -44,8 +44,8 @@ export type PricingPackage = {
 export const pricingPackages: PricingPackage[] = [
   {
     id: "workflow_audit",
-    publicName: "Cash Flow Assessment",
-    shortCheckoutName: "Cash Flow Assessment",
+    publicName: "Office Process Assessment",
+    shortCheckoutName: "Office Process Assessment",
     price: 97,
     priceDisplay: "$97",
     billingPeriod: "one_time",
@@ -59,8 +59,8 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCredit: 97,
     firstYearCostAfterAuditCreditDisplay: "$97",
     savings: null,
-    badge: "Cash Flow Assessment",
-    cta: "Buy the Cash Flow Assessment",
+    badge: "Office Process Assessment",
+    cta: "Get the Office Process Assessment",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_WORKFLOW_AUDIT_PAYMENT_LINK",
       url: "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
@@ -68,8 +68,9 @@ export const pricingPackages: PricingPackage[] = [
     packageRoute: "/pricing#workflow-audit",
     analyticsPackageId: "workflow_audit",
     notes: [
-      "Find the money leaks before buying a system.",
-      "Assessment credit applies once, requires buying the Cash Flow Assessment first, and is valid for 24 hours after the assessment call.",
+      "Stanley Systems installs a control layer on top of your existing software and office systems.",
+      "We map the office work your business should not have to pay for anymore — then show what to automate, remove, restructure, or delegate.",
+      "Assessment credit applies once, requires buying the Office Process Assessment first, and is valid for 24 hours after the assessment call.",
     ],
   },
   {
@@ -85,7 +86,7 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: null,
     auditCredit: 97,
     auditCreditDisplay: "-$97",
-    auditCreditLabel: "If you bought the Cash Flow Assessment first",
+    auditCreditLabel: "If you bought the Office Process Assessment first",
     firstYearCostAfterAuditCredit: 4866,
     firstYearCostAfterAuditCreditDisplay: "$4,866",
     savings: null,
@@ -111,7 +112,7 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: null,
     auditCredit: 97,
     auditCreditDisplay: "-$97",
-    auditCreditLabel: "If you bought the Cash Flow Assessment first",
+    auditCreditLabel: "If you bought the Office Process Assessment first",
     firstYearCostAfterAuditCredit: 8616,
     firstYearCostAfterAuditCreditDisplay: "$8,616",
     savings: null,
@@ -137,7 +138,7 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetupDisplay: null,
     auditCredit: 97,
     auditCreditDisplay: "-$97",
-    auditCreditLabel: "If you bought the Cash Flow Assessment first",
+    auditCreditLabel: "If you bought the Office Process Assessment first",
     firstYearCostAfterAuditCredit: 11116,
     firstYearCostAfterAuditCreditDisplay: "$11,116",
     savings: {
@@ -265,7 +266,7 @@ export const workflowAuditPricingPackage = pricingPackageById.workflow_audit
 
 export const pricingSourceOfTruthNotes = [
   "Approved public package names are Cashflow Control System and Repeat Revenue System.",
-  "Bought the Cash Flow Assessment first? Use your assessment credit code at checkout.",
+  "Bought the Office Process Assessment first? Use your assessment credit code at checkout.",
   "$97 assessment credit applies to monthly plans; $194 assessment credit applies to yearly plans; credit is valid for 24 hours after the assessment call and applies once.",
   "Use Stripe Payment Links v1 only; do not add Stripe secret keys or custom Checkout Sessions for this rework phase.",
 ]

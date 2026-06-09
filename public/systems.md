@@ -10,4 +10,4 @@ Core systems:
 - Repeat Revenue: missed calls, reviews, referrals, past customers, and repeat work. URL: https://stanley-systems.com/systems/repeat-revenue
 - Systems Installation Sprint: the build period where Stanley Systems installs the approved workflow. URL: https://stanley-systems.com/systems-installation-sprint
 
-The system is selected after the Cash Flow Assessment identifies the highest-cost leak.
+The system is selected after the Office Process Assessment identifies the highest-cost leak.

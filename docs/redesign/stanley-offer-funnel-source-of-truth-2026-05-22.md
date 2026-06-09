@@ -9,11 +9,11 @@ This document is the approved offer and funnel source of truth for the next Stan
    - Purpose: show the rough signal and make the lost-money problem visible.
    - Primary CTA language: `Start the free calculator`, `Run the free calculator`, or equivalent.
 
-2. **$97 Cash Flow Assessment**
+2. **$97 Office Process Assessment**
    - Paid diagnostic first step.
    - Purpose: identify where money is being missed, what it likely costs, the full fix list for every money leak found, and which fix should happen first.
-   - The $97 Cash Flow Assessment becomes a **$194 credit** toward the Systems Installation Sprint.
-   - CTA buttons should generally say `Start the Cash Flow Assessment` or equivalent. Avoid `$97` in button text unless specifically approved for a price card/context.
+   - The $97 Office Process Assessment becomes a **$194 credit** toward the Systems Installation Sprint.
+   - CTA buttons should generally say `Get the Office Process Assessment` or equivalent. Avoid `$97` in button text unless specifically approved for a price card/context.
 
 3. **$1,500 Systems Installation Sprint**
    - Approved positioning: **“Install the systems your business needs most.”**
@@ -29,7 +29,7 @@ This document is the approved offer and funnel source of truth for the next Stan
    - Price range: **$147–$347/month**, based on how many automations/systems and automations Stanley Systems installed.
    - If the client declines Monthly Control, Stanley Systems hands over controls for what was built and the client owns upkeep/updates.
 
-## Cash Flow Assessment rules
+## Office Process Assessment rules
 
 Approved homepage assessment subheading:
 
@@ -63,7 +63,7 @@ Rules:
 - Do not rewrite the calculator recommended intro unless it conflicts with this source of truth.
 - Calculator results bridge should use:
 
-> The calculator gives you the rough signal. The Cash Flow Assessment shows the actual problems, the full fix list, and what should be built first.
+> The calculator gives you the rough signal. The Office Process Assessment shows the actual problems, the full fix list, and what should be built first.
 
 ## Cashflow Control and Repeat Revenue rules
 
@@ -80,15 +80,15 @@ Implementation implications:
 
 ## Assessment education page
 
-The navbar item currently titled **How the Assessment Works** should route to a dedicated detailed Cash Flow Assessment education page.
+The navbar item currently titled **How the Assessment Works** should route to a dedicated detailed Office Process Assessment education page.
 
 Purpose:
 - For skeptical buyers who want more information before starting.
-- Explain how the Cash Flow Assessment works, what gets checked, what the buyer receives, how the fix list works, and how it connects to the Systems Installation Sprint.
+- Explain how the Office Process Assessment works, what gets checked, what the buyer receives, how the fix list works, and how it connects to the Systems Installation Sprint.
 
 Rules:
 - Main conversion CTAs should not be confused with this education page unless intentionally routed there.
-- Main CTAs should generally push buyers to start the Cash Flow Assessment, not merely read more.
+- Main CTAs should generally push buyers to start the Office Process Assessment, not merely read more.
 
 ## Pricing rules
 
@@ -111,7 +111,7 @@ Keep `/systems/both-systems` as a supporting “work best together” bridge pag
 Purpose:
 - Explain how Cashflow Control and Repeat Revenue work together.
 - Reinforce that customers can choose individual automations, but the best outcome often comes from using the systems together.
-- Route buyers toward the Cash Flow Assessment and Systems Installation Sprint.
+- Route buyers toward the Office Process Assessment and Systems Installation Sprint.
 - Link to the individual Cashflow Control and Repeat Revenue pages.
 
 Do not:
@@ -122,8 +122,8 @@ Do not:
 
 Approved contact section language:
 
-> Start with the Cash Flow Assessment. Stanley Systems finds the leaks, gives you the fix list, and can build the systems your business needs next.
+> Get the Office Process Assessment. Stanley Systems finds the leaks, gives you the fix list, and can build the systems your business needs next.
 
 ## Internal route caution
 
-Do not blindly rename internal routes like `/workflow-audit` unless the implementation plan proves it is safe. Public copy should say **Cash Flow Assessment**; internal route IDs may remain for checkout/analytics safety.
+Do not blindly rename internal routes like `/workflow-audit` unless the implementation plan proves it is safe. Public copy should say **Office Process Assessment**; internal route IDs may remain for checkout/analytics safety.

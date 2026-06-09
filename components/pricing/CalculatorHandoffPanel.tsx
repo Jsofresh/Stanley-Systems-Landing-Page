@@ -5,7 +5,7 @@ const systemLabels: Record<PricingCalculatorContext["recommendedSystem"], string
   follow_up_system: "Repeat Revenue System",
   both: "Both Systems",
   none: "the assessment-only path",
-  unknown: "the Cash Flow Assessment",
+  unknown: "the Office Process Assessment",
 }
 
 export function CalculatorHandoffPanel({ context }: { context: PricingCalculatorContext }) {
@@ -18,7 +18,7 @@ export function CalculatorHandoffPanel({ context }: { context: PricingCalculator
     <section className="rounded-[2rem] border border-[#bfe4c8] bg-[#f4fbf5] p-5 shadow-[0_18px_46px_rgba(15,23,42,0.06)] sm:p-6">
       <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[#102033]">Your calculator result points to {label}.</h2>
       <p className="mt-3 text-base leading-7 text-[#536173]">
-        The Cash Flow Assessment checks which leak is worth fixing first. This handoff uses rounded public estimates only, not raw calculator inputs.
+        The Office Process Assessment checks which leak is worth fixing first. This handoff uses rounded public estimates only, not raw calculator inputs.
       </p>
       {estimates.length ? (
         <div className="mt-4 flex flex-wrap gap-2">

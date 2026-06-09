@@ -4,9 +4,9 @@ Canonical HTML page: https://stanley-systems.com/faq
 
 ## What should a buyer start with?
 
-Start with the free calculator or the $97 Cash Flow Assessment. The assessment shows what is actually happening inside the office and what should be fixed first.
+Start with the free calculator or the $97 Office Process Assessment. The assessment shows what is actually happening inside the office and what should be fixed first.
 
-## What happens after I buy the Cash Flow Assessment?
+## What happens after I buy the Office Process Assessment?
 
 After checkout, Stanley Systems will email and call you to schedule the assessment intake. You’ll walk through how calls, estimates, invoices, payments, follow-up, reviews, referrals, and repeat work move through your office. Then Stanley Systems reviews the records and sends your money-leak report, workflow map, fix list, and build priorities.
 

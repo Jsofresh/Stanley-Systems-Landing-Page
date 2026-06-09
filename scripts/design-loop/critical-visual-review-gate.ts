@@ -713,8 +713,8 @@ function buildPacket(manifest: Manifest, entry: SectionRegistryEntry): CriticalR
       ],
       approved_offer_copy_guardrails: [
         "Use Stanley Systems, not public-facing Stanley shorthand.",
-        "Public first step is the paid Cash Flow Assessment.",
-        "Cash Flow Assessment: Find the money leaks hiding inside your office workflow.",
+        "Public first step is the paid Office Process Assessment.",
+        "Office Process Assessment: Find the money leaks hiding inside your office workflow.",
         "Cash Flow Collection System: Turn finished work into paid invoices without the chase.",
         "Repeat Revenue System: Get more money from the customers you already earned.",
         "Avoid public/internal process-heavy language such as bottlenecks.",

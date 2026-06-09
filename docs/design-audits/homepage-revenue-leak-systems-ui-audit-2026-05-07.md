@@ -56,6 +56,6 @@ Screenshot: `/home/jaden/.hermes/cache/screenshots/browser_screenshot_2172caecba
 - Keep the calculator homepage section non-functional: report preview only, no inputs, no state, no duplicated calculator formulas.
 - Use visible Stanley display primitives for product/section concept visuals.
 - Make product-suite cards tighter than ServiceTitan’s empty cards by adding slim product flows and compact outcome chips.
-- Use one obvious CTA in the calculator preview: `Find the Revenue Leaks` to `/invoicing-delay-cash-flow-calculator`.
+- Use one obvious CTA in the calculator preview: `Calculate Your Office Work Cost` to `/invoicing-delay-cash-flow-calculator`.
 - Frame Workflow Audit as the next step after the calculator, not the main CTA in the calculator preview.
 - Keep motion minimal and non-essential.

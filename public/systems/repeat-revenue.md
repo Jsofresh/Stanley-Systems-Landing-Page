@@ -17,4 +17,4 @@ Best-fit problems:
 - repeat work going to competitors
 - customer follow-up depending on memory
 
-Start with the Cash Flow Assessment: https://stanley-systems.com/workflow-audit
+Get the Office Process Assessment: https://stanley-systems.com/workflow-audit

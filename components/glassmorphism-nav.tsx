@@ -132,7 +132,7 @@ export function GlassmorphismNav() {
                 href={calculatorHref}
                 data-analytics-event="calculator_cta_clicked"
                 data-analytics-source="site_nav"
-                data-cta-label="Calculate my revenue leak"
+                data-cta-label="Calculate my office work cost"
                 data-cta-location="desktop_nav_calculator"
                 className="inline-flex min-w-[180px] whitespace-nowrap items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-7 py-2.5 text-[15px] font-semibold text-white shadow-[0_12px_28px_rgba(21,128,61,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#116832]"
               >
@@ -182,12 +182,12 @@ export function GlassmorphismNav() {
                   href={calculatorHref}
                   data-analytics-event="calculator_cta_clicked"
                   data-analytics-source="site_nav"
-                  data-cta-label="Calculate my revenue leak"
+                  data-cta-label="Calculate my office work cost"
                   data-cta-location="mobile_nav_calculator"
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(21,128,61,0.16)] transition-all duration-200 hover:bg-[#116832]"
                   onClick={() => setIsOpen(false)}
                 >
-                  Calculate my revenue leak
+                  Calculate my office work cost
                 </a>
               </div>
             </div>

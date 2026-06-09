@@ -18,15 +18,15 @@ Created:
 This doc captures the final ladder and copy/funnel rules:
 
 - Free Money Leak Calculator
-- $97 Cash Flow Assessment
+- $97 Office Process Assessment
 - $1,500 Systems Installation Sprint
 - Monthly Control Plan only after the Systems Installation Sprint, priced $147–$297/month based on systems/automations built and monitored
-- Cash Flow Assessment gives the full fix list for every money leak found
-- $97 Cash Flow Assessment becomes a $194 credit toward the Sprint
+- Office Process Assessment gives the full fix list for every money leak found
+- $97 Office Process Assessment becomes a $194 credit toward the Sprint
 - Systems Installation Sprint positioning: “Install the systems your business needs most.”
 - Systems pages must convey that customers can choose individual automations from Cashflow Control or Repeat Revenue and that the systems work best together
 - “How the Assessment Works” should become its own education page, while main CTAs stay conversion-focused
-- Contact language: “Start with the Cash Flow Assessment. Stanley Systems finds the leaks, gives you the fix list, and can build the systems your business needs next.”
+- Contact language: “Get the Office Process Assessment. Stanley Systems finds the leaks, gives you the fix list, and can build the systems your business needs next.”
 
 ## 2. Live/source reconciliation findings
 
@@ -37,7 +37,7 @@ Live scan:
 - No `Workflow Audit`
 - No `Monthly Control`
 - No `fix the first one`
-- Contains `Cash Flow Assessment`
+- Contains `Office Process Assessment`
 
 Source findings:
 - `components/home/cash-flow-homepage.tsx` hero headline already matches:
@@ -63,7 +63,7 @@ Live scan found active stale language that conflicts with the final ladder:
 
 Live snippet examples:
 - `Find the money leak. Fix the first one. Keep it under control.`
-- `free calculator, $97 Cash Flow Assessment, $1,500 recovery sprint, then monthly control...`
+- `free calculator, $97 Office Process Assessment, $1,500 recovery sprint, then monthly control...`
 - `Money Leak Recovery Sprint Start fixing the leak that costs the most...`
 
 Source findings:
@@ -74,7 +74,7 @@ Source findings:
   - yearly equivalents and install fees
 - `lib/pricing/offers.ts` still treats post-assessment offers as direct-purchase system packages.
 - `components/pricing/PricingHero.tsx` says:
-  - `Start with the Cash Flow Assessment if you want Stanley Systems to find the first leak before you choose a system...`
+  - `Get the Office Process Assessment if you want Stanley Systems to find the first leak before you choose a system...`
 - `components/pricing/PricingCTA.tsx` still says:
   - `which money leak is worth fixing first`
 - Pricing contains calculator/free-calculator framing and a money-leak checks form; this should be reduced so pricing focuses on buying/pricing.
@@ -83,7 +83,7 @@ Conclusion:
 - Pricing needs the largest structural correction.
 - Live has newer/staler copy that source scan does not fully show (`Money Leak Recovery Sprint` live but not in source scan). Before any deploy, implementation must patch source to the final ladder and verify live does not reintroduce the old sprint/recovery language.
 
-### Cash Flow Assessment `/workflow-audit`
+### Office Process Assessment `/workflow-audit`
 
 Live scan:
 - `Money Leak Recovery Sprint` appears live.
@@ -91,10 +91,10 @@ Live scan:
 - `Systems Installation Sprint` does not appear live.
 
 Live snippet:
-- `The $97 Cash Flow Assessment counts as $194 toward the Money Leak Recovery Sprint...`
+- `The $97 Office Process Assessment counts as $194 toward the Money Leak Recovery Sprint...`
 
 Source findings:
-- `app/workflow-audit/page.tsx` is the current Cash Flow Assessment page behind the internal `/workflow-audit` route.
+- `app/workflow-audit/page.tsx` is the current Office Process Assessment page behind the internal `/workflow-audit` route.
 - It contains useful assessment structure, but some copy conflicts with the new source of truth:
   - deliverable says `A short list of what to fix first`; should become full fix list for every money leak found.
   - pricing section says `which paid fix should come first`; should avoid making this sound like one fix only.
@@ -110,7 +110,7 @@ Live scan:
 - `Systems Installation Sprint` does not appear live.
 
 Live snippet examples:
-- `Start with the $97 Cash Flow Assessment... counts as $194 toward the Money Leak Recovery Sprint.`
+- `Start with the $97 Office Process Assessment... counts as $194 toward the Money Leak Recovery Sprint.`
 - `Keep Cashflow Control running... Ongoing control Cashflow Control $197/mo Monthly control.`
 
 Source findings:
@@ -118,7 +118,7 @@ Source findings:
   - `Buy Cashflow Control`
 - It has a direct `PackagePricingGrid` with Cashflow monthly/yearly cards.
 - It frames the question as `Is this the right first fix?`
-- It says `Buy the $97 Cash Flow Assessment and credit it toward the system`, but the new rule is $97 assessment → $194 Sprint credit.
+- It says `Buy the $97 Office Process Assessment and credit it toward the system`, but the new rule is $97 assessment → $194 Sprint credit.
 - It does not heavily convey that customers can choose individual automations from either system and that the Sprint can cover fixes beyond Cashflow Control.
 
 ### Repeat Revenue `/systems/repeat-revenue`
@@ -130,7 +130,7 @@ Live scan:
 - `Systems Installation Sprint` does not appear live.
 
 Live snippet examples:
-- `$97 Cash Flow Assessment counts as $194 toward the Money Leak Recovery Sprint...`
+- `$97 Office Process Assessment counts as $194 toward the Money Leak Recovery Sprint...`
 - `Repeat Revenue $297/mo Monthly control.`
 
 Source findings:
@@ -156,11 +156,11 @@ Source findings:
 
 Live scan:
 - Does not show `Money Leak Recovery Sprint`, `Monthly Control`, or `fix the first one`.
-- Contains `Cash Flow Assessment`.
+- Contains `Office Process Assessment`.
 
 Source findings:
 - `components/contact-router.tsx` currently says:
-  - `The Cash Flow Assessment is the paid diagnostic first step. Stanley Systems checks where money is being lost, which leak should be fixed first, and whether Cashflow Control, Repeat Revenue, both, or neither is the right next move.`
+  - `The Office Process Assessment is the paid diagnostic first step. Stanley Systems checks where money is being lost, which leak should be fixed first, and whether Cashflow Control, Repeat Revenue, both, or neither is the right next move.`
 - This should be simplified to the approved contact language.
 - It should not imply Monthly Control is a standalone next step.
 
@@ -170,8 +170,8 @@ Source findings:
 - `components/hero-section.tsx` nav group has:
   - label: `How the assessment works`
   - href: `/workflow-audit`
-- This should route to a new dedicated detailed Cash Flow Assessment education page.
-- Existing conversion CTAs can still point to the Cash Flow Assessment checkout/page path; do not route all conversion CTAs to the education page by mistake.
+- This should route to a new dedicated detailed Office Process Assessment education page.
+- Existing conversion CTAs can still point to the Office Process Assessment checkout/page path; do not route all conversion CTAs to the education page by mistake.
 
 ## 3. Exact page-order implementation plan
 
@@ -203,14 +203,14 @@ Recommended plan:
 1. Create `app/how-the-assessment-works/page.tsx`.
 2. Page purpose: skeptical-buyer education, not the main conversion destination.
 3. Include sections:
-   - what the Cash Flow Assessment checks
+   - what the Office Process Assessment checks
    - what the buyer receives
    - how the full fix list works
    - how the assessment connects to the Systems Installation Sprint
    - how specific/custom fixes can be identified without listing every niche problem publicly
    - what happens if the buyer moves into the Sprint
 4. Keep CTAs clear:
-   - primary: `Start the Cash Flow Assessment`
+   - primary: `Get the Office Process Assessment`
    - secondary: `Run the free calculator` or `Ask one question`
 5. Do not use this page as the target for every CTA.
 
@@ -222,10 +222,10 @@ Files likely touched:
 
 Changes:
 1. In the Assessment nav group, change `How the assessment works` from `/workflow-audit` to `/how-the-assessment-works`.
-2. Keep `Cash Flow Assessment` nav/conversion item pointed to the conversion path.
+2. Keep `Office Process Assessment` nav/conversion item pointed to the conversion path.
 3. Keep calculator nav item pointed to `/invoicing-delay-cash-flow-calculator`.
 
-### D. Rework Cash Flow Assessment page
+### D. Rework Office Process Assessment page
 
 Files likely touched:
 - `app/workflow-audit/page.tsx`
@@ -234,7 +234,7 @@ Files likely touched:
 
 Changes:
 1. Keep `/workflow-audit` internal route unless a safer public route migration is explicitly approved.
-2. Public copy should say `Cash Flow Assessment`, not `Workflow Audit`.
+2. Public copy should say `Office Process Assessment`, not `Workflow Audit`.
 3. Replace `short list` language with full fix-list language.
 4. Remove/avoid over-explained DIY-vs-Stanley copy.
 5. Replace all live/source `Money Leak Recovery Sprint` references with `Systems Installation Sprint`.
@@ -251,7 +251,7 @@ Files likely touched:
 
 Changes on both pages:
 1. Replace direct buy hero CTAs with CTA structure like:
-   - primary: `Start the Cash Flow Assessment`
+   - primary: `Get the Office Process Assessment`
    - secondary: `Talk through the right system` / `Ask one question` / possibly `See the Sprint`
 2. Remove old monthly/yearly pricing cards from the page body.
 3. Transform pricing-card areas into CTA/bridge sections.
@@ -286,7 +286,7 @@ Changes:
    - only available after Systems Installation Sprint
    - based on systems/automations built and monitored
 6. Reduce Free Money Leak Calculator prominence to a small mention, if any.
-7. CTA labels for assessment should say `Start the Cash Flow Assessment`, not `Start $97 Assessment`.
+7. CTA labels for assessment should say `Get the Office Process Assessment`, not `Start $97 Assessment`.
 8. Keep internal checkout/payment identifiers stable unless Jaden explicitly approves payment link/routing changes.
 
 ### G. Rework Contact section/page language
@@ -297,7 +297,7 @@ Files likely touched:
 
 Approved contact language:
 
-> Start with the Cash Flow Assessment. Stanley Systems finds the leaks, gives you the fix list, and can build the systems your business needs next.
+> Get the Office Process Assessment. Stanley Systems finds the leaks, gives you the fix list, and can build the systems your business needs next.
 
 Changes:
 1. Replace noisy “which leak should be fixed first / whether Cashflow Control, Repeat Revenue, both, or neither” phrasing.
@@ -310,67 +310,67 @@ Changes:
 
 - Hero primary: `/invoicing-delay-cash-flow-calculator`
   - Label: `Start the free calculator`
-- Hero secondary: Cash Flow Assessment conversion path (`/workflow-audit` page or checkout depending existing intended flow)
-  - Label: `Cash Flow Assessment` / `Start the Cash Flow Assessment`
+- Hero secondary: Office Process Assessment conversion path (`/workflow-audit` page or checkout depending existing intended flow)
+  - Label: `Office Process Assessment` / `Get the Office Process Assessment`
 - Calculator section primary: `/invoicing-delay-cash-flow-calculator`
   - Label: `Start the free calculator`
-- Assessment section primary: Cash Flow Assessment conversion path
-  - Label: `Start the Cash Flow Assessment`
+- Assessment section primary: Office Process Assessment conversion path
+  - Label: `Get the Office Process Assessment`
 - Systems cards: system detail pages only, not direct checkout
   - `/systems/cashflow-control`
   - `/systems/repeat-revenue`
-- Final CTA primary: Cash Flow Assessment conversion path
-  - Label: `Start the Cash Flow Assessment`
+- Final CTA primary: Office Process Assessment conversion path
+  - Label: `Get the Office Process Assessment`
 
 ### Navigation
 
-- `Cash Flow Assessment`: `/workflow-audit` or approved public assessment conversion route
+- `Office Process Assessment`: `/workflow-audit` or approved public assessment conversion route
 - `How the Assessment Works`: `/how-the-assessment-works`
-- `Revenue Leak Calculator`: `/invoicing-delay-cash-flow-calculator`
+- `Office Work Cost Calculator`: `/invoicing-delay-cash-flow-calculator`
 - `Cashflow Control System`: `/systems/cashflow-control`
 - `Repeat Revenue System`: `/systems/repeat-revenue`
 - `Pricing`: `/pricing`
 - `Contact`: `/contact`
 
-### Cash Flow Assessment page
+### Office Process Assessment page
 
 - Primary CTA: Stripe/payment or assessment start path currently represented by `pricingPackageById.workflow_audit.stripePaymentLink.url`
-  - Label: `Start the Cash Flow Assessment`
+  - Label: `Get the Office Process Assessment`
 - Secondary education links: `/how-the-assessment-works`, `/contact?path=pre-buy`, `/invoicing-delay-cash-flow-calculator`
 - System links: detail pages only, not default direct-buy package checkout unless Jaden approves that behavior.
 
 ### How the Assessment Works page
 
-- Primary CTA: Start Cash Flow Assessment
+- Primary CTA: Start Office Process Assessment
 - Secondary CTA: Run free calculator
 - Optional CTA: Ask one question before buying
 
 ### Cashflow Control page
 
-- Primary CTA: Start Cash Flow Assessment
+- Primary CTA: Start Office Process Assessment
 - Secondary CTA: Ask one question / talk through the right system
 - Internal links: Repeat Revenue page and Pricing page as supporting routes
 - Remove direct `Buy Cashflow Control` as the main CTA unless Jaden re-approves direct purchase.
 
 ### Repeat Revenue page
 
-- Primary CTA: Start Cash Flow Assessment
+- Primary CTA: Start Office Process Assessment
 - Secondary CTA: Ask one question / talk through the right system
 - Internal links: Cashflow Control page and Pricing page as supporting routes
 - Remove direct `Buy Repeat Revenue` as the main CTA unless Jaden re-approves direct purchase.
 
 ### Pricing page
 
-- Card/section 1: Cash Flow Assessment
-  - CTA: `Start the Cash Flow Assessment`
+- Card/section 1: Office Process Assessment
+  - CTA: `Get the Office Process Assessment`
 - Card/section 2: Systems Installation Sprint
-  - CTA: `Start the Cash Flow Assessment` or `Talk through the Sprint` depending final conversion flow
+  - CTA: `Get the Office Process Assessment` or `Talk through the Sprint` depending final conversion flow
 - Card/section 3: Monthly Control Plan
   - CTA should not be direct checkout; should state available after Sprint.
 
 ### Contact page
 
-- Assessment path: Cash Flow Assessment start/checkout
+- Assessment path: Office Process Assessment start/checkout
 - Pre-buy path: `/contact?path=pre-buy`
 - Already bought path: `/audit-intake`
 
@@ -419,7 +419,7 @@ Live routes without these stale hits in the checked terms:
 - `components/pricing-section.tsx` and `components/calculator-path-section.tsx` contain older CTA labels; verify whether these components are mounted before editing.
 
 `$97` in CTA/context:
-- `components/mobile-sticky-cta.tsx` contains `ctaLabel="Start $97 Assessment"` and visible `Start $97`; should become `Start Assessment` / `Cash Flow Assessment` if still mounted.
+- `components/mobile-sticky-cta.tsx` contains `ctaLabel="Start $97 Assessment"` and visible `Start $97`; should become `Start Assessment` / `Office Process Assessment` if still mounted.
 - Multiple source files use `$97` correctly as price/credit context; do not remove every `$97` blindly.
 
 `fix / first fix / first leak` family:
@@ -455,7 +455,7 @@ Forbidden DIY/over-explainer strings:
 
 3. **Route naming — Jaden decision captured.** Create the new education route at `/how-the-assessment-works`. Leave `/workflow-audit` as the existing assessment conversion/internal route unless Jaden later approves a route migration.
 
-4. **Both Systems page role — recommended decision.** Do not keep it as a direct-buy package pricing page. Keep `/systems/both-systems` as a supporting “work best together” bridge page for now because it solves a real buyer-confusion problem: Cashflow Control and Repeat Revenue can be chosen individually, but the best outcome often comes from using them together. The page should explain how the systems work in tandem, link to each system page, and drive users to the Cash Flow Assessment / Systems Installation Sprint. Remove package pricing cards and direct “Buy Both” checkout behavior. If later it feels redundant after implementation, de-emphasize it in nav rather than deleting the route.
+4. **Both Systems page role — recommended decision.** Do not keep it as a direct-buy package pricing page. Keep `/systems/both-systems` as a supporting “work best together” bridge page for now because it solves a real buyer-confusion problem: Cashflow Control and Repeat Revenue can be chosen individually, but the best outcome often comes from using them together. The page should explain how the systems work in tandem, link to each system page, and drive users to the Office Process Assessment / Systems Installation Sprint. Remove package pricing cards and direct “Buy Both” checkout behavior. If later it feels redundant after implementation, de-emphasize it in nav rather than deleting the route.
 
 5. **Monthly Control exact tiers are not specified.** Jaden approved range `$147–$297/mo`, but not exact breakpoints. Implementation should state range only unless Jaden provides tiers.
 

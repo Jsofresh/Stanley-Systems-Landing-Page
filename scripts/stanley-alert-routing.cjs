@@ -136,7 +136,7 @@ function buildStanleyTelegramMessage(input, options = {}) {
 
   if (kind === "cash_flow_assessment_application" || src.form_type === "cash_flow_assessment_application" || kind === "contact_form") {
     return prefix + [
-      "🟢 Cash Flow Assessment application",
+      "🟢 Office Process Assessment application",
       `Name: ${safe(src, ["name"], "Not provided")}`,
       `Company: ${safe(src, ["company", "business"], "Not provided")}`,
       `Email: ${safe(src, ["email"], "Not provided")}`,

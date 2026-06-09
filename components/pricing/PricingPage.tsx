@@ -50,10 +50,10 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
             Start by finding where money is getting stuck.
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">
-            The Cash Flow Assessment shows where cash, customers, billing, follow-up, reviews, referrals, and repeat work are getting stuck. The Sprint builds the approved billing, follow-up, review, referral, or repeat-customer systems first.
+            We map the office work your business should not have to pay for anymore — then show what to automate, remove, restructure, or delegate. The Sprint installs the control layer on top of your existing software and office systems.
           </p>
           <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-            <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <Link href="/workflow-audit" className={greenButton}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
             <Link href="/systems-installation-sprint" className={lightButton}>See how the Sprint works</Link>
           </div>
         </div>
@@ -63,17 +63,17 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
         <section aria-label="Offer ladder" className="grid gap-5 lg:grid-cols-[0.95fr_1.1fr_0.95fr]">
           <article className={card}>
             <StepLabel>Step 1: Diagnose</StepLabel>
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Cash Flow Assessment — $97</h2>
-            <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">Find what is slowing the business down before you pay for a build.</p>
+            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Office Process Assessment — $97</h2>
+            <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">We map the office work your business should not have to pay for anymore — then show what to automate, remove, restructure, or delegate.</p>
             <BulletList items={assessmentIncludes} />
-            <Link href="/workflow-audit" className={`mt-6 w-full ${greenButton}`}>Start the Cash Flow Assessment</Link>
+            <Link href="/workflow-audit" className={`mt-6 w-full ${greenButton}`}>Get the Office Process Assessment</Link>
           </article>
 
           <article className={`${card} border-2 border-[#15803D] bg-[linear-gradient(180deg,#ffffff_0%,#F4FBF5_100%)] shadow-[0_26px_80px_rgba(21,128,61,0.14)]`}>
             <StepLabel>Step 2: Build</StepLabel>
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Systems Installation Sprint — starts at $1,500</h2>
             <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">
-              Stanley Systems installs systems that help your business bill faster, follow up cleaner, request more reviews, create more referrals, bring past customers back, and keep cash moving.
+              In two weeks, we install the Stanley Systems control layer on top of your existing software — removing costly manual office work from billing, follow-up, customer records, and software handoffs.
             </p>
             <BulletList items={sprintIncludes} />
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
@@ -92,8 +92,8 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
         </section>
 
         <section className="rounded-[1.4rem] border border-[#DDEBE2] bg-white px-5 py-5 text-center shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
-          <p className="text-base font-bold text-[#334B60]">Not sure where to start? Start with the Cash Flow Assessment.</p>
-          <Link href="/workflow-audit" className={`mt-4 ${greenButton}`}>Start the Cash Flow Assessment</Link>
+          <p className="text-base font-bold text-[#334B60]">Not sure where to start? Get the Office Process Assessment.</p>
+          <Link href="/workflow-audit" className={`mt-4 ${greenButton}`}>Get the Office Process Assessment</Link>
         </section>
       </div>
     </main>

@@ -44,7 +44,7 @@ Stanley Systems helps service business owners fix those leaks with installed wor
 The current public ladder is:
 
 1. Free calculator: estimate how much cash is being delayed or lost through invoicing and workflow drag. URL: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
-2. Cash Flow Assessment: a $97 assessment that maps the office leaks and shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first. URL: https://stanley-systems.com/workflow-audit
+2. Office Process Assessment: a $97 assessment that maps the office leaks and shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first. URL: https://stanley-systems.com/workflow-audit
 3. Systems Installation Sprint: a $1,500 focused installation sprint that turns the assessment into installed systems your team can use. URL: https://stanley-systems.com/systems-installation-sprint
 4. Optional ongoing control: for businesses that want Stanley Systems to keep improving, monitoring, and controlling the installed office system after the sprint.
 
@@ -84,7 +84,7 @@ Typical problems:
 
 Canonical URL: https://stanley-systems.com/systems-installation-sprint
 
-The Systems Installation Sprint is the build phase after the Cash Flow Assessment. Stanley Systems builds, tests, documents, and hands off the approved systems so the team can use them. The sprint can install Cashflow Control, Repeat Revenue, both, or a scoped mix of billing, follow-up, review, referral, or repeat-customer systems based on the assessment.
+The Systems Installation Sprint is the build phase after the Office Process Assessment. Stanley Systems builds, tests, documents, and hands off the approved systems so the team can use them. The sprint can install Cashflow Control, Repeat Revenue, both, or a scoped mix of billing, follow-up, review, referral, or repeat-customer systems based on the assessment.
 
 ## AI-Assisted Office Automation Positioning
 
@@ -116,7 +116,7 @@ Stanley Systems is best for service business owners with real work and real cust
 
 ### What should a buyer start with?
 
-Start with the free calculator or the $97 Cash Flow Assessment. The assessment identifies where the leak is and what should be built first.
+Start with the free calculator or the $97 Office Process Assessment. The assessment identifies where the leak is and what should be built first.
 
 ### What happens after the assessment?
 
@@ -134,7 +134,7 @@ Stanley Systems uses practical AI-assisted office automation where it helps the 
 
 - Home: https://stanley-systems.com/
 - Free calculator: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
-- Cash Flow Assessment: https://stanley-systems.com/workflow-audit
+- Office Process Assessment: https://stanley-systems.com/workflow-audit
 - Pricing: https://stanley-systems.com/pricing
 - Systems: https://stanley-systems.com/systems
 - Cashflow Control: https://stanley-systems.com/systems/cashflow-control
@@ -147,4 +147,4 @@ Stanley Systems uses practical AI-assisted office automation where it helps the 
 
 ## Contact Path
 
-The canonical contact URL is https://stanley-systems.com/contact. Buyers ready to start can use the Cash Flow Assessment path at https://stanley-systems.com/workflow-audit.
+The canonical contact URL is https://stanley-systems.com/contact. Buyers ready to start can use the Office Process Assessment path at https://stanley-systems.com/workflow-audit.

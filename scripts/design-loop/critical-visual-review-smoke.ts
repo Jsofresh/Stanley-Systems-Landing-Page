@@ -380,8 +380,8 @@ function runCase(item: SmokeCase) {
     sections: [
       {
         section_id: sectionId,
-        purpose: item.name === "public_copy_guardrail_blocks" ? "Hermes Cash Flow Assessment copy focused on collected revenue." : "Cash Flow Assessment section focused on collected revenue and owner relief.",
-        offer: "Cash Flow Assessment",
+        purpose: item.name === "public_copy_guardrail_blocks" ? "Hermes Office Process Assessment copy focused on collected revenue." : "Office Process Assessment section focused on collected revenue and owner relief.",
+        offer: "Office Process Assessment",
         route: "/",
         text_path: textPath,
         screenshots,
@@ -391,7 +391,7 @@ function runCase(item: SmokeCase) {
   })
   writeJson(textPath, {
     section_id: sectionId,
-    text: "Cash Flow Assessment section focused on collected revenue and owner relief.",
+    text: "Office Process Assessment section focused on collected revenue and owner relief.",
     viewport_metadata: viewportMetadata,
   })
 
@@ -437,7 +437,7 @@ function runWrapperSmoke() {
     packet_version: "critical-visual-review-v1",
     run_id: manifest.run_id,
     section_id: sectionId,
-    section_purpose: "Cash Flow Assessment section focused on collected revenue and owner relief.",
+    section_purpose: "Office Process Assessment section focused on collected revenue and owner relief.",
     screenshots: {
       desktop_after: desktop,
       mobile_after: mobile,
@@ -462,7 +462,7 @@ function runWrapperSmoke() {
       mandatory_questions: ["Is the section visually credible?"],
       visual_rules: ["Use Stanley Systems visual standards."],
       anti_ai_slop_rules: ["Reject generic AI-looking filler."],
-      approved_offer_copy_guardrails: ["Cash Flow Assessment is the first step."],
+      approved_offer_copy_guardrails: ["Office Process Assessment is the first step."],
     },
   })
 
@@ -574,7 +574,7 @@ printf '%s\\n' '${fixtureReviewJson.replace(/'/g, "'\\''")}'
       packet_version: "critical-visual-review-v1",
       run_id: manifest.run_id,
       section_id: sectionId,
-      section_purpose: "Cash Flow Assessment section focused on collected revenue and owner relief.",
+      section_purpose: "Office Process Assessment section focused on collected revenue and owner relief.",
       screenshots: {
         desktop_after: join(manifest.run_dir, "missing-desktop.png"),
         mobile_after: mobile,
@@ -651,11 +651,11 @@ function mobileQa(
       classed_element_count: 21,
       anchor_count: 1,
       h1_texts: ["Find the money leaks hiding inside your office workflow."],
-      h2_texts: ["Cash Flow Assessment"],
+      h2_texts: ["Office Process Assessment"],
     },
     links: [
       {
-        text: "Book a Cash Flow Assessment",
+        text: "Book an Office Process Assessment",
         href: "/contact",
         color: "rgb(255, 255, 255)",
         text_decoration_line: "none",
@@ -667,9 +667,9 @@ function mobileQa(
       },
     ],
     copy: {
-      text: "Cash Flow Assessment. Find the money leaks hiding inside your office workflow. Book a Cash Flow Assessment.",
+      text: "Office Process Assessment. Find the money leaks hiding inside your office workflow. Book an Office Process Assessment.",
       h1_texts: ["Find the money leaks hiding inside your office workflow."],
-      major_headlines: ["Find the money leaks hiding inside your office workflow.", "Cash Flow Assessment"],
+      major_headlines: ["Find the money leaks hiding inside your office workflow.", "Office Process Assessment"],
     },
   }
 
@@ -694,7 +694,7 @@ function mobileQa(
       ...base,
       links: [
         {
-          text: "Book a Cash Flow Assessment",
+          text: "Book an Office Process Assessment",
           href: "/contact",
           color: "rgb(0, 0, 238)",
           text_decoration_line: "underline",
@@ -844,7 +844,7 @@ function fixturePacket(sectionId: string): CriticalReviewPacket {
     packet_version: "critical-visual-review-v1",
     run_id: manifest.run_id,
     section_id: sectionId,
-    section_purpose: "Cash Flow Assessment section focused on collected revenue and owner relief.",
+    section_purpose: "Office Process Assessment section focused on collected revenue and owner relief.",
     screenshots: {
       desktop_after: desktop,
       mobile_after: mobile,

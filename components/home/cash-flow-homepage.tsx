@@ -61,7 +61,7 @@ const mobileHeroSlideshowImages = [
 const uploadedHomeImages = {
   calculator: {
     src: "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-consultation-laptop-meeting.jpg",
-    alt: "Cash Flow Calculator estimate shown on a laptop during a cash-flow consultation",
+    alt: "Office Work Cost Calculator estimate shown on a laptop during a cash-flow consultation",
     width: 1280,
     height: 853,
   },
@@ -73,7 +73,7 @@ const uploadedHomeImages = {
   },
   assessment: {
     src: "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-report-leak-found-6200-mo.jpg",
-    alt: "Cash Flow Assessment report showing a 6200 dollar monthly leak and build priority",
+    alt: "Office Process Assessment report showing a 6200 dollar monthly leak and build priority",
     width: 1024,
     height: 1280,
   },
@@ -275,7 +275,7 @@ function CalculatorLaunchSection() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_82%_18%,rgba(83,217,134,0.22),transparent_30%),linear-gradient(90deg,#071422_0%,#0b1d30_100%)]" />
       <div className="mx-auto flex max-w-[88rem] flex-col items-center justify-between gap-5 rounded-[1.7rem] border border-white/12 bg-white/[0.06] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.25)] md:p-6 lg:flex-row">
         <h2 className="whitespace-normal text-center text-[clamp(2rem,3.2vw,3.7rem)] font-extrabold leading-[0.95] tracking-[-0.025em] lg:whitespace-nowrap lg:text-left">
-          Try the free Cash Flow Calculator
+          Try the free Office Work Cost Calculator
         </h2>
         <CTALink
           href={calculatorHref}
@@ -320,7 +320,7 @@ function CalculatorSpine() {
       <div className="mx-auto grid max-w-[88rem] gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
           <h2 className="max-w-[680px] text-balance text-[clamp(2.15rem,4.4vw,4.75rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-[#071D3A]">
-            Try the free Cash Flow Calculator
+            Try the free Office Work Cost Calculator
           </h2>
 
           <div className="mt-5 grid gap-2.5">
@@ -358,10 +358,10 @@ function CalculatorSpine() {
               href={assessmentHref}
               kind="systems"
               location="home_calculator_spine_secondary"
-              ctaLabel="Start the Cash Flow Assessment"
+              ctaLabel="Get the Office Process Assessment"
               className={`${lightButton} !hidden whitespace-nowrap sm:!inline-flex`}
             >
-              Start the Cash Flow Assessment
+              Get the Office Process Assessment
             </CTALink>
           </div>
           <p className="mt-4 text-sm font-semibold text-[#607588]">
@@ -410,10 +410,10 @@ function LeakTypesSection() {
             href={assessmentHref}
             kind="systems"
             location="home_leaks_secondary"
-            ctaLabel="Start the Cash Flow Assessment"
+            ctaLabel="Get the Office Process Assessment"
             className={`${lightButton} min-h-[58px] px-9 text-[1.08rem]`}
           >
-            Cash Flow Assessment
+            Office Process Assessment
           </CTALink>
         </div>
       </div>
@@ -432,7 +432,7 @@ function AssessmentSection() {
       <div className="mx-auto grid max-w-[88rem] gap-5 lg:grid-cols-[1fr_0.66fr] lg:items-center">
         <div>
           <h2 className="max-w-[720px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">
-            Start with the Cash Flow Assessment.
+            Get the Office Process Assessment.
           </h2>
           <p className="mt-4 max-w-[620px] text-base font-semibold leading-7 text-white/72">
             Stanley Systems shows where money is being missed, what it likely
@@ -447,12 +447,12 @@ function AssessmentSection() {
               analyticsEvent="audit_checkout_clicked"
               analyticsSource="homepage"
               packageId="workflow_audit"
-              packageName="Cash Flow Assessment"
+              packageName="Office Process Assessment"
               billingPeriod="one_time"
-              ctaLabel="Start the Cash Flow Assessment"
+              ctaLabel="Get the Office Process Assessment"
               className={greenButton}
             >
-              Start the Cash Flow Assessment{" "}
+              Get the Office Process Assessment{" "}
               <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
             <CTALink
@@ -517,8 +517,8 @@ function SprintSection() {
             <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="How the Sprint works" className={`${lightButton} px-8`}>
               How the Sprint works <ArrowRight className="ml-2 h-4 w-4" />
             </CTALink>
-            <CTALink href={assessmentHref} kind="systems" location="home_sprint_secondary" ctaLabel="Start the Cash Flow Assessment" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">
-              Start the Cash Flow Assessment
+            <CTALink href={assessmentHref} kind="systems" location="home_sprint_secondary" ctaLabel="Get the Office Process Assessment" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">
+              Get the Office Process Assessment
             </CTALink>
           </div>
         </div>
@@ -575,10 +575,10 @@ function PackageDemosSection() {
                     href={assessmentHref}
                     kind="systems"
                     location={`home_package_${demo.priceId}_assessment`}
-                    ctaLabel="Cash Flow Assessment"
+                    ctaLabel="Office Process Assessment"
                     className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d5e5da] bg-white px-5 text-sm font-extrabold text-[#116832] transition hover:bg-[#f4fbf6]"
                   >
-                    Start the Cash Flow Assessment
+                    Get the Office Process Assessment
                   </CTALink>
                   <p className="mt-3 rounded-full bg-[#eaf7ee] px-3 py-1 text-center text-xs font-extrabold text-[#15803D]">
                     {price?.setupFeeDisplay} · Assessment credit available
@@ -691,17 +691,17 @@ function FinalCashFlowCTA() {
           Stop letting cash, follow-up, and good customers slip through the cracks.
         </h2>
         <p className="mx-auto mt-6 max-w-[720px] text-lg font-semibold leading-8 text-white/70">
-          Start with the Cash Flow Assessment when you want the full map. If you are not ready yet, run the free calculator first.
+          Get the Office Process Assessment when you want the full map. If you are not ready yet, run the free calculator first.
         </p>
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <CTALink
             href={assessmentHref}
             kind="systems"
             location="home_final_primary"
-            ctaLabel="Start the Cash Flow Assessment"
+            ctaLabel="Get the Office Process Assessment"
             className={greenButton}
           >
-            Start the Cash Flow Assessment{" "}
+            Get the Office Process Assessment{" "}
             <ArrowRight className="ml-2 h-4 w-4" />
           </CTALink>
           <CTALink
@@ -756,10 +756,10 @@ export function CashFlowHomepage() {
                 href={assessmentHref}
                 kind="systems"
                 location="home_hero_secondary"
-                ctaLabel="Start the Cash Flow Assessment"
+                ctaLabel="Get the Office Process Assessment"
                 className={darkGhostButton}
               >
-                Start the Cash Flow Assessment
+                Get the Office Process Assessment
               </CTALink>
             </div>
           </div>

@@ -53,9 +53,9 @@ const navGroups: MegaMenuGroup[] = [
     ],
     featured: {
       title: "Not sure where money is stuck?",
-      copy: "Start with the Cash Flow Assessment before buying a system.",
+      copy: "Get the Office Process Assessment before buying a system.",
       href: "/workflow-audit",
-      cta: "Start with the Cash Flow Assessment",
+      cta: "Get the Office Process Assessment",
     },
   },
   {
@@ -79,7 +79,7 @@ const navGroups: MegaMenuGroup[] = [
       title: "Busy team, messy handoff?",
       copy: "Stanley Systems works around the tools your crews already use.",
       href: "/workflow-audit",
-      cta: "Start the Cash Flow Assessment",
+      cta: "Get the Office Process Assessment",
     },
   },
   {
@@ -91,7 +91,7 @@ const navGroups: MegaMenuGroup[] = [
     columnsClass: "grid-cols-1",
     items: [
       { label: "Free Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the assessment." },
-      { label: "Cash Flow Assessment", href: "/workflow-audit", description: "Get what is broken, what it costs, and how to fix it." },
+      { label: "Office Process Assessment", href: "/workflow-audit", description: "Get what is broken, what it costs, and how to fix it." },
       { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Have Stanley Systems build the agreed systems." },
       { label: "How the Assessment Works", href: "/how-the-assessment-works", description: "See what gets checked before starting." },
     ],
@@ -100,7 +100,7 @@ const navGroups: MegaMenuGroup[] = [
     label: "Pricing",
     href: "/pricing",
     eyebrow: "Diagnose, build, maintain",
-    summary: "Start with the assessment, build during the Sprint, and keep systems working after launch.",
+    summary: "Get the Office Process Assessment, build during the Sprint, and keep systems working after launch.",
     widthClass: "w-[min(420px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
@@ -117,7 +117,7 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(440px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Revenue Leak Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate where cash and follow-up are slipping." },
+      { label: "Office Work Cost Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate where cash and follow-up are slipping." },
       { label: "Case Notes", href: "/stanley-systems-case-study", description: "See how workflow gaps turn into owner-time problems." },
       { label: "Blog", href: "/blog", description: "Plain-English notes on cashflow and repeat revenue." },
       { label: "Contact", href: "/contact", description: "Send the workflow problem straight to Stanley Systems." },
@@ -359,10 +359,10 @@ export function SiteHeader() {
               href="/workflow-audit"
               kind="systems"
               location="hero_nav_audit"
-              ctaLabel="Start the Cash Flow Assessment"
+              ctaLabel="Get the Office Process Assessment"
               className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-3 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-4"
             >
-              Start the Cash Flow Assessment
+              Get the Office Process Assessment
             </CTALink>
             <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How the Assessment Works</a>
           </div>
@@ -464,10 +464,10 @@ export function SiteHeader() {
                 href="/workflow-audit"
                 kind="systems"
                 location="hero_mobile_nav_audit"
-                ctaLabel="Start the Cash Flow Assessment"
+                ctaLabel="Get the Office Process Assessment"
                 className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
               >
-                Start the Cash Flow Assessment
+                Get the Office Process Assessment
               </CTALink>
             </div>
           </div>
@@ -484,7 +484,7 @@ export function HeroSection() {
       data-audit-section="home.hero"
       data-nav-theme="dark"
       data-audit-priority="5"
-      data-audit-offer="Cash Flow Assessment"
+      data-audit-offer="Office Process Assessment"
       data-audit-purpose="Make the owner understand that Stanley Systems finds boring money leaks and builds the system that stops them."
       className="relative isolate overflow-hidden bg-[#071422] pt-[100px] text-white"
     >
@@ -520,10 +520,10 @@ export function HeroSection() {
                 location="home_hero_primary"
                 analyticsEvent="audit_checkout_clicked"
                 analyticsSource="homepage_hero"
-                ctaLabel="Start the Cash Flow Assessment"
+                ctaLabel="Get the Office Process Assessment"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                Start the Cash Flow Assessment
+                Get the Office Process Assessment
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
               <a

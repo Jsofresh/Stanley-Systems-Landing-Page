@@ -31,7 +31,7 @@ type Finding = {
 }
 
 const BANNED_TERMS = ["AI-powered", "AI first", "Stanley H", "Hermes", "Codex", "OpenClaw", "n8n", "QBO API", "HCP API"]
-const APPROVED_OFFERS = ["Cash Flow Assessment", "Cash Flow Collection System", "Repeat Revenue System"]
+const APPROVED_OFFERS = ["Office Process Assessment", "Cash Flow Collection System", "Repeat Revenue System"]
 
 await main(async (args) => {
   const manifest = loadManifest(String(args.run_id || ""))

@@ -6,7 +6,7 @@ import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "Who Stanley Systems Helps | Service Business Workflows",
-  description: "See which service businesses Stanley Systems helps most and when the Cash Flow Assessment is a good fit.",
+  description: "See which service businesses Stanley Systems helps most and when the Office Process Assessment is a good fit.",
 }
 
 const industries = [
@@ -33,7 +33,7 @@ export default function WhoStanleySystemsHelpsPage() {
             <h1 className="mt-4 max-w-5xl text-[2.3rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem] lg:text-[4.25rem]">Service businesses doing good work but losing money in the office.</h1>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">Stanley Systems is a fit when calls, estimates, invoices, follow-up, reviews, referrals, or past customers are costing money because the office process is too manual, slow, or easy to miss.</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
               <Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832]">Ask a question</Link>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function WhoStanleySystemsHelpsPage() {
               ))}
             </div>
             <div className="mt-6 rounded-2xl bg-[#F4FBF5] p-5 ring-1 ring-[#CFE8D5]">
-              <p className="text-sm font-semibold leading-6 text-[#536173]">If the team does field work, office work, billing, estimates, and repeat customer follow-up, the Cash Flow Assessment can show which leak matters first.</p>
+              <p className="text-sm font-semibold leading-6 text-[#536173]">If the team does field work, office work, billing, estimates, and repeat customer follow-up, the Office Process Assessment can show which leak matters first.</p>
             </div>
           </div>
         </div>

@@ -15,13 +15,13 @@ const greenButton = "inline-flex min-h-12 items-center justify-center rounded-fu
 const lightButton = "inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]"
 
 export const metadata: Metadata = {
-  title: "How the Cash Flow Assessment Works | Stanley Systems",
+  title: "How the Office Process Assessment Works | Stanley Systems",
   description:
     "See where office work is slowing down cash, customers, and follow-up before fixing the wrong thing.",
   alternates: { canonical: "https://stanley-systems.com/how-the-assessment-works" },
 }
 
-function AssessmentCheckout({ location, className = greenButton, children = "Start the Cash Flow Assessment" }: { location: string; className?: string; children?: ReactNode }) {
+function AssessmentCheckout({ location, className = greenButton, children = "Get the Office Process Assessment" }: { location: string; className?: string; children?: ReactNode }) {
   return (
     <CTALink
       href={assessment.stripePaymentLink.url}
@@ -32,7 +32,7 @@ function AssessmentCheckout({ location, className = greenButton, children = "Sta
       packageId={assessment.analyticsPackageId}
       packageName={assessment.publicName}
       billingPeriod="one_time"
-      ctaLabel={typeof children === "string" ? children : "Start the Cash Flow Assessment"}
+      ctaLabel={typeof children === "string" ? children : "Get the Office Process Assessment"}
       target="_blank"
       rel="noopener noreferrer"
       className={className}
@@ -54,7 +54,7 @@ const trustBullets = [
 const timeline = [
   {
     title: "Start the assessment",
-    body: "You start the paid Cash Flow Assessment. This is a real review of your office workflow, not a fake sales call.",
+    body: "You start the paid Office Process Assessment. This is a real review of your office workflow, not a fake sales call.",
   },
   {
     title: "Show how the office works now",
@@ -128,7 +128,7 @@ export default function HowAssessmentWorksPage() {
           <div className={`${shell} relative grid gap-8 lg:grid-cols-[0.98fr_1.02fr] lg:items-center`}>
             <div className="text-center lg:text-left">
               <h1 className="mx-auto max-w-5xl text-[2.15rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-[3.55rem] lg:mx-0 lg:text-[4.2rem]">
-                How the Cash Flow Assessment Works
+                How the Office Process Assessment Works
               </h1>
               <p className="mx-auto mt-5 max-w-3xl text-lg font-semibold leading-8 text-[#334B60] sm:text-xl lg:mx-0">
                 See where your office work is slowing down cash, customers, and follow-up before you spend money fixing the wrong thing.
@@ -138,7 +138,7 @@ export default function HowAssessmentWorksPage() {
               </p>
               <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
                 <AssessmentCheckout location="how_assessment_hero_primary">
-                  Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </AssessmentCheckout>
                 <a href="#assessment-output" className={lightButton}>See what you get</a>
               </div>
@@ -178,7 +178,7 @@ export default function HowAssessmentWorksPage() {
             <div>
               <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What you get from the assessment</h2>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-                The Cash Flow Assessment gives you a professional Stanley Systems document: the leaks, the cost, the workflow map, the data behind the estimate, the fix list, and the expected result of each fix.
+                The Office Process Assessment gives you a professional Stanley Systems document: the leaks, the cost, the workflow map, the data behind the estimate, the fix list, and the expected result of each fix.
               </p>
               <p className="mt-5 text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">You receive:</p>
             </div>
@@ -212,7 +212,7 @@ export default function HowAssessmentWorksPage() {
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Ready to find where the office work is costing you money?</h2>
               <div className="mt-5 flex justify-center">
                 <AssessmentCheckout location="how_assessment_final_primary">
-                  Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </AssessmentCheckout>
               </div>
             </div>

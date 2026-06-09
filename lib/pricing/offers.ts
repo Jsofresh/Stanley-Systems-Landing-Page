@@ -90,7 +90,7 @@ export type PricingCalculatorContext = {
 }
 
 const directPurchasePromises: Record<PricingPackageId, string> = {
-  workflow_audit: "Find the leak before you choose a system.",
+  workflow_audit: "Map the office work your business should not have to pay for anymore.",
   cashflow_control_monthly: "Stop finished work from sitting unpaid.",
   repeat_revenue_monthly: "Bring past customers back before they buy from someone else.",
   both_systems_monthly: "Stop the leak before the job and after the job.",
@@ -199,7 +199,7 @@ function priceRowsFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
     return [
       { label: "Assessment", value: pricingPackage.priceDisplay },
-      { label: "If you bought the Cash Flow Assessment first", value: "$97 monthly credit or $194 yearly credit after the assessment call" },
+      { label: "If you bought the Office Process Assessment first", value: "$97 monthly credit or $194 yearly credit after the assessment call" },
     ]
   }
 
@@ -212,7 +212,7 @@ function priceRowsFor(pricingPackage: PricingPackage) {
     {
       label: pricingPackage.billingPeriod === "yearly"
         ? "After assessment credit"
-        : "If you bought the Cash Flow Assessment first",
+        : "If you bought the Office Process Assessment first",
       value: pricingPackage.auditCreditDisplay,
     },
     { label: "First year after assessment credit", value: pricingPackage.firstYearCostAfterAuditCreditDisplay },
@@ -228,7 +228,7 @@ function priceNoteFor(pricingPackage: PricingPackage) {
   const setupCopy = pricingPackage.waivedSetup
     ? pricingPackage.waivedSetupDisplay
     : pricingPackage.setupFeeDisplay
-  const creditCopy = `${pricingPackage.auditCreditDisplay} assessment credit ${pricingPackage.billingPeriod === "yearly" ? "if you bought the Cash Flow Assessment first" : "if you bought the Cash Flow Assessment first"}`
+  const creditCopy = `${pricingPackage.auditCreditDisplay} assessment credit ${pricingPackage.billingPeriod === "yearly" ? "if you bought the Office Process Assessment first" : "if you bought the Office Process Assessment first"}`
   const savingsCopy = pricingPackage.savings ? ` ${pricingPackage.savings.display}.` : ""
 
   return `${pricingPackage.priceDisplay} + ${setupCopy}. ${creditCopy}. First year after assessment credit: ${pricingPackage.firstYearCostAfterAuditCreditDisplay}.${savingsCopy}`
@@ -282,10 +282,10 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
     checklist: directPurchaseChecklists[pricingPackage.id],
     demo: packageDemos[pricingPackage.id],
     helperLine: isAudit
-      ? "You leave with a clear money leak map and a recommendation: Cashflow Control System, Repeat Revenue System, both, or neither."
+      ? "You leave with a clear office work map and a recommendation: what to automate, remove, restructure, or delegate."
       : "After checkout, onboarding and fit, access, and scope review happen before the build begins.",
     scopeNote: isAudit
-      ? "If no clear fix is found for a qualified business, the Cash Flow Assessment fee is refunded."
+      ? "If no clear fix is found for a qualified business, the Office Process Assessment fee is refunded."
       : "Buying starts onboarding. The build begins after fit, access, and scope review. If this is not the right fit, Stanley Systems may refund, redirect, or pause before work begins.",
     cta: {
       label: href ? primaryCtaLabelFor(pricingPackage) : "Checkout paused",
@@ -306,23 +306,23 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
 
 export const workflowAuditOffer: WorkflowAuditOffer = {
   ...planFromPackage(pricingPackageById.workflow_audit),
-  title: "Cash Flow Assessment",
+  title: "Office Process Assessment",
   shortTitle: "Assessment",
-  promise: "Find the leak before you choose a system.",
-  description: "Stanley Systems finds where money is being dropped, what it likely costs, and which payment path fits next.",
+  promise: "Map the office work your business should not have to pay for anymore.",
+  description: "We map the office work your business should not have to pay for anymore — then show what to automate, remove, restructure, or delegate.",
   id: "workflow_audit",
   kind: "front_door_audit",
   contactPathOnly: false,
   cta: {
-    label: "Start the Cash Flow Assessment",
+    label: "Get the Office Process Assessment",
     action: "checkout",
     href: pricingPackageById.workflow_audit.stripePaymentLink.url,
   },
   guarantee: {
-    headline: "If Stanley Systems cannot find one clear money leak we can fix, you get your Cash Flow Assessment fee back.",
+    headline: "If Stanley Systems cannot find one clear money leak we can fix, you get your Office Process Assessment fee back.",
     qualificationCopy:
       "The guarantee applies to qualified service businesses with enough job, invoice, customer, call, estimate, or review volume for leaks to matter. Stanley Systems needs access to the relevant systems and a reachable decision maker or operations contact during the assessment.",
-    scopeCopy: "The refund applies to the Cash Flow Assessment fee only. It does not include a system build.",
+    scopeCopy: "The refund applies to the Office Process Assessment fee only. It does not include a system build.",
   },
 }
 
@@ -333,28 +333,28 @@ export const postAuditPlans: PricingPlan[] = pricingPackages
 export const auditCreditTerm: AuditCreditTerm = {
   status: "approved",
   copy:
-    "Bought the Cash Flow Assessment first? Use your assessment credit code at checkout. Monthly packages can receive a $97 assessment credit; yearly packages can receive a $194 assessment credit. The credit is valid once for 24 hours after the assessment call.",
+    "Bought the Office Process Assessment first? Use your assessment credit code at checkout. Monthly packages can receive a $97 assessment credit; yearly packages can receive a $194 assessment credit. The credit is valid once for 24 hours after the assessment call.",
   nonStackingCopy: "If the assessment is refunded because no clear fix is found, there is no build credit.",
 }
 
 export const pricingFAQItems: PricingFAQItem[] = [
   {
-    question: "Is the Cash Flow Assessment required before buying a package?",
+    question: "Is the Office Process Assessment required before buying a package?",
     answer:
-      "No. The Cash Flow Assessment is the paid first step when you want Stanley Systems to find the leak before you choose a system. If you already know which path you need, you can buy Cashflow Control System, Repeat Revenue System, or Both Systems directly when checkout is available. Direct purchase still starts onboarding, access review, fit review, and scope confirmation before the build begins.",
+      "No. The Office Process Assessment is the paid first step when you want Stanley Systems to map the office work your business should not have to pay for anymore. If you already know which path you need, you can buy Cashflow Control System, Repeat Revenue System, or Both Systems directly when checkout is available. Direct purchase still starts onboarding, access review, fit review, and scope confirmation before the build begins.",
   },
   {
-    question: "How does the Cash Flow Assessment credit work?",
+    question: "How does the Office Process Assessment credit work?",
     answer:
-      "If you buy the Cash Flow Assessment first, the assessment credit applies once when you buy a package within 24 hours after the assessment call. Monthly packages receive a $97 assessment credit. Yearly packages receive a $194 assessment credit and the installation fee is waived. If the assessment is refunded because no clear fix is found, no assessment credit or package credit is also owed.",
+      "If you buy the Office Process Assessment first, the assessment credit applies once when you buy a package within 24 hours after the assessment call. Monthly packages receive a $97 assessment credit. Yearly packages receive a $194 assessment credit and the installation fee is waived. If the assessment is refunded because no clear fix is found, no assessment credit or package credit is also owed.",
   },
   {
-    question: "What does the Cash Flow Assessment guarantee mean?",
+    question: "What does the Office Process Assessment guarantee mean?",
     answer:
-      "If your business qualifies and Stanley Systems cannot find one clear money leak it can reasonably help fix, you get the Cash Flow Assessment fee back. The refund applies to the Cash Flow Assessment fee only. It does not include a free system build, subscription fee, third-party cost, or package credit.",
+      "If your business qualifies and Stanley Systems cannot find one clear money leak it can reasonably help fix, you get the Office Process Assessment fee back. The refund applies to the Office Process Assessment fee only. It does not include a free system build, subscription fee, third-party cost, or package credit.",
   },
   {
-    question: "Who qualifies for the Cash Flow Assessment guarantee?",
+    question: "Who qualifies for the Office Process Assessment guarantee?",
     answer:
       "The guarantee is for active service businesses with enough real job, customer, billing, estimate, review, call, or follow-up activity to inspect. Stanley Systems also needs timely access to the relevant tools or records and a reachable decision maker or operations contact during the assessment.",
   },
@@ -381,11 +381,11 @@ export const pricingFAQItems: PricingFAQItem[] = [
   {
     question: "Do promotion codes or assessment credits always apply?",
     answer:
-      "Promotion code and assessment credit availability depends on the active checkout link and Stripe settings at the time of purchase. Assessment credit is available once only if you bought the Cash Flow Assessment first and buy a package within 24 hours after the assessment call.",
+      "Promotion code and assessment credit availability depends on the active checkout link and Stripe settings at the time of purchase. Assessment credit is available once only if you bought the Office Process Assessment first and buy a package within 24 hours after the assessment call.",
   },
   {
     question: "Can Stanley Systems work inside my current tools?",
     answer:
-      "Usually, yes. Stanley Systems aims to work inside the tools your business already uses when practical. Some tools, permissions, data quality issues, or platform rules may limit what can be implemented without a custom scope.",
+      "Usually, yes. Stanley Systems installs a control layer on top of your existing software and office systems. Some tools, permissions, data quality issues, or platform rules may limit what can be implemented without a custom scope.",
   },
 ]

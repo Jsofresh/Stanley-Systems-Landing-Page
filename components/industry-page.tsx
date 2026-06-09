@@ -160,8 +160,8 @@ export function IndustryPage({ slug }: { slug: IndustrySlug }) {
               <h1 className="max-w-5xl text-[2.45rem] font-semibold leading-[0.96] tracking-[-0.055em] text-[#071D3A] sm:text-[3.65rem] lg:text-[4.25rem]">{page.headline}</h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[#334B60]">{page.description}</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <CTALink href={assessment.stripePaymentLink.url} kind="checkout" location={`${slug}_industry_assessment`} analyticsEvent="audit_checkout_clicked" analyticsSource="industry_page" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start Cash Flow Assessment" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
-                  Start Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                <CTALink href={assessment.stripePaymentLink.url} kind="checkout" location={`${slug}_industry_assessment`} analyticsEvent="audit_checkout_clicked" analyticsSource="industry_page" packageId="workflow_audit" packageName="Office Process Assessment" billingPeriod="one_time" ctaLabel="Start Office Process Assessment" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
+                  Start Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </CTALink>
                 <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]">
                   See pricing
@@ -197,7 +197,7 @@ export function IndustryPage({ slug }: { slug: IndustrySlug }) {
           <div className={`${shell} grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start`}>
             <div>
               <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Which Stanley Systems package fits?</h2>
-              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Start with the leak you can already see. If you cannot name it yet, start with the Cash Flow Assessment.</p>
+              <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Start with the leak you can already see. If you cannot name it yet, start with the Office Process Assessment.</p>
             </div>
             <div className="grid gap-4">
               {page.systems.map((system) => (

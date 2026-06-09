@@ -70,7 +70,7 @@ export function RevenueLeakCalculatorPreview() {
         <div className="relative overflow-hidden rounded-[28px] border border-[#D7E7DC] bg-white shadow-[0_22px_56px_rgba(7,29,58,0.09)]">
           <Image
             src="/images/uploaded/homepage/held-back-revenue-audit.jpg"
-            alt="Held-back revenue assessment visual showing where money is getting stuck before the Cash Flow Assessment finds the leak."
+            alt="Held-back revenue assessment visual showing where money is getting stuck before the Office Process Assessment finds the leak."
             width={1280}
             height={960}
             className="h-auto w-full object-contain"

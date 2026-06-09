@@ -18,4 +18,4 @@ Best-fit businesses have some combination of:
 
 Stanley Systems is especially relevant for contractors, field service businesses, marine service businesses, and small service teams where the owner still feels the drag directly.
 
-Start with the Cash Flow Assessment: https://stanley-systems.com/workflow-audit
+Get the Office Process Assessment: https://stanley-systems.com/workflow-audit

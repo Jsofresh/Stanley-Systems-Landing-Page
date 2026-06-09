@@ -93,7 +93,7 @@ async function captureViewport(browser, viewport) {
   const textChecks = await page.evaluate(() => {
     const text = document.body.innerText;
     return {
-      cashFlowAssessment: text.includes("Cash Flow Assessment"),
+      cashFlowAssessment: text.includes("Office Process Assessment"),
       moneyLeftOnTable: text.includes("money left on the table"),
       stanleySystems: text.includes("Stanley Systems"),
       publicStanleyBareCount: (text.match(/\bStanley\b(?!\s+Systems)/g) || [])
@@ -144,7 +144,7 @@ async function captureViewport(browser, viewport) {
     );
   }
   if (!textChecks.cashFlowAssessment)
-    failures.push(`${viewport.name}: Cash Flow Assessment missing`);
+    failures.push(`${viewport.name}: Office Process Assessment missing`);
   if (!textChecks.moneyLeftOnTable)
     failures.push(`${viewport.name}: money left on the table missing`);
   if (!textChecks.stanleySystems)

@@ -9,7 +9,7 @@ await main(async (args) => {
   const second = await fetch(url).catch((error) => ({ status: 0, error: String(error) }) as any)
   const pm2 = runCmd("pm2", ["describe", "stanley-landing"], manifest.site_repo)
   const html = first.status ? await first.text().catch(() => "") : ""
-  const sectionProof = html.includes("data-audit-section") || html.includes("Cash Flow Assessment")
+  const sectionProof = html.includes("data-audit-section") || html.includes("Office Process Assessment")
   const status = first.status === 200 && second.status === 200 && sectionProof && !String(second.status).startsWith("502") ? "pass" : "fail"
   const report = {
     run_id: manifest.run_id,

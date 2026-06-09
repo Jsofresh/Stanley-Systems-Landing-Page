@@ -227,7 +227,7 @@ function PackagePricingCardView({
           analyticsEvent="audit_checkout_clicked"
           analyticsSource={analyticsSource}
           packageId="workflow_audit"
-          packageName="Cash Flow Assessment"
+          packageName="Office Process Assessment"
           billingPeriod="one_time"
           ctaLabel={card.secondary}
           target="_blank"

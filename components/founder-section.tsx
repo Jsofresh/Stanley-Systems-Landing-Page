@@ -27,7 +27,7 @@ export function FounderSection() {
                 I’m Jaden, founder of Stanley Systems. I built Stanley Systems because service businesses do not need another dashboard, software pitch, or bloated agency process. They need the money leak found, fixed, and kept from coming back.
               </p>
               <p>
-                That is the point of the Cash Flow Assessment. Find where cash, follow-up, and office time are slipping. Then build the practical system that closes the gap.
+                That is the point of the Office Process Assessment. Find where cash, follow-up, and office time are slipping. Then build the practical system that closes the gap.
               </p>
               <p>
                 Stanley Systems carries my middle name and my grandfather’s name, so the work has to be practical, useful, and built to last.

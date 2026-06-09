@@ -542,10 +542,10 @@ function fixtureSections(): SectionEvidence[] {
       generated_asset_status: "approved",
     },
     {
-      section_name: "Cash Flow Assessment",
+      section_name: "Office Process Assessment",
       asset_strategy_hint: "code_only",
       code_only_justification: "Simple CTA section with direct offer copy and no process visual need.",
-      text: "Cash Flow Assessment. Find where finished work is not turning into collected cash.",
+      text: "Office Process Assessment. Find where finished work is not turning into collected cash.",
       visual_summary: "plain typography, CTA, and restrained layout",
     },
     {

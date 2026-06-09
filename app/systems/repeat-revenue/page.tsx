@@ -57,7 +57,7 @@ export default function SystemPage() {
           imageHeight={720}
           objectPosition="center center"
           primaryHref="/workflow-audit"
-          primaryLabel="Start the Cash Flow Assessment"
+          primaryLabel="Get the Office Process Assessment"
           secondaryHref="/systems-installation-sprint"
           secondaryLabel="See how the Sprint works"
           cards={[
@@ -90,7 +90,7 @@ export default function SystemPage() {
               <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">How Repeat Revenue gets built</h2>
               <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Stanley Systems does the build for you: mapping the follow-up gaps, setting up the workflows, reminders, handoffs, and checks that bring past customers back and ask good customers for reviews or referrals.</p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Link href="/workflow-audit" className={greenButton}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </div>
             </div>
             <div className="hidden lg:block">

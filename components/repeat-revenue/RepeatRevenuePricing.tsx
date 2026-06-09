@@ -11,7 +11,7 @@ export function RepeatRevenuePricing() {
             Choose the path that matches the leak.
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#33475B] sm:text-lg">
-            Buy the package that matches the problem you already know, or start with the assessment and let the numbers choose the first build.
+            Buy the package that matches the problem you already know, or get the Office Process Assessment and let the numbers choose the first build.
           </p>
         </div>
 

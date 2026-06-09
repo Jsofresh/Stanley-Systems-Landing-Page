@@ -1,8 +1,8 @@
-# Cash Flow Assessment
+# Office Process Assessment
 
 Canonical HTML page: https://stanley-systems.com/workflow-audit
 
-The Cash Flow Assessment is the $97 front-door offer from Stanley Systems. It shows what is actually happening inside the office: where calls, estimates, invoices, follow-up, reviews, referrals, and repeat work are getting stuck.
+The Office Process Assessment is the $97 front-door offer from Stanley Systems. It shows what is actually happening inside the office: where calls, estimates, invoices, follow-up, reviews, referrals, and repeat work are getting stuck.
 
 The assessment deliverable is a professional Stanley Systems money-leak report with the current workflow map, ideal workflow map, data points, calculations, fix list, expected results, and build priorities.
 

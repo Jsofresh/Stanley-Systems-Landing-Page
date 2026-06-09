@@ -40,9 +40,9 @@ const fontAliases = {
   "--font-work-sans": "var(--font-neue-montreal)",
 } as React.CSSProperties
 
-const siteTitle = "Stanley Systems | Find and Stop Cash Flow Leaks"
+const siteTitle = "Stanley Systems | Office Work Cost Calculator"
 const siteDescription =
-  "Stanley Systems helps service businesses find the money leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again — then builds the system that stops it."
+  "Stanley Systems installs a control layer on top of the software your business already uses, reducing costly manual office work across billing, follow-up, customer records, and software handoffs."
 const siteLogoPath = "/stanley-systems-logo-reference.jpg"
 const siteLogoUrl = `https://stanley-systems.com${siteLogoPath}`
 
@@ -94,7 +94,7 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What is the Cash Flow Assessment?",
+        name: "What is the Office Process Assessment?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "It is a $97 assessment where Stanley Systems finds where money is leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again.",
@@ -113,7 +113,7 @@ export default function RootLayout({
         name: "What if we are not sure where the real leak is?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "That is exactly what the Cash Flow Assessment is for: it shows where the money is leaking and what system should be built first to stop it.",
+          text: "That is exactly what the Office Process Assessment is for: it shows where the money is leaking and what system should be built first to stop it.",
         },
       },
       {

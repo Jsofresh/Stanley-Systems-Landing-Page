@@ -14,12 +14,12 @@ const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const assessment = pricingPackageById.workflow_audit
 
 export const metadata: Metadata = {
-  title: "Cash Flow Assessment | Stanley Systems",
+  title: "Office Process Assessment | Stanley Systems",
   description:
-    "Start with the $97 Cash Flow Assessment from Stanley Systems to find where office work is costing money.",
+    "Start with the $97 Office Process Assessment from Stanley Systems to find where office work is costing money.",
   alternates: { canonical: "https://stanley-systems.com/workflow-audit" },
   openGraph: {
-    title: "Cash Flow Assessment | Stanley Systems",
+    title: "Office Process Assessment | Stanley Systems",
     description:
       "Find where office work is slowing down cash, reviews, referrals, and repeat jobs.",
     url: "https://stanley-systems.com/workflow-audit",
@@ -89,7 +89,7 @@ function Hero() {
             Find the office leaks costing you cash, reviews, and repeat jobs.
           </h1>
           <div className="mt-7 flex justify-center lg:justify-start">
-            <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_hero_primary" />
+            <CheckoutButton pkg={assessment} label="Get the Office Process Assessment" location="cash_flow_assessment_hero_primary" />
           </div>
         </div>
         <HeroVisual />
@@ -103,7 +103,7 @@ function AssessmentDemoVideo() {
     <section id="demo" data-section="cash-flow-assessment-demo-video" className="bg-white py-10 sm:py-12 lg:py-14">
       <div className={shell}>
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Watch the Cash Flow Assessment in action.</h2>
+          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-5xl">Watch the Office Process Assessment in action.</h2>
         </div>
         <div className="mx-auto mt-7 w-full max-w-7xl overflow-hidden rounded-[1.9rem] border border-[#DDEBE2] bg-[#071D3A] shadow-[0_30px_86px_rgba(7,29,58,0.18)]">
           <video
@@ -115,7 +115,7 @@ function AssessmentDemoVideo() {
           />
         </div>
         <div className="mt-7 flex justify-center">
-          <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_demo_video_primary" />
+          <CheckoutButton pkg={assessment} label="Get the Office Process Assessment" location="cash_flow_assessment_demo_video_primary" />
         </div>
       </div>
     </section>
@@ -134,7 +134,7 @@ function AssessmentPricing() {
     <section id="assessment" data-section="cash-flow-assessment-pricing" className="scroll-mt-[120px] bg-[#F4FBF5] py-10 sm:py-12">
       <div className={shell}>
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.035em] text-[#071D3A] sm:text-5xl">Start here: $97 Cash Flow Assessment</h2>
+          <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.035em] text-[#071D3A] sm:text-5xl">Start here: $97 Office Process Assessment</h2>
         </div>
 
         <div className="mx-auto mt-8 max-w-3xl">
@@ -142,7 +142,7 @@ function AssessmentPricing() {
             <div className="absolute inset-x-0 top-0 h-1.5 bg-[#15803D]" aria-hidden="true" />
             <div className="grid gap-3 p-4 sm:gap-6 sm:p-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
               <div className="rounded-[1.35rem] bg-[#F4FBF5] p-4 ring-1 ring-[#CFE8D5] sm:rounded-[1.45rem] sm:p-5">
-                <h3 className="text-2xl font-semibold leading-none tracking-[-0.04em] text-[#102033] sm:text-3xl">Cash Flow Assessment</h3>
+                <h3 className="text-2xl font-semibold leading-none tracking-[-0.04em] text-[#102033] sm:text-3xl">Office Process Assessment</h3>
                 <div className="mt-3 flex items-end gap-2 sm:mt-5 sm:block">
                   <p className="text-[3.25rem] font-semibold leading-none tracking-[-0.07em] text-[#071D3A] sm:text-[4.6rem]">$97</p>
                   <p className="mb-1 flex-1 whitespace-nowrap rounded-full bg-[#E7F7EB] px-2 py-1.5 text-center text-[0.7rem] font-extrabold leading-4 text-[#116832] sm:hidden">
@@ -150,7 +150,7 @@ function AssessmentPricing() {
                   </p>
                 </div>
                 <div className="mt-3 sm:hidden">
-                  <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_pricing_mobile_top" className="w-full min-w-0 bg-[#15803D] px-5 py-3 text-sm text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+                  <CheckoutButton pkg={assessment} label="Get the Office Process Assessment" location="cash_flow_assessment_pricing_mobile_top" className="w-full min-w-0 bg-[#15803D] px-5 py-3 text-sm text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
                 </div>
                 <p className="mt-3 text-sm font-bold leading-6 text-[#334B60] sm:mt-4 sm:text-base sm:leading-7">
                   You get the leak, the cost, the fix list, and the first move to make.
@@ -178,7 +178,7 @@ function AssessmentPricing() {
                 <p className="rounded-full bg-[#E7F7EB] px-4 py-2 text-center text-sm font-extrabold text-[#116832]">
                   $194 assessment credit counts toward your Sprint.
                 </p>
-                <CheckoutButton pkg={assessment} label="Start the Cash Flow Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
+                <CheckoutButton pkg={assessment} label="Get the Office Process Assessment" location="cash_flow_assessment_pricing_primary" className="bg-[#15803D] px-8 py-4 text-base text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]" />
               </div>
             </div>
           </article>
@@ -248,7 +248,7 @@ function NextSteps() {
     ["Does this replace my current software?", "No. Stanley Systems looks at the handoffs around the tools you already use."],
     ["Will I talk to a real person?", "Yes. The assessment is reviewed by Stanley Systems before a recommendation is made."],
     ["What happens after the assessment?", "You get the map, the problems Stanley Systems identified, how each one should be fixed, the expected results, and what should be fixed first. If you buy the Sprint, your $194 assessment credit comes off the build price."],
-    ["What if I already know what I want?", "You can still start with the assessment to confirm the full fix list before installation, or talk before buying if you need a quick route check."],
+    ["What if I already know what I want?", "You can still get the Office Process Assessment to confirm the full fix list before installation, or talk before buying if you need a quick route check."],
   ]
 
   return (

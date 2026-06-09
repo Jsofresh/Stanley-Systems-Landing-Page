@@ -48,7 +48,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "Assessment credit: -$97",
     callout: null,
     cta: "Fix the billing leak",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     tone: "monthly",
     bullets: ["Customer intake to billing path", "Billing-ready checks", "Missing detail routing", "Payment follow-up"],
   },
@@ -62,7 +62,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "Assessment credit: -$194",
     callout: "-$1,250 first-year package savings",
     cta: "Fix the billing leak",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     tone: "yearly",
     bullets: ["Everything in monthly", "Lower first-year cost", "Yearly billing", "Cash collection workflow"],
   },
@@ -76,7 +76,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "Assessment credit: -$97",
     callout: null,
     cta: "Bring past customers back",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     tone: "monthly",
     bullets: ["Past customer reactivation", "Review and referral asks", "Missed-call recovery", "Main number stays unchanged"],
   },
@@ -90,7 +90,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "Assessment credit: -$194",
     callout: "-$2,120 first-year package savings",
     cta: "Bring past customers back",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     tone: "yearly",
     bullets: ["Everything in monthly", "Lower first-year cost", "Reviews and referrals", "Customer reactivation"],
   },
@@ -104,7 +104,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "Assessment credit: -$97",
     callout: "-$197/mo bundle savings",
     cta: "Fix both leaks",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     tone: "complete",
     bullets: ["Cashflow Control System", "Repeat Revenue System", "Billing workflow", "Customer follow-up"],
   },
@@ -118,7 +118,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "Assessment credit: -$194",
     callout: "-$2,700 first-year package savings",
     cta: "Fix both leaks",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     tone: "recommended",
     bullets: ["Cashflow Control System", "Repeat Revenue System", "Lowest first-year bundle cost", "Best first-year price for both"],
   },
@@ -132,15 +132,15 @@ export function FitAccessPricing() {
     <section id="packages" data-section="fit-access-pricing" data-nav-theme="light" className="bg-white px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
       <div className={page.wrap}>
         <div className="max-w-4xl">
-          <h2 className={`${page.h2} mt-3`}>Start with the Cash Flow Assessment. Build the system that stops the leak.</h2>
-          <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">If you already know the leak, buy the system directly. If you are not sure, the assessment finds where money is being dropped and points to the first build.</p>
+          <h2 className={`${page.h2} mt-3`}>Get the Office Process Assessment. Find the office work your business should not be paying for anymore.</h2>
+          <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">We map the office work your business should not have to pay for anymore — then show what to automate, remove, restructure, or delegate.</p>
         </div>
 
         <div data-section="cash-flow-assessment-access-offer" className="mt-5 grid gap-5 lg:grid-cols-[0.66fr_1.2fr] lg:items-center">
           <div className="mx-auto hidden w-full max-w-[360px] sm:block lg:max-w-[390px]">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-how-access-works.jpg"
-              alt="How access works for the Cash Flow Assessment: walkthrough, exports or screenshots, or a temporary invited user."
+              alt="How access works for the Office Process Assessment: walkthrough, exports or screenshots, or a temporary invited user."
               width={957}
               height={1280}
               sizes="(min-width: 1024px) 30vw, 100vw"
@@ -149,9 +149,9 @@ export function FitAccessPricing() {
           </div>
 
           <aside className="rounded-[1.75rem] border border-[#cfe8d5] bg-white p-5 text-[#071D3A] shadow-[0_16px_46px_rgba(7,29,58,0.08)]">
-            <h3 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Cash Flow Assessment</h3>
+            <h3 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Office Process Assessment</h3>
             <div className="mt-3 flex items-end gap-2"><span className="text-5xl font-semibold tracking-[-0.04em] text-[#071D3A]">$97</span><span className="pb-2 text-sm font-bold text-[#536173]">assessment</span></div>
-            <p className="mt-3 text-base font-semibold leading-7 text-[#334B60]">Stanley Systems finds where money is being dropped, what it likely costs, and which system should be built first.</p>
+            <p className="mt-3 text-base font-semibold leading-7 text-[#334B60]">We map the office work your business should not have to pay for anymore — then show what to automate, remove, restructure, or delegate.</p>
             <ul className="mt-5 grid gap-2 text-sm font-semibold leading-5 text-[#334B60] sm:grid-cols-2">
               {includes.map((item, index) => <li key={item} className={`flex gap-2 ${index > 3 ? "hidden sm:flex" : ""}`}><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#15803D]" />{item}</li>)}
             </ul>
@@ -159,7 +159,7 @@ export function FitAccessPricing() {
               <p className="text-xs font-extrabold uppercase tracking-[0.14em]">Assessment credit after purchase</p>
               <p className="mt-1 text-2xl font-black tracking-[-0.035em]">-$97 monthly / -$194 yearly</p>
             </div>
-            <CTALink href={assessmentHref} kind="checkout" location="workflow_audit_pricing" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832] focus:outline-none focus:ring-4 focus:ring-[#bbf7d0]">Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+            <CTALink href={assessmentHref} kind="checkout" location="workflow_audit_pricing" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Office Process Assessment" billingPeriod="one_time" ctaLabel="Get the Office Process Assessment" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832] focus:outline-none focus:ring-4 focus:ring-[#bbf7d0]">Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
           </aside>
         </div>
 
@@ -182,7 +182,7 @@ export function FitAccessPricing() {
           </div>
         </div>
 
-        <p className="mt-5 text-center text-sm font-semibold leading-6 text-[#536173]">Prefer to buy a system directly? You can buy Cashflow Control System, Repeat Revenue System, or Both Systems when the leak is already clear. Start with the Cash Flow Assessment if you are not sure which system should go first.</p>
+        <p className="mt-5 text-center text-sm font-semibold leading-6 text-[#536173]">Prefer to buy a system directly? You can buy Cashflow Control System, Repeat Revenue System, or Both Systems when the leak is already clear. Get the Office Process Assessment if you are not sure which system should go first.</p>
       </div>
     </section>
   )

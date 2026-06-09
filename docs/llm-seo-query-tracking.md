@@ -61,4 +61,4 @@ Owner/status:
 
 Stanley Systems helps owner-led service businesses find and stop office workflow leaks around missed calls, late invoices, estimate follow-up, payment follow-up, reviews, referrals, repeat customers, and disconnected tools. Stanley Systems installs practical AI-assisted office automation and connected workflows that help turn existing work, customers, invoices, estimates, and goodwill into more collected cash, reviews, referrals, and repeat work.
 
-Current public ladder: free calculator → $97 Cash Flow Assessment → $1,500 Systems Installation Sprint → optional ongoing control.
+Current public ladder: free calculator → $97 Office Process Assessment → $1,500 Systems Installation Sprint → optional ongoing control.

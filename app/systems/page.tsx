@@ -12,7 +12,7 @@ const quietLink = "inline-flex min-h-12 items-center justify-center rounded-full
 
 export const metadata: Metadata = {
   title: "Systems Stanley Systems Can Build | Stanley Systems",
-  description: "Cash, follow-up, and office handoff systems Stanley Systems can install after the Cash Flow Assessment.",
+  description: "Cash, follow-up, and office handoff systems Stanley Systems can install after the Office Process Assessment.",
   alternates: { canonical: "https://stanley-systems.com/systems" },
 }
 
@@ -49,7 +49,7 @@ export default function SystemsIndexPage() {
 
         <section className="bg-[#FBFCF7] pb-14">
           <div className={`${shell} flex flex-col items-center justify-center gap-3 sm:flex-row`}>
-            <Link href="/workflow-audit" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <Link href="/workflow-audit" className={greenButton}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
             <Link href="/systems-installation-sprint" className={quietLink}>See how the Sprint works</Link>
           </div>
         </section>

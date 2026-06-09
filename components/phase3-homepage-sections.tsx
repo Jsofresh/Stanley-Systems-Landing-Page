@@ -225,13 +225,13 @@ export function Phase3HomepageSections() {
       <SectionShell id="audit" className="bg-[#0B1F33] text-white">
         <div className="mx-auto grid max-w-[90rem] gap-8 lg:grid-cols-[1fr_0.86fr] lg:items-center">
           <div>
-            <p className="text-[13px] font-extrabold uppercase tracking-[0.18em] text-[#86efac]">Cash Flow Assessment</p>
+            <p className="text-[13px] font-extrabold uppercase tracking-[0.18em] text-[#86efac]">Office Process Assessment</p>
             <h2 className="mt-4 max-w-[54rem] text-balance text-4xl font-extrabold leading-[0.96] tracking-[-0.06em] md:text-6xl">Before you buy a system, find the workflow that is actually costing you.</h2>
             <p className="mt-5 max-w-[45rem] text-lg font-medium leading-8 text-white/72">The assessment maps the current office path, identifies the leak, and turns the fix into a build plan you can understand.</p>
             <div className="mt-8">
               <CTAGroup
-                primary={{ href: auditHref, label: "Start the Cash Flow Assessment" }}
-                secondary={{ href: calculatorHref, label: "Find the Revenue Leaks" }}
+                primary={{ href: auditHref, label: "Get the Office Process Assessment" }}
+                secondary={{ href: calculatorHref, label: "Calculate Your Office Work Cost" }}
                 className="justify-start"
               />
             </div>
@@ -239,7 +239,7 @@ export function Phase3HomepageSections() {
           <div className="rounded-[1.8rem] border border-white/14 bg-white/[0.07] p-6">
             {[
               [Search, "Map the current handoff", "Calls, jobs, notes, invoices, software, and follow-up."],
-              [Layers3, "Find the money leak", "Where work waits, gets retyped, or loses ownership."],
+              [Layers3, "Map costly office work", "Where work waits, gets retyped, or loses ownership."],
               [ShieldCheck, "Build the right system", "Cashflow Control, Repeat Revenue, or a focused first workflow."],
             ].map(([Icon, title, copy]) => {
               const I = Icon as typeof Search
@@ -259,7 +259,7 @@ export function Phase3HomepageSections() {
             {[
               ["Do we need to switch software?", "Usually no. The first move is to work around the tools your team already uses whenever possible."],
               ["What gets automated?", "The handoffs: status changes, invoice readiness, reminders, follow-up triggers, owner views, and exception paths."],
-              ["Which system should we buy?", "Start with the Cash Flow Assessment or calculator. The leak decides the first build."],
+              ["Which system should we buy?", "Get the Office Process Assessment or calculator. The leak decides the first build."],
               ["Is this just for one trade?", "No. It fits trade-service businesses where jobs, office work, invoices, and follow-up cross hands."],
             ].map(([q, a]) => (
               <details key={q} className="group rounded-[1.1rem] border border-slate-200 bg-white p-5 shadow-[0_10px_28px_rgba(15,23,42,0.04)]">

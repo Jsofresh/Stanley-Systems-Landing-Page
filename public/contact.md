@@ -6,7 +6,7 @@ The canonical contact path for Stanley Systems is https://stanley-systems.com/co
 
 Use this page to choose the right path:
 
-- Start the Cash Flow Assessment.
+- Get the Office Process Assessment.
 - Ask a pre-buy question.
 - Continue assessment intake after buying.
 

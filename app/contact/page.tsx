@@ -5,7 +5,7 @@ import { MarketingPageShell } from "@/components/marketing-page-shell"
 
 export const metadata: Metadata = {
   title: "Contact | Stanley Systems",
-  description: "Find the right path to stop the office leaks: start the Cash Flow Assessment, ask a pre-buy question, or begin assessment intake after buying.",
+  description: "Find the right path to stop the office leaks: start the Office Process Assessment, ask a pre-buy question, or begin assessment intake after buying.",
 }
 
 export default function ContactPage() {

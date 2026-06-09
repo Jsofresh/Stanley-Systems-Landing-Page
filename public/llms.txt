@@ -5,7 +5,7 @@
 ## Core Offers
 
 - Free calculator: helps a service business owner estimate how much money is being delayed or lost through invoicing and office workflow drag. Canonical URL: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
-- Cash Flow Assessment: a $97 assessment that maps where office work is leaking money and shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first. Canonical URL: https://stanley-systems.com/workflow-audit
+- Office Process Assessment: a $97 assessment that maps where office work is leaking money and shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first. Canonical URL: https://stanley-systems.com/workflow-audit
 - Systems Installation Sprint: a $1,500 focused installation sprint after the assessment that builds the approved systems your team can use. Canonical URL: https://stanley-systems.com/systems-installation-sprint
 - Cashflow Control System: installs billing, invoice movement, payment follow-up, job-detail handoffs, and cash visibility workflows. Canonical URL: https://stanley-systems.com/systems/cashflow-control
 - Repeat Revenue System: installs past-customer follow-up, review asks, referral asks, missed-call recovery, and repeat-work workflows. Canonical URL: https://stanley-systems.com/systems/repeat-revenue
@@ -46,7 +46,7 @@ Stanley Systems installs systems around the cash and customer follow-up already 
 
 - Home: https://stanley-systems.com/
 - Free calculator: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
-- Cash Flow Assessment: https://stanley-systems.com/workflow-audit
+- Office Process Assessment: https://stanley-systems.com/workflow-audit
 - Pricing: https://stanley-systems.com/pricing
 - Systems: https://stanley-systems.com/systems
 - Cashflow Control: https://stanley-systems.com/systems/cashflow-control
@@ -59,4 +59,4 @@ Stanley Systems installs systems around the cash and customer follow-up already 
 
 ## Contact
 
-The canonical contact path is https://stanley-systems.com/contact. Buyers can also start with the Cash Flow Assessment at https://stanley-systems.com/workflow-audit.
+The canonical contact path is https://stanley-systems.com/contact. Buyers can also start with the Office Process Assessment at https://stanley-systems.com/workflow-audit.

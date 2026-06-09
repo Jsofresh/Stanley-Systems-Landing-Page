@@ -4,9 +4,9 @@ import { CTALink } from "@/components/cta-link"
 import { plans } from "./tokens"
 
 const auditSteps = [
-  ["1", "Pay $97", "Start with the assessment."],
-  ["2", "Find the leak", "Use the numbers, not a guess."],
-  ["3", "Choose the system", "Choose the build priority with confidence."],
+  ["1", "Pay $97", "Get the Office Process Assessment."],
+  ["2", "Map office work", "Use the numbers, not a guess."],
+  ["3", "Choose the build", "Choose the build priority with confidence."],
   ["4", "Credit applied", "Get $97 monthly or $194 yearly back."],
 ] as const
 
@@ -19,7 +19,7 @@ export function WorkflowAuditBridge() {
             Buy the assessment first. Let the numbers choose the system.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#33475B] sm:text-lg">
-            The Cash Flow Assessment checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the build priority matches the leak that actually costs money.
+            The Office Process Assessment checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the build priority matches the costly office work that should be removed first.
           </p>
           <div className="mt-5 grid gap-3 rounded-2xl border border-[#B7D8C0] bg-white p-3 sm:grid-cols-4">
             {auditSteps.map(([step, title, text]) => (
@@ -60,14 +60,14 @@ export function WorkflowAuditBridge() {
             analyticsEvent="audit_checkout_clicked"
             analyticsSource="repeat_revenue_page"
             packageId="workflow_audit"
-            packageName="Cash Flow Assessment"
+            packageName="Office Process Assessment"
             billingPeriod="one_time"
-            ctaLabel="Start the Cash Flow Assessment"
+            ctaLabel="Get the Office Process Assessment"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
           >
-            Start the Cash Flow Assessment <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Get the Office Process Assessment <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
           <a href="#scope" className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]">
             Read what is included

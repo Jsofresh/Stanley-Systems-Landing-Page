@@ -77,7 +77,7 @@ export function CalculatorPathSection() {
       data-audit-page="/"
       data-audit-section="home.calculator-path"
       data-audit-priority="4"
-      data-audit-offer="Cash Flow Assessment"
+      data-audit-offer="Office Process Assessment"
       data-audit-purpose="Move visitors from the calculator diagnostic into the right paid next step."
       className="relative z-10 scroll-mt-28 overflow-hidden bg-[#F7FAF7] px-5 py-12 sm:scroll-mt-32 sm:px-6 sm:py-14 lg:scroll-mt-36 lg:px-8 lg:py-16"
     >
@@ -114,10 +114,10 @@ export function CalculatorPathSection() {
                 location="homepage_calculator_primary"
                 analyticsEvent="calculator_cta_clicked"
                 analyticsSource="homepage_calculator_section"
-                ctaLabel="Calculate my revenue leak"
+                ctaLabel="Calculate my office work cost"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:whitespace-nowrap"
               >
-                Calculate my revenue leak
+                Calculate my office work cost
                 <IconArrowRight className="h-4 w-4" stroke={2} aria-hidden />
               </CTALink>
               <CTALink
@@ -157,7 +157,7 @@ export function CalculatorPathSection() {
             </div>
 
             <div className="mt-5 rounded-2xl border border-[#CBEED8] bg-[#EEF9F2] p-4 text-sm font-semibold leading-6 text-[#102033]">
-              Use the calculator to pick the money path. The Cash Flow Assessment turns the range into a practical action map before you buy a system.
+              Use the calculator to pick the money path. The Office Process Assessment turns the range into a practical action map before you buy a system.
             </div>
           </div>
         </div>

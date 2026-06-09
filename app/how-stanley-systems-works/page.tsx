@@ -4,16 +4,16 @@ import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { MarketingPageShell } from "@/components/marketing-page-shell"
 
 export const metadata: Metadata = {
-  title: "How Stanley Systems Works | Cash Flow Assessment First",
+  title: "How Stanley Systems Works | Office Process Assessment First",
   description:
-    "See how Stanley Systems starts with the Cash Flow Assessment, finds the first money leak, then builds the right cash-flow system for a service business.",
+    "See how Stanley Systems starts with the Office Process Assessment, finds the first money leak, then builds the right cash-flow system for a service business.",
   alternates: {
     canonical: "https://stanley-systems.com/how-stanley-systems-works",
   },
   openGraph: {
-    title: "How Stanley Systems Works | Cash Flow Assessment First",
+    title: "How Stanley Systems Works | Office Process Assessment First",
     description:
-      "Start with the Cash Flow Assessment, identify the leak that costs money, then build the system that stops it.",
+      "Get the Office Process Assessment, identify the leak that costs money, then build the system that stops it.",
     url: "https://stanley-systems.com/how-stanley-systems-works",
     siteName: "Stanley Systems",
     type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 const steps = [
   {
     title: "Start with the paid assessment",
-    body: "The Cash Flow Assessment reviews the way calls, estimates, invoices, follow-up, and past customers move through the business before anybody buys the wrong system.",
+    body: "The Office Process Assessment reviews the way calls, estimates, invoices, follow-up, and past customers move through the business before anybody buys the wrong system.",
   },
   {
     title: "Name the leak that costs money",
@@ -38,7 +38,7 @@ const steps = [
 const paths = [
   "Cashflow Control helps work turn into invoice-ready revenue with fewer owner bottlenecks.",
   "Repeat Revenue helps past customers, open estimates, and follow-up opportunities stop disappearing.",
-  "The Cash Flow Assessment can credit toward a system when Stanley Systems confirms the right build path.",
+  "The Office Process Assessment can credit toward a system when Stanley Systems confirms the right build path.",
 ]
 
 export default function HowStanleySystemsWorksPage() {
@@ -59,7 +59,7 @@ export default function HowStanleySystemsWorksPage() {
                   href="/workflow-audit"
                   className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(21,128,61,0.18)] transition hover:bg-[#116832]"
                 >
-                  Start the Cash Flow Assessment
+                  Get the Office Process Assessment
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link

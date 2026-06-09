@@ -17,7 +17,7 @@ const faqs = [
   {
     question: "What if we are not sure which leak matters most?",
     answer:
-      "That is exactly why the calculator and Cash Flow Assessment come first. The goal is to identify whether late cash, growth money, missed follow-up, or repeat revenue should be fixed before anything gets built.",
+      "That is exactly why the calculator and Office Process Assessment come first. The goal is to identify whether late cash, growth money, missed follow-up, or repeat revenue should be fixed before anything gets built.",
   },
   {
     question: "Is this going to turn into a big project?",
@@ -98,8 +98,8 @@ export function FAQSection() {
       data-audit-page="/"
       data-audit-section="home.faq"
       data-audit-priority="2"
-      data-audit-offer="Cash Flow Assessment"
-      data-audit-purpose="Answer buying objections before the visitor books the Cash Flow Assessment."
+      data-audit-offer="Office Process Assessment"
+      data-audit-purpose="Answer buying objections before the visitor books the Office Process Assessment."
       className="relative z-10 scroll-mt-28 px-4 py-10 sm:scroll-mt-32 sm:py-12 lg:scroll-mt-36 lg:py-14"
     >
       <div className="mx-auto max-w-7xl">

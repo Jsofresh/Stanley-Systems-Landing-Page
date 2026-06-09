@@ -6,7 +6,7 @@ Stanley Systems services are focused on office automation and practical AI-assis
 
 Primary services:
 
-- Cash Flow Assessment: find where office work is costing money and show which systems should be installed first.
+- Office Process Assessment: find where office work is costing money and show which systems should be installed first.
 - Systems Installation Sprint: build the approved billing, follow-up, review, referral, or repeat-customer systems.
 - Cashflow Control: speed up billing, payment follow-up, job-detail routing, and cash visibility.
 - Repeat Revenue: install past-customer follow-up, review asks, referral asks, missed-call recovery, and repeat-work systems.

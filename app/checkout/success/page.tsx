@@ -25,7 +25,7 @@ const nextSteps = [
   },
   {
     title: "We begin setup or assessment",
-    copy: "If you bought the Cash Flow Assessment, Stanley Systems starts the assessment. If you bought a system, Stanley Systems starts onboarding and implementation.",
+    copy: "If you bought the Office Process Assessment, Stanley Systems starts the assessment. If you bought a system, Stanley Systems starts onboarding and implementation.",
   },
 ]
 

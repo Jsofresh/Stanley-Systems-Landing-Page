@@ -16,7 +16,7 @@ const auditCheckoutHref = pricingPackageById.workflow_audit.stripePaymentLink.ur
 
 export const metadata: Metadata = {
   title: "Systems Installation Sprint | Stanley Systems",
-  description: "Turn the Cash Flow Assessment into billing, follow-up, review, referral, and repeat-customer systems your team can use.",
+  description: "Turn the Office Process Assessment into billing, follow-up, review, referral, and repeat-customer systems your team can use.",
   alternates: { canonical: "https://stanley-systems.com/systems-installation-sprint" },
 }
 
@@ -46,6 +46,7 @@ export default function SystemsInstallationSprintPage() {
         <PackageHero
           eyebrow="Systems Installation Sprint"
           title="Get Paid Faster. Follow Up Cleaner. Win More Repeat Work."
+          subheading="In two weeks, we install the Stanley Systems control layer on top of your existing software — removing costly manual office work from billing, follow-up, customer records, and software handoffs."
           contentAlign="left"
           imageSrc="/images/uploaded/package-heroes/stanley-systems-sprint-plan-office-team-van.jpg"
           imageAlt="Stanley Systems office team reviewing a sprint plan with a service van outside."
@@ -57,7 +58,7 @@ export default function SystemsInstallationSprintPage() {
           imageTransform="none"
           mobileImageTransform="none"
           primaryHref="/workflow-audit"
-          primaryLabel="Start the Cash Flow Assessment"
+          primaryLabel="Get the Office Process Assessment"
           secondaryHref="/contact?path=pre-buy"
           secondaryLabel="Ask us a question"
           cards={[
@@ -144,25 +145,25 @@ export default function SystemsInstallationSprintPage() {
             </div>
 
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href="/workflow-audit" className={`${greenButton} w-full sm:w-auto sm:min-w-[360px]`}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/workflow-audit" className={`${greenButton} w-full sm:w-auto sm:min-w-[360px]`}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
               <Link href="/contact?path=pre-buy" className={`${lightButton} w-full sm:w-auto sm:min-w-[280px]`}>Ask us a question</Link>
             </div>
             <p className="mt-4 flex flex-col items-center justify-center gap-2 text-center text-sm font-medium leading-6 text-[#334B60] sm:flex-row">
               <span className="grid h-5 w-5 place-items-center rounded-full border border-[#9ED9B2] text-[#15803D]"><Check className="h-3.5 w-3.5" strokeWidth={3} /></span>
-              <span>One clear process. No new software. Built around how your team already works.</span>
+              <span>Stanley Systems installs a control layer on top of your existing software and office systems.</span>
             </p>
           </div>
         </section>
 
         <section data-section="sprint-timeline" className="bg-white py-12 sm:py-14">
           <div className={shell}>
-            <div className="mx-auto max-w-4xl text-center"><h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Timeline</h2><p className="mt-4 text-xl font-semibold leading-8 text-[#334B60]">Most Installation Sprints take 1–2 weeks after the Cash Flow Assessment.</p></div>
+            <div className="mx-auto max-w-4xl text-center"><h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Timeline</h2><p className="mt-4 text-xl font-semibold leading-8 text-[#334B60]">Most Installation Sprints take 1–2 weeks after the Office Process Assessment.</p></div>
             <div className="mt-8 grid gap-4 lg:grid-cols-3">{timeline.map(([title, body], index) => <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-6 shadow-[0_12px_30px_rgba(7,29,58,0.04)]"><span className="inline-grid h-9 w-9 place-items-center rounded-full bg-[#15803D] text-sm font-black text-white">{index + 1}</span><h3 className="mt-4 text-xl font-semibold tracking-[-0.035em] text-[#102033]">{title}</h3><p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{body}</p></article>)}</div>
             <p className="mx-auto mt-6 max-w-3xl rounded-2xl border border-[#DDEBE2] bg-white p-4 text-center text-sm font-semibold leading-6 text-[#536173]">The timeline depends on scope, tools, and how fast access or examples are provided.</p>
           </div>
         </section>
 
-        <section data-section="sprint-final-cta" className="bg-[#071422] py-14 text-white sm:py-16" data-nav-theme="dark"><div className={`${shell} text-center`}><h2 className="mx-auto max-w-4xl text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-5xl">Ready to see what should be installed first?</h2><p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">Start with the Cash Flow Assessment. If the Sprint is the right move, Stanley Systems can install the systems from that plan.</p><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><CTALink href={auditCheckoutHref} kind="checkout" location="sprint_final_cta" analyticsEvent="audit_checkout_clicked" analyticsSource="systems_installation_sprint" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" className={greenButton}>Start the Cash Flow Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink><Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-white/12">Ask us a question</Link></div></div></section>
+        <section data-section="sprint-final-cta" className="bg-[#071422] py-14 text-white sm:py-16" data-nav-theme="dark"><div className={`${shell} text-center`}><h2 className="mx-auto max-w-4xl text-[2.2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-5xl">Ready to see what should be installed first?</h2><p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-white/72 sm:text-lg">Get the Office Process Assessment. If the Sprint is the right move, Stanley Systems can install the systems from that plan.</p><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><CTALink href={auditCheckoutHref} kind="checkout" location="sprint_final_cta" analyticsEvent="audit_checkout_clicked" analyticsSource="systems_installation_sprint" packageId="workflow_audit" packageName="Office Process Assessment" billingPeriod="one_time" ctaLabel="Get the Office Process Assessment" className={greenButton}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></CTALink><Link href="/contact?path=pre-buy" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/18 bg-white/8 px-6 py-3 text-sm font-extrabold text-white transition hover:bg-white/12">Ask us a question</Link></div></div></section>
       </main>
       <Footer />
       <MobileStickyCTA />

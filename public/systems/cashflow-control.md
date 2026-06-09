@@ -17,4 +17,4 @@ Best-fit problems:
 - owner-managed cash chasing
 - disconnected tools that hide where money is stuck
 
-Start with the Cash Flow Assessment: https://stanley-systems.com/workflow-audit
+Get the Office Process Assessment: https://stanley-systems.com/workflow-audit

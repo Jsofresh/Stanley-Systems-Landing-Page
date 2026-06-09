@@ -12,7 +12,7 @@ const cards: PackagePricingCard[] = [
     credit: "Assessment credit: -$97 if you start there first",
     callout: null,
     cta: "Buy monthly",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     bullets: ["Customer intake to billing workflow", "Webhook, form, or job-system handoffs", "Billing-ready checks", "Missing billing detail routing"],
   },
   {
@@ -25,7 +25,7 @@ const cards: PackagePricingCard[] = [
     credit: "Assessment credit: -$194 if you start there first",
     callout: "-$1,250 first-year package savings",
     cta: "Buy yearly",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     bullets: ["Everything in monthly", "Customer intake to cash collection", "Invoice and final-bill path", "Lower first-year cost"],
   },
   {
@@ -38,7 +38,7 @@ const cards: PackagePricingCard[] = [
     credit: "Assessment credit: -$97 if you start there first",
     callout: null,
     cta: "Buy both monthly",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     bullets: ["Cashflow Control System", "Repeat Revenue System", "Open-balance visibility", "Reviews, referrals, and reactivation"],
   },
   {
@@ -51,7 +51,7 @@ const cards: PackagePricingCard[] = [
     credit: "Assessment credit: -$194 if you start there first",
     callout: "-$2,700 first-year package savings",
     cta: "Buy both yearly",
-    secondary: "Start with the assessment",
+    secondary: "Get the Office Process Assessment",
     bullets: ["Cashflow Control System", "Repeat Revenue System", "Lowest first-year bundle cost", "Best full-system economics"],
   },
 ]
@@ -63,7 +63,7 @@ export function CashflowControlPricing() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-[2.4rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Pick your cashflow fix.</h2>
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
-            Buy Cashflow Control now, or start with the Cash Flow Assessment and credit it toward a system. Yearly options show the rounded monthly price first and bill yearly.
+            Buy Cashflow Control now, or start with the Office Process Assessment and credit it toward a system. Yearly options show the rounded monthly price first and bill yearly.
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export function CashflowControlPricing() {
         />
 
         <p className="mt-5 rounded-[1.25rem] border border-[#BFE4C8] bg-[#F4FBF5] p-4 text-sm font-semibold leading-6 text-[#536173]">
-          The Cash Flow Assessment is optional. You can buy Cashflow Control directly. The assessment is for buyers who want Stanley Systems to inspect the workflow first and credit the assessment fee toward a system.
+          The Office Process Assessment is optional. You can buy Cashflow Control directly. The assessment is for buyers who want Stanley Systems to inspect the workflow first and credit the assessment fee toward a system.
         </p>
       </div>
     </section>

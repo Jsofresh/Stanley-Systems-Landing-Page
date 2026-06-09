@@ -13,16 +13,16 @@ export function WorkflowAuditHero() {
         <div className="overflow-hidden rounded-[2.1rem] border border-[#d8e8de] bg-[#fffdf8] p-5 shadow-[0_24px_80px_rgba(7,29,58,0.08)] sm:p-6 lg:p-7 xl:p-8">
           <div className="grid items-center gap-6 lg:min-h-[610px] lg:grid-cols-[minmax(0,0.78fr)_minmax(470px,0.9fr)] lg:gap-7 xl:grid-cols-[minmax(0,0.76fr)_minmax(500px,0.92fr)] xl:gap-8">
             <div className="relative z-10 max-w-[680px]">
-              <p className={page.eyebrow}>Cash Flow Assessment</p>
+              <p className={page.eyebrow}>Office Process Assessment</p>
               <h1 className="mt-2 max-w-[520px] text-[clamp(1.9rem,2.72vw,2.95rem)] font-semibold leading-[1.04] tracking-[-0.034em] text-[#071D3A]">
-                Find the money leaks hiding inside your office handoffs.
+                Map the office work your business should not have to pay for anymore.
               </h1>
               <p className="mt-7 max-w-[560px] text-base font-medium leading-7 text-[#42596C] sm:mt-8 sm:text-lg sm:leading-8 lg:mt-9 xl:mt-10">
-                A $97 Cash Flow Assessment that shows where cash, customers, and office time are slipping before you buy the wrong system.
+                We map the office work your business should not have to pay for anymore — then show what to automate, remove, restructure, or delegate.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <CTALink href={auditHref} kind="checkout" location="workflow_audit_hero" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Cash Flow Assessment" billingPeriod="one_time" ctaLabel="Start the Cash Flow Assessment" target="_blank" rel="noopener noreferrer" className={page.greenButton}>
-                  Start the Cash Flow Assessment
+                <CTALink href={auditHref} kind="checkout" location="workflow_audit_hero" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="Office Process Assessment" billingPeriod="one_time" ctaLabel="Get the Office Process Assessment" target="_blank" rel="noopener noreferrer" className={page.greenButton}>
+                  Get the Office Process Assessment
                 </CTALink>
                 <a href="#packages" className={page.quietButton}>
                   See assessment details <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
