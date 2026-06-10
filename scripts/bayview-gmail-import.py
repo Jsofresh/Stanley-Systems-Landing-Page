@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/jaden/.hermes/hermes-agent/venv/bin/python
 """Import real Gmail messages into the Bayview office-email demo ledger.
 
 Uses an existing Hermes Google Workspace profile token. This is intentionally a
@@ -16,6 +16,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
 
 DEFAULT_PROFILE = "/home/jaden/.hermes/profiles/stanley-scout"
 GAPI = "/home/jaden/.hermes/skills/productivity/google-workspace/scripts/google_api.py"
@@ -40,6 +43,40 @@ def run_gapi(profile: str, args: list[str]) -> Any:
     if p.returncode != 0:
         raise RuntimeError(f"gapi failed: {p.stderr[:500] or p.stdout[:500]}")
     return json.loads(p.stdout)
+
+
+def gmail_service(profile: str):
+    creds = Credentials.from_authorized_user_file(str(Path(profile) / "google_token.json"))
+    return build("gmail", "v1", credentials=creds, cache_discovery=False)
+
+
+def get_header(headers: list[dict[str, str]], name: str) -> str:
+    lower = name.lower()
+    for h in headers:
+        if h.get("name", "").lower() == lower:
+            return h.get("value", "")
+    return ""
+
+
+def enrich_with_metadata(service: Any, msg_id: str, fallback: dict[str, Any]) -> dict[str, Any]:
+    try:
+        msg = service.users().messages().get(
+            userId="me",
+            id=msg_id,
+            format="metadata",
+            metadataHeaders=["From", "To", "Cc", "Subject", "Date"],
+        ).execute()
+        headers = msg.get("payload", {}).get("headers", [])
+        return {
+            **fallback,
+            "from": get_header(headers, "From") or fallback.get("from", ""),
+            "to": get_header(headers, "To") or fallback.get("to", ""),
+            "cc": get_header(headers, "Cc") or fallback.get("cc", ""),
+            "subject": get_header(headers, "Subject") or fallback.get("subject", ""),
+            "date": get_header(headers, "Date") or fallback.get("date", ""),
+        }
+    except Exception:
+        return fallback
 
 
 def load_state() -> set[str]:
@@ -134,6 +171,7 @@ def main() -> int:
     args = ap.parse_args()
 
     imported = load_state()
+    service = gmail_service(args.profile)
     results = run_gapi(args.profile, ["gmail", "search", args.query, "--max", str(args.max)])
     new_records = []
     for summary in results:
@@ -141,6 +179,7 @@ def main() -> int:
         if not msg_id or msg_id in imported:
             continue
         full = run_gapi(args.profile, ["gmail", "get", msg_id])
+        full = enrich_with_metadata(service, msg_id, full)
         record = record_from_message(summary, full)
         new_records.append(record)
         if not args.dry_run:
