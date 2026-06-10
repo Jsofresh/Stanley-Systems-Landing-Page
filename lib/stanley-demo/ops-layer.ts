@@ -1,7 +1,7 @@
 import { readFile, readdir, stat } from 'node:fs/promises'
 import path from 'node:path'
 
-export type SourceSystem = 'jobber' | 'quickbooks' | 'twilio' | 'stanley'
+export type SourceSystem = 'jobber' | 'quickbooks' | 'twilio' | 'intake' | 'email' | 'stanley'
 
 export type NormalizedEvent = {
   id: string
@@ -26,13 +26,15 @@ export type EntityMatch = {
   jobber?: { clientUrl?: string; requestUrl?: string; jobUrl?: string; quoteUrl?: string; invoiceUrl?: string; state?: string }
   qbo?: { customerId?: string; invoiceId?: string; estimateId?: string; state?: string }
   sms?: { lastBody?: string; lastFromLast4?: string; lastAt?: string }
+  intake?: { description?: string; urgency?: string; address?: string; lastAt?: string }
+  email?: { subject?: string; body?: string; from?: string; priority?: string; lastAt?: string }
 }
 
 export type ActionQueueItem = {
   id: string
   priority: 'critical' | 'high' | 'medium' | 'low'
   status: 'ready_for_review' | 'needs_operator_decision' | 'blocked_waiting_on_data'
-  actionType: 'create_qbo_invoice' | 'draft_customer_followup' | 'owner_alert' | 'create_jobber_note' | 'follow_up_estimate' | 'reschedule_job' | 'parts_status_update' | 'review_signal'
+  actionType: 'create_qbo_invoice' | 'draft_customer_followup' | 'owner_alert' | 'create_jobber_note' | 'follow_up_estimate' | 'reschedule_job' | 'parts_status_update' | 'create_jobber_request' | 'reconcile_office_email' | 'review_signal'
   customerName: string
   title: string
   whyItMatters: string
@@ -56,6 +58,8 @@ const JOBBER_SEED_PATHS = [
 ]
 const QBO_SEED_PATH = path.join(DATA_ROOT, 'qbo-seed-2026-06-10.json')
 const TWILIO_DIR = path.join(DATA_ROOT, 'twilio-sms')
+const CUSTOMER_INTAKE_DIR = path.join(DATA_ROOT, 'customer-intake')
+const OFFICE_EMAIL_DIR = path.join(DATA_ROOT, 'office-emails')
 const JOBBER_WEBHOOK_DIR = path.join(DATA_ROOT, 'jobber-webhooks')
 const QBO_WEBHOOK_DIR = path.join(DATA_ROOT, 'qbo-webhooks')
 
@@ -121,10 +125,12 @@ function normalizePhoneBody(body: string) {
   return body.toLowerCase()
 }
 
-function namesFromSeeds(jobberRecords: any[], qboRecords: any[]) {
+function namesFromSources(jobberRecords: any[], qboRecords: any[], intakeRows: any[], emailRows: any[]) {
   const names = new Set<string>(Object.keys(scenarioCatalog))
   for (const r of jobberRecords) if (r?.name) names.add(r.name)
   for (const r of qboRecords) if (r?.name) names.add(r.name)
+  for (const r of intakeRows) if (r?.customerName) names.add(r.customerName)
+  for (const r of emailRows) if (r?.relatedCustomerName) names.add(r.relatedCustomerName)
   return [...names]
 }
 
@@ -205,6 +211,48 @@ function eventFromSms(row: any, names: string[]): NormalizedEvent {
   }
 }
 
+function inferCustomerFromText(text: string, names: string[]) {
+  const lower = normalizePhoneBody(text)
+  const direct = names.find((name) => lower.includes(name.toLowerCase()) || lower.includes(name.split(' ').slice(-1)[0].toLowerCase()))
+  if (direct) return { name: direct, matchedBy: ['text_name_or_last_name'], confidence: 0.86 }
+  if (lower.includes('1428 pine') || lower.includes('pine street')) return { name: 'Sarah Johnson', matchedBy: ['text_address'], confidence: 0.9 }
+  return { name: undefined, matchedBy: [], confidence: 0.2 }
+}
+
+function eventFromIntake(row: any): NormalizedEvent {
+  const issue = [row.issueType, row.urgency].filter(Boolean).join(' / ')
+  return {
+    id: idFor('intake', row.customerName, row.receivedAt, row.phone),
+    source: 'intake',
+    eventType: 'customer_intake.submitted',
+    occurredAt: row.receivedAt || new Date().toISOString(),
+    entityType: 'customer_request',
+    entityName: row.customerName,
+    customerName: row.customerName,
+    phoneLast4: last4(row.phone),
+    summary: `${row.customerName}: online intake submitted${issue ? ` (${issue})` : ''}.`,
+    evidence: JSON.stringify({ address: row.address, phoneLast4: last4(row.phone), issueType: row.issueType, urgency: row.urgency, preferredWindow: row.preferredWindow, description: row.description, consentToText: row.consentToText }),
+    rawPath: row.__rawPath,
+  }
+}
+
+function eventFromOfficeEmail(row: any, names: string[]): NormalizedEvent {
+  const body = `${row.subject || ''}\n${row.body || ''}\n${row.relatedCustomerName || ''}\n${row.relatedAddress || ''}`
+  const match = row.relatedCustomerName ? { name: row.relatedCustomerName } : inferCustomerFromText(body, names)
+  return {
+    id: idFor('office-email', row.receivedAt, row.subject),
+    source: 'email',
+    eventType: 'office_email.received',
+    occurredAt: row.receivedAt || new Date().toISOString(),
+    entityType: 'office_email',
+    entityName: row.subject,
+    customerName: match.name,
+    summary: `Office email${match.name ? ` about ${match.name}` : ''}: “${String(row.subject || '').slice(0, 120)}”`,
+    evidence: JSON.stringify({ from: row.from, to: row.to, priority: row.priority, subject: row.subject, body: row.body, relatedAddress: row.relatedAddress }),
+    rawPath: row.__rawPath,
+  }
+}
+
 function eventFromJobberWebhook(row: any): NormalizedEvent | null {
   const event = row?.payload?.data?.webHookEvent
   if (!event?.topic) return null
@@ -242,24 +290,30 @@ function eventFromQboWebhook(row: any): NormalizedEvent[] {
   return out
 }
 
-function buildMatches(names: string[], jobberRecords: any[], qboRecords: any[], smsEvents: NormalizedEvent[], allEvents: NormalizedEvent[]): EntityMatch[] {
+function buildMatches(names: string[], jobberRecords: any[], qboRecords: any[], smsEvents: NormalizedEvent[], intakeEvents: NormalizedEvent[], emailEvents: NormalizedEvent[], allEvents: NormalizedEvent[]): EntityMatch[] {
   return names.map((name) => {
     const jobber = jobberRecords.find((r) => r.name === name) || scenarioCatalog[name]?.jobber || {}
     const qbo = qboRecords.find((r) => r.name === name) || scenarioCatalog[name]?.qbo || {}
     const related = allEvents.filter((e) => e.customerName === name)
     const sms = smsEvents.filter((e) => e.customerName === name).sort((a, b) => a.occurredAt.localeCompare(b.occurredAt)).at(-1)
+    const intake = intakeEvents.filter((e) => e.customerName === name).sort((a, b) => a.occurredAt.localeCompare(b.occurredAt)).at(-1)
+    const email = emailEvents.filter((e) => e.customerName === name).sort((a, b) => a.occurredAt.localeCompare(b.occurredAt)).at(-1)
     const matchedBy = ['seeded_demo_name']
     if (sms) matchedBy.push('sms_body_match')
+    if (intake) matchedBy.push('online_intake_submission')
+    if (email) matchedBy.push('office_email_reference')
     if (jobber?.jobUrl && (qbo?.invoiceId || qbo?.action === 'invoice')) matchedBy.push('jobber_job_to_qbo_invoice')
     if (jobber?.quoteUrl && (qbo?.estimateId || qbo?.action === 'estimate')) matchedBy.push('jobber_quote_to_qbo_estimate')
     return {
       customerName: name,
-      confidence: sms ? 0.93 : 0.82,
+      confidence: sms || intake || email ? 0.93 : 0.82,
       matchedBy,
       relatedEvents: related.map((e) => e.id),
       jobber: { clientUrl: jobber.clientUrl, requestUrl: jobber.requestUrl, jobUrl: jobber.jobUrl, quoteUrl: jobber.quoteUrl, invoiceUrl: jobber.invoiceUrl, state: jobber.state || scenarioCatalog[name]?.state },
       qbo: { customerId: qbo.customerId, invoiceId: qbo.invoiceId, estimateId: qbo.estimateId, state: qbo.action || qbo.state },
       sms: sms ? { lastBody: sms.evidence, lastFromLast4: sms.phoneLast4, lastAt: sms.occurredAt } : undefined,
+      intake: intake ? { description: intake.evidence, urgency: intake.eventType, address: intake.entityName, lastAt: intake.occurredAt } : undefined,
+      email: email ? { subject: email.entityName, body: email.evidence, from: email.entityId, priority: email.eventType, lastAt: email.occurredAt } : undefined,
     }
   })
 }
@@ -273,13 +327,16 @@ function buildActionQueue(matches: EntityMatch[]): ActionQueueItem[] {
   const items: ActionQueueItem[] = []
   for (const m of matches) {
     const sms = m.sms?.lastBody || ''
+    const intakeText = m.intake?.description || ''
+    const emailText = `${m.email?.subject || ''}\n${m.email?.body || ''}`
+    const signalText = `${sms}\n${intakeText}\n${emailText}`
     const jobberState = m.jobber?.state || ''
     const hasJob = Boolean(m.jobber?.jobUrl)
     const hasQboInvoice = Boolean(m.qbo?.invoiceId) || m.qbo?.state === 'invoice'
     const hasQboEstimate = Boolean(m.qbo?.estimateId) || m.qbo?.state === 'estimate'
     const hasJobberQuote = Boolean(m.jobber?.quoteUrl)
 
-    if (hasJob && !hasQboInvoice && (hasWords(jobberState, ['missing_invoice', 'completed']) || hasWords(sms, ['finished', 'done', 'complete', 'invoice']))) {
+    if (hasJob && !hasQboInvoice && (hasWords(jobberState, ['missing_invoice', 'completed']) || hasWords(signalText, ['finished', 'done', 'complete', 'invoice']))) {
       items.push({
         id: idFor('action', m.customerName, 'create-qbo-invoice'),
         priority: 'critical',
@@ -294,7 +351,7 @@ function buildActionQueue(matches: EntityMatch[]): ActionQueueItem[] {
       })
     }
 
-    if ((hasJobberQuote || hasWords(jobberState, ['quote', 'estimate', 'opportunity', 'permit']) || hasWords(sms, ['replacement', 'estimate', 'quote'])) && !hasQboEstimate) {
+    if ((hasJobberQuote || hasWords(jobberState, ['quote', 'estimate', 'opportunity', 'permit']) || hasWords(signalText, ['replacement', 'estimate', 'quote'])) && !hasQboEstimate) {
       items.push({
         id: idFor('action', m.customerName, 'follow-up-estimate'),
         priority: hasWords(jobberState, ['permit', 'replacement']) ? 'high' : 'medium',
@@ -309,7 +366,7 @@ function buildActionQueue(matches: EntityMatch[]): ActionQueueItem[] {
       })
     }
 
-    if (hasWords(jobberState, ['angry']) || hasWords(sms, ['angry', 'upset', 'mad', 'frustrated', 'stopped again'])) {
+    if (hasWords(jobberState, ['angry']) || hasWords(signalText, ['angry', 'upset', 'mad', 'frustrated', 'stopped again'])) {
       items.push({
         id: idFor('action', m.customerName, 'owner-alert'),
         priority: 'critical',
@@ -324,7 +381,7 @@ function buildActionQueue(matches: EntityMatch[]): ActionQueueItem[] {
       })
     }
 
-    if (hasWords(jobberState, ['reschedule']) || hasWords(sms, ['reschedule', 'move appointment'])) {
+    if (hasWords(jobberState, ['reschedule']) || hasWords(signalText, ['reschedule', 'move appointment'])) {
       items.push({
         id: idFor('action', m.customerName, 'reschedule'),
         priority: 'high',
@@ -339,7 +396,7 @@ function buildActionQueue(matches: EntityMatch[]): ActionQueueItem[] {
       })
     }
 
-    if (hasWords(jobberState, ['parts_on_order']) || hasWords(sms, ['part', 'board', 'ordered'])) {
+    if (hasWords(jobberState, ['parts_on_order']) || hasWords(signalText, ['part', 'board', 'ordered'])) {
       items.push({
         id: idFor('action', m.customerName, 'parts-status'),
         priority: 'medium',
@@ -350,6 +407,36 @@ function buildActionQueue(matches: EntityMatch[]): ActionQueueItem[] {
         whyItMatters: 'Parts delays create inbound calls unless the office proactively updates the customer.',
         evidence: [m.sms?.lastBody, `Jobber state: ${jobberState}`].filter(Boolean) as string[],
         proposedAction: 'Draft customer status update and internal Jobber note.',
+        approvalRequired: true,
+      })
+    }
+
+    if (m.intake && !m.jobber?.requestUrl) {
+      items.push({
+        id: idFor('action', m.customerName, 'create-jobber-request'),
+        priority: hasWords(signalText, ['emergency', 'same-day', 'no heat', 'elderly', 'urgent']) ? 'critical' : 'high',
+        status: 'ready_for_review',
+        actionType: 'create_jobber_request',
+        customerName: m.customerName,
+        title: `Create Jobber request for new intake: ${m.customerName}`,
+        whyItMatters: 'A customer asked for service through the online form, but there is no matched Jobber request yet.',
+        evidence: [m.intake.description || '', `Jobber request: ${m.jobber?.requestUrl || 'none'}`].filter(Boolean),
+        proposedAction: 'Prepare a Jobber request with the intake details, service address, urgency, and text-consent note for dispatcher review.',
+        approvalRequired: true,
+      })
+    }
+
+    if (m.email) {
+      items.push({
+        id: idFor('action', m.customerName, 'reconcile-office-email', m.email.lastAt),
+        priority: hasWords(signalText, ['critical', 'urgent', 'today', 'cannot find', 'needs to know']) ? 'high' : 'medium',
+        status: 'ready_for_review',
+        actionType: 'reconcile_office_email',
+        customerName: m.customerName,
+        title: `Reconcile office email for ${m.customerName}`,
+        whyItMatters: 'Staff are discussing work in email; Stanley should attach the signal to the customer/job and turn it into a clear office action.',
+        evidence: [m.email.subject || '', m.email.body || ''].filter(Boolean),
+        proposedAction: 'Create an internal action bundle: matched customer, referenced job/accounting state, next owner, and draft response or Jobber note.',
         approvalRequired: true,
       })
     }
@@ -375,24 +462,28 @@ function buildActionQueue(matches: EntityMatch[]): ActionQueueItem[] {
 }
 
 export async function buildOpsLayerSnapshot(): Promise<OpsLayerSnapshot> {
-  const [jobberRecords, qboRecords, smsRows, jobberWebhookRows, qboWebhookRows] = await Promise.all([
+  const [jobberRecords, qboRecords, smsRows, intakeRows, emailRows, jobberWebhookRows, qboWebhookRows] = await Promise.all([
     loadJobberSeedRecords(),
     loadQboSeedRecords(),
     readJsonl(TWILIO_DIR),
+    readJsonl(CUSTOMER_INTAKE_DIR),
+    readJsonl(OFFICE_EMAIL_DIR),
     readJsonl(JOBBER_WEBHOOK_DIR),
     readJsonl(QBO_WEBHOOK_DIR),
   ])
-  const names = namesFromSeeds(jobberRecords, qboRecords)
+  const names = namesFromSources(jobberRecords, qboRecords, intakeRows, emailRows)
   const seedEvents = [...jobberRecords.map(eventFromJobberSeed), ...qboRecords.map(eventFromQboSeed)]
   const smsEvents = smsRows.map((r) => eventFromSms(r, names))
+  const intakeEvents = intakeRows.map(eventFromIntake)
+  const emailEvents = emailRows.map((r) => eventFromOfficeEmail(r, names))
   const webhookEvents = [
     ...jobberWebhookRows.map(eventFromJobberWebhook).filter(Boolean) as NormalizedEvent[],
     ...qboWebhookRows.flatMap(eventFromQboWebhook),
   ]
-  const normalizedEvents = [...seedEvents, ...smsEvents, ...webhookEvents]
+  const normalizedEvents = [...seedEvents, ...smsEvents, ...intakeEvents, ...emailEvents, ...webhookEvents]
     .sort((a, b) => b.occurredAt.localeCompare(a.occurredAt))
     .slice(0, 250)
-  const matches = buildMatches(names, jobberRecords, qboRecords, smsEvents, normalizedEvents)
+  const matches = buildMatches(names, jobberRecords, qboRecords, smsEvents, intakeEvents, emailEvents, normalizedEvents)
   const actionQueue = buildActionQueue(matches)
   return {
     generatedAt: new Date().toISOString(),
