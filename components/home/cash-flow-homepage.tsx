@@ -28,6 +28,7 @@ const uploadedHomeImages = {
   handoff: { src: "/images/uploaded/homepage/ai-office/office-handoff-automation.jpg", alt: "Office handoff automation for job details, billing readiness, estimate follow-up, and staff exceptions", width: 1280, height: 1219 },
   playbook: { src: "/images/uploaded/homepage/ai-office/staff-ai-playbook.jpg", alt: "Staff AI playbook tied to SOPs and approved escalation rules", width: 1254, height: 1254 },
   beforeAfter: { src: "/images/uploaded/homepage/ai-office/before-after-office-drag.jpg", alt: "Before and after office drag diagram: copying and chasing to cleaner records and faster follow-up", width: 1280, height: 960 },
+  officeTeam: { src: "/images/uploaded/homepage/ai-office/office-team-workspace.jpg", alt: "Office team working together in a workspace", width: 1280, height: 720 },
 }
 
 const buttonBase = "inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-base font-extrabold transition focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2"
@@ -111,20 +112,22 @@ function CalculatorSpine() {
 function AssessmentSection() {
   const deliverables = ["Where admin drag is costing time, money, follow-up, and quality.", "What your current field-service and accounting software already handles.", "What staff is still forced to chase, copy, check, or reconcile.", "Your top 3 AI workflow opportunities.", "A one-page AI Office Map with the $197 credited toward the Sprint."]
   return (
-    <PageSection id="assessment" className="bg-[#071422] py-16 text-white md:py-20 lg:py-24" navTheme="dark">
-      <div className="mx-auto grid max-w-[88rem] gap-8 lg:grid-cols-[1fr_0.78fr] lg:items-center">
-        <div>
-          <h2 className="mt-3 max-w-[760px] text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">See where your office is falling behind — and what AI should fix first.</h2>
-          <p className="mt-4 max-w-[660px] text-base font-semibold leading-7 text-white/72">In one focused session, Stanley Systems maps the admin drag slowing down the office, checks what your current software already handles, and shows the AI workflows that can make the current team faster, cleaner, and more profitable.</p>
+    <PageSection id="assessment" className="relative isolate overflow-hidden bg-[#071422] py-16 text-white md:py-20 lg:py-24" navTheme="dark">
+      <Image src={uploadedHomeImages.officeTeam.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-center" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,20,34,0.96)_0%,rgba(7,20,34,0.88)_42%,rgba(7,20,34,0.62)_72%,rgba(7,20,34,0.42)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_12%,rgba(83,217,134,0.18),transparent_34%),linear-gradient(180deg,rgba(7,20,34,0.18)_0%,rgba(7,20,34,0.9)_100%)]" />
+      <div className="mx-auto max-w-[88rem]">
+        <div className="max-w-[760px]">
+          <h2 className="mt-3 text-balance text-[clamp(2.05rem,4.55vw,4.9rem)] font-extrabold leading-[0.94] tracking-[-0.025em]">See where your office is falling behind — and what AI should fix first.</h2>
+          <p className="mt-4 max-w-[660px] text-base font-semibold leading-7 text-white/78">In one focused session, Stanley Systems maps the admin drag slowing down the office, checks what your current software already handles, and shows the AI workflows that can make the current team faster, cleaner, and more profitable.</p>
           <ul className="mt-6 grid max-w-2xl gap-3">
-            {deliverables.map((item) => <li key={item} className="flex gap-3 text-sm font-semibold leading-6 text-white/82"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#84D99A]" />{item}</li>)}
+            {deliverables.map((item) => <li key={item} className="flex gap-3 text-sm font-semibold leading-6 text-white/86"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#84D99A]" />{item}</li>)}
           </ul>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
             <CTALink href={calculatorHref} kind="calculator" location="home_ai_office_map_secondary" analyticsEvent="calculator_cta_clicked" ctaLabel="Calculate Your Admin Drag" className={darkGhostButton}>Calculate Your Admin Drag</CTALink>
           </div>
         </div>
-        <UploadedSectionImage image={uploadedHomeImages.map} className="rounded-[2rem]" />
       </div>
     </PageSection>
   )
