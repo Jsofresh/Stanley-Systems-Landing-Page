@@ -189,26 +189,16 @@ function WorkflowCategoriesSection() {
 }
 
 function BeforeAfterProofSection() {
-  const before = ["Staff copies job details between tools.", "Billing waits on missing information.", "Estimates and customer issues go cold.", "Owner answers repeat process questions."]
-  const after = ["Job and customer information moves automatically.", "Staff handles exceptions instead of repetitive cleanup.", "Billing and follow-up trigger earlier.", "The same team produces more accurate work."]
   return (
     <PageSection className="bg-white text-[#071D3A]">
       <div className="mx-auto grid max-w-[88rem] gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
         <div>
           <h2 className="text-balance text-[clamp(2.1rem,4.8vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">Before: office drag slows growth. After: the same team runs cleaner and faster.</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            <ListCard title="Before" items={before} />
-            <ListCard title="After Stanley Systems" items={after} />
-          </div>
         </div>
         <UploadedSectionImage image={uploadedHomeImages.beforeAfter} className="scale-[1.02] lg:origin-center" />
       </div>
     </PageSection>
   )
-}
-
-function ListCard({ title, items }: { title: string; items: string[] }) {
-  return <div className="rounded-2xl border border-[#DDEBE2] bg-[#FBFCF7] p-4"><h3 className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">{title}</h3><ul className="mt-3 grid gap-2">{items.map((item) => <li key={item} className="flex gap-2 text-sm font-semibold leading-6 text-[#34495F]"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#15803D]" />{item}</li>)}</ul></div>
 }
 
 function FinalOfficeCTA() {
