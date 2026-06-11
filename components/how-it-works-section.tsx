@@ -115,7 +115,7 @@ export function HowItWorksSection() {
               <p className="mt-3 flex max-w-[34rem] items-start gap-2.5 rounded-[1rem] border border-[#cfe8d5] bg-[#edf9f1] px-3.5 py-2.5 text-sm leading-6 text-[#34465B] shadow-[0_10px_24px_rgba(21,128,61,0.07)]">
                 <IconShieldCheck className="mt-0.5 h-4.5 w-4.5 shrink-0 text-[#15803D]" stroke={2} aria-hidden />
                 <span>
-                  If Stanley Systems cannot find one clear admin drag we can fix, qualified businesses get the assessment fee back.{" "}
+                  If Stanley Systems cannot find one clear admin drag we can fix, qualified businesses get the AI Office Map fee back.{" "}
                   <a href="/terms-and-conditions#audit-guarantee-terms" className="font-semibold text-[#102033] underline decoration-[#15803D]/35 underline-offset-4 transition hover:text-[#15803D]">
                     See guarantee terms.
                   </a>
@@ -128,7 +128,7 @@ export function HowItWorksSection() {
             <div className="border-b border-[#ece4d8] pb-3 text-center">
               <div className="mx-auto max-w-[34rem]">
                 <h3 className="mt-1.5 text-2xl font-semibold leading-tight text-[#102033] sm:text-[1.85rem]">
-                  Money Leak Map
+                  AI Office Map
                 </h3>
                 <p className="mt-1 text-sm leading-6 text-[#667085]">
                   Example assessment snapshot: where money is stuck and which fix should move first.

@@ -5,7 +5,7 @@ import {
 import { CustomerRevenueLoopMini } from '@/components/visual-kit/mini-features'
 
 const benefits = [
-  'More repeat revenue',
+  'More follow-up revenue',
   'More reviews and referrals',
   'More recovered calls',
   'Less owner rescue',
@@ -23,7 +23,7 @@ export function CustomerRevenueSystemV4() {
           <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(310px,0.38fr)] lg:items-end">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#15803D]">
-                CUSTOMER REVENUE SYSTEM
+                AI OFFICE OPS
               </p>
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-normal text-[#071421] sm:text-5xl lg:text-6xl">
                 Get more money from the customers you already earned.
@@ -73,7 +73,7 @@ export function CustomerRevenueSystemV4() {
                 href="/pricing#workflow-audit"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]"
               >
-                Get the AI Office Map
+                Book the $197 AI Office Map
               </a>
               <a
                 href="#customer-revenue-system-v4-flow"

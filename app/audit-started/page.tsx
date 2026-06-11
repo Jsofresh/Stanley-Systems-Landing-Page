@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 const steps = [
   "Payment received",
   "Complete intake",
-  "Complete assessment intake",
+  "Complete AI Office Map intake",
   "Share screen, exports, screenshots, or temporary user access if needed",
-  "Receive assessment findings and fix list",
+  "Receive AI Office Map findings and first-workflow recommendation",
 ]
 
 export default function AuditStartedPage() {
@@ -26,7 +26,7 @@ export default function AuditStartedPage() {
           <p className="mt-5 text-lg font-semibold leading-8 text-[#536173]">Complete the intake so Stanley Systems can review how your office handles jobs, invoices, estimates, follow-up, reviews, referrals, and handoffs today.</p>
 
           <div className="mt-8 rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFEFA] p-5">
-            <h2 className="text-xl font-extrabold tracking-[-0.02em] text-[#071D3A]">Assessment progress</h2>
+            <h2 className="text-xl font-extrabold tracking-[-0.02em] text-[#071D3A]">AI Office Map progress</h2>
             <ol className="mt-4 grid gap-3">
               {steps.map((step, index) => (
                 <li key={step} className="flex gap-3 text-sm font-semibold leading-6 text-[#536173]">
@@ -43,8 +43,8 @@ export default function AuditStartedPage() {
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/audit-intake" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">Complete assessment intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            <a href="mailto:hello@stanley-systems.com?subject=Cash%20Flow%20Assessment%20booking%20link" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] hover:bg-[#F4FBF5]"><CalendarCheck className="mr-2 h-4 w-4" />Send me the booking link by email</a>
+            <Link href="/audit-intake" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">Complete AI Office Map intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <a href="mailto:hello@stanley-systems.com?subject=AI%20Office%20Map%20booking%20link" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] hover:bg-[#F4FBF5]"><CalendarCheck className="mr-2 h-4 w-4" />Send me the booking link by email</a>
           </div>
         </div>
       </main>

@@ -42,7 +42,7 @@ const fontAliases = {
 
 const siteTitle = "Stanley Systems | Admin Drag Calculator"
 const siteDescription =
-  "Stanley Systems installs a AI office layer on top of the software your business already uses, reducing costly manual office work across billing, follow-up, customer records, and software handoffs."
+  "Stanley Systems installs an AI office layer on top of the software your business already uses, reducing costly manual office work across billing, follow-up, customer records, and software handoffs."
 const siteLogoPath = "/stanley-systems-logo-reference.jpg"
 const siteLogoUrl = `https://stanley-systems.com${siteLogoPath}`
 
@@ -126,7 +126,7 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What happens after the assessment?",
+        name: "What happens after the AI Office Map?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Stanley Systems shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first, then turns that plan into systems your business can use.",

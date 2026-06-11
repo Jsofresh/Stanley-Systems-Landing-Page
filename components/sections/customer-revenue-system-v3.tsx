@@ -42,7 +42,7 @@ const flowCards = [
 ]
 
 const benefits = [
-  'More repeat revenue',
+  'More follow-up revenue',
   'More reviews and referrals',
   'More recovered calls',
   'Less owner rescue',
@@ -143,7 +143,7 @@ export function CustomerRevenueSystemV3() {
                 href="/pricing#workflow-audit"
                 className="inline-flex items-center justify-center rounded-full bg-[#0caf58] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(12,175,88,0.24)] transition hover:bg-[#098f49]"
               >
-                Get the AI Office Map
+                Book the $197 AI Office Map
               </a>
               <a
                 href="#customer-revenue-system-v3-flow"

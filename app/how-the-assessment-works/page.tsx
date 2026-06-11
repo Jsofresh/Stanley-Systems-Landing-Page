@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://stanley-systems.com/how-the-assessment-works" },
 }
 
-function AssessmentCheckout({ location, className = greenButton, children = "Get the AI Office Map" }: { location: string; className?: string; children?: ReactNode }) {
+function AssessmentCheckout({ location, className = greenButton, children = "Book the $197 AI Office Map" }: { location: string; className?: string; children?: ReactNode }) {
   return (
     <CTALink
       href={assessment.stripePaymentLink.url}
@@ -32,7 +32,7 @@ function AssessmentCheckout({ location, className = greenButton, children = "Get
       packageId={assessment.analyticsPackageId}
       packageName={assessment.publicName}
       billingPeriod="one_time"
-      ctaLabel={typeof children === "string" ? children : "Get the AI Office Map"}
+      ctaLabel={typeof children === "string" ? children : "Book the $197 AI Office Map"}
       target="_blank"
       rel="noopener noreferrer"
       className={className}
@@ -53,13 +53,13 @@ const trustBullets = [
 
 const timeline = [
   {
-    title: "Start the assessment",
-    body: "You start the paid AI Office Map. This is a real review of your cashflow, not a fake sales call.",
+    title: "Start the AI Office Map",
+    body: "You start the paid AI Office Map. This is a real review of your office workflow, not a generic sales call.",
   },
   {
     title: "Show how the office works now",
     body: "Stanley Systems reviews how calls, estimates, invoices, customer records, payment follow-up, reviews, referrals, and past customers are handled today.",
-    note: "You stay in control: any access needed for the assessment is temporary, used only for the review, and removable by you at any time.",
+    note: "You stay in control: any access needed for the AI Office Map is temporary, used only for the review, and removable by you at any time.",
   },
   {
     title: "Stanley Systems finds where money is getting stuck",
@@ -76,7 +76,7 @@ const deliverables = [
   ["Problem list", "The places where money, time, customers, or follow-up are slipping through the cracks."],
   ["Cost of each issue", "A plain-English look at what each problem may be costing your business."],
   ["Fix priority", "What should be fixed first, what can wait, and what is not worth overbuilding."],
-  ["Build plan if you want help", "If you do not want to build it yourself, Stanley Systems can use the assessment to scope the Installation Sprint."],
+  ["Build plan if you want help", "If you do not want to build it yourself, Stanley Systems can use the AI Office Map to scope the Installation Sprint."],
 ]
 
 const faqs = [
@@ -84,7 +84,7 @@ const faqs = [
   ["Do I need perfect reports or clean data?", "No. Best available records are enough. Screen shares, screenshots, exports, or walkthroughs can all help."],
   ["Do I need to share passwords?", "No. Do not send passwords. A temporary invited user is usually the fastest way for Stanley Systems to review accurate records, but you can start with a screen share, exports, or screenshots. You control what is shared and can remove access at any time."],
   ["Is this a software replacement?", "No. Stanley Systems looks at the handoffs around the tools you already use. The goal is to find where money, customers, and follow-up are getting stuck."],
-  ["What if I want Stanley Systems to build the fixes?", "If the assessment is useful and you want Stanley Systems to build the fix for you, we credit double the assessment fee toward your Installation Sprint."],
+  ["What if I want Stanley Systems to build the fixes?", "$197 is credited toward your AI Office Installation Sprint when you move forward."],
 ]
 
 function SprintBridge() {
@@ -94,23 +94,23 @@ function SprintBridge() {
         <div>
           <h2 className="text-[2.05rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build it for you?</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            The assessment shows what is costing you money. The Sprint builds the fix: faster billing, cleaner follow-up, more reviews, more referrals, repeat-customer reminders, or the specific mix your business needs.
+            The AI Office Map shows where office work is getting stuck. The Sprint builds the fix: faster billing readiness, cleaner follow-up, practical workflows, staff training, and your company playbook.
           </p>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#536173] sm:text-base">
-            Use the assessment to fix the problems yourself, or use it as the build plan for the Sprint.
+            Use the AI Office Map to fix the problems yourself, or use it as the build plan for the Sprint.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href="/systems-installation-sprint" className={greenButton}>See how the Sprint works <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </div>
         </div>
         <div className="rounded-[1.6rem] border border-[#BFE4C8] bg-white p-6 shadow-[0_14px_36px_rgba(7,29,58,0.045)]">
-          <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">After the assessment, you have two clean paths</h3>
+          <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#102033]">After the AI Office Map, you have two clean paths</h3>
           <ul className="mt-4 grid gap-3 text-sm font-bold leading-6 text-[#334B60]">
             <li>Use the map to fix the problems yourself.</li>
             <li>Use the map as the build plan for Stanley Systems to install the systems.</li>
           </ul>
           <p className="mt-5 rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-4 text-sm font-extrabold leading-6 text-[#116832]">
-            If the assessment is useful and you want Stanley Systems to build the fix for you, we credit double the assessment fee toward your Installation Sprint.
+            $197 credited toward your AI Office Installation Sprint when you move forward.
           </p>
         </div>
       </div>
@@ -138,7 +138,7 @@ export default function HowAssessmentWorksPage() {
               </p>
               <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
                 <AssessmentCheckout location="how_assessment_hero_primary">
-                  Get the AI Office Map <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </AssessmentCheckout>
                 <a href="#assessment-output" className={lightButton}>See what you get</a>
               </div>
@@ -176,9 +176,9 @@ export default function HowAssessmentWorksPage() {
         <section id="assessment-output" data-section="assessment-how-output" className="bg-[#FBFCF7] py-12 sm:py-14">
           <div className={`${shell} grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start`}>
             <div>
-              <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What you get from the assessment</h2>
+              <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What you get from the AI Office Map</h2>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-                The AI Office Map gives you a professional Stanley Systems document: the leaks, the cost, the workflow map, the data behind the estimate, the fix list, and the expected result of each fix.
+                The AI Office Map gives you a clear Stanley Systems document: where work is stuck, what current tools already handle, staff AI training and company playbook gaps, and the first workflow worth installing.
               </p>
               <p className="mt-5 text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">You receive:</p>
             </div>
@@ -212,7 +212,7 @@ export default function HowAssessmentWorksPage() {
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Ready to find where the office work is costing you money?</h2>
               <div className="mt-5 flex justify-center">
                 <AssessmentCheckout location="how_assessment_final_primary">
-                  Get the AI Office Map <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </AssessmentCheckout>
               </div>
             </div>

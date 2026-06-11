@@ -9,10 +9,10 @@ const cards: PackagePricingCard[] = [
     package: plans.cashflowMonthly,
     description: "Best for shops that need customer intake, billing, final bill, and follow-up to stop depending on manual re-entry.",
     install: "$199 installation",
-    credit: "Assessment credit: -$197 if you start there first",
+    credit: "AI Office Map credit: -$197 if you start there first",
     callout: null,
     cta: "Buy monthly",
-    secondary: "Get the AI Office Map",
+    secondary: "Book the $197 AI Office Map",
     bullets: ["Customer intake to billing workflow", "Webhook, form, or job-system handoffs", "Billing-ready checks", "Missing billing detail routing"],
   },
   {
@@ -22,10 +22,10 @@ const cards: PackagePricingCard[] = [
     package: plans.cashflowYearly,
     description: "Best first-year value for automating the intake-to-final-bill path for the year.",
     install: "Install discount: -$199",
-    credit: "Assessment credit: -$194 if you start there first",
+    credit: "AI Office Map credit: -$197 if you start there first",
     callout: "-$1,250 first-year package savings",
     cta: "Buy yearly",
-    secondary: "Get the AI Office Map",
+    secondary: "Book the $197 AI Office Map",
     bullets: ["Everything in monthly", "Customer intake to cash collection", "Invoice and final-bill path", "Lower first-year cost"],
   },
   {
@@ -33,12 +33,12 @@ const cards: PackagePricingCard[] = [
     tone: "complete",
     name: "AI Office Ops Monthly",
     package: plans.completeMonthly,
-    description: "For shops leaking money before the job is booked, while it is billed, and after the customer leaves.",
+    description: "For shops where billing readiness, follow-up, and job admin all need a cleaner installed workflow.",
     install: "$449 installation",
-    credit: "Assessment credit: -$197 if you start there first",
+    credit: "AI Office Map credit: -$197 if you start there first",
     callout: null,
     cta: "Buy both monthly",
-    secondary: "Get the AI Office Map",
+    secondary: "Book the $197 AI Office Map",
     bullets: ["AI Office Installation Sprint", "AI Office Ops", "Open-balance visibility", "Reviews, referrals, and reactivation"],
   },
   {
@@ -48,10 +48,10 @@ const cards: PackagePricingCard[] = [
     package: plans.completeYearly,
     description: "The full revenue-control path with yearly savings and an installation discount.",
     install: "Install discount: -$449",
-    credit: "Assessment credit: -$194 if you start there first",
+    credit: "AI Office Map credit: -$197 if you start there first",
     callout: "-$2,700 first-year package savings",
     cta: "Buy both yearly",
-    secondary: "Get the AI Office Map",
+    secondary: "Book the $197 AI Office Map",
     bullets: ["AI Office Installation Sprint", "AI Office Ops", "Lowest first-year bundle cost", "Best full-system economics"],
   },
 ]
@@ -68,7 +68,7 @@ export function AIOfficeWorkflowPricing() {
         </div>
 
         <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-[#B7D8C0] bg-white px-5 py-3 text-center text-sm font-extrabold text-[#124E25] shadow-[0_12px_30px_rgba(33,51,67,0.06)]">
-          Monthly keeps it flexible. Yearly lowers the first-year cost, applies a larger assessment credit, and shows the yearly bill clearly inside the card.
+          Monthly keeps it flexible. Yearly lowers the first-year cost and shows the yearly bill clearly inside the card.
         </div>
 
         <PackagePricingGrid
@@ -80,7 +80,7 @@ export function AIOfficeWorkflowPricing() {
         />
 
         <p className="mt-5 rounded-[1.25rem] border border-[#BFE4C8] bg-[#F4FBF5] p-4 text-sm font-semibold leading-6 text-[#536173]">
-          The AI Office Map is optional. You can buy Office Workflow Control directly. The assessment is for buyers who want Stanley Systems to inspect the workflow first and credit the assessment fee toward a system.
+          Start with the AI Office Map if you have not bought it yet. The Map shows whether this billing readiness path is the first workflow worth installing.
         </p>
       </div>
     </section>

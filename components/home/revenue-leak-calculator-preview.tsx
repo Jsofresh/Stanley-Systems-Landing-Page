@@ -46,10 +46,10 @@ export function RevenueLeakCalculatorPreview() {
                 kind="calculator"
                 location="home_revenue_leak_preview"
                 analyticsEvent="calculator_cta_clicked"
-                ctaLabel="Find My Revenue Leaks"
+                ctaLabel="Calculate Your Admin Drag"
                 className="inline-flex min-h-[46px] shrink-0 items-center justify-center rounded-full bg-[#08A64B] px-5 py-2.5 text-[14px] font-extrabold text-white shadow-[0_12px_24px_rgba(8,166,75,0.18)] transition hover:-translate-y-0.5 hover:bg-[#087B3F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B]"
               >
-                Find My Revenue Leaks
+                Calculate Your Admin Drag
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
             </div>

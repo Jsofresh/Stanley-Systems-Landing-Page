@@ -8,10 +8,10 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
   return (
     <section className="mx-auto max-w-5xl rounded-[2.25rem] border border-[#d7ecd9] bg-[linear-gradient(180deg,#f3fbf5_0%,#ffffff_100%)] p-7 text-center shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:p-10 lg:p-12">
       <h2 className="text-balance text-[2.15rem] font-semibold leading-tight tracking-[-0.03em] text-[#102033] sm:text-5xl">
-        Find the office work your business should not be paying for anymore.
+        Find the office work your current team should fix first.
       </h2>
       <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-[#536173] sm:text-lg">
-        Get the AI Office Map. Stanley Systems will show what to automate, remove, restructure, or delegate first.
+        Book the $197 AI Office Map. Stanley Systems will show where work is getting stuck, what your current tools already handle, and which AI-guided workflow should be installed first.
       </p>
       <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
         <CTALink
@@ -23,10 +23,10 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
           packageId={primaryOffer.analyticsPackageId}
           packageName={primaryOffer.packageName}
           billingPeriod={primaryOffer.billingPeriod}
-          ctaLabel="Get the AI Office Map"
+          ctaLabel="Book the $197 AI Office Map"
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.24)] transition hover:bg-[#116832] sm:px-8"
         >
-          Get the AI Office Map
+          Book the $197 AI Office Map
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </CTALink>
         <CTALink
@@ -36,7 +36,7 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-bold text-[#102033] shadow-[0_10px_24px_rgba(16,32,51,0.06)] transition hover:bg-[#fbfaf7] sm:px-8"
         >
           <Calculator className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
-          Calculate the leak
+          Calculate Your Admin Drag
         </CTALink>
       </div>
       <p className="mx-auto mt-5 max-w-2xl text-sm font-bold leading-6 text-[#607080]">Still hesitating? <a href="/contact?path=pre-buy" className="text-[#116832] underline underline-offset-4">Ask us a question before buying.</a></p>

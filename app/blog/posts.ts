@@ -86,7 +86,7 @@ export const posts: BlogPost[] = [
     slug: "the-estimate-that-went-cold-and-the-4000-job",
     title: "The estimate that went cold (and the $4,000 job that went with it)",
     excerpt:
-      "A quote goes out on Friday. Monday gets slammed. By Wednesday, the lead has hired someone else. This is rarely a sales problem. It is a repeat revenue system problem.",
+      "A quote goes out on Friday. Monday gets slammed. By Wednesday, the lead has hired someone else. This is rarely a sales problem. It is an office follow-up workflow problem.",
     category: "Follow-up",
     readTime: "6 min read",
     seoTitle: "The Estimate That Went Cold and the $4,000 Job | Stanley Systems",
@@ -231,7 +231,7 @@ export const posts: BlogPost[] = [
       {
         heading: "Automation does not fix unclear ownership",
         paragraphs: [
-          "If a team does not know who owns the next step, where information is supposed to live, or what counts as complete, adding automation usually creates a sharper version of the same confusion. Notifications fire. Records move. People assume the system handled it. Then work gets missed because nobody actually owns the handoff.",
+          "If a team does not know who owns the next step, where information is supposed to live, or what counts as complete, adding automation usually creates a sharper version of the same confusion. Alerts fire. Records move. People assume the system handled it. Then work gets missed because nobody actually owns the handoff.",
           "That is why an automation can look great in a demo and still disappoint in real operations. Demos usually show the happy path. Real businesses live in the exceptions, missing information, special cases, and rushed handoffs that happen every day."
         ],
       },

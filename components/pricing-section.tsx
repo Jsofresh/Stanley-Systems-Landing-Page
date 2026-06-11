@@ -12,7 +12,7 @@ const systems = [
     name: "AI Office Installation Sprint",
     route: cashflowHref,
     label: "Install workflows",
-    promise: "Install 1–3 workflows that make billing, follow-up, records, and staff handoffs move faster.",
+    promise: "Install practical workflows that make billing, follow-up, records, and staff handoffs move faster.",
     signs: ["Finished jobs wait before billing", "Open balances need follow-up", "The owner keeps checking if invoices moved"],
     cta: "See the Installation Sprint",
     packageId: "cashflow_control_monthly",
@@ -38,7 +38,7 @@ const pricingPreview = [
     price: pricingPackageById.workflow_audit.priceDisplay,
     note: "Paid diagnostic before a build.",
     href: "#final-audit",
-    cta: "See the assessment step",
+    cta: "See the Map step",
   },
   {
     name: "AI Office Installation Sprint",
@@ -165,10 +165,10 @@ export function PricingSection() {
               location="homepage_pricing_audit"
               analyticsEvent="package_compare_clicked"
               analyticsSource="homepage_pricing_preview"
-              ctaLabel="See how the assessment works"
+              ctaLabel="See how the AI Office Map works"
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d6e5ca] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:border-[#15803D]/40 hover:bg-[#f2fbf5]"
             >
-              See how the assessment works
+              See how the AI Office Map works
             </CTALink>
           </div>
         </div>

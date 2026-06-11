@@ -100,7 +100,7 @@ export function CustomerRevenueSystemV2() {
               <div className="mt-7 grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
                 <div className="rounded-3xl border border-[#cfe8d8] bg-[#eef9e9] p-5">
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#10713e]">Result first</p>
-                  <p className="mt-2 text-3xl font-semibold tracking-[-0.03em] text-[#071f1a]">More repeat revenue</p>
+                  <p className="mt-2 text-3xl font-semibold tracking-[-0.03em] text-[#071f1a]">More follow-up revenue</p>
                   <p className="mt-2 text-sm leading-6 text-slate-650">
                     The system starts with customers the business already paid to earn.
                   </p>
@@ -119,7 +119,7 @@ export function CustomerRevenueSystemV2() {
                   href="/pricing#workflow-audit"
                   className="inline-flex items-center justify-center rounded-full bg-[#0caf58] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(12,175,88,0.24)] transition hover:bg-[#098f49]"
                 >
-                  Get the AI Office Map
+                  Book the $197 AI Office Map
                 </a>
                 <a
                   href="/invoicing-delay-cash-flow-calculator"

@@ -5,8 +5,8 @@ import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 
-const headline = "More jobs processed. Cleaner records. Faster follow-up. Same office team."
-const subheadline = "Stanley Systems installs AI where office work actually happens so your current office team can run cleaner before another admin hire."
+const headline = "Train your office team to handle more paperwork, billing, and job admin without hiring another person."
+const subheadline = "Stanley Systems helps growing service and trade businesses train office staff on AI and install practical workflows around the work they already do."
 
 const heroVideoVersion = "manual-clock-20260507"
 const heroVideo = {
@@ -47,15 +47,15 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(690px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-[1fr_230px]",
     items: [
-      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Turn the AI Office Map into 1–3 installed workflows." },
+      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Turn the AI Office Map into priority workflows, staff training, and your company playbook." },
       { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate what copying, chasing, and reconciling cost." },
       { label: "AI Office Ops", href: "/pricing#ai-office-ops", description: "Keep installed workflows monitored, fixed, and improving." },
     ],
     featured: {
       title: "Not sure where office drag is costing you?",
-      copy: "Book the AI Office Map before installing workflows.",
+      copy: "Book the $197 AI Office Map before installing workflows.",
       href: "/workflow-audit",
-      cta: "Book the AI Office Map",
+      cta: "Book the $197 AI Office Map",
     },
   },
   {
@@ -79,7 +79,7 @@ const navGroups: MegaMenuGroup[] = [
       title: "Busy team, messy handoff?",
       copy: "Stanley Systems works around the tools your crews already use.",
       href: "/workflow-audit",
-      cta: "Book the AI Office Map",
+      cta: "Book the $197 AI Office Map",
     },
   },
   {
@@ -100,7 +100,7 @@ const navGroups: MegaMenuGroup[] = [
     label: "Pricing",
     href: "/pricing",
     eyebrow: "Diagnose, build, maintain",
-    summary: "Calculator, AI Office Map, Installation Sprint, then AI Office Ops.",
+    summary: "Calculator, $197 AI Office Map, Installation Sprint, then AI Office Ops.",
     widthClass: "w-[min(420px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
@@ -289,7 +289,7 @@ export function SiteHeader() {
       ? "border-[#d9efe2]/18 bg-[#071422]/96 text-white shadow-[0_16px_42px_rgba(2,8,15,0.28)] backdrop-blur-xl"
       : "border-white/10 bg-[#071422]/93 text-white backdrop-blur-md"
   const utilityClasses = isLight
-    ? "border-[#e2ece5] bg-[#f7fbf2]/88 text-[#42596C]"
+    ? "border-[#d3e4d8] bg-[#f7fbf2]/96 text-[#071D3A]"
     : "border-white/8 bg-[#06111d]/72 text-white/76"
   const navLinkClasses = isLight
     ? "text-[#20384F] hover:bg-[#eaf6ee] hover:text-[#071D3A] focus:bg-[#eaf6ee] focus:text-[#071D3A]"
@@ -359,12 +359,12 @@ export function SiteHeader() {
               href="/workflow-audit"
               kind="systems"
               location="hero_nav_audit"
-              ctaLabel="Book the AI Office Map"
+              ctaLabel="Book the $197 AI Office Map"
               className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-3 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-4"
             >
-              Book the AI Office Map
+              Book the $197 AI Office Map
             </CTALink>
-            <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How the Assessment Works</a>
+            <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How the AI Office Map Works</a>
           </div>
           <button
             type="button"
@@ -458,15 +458,15 @@ export function SiteHeader() {
                   </div>
                 )
               })}
-              <a href="/how-the-assessment-works" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">How the Assessment Works</a>
+              <a href="/how-the-assessment-works" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">How the AI Office Map Works</a>
               <CTALink
                 href="/workflow-audit"
                 kind="systems"
                 location="hero_mobile_nav_audit"
-                ctaLabel="Book the AI Office Map"
+                ctaLabel="Book the $197 AI Office Map"
                 className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
               >
-                Book the AI Office Map
+                Book the $197 AI Office Map
               </CTALink>
             </div>
           </div>
@@ -519,10 +519,10 @@ export function HeroSection() {
                 location="home_hero_primary"
                 analyticsEvent="audit_checkout_clicked"
                 analyticsSource="homepage_hero"
-                ctaLabel="Book the AI Office Map"
+                ctaLabel="Book the $197 AI Office Map"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                Book the AI Office Map
+                Book the $197 AI Office Map
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
               <a

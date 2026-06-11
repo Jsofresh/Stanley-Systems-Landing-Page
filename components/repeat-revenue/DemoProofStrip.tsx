@@ -24,7 +24,7 @@ export function DemoProofStrip() {
                 Watch demo proof <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link href="/workflow-audit" prefetch={false} className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]">
-                Get the AI Office Map
+                Book the $197 AI Office Map
               </Link>
             </div>
           </div>

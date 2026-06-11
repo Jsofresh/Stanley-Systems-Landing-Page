@@ -126,10 +126,10 @@ export function CalculatorPathSection() {
                 location="homepage_calculator_secondary"
                 analyticsEvent="package_compare_clicked"
                 analyticsSource="homepage_calculator_section"
-                ctaLabel="See how the assessment works"
+                ctaLabel="See how the AI Office Map works"
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE0C5] bg-white px-6 py-3 text-sm font-semibold text-[#102033] shadow-[0_10px_22px_rgba(16,32,51,0.05)] transition hover:border-[#15803D]/40 hover:bg-[#F2FBF5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:whitespace-nowrap"
               >
-                See how the assessment works
+                See how the AI Office Map works
               </CTALink>
             </div>
           </div>

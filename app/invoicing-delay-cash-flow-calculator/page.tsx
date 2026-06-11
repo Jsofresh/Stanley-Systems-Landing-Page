@@ -41,7 +41,7 @@ const faqSchema = {
       name: "I have been burned by consultants before. Why is this different?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Stanley Systems is not selling a giant strategy deck. The assessment finds specific admin drag points, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
+        text: "Stanley Systems is not selling a giant strategy deck. The AI Office Map finds specific admin drag points, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
       },
     },
   ],

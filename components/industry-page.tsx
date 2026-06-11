@@ -52,7 +52,7 @@ export function IndustryPage({ slug }: { slug: IndustrySlug }) {
             <div>
               <h1 className="mt-4 max-w-5xl text-[2.25rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.15rem]">More jobs processed. Cleaner records. Faster follow-up. Same office team.</h1>
               <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">Stanley Systems installs AI office workflows around your existing service software, accounting software, phones, inbox, texts, and staff workflows so the office can run cleaner before another admin hire.</p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row"><Link href="/invoicing-delay-cash-flow-calculator" className={primaryButton}>Calculate Your Admin Drag <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/workflow-audit" className={secondaryButton}>Book the AI Office Map</Link></div>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row"><Link href="/invoicing-delay-cash-flow-calculator" className={primaryButton}>Calculate Your Admin Drag <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/workflow-audit" className={secondaryButton}>Book the $197 AI Office Map</Link></div>
             </div>
             <div className="overflow-hidden rounded-[2rem] border border-[#DDEBE2] bg-white shadow-[0_24px_70px_rgba(7,29,58,0.08)]">
               <Image src={industry.image.src} alt={industry.image.alt} width={1280} height={853} className="h-full min-h-[320px] w-full object-cover" style={{ objectPosition: industry.image.position ?? "center" }} priority />

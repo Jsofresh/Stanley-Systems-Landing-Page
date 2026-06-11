@@ -38,7 +38,7 @@ export default function StanleySystemsCaseStudyPage() {
             <h1 className="max-w-5xl text-[2.3rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem] lg:text-[4.25rem]">The work was done. The cash was not moving fast enough.</h1>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">Stanley Systems found office handoff gaps inside a real service-business workflow: billing, payment follow-up, reviews, referrals, and past customers.</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/workflow-audit#assessment" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">Get the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/workflow-audit#assessment" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link>
               <Link href="/marine-service-automation" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:bg-[#F4FBF5]">See marine service fit</Link>
             </div>
           </div>
@@ -90,8 +90,8 @@ export default function StanleySystemsCaseStudyPage() {
           </div>
           <div className="rounded-[2rem] bg-[#F4FBF5] p-6 ring-1 ring-[#CFE8D5] sm:p-8">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Already have tools but still feel the drag?</h2>
-            <p className="mt-3 text-base font-medium leading-7 text-[#536173]">Get the AI Office Map. Stanley Systems will show where the office work is costing money and which fix should happen first.</p>
-            <Link href="/workflow-audit#assessment" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832]">Get the AI Office Map</Link>
+            <p className="mt-3 text-base font-medium leading-7 text-[#536173]">Book the $197 AI Office Map. Stanley Systems will show where the office work is costing money and which fix should happen first.</p>
+            <Link href="/workflow-audit#assessment" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832]">Book the $197 AI Office Map</Link>
           </div>
         </div>
       </section>

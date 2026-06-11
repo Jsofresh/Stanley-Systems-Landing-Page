@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import { PaidInvoicingDelayCalculatorClient } from "../paid-calculator-client"
 
 export const metadata: Metadata = {
-  title: "What Are Invoicing Delays Costing Your Shop? | Stanley Systems",
+  title: "Admin Drag Calculator Results | Stanley Systems",
   description:
-    "Get a fast estimate of how invoicing delays may be slowing office workflow in your service business, then get the full breakdown and next-step checklist.",
+    "Get a fast estimate of how admin drag may be slowing billing, follow-up, and job admin, then see why the $197 AI Office Map is the next paid step.",
   alternates: {
     canonical: "https://stanley-systems.com/invoicing-delay-cash-flow-calculator/paid",
   },

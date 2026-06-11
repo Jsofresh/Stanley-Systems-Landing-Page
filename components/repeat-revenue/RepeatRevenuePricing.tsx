@@ -16,7 +16,7 @@ export function RepeatRevenuePricing() {
         </div>
 
         <div className="mx-auto mt-6 max-w-4xl rounded-2xl border border-[#B7D8C0] bg-white px-5 py-3 text-center text-sm font-extrabold text-[#124E25] shadow-[0_12px_30px_rgba(33,51,67,0.06)]">
-          Yearly plans show the rounded monthly price first, bill yearly, remove the installation fee, and double the assessment credit to $194.
+          Yearly plans show the rounded monthly price first and bill yearly. The public path is still Map first, then Sprint, then Ops when support makes sense.
         </div>
 
         <PackagePricingGrid

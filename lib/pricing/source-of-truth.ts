@@ -54,13 +54,13 @@ export const pricingPackages: PricingPackage[] = [
     waivedSetup: false,
     waivedSetupDisplay: null,
     auditCredit: 0,
-    auditCreditDisplay: "$197 credited toward the Installation Sprint",
+    auditCreditDisplay: "$197 credited toward your AI Office Installation Sprint",
     auditCreditLabel: "Included",
     firstYearCostAfterAuditCredit: 197,
     firstYearCostAfterAuditCreditDisplay: "$197",
     savings: null,
     badge: "Best first step",
-    cta: "Book the AI Office Map",
+    cta: "Book the $197 AI Office Map",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_WORKFLOW_AUDIT_PAYMENT_LINK",
       url: "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
@@ -68,10 +68,10 @@ export const pricingPackages: PricingPackage[] = [
     packageRoute: "/workflow-audit",
     analyticsPackageId: "workflow_audit",
     notes: [
-      "45–60 minute owner/office-manager session.",
+      "45-60 minute owner or office-manager session.",
       "Shows where admin drag is costing time, money, follow-up, and quality.",
       "Includes a software redundancy check, top 3 AI workflow opportunities, and a one-page AI Office Map.",
-      "$197 applies toward the AI Office Installation Sprint.",
+      "$197 credited toward your AI Office Installation Sprint.",
     ],
   },
   {
@@ -91,7 +91,7 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCredit: 3303,
     firstYearCostAfterAuditCreditDisplay: "$3,303 starting after credit",
     savings: null,
-    badge: "First 1–3 workflows",
+    badge: "Priority workflows",
     cta: "See the Installation Sprint",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_CASHFLOW_CONTROL_MONTHLY_PAYMENT_LINK",
@@ -100,8 +100,8 @@ export const pricingPackages: PricingPackage[] = [
     packageRoute: "/systems-installation-sprint",
     analyticsPackageId: "cashflow_control_monthly",
     notes: [
-      "Installs 1–3 money-moving office workflows around existing software.",
-      "Includes office workflow map, office playbook v1, staff AI training, proof report, and 30 days light support.",
+      "Installs practical office workflows around existing software.",
+      "Includes office workflow map, your company playbook, staff AI training, proof report, and 30 days light support.",
     ],
   },
   {
@@ -152,7 +152,7 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCreditDisplay: "$9,303 starting first year after credit",
     savings: null,
     badge: "Install + improve",
-    cta: "Book the AI Office Map",
+    cta: "Book the $197 AI Office Map",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_BOTH_SYSTEMS_MONTHLY_PAYMENT_LINK",
       url: "https://buy.stripe.com/28EbJ0bDV7U7eeBeNsg7e05",
@@ -230,7 +230,7 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCreditDisplay: "$9,303 starting first year after credit",
     savings: null,
     badge: "Legacy checkout link retained",
-    cta: "Book the AI Office Map",
+    cta: "Book the $197 AI Office Map",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_BOTH_SYSTEMS_YEARLY_PAYMENT_LINK",
       url: "https://buy.stripe.com/eVq3cu9vN5LZgmJfRwg7e08",

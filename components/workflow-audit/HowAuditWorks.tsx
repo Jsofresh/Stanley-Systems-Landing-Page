@@ -7,10 +7,10 @@ export function HowAuditWorks() {
       <div className={page.wrap}>
         <div className="grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
-            <h2 className={page.h2}>A 30-minute walkthrough, then a admin drag map from your records.</h2>
+            <h2 className={page.h2}>A 45-60 minute session, then a one-page AI Office Map.</h2>
           </div>
           <div className="grid gap-3 sm:hidden">
-            {["Walkthrough", "Record review", "Money Leak Map"].map((step, index) => (
+            {["Office workflow walkthrough", "Tool and handoff review", "One-page AI Office Map"].map((step, index) => (
               <div key={step} className="flex items-center gap-3 rounded-2xl border border-[#d9e5dc] bg-white p-4 shadow-[0_10px_28px_rgba(7,29,58,0.05)]">
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#e7f6eb] text-sm font-black text-[#116832]">{index + 1}</span>
                 <span className="text-base font-extrabold text-[#071D3A]">{step}</span>
@@ -20,7 +20,7 @@ export function HowAuditWorks() {
           <div className="mx-auto hidden w-full max-w-[760px] overflow-hidden rounded-[1.5rem] border border-[#d9e5dc] bg-white shadow-[0_16px_46px_rgba(7,29,58,0.06)] sm:block">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-3-step-process.jpg"
-              alt="Three step AI Office Map process: walkthrough, data review, and Money Leak Map."
+              alt="Three step AI Office Map process: workflow walkthrough, tool review, and one-page map."
               width={1280}
               height={960}
               sizes="(min-width: 1024px) 55vw, 100vw"

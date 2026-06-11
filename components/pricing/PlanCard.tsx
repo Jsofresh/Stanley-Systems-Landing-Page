@@ -25,7 +25,7 @@ function compactRows(plan: PricingPlan) {
     return !label.includes("first year") && (label.includes("installation") || label.includes("setup") || label.includes("assessment") || label.includes("savings"))
   }).map((row) => {
     const label = row.label.toLowerCase()
-    if (label.includes("assessment")) return { ...row, label: "Assessment credit" }
+    if (label.includes("assessment")) return { ...row, label: "AI Office Map credit" }
     return row
   })
 }

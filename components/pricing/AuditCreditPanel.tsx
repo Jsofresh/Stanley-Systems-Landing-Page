@@ -18,7 +18,7 @@ export function AuditCreditPanel({ guarantee, auditCredit }: { guarantee: OfferG
 
       {auditCredit?.status === "approved" && auditCredit.copy ? (
         <article className="rounded-[2rem] border border-[#e4ded3] bg-white p-6 shadow-[0_18px_46px_rgba(15,23,42,0.07)] sm:p-7">
-          <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[#102033]">Assessment credit after a build recommendation</h2>
+          <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[#102033]">AI Office Map credit after a build recommendation</h2>
           <p className="mt-4 text-base leading-7 text-[#536173]">{auditCredit.copy}</p>
           <p className="mt-4 rounded-2xl border border-[#e6dfd2] bg-[#fbfaf7] px-4 py-3 text-sm font-bold leading-6 text-[#102033]">
             {auditCredit.nonStackingCopy}

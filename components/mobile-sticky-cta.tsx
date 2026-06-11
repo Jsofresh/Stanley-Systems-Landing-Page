@@ -79,12 +79,12 @@ export function MobileStickyCTA() {
           packageId="workflow_audit"
           packageName="AI Office Map"
           billingPeriod="one_time"
-          ctaLabel="Book the AI Office Map"
+          ctaLabel="Book the $197 AI Office Map"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-full bg-[#15803D] px-3 py-3 text-[13px] font-semibold text-white"
         >
-          Book AI Office Map
+          Book $197 Map
         </CTALink>
       </div>
     </div>

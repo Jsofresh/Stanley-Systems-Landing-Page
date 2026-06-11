@@ -61,7 +61,7 @@ export function MoneyMathSection() {
             className="absolute inset-0 h-full w-full object-contain object-center p-3 sm:p-4"
           />
           <p className="absolute bottom-4 left-4 right-4 rounded-xl bg-white/90 px-4 py-3 text-sm font-bold leading-6 text-[#124E25] shadow-[0_10px_28px_rgba(16,32,51,0.12)] ring-1 ring-[#C8D8CE] backdrop-blur">
-            Example only. The assessment uses your real records.
+            Example only. The AI Office Map uses your real records.
           </p>
         </div>
       </div>

@@ -30,7 +30,7 @@ export default function AuditIntakePage() {
       <main className="px-4 pb-16 pt-24 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
-            <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Send the work details before the assessment.</h1>
+            <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Send the work details before the AI Office Map session.</h1>
             <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Use this after buying the AI Office Map. The intake gives Stanley Systems enough detail to review cash, follow-up, software handoffs, and what should be fixed first.</p>
           </div>
 
@@ -42,7 +42,7 @@ export default function AuditIntakePage() {
 
             <div className="mt-6 rounded-[1.25rem] border border-[#DDEBE2] bg-white p-4 sm:p-5">
               <h3 className="text-lg font-extrabold tracking-[-0.02em] text-[#071D3A]">Safe access</h3>
-              <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">Do not send passwords. Share context by screen share, exports, screenshots, or a temporary invited user. Access should be limited to what is needed to find the leak and explain the fix.</p>
+              <p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">Do not send passwords. Share context by screen share, exports, screenshots, or a temporary invited user. Access should be limited to what is needed to find the stuck workflow and explain the fix.</p>
             </div>
 
             <div className="mt-5 grid gap-4">
@@ -58,7 +58,7 @@ export default function AuditIntakePage() {
               ))}
             </div>
 
-            <a href="mailto:hello@stanley-systems.com?subject=Cash%20Flow%20Assessment%20intake&body=Name%3A%0AEmail%3A%0APhone%3A%0A%0ABusiness%20type%3A%0AField%2Fjob%2FCRM%2Fdispatch%2Fshop%20system%3A%0AAccounting%2Fbilling%2Finvoice%2Fpayment%20system%3A%0ARough%20monthly%20volume%3A%0A%0AWho%20handles%20billing%20or%20follow-up%3A%0AWhere%20money%20gets%20stuck%3A%0AInvoice%20timing%20after%20job%20completion%3A%0AEstimate%20follow-up%20issue%3A%0A%0AGoogle%20reviews%20now%3A%0AReferrals%20tracked%20now%3A%0APreferred%20review%20method%3A%0AAnything%20else%3A" className="mt-5 inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]">Email intake instead</a>
+            <a href="mailto:hello@stanley-systems.com?subject=AI%20Office%20Map%20intake&body=Name%3A%0AEmail%3A%0APhone%3A%0A%0ABusiness%20type%3A%0AField%2Fjob%2FCRM%2Fdispatch%2Fshop%20system%3A%0AAccounting%2Fbilling%2Finvoice%2Fpayment%20system%3A%0ARough%20monthly%20volume%3A%0A%0AWho%20handles%20billing%20or%20follow-up%3A%0AWhere%20work%20gets%20stuck%3A%0AInvoice%20timing%20after%20job%20completion%3A%0AEstimate%20follow-up%20issue%3A%0A%0AGoogle%20reviews%20now%3A%0AReferrals%20tracked%20now%3A%0APreferred%20review%20method%3A%0AAnything%20else%3A" className="mt-5 inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]">Email intake instead</a>
           </section>
         </div>
       </main>

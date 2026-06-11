@@ -12,7 +12,7 @@ export function ProblemObjection() {
           <div className="mx-auto w-full max-w-[825px] lg:ml-auto">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-workflow-stanley-systems-automates.jpg"
-              alt="Money Leak Map showing the workflow Stanley Systems automates."
+              alt="AI Office Map showing the workflow Stanley Systems automates."
               width={1280}
               height={720}
               sizes="(min-width: 1024px) 50vw, 100vw"

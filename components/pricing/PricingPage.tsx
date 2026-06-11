@@ -23,10 +23,10 @@ const offers = [
     id: "ai-office-map",
     title: "AI Office Map",
     price: "$197",
-    body: "A focused session that shows where the office is falling behind, what your software already handles, and what AI should fix first.",
-    bullets: ["45–60 minute owner/office-manager call", "Software redundancy check", "Top 3 AI workflow opportunities", "$197 credited toward the Sprint"],
+    body: "A focused session that shows where the office is falling behind, what your software already handles, and which AI-guided workflow should be installed first.",
+    bullets: ["45-60 minute owner or office-manager session", "Existing software and handoff review", "Top 3 workflow opportunities", "$197 credited toward your AI Office Installation Sprint"],
     href: "/workflow-audit",
-    cta: "Book the AI Office Map",
+    cta: "Book the $197 AI Office Map",
     featured: true,
   },
   {
@@ -34,8 +34,8 @@ const offers = [
     id: "installation-sprint",
     title: "AI Office Installation Sprint",
     price: "$3,500 starting",
-    body: "Install 1–3 money-moving office workflows around the tools your staff already uses.",
-    bullets: ["Office workflow map", "Office playbook v1", "Staff AI training session", "Proof report + 30 days light support"],
+    body: "Turn your AI Office Map into staff training, your company playbook, and practical office workflows around the tools your staff already uses.",
+    bullets: ["Workflows from your AI Office Map", "Your company playbook", "Staff AI training session", "Proof report + 30 days light support"],
     href: "/systems-installation-sprint",
     cta: "See the Installation Sprint",
   },
@@ -69,9 +69,9 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
     <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
       <section className="px-4 pt-24 sm:px-6 sm:pt-28 lg:px-8 lg:pt-[7.25rem]">
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#e7e1d6] bg-white px-5 py-7 text-center shadow-[0_24px_70px_rgba(15,23,42,0.075)] sm:rounded-[2.5rem] sm:px-8 lg:px-12">
-          <h1 className="mx-auto max-w-4xl text-balance text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[3.65rem]">Make your current office team faster, sharper, and more profitable before you hire another admin.</h1>
-          <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems installs AI where office work actually happens: field-service software, accounting software, phones, inbox, texts, and staff workflows.</p>
-          <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"><Link href="/invoicing-delay-cash-flow-calculator" className={greenButton}>Calculate Your Admin Drag <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/workflow-audit" className={lightButton}>Book the AI Office Map</Link></div>
+          <h1 className="mx-auto max-w-4xl text-balance text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[3.65rem]">Start with the $197 AI Office Map. Then install only the workflows worth building.</h1>
+          <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems first maps where office work is slowing down billing, follow-up, records, and job admin. If there is a clear fit, the Installation Sprint turns that map into staff training, a company playbook, and practical installed office workflows.</p>
+          <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"><Link href="/workflow-audit" className={greenButton}>Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/invoicing-delay-cash-flow-calculator" className={lightButton}>Calculate Your Admin Drag</Link></div>
         </div>
       </section>
       <section aria-label="Offer ladder" className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 sm:py-10 lg:grid-cols-4 lg:px-8">
@@ -87,7 +87,7 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
       </section>
       <section className="mx-auto max-w-5xl px-4 pb-14 text-center sm:px-6 lg:px-8">
         <div className="rounded-[1.4rem] border border-[#DDEBE2] bg-white px-5 py-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
-          <p className="text-base font-bold text-[#334B60]">Payment links are intentionally left wired to the existing Stripe Payment Links for now. Public pricing reflects the new AI Office offer ladder.</p>
+          <p className="text-base font-bold text-[#334B60]">Start with the Map, then move into the Sprint only if the next workflow is clear.</p>
         </div>
       </section>
     </main>
