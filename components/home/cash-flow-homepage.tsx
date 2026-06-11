@@ -135,9 +135,9 @@ function AssessmentSection() {
 
 function SprintSection() {
   const cards = [
-    { image: uploadedHomeImages.sprint, title: "Workflow map + installed workflows", copy: "We pick 1–3 workflows that move jobs, records, billing, or follow-up faster." },
-    { image: uploadedHomeImages.playbook, title: "Office playbook + staff AI training", copy: "Staff use AI against real SOPs instead of guessing or interrupting the owner." },
-    { image: uploadedHomeImages.handoff, title: "Proof report + 30 days support", copy: "You see what changed, what is working, and what should improve next." },
+    uploadedHomeImages.sprint,
+    uploadedHomeImages.playbook,
+    uploadedHomeImages.handoff,
   ]
   return (
     <PageSection id="sprint" className="relative isolate overflow-hidden bg-[#FBFCF7] py-16 text-[#071D3A] md:py-20 lg:py-24">
@@ -152,10 +152,9 @@ function SprintSection() {
           </div>
         </div>
         <div className="mt-9 grid gap-5 md:grid-cols-3">
-          {cards.map((card) => (
-            <article key={card.title} className="overflow-hidden rounded-[1.6rem] border border-[#cfe8d5] bg-white shadow-[0_18px_48px_rgba(7,29,58,0.07)]">
-              <Image src={card.image.src} alt={card.image.alt} width={card.image.width} height={card.image.height} sizes="(min-width: 768px) 31vw, 100vw" className="h-auto w-full object-cover" />
-              <div className="p-5"><h3 className="text-xl font-extrabold tracking-[-0.025em]">{card.title}</h3><p className="mt-2 text-sm font-semibold leading-6 text-[#536173]">{card.copy}</p></div>
+          {cards.map((image) => (
+            <article key={image.src} className="overflow-hidden rounded-[1.6rem] border border-[#cfe8d5] bg-white shadow-[0_18px_48px_rgba(7,29,58,0.07)]">
+              <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(min-width: 768px) 31vw, 100vw" className="h-auto w-full object-cover" />
             </article>
           ))}
         </div>
