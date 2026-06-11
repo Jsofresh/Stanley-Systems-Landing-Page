@@ -22,12 +22,12 @@ const mobileHeroSlideshowImages = [
 ]
 
 const uploadedHomeImages = {
-  calculator: { src: "/images/placeholders/ai-office/admin-drag-calculator-placeholder.svg", alt: "Admin Drag Calculator showing hours lost, admin drag cost, and top office bottleneck", width: 960, height: 640 },
-  map: { src: "/images/placeholders/ai-office/ai-office-map-placeholder.svg", alt: "AI Office Map with behind, already handled, still chased, and workflow columns", width: 960, height: 640 },
-  sprint: { src: "/images/placeholders/ai-office/installation-sprint-placeholder.svg", alt: "AI Office Installation Sprint workflow connections between field-service software, accounting, inbox, texts, and staff playbook", width: 960, height: 640 },
-  handoff: { src: "/images/placeholders/ai-office/office-handoff-automation-placeholder.svg", alt: "Office handoff automation placeholder for job details, billing readiness, estimate follow-up, and staff exceptions", width: 960, height: 640 },
-  playbook: { src: "/images/placeholders/ai-office/staff-ai-playbook-placeholder.svg", alt: "Staff AI playbook placeholder tied to SOPs and approved escalation rules", width: 960, height: 640 },
-  beforeAfter: { src: "/images/placeholders/ai-office/before-after-office-drag-placeholder.svg", alt: "Before and after office drag diagram: copying and chasing to cleaner records and faster follow-up", width: 960, height: 640 },
+  calculator: { src: "/images/uploaded/homepage/ai-office/admin-drag-calculator.jpg", alt: "Admin Drag Calculator showing hours lost, admin drag cost, and top office bottleneck", width: 1280, height: 960 },
+  map: { src: "/images/uploaded/homepage/ai-office/ai-office-map-laptop.jpg", alt: "AI Office Map with behind, already handled, still chased, and workflow columns", width: 1280, height: 960 },
+  sprint: { src: "/images/uploaded/homepage/ai-office/installation-sprint.jpg", alt: "AI Office Installation Sprint workflow connections between field-service software, accounting, inbox, texts, and staff playbook", width: 1254, height: 1254 },
+  handoff: { src: "/images/uploaded/homepage/ai-office/office-handoff-automation.jpg", alt: "Office handoff automation for job details, billing readiness, estimate follow-up, and staff exceptions", width: 1280, height: 1219 },
+  playbook: { src: "/images/uploaded/homepage/ai-office/staff-ai-playbook.jpg", alt: "Staff AI playbook tied to SOPs and approved escalation rules", width: 1254, height: 1254 },
+  beforeAfter: { src: "/images/uploaded/homepage/ai-office/before-after-office-drag.jpg", alt: "Before and after office drag diagram: copying and chasing to cleaner records and faster follow-up", width: 1280, height: 960 },
 }
 
 const buttonBase = "inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-base font-extrabold transition focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2"
