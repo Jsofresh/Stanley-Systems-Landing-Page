@@ -862,7 +862,7 @@ export function SplitScreenBeforeAfter() {
                       </div>
                       <p className="text-slate-600 text-sm leading-relaxed ml-12">
                         Keeps customers informed about service progress and parts arrival status 24/7 in real-time
-                        across messaging, or getting push notifications, all customized to your communication style
+                        across messaging, or getting workflow updates, all customized to your communication style
                       </p>
                     </div>
                   </div>

@@ -5,7 +5,7 @@ import { workflowAuditPricingPackage } from "@/lib/pricing/source-of-truth"
 
 export const metadata: Metadata = {
   title: "Payment was not completed | Stanley Systems",
-  description: "Your checkout was canceled or not completed. Return to pricing or buy the Office Process Assessment when you are ready.",
+  description: "Your checkout was canceled or not completed. Return to pricing or buy the AI Office Map when you are ready.",
   alternates: {
     canonical: "/checkout/cancel",
   },
@@ -20,7 +20,7 @@ export default function CheckoutCancelPage() {
             Payment was not completed.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#536173] sm:text-xl">
-            No Stanley Systems payment was completed from this checkout. You can return to pricing, or buy the Office Process Assessment if you want the paid diagnostic first.
+            No Stanley Systems payment was completed from this checkout. You can return to pricing, or buy the AI Office Map if you want the paid diagnostic first.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
@@ -41,14 +41,14 @@ export default function CheckoutCancelPage() {
               data-package-id={workflowAuditPricingPackage.analyticsPackageId}
               data-package-name={workflowAuditPricingPackage.publicName}
               data-billing-period={workflowAuditPricingPackage.billingPeriod}
-              data-cta-label="Buy Office Process Assessment"
+              data-cta-label="Buy AI Office Map"
               data-cta-location="checkout_cancel_secondary"
             >
-              Buy Office Process Assessment
+              Buy AI Office Map
             </a>
           </div>
           <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[#bfe4c8] bg-[#f4fbf5] p-5 text-left text-sm leading-7 text-[#335244]">
-            If you meant to buy a package but need a different path, return to pricing and choose the system that fits the leak you can name. If you are not sure yet, the Office Process Assessment is the safest first step.
+            If you meant to buy a package but need a different path, return to pricing and choose the system that fits the leak you can name. If you are not sure yet, the AI Office Map is the safest first step.
           </div>
         </section>
       </main>

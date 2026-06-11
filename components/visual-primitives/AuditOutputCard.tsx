@@ -20,7 +20,7 @@ export function AuditOutputCard({
   ...props
 }: AuditOutputCardProps) {
   const rows = [
-    revenueLeak ? ['Estimated revenue leak', revenueLeak] : null,
+    revenueLeak ? ['Estimated admin drag', revenueLeak] : null,
     drag ? ['Estimated drag', drag] : null,
     firstFix ? ['Build priority', firstFix] : null,
   ].filter(Boolean) as [string, string][]

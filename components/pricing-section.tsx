@@ -4,28 +4,28 @@ import { CTALink } from "@/components/cta-link"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const calculatorHref = "/invoicing-delay-cash-flow-calculator"
-const cashflowHref = "/systems/cashflow-control"
-const repeatRevenueHref = "/systems/repeat-revenue"
+const cashflowHref = "/systems-installation-sprint"
+const repeatRevenueHref = "/pricing#ai-office-ops"
 
 const systems = [
   {
-    name: "Cashflow Control System",
+    name: "AI Office Installation Sprint",
     route: cashflowHref,
-    label: "Late cash and growth money",
-    promise: "Turn finished work into invoice-ready handoffs, final bill follow-up, and collected cash.",
+    label: "Install workflows",
+    promise: "Install 1–3 workflows that make billing, follow-up, records, and staff handoffs move faster.",
     signs: ["Finished jobs wait before billing", "Open balances need follow-up", "The owner keeps checking if invoices moved"],
-    cta: "View Cashflow Control",
+    cta: "See the Installation Sprint",
     packageId: "cashflow_control_monthly",
     price: pricingPackageById.cashflow_control_monthly.priceDisplay,
     setup: pricingPackageById.cashflow_control_monthly.setupFeeDisplay,
   },
   {
-    name: "Repeat Revenue System",
+    name: "AI Office Ops",
     route: repeatRevenueHref,
-    label: "Competitors outpace when follow-up slips",
-    promise: "Build the flywheel from ratings, reviews, referrals, Google visibility, missed calls, and past customers.",
+    label: "Keep workflows improving",
+    promise: "Keep installed AI office workflows monitored, fixed, improved, and useful to staff.",
     signs: ["Past customers are not getting checked", "Reviews and referrals happen randomly", "Missed calls and old estimates go cold"],
-    cta: "View Repeat Revenue",
+    cta: "Ask about AI Office Ops",
     packageId: "repeat_revenue_monthly",
     price: pricingPackageById.repeat_revenue_monthly.priceDisplay,
     setup: pricingPackageById.repeat_revenue_monthly.setupFeeDisplay,
@@ -34,23 +34,23 @@ const systems = [
 
 const pricingPreview = [
   {
-    name: "Office Process Assessment",
+    name: "AI Office Map",
     price: pricingPackageById.workflow_audit.priceDisplay,
     note: "Paid diagnostic before a build.",
     href: "#final-audit",
     cta: "See the assessment step",
   },
   {
-    name: "Cashflow Control",
+    name: "AI Office Installation Sprint",
     price: pricingPackageById.cashflow_control_monthly.priceDisplay,
-    note: `${pricingPackageById.cashflow_control_monthly.setupFeeDisplay}. Assessment credit can apply.`,
+    note: `${pricingPackageById.cashflow_control_monthly.setupFeeDisplay}. AI Office Map credit can apply.`,
     href: cashflowHref,
     cta: "View system",
   },
   {
-    name: "Repeat Revenue",
+    name: "AI Office Ops",
     price: pricingPackageById.repeat_revenue_monthly.priceDisplay,
-    note: `${pricingPackageById.repeat_revenue_monthly.setupFeeDisplay}. Assessment credit can apply.`,
+    note: `${pricingPackageById.repeat_revenue_monthly.setupFeeDisplay}. AI Office Map credit can apply.`,
     href: repeatRevenueHref,
     cta: "View system",
   },
@@ -63,20 +63,19 @@ export function PricingSection() {
       data-audit-page="/"
       data-audit-section="home.pricing-preview"
       data-audit-priority="5"
-      data-audit-offer="Cashflow Control System, Repeat Revenue System"
+      data-audit-offer="AI Office Installation Sprint, AI Office Ops"
       data-audit-purpose="Explain the two approved Stanley Systems implementation systems without inventing offers."
       className="relative z-10 scroll-mt-28 px-4 py-10 sm:scroll-mt-32 sm:px-6 sm:py-12 lg:scroll-mt-36 lg:px-8 lg:py-14"
     >
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-[#15803D]">Two money paths</p>
             <h2 className="mt-2 max-w-3xl text-[2.1rem] font-semibold leading-[1.03] text-[#071421] sm:text-[2.65rem] lg:text-[3.05rem]">
-              Pick the system by where money gets stuck.
+              Pick the next step by where office drag is costing capacity.
             </h2>
           </div>
           <p className="max-w-3xl text-base leading-7 text-[#4d5a68] sm:text-lg">
-            Stanley Systems does not start by selling a pile of tools. The diagnostic points to the first money path: collected cash from finished work, repeat revenue from customers already earned, or both.
+            Stanley Systems starts with the AI Office Map, then installs the workflows that help the same office team process more jobs, keep cleaner records, and follow up faster.
           </p>
         </div>
 
@@ -124,8 +123,7 @@ export function PricingSection() {
         <div className="mt-6 rounded-[1.35rem] border border-[#e2dbcf] bg-[#fbfaf7] p-4 shadow-[0_18px_42px_rgba(16,32,51,0.05)] sm:p-5">
           <div className="grid gap-3 lg:grid-cols-[0.76fr_1.24fr] lg:items-center">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-[#15803D]">Compact pricing preview</p>
-              <h3 className="mt-2 text-2xl font-bold leading-tight text-[#102033]">Start with the diagnostic, then buy the system that matches the leak.</h3>
+              <h3 className="mt-2 text-2xl font-bold leading-tight text-[#102033]">Start with the AI Office Map, then install the workflows that match the drag.</h3>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
               {pricingPreview.map((item) => (
@@ -155,10 +153,10 @@ export function PricingSection() {
               location="homepage_pricing_calculator"
               analyticsEvent="calculator_cta_clicked"
               analyticsSource="homepage_pricing_preview"
-              ctaLabel="Calculate my office work cost"
+              ctaLabel="Calculate Your Admin Drag"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_16px_30px_rgba(21,128,61,0.18)] transition hover:bg-[#116832]"
             >
-              Calculate my office work cost
+              Calculate Your Admin Drag
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </CTALink>
             <CTALink

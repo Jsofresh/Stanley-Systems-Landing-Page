@@ -22,31 +22,31 @@ type ProductSystem = {
 
 const systems: ProductSystem[] = [
   {
-    title: "Cashflow Control System",
+    title: "AI Office Installation Sprint",
     promise: "Get finished work billed, followed up, and paid faster.",
-    href: "/systems/cashflow-control",
+    href: "/systems/office workflow-control",
     analyticsLocation: "home_systems_cashflow_control",
-    packageName: "Cashflow Control System",
-    ctaLabel: "See the Cashflow Control System",
-    visualSrc: "/images/uploaded/homepage/cashflow-control-system.jpg",
+    packageName: "AI Office Installation Sprint",
+    ctaLabel: "See the AI Office Installation Sprint",
+    visualSrc: "/images/uploaded/homepage/office workflow-control-system.jpg",
     visualAlt:
-      "Cashflow Control System visual for moving finished work into collected cash faster.",
+      "AI Office Installation Sprint visual for moving finished work into collected cash faster.",
     bullets: [
       "Invoices move out faster",
       "Payment follow-up stays visible",
     ],
   },
   {
-    title: "Repeat Revenue System",
+    title: "AI Office Ops",
     promise:
       "Turn missed calls, happy customers, reviews, referrals, and past customers into more booked work.",
     href: "/systems/repeat-revenue",
     analyticsLocation: "home_systems_repeat_revenue",
-    packageName: "Repeat Revenue System",
-    ctaLabel: "See the Repeat Revenue System",
+    packageName: "AI Office Ops",
+    ctaLabel: "See the AI Office Ops",
     visualSrc: "/images/uploaded/homepage/repeat-revenue-system.jpg",
     visualAlt:
-      "Repeat Revenue System visual for turning past customers, reviews, referrals, and missed calls into booked work.",
+      "AI Office Ops visual for turning past customers, reviews, referrals, and missed calls into booked work.",
     bullets: [
       "Happy customers create reviews and referrals",
       "Past customers get a follow-up path",
@@ -103,7 +103,7 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
           ctaLabel={system.ctaLabel}
           className="mt-5 inline-flex items-center text-[14px] font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B]"
         >
-          {system.title.includes("Cashflow") ? "See Cashflow Control" : "See Repeat Revenue"}
+          {system.title.includes("Office Workflow") ? "See Installation Sprint" : "Ask about AI Office Ops"}
           <ArrowRight className="ml-2 h-3.5 w-3.5" aria-hidden="true" />
         </CTALink>
       </div>

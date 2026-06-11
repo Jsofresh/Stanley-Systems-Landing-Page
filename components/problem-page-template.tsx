@@ -28,7 +28,7 @@ export function ProblemPageTemplate({
   eyebrow,
   title,
   intro,
-  symptomsTitle = "Symptoms that usually mean money is stuck",
+  symptomsTitle = "Symptoms that usually mean office drag is costing capacity",
   symptoms,
   costTitle,
   costBody,
@@ -45,12 +45,11 @@ export function ProblemPageTemplate({
       <section className={`${shell} pt-20 pb-12 lg:pt-24 lg:pb-16`}>
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">{eyebrow}</p>
-            <h1 className="mt-4 max-w-5xl text-[2.25rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.15rem]">{title}</h1>
+            <h1 className="max-w-5xl text-[2.25rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.15rem]">{title}</h1>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">{intro}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/workflow-audit" className={primaryButton}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              <Link href="/invoicing-delay-cash-flow-calculator" className={secondaryButton}>Use the free calculator</Link>
+              <Link href="/workflow-audit" className={primaryButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/invoicing-delay-cash-flow-calculator" className={secondaryButton}>Calculate Your Admin Drag</Link>
             </div>
           </div>
           <div className="rounded-[2rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_24px_70px_rgba(7,29,58,0.08)]">
@@ -70,8 +69,7 @@ export function ProblemPageTemplate({
       <section className={`${shell} py-8`}>
         <div className="rounded-[2rem] bg-[#071D3A] p-6 text-white shadow-[0_24px_70px_rgba(7,29,58,0.16)] sm:p-8 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-10">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#84D99A]">Cost of waiting</p>
-            <h2 className="mt-3 text-[2rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[3rem]">{costTitle}</h2>
+            <h2 className="text-[2rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[3rem]">{costTitle}</h2>
           </div>
           <p className="mt-5 text-lg font-medium leading-8 text-[#DDEBE2] lg:mt-0">{costBody}</p>
         </div>
@@ -87,9 +85,8 @@ export function ProblemPageTemplate({
       <section className={`${shell} pb-12 lg:pb-16`}>
         <div className="grid gap-8 rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_18px_54px_rgba(7,29,58,0.06)] sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">How Stanley Systems fixes it</p>
-            <h2 className="mt-3 text-[2rem] font-semibold leading-[1.03] tracking-[-0.04em] text-[#071D3A] sm:text-[2.75rem]">{fixTitle}</h2>
-            <Link href="/workflow-audit" className={`mt-6 ${primaryButton}`}>Get the Office Process Assessment</Link>
+            <h2 className="text-[2rem] font-semibold leading-[1.03] tracking-[-0.04em] text-[#071D3A] sm:text-[2.75rem]">{fixTitle}</h2>
+            <Link href="/workflow-audit" className={`mt-6 ${primaryButton}`}>Book the AI Office Map</Link>
           </div>
           <ul className="space-y-3">
             {fixes.map((fix) => (
@@ -99,7 +96,6 @@ export function ProblemPageTemplate({
         </div>
         {related.length > 0 && (
           <div className="mt-8 rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5">
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#6A7A68]">Related</p>
             <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
               {related.slice(0, 3).map((link) => (
                 <Link key={link.href} href={link.href} className="text-sm font-bold text-[#116832] underline underline-offset-4">{link.title}</Link>

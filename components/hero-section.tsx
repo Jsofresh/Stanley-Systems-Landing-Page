@@ -5,8 +5,8 @@ import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 
-const headline = "Your service business is dropping money in places nobody checks."
-const subheadline = "Missed calls. Late invoices. Forgotten follow-ups. Past customers nobody contacts again. Stanley Systems finds the leak and builds the system that stops it."
+const headline = "More jobs processed. Cleaner records. Faster follow-up. Same office team."
+const subheadline = "Stanley Systems installs AI where office work actually happens so your current office team can run cleaner before another admin hire."
 
 const heroVideoVersion = "manual-clock-20260507"
 const heroVideo = {
@@ -40,29 +40,29 @@ type MegaMenuGroup = {
 
 const navGroups: MegaMenuGroup[] = [
   {
-    label: "Systems",
+    label: "AI Office",
     href: "/systems",
-    eyebrow: "Revenue Systems",
-    summary: "Cash, follow-up, and office handoff systems Stanley Systems can build after the assessment.",
+    eyebrow: "AI Office Workflows",
+    summary: "Admin drag, billing readiness, follow-up, and staff handoff workflows Stanley Systems can install after the AI Office Map.",
     widthClass: "w-[min(690px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-[1fr_230px]",
     items: [
-      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Turn the assessment map into systems that move cash and customers forward." },
-      { label: "Cashflow Control System", href: "/systems/cashflow-control", description: "Turn finished work into collected cash faster." },
-      { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "Bring back past customers, reviews, referrals, and missed calls." },
+      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Turn the AI Office Map into 1–3 installed workflows." },
+      { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate what copying, chasing, and reconciling cost." },
+      { label: "AI Office Ops", href: "/pricing#ai-office-ops", description: "Keep installed workflows monitored, fixed, and improving." },
     ],
     featured: {
-      title: "Not sure where money is stuck?",
-      copy: "Get the Office Process Assessment before buying a system.",
+      title: "Not sure where office drag is costing you?",
+      copy: "Book the AI Office Map before installing workflows.",
       href: "/workflow-audit",
-      cta: "Get the Office Process Assessment",
+      cta: "Book the AI Office Map",
     },
   },
   {
     label: "Industries",
     href: "/who-stanley-systems-helps",
     eyebrow: "Built for service businesses",
-    summary: "Clear paths for busy shops where office handoffs, follow-up, and billing leaks cost real money.",
+    summary: "Clear paths for busy shops where office handoffs, follow-up, and billing drag cap growth.",
     widthClass: "w-[min(620px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-2",
     items: [
@@ -79,33 +79,33 @@ const navGroups: MegaMenuGroup[] = [
       title: "Busy team, messy handoff?",
       copy: "Stanley Systems works around the tools your crews already use.",
       href: "/workflow-audit",
-      cta: "Get the Office Process Assessment",
+      cta: "Book the AI Office Map",
     },
   },
   {
-    label: "Assessment",
+    label: "AI Office Map",
     href: "/workflow-audit",
     eyebrow: "Find the fix list",
-    summary: "Use the calculator, buy the assessment, then use the Sprint if you want Stanley Systems to build it.",
+    summary: "Use the calculator, book the AI Office Map, then use the Sprint if you want Stanley Systems to build it.",
     widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Free Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the assessment." },
-      { label: "Office Process Assessment", href: "/workflow-audit", description: "Get what is broken, what it costs, and how to fix it." },
-      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Have Stanley Systems build the agreed systems." },
-      { label: "How the Assessment Works", href: "/how-the-assessment-works", description: "See what gets checked before starting." },
+      { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the AI Office Map." },
+      { label: "AI Office Map", href: "/workflow-audit", description: "See where office drag is costing time, money, follow-up, and quality." },
+      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Have Stanley Systems install the workflows." },
+      { label: "How Stanley Systems Works", href: "/how-stanley-systems-works", description: "See the AI Office workflow path." },
     ],
   },
   {
     label: "Pricing",
     href: "/pricing",
     eyebrow: "Diagnose, build, maintain",
-    summary: "Get the Office Process Assessment, build during the Sprint, and keep systems working after launch.",
+    summary: "Calculator, AI Office Map, Installation Sprint, then AI Office Ops.",
     widthClass: "w-[min(420px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Pricing", href: "/pricing", description: "See the assessment, Sprint, and Monthly Control ladder." },
-      { label: "Systems Installation Sprint", href: "/systems-installation-sprint", description: "Starts at $1,500 after assessment scope." },
+      { label: "Pricing", href: "/pricing", description: "See the Admin Drag Calculator, AI Office Map, Sprint, and Ops ladder." },
+      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Starts at $3,500 after AI Office Map scope." },
       { label: "Ask us a question", href: "/contact?path=pre-buy", description: "Ask before buying if you need a quick route check." },
     ],
   },
@@ -113,13 +113,13 @@ const navGroups: MegaMenuGroup[] = [
     label: "Resources",
     href: "/blog",
     eyebrow: "Owner tools",
-    summary: "Use these routes to find the leak, see the thinking, or contact Stanley Systems.",
+    summary: "Use these routes to find admin drag, see the thinking, or contact Stanley Systems.",
     widthClass: "w-[min(440px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Office Work Cost Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate where cash and follow-up are slipping." },
+      { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate where copying, chasing, and delayed follow-up are costing capacity." },
       { label: "Case Notes", href: "/stanley-systems-case-study", description: "See how workflow gaps turn into owner-time problems." },
-      { label: "Blog", href: "/blog", description: "Plain-English notes on cashflow and repeat revenue." },
+      { label: "Blog", href: "/blog", description: "Plain-English notes on AI office workflows and admin drag." },
       { label: "Contact", href: "/contact", description: "Send the workflow problem straight to Stanley Systems." },
     ],
   },
@@ -312,8 +312,8 @@ export function SiteHeader() {
             <span>+1 (617) 958-6372</span>
           </a>
           <div className="hidden items-center gap-5 md:flex">
-            <a href="/systems/cashflow-control" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Cashflow Control</a>
-            <a href="/systems/repeat-revenue" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Repeat Revenue</a>
+            <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Admin Drag Calculator</a>
+            <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">AI Office Map</a>
             <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Calculator</a>
             <a href="/contact" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
           </div>
@@ -359,10 +359,10 @@ export function SiteHeader() {
               href="/workflow-audit"
               kind="systems"
               location="hero_nav_audit"
-              ctaLabel="Get the Office Process Assessment"
+              ctaLabel="Book the AI Office Map"
               className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-3 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-4"
             >
-              Get the Office Process Assessment
+              Book the AI Office Map
             </CTALink>
             <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How the Assessment Works</a>
           </div>
@@ -387,8 +387,7 @@ export function SiteHeader() {
             <div className={`grid gap-3 ${selectedMenu.featured ? selectedMenu.columnsClass : "grid-cols-1"}`}>
               <div>
                 <div className="border-b border-[#dcece3] px-2 pb-3">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#15803D]">{selectedMenu.eyebrow}</p>
-                  <p className="mt-1 max-w-[34rem] text-[13px] font-semibold leading-5 text-[#526172]">{selectedMenu.summary}</p>
+                  <p className="max-w-[34rem] text-[13px] font-semibold leading-5 text-[#526172]">{selectedMenu.summary}</p>
                 </div>
                 <div className={`mt-3 grid gap-1.5 ${selectedMenu.columnsClass === "grid-cols-2" ? "grid-cols-2" : "grid-cols-1"}`}>
                   {selectedMenu.items.map((item) => (
@@ -464,10 +463,10 @@ export function SiteHeader() {
                 href="/workflow-audit"
                 kind="systems"
                 location="hero_mobile_nav_audit"
-                ctaLabel="Get the Office Process Assessment"
+                ctaLabel="Book the AI Office Map"
                 className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
               >
-                Get the Office Process Assessment
+                Book the AI Office Map
               </CTALink>
             </div>
           </div>
@@ -484,8 +483,8 @@ export function HeroSection() {
       data-audit-section="home.hero"
       data-nav-theme="dark"
       data-audit-priority="5"
-      data-audit-offer="Office Process Assessment"
-      data-audit-purpose="Make the owner understand that Stanley Systems finds boring money leaks and builds the system that stops them."
+      data-audit-offer="AI Office Map"
+      data-audit-purpose="Make the owner understand that Stanley Systems finds boring admin drags and builds the system that stops them."
       className="relative isolate overflow-hidden bg-[#071422] pt-[100px] text-white"
     >
       <div className="relative min-h-[700px] overflow-hidden md:min-h-[calc(100svh-100px)]">
@@ -520,10 +519,10 @@ export function HeroSection() {
                 location="home_hero_primary"
                 analyticsEvent="audit_checkout_clicked"
                 analyticsSource="homepage_hero"
-                ctaLabel="Get the Office Process Assessment"
+                ctaLabel="Book the AI Office Map"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                Get the Office Process Assessment
+                Book the AI Office Map
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
               <a

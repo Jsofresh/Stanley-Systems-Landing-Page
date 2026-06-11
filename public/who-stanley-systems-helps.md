@@ -1,21 +1,18 @@
-# Who Stanley Systems Helps
+# Stanley Systems
 
-Canonical HTML page: https://stanley-systems.com/who-stanley-systems-helps
+Stanley Systems installs AI office workflows for home-service companies so the current office team gets more work done, does better work, and avoids extra admin payroll.
 
-Stanley Systems helps owner-led service businesses where real demand is already present but office execution is leaking money.
+Core offer ladder:
+- Admin Drag Calculator: free calculator for copying, chasing, retyping, reconciling, delayed billing, missed follow-up, and software handoffs.
+- AI Office Map: $197 diagnostic session showing where the office is falling behind, what existing software already handles, what staff is still forced to chase, and the top 3 AI workflow opportunities.
+- AI Office Installation Sprint: $3,500 starting install of the first 1–3 money-moving workflows.
+- AI Office Ops: $500/month starting to monitor, fix, support, and improve installed workflows.
 
-Best-fit businesses have some combination of:
+Primary promise: More jobs processed. Cleaner records. Faster follow-up. Same office team.
 
-- calls that need better recovery
-- estimates that need follow-up
-- field-to-office handoffs that break down
-- invoices that go out late
-- payment follow-up that lacks ownership
-- happy customers who are not asked for reviews
-- referral opportunity that is left to chance
-- past customers who are not contacted again
-- tools that do not connect well enough to keep the workflow moving
-
-Stanley Systems is especially relevant for contractors, field service businesses, marine service businesses, and small service teams where the owner still feels the drag directly.
-
-Get the Office Process Assessment: https://stanley-systems.com/workflow-audit
+Start here:
+- Admin Drag Calculator: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
+- AI Office Map: https://stanley-systems.com/workflow-audit
+- Installation Sprint: https://stanley-systems.com/systems-installation-sprint
+- Pricing: https://stanley-systems.com/pricing
+- Contact: https://stanley-systems.com/contact

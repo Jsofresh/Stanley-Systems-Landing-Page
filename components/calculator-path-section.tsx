@@ -26,18 +26,18 @@ const diagnosticTargets: Array<{
 }> = [
   {
     Icon: BillingCheckDisplayAsset,
-    title: "Cashflow Control System",
-    body: "Turn finished work into invoices, follow-up, and collected cash.",
+    title: "AI Office Installation Sprint",
+    body: "Install workflows that move billing, follow-up, records, and staff handoffs faster.",
   },
   {
     Icon: RepeatCustomerLoopDisplayAsset,
-    title: "Repeat Revenue System",
-    body: "Turn past customers, reviews, referrals, and missed calls into booked work.",
+    title: "AI Office Ops",
+    body: "Keep installed workflows monitored, fixed, improved, and useful to staff.",
   },
   {
     Icon: MoneyLeakRoutingDisplayAsset,
-    title: "Both Systems",
-    body: "Fix cash collection and repeat work together when both leaks are costing you.",
+    title: "AI Office Installation Sprint + Ops",
+    body: "Install workflows, then keep improving them month by month.",
   },
 ]
 
@@ -50,20 +50,20 @@ const signalCards: Array<{
   {
     Icon: CashApprovedDisplayAsset,
     label: "Finished work waits before billing",
-    cost: "Growth cash sits in admin drag.",
-    fix: "Cashflow Control moves the job toward invoice, follow-up, and visibility.",
+    cost: "Earned revenue waits on admin drag.",
+    fix: "AI office workflows move the job toward billing readiness, follow-up, and visibility.",
   },
   {
     Icon: PhoneMissedTransparentDisplayAsset,
     label: "Missed calls turn cold",
     cost: "Paid demand becomes forgotten callbacks.",
-    fix: "Repeat Revenue routes missed volume back into follow-up.",
+    fix: "AI office workflows route missed volume back into follow-up.",
   },
   {
     Icon: InactiveCustomersDisplayAsset,
     label: "Past customers go untouched",
-    cost: "$50K-$300K may be sitting in customers you already paid to acquire.",
-    fix: "Repeat Revenue checks old buyers, estimates, reviews, referrals, and seasonal work.",
+    cost: "Past customer value may be sitting in records nobody works.",
+    fix: "AI Office Ops keeps follow-up, reviews, referrals, and seasonal work moving.",
   },
 ]
 
@@ -77,7 +77,7 @@ export function CalculatorPathSection() {
       data-audit-page="/"
       data-audit-section="home.calculator-path"
       data-audit-priority="4"
-      data-audit-offer="Office Process Assessment"
+      data-audit-offer="AI Office Map"
       data-audit-purpose="Move visitors from the calculator diagnostic into the right paid next step."
       className="relative z-10 scroll-mt-28 overflow-hidden bg-[#F7FAF7] px-5 py-12 sm:scroll-mt-32 sm:px-6 sm:py-14 lg:scroll-mt-36 lg:px-8 lg:py-16"
     >
@@ -85,11 +85,11 @@ export function CalculatorPathSection() {
         <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,0.47fr)_minmax(0,0.53fr)] lg:gap-10 xl:gap-12">
           <div className="min-w-0">
             <h2 className="max-w-[40rem] text-[2.1rem] font-semibold leading-[1.03] text-[#102033] sm:text-[2.55rem] lg:text-[2.85rem] xl:text-[3.05rem]">
-              The hidden problem is not lead volume. It is money already stuck.
+              The hidden problem is not lead volume. It is office work already stuck.
             </h2>
 
             <p className="mt-5 max-w-[35rem] text-base leading-7 text-[#47566C] sm:text-lg sm:leading-8">
-              $50K-$300K may be sitting in customers you already paid to acquire. Late cash steals growth money, weak follow-up lets competitors outpace you, and normal office processes quietly cost more than they look like.
+              Admin drag hides in copying, chasing, retyping, reconciling, and follow-up. The calculator shows where the same office team can process more work before another admin hire.
             </p>
 
             <div className="mt-6 grid max-w-[42rem] gap-3">
@@ -114,10 +114,10 @@ export function CalculatorPathSection() {
                 location="homepage_calculator_primary"
                 analyticsEvent="calculator_cta_clicked"
                 analyticsSource="homepage_calculator_section"
-                ctaLabel="Calculate my office work cost"
+                ctaLabel="Calculate Your Admin Drag"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:whitespace-nowrap"
               >
-                Calculate my office work cost
+                Calculate Your Admin Drag
                 <IconArrowRight className="h-4 w-4" stroke={2} aria-hidden />
               </CTALink>
               <CTALink
@@ -136,10 +136,10 @@ export function CalculatorPathSection() {
 
           <div className="min-w-0 rounded-[1.5rem] border border-[#DCE7DD] bg-white p-5 shadow-[0_22px_55px_rgba(16,32,51,0.08)] sm:p-6 lg:p-7">
             <h3 className="text-2xl font-bold leading-tight text-[#102033] sm:text-[1.75rem] lg:text-[1.9rem]">
-              Diagnose the leak, then choose the right system.
+              Diagnose admin drag, then choose the right first workflow.
             </h3>
             <p className="mt-3 max-w-[38rem] text-sm leading-6 text-[#59687A] sm:text-base sm:leading-7">
-              See which system should make money move first: Cashflow Control, Repeat Revenue, or both.
+              See which office workflow should move first: billing readiness, follow-up, staff SOP support, or monthly AI Office Ops.
             </p>
 
             <div className="mt-6 grid gap-3">
@@ -157,7 +157,7 @@ export function CalculatorPathSection() {
             </div>
 
             <div className="mt-5 rounded-2xl border border-[#CBEED8] bg-[#EEF9F2] p-4 text-sm font-semibold leading-6 text-[#102033]">
-              Use the calculator to pick the money path. The Office Process Assessment turns the range into a practical action map before you buy a system.
+              Use the calculator to find the drag. The AI Office Map turns the range into a practical action map before you buy a Sprint.
             </div>
           </div>
         </div>

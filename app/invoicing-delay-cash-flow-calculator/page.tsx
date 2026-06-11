@@ -17,7 +17,7 @@ const faqSchema = {
       name: "Do we need to switch software?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No. Stanley Systems installs a control layer on top of your existing software and office systems. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, or your current setup. The point is to remove costly manual office work across billing, follow-up, customer records, and software handoffs.",
+        text: "No. Stanley Systems installs AI office workflows around your existing software and office systems. The point is not to rip out QuickBooks, Jobber, Housecall Pro, ServiceTitan, or your current setup. The point is to remove costly manual office work across billing, follow-up, customer records, and software handoffs.",
       },
     },
     {
@@ -33,7 +33,7 @@ const faqSchema = {
       name: "What if we are not sure where the real problem is?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "That is exactly what the Office Process Assessment is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat revenue. You leave knowing which leak matters first.",
+        text: "That is exactly what the AI Office Map is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat work. You leave knowing which workflow matters first.",
       },
     },
     {
@@ -41,20 +41,20 @@ const faqSchema = {
       name: "I have been burned by consultants before. Why is this different?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Stanley Systems is not selling a giant strategy deck. The assessment finds specific money leaks, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
+        text: "Stanley Systems is not selling a giant strategy deck. The assessment finds specific admin drag points, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
       },
     },
   ],
 }
 
 export const metadata: Metadata = {
-  title: "Office Work Cost Calculator | Stanley Systems",
+  title: "Admin Drag Calculator | Stanley Systems",
   description:
-    "See what manual admin work, delayed billing, duplicate entry, missed follow-up, and software handoffs may be costing your service business each month.",
+    "See what copying, chasing, retyping, reconciling, delayed billing, missed follow-up, and software handoffs may be costing your service business each month.",
   openGraph: {
-    title: "Office Work Cost Calculator | Stanley Systems",
+    title: "Admin Drag Calculator | Stanley Systems",
     description:
-      "Stanley Systems installs a control layer on top of your existing software and office systems to reduce costly manual office work.",
+      "Stanley Systems installs AI office workflows around your existing software so the current team can process more jobs with cleaner records and faster follow-up.",
     url: "https://stanley-systems.com/invoicing-delay-cash-flow-calculator",
     siteName: "Stanley Systems",
     type: "website",

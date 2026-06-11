@@ -41,14 +41,14 @@ export function MoneyMathSection() {
             analyticsEvent="audit_checkout_clicked"
             analyticsSource="repeat_revenue_page"
             packageId="workflow_audit"
-            packageName="Office Process Assessment"
+            packageName="AI Office Map"
             billingPeriod="one_time"
-            ctaLabel="Run the Office Process Assessment"
+            ctaLabel="Run the AI Office Map"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex min-h-12 w-fit items-center justify-center gap-2 rounded-md bg-[#15803D] px-7 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(21,128,61,0.20)] transition hover:bg-[#17612E]"
           >
-            Run the Office Process Assessment <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Run the AI Office Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
         </div>
 

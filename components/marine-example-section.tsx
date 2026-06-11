@@ -4,7 +4,6 @@ export function MarineExampleSection() {
       <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.35rem] border border-[#b9d8c0] bg-[linear-gradient(180deg,#ffffff_0%,#eff8f0_100%)] px-4 py-5 shadow-[0_22px_64px_rgba(16,32,51,0.12)] sm:rounded-[1.75rem] sm:px-6 sm:py-6 lg:px-7">
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
           <div className="lg:pt-1">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#15803D]">Service business proof</p>
             <h2 className="mt-2 text-2xl font-semibold leading-tight text-[#071421] sm:text-3xl lg:text-[2.45rem] lg:leading-[1.04]">
               10+ hours/week back. Same-day invoicing. Fewer office errors.
             </h2>

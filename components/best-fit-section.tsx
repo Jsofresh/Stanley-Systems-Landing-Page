@@ -43,7 +43,7 @@ const fitSignals = [
 ]
 
 const notFitSignals = [
-  "The business wants custom enterprise software before fixing the obvious money leaks.",
+  "The business wants custom enterprise software before fixing the obvious admin drags.",
   "There is no repeatable workflow, no real software stack, and no clear first bottleneck.",
   "The team is not ready to clean up the workflow that is costing money.",
   "Admin time, billing delays, and missed follow-up are treated as free.",
@@ -54,7 +54,7 @@ export function BestFitSection({ className = "" }: { className?: string }) {
     <section
       data-audit-page="/"
       data-audit-section="home.best-fit"
-      data-audit-purpose="Show which service businesses fit Stanley Systems before the final Office Process Assessment CTA."
+      data-audit-purpose="Show which service businesses fit Stanley Systems before the final AI Office Map CTA."
       className={`relative z-10 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 ${className}`}
     >
       <div className="mx-auto max-w-6xl rounded-[2.5rem] border border-[#dbe7cf] bg-[linear-gradient(180deg,#f8fbf3_0%,#ffffff_48%,#f7f7f4_100%)] px-5 py-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)] sm:px-8 sm:py-10 lg:px-10 lg:py-12">

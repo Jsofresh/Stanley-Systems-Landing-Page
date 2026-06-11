@@ -9,9 +9,9 @@ import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 const routes = [
-  { id: "audit", title: "Get the Office Process Assessment", body: "Best if invoices, estimates, missed calls, reviews, referrals, past customers, or cash are getting stuck in the office.", cta: "Get the Office Process Assessment", icon: ReceiptText },
+  { id: "audit", title: "Get the AI Office Map", body: "Best if invoices, estimates, missed calls, reviews, referrals, past customers, or cash are getting stuck in the office.", cta: "Get the AI Office Map", icon: ReceiptText },
   { id: "question", title: "Want to talk before buying?", body: "Not sure if this fits? Ask us a question before you start.", cta: "Ask us a question", icon: MailQuestion },
-  { id: "bought", title: "Already bought?", body: "Send the intake details Stanley Systems needs before reviewing the money leak.", cta: "Continue assessment setup", icon: CheckCircle2 },
+  { id: "bought", title: "Already bought?", body: "Send the intake details Stanley Systems needs before reviewing the admin drag.", cta: "Continue assessment setup", icon: CheckCircle2 },
 ] as const
 
 type RouteId = (typeof routes)[number]["id"]
@@ -32,7 +32,7 @@ export function ContactRouter() {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-3xl">
           <h1 className="text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Find the right path to stop the office leaks.</h1>
-          <p className="mt-5 text-lg leading-8 text-[#536173]">Get the Office Process Assessment, see how it works, ask us a question, or continue assessment setup.</p>
+          <p className="mt-5 text-lg leading-8 text-[#536173]">Get the AI Office Map, see how it works, ask us a question, or continue assessment setup.</p>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
@@ -69,8 +69,8 @@ function AuditPanel() {
   return (
     <div>
       
-      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Get the Office Process Assessment.</h2>
-      <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">Stanley Systems finds what is slowing down cash, follow-up, reviews, referrals, and repeat work. The Office Process Assessment shows what should be fixed first. If the Sprint is the right next step, Stanley Systems builds the first full version of the system. Monthly Control is available after the build if you want Stanley Systems to keep it checked and adjusted.</p>
+      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Get the AI Office Map.</h2>
+      <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">Stanley Systems finds what is slowing down cash, follow-up, reviews, referrals, and repeat work. The AI Office Map shows what should be fixed first. If the Sprint is the right next step, Stanley Systems builds the first full version of the system. Monthly Control is available after the build if you want Stanley Systems to keep it checked and adjusted.</p>
       <ul className="mt-5 space-y-3 text-sm font-semibold leading-6 text-[#536173]">
         {[
           "For service businesses with real job, billing, customer, call, estimate, review, referral, or follow-up activity.",
@@ -79,8 +79,8 @@ function AuditPanel() {
         ].map((item) => <li key={item} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" />{item}</li>)}
       </ul>
       <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-        <CTALink href={auditHref} kind="checkout" location="contact_audit_panel" analyticsEvent="audit_checkout_clicked" analyticsSource="contact_router" packageId="workflow_audit" packageName="Office Process Assessment" billingPeriod="one_time" ctaLabel="Get the Office Process Assessment" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)]">
-          Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" />
+        <CTALink href={auditHref} kind="checkout" location="contact_audit_panel" analyticsEvent="audit_checkout_clicked" analyticsSource="contact_router" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Get the AI Office Map" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)]">
+          Get the AI Office Map <ArrowRight className="ml-2 h-4 w-4" />
         </CTALink>
         <Link href="/audit-started" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]">What happens after buying</Link>
       </div>
@@ -93,7 +93,7 @@ function BoughtPanel() {
   return (
     <div>
       <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Start your assessment intake.</h2>
-      <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">If you already bought the Office Process Assessment, use the intake route to send the work details Stanley Systems needs before reviewing how money and follow-up move now.</p>
+      <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">If you already bought the AI Office Map, use the intake route to send the work details Stanley Systems needs before reviewing how money and follow-up move now.</p>
       <Link href="/audit-intake" className="mt-7 inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)]">Go to assessment intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
     </div>
   )
@@ -144,7 +144,7 @@ function PreBuyQuestionForm() {
       const result = await response.json().catch(() => null)
       if (!response.ok || !result?.ok) throw new Error(result?.error || "Could not send question.")
       setState("success")
-      setMessage(result?.message || "Thanks. Stanley Systems received your question. If it belongs in the Office Process Assessment, we’ll point you there instead of guessing.")
+      setMessage(result?.message || "Thanks. Stanley Systems received your question. If it belongs in the AI Office Map, we’ll point you there instead of guessing.")
       setForm({ name: "", business: "", email: "", phone: "", business_type: "", main_issue: "", message: "" })
     } catch (error) {
       setState("error")
@@ -156,7 +156,7 @@ function PreBuyQuestionForm() {
     <form onSubmit={submit} className="grid gap-4">
       <div>
         <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Want to talk before buying?</h2>
-        <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">Not sure if this fits? Ask us a question before you start. We’ll help you decide whether the Office Process Assessment is the right next step.</p><p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">You may first speak with our phone assistant so Stanley Systems can route the question quickly.</p><p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">Short questions are fine. If you need diagnosis, start the Office Process Assessment so Stanley Systems can check the real business process.</p>
+        <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">Not sure if this fits? Ask us a question before you start. We’ll help you decide whether the AI Office Map is the right next step.</p><p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">You may first speak with our phone assistant so Stanley Systems can route the question quickly.</p><p className="mt-2 text-sm font-semibold leading-6 text-[#607080]">Short questions are fine. If you need diagnosis, start the AI Office Map so Stanley Systems can check the real business process.</p>
       </div>
       {state === "success" ? <p className="rounded-2xl border border-[#CFE8D5] bg-[#F4FBF5] p-3 text-sm font-bold text-[#116832]">{message}</p> : null}
       {state === "error" ? <p className="rounded-2xl border border-red-200 bg-red-50 p-3 text-sm font-bold text-red-800">{message}</p> : null}

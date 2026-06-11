@@ -313,8 +313,8 @@ export function CalendarCashflowTrendDisplayAsset(props: DisplayAssetProps) {
   return (
     <StanleyDisplayAsset
       {...props}
-      src="/visual-kit/display-assets/calendar-cashflow-trend-display.png"
-      defaultAlt="Calendar cashflow trend display asset"
+      src="/visual-kit/display-assets/calendar-office workflow-trend-display.png"
+      defaultAlt="Calendar office workflow trend display asset"
     />
   )
 }
@@ -334,7 +334,7 @@ export function MoneyLeakRoutingDisplayAsset(props: DisplayAssetProps) {
     <StanleyDisplayAsset
       {...props}
       src="/visual-kit/display-assets/money-leak-routing-display.png"
-      defaultAlt="Money leak routing display asset"
+      defaultAlt="Admin drag routing display asset"
     />
   )
 }
@@ -441,7 +441,7 @@ export function MoneyLeakMapDisplayAsset(props: DisplayAssetProps) {
     <StanleyDisplayAsset
       {...props}
       src="/visual-kit/display-assets/money-leak-map-display.png"
-      defaultAlt="Money leak map display asset"
+      defaultAlt="Admin drag map display asset"
     />
   )
 }

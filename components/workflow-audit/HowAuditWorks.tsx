@@ -7,7 +7,7 @@ export function HowAuditWorks() {
       <div className={page.wrap}>
         <div className="grid gap-7 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
-            <h2 className={page.h2}>A 30-minute walkthrough, then a money leak map from your records.</h2>
+            <h2 className={page.h2}>A 30-minute walkthrough, then a admin drag map from your records.</h2>
           </div>
           <div className="grid gap-3 sm:hidden">
             {["Walkthrough", "Record review", "Money Leak Map"].map((step, index) => (
@@ -20,7 +20,7 @@ export function HowAuditWorks() {
           <div className="mx-auto hidden w-full max-w-[760px] overflow-hidden rounded-[1.5rem] border border-[#d9e5dc] bg-white shadow-[0_16px_46px_rgba(7,29,58,0.06)] sm:block">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-3-step-process.jpg"
-              alt="Three step Office Process Assessment process: walkthrough, data review, and Money Leak Map."
+              alt="Three step AI Office Map process: walkthrough, data review, and Money Leak Map."
               width={1280}
               height={960}
               sizes="(min-width: 1024px) 55vw, 100vw"

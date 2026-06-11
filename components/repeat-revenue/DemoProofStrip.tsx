@@ -24,7 +24,7 @@ export function DemoProofStrip() {
                 Watch demo proof <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link href="/workflow-audit" prefetch={false} className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]">
-                Get the Office Process Assessment
+                Get the AI Office Map
               </Link>
             </div>
           </div>
@@ -32,7 +32,7 @@ export function DemoProofStrip() {
           <Link href="/how-stanley-systems-works" prefetch={false} className="group relative block min-h-[300px] overflow-hidden bg-[#F8FBF9] sm:min-h-[380px] lg:min-h-[430px]">
             <Image
               src="/images/repeat-revenue/demo-video-placeholder.png"
-              alt="3D Repeat Revenue demo visual showing customer list, missed call, review ask, referral ask, and booked job objects connected by green paths."
+              alt="AI Office Ops demo visual showing customer list, missed call, review ask, referral ask, and booked job objects connected by green paths."
               width={1536}
               height={1024}
               className="absolute inset-0 h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.02]"

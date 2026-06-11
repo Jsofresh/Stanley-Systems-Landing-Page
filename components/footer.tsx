@@ -28,12 +28,12 @@ const footerLinks: FooterSection[] = [
   {
     label: "Solutions",
     links: [
-      { title: "Cashflow Control System", href: "/systems/cashflow-control" },
-      { title: "Repeat Revenue System", href: "/systems/repeat-revenue" },
-      { title: "Systems Installation Sprint", href: "/systems-installation-sprint" },
-      { title: "Speed up invoicing", href: "/speed-up-invoicing-for-service-businesses" },
-      { title: "Missed estimate follow-up", href: "/missed-estimate-follow-up-for-service-businesses" },
-      { title: "Office handoff problems", href: "/office-handoff-problems-in-field-service-businesses" },
+      { title: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator" },
+      { title: "AI Office Map", href: "/workflow-audit" },
+      { title: "AI Office Installation Sprint", href: "/systems-installation-sprint" },
+      { title: "AI Office Ops", href: "/pricing#ai-office-ops" },
+      { title: "How Stanley Systems Works", href: "/how-stanley-systems-works" },
+      { title: "Who We Help", href: "/who-stanley-systems-helps" },
     ],
   },
   {

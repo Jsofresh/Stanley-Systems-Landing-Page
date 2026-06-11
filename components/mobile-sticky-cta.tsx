@@ -77,14 +77,14 @@ export function MobileStickyCTA() {
           analyticsEvent="audit_checkout_clicked"
           analyticsSource="mobile_sticky_cta"
           packageId="workflow_audit"
-          packageName="Office Process Assessment"
+          packageName="AI Office Map"
           billingPeriod="one_time"
-          ctaLabel="Get the Office Process Assessment"
+          ctaLabel="Book the AI Office Map"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-full bg-[#15803D] px-3 py-3 text-[13px] font-semibold text-white"
         >
-          Start Assessment
+          Book AI Office Map
         </CTALink>
       </div>
     </div>

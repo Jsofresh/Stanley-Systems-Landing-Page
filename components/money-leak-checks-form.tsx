@@ -13,7 +13,7 @@ type MoneyLeakChecksFormProps = {
   className?: string
 }
 
-const defaultHeadline = "Get your first money leak check"
+const defaultHeadline = "Get your first admin drag check"
 const defaultBody = "Billing, follow-up, reviews, referrals, missed calls, and past customers — one practical check you can use before you buy."
 const defaultHelper = "No filler. One leak to check, one way to spot it, and one next move."
 const fallbackEmail = "hello@stanley-systems.com"
@@ -57,7 +57,7 @@ export function MoneyLeakChecksForm({
         current_path: window.location.pathname,
         page: window.location.pathname,
         referrer: document.referrer || "",
-        consent: "Stanley Systems can send practical money leak checks using the email provided and phone if included.",
+        consent: "Stanley Systems can send practical admin drag checks using the email provided and phone if included.",
         timestamp: new Date().toISOString(),
         submitted_at: new Date().toISOString(),
         utm_source: params.get("utm_source") || "",

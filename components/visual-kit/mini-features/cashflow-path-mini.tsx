@@ -56,7 +56,7 @@ export function CashflowPathMini() {
     <article className="@container w-full overflow-hidden rounded-[1.5rem] border border-[#DED6C8] bg-[#FBF8F2] p-4 text-[#102033] shadow-[0_18px_55px_rgba(16,32,51,0.10)] @md:p-5">
       <div className="flex flex-col gap-3 @xl:flex-row @xl:items-center @xl:justify-between">
         <div>
-          <p className="text-[0.68rem] font-bold uppercase leading-none tracking-[0.16em] text-[#15803D]">Cashflow path</p>
+          <p className="text-[0.68rem] font-bold uppercase leading-none tracking-[0.16em] text-[#15803D]">Office Workflow path</p>
           <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-tight text-[#071421]">Finished work to collected cash</h3>
         </div>
         <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#DDF7E8] bg-white px-3 py-2 text-xs font-bold text-[#15803D] shadow-sm">

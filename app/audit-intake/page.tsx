@@ -5,8 +5,8 @@ import { AuditIntakeForm } from "@/components/audit-intake-form"
 import { MarketingPageShell } from "@/components/marketing-page-shell"
 
 export const metadata: Metadata = {
-  title: "Office Process Assessment Intake | Stanley Systems",
-  description: "Send the work details Stanley Systems needs after buying the Office Process Assessment.",
+  title: "AI Office Map Intake | Stanley Systems",
+  description: "Send the work details Stanley Systems needs after buying the AI Office Map.",
 }
 
 const intakeGroups = [
@@ -30,9 +30,8 @@ export default function AuditIntakePage() {
       <main className="px-4 pb-16 pt-24 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Assessment intake</p>
             <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Send the work details before the assessment.</h1>
-            <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Use this after buying the Office Process Assessment. The intake gives Stanley Systems enough detail to review cash, follow-up, software handoffs, and what should be fixed first.</p>
+            <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Use this after buying the AI Office Map. The intake gives Stanley Systems enough detail to review cash, follow-up, software handoffs, and what should be fixed first.</p>
           </div>
 
           <section className="mt-7 rounded-[2rem] border border-[#DDEBE2] bg-[#FBFEFA] p-5 shadow-[0_18px_48px_rgba(7,29,58,0.06)] sm:p-6 lg:p-8">

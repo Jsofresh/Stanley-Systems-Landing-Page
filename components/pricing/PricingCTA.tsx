@@ -11,7 +11,7 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
         Find the office work your business should not be paying for anymore.
       </h2>
       <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-[#536173] sm:text-lg">
-        Get the Office Process Assessment. Stanley Systems will show what to automate, remove, restructure, or delegate first.
+        Get the AI Office Map. Stanley Systems will show what to automate, remove, restructure, or delegate first.
       </p>
       <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
         <CTALink
@@ -23,10 +23,10 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
           packageId={primaryOffer.analyticsPackageId}
           packageName={primaryOffer.packageName}
           billingPeriod={primaryOffer.billingPeriod}
-          ctaLabel="Get the Office Process Assessment"
+          ctaLabel="Get the AI Office Map"
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.24)] transition hover:bg-[#116832] sm:px-8"
         >
-          Get the Office Process Assessment
+          Get the AI Office Map
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </CTALink>
         <CTALink

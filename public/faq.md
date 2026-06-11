@@ -1,19 +1,18 @@
-# Stanley Systems FAQ
+# Stanley Systems
 
-Canonical HTML page: https://stanley-systems.com/faq
+Stanley Systems installs AI office workflows for home-service companies so the current office team gets more work done, does better work, and avoids extra admin payroll.
 
-## What should a buyer start with?
+Core offer ladder:
+- Admin Drag Calculator: free calculator for copying, chasing, retyping, reconciling, delayed billing, missed follow-up, and software handoffs.
+- AI Office Map: $197 diagnostic session showing where the office is falling behind, what existing software already handles, what staff is still forced to chase, and the top 3 AI workflow opportunities.
+- AI Office Installation Sprint: $3,500 starting install of the first 1–3 money-moving workflows.
+- AI Office Ops: $500/month starting to monitor, fix, support, and improve installed workflows.
 
-Start with the free calculator or the $97 Office Process Assessment. The assessment shows what is actually happening inside the office and what should be fixed first.
+Primary promise: More jobs processed. Cleaner records. Faster follow-up. Same office team.
 
-## What happens after I buy the Office Process Assessment?
-
-After checkout, Stanley Systems will email and call you to schedule the assessment intake. You’ll walk through how calls, estimates, invoices, payments, follow-up, reviews, referrals, and repeat work move through your office. Then Stanley Systems reviews the records and sends your money-leak report, workflow map, fix list, and build priorities.
-
-## Do I need to send passwords?
-
-No. Do not send passwords. A temporary invited user is usually the fastest way for Stanley Systems to review accurate records, but you can start with a screen share, exports, or screenshots. You control what is shared and can remove access at any time.
-
-## What does the Systems Installation Sprint cost?
-
-The public Systems Installation Sprint standard installation is $1,500 after the assessment sets scope.
+Start here:
+- Admin Drag Calculator: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
+- AI Office Map: https://stanley-systems.com/workflow-audit
+- Installation Sprint: https://stanley-systems.com/systems-installation-sprint
+- Pricing: https://stanley-systems.com/pricing
+- Contact: https://stanley-systems.com/contact

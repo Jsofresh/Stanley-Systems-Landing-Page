@@ -4,19 +4,19 @@ import Image from "next/image"
 import { useState } from "react"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
-import { cashflowResultPanel, cashflowUpsellChips, leakCards, leakResultPanels } from "./tokens"
+import { workflowDragResultPanel, workflowDragUpsellChips, leakCards, leakResultPanels } from "./tokens"
 
 export function LeakSelector() {
   const [active, setActive] = useState(0)
-  const [cashflow, setCashflow] = useState(false)
+  const [workflowDrag, setWorkflowDrag] = useState(false)
   const panel = leakResultPanels[active]
-  const activePanel = cashflow ? cashflowResultPanel : panel
+  const activePanel = workflowDrag ? workflowDragResultPanel : panel
 
   return (
     <section id="leaks" data-section="diagnostic" className="scroll-mt-[190px] bg-white px-4 py-8 sm:px-6 lg:scroll-mt-[120px] lg:px-8 lg:py-10">
       <div className="mx-auto max-w-6xl text-center">
         <h2 className="mx-auto max-w-4xl text-[2.15rem] font-semibold leading-[1.04] tracking-[-0.045em] text-[#102033] sm:text-5xl lg:text-[2.9rem]">
-          Which revenue leak should Stanley Systems fix first?
+          Which admin drag should Stanley Systems fix first?
         </h2>
         <p className="mx-auto mt-3 max-w-3xl text-base leading-7 text-[#33475B] sm:text-lg">
           Pick the problem that sounds most expensive. The path below shows what gets built first.
@@ -25,7 +25,7 @@ export function LeakSelector() {
 
       <div className="mx-auto mt-6 grid max-w-6xl gap-3 md:grid-cols-2 lg:grid-cols-4">
         {leakCards.map((card, index) => {
-          const isActive = index === active && !cashflow
+          const isActive = index === active && !workflowDrag
           return (
             <button
               key={card.title}
@@ -33,7 +33,7 @@ export function LeakSelector() {
               aria-pressed={isActive}
               onClick={() => {
                 setActive(index)
-                setCashflow(false)
+                setWorkflowDrag(false)
               }}
               className={`min-h-full rounded-2xl border p-4 text-left transition ${
                 isActive
@@ -86,15 +86,15 @@ export function LeakSelector() {
             </div>
 
             <div className="mt-2 rounded-xl border border-[#D5DEE8] bg-white p-2">
-              <p className="text-xs font-bold text-[#102033]">Cashflow leak too?</p>
+              <p className="text-xs font-bold text-[#102033]">Office Workflow leak too?</p>
               <div className="mt-1 grid gap-1 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                {cashflowUpsellChips.map((chip) => (
+                {workflowDragUpsellChips.map((chip) => (
                   <button
                     key={chip}
                     type="button"
-                    onClick={() => setCashflow(true)}
+                    onClick={() => setWorkflowDrag(true)}
                     className={`rounded-full border px-2 py-1 text-[11px] font-semibold leading-4 transition ${
-                      cashflow ? "border-[#15803D] bg-[#E8F6EC] text-[#124E25]" : "border-[#C8D8CE] bg-white text-[#33475B] hover:border-[#15803D]"
+                      workflowDrag ? "border-[#15803D] bg-[#E8F6EC] text-[#124E25]" : "border-[#C8D8CE] bg-white text-[#33475B] hover:border-[#15803D]"
                     }`}
                   >
                     {chip}

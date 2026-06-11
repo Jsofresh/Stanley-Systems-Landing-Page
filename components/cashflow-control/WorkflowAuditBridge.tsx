@@ -4,10 +4,10 @@ import { CTALink } from "@/components/cta-link"
 import { plans } from "./tokens"
 
 const auditSteps = [
-  ["1", "Pay $97", "Get the Office Process Assessment."],
+  ["1", "Pay $197", "Get the AI Office Map."],
   ["2", "Map office work", "Use the numbers, not a guess."],
   ["3", "Choose the build", "Choose the build priority with confidence."],
-  ["4", "Credit applied", "Get $97 monthly or $194 yearly back."],
+  ["4", "Credit applied", "Get $197 monthly or $194 yearly back."],
 ] as const
 
 export function WorkflowAuditBridge() {
@@ -19,7 +19,7 @@ export function WorkflowAuditBridge() {
             Buy the assessment first. Let the numbers choose the system.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#33475B] sm:text-lg">
-            The Office Process Assessment checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the build priority matches the costly office work that should be removed first.
+            The AI Office Map checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the build priority matches the costly office work that should be removed first.
           </p>
           <div className="mt-5 grid gap-3 rounded-2xl border border-[#B7D8C0] bg-white p-3 sm:grid-cols-4">
             {auditSteps.map(([step, title, text]) => (
@@ -31,10 +31,10 @@ export function WorkflowAuditBridge() {
             ))}
           </div>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#33475B]">
-            You do not have to guess whether Repeat Revenue System, Cashflow Control System, or both should come first.
+            You do not have to guess whether AI Office Ops, AI Office Installation Sprint, or both should come first.
           </p>
           <p className="mt-4 max-w-2xl rounded-xl border border-[#B7D8C0] bg-white px-4 py-3 text-sm font-bold leading-6 text-[#124E25]">
-            If Stanley Systems cannot find a clear money leak we can fix, you get your assessment fee back and a free Repeat Revenue System.
+            If Stanley Systems cannot find a clear admin drag we can fix, you get your assessment fee back and a free AI Office Ops.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export function WorkflowAuditBridge() {
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             <div className="rounded-2xl border border-[#D5DEE8] bg-[#F8FCF9] p-4">
               <p className="text-sm font-bold text-[#516F90]">Monthly package</p>
-              <p className="mt-2 text-5xl font-extrabold tracking-[-0.06em] text-[#102033]">$97</p>
+              <p className="mt-2 text-5xl font-extrabold tracking-[-0.06em] text-[#102033]">$197</p>
               <p className="mt-1 text-sm font-bold text-[#124E25]">credit</p>
             </div>
             <div className="rounded-2xl border border-[#B7D8C0] bg-[#E8F6EC] p-4">
@@ -60,14 +60,14 @@ export function WorkflowAuditBridge() {
             analyticsEvent="audit_checkout_clicked"
             analyticsSource="repeat_revenue_page"
             packageId="workflow_audit"
-            packageName="Office Process Assessment"
+            packageName="AI Office Map"
             billingPeriod="one_time"
-            ctaLabel="Get the Office Process Assessment"
+            ctaLabel="Get the AI Office Map"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
           >
-            Get the Office Process Assessment <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Get the AI Office Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
           <a href="#scope" className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]">
             Read what is included

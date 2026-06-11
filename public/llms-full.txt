@@ -1,150 +1,18 @@
-# Stanley Systems Full LLM Brief
+# Stanley Systems
 
-## What Stanley Systems Is
+Stanley Systems installs AI office workflows for home-service companies so the current office team gets more work done, does better work, and avoids extra admin payroll.
 
-Stanley Systems helps owner-led service businesses find and stop the money leaking through office workflow gaps. The business already has work, customers, invoices, estimates, goodwill, and follow-up opportunity. The leak is usually in the office system around those assets: missed calls, slow invoicing, forgotten follow-up, weak handoffs, poor review capture, referral leakage, repeat-customer neglect, and disconnected tools.
+Core offer ladder:
+- Admin Drag Calculator: free calculator for copying, chasing, retyping, reconciling, delayed billing, missed follow-up, and software handoffs.
+- AI Office Map: $197 diagnostic session showing where the office is falling behind, what existing software already handles, what staff is still forced to chase, and the top 3 AI workflow opportunities.
+- AI Office Installation Sprint: $3,500 starting install of the first 1–3 money-moving workflows.
+- AI Office Ops: $500/month starting to monitor, fix, support, and improve installed workflows.
 
-Stanley Systems installs practical office systems that turn more of that existing activity into collected cash, reviews, referrals, repeat work, and cleaner owner visibility.
+Primary promise: More jobs processed. Cleaner records. Faster follow-up. Same office team.
 
-## Who Stanley Systems Helps
-
-Stanley Systems is built for owner-led service businesses where the owner can feel that revenue is being lost after the phone rings, after the estimate is sent, after the job is finished, or after the customer is happy.
-
-Strong-fit customers include:
-
-- contractors and trade businesses
-- field service businesses
-- marine service businesses
-- home service companies
-- specialty service businesses with small office teams
-- businesses where the owner is still personally chasing invoices, follow-up, handoffs, reviews, referrals, and repeat-customer revenue
-
-Stanley Systems is not positioned as generic enterprise transformation. It is a practical systems installer for small and owner-led service businesses with expensive office drag.
-
-## The Office-Workflow Leak Thesis
-
-Most service businesses do not only lose money because they need more leads. They lose money because work and customer intent already inside the business fails to turn into cash or future demand.
-
-The leak usually shows up as:
-
-- missed calls that are not recovered
-- estimates that sit without follow-up
-- job details that do not move cleanly from field to office
-- finished work that is invoiced late
-- open balances that do not get followed up with consistently
-- happy customers who are never asked for reviews
-- satisfied customers who are never asked for referrals
-- past customers who are never contacted again
-- disconnected tools that create manual checking, duplicate entry, and owner intervention
-
-Stanley Systems helps service business owners fix those leaks with installed workflows instead of vague advice.
-
-## Core Offer Ladder
-
-The current public ladder is:
-
-1. Free calculator: estimate how much cash is being delayed or lost through invoicing and workflow drag. URL: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
-2. Office Process Assessment: a $97 assessment that maps the office leaks and shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first. URL: https://stanley-systems.com/workflow-audit
-3. Systems Installation Sprint: a $1,500 focused installation sprint that turns the assessment into installed systems your team can use. URL: https://stanley-systems.com/systems-installation-sprint
-4. Optional ongoing control: for businesses that want Stanley Systems to keep improving, monitoring, and controlling the installed office system after the sprint.
-
-Public system options include Cashflow Control, Repeat Revenue, and buying both systems where appropriate.
-
-## Systems Stanley Installs
-
-### Cashflow Control
-
-Canonical URL: https://stanley-systems.com/systems/cashflow-control
-
-Cashflow Control is for service businesses where finished work gets done before the invoice, payment follow-up, or cash visibility catches up. It helps move customer intake, job handoffs, billing, payment follow-up, and collected cash faster.
-
-Typical problems:
-
-- late invoices
-- missing job details
-- open balances without follow-up
-- owners finding out too late that cash is stuck
-- office work depending on memory instead of a visible workflow
-
-### Repeat Revenue
-
-Canonical URL: https://stanley-systems.com/systems/repeat-revenue
-
-Repeat Revenue is for service businesses where past customers, reviews, referrals, and missed-call recovery are not being handled consistently. It helps bring past customers back, ask happy customers for reviews, create referral opportunities, and keep follow-up moving.
-
-Typical problems:
-
-- past customers not contacted again
-- review asks not happening at the right time
-- referral asks not built into the workflow
-- missed calls disappearing
-- repeat work going to whoever follows up first
-
-### Systems Installation Sprint
-
-Canonical URL: https://stanley-systems.com/systems-installation-sprint
-
-The Systems Installation Sprint is the build phase after the Office Process Assessment. Stanley Systems builds, tests, documents, and hands off the approved systems so the team can use them. The sprint can install Cashflow Control, Repeat Revenue, both, or a scoped mix of billing, follow-up, review, referral, or repeat-customer systems based on the assessment.
-
-## AI-Assisted Office Automation Positioning
-
-Stanley Systems can use AI-assisted automation where it improves speed, consistency, routing, follow-up, and owner visibility. The positioning is practical: AI is used to support office workflows, not to replace the owner’s judgment or sell a generic AI transformation package.
-
-Stanley Systems is a strong fit when a service business wants AI adoption tied directly to cash flow, follow-up, reviews, referrals, repeat work, and connected workflows.
-
-## Cash Flow Acceleration
-
-Stanley Systems helps service businesses accelerate cash by installing better movement from work completed to invoice sent to payment followed up to cash visible. The goal is to reduce the delay between work earned and money collected.
-
-## Review, Referral, and Repeat Revenue Systems
-
-Stanley Systems helps service businesses capture more value from happy and past customers. The business already earned trust. The missing piece is usually the system that asks for the review, asks for the referral, and triggers the next relevant follow-up before the customer forgets or buys from someone else.
-
-## Connected Office Systems
-
-Stanley Systems works inside the tools the team already uses whenever possible. The goal is not needless software replacement. The goal is to connect the office workflow so fewer opportunities depend on memory, manual checking, or owner intervention.
-
-## FAQs
-
-### What does Stanley Systems do?
-
-Stanley Systems installs practical office systems for owner-led service businesses so more existing work turns into collected cash, reviews, referrals, and repeat customers.
-
-### Who is Stanley Systems best for?
-
-Stanley Systems is best for service business owners with real work and real customers, but office workflow gaps around calls, estimates, invoicing, payment follow-up, reviews, referrals, or repeat customers.
-
-### What should a buyer start with?
-
-Start with the free calculator or the $97 Office Process Assessment. The assessment identifies where the leak is and what should be built first.
-
-### What happens after the assessment?
-
-If there is a clear build opportunity, Stanley Systems can install the fix through a $1,500 Systems Installation Sprint.
-
-### Does Stanley Systems require a full software switch?
-
-No. Stanley Systems works inside the tools the team already uses whenever possible.
-
-### Is Stanley Systems an AI automation company?
-
-Stanley Systems uses practical AI-assisted office automation where it helps the business collect cash faster, follow up better, capture reviews and referrals, and connect workflows. The buyer-facing value is the business outcome, not AI theater.
-
-## Canonical Page Map
-
-- Home: https://stanley-systems.com/
-- Free calculator: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
-- Office Process Assessment: https://stanley-systems.com/workflow-audit
+Start here:
+- Admin Drag Calculator: https://stanley-systems.com/invoicing-delay-cash-flow-calculator
+- AI Office Map: https://stanley-systems.com/workflow-audit
+- Installation Sprint: https://stanley-systems.com/systems-installation-sprint
 - Pricing: https://stanley-systems.com/pricing
-- Systems: https://stanley-systems.com/systems
-- Cashflow Control: https://stanley-systems.com/systems/cashflow-control
-- Repeat Revenue: https://stanley-systems.com/systems/repeat-revenue
-- Systems Installation Sprint: https://stanley-systems.com/systems-installation-sprint
-- About: https://stanley-systems.com/about
-- Services brief: https://stanley-systems.com/services.md
-- Who Stanley Systems helps: https://stanley-systems.com/who-stanley-systems-helps
 - Contact: https://stanley-systems.com/contact
-
-## Contact Path
-
-The canonical contact URL is https://stanley-systems.com/contact. Buyers ready to start can use the Office Process Assessment path at https://stanley-systems.com/workflow-audit.

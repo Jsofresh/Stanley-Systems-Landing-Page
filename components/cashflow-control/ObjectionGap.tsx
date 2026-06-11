@@ -15,8 +15,8 @@ export function ObjectionGap() {
             </p>
           </div>
           <Image
-            src="/images/uploaded/cashflow-control/automates-the-workflow.jpg"
-            alt="Cashflow Control automates the workflow and flags missing billing details before cash gets stuck."
+            src="/images/uploaded/office workflow-control/automates-the-workflow.jpg"
+            alt="Office Workflow Control automates the workflow and flags missing billing details before cash gets stuck."
             width={1280}
             height={720}
             className="h-auto w-full rounded-[2rem] shadow-[0_18px_48px_rgba(7,29,58,0.08)]"

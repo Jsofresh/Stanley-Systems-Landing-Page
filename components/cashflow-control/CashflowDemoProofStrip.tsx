@@ -9,14 +9,14 @@ const cashflowProofCards = [
   ["Cash follow-up clear", "Open balances, payment follow-up, and owner visibility stay tied to the job instead of becoming cleanup work."],
 ] as const
 
-export function CashflowDemoProofStrip() {
+export function AIOfficeWorkflowDemoProofStrip() {
   return (
-    <section id="demo" data-section="cashflow-demo-proof" className="scroll-mt-[120px] bg-white px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+    <section id="demo" data-section="office workflow-demo-proof" className="scroll-mt-[120px] bg-white px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-[#D5DEE8] bg-white shadow-[0_14px_42px_rgba(16,32,51,0.06)]">
         <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-9">
             <h2 className="text-[2.05rem] font-semibold leading-[1.02] tracking-[-0.045em] text-[#102033] sm:text-[2.9rem]">
-              See the cashflow path before you buy.
+              See the office workflow path before you buy.
             </h2>
             <p className="mt-4 text-base leading-7 text-[#33475B] sm:text-lg">
               Watch how Stanley Systems turns a customer request, field job, office handoff, billing check, invoice, final bill, and payment follow-up into one visible workflow.
@@ -29,7 +29,7 @@ export function CashflowDemoProofStrip() {
                 Watch demo proof <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link href="/workflow-audit" prefetch={false} className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]">
-                Get the Office Process Assessment
+                Get the AI Office Map
               </Link>
             </div>
           </div>
@@ -37,7 +37,7 @@ export function CashflowDemoProofStrip() {
           <Link href="/how-stanley-systems-works" prefetch={false} className="group relative block min-h-[285px] overflow-hidden bg-[#F8FBF9] sm:min-h-[340px] lg:min-h-[390px]">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-stanley-systems-workflow-automation.jpg"
-              alt="Cashflow Control demo visual showing intake, job records, billing checks, routing, invoices, and payment follow-up connected into one workflow."
+              alt="Office Workflow Control demo visual showing intake, job records, billing checks, routing, invoices, and payment follow-up connected into one workflow."
               width={1280}
               height={720}
               className="absolute inset-0 h-full w-full object-cover object-center transition duration-500 group-hover:scale-[1.02]"

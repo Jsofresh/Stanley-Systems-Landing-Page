@@ -40,9 +40,9 @@ const fontAliases = {
   "--font-work-sans": "var(--font-neue-montreal)",
 } as React.CSSProperties
 
-const siteTitle = "Stanley Systems | Office Work Cost Calculator"
+const siteTitle = "Stanley Systems | Admin Drag Calculator"
 const siteDescription =
-  "Stanley Systems installs a control layer on top of the software your business already uses, reducing costly manual office work across billing, follow-up, customer records, and software handoffs."
+  "Stanley Systems installs a AI office layer on top of the software your business already uses, reducing costly manual office work across billing, follow-up, customer records, and software handoffs."
 const siteLogoPath = "/stanley-systems-logo-reference.jpg"
 const siteLogoUrl = `https://stanley-systems.com${siteLogoPath}`
 
@@ -94,10 +94,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What is the Office Process Assessment?",
+        name: "What is the AI Office Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It is a $97 assessment where Stanley Systems finds where money is leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again.",
+          text: "It is a $197 assessment where Stanley Systems finds where money is leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again.",
         },
       },
       {
@@ -113,7 +113,7 @@ export default function RootLayout({
         name: "What if we are not sure where the real leak is?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "That is exactly what the Office Process Assessment is for: it shows where the money is leaking and what system should be built first to stop it.",
+          text: "That is exactly what the AI Office Map is for: it shows where the money is leaking and what system should be built first to stop it.",
         },
       },
       {
@@ -157,7 +157,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Stanley Systems",
-    alternateName: "Stanley Systems Cash Flow Systems",
+    alternateName: "Stanley Systems Office Workflow Systems",
     url: "https://stanley-systems.com",
   }
 

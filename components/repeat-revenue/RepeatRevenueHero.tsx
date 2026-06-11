@@ -20,13 +20,13 @@ export function RepeatRevenueHero() {
           <nav className="text-sm font-semibold text-[#33475B]" aria-label="Breadcrumb">
             <a href="/systems" className="underline decoration-[#1F7A3A]/50 underline-offset-4 hover:text-[#1F7A3A]">Systems</a>
             <span className="mx-2 text-[#7C98B6]">/</span>
-            <span>Repeat Revenue System</span>
+            <span>AI Office Ops</span>
           </nav>
           <h1 className="mt-6 max-w-4xl text-[2.45rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#102033] sm:text-[3.45rem] lg:text-[3.75rem]">
             Get more money from the customers you already earned.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[#33475B] sm:text-xl">
-            Repeat Revenue System brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they turn into cold leads.
+            AI Office Ops brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they turn into cold leads.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -39,12 +39,12 @@ export function RepeatRevenueHero() {
               packageId={repeatMonthly.analyticsPackageId}
               packageName={repeatMonthly.publicName}
               billingPeriod={repeatMonthly.billingPeriod}
-              ctaLabel="Buy Repeat Revenue"
+              ctaLabel="Ask about AI Office Ops"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#15803D] px-7 py-3 text-sm font-bold text-white shadow-[0_0_26px_rgba(21,128,61,0.25)] transition hover:bg-[#17612E]"
             >
-              Buy Repeat Revenue <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              Ask about AI Office Ops <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </CTALink>
             <CTALink
               href={workflowAudit.stripePaymentLink.url}
@@ -53,25 +53,25 @@ export function RepeatRevenueHero() {
               analyticsEvent="audit_checkout_clicked"
               analyticsSource="repeat_revenue_page"
               packageId="workflow_audit"
-              packageName="Office Process Assessment"
+              packageName="AI Office Map"
               billingPeriod="one_time"
-              ctaLabel="Get the Office Process Assessment"
+              ctaLabel="Get the AI Office Map"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-7 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]"
             >
-              Get the Office Process Assessment
+              Get the AI Office Map
             </CTALink>
           </div>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#33475B]">
-            Assessment credit: $97 off monthly or $194 off yearly. Yearly saves 20% and waives installation.
+            Assessment credit: $197 off monthly or $194 off yearly. Yearly saves 20% and waives installation.
           </p>
         </div>
 
         <div className="relative min-h-[360px] overflow-hidden rounded-[1.75rem] border border-[#D6E8DC] bg-[#F8FBF9] shadow-[0_30px_80px_rgba(16,32,51,0.12),0_0_48px_rgba(21,128,61,0.16)] sm:min-h-[440px] lg:min-h-[500px]">
           <Image
             src="/images/repeat-revenue/repeat-revenue-loop.jpg"
-            alt="Repeat Revenue loop visual showing past customers, five-star reviews, referrals, and captured calls feeding more repeat revenue."
+            alt="AI Office Ops loop visual showing follow-up, reviews, referrals, missed calls, and seasonal work moving through office workflows."
             width={1280}
             height={960}
             priority

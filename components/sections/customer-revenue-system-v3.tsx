@@ -60,7 +60,7 @@ export function CustomerRevenueSystemV3() {
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] lg:items-end">
             <div className="max-w-4xl">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#0caf58]">
-                Repeat Revenue System
+                AI Office Ops
               </p>
               <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-0.045em] text-[#071f1a] sm:text-5xl lg:text-6xl">
                 Get more money from the customers you already earned.
@@ -143,7 +143,7 @@ export function CustomerRevenueSystemV3() {
                 href="/pricing#workflow-audit"
                 className="inline-flex items-center justify-center rounded-full bg-[#0caf58] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(12,175,88,0.24)] transition hover:bg-[#098f49]"
               >
-                Get the Office Process Assessment
+                Get the AI Office Map
               </a>
               <a
                 href="#customer-revenue-system-v3-flow"

@@ -163,7 +163,7 @@ export function PaidInvoicingDelayCalculatorClient() {
       <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
         <section className="rounded-[2rem] border border-[#e8dfd0] bg-white p-7 shadow-[0_18px_60px_rgba(15,23,42,0.06)] sm:p-8">
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.3rem] lg:leading-[1.06]">
-            See what slow invoicing may be doing to cash flow.
+            See what slow invoicing may be doing to office workflow.
           </h1>
           <p className="mt-5 text-lg leading-8 text-slate-600">
             Enter a few numbers. Get your estimate first. Then decide if you want the full breakdown and fix checklist.

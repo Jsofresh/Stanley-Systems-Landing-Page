@@ -43,7 +43,7 @@ const featureRows = [
     title: "Stop rebuilding the invoice story after the job is done.",
     copy: "Stanley Systems connects the job details, billing triggers, and accounting handoff so finished work moves toward collected cash faster.",
     metrics: ["Job done", "Invoice ready", "Owner visible"],
-    visual: "cashflow" as const,
+    visual: "office workflow" as const,
   },
   {
     label: "Quote status to follow-up",
@@ -65,8 +65,8 @@ function SectionShell({ children, className = "", id }: { children: React.ReactN
   return <section id={id} className={`px-5 py-16 md:px-8 lg:px-10 ${className}`}>{children}</section>
 }
 
-function SystemCardVisual({ variant }: { variant: "cashflow" | "repeat" }) {
-  if (variant === "cashflow") {
+function SystemCardVisual({ variant }: { variant: "office workflow" | "repeat" }) {
+  if (variant === "office workflow") {
     return (
       <PrimitiveSectionShell className="h-full border-[#DDE7E0] bg-[#F6FBF7] p-5 shadow-[0_22px_56px_rgba(16,32,51,0.08)]">
         <div className="space-y-4">
@@ -77,7 +77,7 @@ function SystemCardVisual({ variant }: { variant: "cashflow" | "repeat" }) {
             className="border-[#D7E6DB] bg-white"
           />
           <ProofPath
-            title="Cashflow control path"
+            title="Office Workflow control path"
             outcome="The office sees the next step before cash stalls."
             steps={[
               { label: "Job complete", icon: ClipboardList },
@@ -98,7 +98,7 @@ function SystemCardVisual({ variant }: { variant: "cashflow" | "repeat" }) {
     <PrimitiveSectionShell className="h-full border-[#DDE7E0] bg-[#F6FBF7] p-5 shadow-[0_22px_56px_rgba(16,32,51,0.08)]">
       <div className="space-y-4">
         <RevenueLoop
-          centerLabel="Repeat Revenue System"
+          centerLabel="AI Office Ops"
           items={[
             { label: "Dormant customer list", description: "Old customers with a real timing window.", icon: RefreshCcw },
             { label: "Missed call recovery", description: "Catch jobs that would have disappeared.", icon: PhoneCall },
@@ -115,8 +115,8 @@ function SystemCardVisual({ variant }: { variant: "cashflow" | "repeat" }) {
   )
 }
 
-function FeatureVisualPanel({ variant }: { variant: "cashflow" | "followup" | "repeat" }) {
-  if (variant === "cashflow") {
+function FeatureVisualPanel({ variant }: { variant: "office workflow" | "followup" | "repeat" }) {
+  if (variant === "office workflow") {
     return (
       <PrimitiveSectionShell className="border-[#DDE7E0] bg-[#F6FBF7] p-5 shadow-[0_24px_70px_rgba(15,23,42,0.08)] md:p-6">
         <MobileVisualStack className="gap-4">
@@ -225,13 +225,13 @@ export function Phase3HomepageSections() {
       <SectionShell id="audit" className="bg-[#0B1F33] text-white">
         <div className="mx-auto grid max-w-[90rem] gap-8 lg:grid-cols-[1fr_0.86fr] lg:items-center">
           <div>
-            <p className="text-[13px] font-extrabold uppercase tracking-[0.18em] text-[#86efac]">Office Process Assessment</p>
+            <p className="text-[13px] font-extrabold uppercase tracking-[0.18em] text-[#86efac]">AI Office Map</p>
             <h2 className="mt-4 max-w-[54rem] text-balance text-4xl font-extrabold leading-[0.96] tracking-[-0.06em] md:text-6xl">Before you buy a system, find the workflow that is actually costing you.</h2>
             <p className="mt-5 max-w-[45rem] text-lg font-medium leading-8 text-white/72">The assessment maps the current office path, identifies the leak, and turns the fix into a build plan you can understand.</p>
             <div className="mt-8">
               <CTAGroup
-                primary={{ href: auditHref, label: "Get the Office Process Assessment" }}
-                secondary={{ href: calculatorHref, label: "Calculate Your Office Work Cost" }}
+                primary={{ href: auditHref, label: "Get the AI Office Map" }}
+                secondary={{ href: calculatorHref, label: "Calculate Your Admin Drag" }}
                 className="justify-start"
               />
             </div>
@@ -240,7 +240,7 @@ export function Phase3HomepageSections() {
             {[
               [Search, "Map the current handoff", "Calls, jobs, notes, invoices, software, and follow-up."],
               [Layers3, "Map costly office work", "Where work waits, gets retyped, or loses ownership."],
-              [ShieldCheck, "Build the right system", "Cashflow Control, Repeat Revenue, or a focused first workflow."],
+              [ShieldCheck, "Build the right system", "AI Office Installation Sprint, AI Office Ops, or a focused first workflow."],
             ].map(([Icon, title, copy]) => {
               const I = Icon as typeof Search
               return <div key={title as string} className="flex gap-4 border-b border-white/10 py-5 first:pt-0 last:border-b-0 last:pb-0"><div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-[#86efac]"><I className="h-5 w-5" /></div><div><p className="text-lg font-extrabold">{title as string}</p><p className="mt-1 text-sm font-medium leading-6 text-white/64">{copy as string}</p></div></div>
@@ -259,7 +259,7 @@ export function Phase3HomepageSections() {
             {[
               ["Do we need to switch software?", "Usually no. The first move is to work around the tools your team already uses whenever possible."],
               ["What gets automated?", "The handoffs: status changes, invoice readiness, reminders, follow-up triggers, owner views, and exception paths."],
-              ["Which system should we buy?", "Get the Office Process Assessment or calculator. The leak decides the first build."],
+              ["Which system should we buy?", "Get the AI Office Map or calculator. The leak decides the first build."],
               ["Is this just for one trade?", "No. It fits trade-service businesses where jobs, office work, invoices, and follow-up cross hands."],
             ].map(([q, a]) => (
               <details key={q} className="group rounded-[1.1rem] border border-slate-200 bg-white p-5 shadow-[0_10px_28px_rgba(15,23,42,0.04)]">

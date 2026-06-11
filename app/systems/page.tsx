@@ -1,61 +1,21 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-
-import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/hero-section"
-import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
+import { Footer } from "@/components/footer"
 
-const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
-const quietLink = "inline-flex min-h-12 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]"
-
-export const metadata: Metadata = {
-  title: "Systems Stanley Systems Can Build | Stanley Systems",
-  description: "Cash, follow-up, and office handoff systems Stanley Systems can install after the Office Process Assessment.",
-  alternates: { canonical: "https://stanley-systems.com/systems" },
-}
-
-const systems = [
-  { title: "Cashflow Control", body: "For billing, invoice movement, payment follow-up, and cash visibility.", href: "/systems/cashflow-control", cta: "See Cashflow Control" },
-  { title: "Repeat Revenue", body: "For missed calls, reviews, referrals, past customers, and repeat work.", href: "/systems/repeat-revenue", cta: "See Repeat Revenue" },
-  { title: "Systems Installation Sprint", body: "The build period where Stanley Systems installs the agreed systems.", href: "/systems-installation-sprint", cta: "See how the Sprint works" },
-]
-
-export default function SystemsIndexPage() {
+export default function LegacyWorkflowPage() {
   return (
     <>
       <SiteHeader />
-      <main data-nav-theme="light" className="min-h-screen overflow-hidden bg-[#FBFCF7] text-[#071D3A]">
-        <section className="relative overflow-hidden pb-12 pt-32 sm:pb-16 lg:pt-36">
-          <div className="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(21,128,61,0.12),rgba(251,252,247,0)_70%)]" aria-hidden="true" />
-          <div className={`${shell} relative text-center`}>
-            <h1 className="mx-auto max-w-5xl text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.25rem]">Systems that help service businesses bill faster, follow up cleaner, get more reviews, create more referrals, and bring past customers back.</h1>
-            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-[#334B60] sm:text-xl">Some businesses are losing money before the invoice goes out. Some are losing it after the job, when reviews, referrals, and past customers are not followed up. Stanley Systems finds the biggest gap, then builds the system that fixes it.</p>
-          </div>
-        </section>
-
-        <section className="bg-white py-12 sm:py-14">
-          <div className={`${shell} grid gap-4 lg:grid-cols-3`}>
-            {systems.map((system) => (
-              <Link key={system.title} href={system.href} className="group rounded-[1.6rem] border border-[#DDEBE2] bg-[#FBFCF7] p-6 shadow-[0_14px_36px_rgba(7,29,58,0.045)] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white">
-                <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">{system.title}</h2>
-                <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">{system.body}</p>
-                <span className="mt-5 inline-flex items-center text-sm font-extrabold text-[#116832]">{system.cta}<ArrowRight className="ml-2 h-4 w-4 transition group-hover:translate-x-0.5" /></span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className="bg-[#FBFCF7] pb-14">
-          <div className={`${shell} flex flex-col items-center justify-center gap-3 sm:flex-row`}>
-            <Link href="/workflow-audit" className={greenButton}>Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            <Link href="/systems-installation-sprint" className={quietLink}>See how the Sprint works</Link>
-          </div>
+      <main className="min-h-screen bg-[#FBFCF7] px-4 pt-28 pb-16 text-[#071D3A] sm:px-6 lg:px-8 lg:pt-32">
+        <section className="mx-auto max-w-5xl rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_24px_70px_rgba(7,29,58,0.08)] sm:p-10">
+          <h1 className="text-[2.5rem] font-semibold leading-[0.98] tracking-[-0.055em] sm:text-[4rem]">AI office workflows that make the service office more profitable.</h1>
+          <p className="mt-5 max-w-3xl text-lg font-semibold leading-8 text-[#42596C]">These are examples of the workflows Stanley Systems can install inside an AI Office Installation Sprint: cleaner records, faster billing readiness, better follow-up, and fewer handoffs living in staff memory.</p>
+          <ul className="mt-8 grid gap-3"><li className="flex gap-3 text-base font-semibold leading-7 text-[#34495F]"><span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#15803D]" />Job and customer information moves cleaner between tools.</li><li className="flex gap-3 text-base font-semibold leading-7 text-[#34495F]"><span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#15803D]" />Billing readiness happens earlier with fewer missing details.</li><li className="flex gap-3 text-base font-semibold leading-7 text-[#34495F]"><span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#15803D]" />Follow-up stops depending on memory.</li><li className="flex gap-3 text-base font-semibold leading-7 text-[#34495F]"><span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#15803D]" />The same office team handles more work with less repetitive drag.</li></ul>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)]">Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/invoicing-delay-cash-flow-calculator" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832]">Calculate admin drag</Link></div>
         </section>
       </main>
       <Footer />
-      <MobileStickyCTA />
     </>
   )
 }

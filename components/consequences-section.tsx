@@ -5,7 +5,7 @@ const consequences = [
     description: "If follow-up waits until the office catches up, the job often goes somewhere else before your team even responds.",
   },
   {
-    stat: "Cash flow drag",
+    stat: "Office workflow drag",
     title: "Late billing slows everything down",
     description: "When completed work sits around waiting to be invoiced, cash stays stuck instead of coming back into the business.",
   },
@@ -30,7 +30,7 @@ export function ConsequencesSection() {
             What this is costing you
           </h2>
           <p className="mt-6 max-w-4xl mx-auto text-xl leading-9 text-slate-700 sm:text-[1.45rem] lg:text-[1.55rem] lg:leading-10">
-            These problems are not just annoying. They slow down cash flow, waste labor hours, create mistakes, and keep the owner stuck in the middle of the operation.
+            These problems are not just annoying. They slow down cashflow, waste labor hours, create mistakes, and keep the owner stuck in the middle of the operation.
           </p>
         </div>
 

@@ -92,7 +92,7 @@ export default function HeroVisual() {
     [reduceMotion],
   )
 
-  const notificationFloat = useMemo(
+  const officeCardFloat = useMemo(
     () =>
       reduceMotion
         ? {}
@@ -191,7 +191,7 @@ export default function HeroVisual() {
         className="absolute bottom-0 right-0 z-20 w-[52%] min-w-[14rem]"
         style={{ rotate: "3deg" }}
       >
-        <motion.div animate={notificationFloat} className="rounded-[1.25rem] border border-[#ece7dc] bg-white p-4 shadow-[0_24px_70px_rgba(27,42,74,0.16)] sm:p-5">
+        <motion.div animate={officeCardFloat} className="rounded-[1.25rem] border border-[#ece7dc] bg-white p-4 shadow-[0_24px_70px_rgba(27,42,74,0.16)] sm:p-5">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-start gap-3">
               <span className="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0F7B3F] text-white">

@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
-  title: "Stanley Systems Case Study | Field Service Cash Flow",
+  title: "Stanley Systems Case Study | Field Service Office Workflow",
   description: "A Stanley Systems case study on a service business with finished work, existing tools, and office handoff gaps slowing invoices, payment, reviews, referrals, and repeat work.",
 }
 
@@ -35,11 +35,10 @@ export default function StanleySystemsCaseStudyPage() {
       <section className="mx-auto max-w-7xl px-4 pb-12 pt-32 sm:px-6 sm:pt-36 lg:px-8 lg:pb-16 lg:pt-40">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">Case study</p>
-            <h1 className="mt-4 max-w-5xl text-[2.3rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem] lg:text-[4.25rem]">The work was done. The cash was not moving fast enough.</h1>
+            <h1 className="max-w-5xl text-[2.3rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.45rem] lg:text-[4.25rem]">The work was done. The cash was not moving fast enough.</h1>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">Stanley Systems found office handoff gaps inside a real service-business workflow: billing, payment follow-up, reviews, referrals, and past customers.</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/workflow-audit#assessment" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">Get the Office Process Assessment <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/workflow-audit#assessment" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">Get the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link>
               <Link href="/marine-service-automation" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:bg-[#F4FBF5]">See marine service fit</Link>
             </div>
           </div>
@@ -58,7 +57,6 @@ export default function StanleySystemsCaseStudyPage() {
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="rounded-[2rem] bg-[#071D3A] p-6 text-white sm:p-8 lg:grid lg:grid-cols-[0.8fr_1.2fr] lg:gap-8">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#84D99A]">The problem</p>
             <h2 className="mt-3 text-[2rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[3rem]">Not a field-work problem. An office handoff problem.</h2>
           </div>
           <ul className="mt-6 space-y-3 lg:mt-0">
@@ -71,7 +69,6 @@ export default function StanleySystemsCaseStudyPage() {
 
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#15803D]">What Stanley Systems fixed first</p>
           <h2 className="mt-3 text-[2.1rem] font-semibold leading-[1.03] tracking-[-0.04em] text-[#071D3A] sm:text-[3rem]">The highest-value work was between the existing tools.</h2>
         </div>
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
@@ -93,8 +90,8 @@ export default function StanleySystemsCaseStudyPage() {
           </div>
           <div className="rounded-[2rem] bg-[#F4FBF5] p-6 ring-1 ring-[#CFE8D5] sm:p-8">
             <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">Already have tools but still feel the drag?</h2>
-            <p className="mt-3 text-base font-medium leading-7 text-[#536173]">Get the Office Process Assessment. Stanley Systems will show where the office work is costing money and which fix should happen first.</p>
-            <Link href="/workflow-audit#assessment" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832]">Get the Office Process Assessment</Link>
+            <p className="mt-3 text-base font-medium leading-7 text-[#536173]">Get the AI Office Map. Stanley Systems will show where the office work is costing money and which fix should happen first.</p>
+            <Link href="/workflow-audit#assessment" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832]">Get the AI Office Map</Link>
           </div>
         </div>
       </section>

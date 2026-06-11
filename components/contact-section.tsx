@@ -25,8 +25,8 @@ const contactCards = [
 
 const fitPoints = [
   "Reviewed by a real person",
-  "Paid Office Process Assessment first, not a generic sales call",
-  "Built for service businesses with revenue leaks in the office workflow",
+  "Paid AI Office Map first, not a generic sales call",
+  "Built for service businesses with admin drags in the office workflow",
 ]
 
 const workflowOptions = [
@@ -127,7 +127,7 @@ export function ContactSection() {
               A better first step than another generic contact form.
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
-              This starts the paid Office Process Assessment path. If there is a real breakdown in your follow-up, calls, paperwork, or invoicing, Stanley Systems uses this to see where money may be leaking first.
+              This starts the paid AI Office Map path. If there is a real breakdown in your follow-up, calls, paperwork, or invoicing, Stanley Systems uses this to see where money may be leaking first.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -182,7 +182,7 @@ export function ContactSection() {
                 <div>
                   <h3 className="text-xl font-semibold text-slate-900">What happens next</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-[15px]">
-                    Stanley Systems reviews what you send, looks for the revenue problem, and reaches out if there is a clear place to inspect through the Office Process Assessment.
+                    Stanley Systems reviews what you send, looks for the revenue problem, and reaches out if there is a clear place to inspect through the AI Office Map.
                   </p>
                 </div>
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
@@ -208,7 +208,7 @@ export function ContactSection() {
 
             <div className="mb-6">
               <h3 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-[2rem]">
-                Apply for the Office Process Assessment
+                Apply for the AI Office Map
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-[15px]">
                 Answer a few quick questions so Stanley Systems can see whether there is a real revenue problem worth checking first.
@@ -345,7 +345,7 @@ export function ContactSection() {
                 disabled={submitState === "submitting"}
                 className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#166534] px-6 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-[#14532d] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {submitState === "submitting" ? "Sending..." : "Apply for the Office Process Assessment"}
+                {submitState === "submitting" ? "Sending..." : "Apply for the AI Office Map"}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </button>
             </form>

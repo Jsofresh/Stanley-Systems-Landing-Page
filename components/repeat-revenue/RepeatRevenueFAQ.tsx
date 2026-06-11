@@ -18,14 +18,14 @@ export function RepeatRevenueFAQ() {
               analyticsEvent="audit_checkout_clicked"
               analyticsSource="repeat_revenue_page"
               packageId="workflow_audit"
-              packageName="Office Process Assessment"
+              packageName="AI Office Map"
               billingPeriod="one_time"
-              ctaLabel="Get the Office Process Assessment"
+              ctaLabel="Get the AI Office Map"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
             >
-              Get the Office Process Assessment
+              Get the AI Office Map
             </CTALink>
             <CTALink
               href={repeatMonthly.stripePaymentLink.url}
@@ -36,12 +36,12 @@ export function RepeatRevenueFAQ() {
               packageId={repeatMonthly.analyticsPackageId}
               packageName={repeatMonthly.publicName}
               billingPeriod={repeatMonthly.billingPeriod}
-              ctaLabel="Buy Repeat Revenue"
+              ctaLabel="Ask about AI Office Ops"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]"
             >
-              Buy Repeat Revenue
+              Ask about AI Office Ops
             </CTALink>
           </div>
         </div>

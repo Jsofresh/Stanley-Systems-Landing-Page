@@ -5,8 +5,8 @@ import { ArrowRight, CheckCircle2, CalendarCheck } from "lucide-react"
 import { MarketingPageShell } from "@/components/marketing-page-shell"
 
 export const metadata: Metadata = {
-  title: "Office Process Assessment Started | Stanley Systems",
-  description: "Complete the intake after paying for the Stanley Systems Office Process Assessment.",
+  title: "AI Office Map Started | Stanley Systems",
+  description: "Complete the intake after paying for the Stanley Systems AI Office Map.",
 }
 
 const steps = [
@@ -22,8 +22,7 @@ export default function AuditStartedPage() {
     <MarketingPageShell>
       <main className="px-4 pb-20 pt-32 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl rounded-[2rem] border border-[#DDEBE2] bg-white p-7 shadow-[0_20px_60px_rgba(7,29,58,0.08)] sm:p-10">
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#15803D]">Office Process Assessment</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Your Office Process Assessment is paid. Complete the intake next.</h1>
+          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Your AI Office Map is paid. Complete the intake next.</h1>
           <p className="mt-5 text-lg font-semibold leading-8 text-[#536173]">Complete the intake so Stanley Systems can review how your office handles jobs, invoices, estimates, follow-up, reviews, referrals, and handoffs today.</p>
 
           <div className="mt-8 rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFEFA] p-5">

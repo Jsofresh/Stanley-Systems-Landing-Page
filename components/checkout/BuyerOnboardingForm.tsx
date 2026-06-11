@@ -7,13 +7,13 @@ import { ArrowRight, CalendarDays, CheckCircle2, ClipboardCheck, Mail, ShieldChe
 import { trackOnboardingFormStarted, trackOnboardingFormSubmitted } from "@/components/posthog-provider"
 
 const whatBoughtOptions = [
-  "Office Process Assessment",
-  "Cashflow Control System — monthly",
-  "Cashflow Control System — yearly",
-  "Repeat Revenue System — monthly",
-  "Repeat Revenue System — yearly",
-  "Both Systems — yearly",
-  "Both Systems",
+  "AI Office Map",
+  "AI Office Installation Sprint — monthly",
+  "AI Office Installation Sprint — yearly",
+  "AI Office Ops — monthly",
+  "AI Office Ops — yearly",
+  "AI Office Installation Sprint + Ops — yearly",
+  "AI Office Installation Sprint + Ops",
   "Not sure / Stripe receipt says something else",
 ]
 
@@ -25,14 +25,14 @@ const accessReadinessOptions = [
 ]
 
 const boughtPrefillMap: Record<string, string> = {
-  workflow_audit: "Office Process Assessment",
-  audit: "Office Process Assessment",
-  cashflow_control_monthly: "Cashflow Control System — monthly",
-  cashflow_control_yearly: "Cashflow Control System — yearly",
-  repeat_revenue_monthly: "Repeat Revenue System — monthly",
-  repeat_revenue_yearly: "Repeat Revenue System — yearly",
-  both_systems_yearly: "Both Systems — yearly",
-  both_systems: "Both Systems",
+  workflow_audit: "AI Office Map",
+  audit: "AI Office Map",
+  cashflow_control_monthly: "AI Office Installation Sprint — monthly",
+  cashflow_control_yearly: "AI Office Installation Sprint — yearly",
+  repeat_revenue_monthly: "AI Office Ops — monthly",
+  repeat_revenue_yearly: "AI Office Ops — yearly",
+  both_systems_yearly: "AI Office Installation Sprint + Ops — yearly",
+  both_systems: "AI Office Installation Sprint + Ops",
 }
 
 type FormData = {
@@ -221,7 +221,7 @@ export function BuyerOnboardingForm() {
           {[
             { icon: ShieldCheck, title: "Fit, access, and scope review", copy: "Implementation starts after Stanley Systems checks the package fit and required access." },
             { icon: CalendarDays, title: "Call timing", copy: "Add your preferred call window here, then book a time from the success page if you have not already." },
-            { icon: Mail, title: "Notification fallback", copy: "If notification delivery is not configured, the form confirms that directly and gives the fallback email." },
+            { icon: Mail, title: "Delivery fallback", copy: "If delivery is not configured, the form confirms that directly and gives the fallback email." },
           ].map((item) => (
             <div key={item.title} className="rounded-2xl border border-[#dfe7ee] bg-[#f8fbfc] p-4">
               <div className="flex items-start gap-3">
