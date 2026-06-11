@@ -431,15 +431,15 @@
     opacity: 0;
     transform: scale(1.018);
   }
-  4% {
+  6% {
     opacity: 1;
     transform: scale(1.006);
   }
-  19% {
+  27% {
     opacity: 1;
     transform: scale(1);
   }
-  24% {
+  33.333% {
     opacity: 0;
     transform: scale(1.012);
   }
@@ -450,7 +450,7 @@
 }
 
 .stanley-hero-slideshow-image {
-  animation: stanley-hero-slideshow-fade 25s ease-in-out infinite;
+  animation: stanley-hero-slideshow-fade 15s ease-in-out infinite;
   opacity: 0;
   will-change: opacity, transform;
 }
@@ -460,15 +460,15 @@
     opacity: 0;
     transform: scale(1.018);
   }
-  5% {
+  8% {
     opacity: 0.94;
     transform: scale(1.006);
   }
-  21% {
+  42% {
     opacity: 0.94;
     transform: scale(1);
   }
-  28% {
+  50% {
     opacity: 0;
     transform: scale(1.012);
   }
@@ -479,7 +479,7 @@
 }
 
 .stanley-hero-slideshow-image--mobile {
-  animation-duration: 24s;
+  animation-duration: 12s;
   animation-name: stanley-hero-slideshow-mobile-soft;
   filter: brightness(1.02) contrast(0.98) saturate(0.94);
 }

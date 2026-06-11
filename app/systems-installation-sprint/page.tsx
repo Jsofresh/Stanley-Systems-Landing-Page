@@ -17,11 +17,11 @@ export default function PAGE() {
       <SiteHeader />
       <main className="min-h-screen bg-[#FBFCF7] text-[#071D3A]">
         
-        <section className="relative isolate min-h-[680px] overflow-hidden bg-[#071D3A] px-4 pb-20 pt-32 text-white sm:px-6 lg:px-8 lg:pb-24 lg:pt-36">
+        <section className="relative isolate flex min-h-[680px] overflow-hidden bg-[#071D3A] px-4 pb-20 pt-32 text-white sm:px-6 lg:min-h-[100svh] lg:px-8 lg:pb-28 lg:pt-36">
           <img src="/images/uploaded/package-heroes/stanley-systems-sprint-plan-office-team-van.jpg" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#071D3A_0%,rgba(7,29,58,0.96)_20%,rgba(7,29,58,0.74)_48%,rgba(7,29,58,0.28)_72%,rgba(7,29,58,0.52)_100%)]" />
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(7,29,58,0.74)_0%,rgba(7,29,58,0.18)_42%,#071D3A_100%)]" />
-          <div className={`${shell} flex min-h-[520px] items-center`}>
+          <div className={`${shell} flex min-h-[520px] w-full items-center lg:min-h-0`}>
             <div className="max-w-[780px]">
               <h1 className="text-balance text-[2.65rem] font-semibold leading-[0.98] tracking-[-0.035em] text-white sm:text-[4.45rem]">Install AI workflows that make your office faster and more profitable.</h1>
               <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/78">Stanley Systems installs 1–3 AI office workflows around your existing software so your staff can process more jobs, keep cleaner records, and follow up faster without adding another admin seat.</p>
