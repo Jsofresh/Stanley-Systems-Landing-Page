@@ -55,12 +55,12 @@ export function RepeatRevenueHero() {
               packageId="workflow_audit"
               packageName="AI Office Map"
               billingPeriod="one_time"
-              ctaLabel="Book the $197 AI Office Map"
+              ctaLabel="Book the AI Office Map"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-7 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]"
             >
-              Book the $197 AI Office Map
+              Book the AI Office Map
             </CTALink>
           </div>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#33475B]">

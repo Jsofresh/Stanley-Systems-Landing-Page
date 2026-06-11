@@ -14,7 +14,7 @@ export function ProofCostCalculator() {
             <h2 className={page.h2}>A few stuck jobs can cost more than the AI Office Map.</h2>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <a href="/invoicing-delay-cash-flow-calculator" className={page.quietButton}>Use the Admin Drag Calculator <ArrowRight className="ml-2 h-4 w-4" /></a>
-              <CTALink href={auditHref} kind="checkout" location="workflow_audit_proof" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the $197 AI Office Map" target="_blank" rel="noopener noreferrer" className={page.greenButton}>Book the $197 AI Office Map</CTALink>
+              <CTALink href={auditHref} kind="checkout" location="workflow_audit_proof" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" target="_blank" rel="noopener noreferrer" className={page.greenButton}>Book the AI Office Map</CTALink>
             </div>
           </div>
           <div className="mx-auto w-full max-w-[690px]">

@@ -41,7 +41,7 @@ type MegaMenuGroup = {
 const navGroups: MegaMenuGroup[] = [
   {
     label: "AI Office",
-    href: "/systems",
+    href: "/systems-installation-sprint",
     eyebrow: "AI Office Workflows",
     summary: "Admin drag, billing readiness, follow-up, and staff handoff workflows Stanley Systems can install after the AI Office Map.",
     widthClass: "w-[min(690px,calc(100vw-2rem))]",
@@ -53,9 +53,9 @@ const navGroups: MegaMenuGroup[] = [
     ],
     featured: {
       title: "Not sure where office drag is costing you?",
-      copy: "Book the $197 AI Office Map before installing workflows.",
+      copy: "Book the AI Office Map before installing workflows.",
       href: "/workflow-audit",
-      cta: "Book the $197 AI Office Map",
+      cta: "Book the AI Office Map",
     },
   },
   {
@@ -79,7 +79,7 @@ const navGroups: MegaMenuGroup[] = [
       title: "Busy team, messy handoff?",
       copy: "Stanley Systems works around the tools your crews already use.",
       href: "/workflow-audit",
-      cta: "Book the $197 AI Office Map",
+      cta: "Book the AI Office Map",
     },
   },
   {
@@ -100,7 +100,7 @@ const navGroups: MegaMenuGroup[] = [
     label: "Pricing",
     href: "/pricing",
     eyebrow: "Diagnose, build, maintain",
-    summary: "Calculator, $197 AI Office Map, Installation Sprint, then AI Office Ops.",
+    summary: "Calculator, AI Office Map, Installation Sprint, then AI Office Ops.",
     widthClass: "w-[min(420px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
@@ -339,30 +339,47 @@ export function SiteHeader() {
             </span>
           </a>
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
-            {navGroups.map((group) => (
-              <a
-                key={group.label}
-                href={group.href}
-                aria-expanded={activeMenu === group.label}
-                aria-haspopup="true"
-                onMouseEnter={() => openMenu(group.label)}
-                onFocus={() => openMenu(group.label)}
-                className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[13px] font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] xl:px-4 ${navLinkClasses}`}
-              >
-                {group.label}
-                <ChevronDown className={`h-3.5 w-3.5 transition-transform ${activeMenu === group.label ? "rotate-180" : ""}`} aria-hidden="true" />
-              </a>
-            ))}
+            {navGroups.map((group) => {
+              const hoverOnly = group.label === "Industries" || group.label === "AI Office Map" || group.label === "Resources"
+              const classes = `inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[13px] font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] xl:px-4 ${navLinkClasses}`
+              const contents = <>{group.label}<ChevronDown className={`h-3.5 w-3.5 transition-transform ${activeMenu === group.label ? "rotate-180" : ""}`} aria-hidden="true" /></>
+              return hoverOnly ? (
+                <button
+                  key={group.label}
+                  type="button"
+                  aria-expanded={activeMenu === group.label}
+                  aria-haspopup="true"
+                  onMouseEnter={() => openMenu(group.label)}
+                  onFocus={() => openMenu(group.label)}
+                  onClick={() => openMenu(group.label)}
+                  className={classes}
+                >
+                  {contents}
+                </button>
+              ) : (
+                <a
+                  key={group.label}
+                  href={group.href}
+                  aria-expanded={activeMenu === group.label}
+                  aria-haspopup="true"
+                  onMouseEnter={() => openMenu(group.label)}
+                  onFocus={() => openMenu(group.label)}
+                  className={classes}
+                >
+                  {contents}
+                </a>
+              )
+            })}
           </nav>
           <div className="hidden items-center gap-2 md:flex">
             <CTALink
               href="/workflow-audit"
               kind="systems"
               location="hero_nav_audit"
-              ctaLabel="Book the $197 AI Office Map"
+              ctaLabel="Book the AI Office Map"
               className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-3 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-4"
             >
-              Book the $197 AI Office Map
+              Book the AI Office Map
             </CTALink>
             <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How the AI Office Map Works</a>
           </div>
@@ -463,10 +480,10 @@ export function SiteHeader() {
                 href="/workflow-audit"
                 kind="systems"
                 location="hero_mobile_nav_audit"
-                ctaLabel="Book the $197 AI Office Map"
+                ctaLabel="Book the AI Office Map"
                 className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
               >
-                Book the $197 AI Office Map
+                Book the AI Office Map
               </CTALink>
             </div>
           </div>
@@ -519,10 +536,10 @@ export function HeroSection() {
                 location="home_hero_primary"
                 analyticsEvent="audit_checkout_clicked"
                 analyticsSource="homepage_hero"
-                ctaLabel="Book the $197 AI Office Map"
+                ctaLabel="Book the AI Office Map"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                Book the $197 AI Office Map
+                Book the AI Office Map
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
               <a

@@ -12,7 +12,7 @@ const cards: PackagePricingCard[] = [
     credit: "AI Office Map credit: -$197 if you start there first",
     callout: null,
     cta: "Buy monthly",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     bullets: ["Customer intake to billing workflow", "Webhook, form, or job-system handoffs", "Billing-ready checks", "Missing billing detail routing"],
   },
   {
@@ -25,7 +25,7 @@ const cards: PackagePricingCard[] = [
     credit: "AI Office Map credit: -$197 if you start there first",
     callout: "-$1,250 first-year package savings",
     cta: "Buy yearly",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     bullets: ["Everything in monthly", "Customer intake to cash collection", "Invoice and final-bill path", "Lower first-year cost"],
   },
   {
@@ -38,7 +38,7 @@ const cards: PackagePricingCard[] = [
     credit: "AI Office Map credit: -$197 if you start there first",
     callout: null,
     cta: "Buy both monthly",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     bullets: ["AI Office Installation Sprint", "AI Office Ops", "Open-balance visibility", "Reviews, referrals, and reactivation"],
   },
   {
@@ -51,7 +51,7 @@ const cards: PackagePricingCard[] = [
     credit: "AI Office Map credit: -$197 if you start there first",
     callout: "-$2,700 first-year package savings",
     cta: "Buy both yearly",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     bullets: ["AI Office Installation Sprint", "AI Office Ops", "Lowest first-year bundle cost", "Best full-system economics"],
   },
 ]

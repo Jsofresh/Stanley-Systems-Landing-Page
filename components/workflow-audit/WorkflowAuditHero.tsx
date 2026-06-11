@@ -21,8 +21,8 @@ export function WorkflowAuditHero() {
                 In one focused session, Stanley Systems maps how your office handles paperwork, billing, follow-up, handoffs, and job admin. You leave with a one-page map showing where work is getting stuck, what your current tools already handle, and which AI-guided workflow should be installed first.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <CTALink href={auditHref} kind="checkout" location="workflow_audit_hero" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the $197 AI Office Map" target="_blank" rel="noopener noreferrer" className={page.greenButton}>
-                  Book the $197 AI Office Map
+                <CTALink href={auditHref} kind="checkout" location="workflow_audit_hero" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" target="_blank" rel="noopener noreferrer" className={page.greenButton}>
+                  Book the AI Office Map
                 </CTALink>
                 <a href="#packages" className={page.quietButton}>
                   See Map details <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />

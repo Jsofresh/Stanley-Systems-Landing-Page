@@ -270,7 +270,7 @@ export function PaidInvoicingDelayCalculatorClient() {
                   onClick={() => track("stanley_paid_calc_booking_cta_clicked", { severity: result.severity, trade })}
                   className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#166534]"
                 >
-                  Book the $197 AI Office Map
+                  Book the AI Office Map
                 </a>
                 <a
                   href="mailto:hello@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist"

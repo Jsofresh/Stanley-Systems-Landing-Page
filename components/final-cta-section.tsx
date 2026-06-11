@@ -48,12 +48,12 @@ export function FinalCTASection() {
                 packageId="workflow_audit"
                 packageName="AI Office Map"
                 billingPeriod="one_time"
-                ctaLabel="Book the $197 AI Office Map"
+                ctaLabel="Book the AI Office Map"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex h-[48px] min-w-[238px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-5 py-0 text-[14px] font-extrabold leading-none text-white shadow-xl transition-all duration-300 hover:scale-[1.01] hover:bg-[#166534] sm:whitespace-nowrap"
               >
-                Book the $197 AI Office Map
+                Book the AI Office Map
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
               </CTALink>
 

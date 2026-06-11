@@ -48,7 +48,7 @@ export function ProblemPageTemplate({
             <h1 className="max-w-5xl text-[2.25rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.4rem] lg:text-[4.15rem]">{title}</h1>
             <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-[#42596C]">{intro}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/workflow-audit" className={primaryButton}>Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/workflow-audit" className={primaryButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link>
               <Link href="/invoicing-delay-cash-flow-calculator" className={secondaryButton}>Calculate Your Admin Drag</Link>
             </div>
           </div>
@@ -86,7 +86,7 @@ export function ProblemPageTemplate({
         <div className="grid gap-8 rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_18px_54px_rgba(7,29,58,0.06)] sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <h2 className="text-[2rem] font-semibold leading-[1.03] tracking-[-0.04em] text-[#071D3A] sm:text-[2.75rem]">{fixTitle}</h2>
-            <Link href="/workflow-audit" className={`mt-6 ${primaryButton}`}>Book the $197 AI Office Map</Link>
+            <Link href="/workflow-audit" className={`mt-6 ${primaryButton}`}>Book the AI Office Map</Link>
           </div>
           <ul className="space-y-3">
             {fixes.map((fix) => (

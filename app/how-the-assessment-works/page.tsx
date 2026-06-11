@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://stanley-systems.com/how-the-assessment-works" },
 }
 
-function AssessmentCheckout({ location, className = greenButton, children = "Book the $197 AI Office Map" }: { location: string; className?: string; children?: ReactNode }) {
+function AssessmentCheckout({ location, className = greenButton, children = "Book the AI Office Map" }: { location: string; className?: string; children?: ReactNode }) {
   return (
     <CTALink
       href={assessment.stripePaymentLink.url}
@@ -32,7 +32,7 @@ function AssessmentCheckout({ location, className = greenButton, children = "Boo
       packageId={assessment.analyticsPackageId}
       packageName={assessment.publicName}
       billingPeriod="one_time"
-      ctaLabel={typeof children === "string" ? children : "Book the $197 AI Office Map"}
+      ctaLabel={typeof children === "string" ? children : "Book the AI Office Map"}
       target="_blank"
       rel="noopener noreferrer"
       className={className}
@@ -138,7 +138,7 @@ export default function HowAssessmentWorksPage() {
               </p>
               <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
                 <AssessmentCheckout location="how_assessment_hero_primary">
-                  Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </AssessmentCheckout>
                 <a href="#assessment-output" className={lightButton}>See what you get</a>
               </div>
@@ -212,7 +212,7 @@ export default function HowAssessmentWorksPage() {
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#102033]">Ready to find where the office work is costing you money?</h2>
               <div className="mt-5 flex justify-center">
                 <AssessmentCheckout location="how_assessment_final_primary">
-                  Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </AssessmentCheckout>
               </div>
             </div>

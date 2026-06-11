@@ -73,7 +73,7 @@ export function CustomerRevenueSystemV4() {
                 href="/pricing#workflow-audit"
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]"
               >
-                Book the $197 AI Office Map
+                Book the AI Office Map
               </a>
               <a
                 href="#customer-revenue-system-v4-flow"

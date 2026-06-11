@@ -35,7 +35,7 @@ export const leakResultPanels = [
       "Groups them by follow-up timing",
       "Gives your office a clear next step when someone replies",
     ],
-    cta: "Book the $197 AI Office Map",
+    cta: "Book the AI Office Map",
   },
   {
     image: "/images/repeat-revenue/result-review-path.png",
@@ -46,7 +46,7 @@ export const leakResultPanels = [
       "Routes happy customers toward reviews",
       "Flags bad experiences before they go public",
     ],
-    cta: "Book the $197 AI Office Map",
+    cta: "Book the AI Office Map",
   },
   {
     image: "/images/repeat-revenue/result-referral-path.png",
@@ -57,7 +57,7 @@ export const leakResultPanels = [
       "Gives customers a simple next step",
       "Keeps referral opportunities visible to the office",
     ],
-    cta: "Book the $197 AI Office Map",
+    cta: "Book the AI Office Map",
   },
   {
     image: "/images/repeat-revenue/result-missed-calls.png",
@@ -68,7 +68,7 @@ export const leakResultPanels = [
       "Gives the office a follow-up path",
       "Helps good calls avoid turning into dead leads",
     ],
-    cta: "Book the $197 AI Office Map",
+    cta: "Book the AI Office Map",
   },
 ]
 
@@ -86,7 +86,7 @@ export const cashflowResultPanel = {
     "AI Office Installation Sprint protects earned revenue",
     "Together they catch leaks before and after the job",
   ],
-  cta: "Book the $197 AI Office Map",
+  cta: "Book the AI Office Map",
 }
 
 export const multiplierStack = [
@@ -125,8 +125,8 @@ export const packageCards = [
     install: "$349 installation",
     credit: "$197 AI Office Map credit if you start there first",
     callout: null,
-    cta: "Book the $197 AI Office Map",
-    secondary: "Book the $197 AI Office Map",
+    cta: "Book the AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "monthly",
     bullets: ["Past customer reactivation", "Review and referral asks", "Missed-call recovery", "Main number stays unchanged"],
   },
@@ -138,8 +138,8 @@ export const packageCards = [
     install: "Install discount: -$349",
     credit: "AI Office Map credit: -$197 if you start there first",
     callout: "-$2,120 first-year package savings",
-    cta: "Book the $197 AI Office Map",
-    secondary: "Book the $197 AI Office Map",
+    cta: "Book the AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "yearly",
     bullets: ["Everything in monthly", "Installation discount", "20% yearly savings", "Lower first-year cost"],
   },
@@ -151,8 +151,8 @@ export const packageCards = [
     install: "$449 installation",
     credit: "$197 AI Office Map credit if you start there first",
     callout: null,
-    cta: "Book the $197 AI Office Map",
-    secondary: "Book the $197 AI Office Map",
+    cta: "Book the AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "complete",
     bullets: ["AI Office Ops", "AI Office Installation Sprint", "Finished-job intake watch", "A/R follow-up prompts"],
   },
@@ -164,8 +164,8 @@ export const packageCards = [
     install: "Install discount: -$449",
     credit: "AI Office Map credit: -$197 if you start there first",
     callout: "-$2,700 first-year package savings",
-    cta: "Book the $197 AI Office Map",
-    secondary: "Book the $197 AI Office Map",
+    cta: "Book the AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "recommended",
     bullets: ["AI Office Ops", "AI Office Installation Sprint", "Installation discount", "20% yearly savings"],
   },

@@ -9,7 +9,7 @@ import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 
 const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 const routes = [
-  { id: "audit", title: "Book the $197 AI Office Map", body: "Best if invoices, estimates, missed calls, reviews, referrals, past customers, or cash are getting stuck in the office.", cta: "Book the $197 AI Office Map", icon: ReceiptText },
+  { id: "audit", title: "Book the AI Office Map", body: "Best if invoices, estimates, missed calls, reviews, referrals, past customers, or cash are getting stuck in the office.", cta: "Book the AI Office Map", icon: ReceiptText },
   { id: "question", title: "Want to talk before buying?", body: "Not sure if this fits? Ask us a question before you start.", cta: "Ask us a question", icon: MailQuestion },
   { id: "bought", title: "Already bought?", body: "Send the intake details Stanley Systems needs before reviewing the admin drag.", cta: "Continue AI Office Map setup", icon: CheckCircle2 },
 ] as const
@@ -32,7 +32,7 @@ export function ContactRouter() {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-3xl">
           <h1 className="text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Find the right path to stop the office leaks.</h1>
-          <p className="mt-5 text-lg leading-8 text-[#536173]">Book the $197 AI Office Map, see how it works, ask us a question, or continue AI Office Map setup.</p>
+          <p className="mt-5 text-lg leading-8 text-[#536173]">Book the AI Office Map, see how it works, ask us a question, or continue AI Office Map setup.</p>
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
@@ -69,7 +69,7 @@ function AuditPanel() {
   return (
     <div>
       
-      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Book the $197 AI Office Map.</h2>
+      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#071D3A] sm:text-4xl">Book the AI Office Map.</h2>
       <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">Stanley Systems finds what is slowing down cash, follow-up, reviews, referrals, and repeat work. The AI Office Map shows what should be fixed first. If the Sprint is the right next step, Stanley Systems builds the first full version of the system. AI Office Ops is available after the build if you want Stanley Systems to keep it checked and adjusted.</p>
       <ul className="mt-5 space-y-3 text-sm font-semibold leading-6 text-[#536173]">
         {[
@@ -79,8 +79,8 @@ function AuditPanel() {
         ].map((item) => <li key={item} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" />{item}</li>)}
       </ul>
       <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-        <CTALink href={auditHref} kind="checkout" location="contact_audit_panel" analyticsEvent="audit_checkout_clicked" analyticsSource="contact_router" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the $197 AI Office Map" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)]">
-          Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" />
+        <CTALink href={auditHref} kind="checkout" location="contact_audit_panel" analyticsEvent="audit_checkout_clicked" analyticsSource="contact_router" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_18px_36px_rgba(21,128,61,0.22)]">
+          Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" />
         </CTALink>
         <Link href="/audit-started" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]">What happens after buying</Link>
       </div>

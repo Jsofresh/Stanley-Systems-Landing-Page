@@ -4,7 +4,7 @@ import { CTALink } from "@/components/cta-link"
 import { plans } from "./tokens"
 
 const auditSteps = [
-  ["1", "Pay $197", "Book the $197 AI Office Map."],
+  ["1", "Pay $197", "Book the AI Office Map."],
   ["2", "Map office work", "Use the numbers, not a guess."],
   ["3", "Choose the build", "Choose the build priority with confidence."],
   ["4", "Credit applied", "$197 credited toward your AI Office Installation Sprint."],
@@ -16,7 +16,7 @@ export function WorkflowAuditBridge() {
       <div className="mx-auto grid max-w-7xl gap-7 rounded-[1.35rem] border border-[#C8D8CE] bg-[#F8FBF9] p-6 shadow-[0_18px_46px_rgba(33,51,67,0.08)] lg:grid-cols-[1fr_0.82fr] lg:items-center lg:p-8">
         <div>
           <h2 className="max-w-3xl text-[2.25rem] font-semibold leading-[1.03] tracking-[-0.045em] text-[#102033] sm:text-5xl">
-            Book the $197 AI Office Map first. Let the workflow review choose the first build.
+            Book the AI Office Map first. Let the workflow review choose the first build.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#33475B] sm:text-lg">
             The AI Office Map checks follow-up, missed calls, customer records, invoices, estimates, and office handoffs so the build priority matches the costly office work that should be removed first.
@@ -62,12 +62,12 @@ export function WorkflowAuditBridge() {
             packageId="workflow_audit"
             packageName="AI Office Map"
             billingPeriod="one_time"
-            ctaLabel="Book the $197 AI Office Map"
+            ctaLabel="Book the AI Office Map"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
           >
-            Book the $197 AI Office Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Book the AI Office Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
           <a href="#scope" className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-md border-2 border-[#15803D] px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#E8F6EC]">
             Read what is included

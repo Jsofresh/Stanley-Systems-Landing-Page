@@ -42,27 +42,22 @@ export default function BlogPage() {
               <h2 className="text-3xl font-semibold tracking-[-0.04em]">Want the leak found in your own business?</h2>
               <p className="mt-3 max-w-3xl text-base font-medium leading-7 text-[#DDEBE2]">The AI Office Map turns the ideas here into a specific fix list for your office workflow.</p>
             </div>
-            <Link href="/workflow-audit" className="mt-6 inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:bg-[#F4FBF5] lg:mt-0">Book the $197 AI Office Map</Link>
+            <Link href="/workflow-audit" className="mt-6 inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:bg-[#F4FBF5] lg:mt-0">Book the AI Office Map</Link>
           </div>
         </section>
 
         <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-          <div className="space-y-10">
-            {Object.entries(byProblem).map(([category, categoryPosts]) => (
-              <div key={category}>
-                <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#071D3A]">{category}</h2>
-                <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {categoryPosts.map((post) => (
-                    <article key={post.slug} className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
-                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#6A7A68]">{post.publishedLabel} · {post.readTime}</p>
-                      <h3 className="mt-3 text-xl font-semibold leading-tight tracking-[-0.03em] text-[#071D3A]">{post.title}</h3>
-                      <p className="mt-3 text-sm font-medium leading-6 text-[#536173]">{post.excerpt}</p>
-                      <Link href={`/blog/${post.slug}`} className="mt-4 inline-flex items-center text-sm font-extrabold text-[#116832] underline underline-offset-4">Read article</Link>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            ))}
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {Object.entries(byProblem).flatMap(([category, categoryPosts]) =>
+              categoryPosts.map((post) => (
+                <article key={post.slug} className="flex h-full flex-col rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(7,29,58,0.07)]">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#6A7A68]">{category} · {post.publishedLabel} · {post.readTime}</p>
+                  <h3 className="mt-3 text-xl font-semibold leading-tight tracking-[-0.03em] text-[#071D3A]">{post.title}</h3>
+                  <p className="mt-3 flex-1 text-sm font-medium leading-6 text-[#536173]">{post.excerpt}</p>
+                  <Link href={`/blog/${post.slug}`} className="mt-5 inline-flex items-center text-sm font-extrabold text-[#116832] underline underline-offset-4">Read article</Link>
+                </article>
+              )),
+            )}
           </div>
         </section>
       </main>

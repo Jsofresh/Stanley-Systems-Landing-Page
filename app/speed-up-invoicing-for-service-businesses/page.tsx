@@ -69,7 +69,7 @@ export default function SpeedUpInvoicingPage() {
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
-                Book the $197 AI Office Map
+                Book the AI Office Map
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <Link href="/invoicing-delay-cash-flow-calculator" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:bg-[#f3fbf5]">
@@ -147,7 +147,7 @@ export default function SpeedUpInvoicingPage() {
                 href="/workflow-audit"
                 className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#166534]"
               >
-                Book the $197 AI Office Map
+                Book the AI Office Map
               </Link>
             </div>
           </section>
@@ -167,7 +167,7 @@ export default function SpeedUpInvoicingPage() {
                   href="/workflow-audit"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-semibold text-[#071D3A] transition hover:bg-slate-100"
                 >
-                  Book the $197 AI Office Map
+                  Book the AI Office Map
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link

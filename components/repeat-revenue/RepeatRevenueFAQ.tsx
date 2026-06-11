@@ -20,12 +20,12 @@ export function RepeatRevenueFAQ() {
               packageId="workflow_audit"
               packageName="AI Office Map"
               billingPeriod="one_time"
-              ctaLabel="Book the $197 AI Office Map"
+              ctaLabel="Book the AI Office Map"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
             >
-              Book the $197 AI Office Map
+              Book the AI Office Map
             </CTALink>
             <CTALink
               href={repeatMonthly.stripePaymentLink.url}

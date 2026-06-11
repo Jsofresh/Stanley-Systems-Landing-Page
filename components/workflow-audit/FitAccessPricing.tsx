@@ -48,7 +48,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "$197 Map credit",
     callout: null,
     cta: "Install billing readiness workflows",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "monthly",
     bullets: ["Customer intake to billing path", "Billing-ready checks", "Missing detail routing", "Payment follow-up"],
   },
@@ -62,7 +62,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "$197 Map credit",
     callout: "-$1,250 first-year package savings",
     cta: "Install billing readiness workflows",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "yearly",
     bullets: ["Everything in monthly", "Lower first-year cost", "Yearly billing", "Cash collection workflow"],
   },
@@ -76,7 +76,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "$197 Map credit",
     callout: null,
     cta: "Bring past customers back",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "monthly",
     bullets: ["Past customer reactivation", "Review and referral asks", "Missed-call recovery", "Main number stays unchanged"],
   },
@@ -90,7 +90,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "$197 Map credit",
     callout: "-$2,120 first-year package savings",
     cta: "Bring past customers back",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "yearly",
     bullets: ["Everything in monthly", "Lower first-year cost", "Reviews and referrals", "Customer reactivation"],
   },
@@ -104,7 +104,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "$197 Map credit",
     callout: "-$197/mo bundle savings",
     cta: "Install and improve workflows",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "complete",
     bullets: ["AI Office Installation Sprint", "AI Office Ops", "Billing workflow", "Customer follow-up"],
   },
@@ -118,7 +118,7 @@ const packageCards: PackagePricingCard[] = [
     credit: "$197 Map credit",
     callout: "-$2,700 first-year package savings",
     cta: "Install and improve workflows",
-    secondary: "Book the $197 AI Office Map",
+    secondary: "Book the AI Office Map",
     tone: "recommended",
     bullets: ["AI Office Installation Sprint", "AI Office Ops", "Lowest first-year bundle cost", "Best first-year price for both"],
   },
@@ -132,7 +132,7 @@ export function FitAccessPricing() {
     <section id="packages" data-section="fit-access-pricing" data-nav-theme="light" className="bg-white px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
       <div className={page.wrap}>
         <div className="max-w-4xl">
-          <h2 className={`${page.h2} mt-3`}>Book the $197 AI Office Map. See what your team should install first.</h2>
+          <h2 className={`${page.h2} mt-3`}>Book the AI Office Map. See what your team should install first.</h2>
           <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems maps paperwork, billing, follow-up, handoffs, and job admin so the first workflow is tied to how your office actually works.</p>
         </div>
 
@@ -159,7 +159,7 @@ export function FitAccessPricing() {
               <p className="text-xs font-extrabold uppercase tracking-[0.14em]">Sprint credit</p>
               <p className="mt-1 text-2xl font-black tracking-[-0.035em]">$197 credited toward your AI Office Installation Sprint</p>
             </div>
-            <CTALink href={assessmentHref} kind="checkout" location="workflow_audit_pricing" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the $197 AI Office Map" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832] focus:outline-none focus:ring-4 focus:ring-[#bbf7d0]">Book the $197 AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+            <CTALink href={assessmentHref} kind="checkout" location="workflow_audit_pricing" analyticsEvent="audit_checkout_clicked" analyticsSource="workflow_audit_page" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#116832] focus:outline-none focus:ring-4 focus:ring-[#bbf7d0]">Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
           </aside>
         </div>
 
