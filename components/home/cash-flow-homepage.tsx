@@ -24,6 +24,7 @@ const uploadedHomeImages = {
   calculator: { src: "/images/uploaded/homepage/ai-office/admin-drag-calculator.jpg", alt: "Office workflow report showing hours lost, admin drag cost, and top office bottleneck", width: 1280, height: 960 },
   map: { src: "/images/uploaded/homepage/ai-office/ai-office-map-laptop.jpg", alt: "AI Office Map with behind, already handled, still chased, and workflow columns", width: 1280, height: 960 },
   officeAdmin: { src: "/images/uploaded/homepage/ai-office/service-owner-office-admin-shot.jpg", alt: "Service business owner and office admin reviewing paperwork at a desk", width: 1280, height: 720 },
+  checklistLaptop: { src: "/images/uploaded/homepage/ai-office/checklist-laptop-workflow-growth.jpg", alt: "Laptop showing an AI office workflow checklist with service business growth notes", width: 1280, height: 720 },
   sprint: { src: "/images/uploaded/homepage/ai-office/installation-sprint.jpg", alt: "AI Office Installation Sprint workflow connections between field-service software, accounting, inbox, texts, and staff playbook", width: 1254, height: 1254 },
   handoff: { src: "/images/uploaded/homepage/ai-office/office-handoff-automation.jpg", alt: "Office handoff automation for job details, billing readiness, estimate follow-up, and staff exceptions", width: 1280, height: 1219 },
   playbook: { src: "/images/uploaded/homepage/ai-office/staff-ai-playbook.jpg", alt: "Staff AI playbook tied to SOPs and approved escalation rules", width: 1254, height: 1254 },
@@ -84,18 +85,19 @@ function HeroImageSlideshow() {
 
 function CalculatorSpine() {
   return (
-    <PageSection id="calculator" className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#FBFCF7] py-11 text-[#071D3A] md:py-14 lg:py-16">
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(8,166,75,0.14),rgba(251,252,247,0)_65%)]" />
-      <div className="mx-auto grid max-w-[88rem] gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <div>
-          <h2 className="max-w-[820px] text-balance text-[clamp(2.55rem,5.4vw,5.8rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-[#071D3A]">Before you hire another admin, find the office work AI should clean up first.</h2>
-          <p className="mt-6 max-w-[680px] text-xl font-semibold leading-8 text-[#536173]">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the bottlenecks ranked and scoped.</p>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Book the AI Office Map" className={`${greenButton} min-h-[64px] whitespace-nowrap px-9 text-xl`}>Book the AI Office Map <ArrowRight className="ml-2 h-5 w-5" /></CTALink>
-            <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className={`${lightButton} min-h-[64px] whitespace-nowrap px-9 text-xl`}>Get the Free Blueprint</CTALink>
+    <PageSection id="calculator" className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#eef5ed] py-12 text-[#071D3A] md:py-16 lg:py-20" fullDesktop={false}>
+      <Image src={uploadedHomeImages.checklistLaptop.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-[62%_center]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(247,251,244,0.98)_0%,rgba(247,251,244,0.94)_34%,rgba(247,251,244,0.66)_54%,rgba(247,251,244,0.18)_75%,rgba(247,251,244,0.02)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(247,251,244,0.72)_0%,rgba(247,251,244,0.16)_42%,rgba(247,251,244,0.76)_100%)]" />
+      <div className="mx-auto flex min-h-[520px] max-w-[88rem] items-center md:min-h-[600px] lg:min-h-[680px]">
+        <div className="max-w-[760px] py-10 md:py-14">
+          <h2 className="max-w-[720px] text-balance text-[clamp(2.7rem,5.6vw,6rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-[#071D3A]">Before you hire another admin, find the office work AI should clean up first.</h2>
+          <p className="mt-6 max-w-[640px] text-base font-semibold leading-7 text-[#35475d] sm:text-lg md:text-xl md:leading-8">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the bottlenecks ranked and scoped.</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_16px_36px_rgba(10,85,38,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Book the AI Office Map <ArrowRight className="h-4 w-4" /></CTALink>
+            <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d5e5da] bg-white/92 px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Get the Free Blueprint</CTALink>
           </div>
         </div>
-        <UploadedSectionImage image={uploadedHomeImages.map} priority className="scale-[0.98] lg:origin-center" />
       </div>
     </PageSection>
   )
@@ -116,11 +118,11 @@ function AssessmentSection() {
             <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[58px] items-center justify-center rounded-full border border-white/22 bg-white/9 px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_42px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-white/36 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Get the Free Blueprint</CTALink>
           </div>
         </div>
-        <div className="mt-12 grid max-w-[780px] gap-4 text-white/92 sm:grid-cols-2 lg:mt-16">
+        <div className="mt-9 grid max-w-[620px] gap-3 text-white/92 sm:grid-cols-2 lg:mt-10">
           {officeMapPills.map(({ label, detail, Icon }) => (
-            <div key={label} className="flex items-center gap-4 rounded-[1rem] border border-white/12 bg-white/[0.045] p-4 backdrop-blur-[2px]">
-              <Icon className="h-9 w-9 shrink-0 text-[#53d986]" strokeWidth={1.85} aria-hidden="true" />
-              <p className="text-sm font-extrabold leading-5 tracking-[-0.01em] text-white">
+            <div key={label} className="flex min-h-[74px] items-center gap-4 rounded-[1rem] border border-white/14 bg-white/[0.06] px-4 py-3 backdrop-blur-[2px]">
+              <Icon className="h-8 w-8 shrink-0 text-[#53d986]" strokeWidth={2} aria-hidden="true" />
+              <p className="min-w-0 text-[0.95rem] font-extrabold leading-[1.15] tracking-[-0.01em] text-white">
                 {label}
                 <span className="block text-white/86">{detail}</span>
               </p>
@@ -139,7 +141,7 @@ function SprintSection() {
     uploadedHomeImages.handoff,
   ]
   return (
-    <PageSection id="sprint" className="relative isolate overflow-hidden bg-[#FBFCF7] py-11 text-[#071D3A] md:py-14 lg:py-16">
+    <PageSection id="sprint" className="relative isolate overflow-hidden bg-[#FBFCF7] py-11 text-[#071D3A] md:py-14 lg:py-16" fullDesktop={false}>
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_12%,rgba(83,217,134,0.18),transparent_30%),linear-gradient(180deg,#FBFCF7_0%,#F7FBF5_100%)]" />
       <div className="mx-auto max-w-[88rem]">
         <div className="mx-auto max-w-5xl text-center">
@@ -154,33 +156,6 @@ function SprintSection() {
           {cards.map((image) => (
             <article key={image.src} className="overflow-hidden rounded-[1.6rem] border border-[#cfe8d5] bg-white shadow-[0_18px_48px_rgba(7,29,58,0.07)]">
               <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(min-width: 768px) 31vw, 100vw" className="h-auto w-full object-cover" />
-            </article>
-          ))}
-        </div>
-      </div>
-    </PageSection>
-  )
-}
-
-function WorkflowCategoriesSection() {
-  const workflows = [
-    { title: "Job and customer information moves cleaner", copy: "Call, email, and text summaries become clean CRM/job context so staff stops retyping the same details." },
-    { title: "Billing gets ready faster", copy: "Completed work is checked for missing details before billing stalls, reducing invoice delays and owner cleanups." },
-    { title: "Follow-up stops depending on memory", copy: "Estimates, customer issues, reviews, referrals, and repeat-work opportunities get routed instead of forgotten." },
-    { title: "Staff gets an AI office playbook", copy: "Your team uses AI against real process and SOPs instead of guessing or interrupting the owner." },
-  ]
-  return (
-    <PageSection id="systems" className="bg-[#f4f7f4] text-[#071D3A]">
-      <div className="mx-auto max-w-[88rem]">
-        <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
-          <h2 className="max-w-[700px] text-balance text-[clamp(1.9rem,3.6vw,3.85rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">AI workflows that make the office more profitable.</h2>
-          <p className="max-w-[560px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">More jobs processed. Cleaner records. Faster follow-up. Same office team.</p>
-        </div>
-        <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {workflows.map((workflow) => (
-            <article key={workflow.title} className="rounded-[1.5rem] border border-[#d9e7df] bg-white p-5 shadow-[0_18px_48px_rgba(7,29,58,0.06)]">
-              <h3 className="text-2xl font-extrabold tracking-[-0.03em]">{workflow.title}</h3>
-              <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{workflow.copy}</p>
             </article>
           ))}
         </div>
@@ -226,7 +201,6 @@ export function CashFlowHomepage() {
       <CalculatorSpine />
       <AssessmentSection />
       <SprintSection />
-      <WorkflowCategoriesSection />
       <FinalOfficeCTA />
     </>
   )
