@@ -1,6 +1,6 @@
 import Image from "next/image"
 import type { ReactNode } from "react"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
@@ -37,7 +37,7 @@ const darkGhostButton = `${buttonBase} border border-white/18 bg-white/8 text-wh
 
 function PageSection({ id, children, className = "", navTheme = "light" }: { id?: string; children: ReactNode; className?: string; navTheme?: "light" | "dark" }) {
   return (
-    <section id={id} data-nav-theme={navTheme} className={`px-5 py-11 md:px-8 md:py-16 lg:px-10 ${className}`}>
+    <section id={id} data-nav-theme={navTheme} className={`px-5 py-9 md:px-8 md:py-12 lg:px-10 ${className}`}>
       {children}
     </section>
   )
@@ -76,7 +76,7 @@ function HeroImageSlideshow() {
 
 function CalculatorSpine() {
   return (
-    <PageSection id="calculator" className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#FBFCF7] py-16 text-[#071D3A] md:py-20 lg:py-24">
+    <PageSection id="calculator" className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#FBFCF7] py-11 text-[#071D3A] md:py-14 lg:py-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(8,166,75,0.14),rgba(251,252,247,0)_65%)]" />
       <div className="mx-auto grid max-w-[88rem] gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div>
@@ -94,20 +94,16 @@ function CalculatorSpine() {
 }
 
 function AssessmentSection() {
-  const deliverables = ["Where admin drag is costing time, money, follow-up, and quality.", "What your current field-service and accounting software already handles.", "What staff is still forced to chase, copy, check, or reconcile.", "Your AI Opportunity Matrix ranked by impact, difficulty, and value.", "Staff AI training and company playbook gaps.", "A one-page AI Office Map with $197 credited toward your AI Office Installation Sprint."]
   return (
-    <PageSection id="assessment" className="relative isolate overflow-hidden bg-[#071422] py-16 text-white md:py-20 lg:py-24" navTheme="dark">
+    <PageSection id="assessment" className="relative isolate overflow-hidden bg-[#071422] py-11 text-white md:py-14 lg:py-16" navTheme="dark">
       <Image src="/images/uploaded/ai-office/owner-reviewing-paperwork.jpg" alt="" fill sizes="100vw" className="-z-20 object-cover object-center" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,20,34,0.96)_0%,rgba(7,20,34,0.88)_42%,rgba(7,20,34,0.62)_72%,rgba(7,20,34,0.42)_100%)]" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_12%,rgba(83,217,134,0.18),transparent_34%),linear-gradient(180deg,rgba(7,20,34,0.18)_0%,rgba(7,20,34,0.9)_100%)]" />
       <div className="mx-auto max-w-[88rem]">
-        <div className="max-w-[80%]">
-          <h2 className="mt-3 text-balance text-[clamp(2.4rem,5.2vw,5.6rem)] font-extrabold leading-[0.93] tracking-[-0.03em]">Start with the AI Office Map.</h2>
-          <p className="mt-5 max-w-[860px] text-xl font-semibold leading-9 text-white/82">In one focused session, Stanley Systems maps how your office handles paperwork, billing, follow-up, handoffs, and job admin. You leave with a one-page map showing where work is getting stuck, what your current tools already handle, and which AI-guided workflow should be installed first.</p>
-          <ul className="mt-8 grid max-w-[920px] gap-4 md:grid-cols-2">
-            {deliverables.map((item) => <li key={item} className="flex gap-4 text-lg font-semibold leading-8 text-white/90"><CheckCircle2 className="mt-1 h-7 w-7 shrink-0 text-[#84D99A]" />{item}</li>)}
-          </ul>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+        <div className="max-w-[760px]">
+          <h2 className="text-balance text-[clamp(2.35rem,5vw,5.3rem)] font-extrabold leading-[0.93] tracking-[-0.03em]">Start with the AI Office Map.</h2>
+          <p className="mt-5 max-w-[700px] text-lg font-semibold leading-7 text-white/82">A focused session that shows what is stuck, what your tools already handle, and which AI workflow to install first.</p>
+          <div className="mt-7 flex flex-col gap-4 sm:flex-row">
             <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
             <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
           </div>
@@ -124,18 +120,18 @@ function SprintSection() {
     uploadedHomeImages.handoff,
   ]
   return (
-    <PageSection id="sprint" className="relative isolate overflow-hidden bg-[#FBFCF7] py-16 text-[#071D3A] md:py-20 lg:py-24">
+    <PageSection id="sprint" className="relative isolate overflow-hidden bg-[#FBFCF7] py-11 text-[#071D3A] md:py-14 lg:py-16">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_12%,rgba(83,217,134,0.18),transparent_30%),linear-gradient(180deg,#FBFCF7_0%,#F7FBF5_100%)]" />
       <div className="mx-auto max-w-[88rem]">
-        <div className="mx-auto max-w-6xl text-center">
-          <h2 className="text-balance text-center text-[clamp(2.4rem,5.9vw,5.9rem)] font-extrabold leading-[0.92] tracking-[-0.04em]">Install AI office workflows.</h2>
-          <p className="mx-auto mt-6 max-w-4xl text-base font-semibold leading-7 text-[#536173] sm:text-lg">We start with the priority workflows from your AI Office Map: billing readiness, estimate follow-up, duplicate record cleanup, inbox and call summary routing, vendor ETA updates, staff SOP support, or service recovery.</p>
-          <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="text-balance text-center text-[clamp(2.25rem,5vw,4.9rem)] font-extrabold leading-[0.92] tracking-[-0.04em]">Install AI office workflows.</h2>
+          <p className="mx-auto mt-5 max-w-3xl text-base font-semibold leading-7 text-[#536173] sm:text-lg">We install the priority workflows from your Map: billing readiness, follow-up, inbox routing, SOP support, or service recovery.</p>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="See the Installation Sprint" className={`${lightButton} px-8`}>See the Installation Sprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
             <CTALink href={mapHref} kind="systems" location="home_sprint_secondary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">Book the AI Office Map</CTALink>
           </div>
         </div>
-        <div className="mt-9 grid gap-5 md:grid-cols-3">
+        <div className="mt-7 grid gap-4 md:grid-cols-3">
           {cards.map((image) => (
             <article key={image.src} className="overflow-hidden rounded-[1.6rem] border border-[#cfe8d5] bg-white shadow-[0_18px_48px_rgba(7,29,58,0.07)]">
               <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(min-width: 768px) 31vw, 100vw" className="h-auto w-full object-cover" />
@@ -157,13 +153,13 @@ function WorkflowCategoriesSection() {
   return (
     <PageSection id="systems" className="bg-[#f4f7f4] text-[#071D3A]">
       <div className="mx-auto max-w-[88rem]">
-        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
-          <h2 className="max-w-[760px] text-balance text-[clamp(2rem,4vw,4.25rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">AI workflows that make the office more profitable.</h2>
-          <p className="max-w-[650px] text-lg font-semibold leading-8 text-[#536173]">More jobs processed. Cleaner records. Faster follow-up. Same office team.</p>
+        <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+          <h2 className="max-w-[700px] text-balance text-[clamp(1.9rem,3.6vw,3.85rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">AI workflows that make the office more profitable.</h2>
+          <p className="max-w-[560px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">More jobs processed. Cleaner records. Faster follow-up. Same office team.</p>
         </div>
-        <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {workflows.map((workflow) => (
-            <article key={workflow.title} className="rounded-[1.7rem] border border-[#d9e7df] bg-white p-6 shadow-[0_20px_60px_rgba(7,29,58,0.07)]">
+            <article key={workflow.title} className="rounded-[1.5rem] border border-[#d9e7df] bg-white p-5 shadow-[0_18px_48px_rgba(7,29,58,0.06)]">
               <h3 className="text-2xl font-extrabold tracking-[-0.03em]">{workflow.title}</h3>
               <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{workflow.copy}</p>
             </article>
@@ -191,9 +187,9 @@ function FinalOfficeCTA() {
   return (
     <PageSection className="bg-[#071422] text-white" navTheme="dark">
       <div className="mx-auto max-w-[82rem] text-center">
-        <h2 className="mx-auto max-w-[960px] text-balance text-[clamp(2.4rem,6vw,6rem)] font-extrabold leading-[0.92] tracking-[-0.025em]">Before you hire another admin, find the office work slowing down profit.</h2>
-        <p className="mx-auto mt-6 max-w-[760px] text-lg font-semibold leading-8 text-white/70">Book the AI Office Map or get the free Blueprint to see where your current team can process more jobs, follow up faster, and run cleaner with AI installed into the actual office workflow.</p>
-        <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+        <h2 className="mx-auto max-w-[860px] text-balance text-[clamp(2.15rem,5vw,4.9rem)] font-extrabold leading-[0.92] tracking-[-0.025em]">Find the office work slowing down profit.</h2>
+        <p className="mx-auto mt-5 max-w-[680px] text-base font-semibold leading-7 text-white/70 sm:text-lg">Book the Map or get the free Blueprint to see where AI can help your current team move faster.</p>
+        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
           <CTALink href={mapHref} kind="systems" location="home_final_primary" ctaLabel="Book the AI Office Map" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
           <CTALink href={blueprintHref} kind="systems" location="home_final_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
         </div>
