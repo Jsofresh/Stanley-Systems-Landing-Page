@@ -1,4 +1,4 @@
-import { ArrowRight, Calculator } from "lucide-react"
+import { ArrowRight, FileText } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import type { PricingCalculatorContext, WorkflowAuditOffer } from "@/lib/pricing/offers"
@@ -28,13 +28,13 @@ export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAudit
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
           <CTALink
-            href="/invoicing-delay-cash-flow-calculator"
-            kind="calculator"
+            href="/ai-office-blueprint"
+            kind="systems"
             location="pricing_hero_secondary"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-bold text-[#102033] shadow-[0_10px_24px_rgba(16,32,51,0.06)] transition hover:bg-[#fbfaf7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:px-8"
           >
-            <Calculator className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
-            Calculate Your Admin Drag
+            <FileText className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
+            Get the Free Blueprint
           </CTALink>
         </div>
         <p className="mx-auto mt-4 max-w-2xl text-sm font-bold leading-6 text-[#607080]">Need one answer before you pay? <a href="/contact?path=pre-buy" className="text-[#116832] underline underline-offset-4">Ask before buying</a> and we will tell you whether the AI Office Map is the right next step.</p>

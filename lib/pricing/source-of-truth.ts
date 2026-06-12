@@ -70,7 +70,7 @@ export const pricingPackages: PricingPackage[] = [
     notes: [
       "45-60 minute owner or office-manager session.",
       "Shows where admin drag is costing time, money, follow-up, and quality.",
-      "Includes a software redundancy check, top 3 AI workflow opportunities, and a one-page AI Office Map.",
+      "Includes a software redundancy check, AI Opportunity Matrix, and a one-page AI Office Map.",
       "$197 credited toward your AI Office Installation Sprint.",
     ],
   },
@@ -258,7 +258,7 @@ export const yearlyPricingPackages = pricingPackages.filter(
 export const workflowAuditPricingPackage = pricingPackageById.workflow_audit
 
 export const pricingSourceOfTruthNotes = [
-  "Approved public offer ladder: Admin Drag Calculator, AI Office Map, AI Office Installation Sprint, AI Office Ops.",
+  "Approved public offer ladder: Free AI Office Blueprint, AI Office Map, AI Office Installation Sprint, AI Office Ops.",
   "Public prices: $197 AI Office Map, $3,500 starting Installation Sprint, $500/mo starting AI Office Ops.",
   "Existing Stripe Payment Links are intentionally retained for now by Jaden approval and may not match public offer names/prices yet.",
   "Do not create or change Stripe links in this rewrite pass.",

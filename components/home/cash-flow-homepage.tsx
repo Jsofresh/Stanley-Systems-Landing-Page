@@ -5,10 +5,9 @@ import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 
-const calculatorHref = "/invoicing-delay-cash-flow-calculator"
 const mapHref = "/workflow-audit"
+const blueprintHref = "/ai-office-blueprint"
 const sprintHref = "/systems-installation-sprint"
-const pricingHref = "/pricing"
 
 const heroSlideshowImages = [
   { src: "/images/uploaded/homepage/hero-slideshow/hero-tech-van-outside.jpg", alt: "Service technician van outside a customer location", objectPosition: "60% center" },
@@ -22,7 +21,7 @@ const mobileHeroSlideshowImages = [
 ]
 
 const uploadedHomeImages = {
-  calculator: { src: "/images/uploaded/homepage/ai-office/admin-drag-calculator.jpg", alt: "Admin Drag Calculator showing hours lost, admin drag cost, and top office bottleneck", width: 1280, height: 960 },
+  calculator: { src: "/images/uploaded/homepage/ai-office/admin-drag-calculator.jpg", alt: "Office workflow report showing hours lost, admin drag cost, and top office bottleneck", width: 1280, height: 960 },
   map: { src: "/images/uploaded/homepage/ai-office/ai-office-map-laptop.jpg", alt: "AI Office Map with behind, already handled, still chased, and workflow columns", width: 1280, height: 960 },
   sprint: { src: "/images/uploaded/homepage/ai-office/installation-sprint.jpg", alt: "AI Office Installation Sprint workflow connections between field-service software, accounting, inbox, texts, and staff playbook", width: 1254, height: 1254 },
   handoff: { src: "/images/uploaded/homepage/ai-office/office-handoff-automation.jpg", alt: "Office handoff automation for job details, billing readiness, estimate follow-up, and staff exceptions", width: 1280, height: 1219 },
@@ -81,21 +80,21 @@ function CalculatorSpine() {
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[radial-gradient(circle_at_50%_0%,rgba(8,166,75,0.14),rgba(251,252,247,0)_65%)]" />
       <div className="mx-auto grid max-w-[88rem] gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div>
-          <h2 className="max-w-[820px] text-balance text-[clamp(2.55rem,5.4vw,5.8rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-[#071D3A]">Before you hire another admin, calculate what office drag is already costing you.</h2>
-          <p className="mt-6 max-w-[680px] text-xl font-semibold leading-8 text-[#536173]">Get a fast estimate of the paperwork, chasing, retyping, and delayed follow-up your current office team is carrying.</p>
+          <h2 className="max-w-[820px] text-balance text-[clamp(2.55rem,5.4vw,5.8rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-[#071D3A]">Before you hire another admin, find the office work AI should clean up first.</h2>
+          <p className="mt-6 max-w-[680px] text-xl font-semibold leading-8 text-[#536173]">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the bottlenecks ranked and scoped.</p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <CTALink href={calculatorHref} kind="calculator" location="home_calculator_spine_primary" analyticsEvent="calculator_cta_clicked" ctaLabel="Calculate Your Admin Drag" className={`${greenButton} min-h-[64px] whitespace-nowrap px-9 text-xl`}>Calculate Your Admin Drag <ArrowRight className="ml-2 h-5 w-5" /></CTALink>
-            <CTALink href={mapHref} kind="systems" location="home_calculator_spine_secondary" ctaLabel="Book the AI Office Map" className={`${lightButton} min-h-[64px] whitespace-nowrap px-9 text-xl`}>Book the AI Office Map</CTALink>
+            <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Book the AI Office Map" className={`${greenButton} min-h-[64px] whitespace-nowrap px-9 text-xl`}>Book the AI Office Map <ArrowRight className="ml-2 h-5 w-5" /></CTALink>
+            <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className={`${lightButton} min-h-[64px] whitespace-nowrap px-9 text-xl`}>Get the Free Blueprint</CTALink>
           </div>
         </div>
-        <UploadedSectionImage image={uploadedHomeImages.calculator} priority className="scale-[0.98] lg:origin-center" />
+        <UploadedSectionImage image={uploadedHomeImages.map} priority className="scale-[0.98] lg:origin-center" />
       </div>
     </PageSection>
   )
 }
 
 function AssessmentSection() {
-  const deliverables = ["Where admin drag is costing time, money, follow-up, and quality.", "What your current field-service and accounting software already handles.", "What staff is still forced to chase, copy, check, or reconcile.", "Your top 3 AI workflow opportunities.", "Staff AI training and company playbook gaps.", "A one-page AI Office Map with $197 credited toward your AI Office Installation Sprint."]
+  const deliverables = ["Where admin drag is costing time, money, follow-up, and quality.", "What your current field-service and accounting software already handles.", "What staff is still forced to chase, copy, check, or reconcile.", "Your AI Opportunity Matrix ranked by impact, difficulty, and value.", "Staff AI training and company playbook gaps.", "A one-page AI Office Map with $197 credited toward your AI Office Installation Sprint."]
   return (
     <PageSection id="assessment" className="relative isolate overflow-hidden bg-[#071422] py-16 text-white md:py-20 lg:py-24" navTheme="dark">
       <Image src="/images/uploaded/ai-office/owner-reviewing-paperwork.jpg" alt="" fill sizes="100vw" className="-z-20 object-cover object-center" aria-hidden="true" />
@@ -110,7 +109,7 @@ function AssessmentSection() {
           </ul>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-            <CTALink href={calculatorHref} kind="calculator" location="home_ai_office_map_secondary" analyticsEvent="calculator_cta_clicked" ctaLabel="Calculate Your Admin Drag" className={darkGhostButton}>Calculate Your Admin Drag</CTALink>
+            <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
           </div>
         </div>
       </div>
@@ -193,10 +192,10 @@ function FinalOfficeCTA() {
     <PageSection className="bg-[#071422] text-white" navTheme="dark">
       <div className="mx-auto max-w-[82rem] text-center">
         <h2 className="mx-auto max-w-[960px] text-balance text-[clamp(2.4rem,6vw,6rem)] font-extrabold leading-[0.92] tracking-[-0.025em]">Before you hire another admin, find the office work slowing down profit.</h2>
-        <p className="mx-auto mt-6 max-w-[760px] text-lg font-semibold leading-8 text-white/70">Book the AI Office Map or run the Admin Drag Calculator to see where your current team can process more jobs, follow up faster, and run cleaner with AI installed into the actual office workflow.</p>
+        <p className="mx-auto mt-6 max-w-[760px] text-lg font-semibold leading-8 text-white/70">Book the AI Office Map or get the free Blueprint to see where your current team can process more jobs, follow up faster, and run cleaner with AI installed into the actual office workflow.</p>
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <CTALink href={mapHref} kind="systems" location="home_final_primary" ctaLabel="Book the AI Office Map" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-          <CTALink href={calculatorHref} kind="calculator" location="home_final_secondary" analyticsEvent="calculator_cta_clicked" ctaLabel="Calculate Your Admin Drag" className={darkGhostButton}>Calculate Your Admin Drag</CTALink>
+          <CTALink href={blueprintHref} kind="systems" location="home_final_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
         </div>
       </div>
     </PageSection>
@@ -214,7 +213,7 @@ export function CashFlowHomepage() {
             <h1 className="max-w-[900px] translate-y-8 text-balance text-[clamp(2.05rem,5vw,5.25rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-white sm:translate-y-10">Train your office team to handle more paperwork, billing, and job admin without hiring another person.</h1>
             <div className="mt-[18svh] flex flex-col gap-4 sm:mt-24 sm:flex-row">
               <CTALink href={mapHref} kind="systems" location="home_hero_primary" ctaLabel="Book the AI Office Map" className={`${greenButton} px-8 text-[1.05rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02]`}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-              <CTALink href={calculatorHref} kind="calculator" location="home_hero_secondary" analyticsEvent="calculator_cta_clicked" ctaLabel="Calculate Your Admin Drag" className={darkGhostButton}>Calculate Your Admin Drag</CTALink>
+              <CTALink href={blueprintHref} kind="systems" location="home_hero_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
             </div>
           </div>
         </div>

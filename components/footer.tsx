@@ -28,8 +28,8 @@ const footerLinks: FooterSection[] = [
   {
     label: "Solutions",
     links: [
-      { title: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator" },
       { title: "AI Office Map", href: "/workflow-audit" },
+      { title: "Free AI Office Blueprint", href: "/ai-office-blueprint" },
       { title: "AI Office Installation Sprint", href: "/systems-installation-sprint" },
       { title: "AI Office Ops", href: "/pricing#ai-office-ops" },
       { title: "How Stanley Systems Works", href: "/how-stanley-systems-works" },

@@ -5,12 +5,13 @@ import { Menu, Phone, X } from "lucide-react"
 import Link from "next/link"
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
-const calculatorHref = `${basePath}/invoicing-delay-cash-flow-calculator`
+const mapHref = `${basePath}/workflow-audit`
+const blueprintHref = `${basePath}/ai-office-blueprint`
 
 const navigation = [
   { name: "Home", href: `${basePath}/` },
-  { name: "Admin Drag Calculator", href: calculatorHref },
-  { name: "AI Office Map", href: `${basePath}/workflow-audit` },
+  { name: "AI Office Map", href: mapHref },
+  { name: "Free Blueprint", href: blueprintHref },
   { name: "Installation Sprint", href: `${basePath}/systems-installation-sprint` },
   { name: "AI Office Ops", href: `${basePath}/pricing#ai-office-ops` },
   { name: "Who we help", href: `${basePath}/who-stanley-systems-helps` },
@@ -129,14 +130,14 @@ export function GlassmorphismNav() {
                 Call: +1 (617) 958-6372
               </a>
               <a
-                href={calculatorHref}
-                data-analytics-event="calculator_cta_clicked"
+                href={mapHref}
+                data-analytics-event="ai_office_map_cta_clicked"
                 data-analytics-source="site_nav"
-                data-cta-label="Calculate Your Admin Drag"
-                data-cta-location="desktop_nav_calculator"
+                data-cta-label="Book the AI Office Map"
+                data-cta-location="desktop_nav_ai_office_map"
                 className="inline-flex min-w-[180px] whitespace-nowrap items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-7 py-2.5 text-[15px] font-semibold text-white shadow-[0_12px_28px_rgba(21,128,61,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#116832]"
               >
-                Calculate Your Admin Drag
+                Book the AI Office Map
               </a>
             </div>
           </div>
@@ -179,15 +180,15 @@ export function GlassmorphismNav() {
                   Call now
                 </a>
                 <a
-                  href={calculatorHref}
-                  data-analytics-event="calculator_cta_clicked"
+                  href={mapHref}
+                  data-analytics-event="ai_office_map_cta_clicked"
                   data-analytics-source="site_nav"
-                  data-cta-label="Calculate Your Admin Drag"
-                  data-cta-location="mobile_nav_calculator"
+                  data-cta-label="Book the AI Office Map"
+                  data-cta-location="mobile_nav_ai_office_map"
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(21,128,61,0.16)] transition-all duration-200 hover:bg-[#116832]"
                   onClick={() => setIsOpen(false)}
                 >
-                  Calculate Your Admin Drag
+                  Book the AI Office Map
                 </a>
               </div>
             </div>

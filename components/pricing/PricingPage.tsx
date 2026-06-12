@@ -10,13 +10,13 @@ const lightButton = "inline-flex min-h-12 items-center justify-center rounded-fu
 const offers = [
   {
     step: "Free",
-    id: "admin-drag-calculator",
-    title: "Admin Drag Calculator",
+    id: "ai-office-blueprint",
+    title: "Free AI Office Blueprint",
     price: "Free",
-    body: "Estimate what copying, chasing, retyping, reconciling, delayed billing, and missed follow-up cost each month.",
-    bullets: ["Rough numbers only", "Monthly admin drag cost", "Hours lost/month", "First workflows worth mapping"],
-    href: "/invoicing-delay-cash-flow-calculator",
-    cta: "Calculate Your Admin Drag",
+    body: "Fill out a short office workflow form and get practical AI staff plays, copy/paste prompts, one quick capacity win, and the best next workflow to improve.",
+    bullets: ["2-3 AI staff plays", "Copy/paste prompts", "One quick capacity win", "Best next workflow"],
+    href: "/ai-office-blueprint",
+    cta: "Get the Free Blueprint",
   },
   {
     step: "Diagnostic",
@@ -24,7 +24,7 @@ const offers = [
     title: "AI Office Map",
     price: "$197",
     body: "A focused session that shows where the office is falling behind, what your software already handles, and which AI-guided workflow should be installed first.",
-    bullets: ["45-60 minute owner or office-manager session", "Existing software and handoff review", "Top 3 workflow opportunities", "$197 credited toward your AI Office Installation Sprint"],
+    bullets: ["45-60 minute owner or office-manager session", "Existing software and handoff review", "AI Opportunity Matrix", "$197 credited toward your AI Office Installation Sprint"],
     href: "/workflow-audit",
     cta: "Book the AI Office Map",
     featured: true,
@@ -71,7 +71,7 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#e7e1d6] bg-white px-5 py-7 text-center shadow-[0_24px_70px_rgba(15,23,42,0.075)] sm:rounded-[2.5rem] sm:px-8 lg:px-12">
           <h1 className="mx-auto max-w-4xl text-balance text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[3.65rem]">Start with the $197 AI Office Map. Then install only the workflows worth building.</h1>
           <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems first maps where office work is slowing down billing, follow-up, records, and job admin. If there is a clear fit, the Installation Sprint turns that map into staff training, a company playbook, and practical installed office workflows.</p>
-          <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"><Link href="/workflow-audit" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/invoicing-delay-cash-flow-calculator" className={lightButton}>Calculate Your Admin Drag</Link></div>
+          <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"><Link href="/workflow-audit" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/ai-office-blueprint" className={lightButton}>Get the Free Blueprint</Link></div>
         </div>
       </section>
       <section aria-label="Offer ladder" className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 sm:py-10 lg:grid-cols-4 lg:px-8">

@@ -1,4 +1,4 @@
-import { ArrowRight, Calculator } from "lucide-react"
+import { ArrowRight, FileText } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { MoneyLeakChecksForm } from "@/components/money-leak-checks-form"
@@ -30,13 +30,13 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </CTALink>
         <CTALink
-          href="/invoicing-delay-cash-flow-calculator"
-          kind="calculator"
+          href="/ai-office-blueprint"
+          kind="systems"
           location="pricing_final_secondary"
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#d8d1c4] bg-white px-6 py-3 text-base font-bold text-[#102033] shadow-[0_10px_24px_rgba(16,32,51,0.06)] transition hover:bg-[#fbfaf7] sm:px-8"
         >
-          <Calculator className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
-          Calculate Your Admin Drag
+          <FileText className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
+          Get the Free Blueprint
         </CTALink>
       </div>
       <p className="mx-auto mt-5 max-w-2xl text-sm font-bold leading-6 text-[#607080]">Still hesitating? <a href="/contact?path=pre-buy" className="text-[#116832] underline underline-offset-4">Ask us a question before buying.</a></p>

@@ -40,7 +40,7 @@ const fontAliases = {
   "--font-work-sans": "var(--font-neue-montreal)",
 } as React.CSSProperties
 
-const siteTitle = "Stanley Systems | Admin Drag Calculator"
+const siteTitle = "Stanley Systems | AI Office Map"
 const siteDescription =
   "Stanley Systems installs an AI office layer on top of the software your business already uses, reducing costly manual office work across billing, follow-up, customer records, and software handoffs."
 const siteLogoPath = "/stanley-systems-logo-reference.jpg"
@@ -97,7 +97,7 @@ export default function RootLayout({
         name: "What is the AI Office Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It is a $197 assessment where Stanley Systems finds where money is leaking through missed calls, late invoices, forgotten follow-ups, and past customers nobody contacts again.",
+          text: "It is a $197 assessment where Stanley Systems finds the biggest AI opportunities inside your office: bottlenecks, admin drag, software gaps, quick wins, and a 30-day roadmap.",
         },
       },
       {
@@ -113,7 +113,7 @@ export default function RootLayout({
         name: "What if we are not sure where the real leak is?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "That is exactly what the AI Office Map is for: it shows where the money is leaking and what system should be built first to stop it.",
+          text: "That is exactly what the AI Office Map is for: it shows where office work is slowing the team down and which AI workflow should improve first.",
         },
       },
       {

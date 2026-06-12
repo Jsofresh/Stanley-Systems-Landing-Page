@@ -1,0 +1,18 @@
+{
+  "name": "Jordan Lee",
+  "email": "jordan@example.com",
+  "businessName": "Bayview Mechanical",
+  "businessType": "HVAC service and install",
+  "teamSize": "12 field techs, 3 office staff",
+  "fieldServiceSoftware": "ServiceTitan",
+  "accountingSoftware": "QuickBooks Online",
+  "spreadsheetUsage": "Install coordinator tracks permits and rebates in Google Sheets.",
+  "informationStuck": "Photos, tech notes, and customer approvals sit in texts before billing sees them.",
+  "copyCheckRewrite": "Office staff rewrite job notes into customer updates, invoice notes, and manager questions.",
+  "billingDelays": "Invoices wait when labor, materials, or approval notes are missing after the job is marked complete.",
+  "missedFollowUp": "Open estimates and warranty callbacks get checked when someone remembers.",
+  "toolsInvolved": "ServiceTitan, QuickBooks Online, Gmail, Google Sheets, SMS",
+  "desiredOutputType": "Billing-ready job summary and customer-safe update",
+  "aiComfortLevel": "Some use, needs structure",
+  "messyOfficeExample": "Tech note: done condenser swap, cust approved extra pad, old disconnect bad, need office to call about surge protector, pics in thread, helper had 2.5 hrs."
+}
