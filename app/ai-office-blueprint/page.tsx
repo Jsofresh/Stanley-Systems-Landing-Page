@@ -35,10 +35,9 @@ export default function AiOfficeBlueprintPage() {
           <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_83%,rgba(28,181,82,0.34),transparent_12%),radial-gradient(ellipse_at_80%_96%,rgba(36,212,98,0.72),transparent_31%),radial-gradient(ellipse_at_76%_28%,rgba(186,247,190,0.14),transparent_25%),linear-gradient(90deg,rgba(5,16,29,0.94)_0%,rgba(6,20,35,0.84)_36%,rgba(7,29,58,0.27)_58%,rgba(7,29,58,0)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 -z-20 h-[34%] bg-[linear-gradient(0deg,rgba(6,18,31,0.72)_0%,rgba(6,18,31,0)_100%)]" />
           <div className="mx-auto grid w-full max-w-[1230px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8 xl:px-0">
-            <div className="max-w-[610px]">
-              <p className="mb-4 inline-flex rounded-full border border-white/16 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#CFF6D4] backdrop-blur-sm">Free custom PDF</p>
-              <h1 className="max-w-[600px] text-[3.45rem] font-semibold leading-[0.9] tracking-[-0.055em] text-white sm:text-[4.5rem] lg:text-[4.1rem] xl:text-[4.45rem] 2xl:text-[5.05rem]">Get the Free AI Office Blueprint</h1>
-              <p className="mt-5 max-w-[600px] text-[1.08rem] font-semibold leading-[1.42] text-white/88 sm:text-[1.18rem]">Answer the short office workflow form. We’ll turn the messy details into a custom Blueprint with AI staff plays, copy/paste prompts, one quick capacity win, and the next workflow worth fixing first.</p>
+            <div className="max-w-[635px]">
+              <h1 className="max-w-[630px] text-[3.35rem] font-semibold leading-[0.98] tracking-[-0.025em] text-white sm:text-[4.35rem] lg:text-[4rem] xl:text-[4.3rem] 2xl:text-[4.85rem]">Get the Free AI Office Blueprint</h1>
+              <p className="mt-6 max-w-[610px] text-[1.08rem] font-semibold leading-[1.58] tracking-[-0.008em] text-white/88 sm:text-[1.17rem]">Answer the short office workflow form. We’ll turn the messy details into a custom Blueprint with AI staff plays, copy/paste prompts, one quick capacity win, and the next workflow worth fixing first.</p>
               <div className="mt-5 grid max-w-[575px] gap-2.5 sm:grid-cols-2">
                 {blueprintRows.map(({ icon: Icon, label }) => (
                   <div key={label} className="flex items-center gap-3 rounded-2xl border border-white/12 bg-white/[0.08] px-3.5 py-2.5 text-[13px] font-extrabold leading-5 text-white shadow-[0_16px_36px_rgba(0,0,0,0.14)] backdrop-blur-sm">
@@ -67,10 +66,10 @@ export default function AiOfficeBlueprintPage() {
                   <Sparkles className="h-8 w-8 text-[#138A3B]" />
                 </div>
                 <div className="pointer-events-none absolute right-10 top-[36px] h-[78px] w-[112px] opacity-[0.13] [background:linear-gradient(#138A3B,#138A3B)_8px_14px/38px_1px_no-repeat,linear-gradient(#138A3B,#138A3B)_44px_40px/52px_1px_no-repeat,linear-gradient(#138A3B,#138A3B)_24px_62px/72px_1px_no-repeat]" />
-                <h2 className="mt-7 max-w-[440px] text-[32px] font-black leading-[1.02] tracking-[-0.055em] text-[#071D3A]">Custom plays, prompts, and one capacity win.</h2>
+                <h2 className="mt-7 max-w-[470px] text-[29px] font-semibold leading-[1.18] tracking-normal text-[#071D3A]">Custom plays, prompts, and one capacity win.</h2>
                 <div className="mt-5 space-y-2.5">
                   {blueprintRows.map(({ icon: Icon, label }) => (
-                    <div key={label} className="flex h-[52px] items-center gap-4 rounded-[14px] bg-white px-4 text-[14px] font-black text-[#071D3A] shadow-[0_14px_28px_rgba(7,29,58,0.08)]">
+                    <div key={label} className="flex h-[52px] items-center gap-4 rounded-[14px] bg-white px-4 text-[14px] font-bold leading-[1.35] tracking-[-0.01em] text-[#071D3A] shadow-[0_14px_28px_rgba(7,29,58,0.08)]">
                       <span className="grid h-[38px] w-[38px] shrink-0 place-items-center rounded-[11px] bg-[#E6F5E8] text-[#138A3B]"><Icon className="h-5 w-5" /></span>
                       <span>{label}</span>
                     </div>

@@ -336,7 +336,7 @@ export function SiteHeader() {
         <div className="mx-auto flex h-16 max-w-[92rem] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <a href="/" className="group -ml-1.5 inline-flex h-10 shrink-0 items-center rounded-xl pr-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071422] sm:-ml-2 lg:-ml-3" aria-label="Stanley Systems home">
             <span
-              className={`whitespace-nowrap text-[19px] font-[700] leading-none tracking-[-0.045em] transition-colors duration-[220ms] sm:text-[20px] ${brandTextClasses}`}
+              className={`whitespace-nowrap text-[19px] font-[700] leading-none tracking-[-0.015em] transition-colors duration-[220ms] sm:text-[20px] ${brandTextClasses}`}
               style={{ fontFamily: "var(--font-logo), var(--font-neue-montreal), sans-serif" }}
             >
               Stanley Systems
