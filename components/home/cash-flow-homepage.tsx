@@ -37,7 +37,7 @@ const darkGhostButton = `${buttonBase} border border-white/18 bg-white/8 text-wh
 
 function PageSection({ id, children, className = "", navTheme = "light" }: { id?: string; children: ReactNode; className?: string; navTheme?: "light" | "dark" }) {
   return (
-    <section id={id} data-nav-theme={navTheme} className={`px-5 py-9 md:px-8 md:py-12 lg:px-10 ${className}`}>
+    <section id={id} data-nav-theme={navTheme} className={`px-5 py-9 md:px-8 md:py-12 lg:flex lg:min-h-screen lg:items-center lg:px-10 ${className}`}>
       {children}
     </section>
   )
@@ -170,19 +170,6 @@ function WorkflowCategoriesSection() {
   )
 }
 
-function BeforeAfterProofSection() {
-  return (
-    <PageSection className="bg-white text-[#071D3A]">
-      <div className="mx-auto grid max-w-[88rem] gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
-        <div>
-          <h2 className="text-balance text-[clamp(2.1rem,4.8vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.025em]">Before: office drag slows growth. After: the same team runs cleaner and faster.</h2>
-        </div>
-        <UploadedSectionImage image={uploadedHomeImages.beforeAfter} className="scale-[1.02] lg:origin-center" />
-      </div>
-    </PageSection>
-  )
-}
-
 function FinalOfficeCTA() {
   return (
     <PageSection className="bg-[#071422] text-white" navTheme="dark">
@@ -221,7 +208,6 @@ export function CashFlowHomepage() {
       <AssessmentSection />
       <SprintSection />
       <WorkflowCategoriesSection />
-      <BeforeAfterProofSection />
       <FinalOfficeCTA />
     </>
   )
