@@ -1,6 +1,6 @@
 import Image from "next/image"
 import type { ReactNode } from "react"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Clock3, ListChecks, Map, UsersRound } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
@@ -23,6 +23,7 @@ const mobileHeroSlideshowImages = [
 const uploadedHomeImages = {
   calculator: { src: "/images/uploaded/homepage/ai-office/admin-drag-calculator.jpg", alt: "Office workflow report showing hours lost, admin drag cost, and top office bottleneck", width: 1280, height: 960 },
   map: { src: "/images/uploaded/homepage/ai-office/ai-office-map-laptop.jpg", alt: "AI Office Map with behind, already handled, still chased, and workflow columns", width: 1280, height: 960 },
+  officeAdmin: { src: "/images/uploaded/homepage/ai-office/service-owner-office-admin-shot.jpg", alt: "Service business owner and office admin reviewing paperwork at a desk", width: 1280, height: 720 },
   sprint: { src: "/images/uploaded/homepage/ai-office/installation-sprint.jpg", alt: "AI Office Installation Sprint workflow connections between field-service software, accounting, inbox, texts, and staff playbook", width: 1254, height: 1254 },
   handoff: { src: "/images/uploaded/homepage/ai-office/office-handoff-automation.jpg", alt: "Office handoff automation for job details, billing readiness, estimate follow-up, and staff exceptions", width: 1280, height: 1219 },
   playbook: { src: "/images/uploaded/homepage/ai-office/staff-ai-playbook.jpg", alt: "Staff AI playbook tied to SOPs and approved escalation rules", width: 1254, height: 1254 },
@@ -34,6 +35,13 @@ const buttonBase = "inline-flex min-h-[58px] items-center justify-center rounded
 const greenButton = `${buttonBase} bg-[#15803D] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.24)] hover:-translate-y-0.5 hover:bg-[#116f35] focus:ring-offset-[#071422]`
 const lightButton = `${buttonBase} border border-[#d5e5da] bg-white text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-[#f4fbf6] focus:ring-offset-white`
 const darkGhostButton = `${buttonBase} border border-white/18 bg-white/8 text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 hover:bg-white/12 focus:ring-offset-[#071422]`
+
+const officeMapPills = [
+  { label: "60-Minute", detail: "Focused Session", Icon: Clock3 },
+  { label: "Prioritized", detail: "AI Workflow", Icon: ListChecks },
+  { label: "Clear 30-Day", detail: "Action Plan", Icon: Map },
+  { label: "Built for Trade", detail: "& Service Teams", Icon: UsersRound },
+]
 
 function PageSection({ id, children, className = "", navTheme = "light", fullDesktop = true }: { id?: string; children: ReactNode; className?: string; navTheme?: "light" | "dark"; fullDesktop?: boolean }) {
   return (
@@ -95,18 +103,29 @@ function CalculatorSpine() {
 
 function AssessmentSection() {
   return (
-    <PageSection id="assessment" className="relative isolate overflow-hidden bg-[#071422] py-11 text-white md:py-14 lg:py-16" navTheme="dark">
-      <Image src="/images/uploaded/ai-office/owner-reviewing-paperwork.jpg" alt="" fill sizes="100vw" className="-z-20 object-cover object-center" aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,20,34,0.96)_0%,rgba(7,20,34,0.88)_42%,rgba(7,20,34,0.62)_72%,rgba(7,20,34,0.42)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_12%,rgba(83,217,134,0.18),transparent_34%),linear-gradient(180deg,rgba(7,20,34,0.18)_0%,rgba(7,20,34,0.9)_100%)]" />
-      <div className="mx-auto max-w-[88rem]">
-        <div className="max-w-[760px]">
-          <h2 className="text-balance text-[clamp(2.35rem,5vw,5.3rem)] font-extrabold leading-[0.93] tracking-[-0.03em]">Start with the AI Office Map.</h2>
-          <p className="mt-5 max-w-[700px] text-lg font-semibold leading-7 text-white/82">A focused session that shows what is stuck, what your tools already handle, and which AI workflow to install first.</p>
-          <div className="mt-7 flex flex-col gap-4 sm:flex-row">
-            <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-            <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
+    <PageSection id="assessment" className="relative isolate overflow-hidden bg-[#071422] py-12 text-white md:py-14 lg:py-16" navTheme="dark">
+      <Image src={uploadedHomeImages.officeAdmin.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-[62%_center] lg:object-center" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(5,15,25,0.98)_0%,rgba(5,15,25,0.94)_33%,rgba(5,15,25,0.72)_58%,rgba(5,15,25,0.42)_78%,rgba(5,15,25,0.56)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(5,15,25,0.18)_0%,rgba(5,15,25,0.54)_72%,rgba(5,15,25,0.92)_100%),radial-gradient(circle_at_18%_20%,rgba(83,217,134,0.18),transparent_32%)]" />
+      <div className="mx-auto flex w-full max-w-[88rem] flex-col justify-center">
+        <div className="max-w-[790px] pt-10 md:pt-14 lg:pt-8">
+          <h2 className="max-w-[780px] text-balance text-[clamp(3rem,7vw,6.7rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.28)]">Start with the AI Office Map.</h2>
+          <p className="mt-6 max-w-[720px] text-balance text-lg font-semibold leading-8 text-white/84 sm:text-xl">A focused session that shows what is stuck, what your tools already handle, and which AI workflow to install first.</p>
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[58px] items-center justify-center gap-2 rounded-[0.8rem] bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_42px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Book the AI Office Map <ArrowRight className="h-5 w-5" aria-hidden="true" /></CTALink>
+            <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[58px] items-center justify-center rounded-[0.8rem] border border-white/22 bg-white/9 px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_42px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-white/36 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Get the Free Blueprint</CTALink>
           </div>
+        </div>
+        <div className="mt-14 grid gap-4 border-white/12 text-white/92 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-0">
+          {officeMapPills.map(({ label, detail, Icon }, index) => (
+            <div key={label} className={`flex items-center gap-4 rounded-[1rem] border border-white/12 bg-white/[0.045] p-4 backdrop-blur-[2px] lg:rounded-none lg:border-y-0 lg:border-r-0 lg:bg-transparent lg:py-0 lg:pl-6 ${index === 0 ? "lg:border-l-0 lg:pl-0" : "lg:border-l"}`}>
+              <Icon className="h-9 w-9 shrink-0 text-[#53d986]" strokeWidth={1.85} aria-hidden="true" />
+              <p className="text-sm font-extrabold leading-5 tracking-[-0.01em] text-white">
+                {label}
+                <span className="block text-white/86">{detail}</span>
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </PageSection>
