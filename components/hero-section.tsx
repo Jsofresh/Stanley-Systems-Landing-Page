@@ -373,15 +373,14 @@ export function SiteHeader() {
           </nav>
           <div className="hidden items-center gap-2 md:flex">
             <CTALink
-              href="/workflow-audit"
+              href="/ai-office-blueprint"
               kind="systems"
-              location="hero_nav_audit"
-              ctaLabel="Book the AI Office Map"
+              location="hero_nav_blueprint"
+              ctaLabel="Get the Free Blueprint"
               className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-[#62e89a]/45 bg-[#15803D] px-3 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_24px_rgba(10,85,38,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-4"
             >
-              Book the AI Office Map
+              Get the Free Blueprint
             </CTALink>
-            <a href="/how-the-assessment-works" className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border px-4 text-[13px] font-bold transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 ${isLight ? "border-[#cfded3] bg-white text-[#071D3A] hover:bg-[#f3faf1] focus:ring-offset-white" : "border-white/18 bg-white/8 text-white hover:bg-white/12 focus:ring-offset-[#071422]"}`}>How the AI Office Map Works</a>
           </div>
           <button
             type="button"
@@ -475,15 +474,14 @@ export function SiteHeader() {
                   </div>
                 )
               })}
-              <a href="/how-the-assessment-works" onClick={() => setMobileOpen(false)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-[#d6e5dc] bg-white px-5 text-sm font-bold text-[#071D3A]">How the AI Office Map Works</a>
               <CTALink
-                href="/workflow-audit"
+                href="/ai-office-blueprint"
                 kind="systems"
-                location="hero_mobile_nav_audit"
-                ctaLabel="Book the AI Office Map"
+                location="hero_mobile_nav_blueprint"
+                ctaLabel="Get the Free Blueprint"
                 className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#62e89a]/45 bg-[#15803D] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_14px_30px_rgba(10,85,38,0.22)]"
               >
-                Book the AI Office Map
+                Get the Free Blueprint
               </CTALink>
             </div>
           </div>
