@@ -48,7 +48,7 @@ const navGroups: MegaMenuGroup[] = [
     columnsClass: "grid-cols-[1fr_230px]",
     items: [
       { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Turn the AI Office Map into priority workflows, staff training, and your company playbook." },
-      { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate what copying, chasing, and reconciling cost." },
+      { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Get a custom first-pass AI workflow plan from one focused form." },
       { label: "AI Office Ops", href: "/pricing#ai-office-ops", description: "Keep installed workflows monitored, fixed, and improving." },
     ],
     featured: {
@@ -86,11 +86,11 @@ const navGroups: MegaMenuGroup[] = [
     label: "AI Office Map",
     href: "/workflow-audit",
     eyebrow: "Find the fix list",
-    summary: "Use the calculator, book the AI Office Map, then use the Sprint if you want Stanley Systems to build it.",
+    summary: "Start with the free Blueprint, book the AI Office Map, then use the Sprint if you want Stanley Systems to build it.",
     widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Run the numbers before the AI Office Map." },
+      { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Get a custom starting point before the full AI Office Map." },
       { label: "AI Office Map", href: "/workflow-audit", description: "See where office drag is costing time, money, follow-up, and quality." },
       { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Have Stanley Systems install the workflows." },
       { label: "How Stanley Systems Works", href: "/how-stanley-systems-works", description: "See the AI Office workflow path." },
@@ -100,11 +100,11 @@ const navGroups: MegaMenuGroup[] = [
     label: "Pricing",
     href: "/pricing",
     eyebrow: "Diagnose, build, maintain",
-    summary: "Calculator, AI Office Map, Installation Sprint, then AI Office Ops.",
+    summary: "Free Blueprint, AI Office Map, Installation Sprint, then AI Office Ops.",
     widthClass: "w-[min(420px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Pricing", href: "/pricing", description: "See the Admin Drag Calculator, AI Office Map, Sprint, and Ops ladder." },
+      { label: "Pricing", href: "/pricing", description: "See the Free Blueprint, AI Office Map, Sprint, and Ops ladder." },
       { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Starts at $3,500 after AI Office Map scope." },
       { label: "Ask us a question", href: "/contact?path=pre-buy", description: "Ask before buying if you need a quick route check." },
     ],
@@ -113,11 +113,11 @@ const navGroups: MegaMenuGroup[] = [
     label: "Resources",
     href: "/blog",
     eyebrow: "Owner tools",
-    summary: "Use these routes to find admin drag, see the thinking, or contact Stanley Systems.",
+    summary: "Use these routes to get the free Blueprint, see the thinking, or contact Stanley Systems.",
     widthClass: "w-[min(440px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate where copying, chasing, and delayed follow-up are costing capacity." },
+      { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Get practical AI staff plays from one office workflow form." },
       { label: "Case Notes", href: "/stanley-systems-case-study", description: "See how workflow gaps turn into owner-time problems." },
       { label: "Blog", href: "/blog", description: "Plain-English notes on AI office workflows and admin drag." },
       { label: "Contact", href: "/contact", description: "Send the workflow problem straight to Stanley Systems." },
@@ -312,9 +312,9 @@ export function SiteHeader() {
             <span>+1 (617) 958-6372</span>
           </a>
           <div className="hidden items-center gap-5 md:flex">
-            <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Admin Drag Calculator</a>
+            <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Free AI Office Blueprint</a>
             <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">AI Office Map</a>
-            <a href="/invoicing-delay-cash-flow-calculator" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Calculator</a>
+            <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Get the Free Blueprint</a>
             <a href="/contact" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
           </div>
         </div>
