@@ -56,7 +56,7 @@ export default function AiOfficeBlueprintPage() {
               <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">Specific tools, stuck points, staff cleanup work, billing drag, missed follow-up, and one messy example. That gives us enough detail to make the first Blueprint useful instead of generic.</p>
               <Link href="/workflow-audit" className="mt-6 inline-flex text-sm font-extrabold text-[#116832]">Need the full Map instead? <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </aside>
-            <div id="blueprint-form" className="order-1 scroll-mt-28 lg:order-2">
+            <div id="blueprint-form" className="order-1 scroll-mt-44 lg:order-2 lg:scroll-mt-48">
               <BlueprintIntakeForm />
             </div>
           </div>
