@@ -1,4 +1,6 @@
 import { randomUUID } from "node:crypto"
+import { appendFile, mkdir } from "node:fs/promises"
+import path from "node:path"
 import { NextResponse } from "next/server"
 import { forwardBlueprintRequest } from "@/lib/ai-office-blueprint/webhook-adapter"
 import { generateMockBlueprint } from "@/lib/ai-office-blueprint/mock-generator"
@@ -8,6 +10,7 @@ import type { AiOfficeBlueprintIntake } from "@/lib/ai-office-blueprint/types"
 const MAX_REQUEST_BYTES = 24_000
 const RATE_LIMIT_WINDOW_MS = 60_000
 const RATE_LIMIT_MAX = 5
+const SUBMISSION_LOG_PATH = "/home/jaden/.openclaw/data/stanley-landing/ai-office-blueprint-submissions.jsonl"
 const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>()
 
 const requiredFields: Array<keyof AiOfficeBlueprintIntake> = [
@@ -102,6 +105,11 @@ function validateIntake(intake: AiOfficeBlueprintIntake) {
   return { ok: true as const }
 }
 
+async function saveSubmission(record: unknown) {
+  await mkdir(path.dirname(SUBMISSION_LOG_PATH), { recursive: true })
+  await appendFile(SUBMISSION_LOG_PATH, `${JSON.stringify(record)}\n`, "utf8")
+}
+
 export async function POST(request: Request) {
   const contentLength = Number(request.headers.get("content-length") || 0)
   if (contentLength > MAX_REQUEST_BYTES) {
@@ -131,49 +139,44 @@ export async function POST(request: Request) {
     }
 
     const submissionId = `aob_${randomUUID()}`
+    const blueprint = generateMockBlueprint(intake, submissionId)
+    const html = renderAiOfficeBlueprintHtml(blueprint)
+    await saveSubmission({
+      submissionId,
+      submittedAt: new Date().toISOString(),
+      intake,
+      blueprint,
+    })
+
     let delivery
     try {
       delivery = await forwardBlueprintRequest(submissionId, intake)
-    } catch {
-      return NextResponse.json(
-        { ok: false, error: "Could not queue the Blueprint. Please try again.", submissionId },
-        { status: 502 },
-      )
+    } catch (error) {
+      delivery = {
+        accepted: true,
+        delivery: "local-preview" as const,
+        response: { warning: error instanceof Error ? error.message : "Webhook delivery failed after local save." },
+      }
     }
 
     if (!delivery.accepted) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Could not queue the Blueprint. Please try again.",
-          submissionId,
-        },
-        { status: 502 },
-      )
-    }
-
-    if (delivery.delivery === "mock") {
-      const blueprint = generateMockBlueprint(intake, submissionId)
-      const html = renderAiOfficeBlueprintHtml(blueprint)
-      return NextResponse.json({
-        ok: true,
-        queued: true,
-        delivery: "preview",
-        submissionId,
-        message: "Your Blueprint preview is queued. Check your email for the finished version.",
-        preview: {
-          blueprint,
-          html,
-        },
-      })
+      delivery = {
+        ...delivery,
+        accepted: true,
+        delivery: "local-preview" as const,
+      }
     }
 
     return NextResponse.json({
       ok: true,
       queued: true,
-      delivery: "queued",
+      delivery: delivery.delivery,
       submissionId,
-      message: "Your Blueprint is queued. Check your email for the finished version.",
+      message: "Your Blueprint preview is ready below. Stanley Systems also saved the request for follow-up.",
+      preview: {
+        blueprint,
+        html,
+      },
       result: delivery.response ?? null,
     })
   } catch {
