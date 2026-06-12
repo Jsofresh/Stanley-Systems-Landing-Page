@@ -309,8 +309,12 @@ export function SiteHeader() {
         <div className="mx-auto flex h-9 max-w-[92rem] items-center justify-between px-4 text-[12px] font-bold sm:px-6 lg:px-8">
           <a href="tel:+16179586372" className="inline-flex items-center gap-2 rounded-full transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">
             <Phone className="h-3.5 w-3.5 text-[#53d986]" aria-hidden="true" />
-            <span>+1 (617) 958-6372</span>
+            <span className="hidden sm:inline">+1 (617) 958-6372</span>
           </a>
+          <div className="flex items-center gap-3 md:hidden">
+            <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">AI Office Map</a>
+            <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Blueprint</a>
+          </div>
           <div className="hidden items-center gap-5 md:flex">
             <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Free AI Office Blueprint</a>
             <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">AI Office Map</a>
