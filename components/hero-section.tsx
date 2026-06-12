@@ -340,7 +340,7 @@ export function SiteHeader() {
           </a>
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
             {navGroups.map((group) => {
-              const hoverOnly = group.label === "Industries" || group.label === "AI Office Map" || group.label === "Resources"
+              const hoverOnly = group.label === "Industries" || group.label === "Resources"
               const classes = `inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[13px] font-bold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986] xl:px-4 ${navLinkClasses}`
               const contents = <>{group.label}<ChevronDown className={`h-3.5 w-3.5 transition-transform ${activeMenu === group.label ? "rotate-180" : ""}`} aria-hidden="true" /></>
               return hoverOnly ? (
