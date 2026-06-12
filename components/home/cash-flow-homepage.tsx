@@ -24,11 +24,11 @@ const uploadedHomeImages = {
   calculator: { src: "/images/uploaded/homepage/ai-office/admin-drag-calculator.jpg", alt: "Office workflow report showing hours lost, admin drag cost, and top office bottleneck", width: 1280, height: 960 },
   map: { src: "/images/uploaded/homepage/ai-office/ai-office-map-laptop.jpg", alt: "AI Office Map with behind, already handled, still chased, and workflow columns", width: 1280, height: 960 },
   officeAdmin: { src: "/images/uploaded/homepage/ai-office/service-owner-office-admin-shot.jpg", alt: "Service business owner and office admin reviewing paperwork at a desk", width: 1280, height: 720 },
-  checklistLaptop: { src: "/images/uploaded/homepage/ai-office/checklist-laptop-workflow-growth.jpg", alt: "Laptop showing an AI office workflow checklist with service business growth notes", width: 1280, height: 720 },
-  sprint: { src: "/images/uploaded/homepage/ai-office/installation-sprint.jpg", alt: "AI Office Installation Sprint workflow connections between field-service software, accounting, inbox, texts, and staff playbook", width: 1254, height: 1254 },
-  handoff: { src: "/images/uploaded/homepage/ai-office/office-handoff-automation.jpg", alt: "Office handoff automation for job details, billing readiness, estimate follow-up, and staff exceptions", width: 1280, height: 1219 },
-  playbook: { src: "/images/uploaded/homepage/ai-office/staff-ai-playbook.jpg", alt: "Staff AI playbook tied to SOPs and approved escalation rules", width: 1254, height: 1254 },
-  beforeAfter: { src: "/images/uploaded/homepage/ai-office/before-after-office-drag.jpg", alt: "Before and after office drag diagram: copying and chasing to cleaner records and faster follow-up", width: 1280, height: 960 },
+  checklistLaptop: { src: "/images/uploaded/homepage/ai-office/office-desk-invoice-checklist-highvis.jpg", alt: "Office desk with invoice checklist and high visibility service work context", width: 1280, height: 548 },
+  sprint: { src: "/images/uploaded/homepage/ai-office/installation-sprint-before-after-workflow.jpg", alt: "Installation Sprint before and after workflow for office cleanup", width: 1254, height: 1254 },
+  handoff: { src: "/images/uploaded/homepage/ai-office/office-handoff-automation-flow.jpg", alt: "Office handoff automation flow for service business admin work", width: 1254, height: 1254 },
+  playbook: { src: "/images/uploaded/homepage/ai-office/staff-ai-playbook-next-step-ready.jpg", alt: "Staff AI playbook with next step ready for the office team", width: 1254, height: 1254 },
+  beforeAfter: { src: "/images/uploaded/homepage/ai-office/installation-sprint-before-after-workflow.jpg", alt: "Before and after office drag diagram: copying and chasing to cleaner records and faster follow-up", width: 1254, height: 1254 },
   officeTeam: { src: "/images/uploaded/homepage/ai-office/office-team-workspace.jpg", alt: "Office team working together in a workspace", width: 1280, height: 720 },
 }
 
@@ -38,10 +38,10 @@ const lightButton = `${buttonBase} border border-[#d5e5da] bg-white text-[#071D3
 const darkGhostButton = `${buttonBase} border border-white/18 bg-white/8 text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 hover:bg-white/12 focus:ring-offset-[#071422]`
 
 const officeMapPills = [
-  { label: "60-Minute", detail: "Focused Session", Icon: Clock3 },
-  { label: "Prioritized", detail: "AI Workflow", Icon: ListChecks },
-  { label: "Clear 30-Day", detail: "Action Plan", Icon: Map },
-  { label: "Built for Trade", detail: "& Service Teams", Icon: UsersRound },
+  { text: "60-Minute Focused Session", Icon: Clock3 },
+  { text: "Prioritized AI Workflow", Icon: ListChecks },
+  { text: "Clear 30-Day Action Plan", Icon: Map },
+  { text: "Built for Trade & Service Teams", Icon: UsersRound },
 ]
 
 function PageSection({ id, children, className = "", navTheme = "light", fullDesktop = true }: { id?: string; children: ReactNode; className?: string; navTheme?: "light" | "dark"; fullDesktop?: boolean }) {
@@ -118,13 +118,12 @@ function AssessmentSection() {
             <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[58px] items-center justify-center rounded-full border border-white/22 bg-white/9 px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_42px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-white/36 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Get the Free Blueprint</CTALink>
           </div>
         </div>
-        <div className="mt-9 grid max-w-[620px] gap-3 text-white/92 sm:grid-cols-2 lg:mt-10">
-          {officeMapPills.map(({ label, detail, Icon }) => (
-            <div key={label} className="flex min-h-[74px] items-center gap-4 rounded-[1rem] border border-white/14 bg-white/[0.06] px-4 py-3 backdrop-blur-[2px]">
-              <Icon className="h-8 w-8 shrink-0 text-[#53d986]" strokeWidth={2} aria-hidden="true" />
-              <p className="min-w-0 text-[0.95rem] font-extrabold leading-[1.15] tracking-[-0.01em] text-white">
-                {label}
-                <span className="block text-white/86">{detail}</span>
+        <div className="mt-9 flex max-w-[1120px] flex-wrap gap-3 text-white/92 lg:mt-10">
+          {officeMapPills.map(({ text, Icon }) => (
+            <div key={text} className="flex min-h-[58px] w-fit items-center gap-2.5 rounded-[0.95rem] border border-white/14 bg-white/[0.06] px-3 py-2 backdrop-blur-[2px] sm:px-3.5">
+              <Icon className="h-6 w-6 shrink-0 text-[#53d986]" strokeWidth={2} aria-hidden="true" />
+              <p className="whitespace-nowrap text-[0.9rem] font-extrabold leading-none tracking-[-0.01em] text-white sm:text-[0.95rem]">
+                {text}
               </p>
             </div>
           ))}
@@ -136,9 +135,9 @@ function AssessmentSection() {
 
 function SprintSection() {
   const cards = [
+    uploadedHomeImages.handoff,
     uploadedHomeImages.sprint,
     uploadedHomeImages.playbook,
-    uploadedHomeImages.handoff,
   ]
   return (
     <PageSection id="sprint" className="relative isolate overflow-hidden bg-[#FBFCF7] py-11 text-[#071D3A] md:py-14 lg:py-16" fullDesktop={false}>
