@@ -149,6 +149,6 @@ All untrusted values are HTML-escaped. Prompt line breaks are preserved by the t
 
 The website side posts intake payload plus submission ID to `AI_OFFICE_BLUEPRINT_WEBHOOK_URL` when configured. Optional auth is controlled by `AI_OFFICE_BLUEPRINT_WEBHOOK_AUTH_HEADER` and `AI_OFFICE_BLUEPRINT_WEBHOOK_AUTH_TOKEN`.
 
-The automation side may return `accepted/queued` or generated Blueprint JSON plus rendered HTML/PDF locations. The website currently supports hosted HTML rendering and sample preview. PDF export should be added only through the existing Playwright dependency with a server-only renderer job. No new large PDF stack is required.
+The automation side may return `accepted/queued` or generated Blueprint JSON plus rendered HTML/PDF locations. The website supports hosted HTML rendering and a server-only Playwright PDF renderer for the sample Blueprint at `/ai-office-blueprint/sample-pdf`. Future generated Blueprint PDF jobs should reuse that renderer path or run inside the automation layer; no new large PDF stack is required.
 
 Website public UI must not mention internal tooling, webhook URLs, environment variable names, or implementation paths.

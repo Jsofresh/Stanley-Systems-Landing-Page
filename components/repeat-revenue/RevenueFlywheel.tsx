@@ -36,7 +36,7 @@ export function RevenueFlywheel() {
         <div className="relative min-h-[320px] overflow-hidden rounded-[1.65rem] border border-[#D5E9DC] bg-[#F8FBF9] shadow-[0_24px_70px_rgba(16,32,51,0.10),0_0_48px_rgba(21,128,61,0.12)] sm:min-h-[390px] lg:min-h-[480px]">
           <Image
             src="/images/repeat-revenue/repeat-revenue-flywheel.png"
-AI Office Ops loop visual showing job done, review ask, referral ask, old customer, missed call, and booked job connected by a green loop.
+            alt="AI Office Ops loop visual showing job done, review ask, referral ask, old customer, missed call, and booked job connected by a green loop."
             width={1536}
             height={1024}
             className="absolute inset-0 h-full w-full object-cover object-center"
