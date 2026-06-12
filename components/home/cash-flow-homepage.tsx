@@ -35,9 +35,9 @@ const greenButton = `${buttonBase} bg-[#15803D] text-white shadow-[inset_0_1px_0
 const lightButton = `${buttonBase} border border-[#d5e5da] bg-white text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-[#f4fbf6] focus:ring-offset-white`
 const darkGhostButton = `${buttonBase} border border-white/18 bg-white/8 text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 hover:bg-white/12 focus:ring-offset-[#071422]`
 
-function PageSection({ id, children, className = "", navTheme = "light" }: { id?: string; children: ReactNode; className?: string; navTheme?: "light" | "dark" }) {
+function PageSection({ id, children, className = "", navTheme = "light", fullDesktop = true }: { id?: string; children: ReactNode; className?: string; navTheme?: "light" | "dark"; fullDesktop?: boolean }) {
   return (
-    <section id={id} data-nav-theme={navTheme} className={`px-5 py-9 md:px-8 md:py-12 lg:flex lg:min-h-screen lg:items-center lg:px-10 ${className}`}>
+    <section id={id} data-nav-theme={navTheme} className={`px-5 py-9 md:px-8 md:py-12 lg:px-10 ${fullDesktop ? "lg:flex lg:min-h-screen lg:items-center" : ""} ${className}`}>
       {children}
     </section>
   )
@@ -172,7 +172,7 @@ function WorkflowCategoriesSection() {
 
 function FinalOfficeCTA() {
   return (
-    <PageSection className="bg-[#071422] text-white" navTheme="dark">
+    <PageSection className="bg-[#071422] text-white" navTheme="dark" fullDesktop={false}>
       <div className="mx-auto max-w-[82rem] text-center">
         <h2 className="mx-auto max-w-[860px] text-balance text-[clamp(2.15rem,5vw,4.9rem)] font-extrabold leading-[0.92] tracking-[-0.025em]">Find the office work slowing down profit.</h2>
         <p className="mx-auto mt-5 max-w-[680px] text-base font-semibold leading-7 text-white/70 sm:text-lg">Book the Map or get the free Blueprint to see where AI can help your current team move faster.</p>
