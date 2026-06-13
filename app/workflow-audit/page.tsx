@@ -46,26 +46,21 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="buy" data-motion-exempt className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#03162d] py-16 text-white sm:py-20 lg:py-24">
+        <section id="buy" data-motion-exempt className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#03162d] py-14 text-white sm:py-16 lg:py-20">
           <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_18%,rgba(18,65,106,0.5),transparent_36%),radial-gradient(circle_at_50%_100%,rgba(39,174,96,0.12),transparent_42%),linear-gradient(180deg,#041b35_0%,#03152b_58%,#020f22_100%)]" />
           <div className="absolute inset-0 -z-10 opacity-[0.18] [background-image:linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] [background-size:44px_44px]" />
           <div className={`${shell} text-center`}>
-            <p className="text-[13px] font-black uppercase tracking-[0.22em] text-[#8DF3A4]">Buy the Map</p>
-            <h2 className="mx-auto mt-4 max-w-5xl text-balance text-[2.75rem] font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-[4.75rem] lg:text-[5.1rem]">Buy the AI Office Map</h2>
-            <p className="mx-auto mt-5 max-w-[760px] text-balance text-lg font-semibold leading-8 text-white/68 sm:text-xl">
-              We trace the office drag, turn it into concrete fixes,<br className="hidden sm:block" />
-              and staff-ready AI plays—then point you at the first workflow worth installing.
-            </p>
+            <h2 className="mx-auto max-w-4xl text-balance text-[2.65rem] font-semibold leading-[0.98] tracking-[-0.032em] text-white sm:text-[4rem] lg:text-[4.45rem]">Buy the AI Office Map</h2>
 
-            <div className="mx-auto mt-8 max-w-[600px] rounded-[1.45rem] border border-white/13 bg-white/[0.035] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-md sm:p-8">
-              <p className="text-[4rem] font-semibold leading-none tracking-[-0.07em] text-white sm:text-[4.7rem]">$197</p>
-              <p className="mt-2 text-sm font-black uppercase tracking-[0.18em] text-[#8DF3A4]">One-time</p>
-              <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-20 w-full items-center justify-center rounded-full border border-[#7df19b]/50 bg-[#22c55e] px-8 py-5 text-xl font-extrabold text-white shadow-[0_18px_44px_rgba(34,197,94,0.28),inset_0_1px_0_rgba(255,255,255,0.22)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] sm:text-2xl">
-                Buy the AI Office Map <ArrowRight className="ml-4 h-7 w-7" aria-hidden="true" />
+            <div className="mx-auto mt-6 max-w-[520px] rounded-[1.35rem] border border-white/13 bg-white/[0.035] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-md sm:p-6">
+              <p className="text-[3.4rem] font-semibold leading-none tracking-[-0.045em] text-white sm:text-[3.95rem]">$197</p>
+              <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-[#8DF3A4] sm:text-sm">One-time</p>
+              <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-16 w-full items-center justify-center rounded-full border border-[#7df19b]/50 bg-[#22c55e] px-6 py-4 text-lg font-extrabold text-white shadow-[0_18px_44px_rgba(34,197,94,0.28),inset_0_1px_0_rgba(255,255,255,0.22)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] sm:text-xl">
+                Buy the AI Office Map <ArrowRight className="ml-3 h-6 w-6" aria-hidden="true" />
               </a>
             </div>
 
-            <div className="mx-auto mt-8 flex max-w-5xl flex-wrap items-center justify-center gap-x-8 gap-y-4 text-left text-base font-semibold text-white/88 sm:text-lg">
+            <div className="mx-auto mt-6 flex max-w-5xl flex-wrap items-center justify-center gap-x-8 gap-y-4 text-left text-base font-semibold text-white/88 sm:text-lg">
               {["Identify workflow bottlenecks", "Get concrete fixes", "Receive staff-ready AI plays"].map((item, index) => (
                 <div key={item} className="flex items-center gap-3">
                   <CheckCircle2 className="h-6 w-6 shrink-0 text-[#8DF3A4]" aria-hidden="true" />
