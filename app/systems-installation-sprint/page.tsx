@@ -27,9 +27,7 @@ export default function PAGE() {
 
         <section className={`${shell} py-16 lg:py-24`} aria-labelledby="sprint-demo-title">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Installation Sprint demo</p>
-            <h2 id="sprint-demo-title" className="mt-4 text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[4rem]">Office Installation Sprint Demo</h2>
-            <p className="mx-auto mt-4 max-w-3xl text-lg font-semibold leading-8 text-[#536173]">See what an installed AI office workflow looks like. The Sprint turns the Map into working screens, staff-facing process, and owner-approved workflow rules — not another strategy document.</p>
+            <h2 id="sprint-demo-title" className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[4rem]">Office Installation Sprint Demo</h2>
           </div>
           <div className="mt-9 overflow-hidden rounded-[2rem] border border-[#DDEBE2] bg-[#071D3A] shadow-[0_30px_90px_rgba(7,29,58,0.18)]">
             <video
