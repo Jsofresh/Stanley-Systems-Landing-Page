@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, CheckCircle2, ClipboardCheck, FileText, Gauge, Sparkles } from "lucide-react"
+import { ArrowRight, CheckCircle2, ClipboardCheck, FileText, Sparkles } from "lucide-react"
 import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
@@ -86,32 +86,20 @@ export default function Page() {
         </section>
 
         <section data-motion-exempt className={`${shell} py-16 lg:py-24`}>
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <SectionHeader eyebrow="Demo Preview" title="See What the Map Gives You" body="The Map traces office drag only far enough to turn it into usable fixes, prompts, tools, and install priorities." />
-            <div className="rounded-[2rem] border border-[#CFE8D5] bg-[#071D3A] p-5 text-white shadow-[0_24px_70px_rgba(7,29,58,0.18)]">
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4">
-                <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[#9BE7AE]">Fix Plan Preview</p>
-                    <p className="mt-1 text-xl font-extrabold tracking-[-0.015em]">What you can use</p>
-                  </div>
-                  <Gauge className="h-8 w-8 text-[#9BE7AE]" />
-                </div>
-                <div className="grid gap-3">
-                  {["Messy tech updates", "Invoices waiting on job details", "Follow-up living in memory"].map((label, index) => (
-                    <div key={label} className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-                      <div className="rounded-2xl bg-white/8 p-4 text-sm font-bold text-white/78">{label}</div>
-                      <ArrowRight className="h-5 w-5 text-[#9BE7AE]" />
-                      <div className="rounded-2xl border border-[#9BE7AE]/30 bg-[#9BE7AE]/12 p-4 text-sm font-bold text-[#DFFBE6]">{["Prompt + closeout checklist", "Billing-prep AI play", "First workflow to install"][index]}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 rounded-2xl bg-[#DDF7E8] p-4 text-[#071D3A]">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-[#116832]">Map Output</p>
-                  <p className="mt-2 text-lg font-extrabold tracking-[-0.02em]">Use this prompt, change this handoff, skip this tool, and install this workflow first.</p>
-                </div>
-              </div>
-            </div>
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-[#15803D]">Demo Preview</p>
+            <h2 className="mt-3 text-[2.25rem] font-semibold leading-[1] tracking-[-0.035em] text-[#071D3A] sm:text-[4rem]">See What the Map Gives You</h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg font-semibold leading-8 text-[#536173]">Watch the demo preview to see how the AI Office Map turns office drag into usable fixes, prompts, tools, and install priorities.</p>
+          </div>
+          <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-[2rem] border border-[#CFE8D5] bg-[#071D3A] p-2 shadow-[0_24px_70px_rgba(7,29,58,0.18)] sm:p-3">
+            <video
+              className="aspect-video w-full rounded-[1.5rem] bg-[#071D3A] object-cover"
+              src="/videos/ai-office-map-demo-preview.mp4"
+              poster="/images/uploaded/ai-office/ai-office-map-demo-preview-poster.jpg"
+              controls
+              playsInline
+              preload="metadata"
+            />
           </div>
         </section>
 
