@@ -135,25 +135,63 @@ def generate_blueprint(record: dict[str, Any]) -> dict[str, Any]:
         best_use_case = f"Turn messy field, inbox, and spreadsheet inputs into {desired} before work reaches billing or follow-up."
         quick_win = f"Pick one repeated handoff in {tools[0]} and standardize the exact fields staff must confirm before passing it forward."
 
+    tool_list = ", ".join(tools[:4])
     play_1_prompt = (
-        f"You are helping {business}, a {industry}. Turn the raw office input below into {desired}.\n\n"
-        "Return exactly:\n"
-        "1. Clean internal note\n"
-        "2. Missing information to check\n"
-        "3. Customer-safe update if needed\n"
-        "4. Next office action and owner\n"
-        "5. Manager approval flag\n\n"
-        "Raw input:\n[PASTE THE REAL NOTE HERE]"
+        f"You are an AI office assistant helping {business}, a {industry}. The team uses: {tool_list}.\n\n"
+        f"Goal: turn messy job or office input into {desired} without inventing facts.\n\n"
+        "Paste this prompt with one real messy note, email, text, spreadsheet row, or job closeout.\n\n"
+        "RAW INPUT:\n[PASTE THE REAL NOTE OR THREAD HERE]\n\n"
+        "RETURN IN THIS EXACT STRUCTURE:\n"
+        "1. Clean internal job note: 3 to 6 bullets, plain language, no guesses.\n"
+        "2. Missing-info checklist: fields staff must verify before this moves forward. Mark each as critical, useful, or optional.\n"
+        "3. System update draft: the note that should be pasted into the field-service or CRM record.\n"
+        "4. Customer-safe update: one short message that does not mention internal confusion.\n"
+        "5. Owner or manager escalation: only include if there is pricing, warranty, upset customer, refund, schedule, legal, or promise risk.\n"
+        "6. Next staff action: one owner, one action, one deadline.\n\n"
+        "RULES:\n"
+        "- Do not send anything to the customer. Draft only.\n"
+        "- Do not make up prices, quantities, warranty status, approvals, dates, or promises.\n"
+        "- If a fact is missing, put it in the missing-info checklist instead of guessing.\n"
+        f"- Format the output so a non-technical office staff member at {business} can use it immediately."
     )
     play_2_prompt = (
-        f"Build a billing prep packet for {business}. Use this completed-work context and identify what blocks invoicing today.\n\n"
-        "Return: billing summary, billable details mentioned, missing fields, approval gaps, and the next staff action.\n\n"
-        "Context:\n[PASTE JOB CLOSEOUT CONTEXT HERE]"
+        f"You are building an invoice-ready closeout packet for {business}. The office stack includes {tool_list}.\n\n"
+        "Use this when a job is marked complete but billing is delayed because details are scattered or incomplete.\n\n"
+        "JOB CONTEXT:\n[PASTE JOB CLOSEOUT NOTES, TECH NOTES, PHOTOS SUMMARY, EMAILS, MATERIALS, APPROVALS, AND BILLING CONTEXT HERE]\n\n"
+        "RETURN:\n"
+        "1. Invoice-ready work summary: what happened, written in customer-safe billing language.\n"
+        "2. Billable detail table: labor, parts/materials, approvals, warranty flags, inspection/schedule dependencies, unknowns.\n"
+        "3. Blocking issues: the exact missing facts preventing invoice creation.\n"
+        "4. Staff chase list: who to ask, what to ask, and the shortest message to ask it.\n"
+        "5. Accounting note: what should be checked in QuickBooks or the accounting system before sending.\n"
+        "6. Send/no-send recommendation: ready to invoice, needs staff check, or manager review required.\n\n"
+        "QUALITY BAR:\n"
+        "- Be specific to this job.\n"
+        "- Separate confirmed facts from assumptions.\n"
+        "- Do not invent quantities, SKUs, prices, taxes, terms, or warranty status.\n"
+        "- Make it usable by a coordinator who knows the business but is not an AI expert."
     )
     play_3_prompt = (
-        f"Create a follow-up recovery action for {business}. Use the stale estimate, invoice, callback, or customer update below.\n\n"
-        "Return: customer message draft, internal next action, owner, urgency, and escalation flag.\n\n"
-        "Context:\n[PASTE FOLLOW-UP CONTEXT HERE]"
+        f"You are creating a daily follow-up recovery queue for {business}. The team uses {tool_list}.\n\n"
+        "Use this for stale estimates, unpaid invoices, callbacks, warranty questions, or customer updates that are sitting without an owner.\n\n"
+        "FOLLOW-UP CONTEXT:\n[PASTE ESTIMATE, INVOICE, CUSTOMER THREAD, ACCOUNT NOTE, OR CALLBACK LIST HERE]\n\n"
+        "RETURN A QUEUE WITH THESE COLUMNS:\n"
+        "- Customer or job\n"
+        "- Situation in one line\n"
+        "- Money or urgency at stake\n"
+        "- Next message draft\n"
+        "- Internal action owner\n"
+        "- Due time\n"
+        "- Escalation flag\n"
+        "- What system should be updated after action is taken\n\n"
+        "THEN RETURN:\n"
+        "1. The highest-value follow-up to do first and why.\n"
+        "2. A staff rule for when AI can draft vs. when a manager must approve.\n"
+        "3. A 10-minute end-of-day routine to keep this from building up again.\n\n"
+        "RULES:\n"
+        "- Draft messages, do not send them.\n"
+        "- Keep customer messages short, human, and specific.\n"
+        "- Flag payment disputes, angry customers, discounts, refunds, or legal language for a person."
     )
 
     return {
@@ -169,40 +207,40 @@ def generate_blueprint(record: dict[str, Any]) -> dict[str, Any]:
         "toolsMentioned": tools,
         "plays": [
             build_play(
-                "Messy Office Input to Clean Handoff",
-                f"Use this when {business} staff get rough notes, customer messages, job updates, or spreadsheet details that need to become {desired}.",
+                "Messy Input to Office-Ready Work Packet",
+                f"Workflow change: stop rewriting the same rough note three times. Staff paste raw notes from {tools[0]}, Gmail, texts, or spreadsheets into this prompt before updating records or replying to customers.",
                 messy,
-                f"A cleaned internal note, missing-info list, customer-safe wording, next action, and approval flag for {business}.",
-                "AI prepares the handoff. Staff confirms facts, prices, promises, and system updates before anything is sent or entered.",
-                "Less retyping, fewer dropped details, and faster movement from field notes to finished office work.",
+                f"A clean internal note, missing-info checklist, system update draft, customer-safe update, escalation flag, and one next staff action for {business}.",
+                "AI does the first pass. Staff verifies facts, prices, promises, dates, approvals, and system updates before anything is sent or entered.",
+                "Turns messy inputs into usable office work faster while keeping human approval on anything risky.",
                 play_1_prompt,
             ),
             build_play(
-                "Billing Delay Check",
-                f"Use this when completed work at {business} cannot move cleanly into invoice prep or payment follow-up.",
+                "Invoice-Ready Closeout Packet",
+                f"Workflow change: before a completed job waits in billing, staff run the job context through this prompt and produce a closeout packet with confirmed facts, missing fields, and approval gaps.",
                 billing,
-                "A billing-ready summary, missing fields, approval gaps, and the exact detail staff must chase before invoicing.",
-                "AI assembles the packet. Staff owns billable detail, accounting accuracy, and final invoice approval.",
-                "Faster billing prep and fewer end-of-day invoice delays.",
+                "Invoice-ready work summary, billable detail table, blocking issues, staff chase list, accounting check, and send/no-send recommendation.",
+                "AI organizes the billing packet. Staff owns financial accuracy, quantities, warranty status, and final invoice approval.",
+                "Shortens the delay between completed work and invoice-ready detail, especially when photos, parts, approvals, or inspection status are scattered.",
                 play_2_prompt,
             ),
             build_play(
-                "Follow-Up Recovery Queue",
-                f"Use this when {business} has estimates, unpaid invoices, callbacks, or customer updates sitting without a clear next action.",
+                "Daily Follow-Up Recovery Queue",
+                f"Workflow change: once per day, paste stale estimates, unpaid invoices, callbacks, or customer threads into this prompt so follow-up work gets ranked, owned, and recorded.",
                 follow_up,
-                "A ranked next action, message draft, owner, urgency level, and escalation flag.",
-                "AI drafts and organizes. Staff confirms timing, account status, and tone before sending.",
-                "More recovered work and fewer follow-ups living in memory or scattered lists.",
+                "A follow-up queue with customer/job, situation, money or urgency at stake, next message draft, owner, due time, escalation flag, and system update destination.",
+                "AI prioritizes and drafts. Staff confirms account status, customer tone, and timing before sending anything.",
+                "Recovers open money and customer momentum that would otherwise sit in inboxes, spreadsheets, or the owner's memory.",
                 play_3_prompt,
             ),
         ],
         "quickWinChecklist": [
-            f"Choose one repeated {workflow.lower()} example from this week.",
-            f"Collect five real inputs from {tools[0]} or the inbox before changing any software.",
-            "Run those five examples through the matching prompt in this Blueprint.",
-            "Write down every fact staff still had to verify manually.",
-            "Turn those manual checks into a short review checklist for the team.",
-            "Use the checklist for one week before automating anything deeper.",
+            f"Pick one workflow lane first: {workflow}. Do not try to fix every office handoff at once.",
+            f"Create one shared intake spot for this lane: a saved view, sheet tab, inbox label, or task list fed by {tools[0]} and the inbox.",
+            "Require staff to paste the raw note/thread into the matching prompt before they rewrite it manually.",
+            "Add three review columns beside the output: confirmed facts, missing facts, and manager approval needed.",
+            "For five real jobs, compare AI output against what staff would normally type. Keep every correction as a new checklist rule.",
+            "At the end of the week, turn the recurring missing facts into required fields or a closeout checklist inside the existing system.",
         ],
         "recommendedWorkflow": workflow,
         "recommendedWorkflowReason": f"The intake points to {workflow_reason}. That is the fastest place to create capacity without forcing {business} to switch systems first.",

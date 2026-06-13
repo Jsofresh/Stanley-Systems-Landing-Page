@@ -6,8 +6,8 @@ creating the custom blueprint JSON from the intake. This script only:
 - validates the JSON shape lightly,
 - fills templates/ai-office-blueprint/fable-blueprint-template.html,
 - saves the rendered HTML,
-- sends it through a Hermes Google Workspace profile as an HTML email with an
-  .html attachment.
+- prints the HTML to PDF,
+- sends a short email with the Blueprint PDF attached.
 
 No secrets are printed.
 """
@@ -19,6 +19,8 @@ import html
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 from datetime import datetime, timezone
 from email.message import EmailMessage
@@ -40,7 +42,12 @@ def esc(value: Any) -> str:
 
 def checklist(items: list[str]) -> str:
     clean = [str(item).strip() for item in items if str(item).strip()]
-    return "\n".join(f"<li>{esc(item)}</li>" for item in clean[:8])
+    rows = []
+    for idx, item in enumerate(clean[:8], start=1):
+        rows.append(
+            f'<div class="check-item"><span class="cbox"></span><span class="cidx">{idx}.</span><span>{esc(item)}</span></div>'
+        )
+    return "\n".join(rows)
 
 
 def token_map(blueprint: dict[str, Any]) -> dict[str, str]:
@@ -98,19 +105,54 @@ def gmail_service(profile: Path):
     return build("gmail", "v1", credentials=creds, cache_discovery=False)
 
 
-def send_email(profile: Path, to_email: str, subject: str, html_body: str, attachment_path: Path, from_header: str | None = None) -> dict[str, Any]:
+def render_pdf(html_path: Path, pdf_path: Path) -> None:
+    chromium = shutil.which("chromium") or shutil.which("chromium-browser") or shutil.which("google-chrome")
+    if not chromium:
+        raise FileNotFoundError("Chromium is required to render Blueprint PDF")
+    pdf_path.parent.mkdir(parents=True, exist_ok=True)
+    cmd = [
+        chromium,
+        "--headless",
+        "--disable-gpu",
+        "--no-sandbox",
+        "--disable-dev-shm-usage",
+        "--print-to-pdf-no-header",
+        f"--print-to-pdf={pdf_path}",
+        html_path.as_uri(),
+    ]
+    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=45)
+    if result.returncode != 0 or not pdf_path.exists() or pdf_path.stat().st_size < 10_000:
+        raise RuntimeError((result.stderr or result.stdout or "PDF render failed").strip())
+
+
+def email_body_html(business_name: str) -> str:
+    safe_business = esc(business_name or "your business")
+    return f"""
+    <div style="font-family:Arial,Helvetica,sans-serif;line-height:1.55;color:#111827;max-width:620px">
+      <p>Thanks for filling out the AI Office Blueprint form.</p>
+      <p>Your customized Stanley Systems Blueprint for <strong>{safe_business}</strong> is attached as a downloadable PDF.</p>
+      <p>Start with the first staff prompt and the one-week workflow change. The goal is not generic AI tips. It is to help your team turn messy job notes, billing details, follow-ups, and office handoffs into cleaner work faster.</p>
+      <p>If you want Stanley Systems to map the full workflow and install the first AI Office system, book the AI Office Map here:<br><a href="https://stanley-systems.com/workflow-audit">https://stanley-systems.com/workflow-audit</a></p>
+      <p>Stanley Systems</p>
+    </div>
+    """.strip()
+
+
+def send_email(profile: Path, to_email: str, subject: str, email_html: str, pdf_path: Path, from_header: str | None = None) -> dict[str, Any]:
     msg = EmailMessage()
     msg["To"] = to_email
     if from_header:
         msg["From"] = from_header
     msg["Subject"] = subject
-    msg.set_content("Your Stanley Systems AI Office Blueprint is attached as HTML. Open the attachment in a browser if this email client strips formatting.")
-    msg.add_alternative(html_body, subtype="html")
+    msg.set_content(
+        "Thanks for filling out the AI Office Blueprint form. Your customized Stanley Systems Blueprint is attached as a downloadable PDF."
+    )
+    msg.add_alternative(email_html, subtype="html")
     msg.add_attachment(
-        attachment_path.read_bytes(),
-        maintype="text",
-        subtype="html",
-        filename=attachment_path.name,
+        pdf_path.read_bytes(),
+        maintype="application",
+        subtype="pdf",
+        filename=pdf_path.name,
     )
     raw = base64.urlsafe_b64encode(msg.as_bytes()).decode("ascii")
     result = gmail_service(profile).users().messages().send(userId="me", body={"raw": raw}).execute()
@@ -145,15 +187,19 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     safe_id = re.sub(r"[^A-Za-z0-9_.-]", "-", str(blueprint.get("blueprintId") or submission.get("submissionId") or "blueprint"))
     html_path = out_dir / f"{safe_id}.html"
+    pdf_path = out_dir / f"{safe_id}.pdf"
     html_path.write_text(rendered, encoding="utf-8")
+    render_pdf(html_path, pdf_path)
 
-    subject = f"Your Stanley Systems AI Office Blueprint for {blueprint.get('businessName') or intake.get('businessName') or 'your office'}"
+    business_name = str(blueprint.get('businessName') or intake.get('businessName') or 'your office')
+    subject = f"Your Stanley Systems AI Office Blueprint for {business_name}"
+    email_html = email_body_html(business_name)
     if args.dry_run:
-        print(json.dumps({"ok": True, "dry_run": True, "html_path": str(html_path), "to": to_email, "subject": subject}, indent=2))
+        print(json.dumps({"ok": True, "dry_run": True, "html_path": str(html_path), "pdf_path": str(pdf_path), "to": to_email, "subject": subject}, indent=2))
         return 0
 
-    result = send_email(Path(args.profile), to_email, subject, rendered, html_path, from_header='"Stanley Systems" <jaden@stanley-systems.com>')
-    print(json.dumps({"ok": True, "html_path": str(html_path), "to": to_email, "subject": subject, "gmail": result}, indent=2))
+    result = send_email(Path(args.profile), to_email, subject, email_html, pdf_path, from_header='"Stanley Systems" <jaden@stanley-systems.com>')
+    print(json.dumps({"ok": True, "html_path": str(html_path), "pdf_path": str(pdf_path), "to": to_email, "subject": subject, "gmail": result}, indent=2))
     return 0
 
 
