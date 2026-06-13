@@ -231,7 +231,7 @@ export function BlueprintIntakeForm() {
   const questionLabel = useMemo(() => `Question ${currentIndex + 1} of ${fields.length}`, [currentIndex])
 
   useEffect(() => {
-    const raf = requestAnimationFrame(() => inputRef.current?.focus())
+    const raf = requestAnimationFrame(() => inputRef.current?.focus({ preventScroll: true }))
     return () => cancelAnimationFrame(raf)
   }, [currentIndex])
 
