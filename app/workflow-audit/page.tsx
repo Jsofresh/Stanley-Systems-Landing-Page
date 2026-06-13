@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react"
 import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
@@ -51,36 +51,41 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="buy" data-motion-exempt className="bg-[#071D3A] py-16 text-white lg:py-24">
-          <div className={`${shell} grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-center`}>
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-[#9BE7AE]">Buy the Map</p>
-              <h2 className="mt-3 text-[2.35rem] font-semibold leading-[1] tracking-[-0.04em] text-white sm:text-[4.35rem]">Ready to find the first workflow worth fixing?</h2>
-              <p className="mt-5 max-w-3xl text-lg font-semibold leading-8 text-white/72">Buy the AI Office Map for $197. We trace the office drag, turn it into concrete fixes and staff-ready AI plays, then point you at the first workflow worth installing.</p>
-              <div className="mt-7 grid gap-3 sm:grid-cols-3">
-                {["$197 flat purchase", "45–60 minute work session", "$197 credited toward your Sprint"].map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 text-sm font-extrabold text-white/88">{item}</div>
-                ))}
-              </div>
+        <section id="buy" data-motion-exempt className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#03162d] py-16 text-white sm:py-20 lg:py-24">
+          <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_18%,rgba(18,65,106,0.5),transparent_36%),radial-gradient(circle_at_50%_100%,rgba(39,174,96,0.12),transparent_42%),linear-gradient(180deg,#041b35_0%,#03152b_58%,#020f22_100%)]" />
+          <div className="absolute inset-0 -z-10 opacity-[0.18] [background-image:linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] [background-size:44px_44px]" />
+          <div className={`${shell} text-center`}>
+            <p className="text-[13px] font-black uppercase tracking-[0.22em] text-[#8DF3A4]">Buy the Map</p>
+            <h2 className="mx-auto mt-4 max-w-5xl text-balance text-[2.75rem] font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-[4.75rem] lg:text-[5.1rem]">Buy the AI Office Map</h2>
+            <p className="mx-auto mt-5 max-w-[760px] text-balance text-lg font-semibold leading-8 text-white/68 sm:text-xl">
+              We trace the office drag, turn it into concrete fixes,<br className="hidden sm:block" />
+              and staff-ready AI plays—then point you at the first workflow worth installing.
+            </p>
+
+            <div className="mx-auto mt-8 max-w-[600px] rounded-[1.45rem] border border-white/13 bg-white/[0.035] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-md sm:p-8">
+              <p className="text-[4rem] font-semibold leading-none tracking-[-0.07em] text-white sm:text-[4.7rem]">$197</p>
+              <p className="mt-2 text-sm font-black uppercase tracking-[0.18em] text-[#8DF3A4]">One-time</p>
+              <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-20 w-full items-center justify-center rounded-full border border-[#7df19b]/50 bg-[#22c55e] px-8 py-5 text-xl font-extrabold text-white shadow-[0_18px_44px_rgba(34,197,94,0.28),inset_0_1px_0_rgba(255,255,255,0.22)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] sm:text-2xl">
+                Buy the AI Office Map <ArrowRight className="ml-4 h-7 w-7" aria-hidden="true" />
+              </a>
             </div>
-            <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)]">
-              <p className="text-sm font-black uppercase tracking-[0.16em] text-[#9BE7AE]">Checkout</p>
-              <div className="mt-4 rounded-[1.5rem] bg-white p-5 text-[#071D3A]">
-                <div className="flex items-end justify-between gap-4 border-b border-[#DDEBE2] pb-5">
-                  <div>
-                    <p className="text-sm font-extrabold text-[#536173]">AI Office Map</p>
-                    <p className="mt-1 text-5xl font-semibold tracking-[-0.06em]">$197</p>
-                  </div>
-                  <p className="rounded-full bg-[#DDF7E8] px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#116832]">paid diagnostic</p>
+
+            <div className="mx-auto mt-8 flex max-w-5xl flex-wrap items-center justify-center gap-x-8 gap-y-4 text-left text-base font-semibold text-white/88 sm:text-lg">
+              {["Identify workflow bottlenecks", "Get concrete fixes", "Receive staff-ready AI plays"].map((item, index) => (
+                <div key={item} className="flex items-center gap-3">
+                  <CheckCircle2 className="h-6 w-6 shrink-0 text-[#8DF3A4]" aria-hidden="true" />
+                  <span>{item}</span>
+                  {index < 2 ? <span className="ml-5 hidden h-7 w-px bg-white/20 lg:inline-block" aria-hidden="true" /> : null}
                 </div>
-                <div className="mt-5 grid gap-3">
-                  {["Fix list, quick wins, and workflow priorities", "Staff AI prompts your team can use immediately", "Tool guidance and the first install recommendation"].map((item) => (
-                    <div key={item} className="flex items-start gap-3 text-sm font-bold leading-6 text-[#536173]"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" />{item}</div>
-                  ))}
-                </div>
+              ))}
+            </div>
+            <div className="mx-auto mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-base font-semibold text-white/54 sm:text-lg">
+              <div className="flex items-center gap-3">
+                <ShieldCheck className="h-6 w-6 shrink-0 text-[#8DF3A4]/90" aria-hidden="true" />
+                <span>Checkout in Stripe</span>
               </div>
-              <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={`${primary} mt-6 w-full`}>Book the AI Office Map <ArrowRight className="ml-2 h-5 w-5" /></a>
-              <p className="mt-4 text-center text-sm font-semibold leading-6 text-white/58">Checkout opens in Stripe. After purchase, you will pick the best time for the Map.</p>
+              <span className="hidden text-white/35 sm:inline">•</span>
+              <span>Pick your session time after purchase</span>
             </div>
           </div>
         </section>
