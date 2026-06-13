@@ -198,8 +198,8 @@ export function BuyerOnboardingForm() {
       setSubmitState("error")
       setSubmitMessage(
         error instanceof Error
-          ? `${error.message} If needed, email hello@stanley-systems.com directly.`
-          : "Something went wrong. If needed, email hello@stanley-systems.com directly.",
+          ? `${error.message} If needed, email jaden@stanley-systems.com directly.`
+          : "Something went wrong. If needed, email jaden@stanley-systems.com directly.",
       )
     }
   }

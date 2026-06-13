@@ -205,7 +205,7 @@ Recommended route:
   - Make clear payment does not start Cash Flow Collection System, Repeat Revenue System, or custom implementation.
   - Primary next action: scheduling or intake.
   - If no scheduler route is approved, primary action routes to `/contact` with copy asking the buyer to complete any missing intake details.
-  - Secondary fallback: `hello@stanley-systems.com`.
+  - Secondary fallback: `jaden@stanley-systems.com`.
 
 Recommended later routes if Jaden approves them:
 

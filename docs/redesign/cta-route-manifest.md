@@ -15,8 +15,8 @@ Generated before redesign implementation. Desired routing rules come from `docs/
 
 - `app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx:269` href: `https://calendly.com/stanleysystems/30min`
   - context: t with the checklist, then book a short review if you want help tightening the billing path."} </p> <div className="mt-5 flex flex-col gap-3 sm:flex-row"> <a href="https://calendly.com/stanleysystems/30min" onClick={() => track("stanley_paid_calc_booking_cta_c
-- `app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx:276` href: `mailto:hello@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist`
-  - context: t-semibold text-white transition hover:bg-[#166534]" > {highSeverity ? "Book a 15-minute billing audit" : "Book a review call"} </a> <a href="mailto:hello@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist" onClick={() => track("stanley_p
+- `app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx:276` href: `mailto:jaden@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist`
+  - context: t-semibold text-white transition hover:bg-[#166534]" > {highSeverity ? "Book a 15-minute billing audit" : "Book a review call"} </a> <a href="mailto:jaden@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist" onClick={() => track("stanley_p
 - `app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1065` href: `auditHref`
   - context: : Workflow Audit</div> <p className="mt-1 text-sm leading-6 text-slate-700">Check the real records. Find the first leak. Stop the repeat.</p> </div> </div> <Link href={auditHref} target="_blank" rel="noopener noreferrer" data-analytics-event="audit_checkout_cl
 - `app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1374` href: `auditHref`

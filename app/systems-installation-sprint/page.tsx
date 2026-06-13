@@ -1,25 +1,11 @@
 import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
-import { ContactSection } from "@/components/contact-section"
+import { InstallationSprintContactForm } from "@/components/installation-sprint-contact-form"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const primary = "inline-flex min-h-14 items-center justify-center rounded-full bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
-const secondary = "inline-flex min-h-14 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-8 py-4 text-base font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:bg-[#f3fbf5]"
-
-function Bullets({ items }: { items: string[] }) {
-  return <ul className="mt-6 grid gap-3">{items.map((item) => <li key={item} className="flex gap-3 text-base font-semibold leading-7 text-[#34495F]"><CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#15803D]" />{item}</li>)}</ul>
-}
-
-const installSteps = [
-  { title: "Map locked", copy: "AI Office Map complete and workflows selected." },
-  { title: "Playbook built", copy: "Your company playbook built from real staff workflow and owner-approved rules." },
-  { title: "Staff trained", copy: "Staff AI training so the team knows what stays human-reviewed." },
-  { title: "Workflows installed", copy: "Priority workflows installed, tested, and connected around existing tools." },
-  { title: "Proof delivered", copy: "Proof report delivered so the owner sees what changed." },
-  { title: "Launch support", copy: "30 days light support after launch." },
-]
 
 export default function PAGE() {
   return (
@@ -34,25 +20,30 @@ export default function PAGE() {
             <div className="max-w-[820px]">
               <h1 className="text-balance text-[2.65rem] font-semibold leading-[0.98] tracking-[-0.035em] text-white sm:text-[4.45rem]">Turn your AI Office Map into staff training, a company playbook, and practical office workflows.</h1>
               <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/78">Stanley Systems installs practical AI-guided workflows around your existing software so your current office team can handle more billing, follow-up, handoffs, and job admin without another admin hire.</p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/workflow-audit" className={primary}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/pricing" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/35 bg-white/12 px-8 py-4 text-base font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18">Compare Map, Sprint, and Ops</Link></div>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="#installation-contact" className={primary}>Talk about an Installation Sprint <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/pricing" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/35 bg-white/12 px-8 py-4 text-base font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18">Compare Map, Sprint, and Ops</Link></div>
             </div>
           </div>
         </section>
 
-        <section className={`${shell} py-16 lg:py-20`}>
-          <div className="mb-8 max-w-4xl">
-            <h2 className="text-[2.25rem] font-semibold leading-[1] tracking-[-0.04em] sm:text-[4rem]">What the Installation Sprint delivers</h2>
-            <p className="mt-4 text-lg font-semibold leading-8 text-[#536173]">The Sprint turns the Map into working office habits, approved rules, staff training, and installed workflows the team can actually use.</p>
+        <section className={`${shell} py-16 lg:py-24`} aria-labelledby="sprint-demo-title">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Installation Sprint demo</p>
+            <h2 id="sprint-demo-title" className="mt-4 text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[4rem]">Office Installation Sprint Demo</h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg font-semibold leading-8 text-[#536173]">See what an installed AI office workflow looks like. The Sprint turns the Map into working screens, staff-facing process, and owner-approved workflow rules — not another strategy document.</p>
           </div>
-          <div className="grid gap-5 lg:grid-cols-3">
-            {installSteps.map((item) => <article key={item.title} className="rounded-[1.65rem] border border-[#DDEBE2] bg-white p-7 shadow-[0_14px_38px_rgba(7,29,58,0.05)]"><h3 className="text-2xl font-extrabold tracking-[-0.035em] text-[#071D3A]">{item.title}</h3><p className="mt-4 text-xl font-bold leading-8 text-[#34495F]">{item.copy}</p></article>)}
+          <div className="mt-9 overflow-hidden rounded-[2rem] border border-[#DDEBE2] bg-[#071D3A] shadow-[0_30px_90px_rgba(7,29,58,0.18)]">
+            <video
+              src="/videos/installation-sprint/office-installation-sprint-demo.mp4"
+              poster="/videos/installation-sprint/office-installation-sprint-demo-poster.jpg"
+              controls
+              playsInline
+              preload="metadata"
+              className="aspect-video w-full bg-[#071D3A]"
+            />
           </div>
         </section>
 
-        <section className={`${shell} pb-20 lg:pb-24`}><div className="rounded-[2rem] bg-white p-6 shadow-[0_18px_54px_rgba(7,29,58,0.06)]"><h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Why the Map comes first</h2><Bullets items={["The Map shows which workflows are worth installing before implementation starts.", "Stanley Systems uses your software limits, staff roles, and company playbook gaps to scope the Sprint.", "If the Map shows no clear fit, you avoid buying an implementation that should not be built."]} /></div></section>
-        <section className={`${shell} pb-20 lg:pb-24`}><div className="grid gap-6 lg:grid-cols-3"><article className="rounded-[2rem] bg-white p-6 shadow-[0_18px_54px_rgba(7,29,58,0.06)]"><h2 className="text-3xl font-semibold tracking-[-0.04em]">What gets installed</h2><Bullets items={["Practical workflows for billing readiness, follow-up, handoffs, records, or job admin.", "AI-guided drafts, checks, summaries, and routing around your existing tools.", "Owner-approved rules, examples, templates, and escalation points."]} /></article><article className="rounded-[2rem] bg-white p-6 shadow-[0_18px_54px_rgba(7,29,58,0.06)]"><h2 className="text-3xl font-semibold tracking-[-0.04em]">What your staff learns</h2><Bullets items={["How to use AI in the real office workflow.", "When to approve, edit, escalate, or stop a workflow.", "How to use your company playbook instead of generic prompts."]} /></article><article className="rounded-[2rem] bg-white p-6 shadow-[0_18px_54px_rgba(7,29,58,0.06)]"><h2 className="text-3xl font-semibold tracking-[-0.04em]">What we do not do</h2><Bullets items={["No fully autonomous billing, payments, or account changes.", "No replacing your staff or bypassing human review for sensitive work.", "No software rip-and-replace unless a separate scope says so."]} /></article></div></section>
-        <section className={`${shell} pb-20 lg:pb-24`}><div className="rounded-[2rem] border border-[#CFE8D5] bg-[#F4FBF5] p-6 text-center shadow-[0_18px_54px_rgba(7,29,58,0.06)]"><h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Start with the Map if you have not bought it yet.</h2><p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">$197 credited toward your AI Office Installation Sprint when you move forward.</p><div className="mt-7 flex justify-center"><Link href="/workflow-audit" className={primary}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link></div></div></section>
-        <ContactSection />
+        <InstallationSprintContactForm />
       </main>
       <Footer />
     </>

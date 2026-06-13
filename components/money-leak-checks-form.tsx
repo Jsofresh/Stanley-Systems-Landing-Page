@@ -16,7 +16,7 @@ type MoneyLeakChecksFormProps = {
 const defaultHeadline = "Get your first admin drag check"
 const defaultBody = "Billing, follow-up, reviews, referrals, missed calls, and past customers — one practical check you can use before you buy."
 const defaultHelper = "No filler. One leak to check, one way to spot it, and one next move."
-const fallbackEmail = "hello@stanley-systems.com"
+const fallbackEmail = "jaden@stanley-systems.com"
 
 export function MoneyLeakChecksForm({
   source,

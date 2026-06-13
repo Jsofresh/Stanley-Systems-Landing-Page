@@ -50,7 +50,7 @@ export function ContactRouter() {
               </button>
             ))}
             <div className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-5 text-sm font-semibold leading-6 text-[#536173]">
-              Prefer email? Send your question to <a href="mailto:hello@stanley-systems.com" className="font-extrabold text-[#116832] underline underline-offset-4">hello@stanley-systems.com</a>. Calls may be answered by our assistant so we can route your question quickly.
+              Prefer email? Send your question to <a href="mailto:jaden@stanley-systems.com" className="font-extrabold text-[#116832] underline underline-offset-4">jaden@stanley-systems.com</a>. Calls may be answered by our assistant so we can route your question quickly.
             </div>
           </div>
 
@@ -148,7 +148,7 @@ function PreBuyQuestionForm() {
       setForm({ name: "", business: "", email: "", phone: "", business_type: "", main_issue: "", message: "" })
     } catch (error) {
       setState("error")
-      setMessage(error instanceof Error ? error.message : "Could not send question. Email hello@stanley-systems.com directly.")
+      setMessage(error instanceof Error ? error.message : "Could not send question. Email jaden@stanley-systems.com directly.")
     }
   }
 

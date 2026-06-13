@@ -273,7 +273,7 @@ export function PaidInvoicingDelayCalculatorClient() {
                   Book the AI Office Map
                 </a>
                 <a
-                  href="mailto:hello@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist"
+                  href="mailto:jaden@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist"
                   onClick={() => track("stanley_paid_calc_checklist_requested", { severity: result.severity, trade })}
                   className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-[#f4efe6]"
                 >

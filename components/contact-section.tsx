@@ -10,8 +10,8 @@ const contactCards = [
     icon: Mail,
     title: "Email directly",
     description: "If you would rather send notes by email, Stanley Systems can review them there too.",
-    value: "hello@stanley-systems.com",
-    href: "mailto:hello@stanley-systems.com",
+    value: "jaden@stanley-systems.com",
+    href: "mailto:jaden@stanley-systems.com",
   },
   {
     icon: Phone,
@@ -111,8 +111,8 @@ export function ContactSection() {
       setSubmitState("error")
       setSubmitMessage(
         error instanceof Error
-          ? `${error.message} If needed, email hello@stanley-systems.com directly.`
-          : "Something went wrong. If needed, email hello@stanley-systems.com directly.",
+          ? `${error.message} If needed, email jaden@stanley-systems.com directly.`
+          : "Something went wrong. If needed, email jaden@stanley-systems.com directly.",
       )
     }
   }

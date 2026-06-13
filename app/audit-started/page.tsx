@@ -44,7 +44,7 @@ export default function AuditStartedPage() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/audit-intake" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">Complete AI Office Map intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            <a href="mailto:hello@stanley-systems.com?subject=AI%20Office%20Map%20booking%20link" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] hover:bg-[#F4FBF5]"><CalendarCheck className="mr-2 h-4 w-4" />Send me the booking link by email</a>
+            <a href="mailto:jaden@stanley-systems.com?subject=AI%20Office%20Map%20booking%20link" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] hover:bg-[#F4FBF5]"><CalendarCheck className="mr-2 h-4 w-4" />Send me the booking link by email</a>
           </div>
         </div>
       </main>

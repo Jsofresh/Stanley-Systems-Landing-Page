@@ -102,7 +102,7 @@ const sections = [
   {
     title: "Contact information",
     body:
-      "Questions about this Privacy Policy, data handling, or communication preferences can be directed through the contact page at https://stanley-systems.com/contact or by email to hello@stanley-systems.com.",
+      "Questions about this Privacy Policy, data handling, or communication preferences can be directed through the contact page at https://stanley-systems.com/contact or by email to jaden@stanley-systems.com.",
   },
 ]
 

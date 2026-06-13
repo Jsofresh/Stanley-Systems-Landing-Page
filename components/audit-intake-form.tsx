@@ -48,11 +48,11 @@ export function AuditIntakeForm() {
       const result = await response.json().catch(() => ({}))
       if (!response.ok || !result.ok) throw new Error(result.error || "Could not send intake.")
       setStatus("sent")
-      setMessage(result.delivery === "webhook" ? "Sent. Stanley Systems received the intake and will follow up." : "The intake path is not fully connected yet. Email the same details to hello@stanley-systems.com so Stanley Systems receives them.")
+      setMessage(result.delivery === "webhook" ? "Sent. Stanley Systems received the intake and will follow up." : "The intake path is not fully connected yet. Email the same details to jaden@stanley-systems.com so Stanley Systems receives them.")
       form.reset()
     } catch (error) {
       setStatus("error")
-      setMessage(error instanceof Error ? error.message : "Could not send intake. Email hello@stanley-systems.com instead.")
+      setMessage(error instanceof Error ? error.message : "Could not send intake. Email jaden@stanley-systems.com instead.")
     }
   }
 
@@ -106,7 +106,7 @@ export function AuditIntakeForm() {
         <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
       </button>
       {message ? <p className={`mt-3 text-sm font-bold ${status === "error" ? "text-[#B42318]" : "text-[#116832]"}`}>{message}</p> : null}
-      <p className="mt-3 text-xs font-semibold leading-5 text-[#607080]">If the form ever fails, email the same details to hello@stanley-systems.com.</p>
+      <p className="mt-3 text-xs font-semibold leading-5 text-[#607080]">If the form ever fails, email the same details to jaden@stanley-systems.com.</p>
     </form>
   )
 }

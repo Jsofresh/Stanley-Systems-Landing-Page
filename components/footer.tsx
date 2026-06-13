@@ -66,7 +66,7 @@ const footerLinks: FooterSection[] = [
     label: "Connect",
     links: [
       { title: "Call: +1 (617) 958-6372", href: "tel:+16179586372", external: true, icon: Phone },
-      { title: "hello@stanley-systems.com", href: "mailto:hello@stanley-systems.com", external: true },
+      { title: "jaden@stanley-systems.com", href: "mailto:jaden@stanley-systems.com", external: true },
       { title: "YouTube", href: STANLEY_YOUTUBE_URL, external: true },
       { title: "TikTok", href: STANLEY_TIKTOK_URL, external: true },
       { title: "Instagram", href: STANLEY_INSTAGRAM_URL, external: true },

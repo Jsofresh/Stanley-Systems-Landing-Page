@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 
 const WEBHOOK_URL = process.env.STANLEY_CONTACT_WEBHOOK_URL
-const FALLBACK_EMAIL = "hello@stanley-systems.com"
+const FALLBACK_EMAIL = "jaden@stanley-systems.com"
 
 function clean(value: unknown) {
   return typeof value === "string" ? value.trim() : ""

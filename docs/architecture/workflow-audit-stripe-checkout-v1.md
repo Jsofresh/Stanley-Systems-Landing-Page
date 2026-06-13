@@ -198,7 +198,7 @@ Required behavior:
 - Explain that Stanley Systems will use the Workflow Audit to find the clearest money leak before recommending a build path.
 - Make clear that payment does not automatically start Cash Flow Collection System, Repeat Revenue System, or a custom implementation.
 - Primary next action: schedule or complete intake. If no scheduler is configured, route to `/contact`.
-- Secondary fallback: email `hello@stanley-systems.com`.
+- Secondary fallback: email `jaden@stanley-systems.com`.
 
 Do not show raw Stripe objects, raw metadata dumps, or internal route errors on the page.
 

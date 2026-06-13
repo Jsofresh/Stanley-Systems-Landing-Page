@@ -41,10 +41,10 @@ export async function POST(request: Request) {
       "If you want, reply to this email with 2–3 details about your current invoicing process and I’ll point to the exact step that is causing the delay.",
       "",
       "Stanley Systems",
-      "hello@stanley-systems.com",
+      "jaden@stanley-systems.com",
     ].join("\n")
 
-    // Use gws CLI to send via Gmail as hello@stanley-systems.com.
+    // Use gws CLI to send via Gmail as jaden@stanley-systems.com.
     // NOTE: gws auth must already be configured on the VPS.
     const args = [
       "gmail",
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
       "--to",
       escapeForCli(to),
       "--cc",
-      "hello@stanley-systems.com",
+      "jaden@stanley-systems.com",
       "--subject",
       escapeForCli(subject),
       "--text",

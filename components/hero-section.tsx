@@ -48,7 +48,7 @@ const navGroups: MegaMenuGroup[] = [
     columnsClass: "grid-cols-1",
     items: [
       { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Answer one focused workflow form and get a custom first-pass AI office plan." },
-      { label: "Generic Blueprint PDF", href: "/ai-office-blueprint#generic-blueprint-heading", description: "Jump straight to the generic AI Office Blueprint download section." },
+      { label: "Generic Blueprint PDF", href: "/ai-office-blueprint#generic-blueprint-section", description: "Jump straight to the generic AI Office Blueprint download section." },
       { label: "AI Office Map", href: "/workflow-audit", description: "Ready for the paid diagnostic? Book the next step." },
     ],
     featured: {
@@ -208,8 +208,10 @@ export function SiteHeader() {
   const [mobileMenu, setMobileMenu] = useState<string | null>(navGroups[0]?.label ?? null)
   const [scrolled, setScrolled] = useState(false)
   const [navTheme, setNavTheme] = useState<"dark" | "light">("dark")
+  const [menuLeft, setMenuLeft] = useState<number | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const headerRef = useRef<HTMLElement | null>(null)
+  const navShellRef = useRef<HTMLDivElement | null>(null)
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {
@@ -218,8 +220,13 @@ export function SiteHeader() {
     }
   }
 
-  const openMenu = (label: string) => {
+  const openMenu = (label: string, trigger?: HTMLElement | null) => {
     clearCloseTimer()
+    if (trigger && navShellRef.current) {
+      const triggerRect = trigger.getBoundingClientRect()
+      const shellRect = navShellRef.current.getBoundingClientRect()
+      setMenuLeft(triggerRect.left + triggerRect.width / 2 - shellRect.left)
+    }
     setActiveMenu(label)
   }
 
@@ -346,6 +353,7 @@ export function SiteHeader() {
         </div>
       </div>
       <div
+        ref={navShellRef}
         className="relative"
         onMouseEnter={clearCloseTimer}
         onMouseLeave={closeMenuWithDelay}
@@ -375,9 +383,9 @@ export function SiteHeader() {
                   type="button"
                   aria-expanded={activeMenu === group.label}
                   aria-haspopup="true"
-                  onMouseEnter={() => openMenu(group.label)}
-                  onFocus={() => openMenu(group.label)}
-                  onClick={() => openMenu(group.label)}
+                  onMouseEnter={(event) => openMenu(group.label, event.currentTarget)}
+                  onFocus={(event) => openMenu(group.label, event.currentTarget)}
+                  onClick={(event) => openMenu(group.label, event.currentTarget)}
                   className={classes}
                 >
                   {contents}
@@ -388,8 +396,8 @@ export function SiteHeader() {
                   href={group.href}
                   aria-expanded={activeMenu === group.label}
                   aria-haspopup="true"
-                  onMouseEnter={() => openMenu(group.label)}
-                  onFocus={() => openMenu(group.label)}
+                  onMouseEnter={(event) => openMenu(group.label, event.currentTarget)}
+                  onFocus={(event) => openMenu(group.label, event.currentTarget)}
                   className={classes}
                 >
                   {contents}
@@ -421,7 +429,8 @@ export function SiteHeader() {
 
         {selectedMenu && (
           <div
-            className={`absolute left-1/2 top-[64px] hidden -translate-x-1/2 rounded-[18px] border border-[#cfe7d8] bg-[#fffdf8] p-3 text-[#0B1F33] shadow-[0_24px_70px_rgba(3,18,31,0.22)] ring-1 ring-black/5 lg:block ${selectedMenu.widthClass}`}
+            className={`absolute top-[64px] hidden -translate-x-1/2 rounded-[18px] border border-[#cfe7d8] bg-[#fffdf8] p-3 text-[#0B1F33] shadow-[0_24px_70px_rgba(3,18,31,0.22)] ring-1 ring-black/5 lg:block ${selectedMenu.widthClass}`}
+            style={{ left: menuLeft == null ? "50%" : `${menuLeft}px` }}
             data-nav-menu={selectedMenu.label}
             onMouseEnter={clearCloseTimer}
             onMouseLeave={closeMenuWithDelay}

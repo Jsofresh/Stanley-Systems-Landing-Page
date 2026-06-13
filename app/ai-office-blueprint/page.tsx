@@ -40,8 +40,7 @@ export default function AiOfficeBlueprintPage() {
               />
             </div>
           </div>
-          <div className="absolute inset-x-0 bottom-[-1px] z-0 h-56 bg-[radial-gradient(ellipse_at_78%_18%,rgba(21,128,61,0.14),transparent_42%),linear-gradient(180deg,transparent_0%,rgba(251,250,246,0.58)_34%,#F4EFE8_100%)]" />
-          <div className="absolute bottom-[-92px] right-[6vw] z-0 hidden h-[210px] w-[58vw] rounded-[999px] bg-[#DCEFE1]/72 blur-3xl md:block" />
+          <div className="absolute inset-x-0 bottom-[-1px] z-0 h-44 bg-[linear-gradient(180deg,transparent_0%,rgba(251,250,246,0.72)_38%,#F4EFE8_100%)]" />
           <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1420px] items-start px-5 pb-20 pt-14 sm:min-h-[660px] sm:px-10 sm:pt-[72px] lg:min-h-[640px] lg:px-[84px] lg:pb-20 lg:pt-[88px] xl:min-h-[660px] xl:pt-[96px]">
             <div className="max-w-[640px]">
               <h1 className="text-[3.25rem] font-bold leading-[0.98] tracking-[-0.028em] text-[#071D3A] sm:text-[3.85rem] lg:text-[4.35rem] xl:text-[4.65rem]">
@@ -75,7 +74,7 @@ export default function AiOfficeBlueprintPage() {
 
         <section data-motion-exempt className="bg-[#F4EFE8] px-4 pb-24 pt-10 sm:px-6 lg:px-8 lg:pb-36 lg:pt-14">
           <div className={`${contentShell} space-y-12`}>
-            <section aria-labelledby="generic-blueprint-heading" className="relative left-1/2 isolate mx-0 flex min-h-[570px] w-screen -translate-x-1/2 overflow-hidden bg-[#F8F4EC] sm:min-h-[610px] lg:min-h-[620px]">
+            <section id="generic-blueprint-section" aria-labelledby="generic-blueprint-heading" className="relative left-1/2 isolate mx-0 flex min-h-[calc(100svh-104px)] w-screen -translate-x-1/2 scroll-mt-[136px] overflow-hidden bg-[#F8F4EC] sm:min-h-[calc(100svh-104px)] lg:min-h-[calc(100svh-104px)]">
               <Image
                 src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-book-cover-wide.jpg"
                 alt=""
@@ -88,8 +87,7 @@ export default function AiOfficeBlueprintPage() {
               <div className="absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-[#F4EFE8] to-transparent" />
               <div className="absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#F4EFE8] to-transparent" />
               <div className="relative z-20 mx-auto flex w-full max-w-[1420px] flex-col justify-center px-7 py-12 sm:px-12 lg:px-[84px] lg:py-[7%]">
-                <p className="w-fit rounded-full border border-[#15803D]/35 bg-white/82 px-5 py-2 text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#15803D] shadow-[0_10px_24px_rgba(7,29,58,0.05)] sm:px-6 sm:py-2.5 sm:text-[13px]">FREE THING 1</p>
-                <h2 id="generic-blueprint-heading" className="mt-7 max-w-[620px] text-[2.75rem] font-bold leading-[1.03] tracking-[-0.028em] text-[#071D3A] sm:text-[3.45rem] lg:text-[3.85rem]">
+                <h2 id="generic-blueprint-heading" className="max-w-[620px] text-[2.75rem] font-bold leading-[1.03] tracking-[-0.028em] text-[#071D3A] sm:text-[3.45rem] lg:text-[3.85rem]">
                   Download the
                   <br />
                   generic <span className="text-[#13A538]">AI Office</span>

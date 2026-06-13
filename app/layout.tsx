@@ -145,7 +145,7 @@ export default function RootLayout({
     image: siteLogoUrl,
     description: siteDescription,
     telephone: "+16179586372",
-    email: "hello@stanley-systems.com",
+    email: "jaden@stanley-systems.com",
     areaServed: ["US"],
     sameAs: [
       "https://www.linkedin.com/company/stanley-systems/",
