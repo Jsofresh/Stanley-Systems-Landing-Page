@@ -97,7 +97,7 @@ export default function RootLayout({
         name: "What is the AI Office Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It is a $197 assessment where Stanley Systems finds the biggest AI opportunities inside your office: bottlenecks, admin drag, software gaps, quick wins, and a 30-day roadmap.",
+          text: "It is a $197 diagnostic where Stanley Systems finds the office work AI should remove first, then gives you practical fixes, staff AI prompts, workflow tips, tool guidance, quick wins, and the first install priority.",
         },
       },
       {
@@ -113,7 +113,7 @@ export default function RootLayout({
         name: "What if we are not sure where the real leak is?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "That is exactly what the AI Office Map is for: it shows where office work is slowing the team down and which AI workflow should improve first.",
+          text: "That is exactly what the AI Office Map is for: it turns office drag into fixes, prompts, tool guidance, quick wins, and the AI workflow to install first.",
         },
       },
       {

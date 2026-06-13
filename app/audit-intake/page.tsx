@@ -31,7 +31,7 @@ export default function AuditIntakePage() {
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
             <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Send the work details before the AI Office Map session.</h1>
-            <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Use this after buying the AI Office Map. The intake gives Stanley Systems enough detail to review cash, follow-up, software handoffs, and what should be fixed first.</p>
+            <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">Use this after buying the AI Office Map. The intake gives Stanley Systems enough detail to prepare useful fixes, prompts, tool guidance, and the first workflow worth installing.</p>
           </div>
 
           <section className="mt-7 rounded-[2rem] border border-[#DDEBE2] bg-[#FBFEFA] p-5 shadow-[0_18px_48px_rgba(7,29,58,0.06)] sm:p-6 lg:p-8">

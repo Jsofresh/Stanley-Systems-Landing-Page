@@ -11,7 +11,7 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
         Find the office work your current team should fix first.
       </h2>
       <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-[#536173] sm:text-lg">
-        Book the AI Office Map. Stanley Systems will show where work is getting stuck, what your current tools already handle, and which AI-guided workflow should be installed first.
+        Book the AI Office Map. Stanley Systems will turn office drag into concrete fixes, staff AI prompts, tool guidance, quick wins, and the first AI-guided workflow worth installing.
       </p>
       <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
         <CTALink

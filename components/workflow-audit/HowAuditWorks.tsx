@@ -20,7 +20,7 @@ export function HowAuditWorks() {
           <div className="mx-auto hidden w-full max-w-[760px] overflow-hidden rounded-[1.5rem] border border-[#d9e5dc] bg-white shadow-[0_16px_46px_rgba(7,29,58,0.06)] sm:block">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-3-step-process.jpg"
-              alt="Three step AI Office Map process: workflow walkthrough, tool review, and one-page map."
+              alt="Three step AI Office Map process: trace the drag, identify fixes, and choose the first workflow to install."
               width={1280}
               height={960}
               sizes="(min-width: 1024px) 55vw, 100vw"

@@ -39,8 +39,8 @@ const darkGhostButton = `${buttonBase} border border-white/18 bg-white/8 text-wh
 
 const officeMapPills = [
   { text: "60-Minute Focused Session", Icon: Clock3 },
-  { text: "Prioritized AI Workflow", Icon: ListChecks },
-  { text: "Clear 30-Day Action Plan", Icon: Map },
+  { text: "Prompts + Staff AI Plays", Icon: ListChecks },
+  { text: "Fixes + Install Priority", Icon: Map },
   { text: "Built for Trade & Service Teams", Icon: UsersRound },
 ]
 
@@ -92,7 +92,7 @@ function CalculatorSpine() {
       <div className="mx-auto flex min-h-[520px] max-w-[88rem] items-center md:min-h-[600px] lg:min-h-[680px]">
         <div className="max-w-[760px] py-10 md:py-14">
           <h2 className="max-w-[720px] text-balance text-[clamp(2.7rem,5.6vw,6rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-[#071D3A]">Before you hire another admin, find the office work AI should clean up first.</h2>
-          <p className="mt-6 max-w-[640px] text-base font-semibold leading-7 text-[#35475d] sm:text-lg md:text-xl md:leading-8">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the bottlenecks ranked and scoped.</p>
+          <p className="mt-6 max-w-[640px] text-base font-semibold leading-7 text-[#35475d] sm:text-lg md:text-xl md:leading-8">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the fixes, tools, prompts, and install priority.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_16px_36px_rgba(10,85,38,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Book the AI Office Map <ArrowRight className="h-4 w-4" /></CTALink>
             <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d5e5da] bg-white/92 px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Get the Free Blueprint</CTALink>
@@ -112,7 +112,7 @@ function AssessmentSection() {
       <div className="mx-auto flex w-full max-w-[88rem] flex-col justify-center">
         <div className="max-w-[790px] pt-10 md:pt-14 lg:pt-8">
           <h2 className="max-w-[780px] text-balance text-[clamp(3rem,7vw,6.7rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.28)]">Start with the AI Office Map.</h2>
-          <p className="mt-6 max-w-[720px] text-balance text-lg font-semibold leading-8 text-white/84 sm:text-xl">A focused session that shows what is stuck, what your tools already handle, and which AI workflow to install first.</p>
+          <p className="mt-6 max-w-[720px] text-balance text-lg font-semibold leading-8 text-white/84 sm:text-xl">A focused session that turns office drag into concrete fixes, staff AI prompts, workflow tips, tool guidance, and the first workflow to install.</p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[58px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_42px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Book the AI Office Map <ArrowRight className="h-5 w-5" aria-hidden="true" /></CTALink>
             <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[58px] items-center justify-center rounded-full border border-white/22 bg-white/9 px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_42px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-white/36 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Get the Free Blueprint</CTALink>
@@ -168,7 +168,7 @@ function FinalOfficeCTA() {
     <PageSection className="bg-[#071422] text-white" navTheme="dark" fullDesktop={false}>
       <div className="mx-auto max-w-[82rem] text-center">
         <h2 className="mx-auto max-w-[860px] text-balance text-[clamp(2.15rem,5vw,4.9rem)] font-extrabold leading-[0.92] tracking-[-0.025em]">Find the office work slowing down profit.</h2>
-        <p className="mx-auto mt-5 max-w-[680px] text-base font-semibold leading-7 text-white/70 sm:text-lg">Book the Map or get the free Blueprint to see where AI can help your current team move faster.</p>
+        <p className="mx-auto mt-5 max-w-[680px] text-base font-semibold leading-7 text-white/70 sm:text-lg">Book the Map or get the free Blueprint for practical AI plays, fixes, and the next workflow worth improving.</p>
         <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
           <CTALink href={mapHref} kind="systems" location="home_final_primary" ctaLabel="Book the AI Office Map" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
           <CTALink href={blueprintHref} kind="systems" location="home_final_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>

@@ -72,7 +72,7 @@ const timeline = [
 ]
 
 const deliverables = [
-  ["Office workflow map", "A clear view of how calls, estimates, invoices, follow-up, customer records, reviews, referrals, and payment reminders move through the business now."],
+  ["Fix list and AI plays", "Concrete prompts, workflow changes, tool guidance, and quick wins your team can use after the Map."],
   ["Problem list", "The places where money, time, customers, or follow-up are slipping through the cracks."],
   ["Cost of each issue", "A plain-English look at what each problem may be costing your business."],
   ["Fix priority", "What should be fixed first, what can wait, and what is not worth overbuilding."],
@@ -94,7 +94,7 @@ function SprintBridge() {
         <div>
           <h2 className="text-[2.05rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Want Stanley Systems to build it for you?</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-            The AI Office Map shows where office work is getting stuck. The Sprint builds the fix: faster billing readiness, cleaner follow-up, practical workflows, staff training, and your company playbook.
+            The AI Office Map turns office drag into fixes, prompts, tool guidance, and an install priority. The Sprint builds the best opportunity: faster billing readiness, cleaner follow-up, practical workflows, staff training, and your company playbook.
           </p>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#536173] sm:text-base">
             Use the AI Office Map to fix the problems yourself, or use it as the build plan for the Sprint.
@@ -178,7 +178,7 @@ export default function HowAssessmentWorksPage() {
             <div>
               <h2 className="text-[2.1rem] font-semibold leading-[1.04] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">What you get from the AI Office Map</h2>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#536173] sm:text-lg">
-                The AI Office Map gives you a clear Stanley Systems document: where work is stuck, what current tools already handle, staff AI training and company playbook gaps, and the first workflow worth installing.
+                The AI Office Map gives you a clear Stanley Systems fix plan: staff AI prompts, workflow changes, tool guidance, quick wins, company playbook gaps, and the first workflow worth installing.
               </p>
               <p className="mt-5 text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">You receive:</p>
             </div>

@@ -23,8 +23,8 @@ const offers = [
     id: "ai-office-map",
     title: "AI Office Map",
     price: "$197",
-    body: "A focused session that shows where the office is falling behind, what your software already handles, and which AI-guided workflow should be installed first.",
-    bullets: ["45-60 minute owner or office-manager session", "Existing software and handoff review", "AI Opportunity Matrix", "$197 credited toward your AI Office Installation Sprint"],
+    body: "A focused session that turns office drag into practical fixes, staff AI prompts, workflow tips, tool guidance, and the first workflow worth installing.",
+    bullets: ["45-60 minute owner or office-manager session", "Fix list, prompts, and staff AI plays", "Tool + workflow recommendations", "$197 credited toward your AI Office Installation Sprint"],
     href: "/workflow-audit",
     cta: "Book the AI Office Map",
     featured: true,
@@ -70,7 +70,7 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
       <section className="px-4 pt-24 sm:px-6 sm:pt-28 lg:px-8 lg:pt-[7.25rem]">
         <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#e7e1d6] bg-white px-5 py-7 text-center shadow-[0_24px_70px_rgba(15,23,42,0.075)] sm:rounded-[2.5rem] sm:px-8 lg:px-12">
           <h1 className="mx-auto max-w-4xl text-balance text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[3.65rem]">Start with the $197 AI Office Map. Then install only the workflows worth building.</h1>
-          <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems first maps where office work is slowing down billing, follow-up, records, and job admin. If there is a clear fit, the Installation Sprint turns that map into staff training, a company playbook, and practical installed office workflows.</p>
+          <p className="mx-auto mt-4 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems first finds the office work AI should remove, then gives you concrete fixes, prompts, tool guidance, and install priorities. If there is a clear fit, the Installation Sprint turns the best opportunity into staff training, a company playbook, and practical installed office workflows.</p>
           <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"><Link href="/workflow-audit" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/ai-office-blueprint" className={lightButton}>Get the Free Blueprint</Link></div>
         </div>
       </section>

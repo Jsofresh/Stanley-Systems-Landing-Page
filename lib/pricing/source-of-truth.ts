@@ -69,8 +69,8 @@ export const pricingPackages: PricingPackage[] = [
     analyticsPackageId: "workflow_audit",
     notes: [
       "45-60 minute owner or office-manager session.",
-      "Shows where admin drag is costing time, money, follow-up, and quality.",
-      "Includes a software redundancy check, AI Opportunity Matrix, and a one-page AI Office Map.",
+      "Turns admin drag into concrete fixes, prompts, tool guidance, and quick wins.",
+      "Includes staff AI plays, workflow recommendations, and the first install priority.",
       "$197 credited toward your AI Office Installation Sprint.",
     ],
   },
@@ -101,7 +101,7 @@ export const pricingPackages: PricingPackage[] = [
     analyticsPackageId: "cashflow_control_monthly",
     notes: [
       "Installs practical office workflows around existing software.",
-      "Includes office workflow map, your company playbook, staff AI training, proof report, and 30 days light support.",
+      "Includes fix plan, your company playbook, staff AI training, proof report, and 30 days light support.",
     ],
   },
   {

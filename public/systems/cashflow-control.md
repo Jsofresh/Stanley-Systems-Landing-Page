@@ -4,7 +4,7 @@ Stanley Systems installs AI office workflows for home-service companies so the c
 
 Core offer ladder:
 - Free AI Office Blueprint: short workflow intake that returns practical AI staff plays, copy/paste prompts, one quick capacity win, and the best next workflow to improve.
-- AI Office Map: $197 diagnostic session showing where the office is falling behind, what existing software already handles, what staff is still forced to chase, and the AI Opportunity Matrix.
+- AI Office Map: $197 diagnostic session that traces office drag just far enough to deliver concrete fixes, staff AI plays, copy/paste prompts, workflow tips, tool guidance, quick wins, and the first AI workflow worth installing.
 - AI Office Installation Sprint: $3,500 starting install of the first practical money-moving workflows.
 - AI Office Ops: $500/month starting to monitor, fix, support, and improve installed workflows.
 

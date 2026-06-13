@@ -90,7 +90,7 @@ export type PricingCalculatorContext = {
 }
 
 const directPurchasePromises: Record<PricingPackageId, string> = {
-  workflow_audit: "Map the office work your business should not have to pay for anymore.",
+  workflow_audit: "Find the office work AI should remove first, then leave with the fixes to start removing it.",
   cashflow_control_monthly: "Turn your AI Office Map into staff training, a company playbook, and practical office workflows.",
   repeat_revenue_monthly: "Keep installed workflows monitored, fixed, improved, and useful to staff.",
   both_systems_monthly: "Install priority workflows, then keep improving them month by month.",
@@ -101,7 +101,7 @@ const directPurchasePromises: Record<PricingPackageId, string> = {
 
 const directPurchaseDescriptions: Record<PricingPackageId, string> = {
   workflow_audit:
-    "Stanley Systems maps how your office handles paperwork, billing, follow-up, handoffs, and job admin, then shows which AI-guided workflow should be installed first.",
+    "Stanley Systems traces office drag just far enough to give you practical fixes, staff AI prompts, workflow tips, tool guidance, and the first AI-guided workflow worth installing.",
   cashflow_control_monthly:
     "For businesses ready to turn the AI Office Map into staff training, your company playbook, and practical workflows around existing tools.",
   repeat_revenue_monthly:
@@ -118,10 +118,10 @@ const directPurchaseDescriptions: Record<PricingPackageId, string> = {
 
 const directPurchaseChecklists: Record<PricingPackageId, string[]> = {
   workflow_audit: [
-    "Finished work to collected cash.",
-    "Past customers, reviews, referrals, and missed calls.",
-    "Office handoffs where work gets stuck.",
-    "Where Stanley Systems can or cannot fix the leak.",
+    "Office work AI should remove first.",
+    "Staff prompts and AI plays your team can use now.",
+    "Tool and workflow recommendations.",
+    "First Installation Sprint priority.",
   ],
   cashflow_control_monthly: [
     "Customer recorded, job moves, invoice goes out.",
@@ -280,7 +280,7 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
     checklist: directPurchaseChecklists[pricingPackage.id],
     demo: packageDemos[pricingPackage.id],
     helperLine: isAudit
-      ? "You leave with a clear office work map and a recommendation: what to automate, remove, restructure, or delegate."
+      ? "You leave with fixes, prompts, tool guidance, and a recommendation: what to automate, remove, restructure, or delegate."
       : "After checkout, onboarding and fit, access, and scope review happen before the build begins.",
     scopeNote: isAudit
       ? "If no clear first workflow is found for a qualified business, the AI Office Map fee is refunded."
@@ -306,8 +306,8 @@ export const workflowAuditOffer: WorkflowAuditOffer = {
   ...planFromPackage(pricingPackageById.workflow_audit),
   title: "AI Office Map",
   shortTitle: "AI Office Map",
-  promise: "Map how the office handles paperwork, billing, follow-up, handoffs, and job admin.",
-  description: "In one focused session, Stanley Systems maps how your office handles paperwork, billing, follow-up, handoffs, and job admin. You leave with a one-page map showing where work is getting stuck, what your current tools already handle, and which AI-guided workflow should be installed first.",
+  promise: "Find the office work AI should remove first.",
+  description: "In one focused session, Stanley Systems traces office drag just far enough to turn it into useful fixes: staff AI prompts, workflow tips, tool recommendations, quick wins, and the first AI-guided workflow worth installing.",
   id: "workflow_audit",
   kind: "front_door_audit",
   contactPathOnly: false,
@@ -339,7 +339,7 @@ export const pricingFAQItems: PricingFAQItem[] = [
   {
     question: "Is the AI Office Map required before buying a package?",
     answer:
-      "The AI Office Map is the recommended first paid step before the AI Office Installation Sprint. It gives Stanley Systems the workflow map, software review, staff training gaps, and company playbook context needed to install the right workflows.",
+      "The AI Office Map is the recommended first paid step before the AI Office Installation Sprint. It gives you the fix list, staff AI prompts, tool guidance, workflow recommendations, and install priorities needed to build the right first workflow.",
   },
   {
     question: "How does the AI Office Map credit work?",

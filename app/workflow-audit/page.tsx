@@ -10,13 +10,13 @@ const secondary = "inline-flex min-h-14 items-center justify-center rounded-full
 const auditCheckoutHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
 const deliverables = [
-  ["Bottleneck Breakdown", "Where office work slows down jobs, billing, follow-up, and capacity."],
-  ["Admin Drag Analysis", "The chase, copy, check, and reconcile work draining the team."],
-  ["Software Gap Review", "What your tools handle — and where work still falls between systems."],
-  ["AI Priority Matrix", "The best office improvements ranked by time saved, difficulty, and business value."],
-  ["First Workflow to Improve", "Where AI can help fastest without disrupting the way your office already works."],
-  ["Quick Capacity Wins", "Practical improvements your team can use before a full installation."],
-  ["30-Day AI Office Roadmap", "What to improve first, next, and after that."],
+  ["Fix List, Not a Recap", "The specific office work to clean up, stop repeating, automate, or hand to AI first."],
+  ["Staff AI Plays", "Copy/paste prompts and use cases your office team can test on real job notes, emails, follow-up, and billing prep."],
+  ["Tool + Workflow Recommendations", "Which current tools to use better, which simple add-ons are worth considering, and which random automations to avoid."],
+  ["AI Priority Matrix", "The improvements ranked by speed, effort, business value, staff impact, and install readiness."],
+  ["First Workflow to Install", "The highest-leverage workflow Stanley Systems should build first if you move into the Sprint."],
+  ["Quick Capacity Wins", "Practical changes your team can use before a full installation: handoff rules, templates, checks, and AI shortcuts."],
+  ["30-Day Office Improvement Plan", "A short action plan for what to fix now, what to train, and what belongs in the Installation Sprint."],
 ]
 
 const sampleOutputs = [
@@ -47,9 +47,9 @@ const sampleOutputs = [
 ]
 
 const steps = [
-  ["Book the Map", "Pick a time and tell us what office work is slowing the team down."],
-  ["Walk Through the Bottlenecks", "We review your software handoffs, staff workload, billing drag, follow-up, and repeated admin work."],
-  ["Get Your AI Office Map", "You receive the bottleneck breakdown, AI priority matrix, quick wins, and 30-day roadmap."],
+  ["Book the Map", "Pick a time and point Stanley Systems at the office work that keeps stealing time."],
+  ["Trace the Drag", "We follow the workflow only far enough to find the repeated work, decision points, and AI opportunities worth fixing."],
+  ["Get the Fix Plan", "You receive prompts, staff plays, workflow changes, tool recommendations, quick wins, and the first install priority."],
 ]
 
 function SectionHeader({ eyebrow, title, body, dark = false }: { eyebrow: string; title: string; body?: string; dark?: boolean }) {
@@ -74,8 +74,8 @@ export default function Page() {
           <div className={shell}>
             <div className="max-w-[980px]">
               <p className="text-sm font-black uppercase tracking-[0.16em] text-[#9BE7AE]">AI Office Map</p>
-              <h1 className="mt-4 text-balance text-[3rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.6rem] sm:tracking-[-0.045em]">Find the Biggest AI Opportunities Inside Your Office.</h1>
-              <p className="mt-6 max-w-[860px] text-xl font-semibold leading-9 text-white/84">See where AI can help your office move faster, produce cleaner work, and handle more jobs without adding admin payroll.</p>
+              <h1 className="mt-4 text-balance text-[3rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.6rem] sm:tracking-[-0.045em]">Find the Office Work AI Should Remove First.</h1>
+              <p className="mt-6 max-w-[860px] text-xl font-semibold leading-9 text-white/84">Get concrete fixes, staff AI prompts, workflow tips, tool recommendations, and the first install priority — not a recap of how your office already works.</p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Book the AI Office Map <ArrowRight className="ml-2 h-5 w-5" /></a>
                 <Link href="/ai-office-blueprint" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/30 bg-white/12 px-8 py-4 text-base font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18">Get the Free Blueprint</Link>
@@ -87,28 +87,28 @@ export default function Page() {
 
         <section data-motion-exempt className={`${shell} py-16 lg:py-24`}>
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <SectionHeader eyebrow="Demo Preview" title="See What the Map Reveals" body="Messy office work becomes bottlenecks, quick wins, and a clear 30-day roadmap." />
+            <SectionHeader eyebrow="Demo Preview" title="See What the Map Gives You" body="The Map traces office drag only far enough to turn it into usable fixes, prompts, tools, and install priorities." />
             <div className="rounded-[2rem] border border-[#CFE8D5] bg-[#071D3A] p-5 text-white shadow-[0_24px_70px_rgba(7,29,58,0.18)]">
               <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4">
                 <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[#9BE7AE]">Office Flow Scan</p>
-                    <p className="mt-1 text-xl font-extrabold tracking-[-0.015em]">Map preview</p>
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[#9BE7AE]">Fix Plan Preview</p>
+                    <p className="mt-1 text-xl font-extrabold tracking-[-0.015em]">What you can use</p>
                   </div>
                   <Gauge className="h-8 w-8 text-[#9BE7AE]" />
                 </div>
                 <div className="grid gap-3">
-                  {["Tech updates buried in texts", "Invoices waiting on job details", "Open estimates and callbacks slipping"].map((label, index) => (
+                  {["Messy tech updates", "Invoices waiting on job details", "Follow-up living in memory"].map((label, index) => (
                     <div key={label} className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
                       <div className="rounded-2xl bg-white/8 p-4 text-sm font-bold text-white/78">{label}</div>
                       <ArrowRight className="h-5 w-5 text-[#9BE7AE]" />
-                      <div className="rounded-2xl border border-[#9BE7AE]/30 bg-[#9BE7AE]/12 p-4 text-sm font-bold text-[#DFFBE6]">{["One job-closeout protocol", "Billing-ready AI priority", "First workflow to install"][index]}</div>
+                      <div className="rounded-2xl border border-[#9BE7AE]/30 bg-[#9BE7AE]/12 p-4 text-sm font-bold text-[#DFFBE6]">{["Prompt + closeout checklist", "Billing-prep AI play", "First workflow to install"][index]}</div>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 rounded-2xl bg-[#DDF7E8] p-4 text-[#071D3A]">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-[#116832]">Roadmap Output</p>
-                  <p className="mt-2 text-lg font-extrabold tracking-[-0.02em]">Start where staff copy, check, and rewrite the same information every week.</p>
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-[#116832]">Map Output</p>
+                  <p className="mt-2 text-lg font-extrabold tracking-[-0.02em]">Use this prompt, change this handoff, skip this tool, and install this workflow first.</p>
                 </div>
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function Page() {
         </section>
 
         <section data-motion-exempt className={`${shell} pb-16 lg:pb-24`}>
-          <SectionHeader eyebrow="Deliverables" title="What You Get in the AI Office Map" />
+          <SectionHeader eyebrow="Deliverables" title="What You Actually Get in the AI Office Map" />
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {deliverables.map(([title, body], index) => (
               <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_14px_38px_rgba(7,29,58,0.05)]">
@@ -131,7 +131,7 @@ export default function Page() {
 
         <section data-motion-exempt className="bg-[#EEF8EE] py-16 lg:py-24">
           <div className={shell}>
-            <SectionHeader eyebrow="Sample Output" title="A Real Plan, Not a Call Summary" body="The Map turns office drag into usable plays your team can understand, test, and improve." />
+            <SectionHeader eyebrow="Sample Output" title="A Real Fix Plan, Not a Call Summary" body="The Map turns office drag into practical plays your team can use and Stanley Systems can install." />
             <div className="mt-8 grid gap-5 lg:grid-cols-2">
               {sampleOutputs.map((card) => (
                 <article key={card.title} className="rounded-[1.5rem] border border-[#CFE8D5] bg-white p-6 shadow-[0_14px_38px_rgba(7,29,58,0.05)]">
@@ -162,10 +162,10 @@ export default function Page() {
 
         <section data-motion-exempt className="bg-[#071D3A] py-16 text-white lg:py-24">
           <div className={`${shell} grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-center`}>
-            <SectionHeader dark eyebrow="Booking" title="Book the AI Office Map" body="Use the Map to decide what is worth installing first before the team spends time or money on the wrong workflow." />
+            <SectionHeader dark eyebrow="Booking" title="Book the AI Office Map" body="Use the Map to get the fixes, prompts, tool guidance, and install priority before your team spends time or money on the wrong workflow." />
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
               <div className="grid gap-4">
-                {[["Session", "45 to 60 minutes"], ["Output", "Bottlenecks, opportunity matrix, quick wins, roadmap"], ["Credit", "$197 credited toward installation"]].map(([label, value]) => (
+                {[["Session", "45 to 60 minutes"], ["Output", "Fixes, prompts, tool guidance, quick wins, install priority"], ["Credit", "$197 credited toward installation"]].map(([label, value]) => (
                   <div key={label} className="flex items-start gap-4 rounded-2xl bg-white/8 p-4">
                     <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#9BE7AE]" />
                     <div><p className="text-xs font-black uppercase tracking-[0.14em] text-white/46">{label}</p><p className="mt-1 font-extrabold text-white">{value}</p></div>

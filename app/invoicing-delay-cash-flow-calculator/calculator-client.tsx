@@ -1508,7 +1508,7 @@ export function InvoicingDelayCalculatorClient() {
               </div>
               <div className="mx-auto mt-8 max-w-3xl rounded-[1.55rem] border border-[#bfe5c7] bg-[linear-gradient(135deg,#eef9f2_0%,#ffffff_58%,#e9f7ed_100%)] p-4 text-center shadow-[0_18px_44px_rgba(21,128,61,0.13)] sm:p-5">
                 <CTALink href={auditHref} kind="internal_page" location="calculator_result_yearly" analyticsSource="calculator_result_yearly" ctaLabel={ctaLabel} data-calculator-assessment-cta="true" className="inline-flex min-h-14 w-full items-center justify-center rounded-full bg-[linear-gradient(180deg,#179447_0%,#116832_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24),0_1px_0_rgba(255,255,255,0.26)_inset] transition hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(21,128,61,0.28),0_1px_0_rgba(255,255,255,0.26)_inset]">Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-                <p className="mt-3 text-sm font-semibold leading-6 text-slate-700">Replace this estimate with a real office workflow map.</p>
+                <p className="mt-3 text-sm font-semibold leading-6 text-slate-700">Replace this estimate with real fixes, prompts, and an install priority.</p>
               </div>
               <div className="mx-auto mt-5 max-w-3xl">
                 <button type="button" onClick={() => next("resultDiagnosis")} className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white/85 px-6 py-3 text-base font-semibold text-[#405163] transition hover:bg-[#f4efe6]">See what is stuck <ArrowRight className="ml-2 h-4 w-4" /></button>
@@ -1565,7 +1565,7 @@ export function InvoicingDelayCalculatorClient() {
                 <div className="border-b border-[#DDEBE2] pb-5">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#15803D]">Stanley Systems</p>
                   <h1 className="mt-2 text-4xl font-semibold leading-tight tracking-[-0.035em] text-[#071D3A]">Calculator result sheet</h1>
-                  <p className="mt-2 max-w-[680px] text-sm font-medium leading-6 text-slate-600">This is a rough estimate from the calculator. The AI Office Map checks the real records and turns the estimate into a workflow map, fix list, and expected results.</p>
+                  <p className="mt-2 max-w-[680px] text-sm font-medium leading-6 text-slate-600">This is a rough estimate from the calculator. The AI Office Map checks the real records and turns the estimate into a fix list, staff AI plays, tool guidance, and the first workflow worth installing.</p>
                 </div>
                 <div className="mt-6 rounded-2xl border border-[#f3b7af] bg-[#fff1ef] p-5">
                   <div className="text-xs font-bold uppercase tracking-[0.16em] text-[#b42318]">Estimated money left on the table</div>
@@ -1577,7 +1577,7 @@ export function InvoicingDelayCalculatorClient() {
                   <div className="rounded-2xl border border-[#DDEBE2] p-4"><h2 className="text-xl font-semibold tracking-[-0.02em] text-[#102033]">Past customers, still untouched</h2><p className="mt-2 text-base font-semibold leading-6 text-slate-800">Monthly value: {summary.formattedCardValues.customerMonthly}</p><p className="mt-1 text-base font-semibold leading-6 text-slate-800">Annualized value: {summary.formattedCardValues.customerAnnual}</p></div>
                 </div>
                 <div className="mt-5 rounded-2xl border border-[#DDEBE2] p-4"><h2 className="text-xl font-semibold tracking-[-0.02em] text-[#102033]">Math used</h2><p className="mt-2 text-base font-semibold leading-7 text-slate-800">{summary.equationText}</p>{summary.equationComponents.map((component) => <p key={component.label} className="mt-1 text-base font-semibold leading-6 text-slate-800">{component.label}: {component.displayValue}</p>)}</div>
-                <div className="mt-5 rounded-2xl border border-[#BFE4C8] bg-[#F4FBF5] p-4"><h2 className="text-xl font-semibold tracking-[-0.02em] text-[#102033]">AI Office Map</h2><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Replace this estimate with a real office workflow map, fix list, and expected results.</p></div>
+                <div className="mt-5 rounded-2xl border border-[#BFE4C8] bg-[#F4FBF5] p-4"><h2 className="text-xl font-semibold tracking-[-0.02em] text-[#102033]">AI Office Map</h2><p className="mt-1 text-base font-semibold leading-7 text-slate-800">Replace this estimate with a real fix list, staff AI plays, tool guidance, and expected results.</p></div>
               </div>
               <div className="mt-5 flex flex-wrap items-center justify-center gap-2 print:hidden"><button type="button" onClick={back} className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">← Back to results</button><Link href="/" className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">Back to site</Link></div>
             </div>
