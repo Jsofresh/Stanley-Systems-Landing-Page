@@ -1,11 +1,19 @@
 import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight, Check, ClipboardCheck, MapPinned, MonitorCheck, UsersRound, type LucideIcon } from "lucide-react"
 
 type PricingSearchParams = Record<string, string | string[] | undefined>
 
-const card = "rounded-[1.75rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_18px_48px_rgba(7,29,58,0.06)]"
+const card = "relative flex min-h-[31.5rem] flex-col overflow-hidden rounded-[1.75rem] border border-[#E7EAE6] bg-white px-7 pb-6 pt-7 text-center shadow-[0_18px_48px_rgba(7,29,58,0.055)]"
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]"
 const lightButton = "inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]"
+const ladderButton = "inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#0F6F33] bg-white px-5 py-3 text-sm font-extrabold text-[#0F6F33] transition hover:-translate-y-0.5 hover:bg-[#F4FBF5]"
+
+const offerIcons: Record<string, LucideIcon> = {
+  "ai-office-blueprint": ClipboardCheck,
+  "ai-office-map": MapPinned,
+  "installation-sprint": UsersRound,
+  "ai-office-ops": MonitorCheck,
+}
 
 const offers = [
   {
@@ -53,10 +61,12 @@ const offers = [
 
 function BulletList({ items }: { items: string[] }) {
   return (
-    <ul className="mt-5 grid gap-3 text-sm font-semibold leading-6 text-[#334B60]">
+    <ul className="grid gap-3 text-left text-sm font-semibold leading-6 text-[#102033]">
       {items.map((item) => (
         <li key={item} className="flex gap-3">
-          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" />
+          <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-[#15803D] text-[#15803D]">
+            <Check className="h-3.5 w-3.5 stroke-[3]" />
+          </span>
           <span>{item}</span>
         </li>
       ))}
@@ -74,16 +84,42 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
           <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"><Link href="/workflow-audit" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/ai-office-blueprint" className={lightButton}>Get the Free Blueprint</Link></div>
         </div>
       </section>
-      <section aria-label="Offer ladder" className="mx-auto grid max-w-7xl gap-5 px-4 py-8 sm:px-6 sm:py-10 lg:grid-cols-4 lg:px-8">
-        {offers.map((offer) => (
-          <article id={offer.id} key={offer.title} className={`${card} ${offer.featured ? "border-2 border-[#15803D] bg-[linear-gradient(180deg,#ffffff_0%,#F4FBF5_100%)] shadow-[0_26px_80px_rgba(21,128,61,0.14)]" : ""}`}>
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">{offer.title}</h2>
-            <p className="mt-3 text-[2rem] font-extrabold tracking-[-0.04em] text-[#071D3A]">{offer.price}</p>
-            <p className="mt-3 text-base font-semibold leading-7 text-[#536173]">{offer.body}</p>
-            <BulletList items={offer.bullets} />
-            <Link href={offer.href} className={`mt-6 w-full ${offer.featured ? greenButton : lightButton}`}>{offer.cta}</Link>
-          </article>
-        ))}
+      <section aria-label="Offer ladder" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+        <h2 className="mx-auto max-w-5xl text-center text-balance text-[2.45rem] font-semibold leading-[1.05] tracking-[-0.052em] text-[#07132B] sm:text-5xl lg:text-[3.55rem]">
+          From ideas to installed AI workflows. We meet you at every step.
+        </h2>
+        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {offers.map((offer) => {
+            const Icon = offerIcons[offer.id]
+
+            return (
+              <article id={offer.id} key={offer.title} className={`${card} ${offer.featured ? "border-2 border-[#15803D] pt-8 shadow-[0_26px_80px_rgba(21,128,61,0.14)]" : ""}`}>
+                {offer.featured ? (
+                  <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 rounded-b-md bg-[#15803D] px-7 py-2 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-white shadow-[0_10px_24px_rgba(21,128,61,0.18)]">
+                    Best Entry Point
+                  </div>
+                ) : null}
+
+                <div className={`${offer.featured ? "mt-7" : ""} mx-auto flex h-[7.25rem] w-full max-w-[12.5rem] items-center justify-center text-[#15803D]`}>
+                  <div className="relative flex h-24 w-28 items-center justify-center rounded-[1.35rem] bg-[#F4FBF5] ring-1 ring-[#DDEBE2]">
+                    <span className="absolute -right-3 top-7 h-11 w-11 rounded-full bg-[#E8F6EC]" />
+                    <Icon className="relative h-14 w-14 stroke-[1.55]" />
+                  </div>
+                </div>
+
+                <h3 className="mt-4 min-h-[3.4rem] text-2xl font-semibold leading-[1.02] tracking-[-0.04em] text-[#07132B]">{offer.title}</h3>
+                <p className="mt-3 text-[2rem] font-extrabold leading-none tracking-[-0.045em] text-[#15803D]">{offer.price}</p>
+                <p className="mx-auto mt-4 min-h-[4.6rem] max-w-[16.5rem] text-center text-sm font-semibold leading-6 text-[#334B60]">{offer.body}</p>
+
+                <div className="mt-5 border-t border-[#E1E5DE] pt-5">
+                  <BulletList items={offer.bullets} />
+                </div>
+
+                <Link href={offer.href} className={`mt-auto ${offer.featured ? greenButton : ladderButton}`}>{offer.cta}</Link>
+              </article>
+            )
+          })}
+        </div>
       </section>
       <section className="mx-auto max-w-5xl px-4 pb-14 text-center sm:px-6 lg:px-8">
         <div className="rounded-[1.4rem] border border-[#DDEBE2] bg-white px-5 py-5 shadow-[0_12px_30px_rgba(7,29,58,0.04)]">
