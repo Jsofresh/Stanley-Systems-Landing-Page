@@ -1,5 +1,7 @@
+import { spawn } from "node:child_process"
 import { randomUUID } from "node:crypto"
 import { appendFile, mkdir } from "node:fs/promises"
+import { mkdirSync, openSync } from "node:fs"
 import path from "node:path"
 import { NextResponse } from "next/server"
 import { forwardBlueprintRequest } from "@/lib/ai-office-blueprint/webhook-adapter"
@@ -9,6 +11,8 @@ const MAX_REQUEST_BYTES = 24_000
 const RATE_LIMIT_WINDOW_MS = 60_000
 const RATE_LIMIT_MAX = 5
 const SUBMISSION_LOG_PATH = "/home/jaden/.openclaw/data/stanley-landing/ai-office-blueprint-submissions.jsonl"
+const WORKER_SCRIPT_PATH = "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/scripts/ai-office-blueprint/process_blueprint_submission.py"
+const WORKER_LOG_DIR = "/home/jaden/.openclaw/data/stanley-landing/logs"
 const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>()
 
 const requiredFields: Array<keyof AiOfficeBlueprintIntake> = [
@@ -104,6 +108,28 @@ async function saveSubmission(record: unknown) {
   await appendFile(SUBMISSION_LOG_PATH, `${JSON.stringify(record)}\n`, "utf8")
 }
 
+function triggerRealtimeBlueprintWorker(submissionId: string) {
+  try {
+    mkdirSync(WORKER_LOG_DIR, { recursive: true })
+    const out = openSync(path.join(WORKER_LOG_DIR, "ai-office-blueprint-realtime-worker.log"), "a")
+    const err = openSync(path.join(WORKER_LOG_DIR, "ai-office-blueprint-realtime-worker.error.log"), "a")
+    const args = ["--submission-id", submissionId]
+    if (process.env.AI_OFFICE_BLUEPRINT_EMAIL_DRY_RUN === "1") args.push("--dry-run")
+    const child = spawn(WORKER_SCRIPT_PATH, args, {
+      detached: true,
+      stdio: ["ignore", out, err],
+      env: {
+        ...process.env,
+        STANLEY_BLUEPRINT_WORKER_SOURCE: "api-realtime",
+      },
+    })
+    child.unref()
+    return { triggered: true, mode: process.env.AI_OFFICE_BLUEPRINT_EMAIL_DRY_RUN === "1" ? "realtime-dry-run" : "realtime-email", pid: child.pid }
+  } catch (error) {
+    return { triggered: false, mode: "realtime-email", error: error instanceof Error ? error.message : "worker spawn failed" }
+  }
+}
+
 export async function POST(request: Request) {
   const contentLength = Number(request.headers.get("content-length") || 0)
   if (contentLength > MAX_REQUEST_BYTES) {
@@ -143,33 +169,18 @@ export async function POST(request: Request) {
       intake,
     })
 
-    let delivery
-    try {
-      delivery = await forwardBlueprintRequest(submissionId, intake)
-    } catch (error) {
-      delivery = {
-        accepted: true,
-        delivery: "local-queue" as const,
-        response: { warning: error instanceof Error ? error.message : "Webhook delivery failed after local queue save." },
-      }
-    }
-
-    if (!delivery.accepted) {
-      delivery = {
-        ...delivery,
-        accepted: true,
-        delivery: "local-queue" as const,
-      }
-    }
+    const realtimeWorker = triggerRealtimeBlueprintWorker(submissionId)
+    void forwardBlueprintRequest(submissionId, intake).catch(() => undefined)
 
     return NextResponse.json({
       ok: true,
       queued: true,
       status: "queued_for_hermes_email",
-      delivery: delivery.delivery,
+      delivery: "realtime-worker",
       submissionId,
-      message: "Good. Your answers were accepted. Stanley Systems will build the custom Blueprint in the formatted HTML and email it to you.",
-      result: delivery.response ?? null,
+      message: "Good. Your answers were accepted. Stanley Systems is building the custom Blueprint now and will email it to you shortly.",
+      realtimeWorker,
+      result: null,
     })
   } catch {
     return NextResponse.json(
