@@ -118,7 +118,7 @@ function AssessmentSection() {
             <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[58px] items-center justify-center rounded-full border border-white/22 bg-white/9 px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_42px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-white/36 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Get the Free Blueprint</CTALink>
           </div>
         </div>
-        <div className="mt-9 flex max-w-[1120px] flex-wrap gap-3 text-white/92 lg:mt-10">
+        <div className="mt-9 hidden max-w-[1120px] flex-wrap gap-3 text-white/92 lg:mt-10 lg:flex">
           {officeMapPills.map(({ text, Icon }) => (
             <div key={text} className="flex min-h-[58px] w-fit items-center gap-2.5 rounded-[0.95rem] border border-white/14 bg-white/[0.06] px-3 py-2 backdrop-blur-[2px] sm:px-3.5">
               <Icon className="h-6 w-6 shrink-0 text-[#53d986]" strokeWidth={2} aria-hidden="true" />
@@ -152,9 +152,9 @@ function SprintSection() {
           </div>
         </div>
         <div className="mt-7 grid gap-4 md:grid-cols-3">
-          {cards.map((image) => (
+          {cards.map((image, index) => (
             <article key={image.src} className="overflow-hidden rounded-[1.6rem] border border-[#cfe8d5] bg-white shadow-[0_18px_48px_rgba(7,29,58,0.07)]">
-              <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(min-width: 768px) 31vw, 100vw" className="h-auto w-full object-cover" />
+              <Image src={image.src} alt={image.alt} width={image.width} height={image.height} priority={index === 0} loading={index === 0 ? undefined : "eager"} sizes="(min-width: 768px) 31vw, 100vw" className="aspect-square h-auto w-full object-cover" />
             </article>
           ))}
         </div>
