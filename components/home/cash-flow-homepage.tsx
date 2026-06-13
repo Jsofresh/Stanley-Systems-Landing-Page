@@ -181,13 +181,13 @@ function FinalOfficeCTA() {
 export function CashFlowHomepage() {
   return (
     <>
-      <section data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[#071422] px-5 pb-24 pt-[132px] text-white md:px-8 md:pb-32 lg:px-10 lg:pb-36 lg:pt-[150px]">
+      <section data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" className="relative isolate flex min-h-[100svh] items-start overflow-hidden bg-[#071422] px-5 pb-12 pt-[108px] text-white md:items-center md:px-8 md:pb-32 md:pt-[132px] lg:px-10 lg:pb-36 lg:pt-[150px]">
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_74%_28%,rgba(83,217,134,0.16),transparent_30%),radial-gradient(circle_at_8%_12%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
         <HeroImageSlideshow />
         <div className="mx-auto w-full max-w-[92rem]">
           <div className="relative z-10 max-w-[900px]">
-            <h1 className="max-w-[900px] translate-y-8 text-balance text-[clamp(2.05rem,5vw,5.25rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-white sm:translate-y-10">Train your office team to handle more paperwork, billing, and job admin without hiring another person.</h1>
-            <div className="mt-[18svh] flex flex-col gap-4 sm:mt-24 sm:flex-row">
+            <h1 className="max-w-[900px] text-balance text-[clamp(2.05rem,5vw,5.25rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-white sm:translate-y-10">Train your office team to handle more paperwork, billing, and job admin without hiring another person.</h1>
+            <div className="mt-7 flex flex-col gap-4 sm:mt-24 sm:flex-row">
               <CTALink href={mapHref} kind="systems" location="home_hero_primary" ctaLabel="Book the AI Office Map" className={`${greenButton} px-8 text-[1.05rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02]`}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
               <CTALink href={blueprintHref} kind="systems" location="home_hero_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
             </div>
