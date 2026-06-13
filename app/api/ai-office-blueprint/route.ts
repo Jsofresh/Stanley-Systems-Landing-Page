@@ -3,8 +3,6 @@ import { appendFile, mkdir } from "node:fs/promises"
 import path from "node:path"
 import { NextResponse } from "next/server"
 import { forwardBlueprintRequest } from "@/lib/ai-office-blueprint/webhook-adapter"
-import { generateMockBlueprint } from "@/lib/ai-office-blueprint/mock-generator"
-import { renderAiOfficeBlueprintHtml } from "@/lib/ai-office-blueprint/renderer"
 import type { AiOfficeBlueprintIntake } from "@/lib/ai-office-blueprint/types"
 
 const MAX_REQUEST_BYTES = 24_000
@@ -18,14 +16,10 @@ const requiredFields: Array<keyof AiOfficeBlueprintIntake> = [
   "email",
   "businessName",
   "businessType",
-  "teamSize",
   "fieldServiceSoftware",
-  "accountingSoftware",
-  "spreadsheetUsage",
   "informationStuck",
   "copyCheckRewrite",
   "billingDelays",
-  "missedFollowUp",
   "toolsInvolved",
   "desiredOutputType",
   "aiComfortLevel",
@@ -139,13 +133,14 @@ export async function POST(request: Request) {
     }
 
     const submissionId = `aob_${randomUUID()}`
-    const blueprint = generateMockBlueprint(intake, submissionId)
-    const html = renderAiOfficeBlueprintHtml(blueprint)
+    const submittedAt = new Date().toISOString()
     await saveSubmission({
       submissionId,
-      submittedAt: new Date().toISOString(),
+      submittedAt,
+      status: "queued_for_hermes_email",
+      requestedDelivery: "hermes_generated_html_email",
+      template: "templates/ai-office-blueprint/fable-blueprint-template.html",
       intake,
-      blueprint,
     })
 
     let delivery
@@ -154,8 +149,8 @@ export async function POST(request: Request) {
     } catch (error) {
       delivery = {
         accepted: true,
-        delivery: "local-preview" as const,
-        response: { warning: error instanceof Error ? error.message : "Webhook delivery failed after local save." },
+        delivery: "local-queue" as const,
+        response: { warning: error instanceof Error ? error.message : "Webhook delivery failed after local queue save." },
       }
     }
 
@@ -163,20 +158,17 @@ export async function POST(request: Request) {
       delivery = {
         ...delivery,
         accepted: true,
-        delivery: "local-preview" as const,
+        delivery: "local-queue" as const,
       }
     }
 
     return NextResponse.json({
       ok: true,
       queued: true,
+      status: "queued_for_hermes_email",
       delivery: delivery.delivery,
       submissionId,
-      message: "Your Blueprint preview is ready below. Stanley Systems also saved the request for follow-up.",
-      preview: {
-        blueprint,
-        html,
-      },
+      message: "Good. Your answers were accepted. Stanley Systems will build the custom Blueprint in the formatted HTML and email it to you.",
       result: delivery.response ?? null,
     })
   } catch {

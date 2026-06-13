@@ -13,14 +13,10 @@ type FieldName =
   | "email"
   | "businessName"
   | "businessType"
-  | "teamSize"
   | "fieldServiceSoftware"
-  | "accountingSoftware"
-  | "spreadsheetUsage"
   | "informationStuck"
   | "copyCheckRewrite"
   | "billingDelays"
-  | "missedFollowUp"
   | "toolsInvolved"
   | "desiredOutputType"
   | "aiComfortLevel"
@@ -50,8 +46,8 @@ const fields: IntakeField[] = [
   {
     name: "email",
     eyebrow: "Where should the Blueprint go?",
-    question: "What email should receive the finished Blueprint?",
-    helper: "We’ll send the custom AI Office Blueprint here when it is ready.",
+    question: "What email should we attach to the Blueprint?",
+    helper: "The generic guide is on this page. The custom formatted Blueprint gets emailed here after Stanley Systems builds it from your answers.",
     type: "email",
     autoComplete: "email",
     placeholder: "jane@company.com",
@@ -74,36 +70,12 @@ const fields: IntakeField[] = [
     placeholder: "HVAC, plumbing, roofing, marine...",
   },
   {
-    name: "teamSize",
-    eyebrow: "Office load",
-    question: "How big is the team or office/admin side?",
-    helper: "A rough number is fine. This helps size the handoff and admin drag.",
-    type: "text",
-    placeholder: "8 techs, 2 office staff...",
-  },
-  {
     name: "fieldServiceSoftware",
     eyebrow: "Current systems",
-    question: "What field-service, job, or CRM software do you use?",
-    helper: "If there is no main system, say that. The gaps matter as much as the tools.",
+    question: "What software does the office already use?",
+    helper: "List the main field-service, CRM, accounting, inbox, text, payment, or spreadsheet tools. One line is enough.",
     type: "text",
-    placeholder: "Jobber, ServiceTitan, Housecall Pro, spreadsheets...",
-  },
-  {
-    name: "accountingSoftware",
-    eyebrow: "Money system",
-    question: "What accounting or payment software do you use?",
-    helper: "This helps us spot where job information becomes invoice/payment work.",
-    type: "text",
-    placeholder: "QuickBooks, Stripe, Square, Xero...",
-  },
-  {
-    name: "spreadsheetUsage",
-    eyebrow: "Shadow systems",
-    question: "What Excel or Google Sheets still run part of the office?",
-    helper: "Tell us what sheets people still rely on for tracking, cleanup, scheduling, billing, or follow-up.",
-    type: "text",
-    placeholder: "Scheduling sheet, invoice tracker, customer callback list...",
+    placeholder: "Jobber, ServiceTitan, QuickBooks, Gmail, texts, spreadsheets...",
   },
   {
     name: "informationStuck",
@@ -128,14 +100,6 @@ const fields: IntakeField[] = [
     helper: "Be specific: missing parts, job photos, tech notes, approvals, customer signatures, payment links, corrections.",
     type: "textarea",
     placeholder: "Invoices wait because office staff have to chase techs for missing job details...",
-  },
-  {
-    name: "missedFollowUp",
-    eyebrow: "Follow-up leaks",
-    question: "What customer or job follow-up falls through the cracks?",
-    helper: "Estimates, missed calls, unsent review asks, annual service reminders, past customers, warranty callbacks, unpaid invoices.",
-    type: "textarea",
-    placeholder: "Open estimates do not get a second touch unless someone remembers...",
   },
   {
     name: "toolsInvolved",
@@ -266,7 +230,7 @@ export function BlueprintIntakeForm() {
       if (!response.ok || !result.ok) throw new Error(result.error || "Could not queue the Blueprint.")
 
       setStatus("sent")
-      setMessage(result.message || "Your Blueprint is queued. Check your email for the finished version.")
+      setMessage(result.message || "Good. Your answers were accepted. Stanley Systems will build the custom Blueprint in the formatted HTML and email it to you.")
       if (result.preview?.html) setPreviewHtml(result.preview.html)
       setFormData(blankData)
       setWebsite("")

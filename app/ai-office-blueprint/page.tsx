@@ -20,6 +20,16 @@ const blueprintRows = [
   { icon: TrendingUp, label: "The best next workflow to improve" },
 ]
 
+const guideFixes = [
+  "Clean messy tech notes into billing-ready summaries",
+  "Find what is blocking invoices before cash gets stuck",
+  "Sort stale estimates and write the next follow-up",
+  "Rewrite customer replies without sounding robotic",
+  "Build a daily office drag list from real staff friction",
+  "Give each role a simple AI cheat sheet",
+  "Map the workflow before buying another tool",
+]
+
 export const metadata: Metadata = {
   title: "Free AI Office Blueprint | Stanley Systems",
   description: "Get a custom AI Office Blueprint with practical AI staff plays, copy/paste prompts, a quick capacity win, and the best office workflow to improve first.",
@@ -37,7 +47,7 @@ export default function AiOfficeBlueprintPage() {
           <div className="mx-auto grid w-full max-w-[1180px] gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,570px)_minmax(390px,480px)] lg:items-center lg:gap-16 lg:px-8 xl:gap-20 xl:px-0">
             <div className="max-w-[570px]">
               <h1 className="max-w-[560px] text-[3.35rem] font-semibold leading-[1.04] tracking-normal text-white sm:text-[4.35rem] lg:text-[3.35rem] lg:leading-[1.02] xl:text-[3.55rem] 2xl:text-[4rem]">Get the Free AI Office Blueprint</h1>
-              <p className="mt-5 max-w-[545px] text-[1.08rem] font-medium leading-[1.6] tracking-normal text-white/86 sm:text-[1.17rem] lg:text-[1.04rem] lg:leading-[1.55]">Answer the short office workflow form. We’ll turn the messy details into a custom Blueprint with AI staff plays, copy/paste prompts, one quick capacity win, and the next workflow worth fixing first.</p>
+              <p className="mt-5 max-w-[545px] text-[1.08rem] font-medium leading-[1.6] tracking-normal text-white/86 sm:text-[1.17rem] lg:text-[1.04rem] lg:leading-[1.55]">Read the quick AI Office fixes first. Then answer the short workflow intake and we’ll email a custom Blueprint with staff plays, copy/paste prompts, one quick capacity win, and the next workflow worth fixing first.</p>
               <div className="mt-5 grid max-w-[570px] gap-2.5 sm:grid-cols-2">
                 {blueprintRows.map(({ icon: Icon, label }) => (
                   <div key={label} className="flex min-h-[52px] items-center gap-3 rounded-2xl border border-white/14 bg-white/[0.09] px-3.5 py-2.5 text-[13.5px] font-semibold leading-[1.3] tracking-normal text-white shadow-[0_16px_36px_rgba(0,0,0,0.14)] backdrop-blur-sm">
@@ -82,9 +92,26 @@ export default function AiOfficeBlueprintPage() {
           </div>
         </section>
 
-        <section data-motion-exempt className="px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <section data-motion-exempt className="px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
           <div className="mx-auto max-w-7xl">
-            <div id="blueprint-form" className="scroll-mt-28 lg:scroll-mt-28">
+            <div className="mx-auto mb-8 grid w-full overflow-hidden rounded-[2rem] border border-[#CFE8D5] bg-white shadow-[0_24px_74px_rgba(7,29,58,0.08)] lg:w-[78vw] lg:max-w-[1500px] lg:grid-cols-[0.86fr_1.14fr]">
+              <div className="bg-[#071D3A] p-6 text-white sm:p-8 lg:p-9">
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8EF0A7]">Start here</p>
+                <h2 className="mt-3 max-w-xl text-[2.35rem] font-semibold leading-[0.96] tracking-[-0.055em] sm:text-[3.2rem]">Get the generic AI Office fixes first.</h2>
+                <p className="mt-4 max-w-xl text-base font-semibold leading-7 text-white/78 sm:text-lg">Use the free guide now. Then answer the intake so Stanley Systems can turn your answers into a custom formatted Blueprint and email it to you.</p>
+                <a href="#blueprint-form" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-[linear-gradient(180deg,#1FB957_0%,#138A3B_100%)] px-6 py-3 text-sm font-extrabold text-white shadow-[0_18px_44px_rgba(31,185,87,0.35)] transition hover:-translate-y-0.5">Customize my Blueprint <ArrowRight className="ml-2 h-4 w-4" /></a>
+              </div>
+              <div className="grid gap-2.5 bg-[#F7FBF6] p-5 sm:p-7 lg:grid-cols-2 lg:p-8">
+                {guideFixes.map((fix, index) => (
+                  <div key={fix} className="flex min-h-[74px] gap-3 rounded-2xl border border-[#DDEBE2] bg-white p-4 shadow-[0_10px_24px_rgba(7,29,58,0.05)]">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E6F5E8] text-sm font-black text-[#116832]">{index + 1}</span>
+                    <p className="text-[15px] font-extrabold leading-5 tracking-[-0.015em] text-[#071D3A]">{fix}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div id="blueprint-form" className="scroll-mt-44 lg:scroll-mt-48">
               <div className="mx-auto w-full lg:w-[78vw] lg:max-w-[1500px]">
                 <BlueprintIntakeForm />
               </div>
@@ -93,7 +120,7 @@ export default function AiOfficeBlueprintPage() {
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#116832] shadow-[0_14px_28px_rgba(7,29,58,0.07)]"><ClipboardList className="h-7 w-7" /></span>
               <div>
                 <h2 className="text-2xl font-semibold tracking-[-0.03em]">What the form gives us</h2>
-                <p className="mt-1 text-base font-semibold leading-7 text-[#536173]">Specific tools, stuck points, staff cleanup work, billing drag, missed follow-up, and one messy example — enough detail to make the first Blueprint useful instead of generic.</p>
+                <p className="mt-1 text-base font-semibold leading-7 text-[#536173]">Specific tools, stuck points, staff cleanup work, billing drag, desired output, and one messy example — enough detail to fill the formatted Blueprint HTML and email the custom version.</p>
               </div>
               <Link href="/workflow-audit" className="inline-flex items-center text-sm font-extrabold text-[#116832] lg:justify-self-end">Need the full Map instead? <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </aside>
