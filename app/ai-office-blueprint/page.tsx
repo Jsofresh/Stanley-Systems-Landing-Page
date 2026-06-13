@@ -26,19 +26,19 @@ export default function AiOfficeBlueprintPage() {
     <>
       <SiteHeader />
       <main className="min-h-screen overflow-x-hidden bg-[#FBF8F2] text-[#071D3A]">
-        <section data-nav-theme="light" className="relative isolate overflow-hidden bg-[#FBFAF6] pt-24 text-[#071D3A] sm:pt-28 lg:pt-20">
+        <section data-nav-theme="light" className="relative isolate overflow-hidden bg-[#FBFAF6] pt-24 text-[#071D3A] sm:pt-28 lg:pt-16">
           <Image
             src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-hero-wide.jpg"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="-z-30 object-cover object-[72%_center]"
+            className="-z-30 object-cover object-[82%_center] sm:object-[76%_48%] lg:object-[72%_48%]"
             aria-hidden="true"
           />
-          <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.94)_35%,rgba(255,255,255,0.52)_54%,rgba(255,255,255,0.05)_82%,rgba(255,255,255,0)_100%)]" />
-          <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-b from-transparent via-[#FBFAF6]/82 to-[#F4EFE8]" />
-          <div className="relative z-10 mx-auto flex min-h-[560px] w-full max-w-[1420px] items-start px-5 pb-20 pt-8 sm:px-10 lg:min-h-[600px] lg:px-[84px] lg:pb-24 lg:pt-10">
+          <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.95)_34%,rgba(255,255,255,0.58)_55%,rgba(255,255,255,0.08)_82%,rgba(255,255,255,0)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent via-[#FBFAF6]/84 to-[#F4EFE8]" />
+          <div className="relative z-10 mx-auto flex min-h-[590px] w-full max-w-[1420px] items-start px-5 pb-16 pt-14 sm:min-h-[640px] sm:px-10 sm:pt-20 lg:min-h-[700px] lg:px-[84px] lg:pb-24 lg:pt-[104px] xl:min-h-[720px] xl:pt-[118px]">
             <div className="max-w-[520px]">
               <h1 className="text-[2.8rem] font-bold leading-[1.01] tracking-[-0.024em] text-[#071D3A] sm:text-[3.25rem] lg:text-[3.45rem] xl:text-[3.75rem]">
                 Get the Free
@@ -72,18 +72,19 @@ export default function AiOfficeBlueprintPage() {
 
         <section data-motion-exempt className="bg-[#F4EFE8] px-4 pb-24 pt-10 sm:px-6 lg:px-8 lg:pb-36 lg:pt-14">
           <div className={`${contentShell} space-y-12`}>
-            <section aria-labelledby="generic-blueprint-heading" className="relative isolate mx-auto flex min-h-[620px] w-full overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_70px_rgba(7,29,58,0.08)] sm:min-h-[640px] lg:aspect-[16/9] lg:min-h-0">
+            <section aria-labelledby="generic-blueprint-heading" className="relative left-1/2 isolate mx-0 flex min-h-[570px] w-screen -translate-x-1/2 overflow-hidden bg-[#F8F4EC] sm:min-h-[610px] lg:min-h-[620px]">
               <Image
                 src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-book-cover-wide.jpg"
                 alt=""
                 fill
-                sizes="(min-width: 1024px) 1420px, 100vw"
-                className="z-0 object-cover object-[72%_center] lg:object-center"
+                sizes="100vw"
+                className="z-0 object-cover object-[76%_center] sm:object-[73%_center] lg:object-[72%_center]"
                 aria-hidden="true"
               />
-              <div className="absolute inset-0 z-10 bg-white/90 sm:hidden" />
-              <div className="absolute inset-0 z-10 hidden sm:block sm:bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.9)_40%,rgba(255,255,255,0.18)_62%,rgba(255,255,255,0)_100%)]" />
-              <div className="relative z-20 flex w-full max-w-[620px] flex-col justify-center px-7 py-12 sm:px-12 lg:justify-center lg:px-[6.2%] lg:py-[8%]">
+              <div className="absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(248,244,236,0.99)_0%,rgba(248,244,236,0.94)_58%,rgba(248,244,236,0.68)_100%)] sm:bg-[linear-gradient(90deg,rgba(248,244,236,0.99)_0%,rgba(248,244,236,0.92)_32%,rgba(248,244,236,0.32)_54%,rgba(248,244,236,0.04)_76%,rgba(248,244,236,0)_100%)]" />
+              <div className="absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-[#F4EFE8] to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#F4EFE8] to-transparent" />
+              <div className="relative z-20 mx-auto flex w-full max-w-[1420px] flex-col justify-center px-7 py-12 sm:px-12 lg:px-[84px] lg:py-[7%]">
                 <p className="w-fit rounded-full border border-[#15803D]/35 bg-white/82 px-5 py-2 text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#15803D] shadow-[0_10px_24px_rgba(7,29,58,0.05)] sm:px-6 sm:py-2.5 sm:text-[13px]">FREE THING 1</p>
                 <h2 id="generic-blueprint-heading" className="mt-7 max-w-[620px] text-[2.75rem] font-bold leading-[1.03] tracking-[-0.028em] text-[#071D3A] sm:text-[3.45rem] lg:text-[3.85rem]">
                   Download the
