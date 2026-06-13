@@ -18,18 +18,13 @@ export default function Page() {
           <img src="/images/uploaded/ai-office/owner-reviewing-paperwork.jpg" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,29,58,0.98)_0%,rgba(7,29,58,0.91)_46%,rgba(7,29,58,0.62)_78%,rgba(7,29,58,0.5)_100%)]" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_14%,rgba(83,217,134,0.2),transparent_34%),linear-gradient(180deg,rgba(7,29,58,0.08)_0%,rgba(7,29,58,0.88)_100%)]" />
-          <div className={shell}>
-            <div className="max-w-[900px]">
+          <div className="w-full px-4 sm:px-6 lg:px-0">
+            <div className="max-w-[900px] lg:ml-[15vw]">
               <h1 className="text-balance text-[3rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.6rem] sm:tracking-[-0.045em]">Find the Office Work AI Should Remove First.</h1>
               <p className="mt-6 max-w-[780px] text-xl font-semibold leading-9 text-white/84">Get concrete fixes, staff AI prompts, workflow tips, tool recommendations, and the first install priority — not a recap of how your office already works.</p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Book the AI Office Map <ArrowRight className="ml-2 h-5 w-5" /></a>
                 <Link href="/ai-office-blueprint" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/30 bg-white/12 px-8 py-4 text-base font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18">Get the Free Blueprint</Link>
-              </div>
-              <div className="mt-7 flex max-w-[760px] flex-wrap gap-3">
-                {["Fix list", "Staff AI prompts", "Install priority", "$197 credited toward Sprint"].map((item) => (
-                  <div key={item} className="rounded-full border border-white/14 bg-white/[0.07] px-4 py-2 text-sm font-extrabold text-white/82 backdrop-blur-md">{item}</div>
-                ))}
               </div>
             </div>
           </div>
