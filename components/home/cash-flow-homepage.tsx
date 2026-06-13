@@ -21,7 +21,7 @@ const mobileHeroSlideshowImages = [
 ]
 
 const uploadedHomeImages = {
-  calculator: { src: "/images/uploaded/homepage/ai-office/admin-drag-calculator.jpg", alt: "Office workflow report showing hours lost, admin drag cost, and top office bottleneck", width: 1280, height: 960 },
+  calculator: { src: "/images/uploaded/homepage/ai-office/ai-office-blueprint-product-shot.jpg", alt: "AI Office Blueprint product shot showing the free office workflow report", width: 1280, height: 1070 },
   map: { src: "/images/uploaded/homepage/ai-office/ai-office-map-laptop.jpg", alt: "AI Office Map with behind, already handled, still chased, and workflow columns", width: 1280, height: 960 },
   officeAdmin: { src: "/images/uploaded/homepage/ai-office/service-owner-office-admin-shot.jpg", alt: "Service business owner and office admin reviewing paperwork at a desk", width: 1280, height: 720 },
   checklistLaptop: { src: "/images/uploaded/homepage/ai-office/office-desk-invoice-checklist-highvis.jpg", alt: "Office desk with invoice checklist and high visibility service work context", width: 1280, height: 548 },
@@ -86,7 +86,11 @@ function HeroImageSlideshow() {
 function CalculatorSpine() {
   return (
     <PageSection id="calculator" className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#eef5ed] py-12 text-[#071D3A] md:py-16 lg:py-20" fullDesktop={false}>
-      <Image src={uploadedHomeImages.checklistLaptop.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-[62%_center]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden bg-[#eef5ed]">
+        <Image src={uploadedHomeImages.calculator.src} alt="" fill sizes="100vw" className="scale-125 object-cover object-[62%_center]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#eef5ed_0%,rgba(238,245,237,0.98)_23%,rgba(238,245,237,0.7)_45%,rgba(238,245,237,0.14)_68%,#eef5ed_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#eef5ed_0%,rgba(238,245,237,0.08)_28%,rgba(238,245,237,0.12)_70%,#eef5ed_100%)]" />
+      </div>
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(247,251,244,0.98)_0%,rgba(247,251,244,0.94)_34%,rgba(247,251,244,0.66)_54%,rgba(247,251,244,0.18)_75%,rgba(247,251,244,0.02)_100%)]" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(247,251,244,0.72)_0%,rgba(247,251,244,0.16)_42%,rgba(247,251,244,0.76)_100%)]" />
       <div className="mx-auto flex min-h-[520px] max-w-[88rem] items-center md:min-h-[600px] lg:min-h-[680px]">

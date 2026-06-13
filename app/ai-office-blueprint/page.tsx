@@ -14,7 +14,7 @@ const heroChips = [
   { icon: Zap, label: "One quick win" },
 ]
 
-const genericBlueprintPdf = "/downloads/ai-office-blueprint/7-ai-office-fixes.pdf"
+const genericBlueprintPdf = "/ai-office-blueprint/download-pdf"
 
 export const metadata: Metadata = {
   title: "Free AI Office Blueprint | Stanley Systems",
@@ -28,16 +28,18 @@ export default function AiOfficeBlueprintPage() {
       <main className="min-h-screen overflow-x-hidden bg-[#FBF8F2] text-[#071D3A]">
         <section data-nav-theme="light" className="relative isolate overflow-hidden bg-[#FBFAF6] pt-24 text-[#071D3A] sm:pt-28 lg:pt-14">
           <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_77%_52%,rgba(21,128,61,0.09),transparent_34%),linear-gradient(180deg,#FBFAF6_0%,#FBFAF6_78%,#F4EFE8_100%)]" />
-          <div className="pointer-events-none absolute bottom-8 right-[-42px] top-[118px] z-0 hidden w-[59vw] max-w-[780px] md:block lg:right-[-18px] lg:top-[104px] xl:right-[18px] xl:top-[96px]">
-            <Image
-              src="/images/uploaded/ai-office-blueprint/derived/ai-office-blueprint-right-art-contained.jpg"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 1280px) 780px, 59vw"
-              className="object-contain object-center drop-shadow-[0_28px_60px_rgba(7,29,58,0.12)]"
-              aria-hidden="true"
-            />
+          <div className="pointer-events-none absolute bottom-8 right-[-70px] top-[92px] z-0 hidden w-[74vw] max-w-[975px] md:block lg:right-[-58px] lg:top-[78px] xl:right-[-20px] xl:top-[68px]">
+            <div className="absolute inset-0 overflow-hidden" style={{ WebkitMaskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 10%, #000 24%, #000 76%, rgba(0,0,0,0.58) 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%)", maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 10%, #000 24%, #000 76%, rgba(0,0,0,0.58) 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%)", WebkitMaskComposite: "source-in", maskComposite: "intersect" }}>
+              <Image
+                src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-product-shot.jpg"
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 1280px) 975px, 74vw"
+                className="scale-125 object-contain object-center drop-shadow-[0_28px_60px_rgba(7,29,58,0.12)]"
+                aria-hidden="true"
+              />
+            </div>
           </div>
           <div className="absolute inset-x-0 bottom-0 z-0 h-36 bg-gradient-to-b from-transparent via-[#FBFAF6]/84 to-[#F4EFE8]" />
           <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1420px] items-start px-5 pb-16 pt-10 sm:min-h-[660px] sm:px-10 sm:pt-12 lg:min-h-[650px] lg:px-[84px] lg:pb-20 lg:pt-[72px] xl:min-h-[680px] xl:pt-[86px]">
