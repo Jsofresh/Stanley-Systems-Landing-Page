@@ -27,18 +27,21 @@ export default function AiOfficeBlueprintPage() {
       <SiteHeader />
       <main className="min-h-screen overflow-x-hidden bg-[#FBF8F2] text-[#071D3A]">
         <section data-nav-theme="light" className="relative isolate overflow-hidden bg-[#FBFAF6] pt-24 text-[#071D3A] sm:pt-28 lg:pt-16">
-          <Image
-            src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-hero-wide.jpg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="-z-30 object-cover object-[82%_center] sm:object-[76%_48%] lg:object-[72%_48%]"
-            aria-hidden="true"
-          />
+          <div className="absolute inset-x-0 bottom-0 top-10 -z-30 sm:top-12 lg:top-14 xl:top-16">
+            <Image
+              src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-hero-wide.jpg"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[84%_center] sm:object-[78%_center] lg:object-[74%_center]"
+              aria-hidden="true"
+            />
+          </div>
+          <div className="absolute inset-x-0 top-0 -z-20 h-24 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/90 to-transparent" />
           <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.95)_34%,rgba(255,255,255,0.58)_55%,rgba(255,255,255,0.08)_82%,rgba(255,255,255,0)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent via-[#FBFAF6]/84 to-[#F4EFE8]" />
-          <div className="relative z-10 mx-auto flex min-h-[590px] w-full max-w-[1420px] items-start px-5 pb-16 pt-14 sm:min-h-[640px] sm:px-10 sm:pt-20 lg:min-h-[700px] lg:px-[84px] lg:pb-24 lg:pt-[104px] xl:min-h-[720px] xl:pt-[118px]">
+          <div className="relative z-10 mx-auto flex min-h-[570px] w-full max-w-[1420px] items-start px-5 pb-14 pt-14 sm:min-h-[610px] sm:px-10 sm:pt-18 lg:min-h-[650px] lg:px-[84px] lg:pb-20 lg:pt-[82px] xl:min-h-[670px] xl:pt-[92px]">
             <div className="max-w-[520px]">
               <h1 className="text-[2.8rem] font-bold leading-[1.01] tracking-[-0.024em] text-[#071D3A] sm:text-[3.25rem] lg:text-[3.45rem] xl:text-[3.75rem]">
                 Get the Free
