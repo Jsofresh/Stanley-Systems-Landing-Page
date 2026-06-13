@@ -67,31 +67,27 @@ export default function Page() {
     <>
       <SiteHeader />
       <main className="min-h-screen bg-[#FBF8F2] text-[#071D3A]">
-        <section id="assessment" className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#071D3A] pt-32 pb-16 text-white lg:pt-40 lg:pb-24">
+        <section id="assessment" className="relative isolate flex min-h-[100svh] scroll-mt-[120px] items-center overflow-hidden bg-[#071D3A] py-24 text-white lg:min-h-screen lg:py-28">
           <img src="/images/uploaded/ai-office/owner-reviewing-paperwork.jpg" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,29,58,0.98)_0%,rgba(7,29,58,0.91)_46%,rgba(7,29,58,0.62)_78%,rgba(7,29,58,0.5)_100%)]" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_14%,rgba(83,217,134,0.2),transparent_34%),linear-gradient(180deg,rgba(7,29,58,0.08)_0%,rgba(7,29,58,0.88)_100%)]" />
           <div className={shell}>
             <div className="max-w-[980px]">
-              <p className="text-sm font-black uppercase tracking-[0.16em] text-[#9BE7AE]">AI Office Map</p>
-              <h1 className="mt-4 text-balance text-[3rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.6rem] sm:tracking-[-0.045em]">Find the Office Work AI Should Remove First.</h1>
+              <h1 className="text-balance text-[3rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.6rem] sm:tracking-[-0.045em]">Find the Office Work AI Should Remove First.</h1>
               <p className="mt-6 max-w-[860px] text-xl font-semibold leading-9 text-white/84">Get concrete fixes, staff AI prompts, workflow tips, tool recommendations, and the first install priority — not a recap of how your office already works.</p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Book the AI Office Map <ArrowRight className="ml-2 h-5 w-5" /></a>
                 <Link href="/ai-office-blueprint" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/30 bg-white/12 px-8 py-4 text-base font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18">Get the Free Blueprint</Link>
               </div>
-              <p className="mt-5 text-base font-bold text-white/80">The AI Office Map is $197 and is credited toward your AI Office Installation Sprint.</p>
             </div>
           </div>
         </section>
 
         <section data-motion-exempt className={`${shell} py-16 lg:py-24`}>
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-[#15803D]">Demo Preview</p>
-            <h2 className="mt-3 text-[2.25rem] font-semibold leading-[1] tracking-[-0.035em] text-[#071D3A] sm:text-[4rem]">See What the Map Gives You</h2>
-            <p className="mx-auto mt-4 max-w-3xl text-lg font-semibold leading-8 text-[#536173]">Watch the demo preview to see how the AI Office Map turns office drag into usable fixes, prompts, tools, and install priorities.</p>
+            <h2 className="text-[2.25rem] font-semibold leading-[1] tracking-[-0.035em] text-[#071D3A] sm:text-[4rem]">See What the Map Gives You</h2>
           </div>
-          <div className="mx-auto mt-10 max-w-5xl overflow-hidden rounded-[2rem] border border-[#CFE8D5] bg-[#071D3A] p-2 shadow-[0_24px_70px_rgba(7,29,58,0.18)] sm:p-3">
+          <div className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-[2rem] border border-[#CFE8D5] bg-[#071D3A] p-2 shadow-[0_24px_70px_rgba(7,29,58,0.18)] sm:p-3">
             <video
               className="aspect-video w-full rounded-[1.5rem] bg-[#071D3A] object-cover"
               src="/videos/ai-office-map-demo-preview.mp4"
