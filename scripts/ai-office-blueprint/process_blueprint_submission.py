@@ -354,6 +354,7 @@ def process_one(submission_id: str | None, dry_run: bool, profile: Path) -> dict
             "dryRun": dry_run,
             "blueprintPath": str(blueprint_path),
             "htmlPath": delivery.get("html_path"),
+            "pdfPath": delivery.get("pdf_path"),
             "gmail": delivery.get("gmail"),
             "to": delivery.get("to"),
         }
