@@ -72,7 +72,7 @@ export default function Page() {
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,29,58,0.98)_0%,rgba(7,29,58,0.91)_46%,rgba(7,29,58,0.62)_78%,rgba(7,29,58,0.5)_100%)]" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_14%,rgba(83,217,134,0.2),transparent_34%),linear-gradient(180deg,rgba(7,29,58,0.08)_0%,rgba(7,29,58,0.88)_100%)]" />
           <div className={shell}>
-            <div className="max-w-[980px]">
+            <div className="max-w-[980px] lg:ml-16 xl:ml-24">
               <h1 className="text-balance text-[3rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.6rem] sm:tracking-[-0.045em]">Find the Office Work AI Should Remove First.</h1>
               <p className="mt-6 max-w-[860px] text-xl font-semibold leading-9 text-white/84">Get concrete fixes, staff AI prompts, workflow tips, tool recommendations, and the first install priority — not a recap of how your office already works.</p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -99,7 +99,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section data-motion-exempt className={`${shell} pb-16 lg:pb-24`}>
+        <section id="deliverables" data-motion-exempt className={`${shell} pb-16 lg:pb-24`}>
           <SectionHeader eyebrow="Deliverables" title="What You Actually Get in the AI Office Map" />
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {deliverables.map(([title, body], index) => (

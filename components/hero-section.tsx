@@ -40,29 +40,81 @@ type MegaMenuGroup = {
 
 const navGroups: MegaMenuGroup[] = [
   {
-    label: "AI Office",
-    href: "/systems-installation-sprint",
-    eyebrow: "AI Office Workflows",
-    summary: "Admin drag, billing readiness, follow-up, and staff handoff workflows Stanley Systems can install after the AI Office Map.",
-    widthClass: "w-[min(690px,calc(100vw-2rem))]",
-    columnsClass: "grid-cols-[1fr_230px]",
+    label: "Free Blueprint",
+    href: "/ai-office-blueprint",
+    eyebrow: "Start free",
+    summary: "Start here if you want a practical first look at where AI can remove office drag before you book a paid Map.",
+    widthClass: "w-[min(500px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-1",
     items: [
-      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Turn the AI Office Map into priority workflows, staff training, and your company playbook." },
-      { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Get a custom first-pass AI workflow plan from one focused form." },
-      { label: "AI Office Ops", href: "/pricing#ai-office-ops", description: "Keep installed workflows monitored, fixed, and improving." },
+      { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Answer one focused workflow form and get a custom first-pass AI office plan." },
+      { label: "Blueprint Sample", href: "/ai-office-blueprint/sample", description: "Preview the kind of output the Blueprint creates." },
+      { label: "AI Office Map", href: "/workflow-audit", description: "Ready for the paid diagnostic? Book the next step." },
     ],
     featured: {
-      title: "Not sure where office drag is costing you?",
-      copy: "Book the AI Office Map before installing workflows.",
+      title: "Want the first read before you buy?",
+      copy: "Use the free Blueprint to surface the obvious office drag first.",
+      href: "/ai-office-blueprint",
+      cta: "Get the Free Blueprint",
+    },
+  },
+  {
+    label: "AI Office Map",
+    href: "/workflow-audit",
+    eyebrow: "Paid first step",
+    summary: "The Map turns office drag into a fix list: prompts, handoff changes, tool guidance, quick wins, and first install priority.",
+    widthClass: "w-[min(520px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-1",
+    items: [
+      { label: "Book the AI Office Map", href: "/workflow-audit", description: "The $197 diagnostic that finds what your office should fix first." },
+      { label: "What You Get", href: "/workflow-audit#deliverables", description: "See the deliverables: fix list, staff plays, priority matrix, and install plan." },
+      { label: "Pricing", href: "/pricing", description: "See the full path from free Blueprint to Map, Sprint, and Ops." },
+    ],
+    featured: {
+      title: "The Map comes before the build.",
+      copy: "Use it to avoid spending time or money on the wrong workflow.",
       href: "/workflow-audit",
       cta: "Book the AI Office Map",
     },
   },
   {
+    label: "Installation Sprint",
+    href: "/systems-installation-sprint",
+    eyebrow: "Build the workflow",
+    summary: "After the Map, the Sprint turns the highest-leverage workflow into installed prompts, automations, staff process, and operating docs.",
+    widthClass: "w-[min(560px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-1",
+    items: [
+      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "The build phase for the first workflow worth installing." },
+      { label: "Cash Flow Collection System", href: "/systems/cashflow-control", description: "A focused path for billing readiness, invoices, and collection follow-up." },
+      { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "A focused path for follow-up, reactivation, reviews, and repeat work." },
+      { label: "Both Systems", href: "/systems/both-systems", description: "When the business needs cash-flow control and repeat-revenue follow-up together." },
+    ],
+    featured: {
+      title: "Know the first workflow already?",
+      copy: "The Sprint is where Stanley Systems builds the workflow into the office.",
+      href: "/systems-installation-sprint",
+      cta: "See the Sprint",
+    },
+  },
+  {
+    label: "AI Office Ops",
+    href: "/pricing#ai-office-ops",
+    eyebrow: "Ongoing support",
+    summary: "After a workflow is installed, Ops keeps it monitored, fixed, improved, and useful as the office changes.",
+    widthClass: "w-[min(460px,calc(100vw-2rem))]",
+    columnsClass: "grid-cols-1",
+    items: [
+      { label: "AI Office Ops", href: "/pricing#ai-office-ops", description: "Monthly support for installed workflows after the Sprint." },
+      { label: "Pricing", href: "/pricing", description: "See the full offer ladder and ongoing support options." },
+      { label: "Contact", href: "/contact?path=ops", description: "Ask whether Ops fits your current setup." },
+    ],
+  },
+  {
     label: "Industries",
     href: "/who-stanley-systems-helps",
-    eyebrow: "Built for service businesses",
-    summary: "Clear paths for busy shops where office handoffs, follow-up, and billing drag cap growth.",
+    eyebrow: "Who it fits",
+    summary: "Stanley Systems is built for service businesses where office handoffs, billing, follow-up, and job details decide growth.",
     widthClass: "w-[min(620px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-2",
     items: [
@@ -73,58 +125,30 @@ const navGroups: MegaMenuGroup[] = [
       { label: "Landscaping", href: "/industries/landscaping", description: "Seasonal customers, quotes, add-ons, and billing." },
       { label: "Roofing", href: "/industries/roofing", description: "Leads, estimate follow-up, job handoffs, and reviews." },
       { label: "General Contractors", href: "/industries/general-contractors", description: "Approvals, photos, billing readiness, and repeat work." },
-      { label: "Adjacent Service Businesses", href: "/industries/adjacent-service-businesses", description: "Any service business with office handoffs and follow-up." },
+      { label: "Other Service Businesses", href: "/industries/adjacent-service-businesses", description: "Any service business with office handoffs and follow-up." },
     ],
     featured: {
       title: "Busy team, messy handoff?",
       copy: "Stanley Systems works around the tools your crews already use.",
-      href: "/workflow-audit",
-      cta: "Book the AI Office Map",
+      href: "/who-stanley-systems-helps",
+      cta: "See who it fits",
     },
-  },
-  {
-    label: "AI Office Map",
-    href: "/workflow-audit",
-    eyebrow: "Find the fix list",
-    summary: "Start with the free Blueprint, book the AI Office Map, then use the Sprint if you want Stanley Systems to build it.",
-    widthClass: "w-[min(460px,calc(100vw-2rem))]",
-    columnsClass: "grid-cols-1",
-    items: [
-      { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Get a custom starting point before the full AI Office Map." },
-      { label: "AI Office Map", href: "/workflow-audit", description: "See where office drag is costing time, money, follow-up, and quality." },
-      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Have Stanley Systems install the workflows." },
-      { label: "How Stanley Systems Works", href: "/how-stanley-systems-works", description: "See the AI Office workflow path." },
-    ],
-  },
-  {
-    label: "Pricing",
-    href: "/pricing",
-    eyebrow: "Diagnose, build, maintain",
-    summary: "Free Blueprint, AI Office Map, Installation Sprint, then AI Office Ops.",
-    widthClass: "w-[min(420px,calc(100vw-2rem))]",
-    columnsClass: "grid-cols-1",
-    items: [
-      { label: "Pricing", href: "/pricing", description: "See the Free Blueprint, AI Office Map, Sprint, and Ops ladder." },
-      { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "Starts at $3,500 after AI Office Map scope." },
-      { label: "Ask us a question", href: "/contact?path=pre-buy", description: "Ask before buying if you need a quick route check." },
-    ],
   },
   {
     label: "Resources",
     href: "/blog",
-    eyebrow: "Owner tools",
-    summary: "Use these routes to get the free Blueprint, see the thinking, or contact Stanley Systems.",
-    widthClass: "w-[min(440px,calc(100vw-2rem))]",
+    eyebrow: "Learn more",
+    summary: "Read the thinking, see examples, or contact Stanley Systems if you need help choosing the right next step.",
+    widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Get practical AI staff plays from one office workflow form." },
+      { label: "How Stanley Systems Works", href: "/how-stanley-systems-works", description: "See the full path from diagnosis to installed workflow." },
       { label: "Case Notes", href: "/stanley-systems-case-study", description: "See how workflow gaps turn into owner-time problems." },
       { label: "Blog", href: "/blog", description: "Plain-English notes on AI office workflows and admin drag." },
       { label: "Contact", href: "/contact", description: "Send the workflow problem straight to Stanley Systems." },
     ],
   },
 ]
-
 function HeroVideoLoop() {
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
@@ -312,13 +336,11 @@ export function SiteHeader() {
             <span className="hidden sm:inline">+1 (617) 958-6372</span>
           </a>
           <div className="flex items-center gap-3 md:hidden">
-            <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">AI Office Map</a>
-            <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Blueprint</a>
+            <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Start Free</a>
+            <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Map</a>
           </div>
           <div className="hidden items-center gap-5 md:flex">
-            <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Free AI Office Blueprint</a>
-            <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">AI Office Map</a>
-            <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Get the Free Blueprint</a>
+            <a href="/pricing" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Pricing</a>
             <a href="/contact" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
           </div>
         </div>
