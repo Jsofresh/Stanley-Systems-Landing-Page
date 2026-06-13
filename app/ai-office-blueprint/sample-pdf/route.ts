@@ -9,7 +9,7 @@ export async function GET() {
   return new Response(new Uint8Array(pdf), {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": 'inline; filename="stanley-ai-office-blueprint-sample.pdf"',
+      "Content-Disposition": 'attachment; filename="stanley-ai-office-blueprint-sample.pdf"',
       "Cache-Control": "public, max-age=300, s-maxage=300",
     },
   })

@@ -1,10 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import type { Metadata } from "next"
-import { ArrowRight, ClipboardList, Download, MessageSquareText, Sparkles, Zap } from "lucide-react"
+import { ArrowRight, ClipboardList, MessageSquareText, Sparkles, Zap } from "lucide-react"
 import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
 import { BlueprintIntakeForm } from "@/components/ai-office-blueprint/blueprint-intake-form"
+import { DownloadPdfButton } from "@/components/ai-office-blueprint/download-pdf-button"
 
 const contentShell = "mx-auto w-full max-w-[1420px]"
 
@@ -13,8 +14,6 @@ const heroChips = [
   { icon: MessageSquareText, label: "Copy/paste prompts" },
   { icon: Zap, label: "One quick win" },
 ]
-
-const genericBlueprintPdf = "/ai-office-blueprint/download-pdf"
 
 export const metadata: Metadata = {
   title: "Free AI Office Blueprint | Stanley Systems",
@@ -28,7 +27,7 @@ export default function AiOfficeBlueprintPage() {
       <main className="min-h-screen overflow-x-hidden bg-[#FBF8F2] text-[#071D3A]">
         <section data-nav-theme="light" className="relative isolate overflow-hidden bg-[#FBFAF6] pt-24 text-[#071D3A] sm:pt-28 lg:pt-14">
           <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_77%_52%,rgba(21,128,61,0.09),transparent_34%),linear-gradient(180deg,#FBFAF6_0%,#FBFAF6_78%,#F4EFE8_100%)]" />
-          <div className="pointer-events-none absolute bottom-8 right-[-70px] top-[92px] z-0 hidden w-[74vw] max-w-[975px] md:block lg:right-[-58px] lg:top-[78px] xl:right-[-20px] xl:top-[68px]">
+          <div className="pointer-events-none absolute bottom-[-26px] right-[-78px] top-[132px] z-0 hidden w-[74vw] max-w-[975px] md:block lg:right-[-58px] lg:top-[128px] xl:right-[-18px] xl:top-[118px]">
             <div className="absolute inset-0 overflow-hidden" style={{ WebkitMaskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 10%, #000 24%, #000 76%, rgba(0,0,0,0.58) 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%)", maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 10%, #000 24%, #000 76%, rgba(0,0,0,0.58) 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%)", WebkitMaskComposite: "source-in", maskComposite: "intersect" }}>
               <Image
                 src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-product-shot.jpg"
@@ -41,8 +40,9 @@ export default function AiOfficeBlueprintPage() {
               />
             </div>
           </div>
-          <div className="absolute inset-x-0 bottom-0 z-0 h-36 bg-gradient-to-b from-transparent via-[#FBFAF6]/84 to-[#F4EFE8]" />
-          <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1420px] items-start px-5 pb-16 pt-10 sm:min-h-[660px] sm:px-10 sm:pt-12 lg:min-h-[650px] lg:px-[84px] lg:pb-20 lg:pt-[72px] xl:min-h-[680px] xl:pt-[86px]">
+          <div className="absolute inset-x-0 bottom-[-1px] z-0 h-56 bg-[radial-gradient(ellipse_at_78%_18%,rgba(21,128,61,0.14),transparent_42%),linear-gradient(180deg,transparent_0%,rgba(251,250,246,0.58)_34%,#F4EFE8_100%)]" />
+          <div className="absolute bottom-[-92px] right-[6vw] z-0 hidden h-[210px] w-[58vw] rounded-[999px] bg-[#DCEFE1]/72 blur-3xl md:block" />
+          <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1420px] items-start px-5 pb-20 pt-14 sm:min-h-[660px] sm:px-10 sm:pt-[72px] lg:min-h-[640px] lg:px-[84px] lg:pb-20 lg:pt-[88px] xl:min-h-[660px] xl:pt-[96px]">
             <div className="max-w-[640px]">
               <h1 className="text-[3.25rem] font-bold leading-[0.98] tracking-[-0.028em] text-[#071D3A] sm:text-[3.85rem] lg:text-[4.35rem] xl:text-[4.65rem]">
                 Get the Free
@@ -62,10 +62,9 @@ export default function AiOfficeBlueprintPage() {
                 ))}
               </div>
               <div className="mt-6 flex flex-col gap-4 sm:flex-row">
-                <a href={genericBlueprintPdf} download className="inline-flex h-[62px] min-w-[225px] items-center justify-center gap-3 rounded-[1.25rem] border border-[#DDE5DA] bg-white/94 px-7 text-[15px] font-bold text-[#071D3A] shadow-[0_14px_30px_rgba(7,29,58,0.07)] backdrop-blur-sm transition hover:-translate-y-0.5">
-                  <Download className="h-5 w-5" />
+                <DownloadPdfButton className="inline-flex h-[62px] min-w-[225px] items-center justify-center gap-3 rounded-[1.25rem] border border-[#DDE5DA] bg-white/94 px-7 text-[15px] font-bold text-[#071D3A] shadow-[0_14px_30px_rgba(7,29,58,0.07)] backdrop-blur-sm transition hover:-translate-y-0.5">
                   Download free PDF
-                </a>
+                </DownloadPdfButton>
                 <a href="#blueprint-form" className="inline-flex h-[62px] min-w-[225px] items-center justify-center rounded-[1.25rem] bg-[#15803D] px-7 text-[15px] font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.26)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
                   Get custom version <ArrowRight className="ml-3 h-5 w-5" />
                 </a>
@@ -98,9 +97,9 @@ export default function AiOfficeBlueprintPage() {
                   <span className="text-[#13A538]">Blueprint.</span>
                 </h2>
                 <p className="mt-5 max-w-[500px] text-[1.25rem] font-medium leading-[1.38] text-[#071D3A] sm:text-[1.45rem]">7 practical fixes you can use in your office today.</p>
-                <a href={genericBlueprintPdf} download className="mt-8 inline-flex h-[60px] w-fit min-w-[236px] items-center justify-center gap-4 rounded-2xl bg-[#13A538] px-7 text-[1.15rem] font-semibold text-white shadow-[0_16px_34px_rgba(19,165,56,0.24)] transition hover:-translate-y-0.5 hover:bg-[#118E31] sm:h-[64px] sm:min-w-[276px] sm:text-[1.35rem]">
-                  Download PDF <Download className="h-6 w-6" />
-                </a>
+                <DownloadPdfButton className="mt-8 inline-flex h-[60px] w-fit min-w-[236px] items-center justify-center gap-4 rounded-2xl bg-[#13A538] px-7 text-[1.15rem] font-semibold text-white shadow-[0_16px_34px_rgba(19,165,56,0.24)] transition hover:-translate-y-0.5 hover:bg-[#118E31] sm:h-[64px] sm:min-w-[276px] sm:text-[1.35rem]" iconClassName="h-6 w-6" iconPosition="end">
+                  Download PDF
+                </DownloadPdfButton>
               </div>
             </section>
 

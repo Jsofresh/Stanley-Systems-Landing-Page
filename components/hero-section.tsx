@@ -48,7 +48,7 @@ const navGroups: MegaMenuGroup[] = [
     columnsClass: "grid-cols-1",
     items: [
       { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Answer one focused workflow form and get a custom first-pass AI office plan." },
-      { label: "Blueprint Sample", href: "/ai-office-blueprint/sample", description: "Preview the kind of output the Blueprint creates." },
+      { label: "Generic Blueprint PDF", href: "/ai-office-blueprint#generic-blueprint-heading", description: "Jump straight to the generic AI Office Blueprint download section." },
       { label: "AI Office Map", href: "/workflow-audit", description: "Ready for the paid diagnostic? Book the next step." },
     ],
     featured: {
