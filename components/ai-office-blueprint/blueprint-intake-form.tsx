@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState, type ChangeEvent, type KeyboardEvent } from "react"
-import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, Loader2, Sparkles } from "lucide-react"
+import { ArrowLeft, ArrowRight, CheckCircle2, FileText, Loader2 } from "lucide-react"
 
 const inputClass = "min-h-14 w-full rounded-[1.1rem] border border-[#BFD7C8] bg-white px-5 py-4 text-base font-semibold text-[#102033] shadow-[0_1px_0_rgba(255,255,255,0.95)_inset] outline-none transition placeholder:text-[#9AA8B6] focus:border-[#15803D] focus:ring-4 focus:ring-[#BFE4C8]/55"
 
@@ -185,29 +185,30 @@ function ProgressRing({ currentIndex, answeredCount }: { currentIndex: number; a
   const completion = ((currentIndex + 1) / totalQuestions) * circumference
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6">
-      <div className="rounded-full border border-[#E5EEE8] bg-white px-5 py-3 text-sm font-black text-[#071D3A] shadow-[0_12px_30px_rgba(7,29,58,0.08)]">
-        {answeredCount}/{totalQuestions} answered
-      </div>
-      <div className="relative h-[166px] w-[166px]">
-        <svg viewBox="0 0 128 128" className="h-full w-full -rotate-90" aria-hidden="true">
-          <circle cx="64" cy="64" r={radius} fill="none" stroke="#D8EADD" strokeWidth="7" strokeLinecap="round" strokeDasharray="1 10" />
-          <circle
-            cx="64"
-            cy="64"
-            r={radius}
-            fill="none"
-            stroke="#159447"
-            strokeWidth="8"
-            strokeLinecap="round"
-            strokeDasharray={`${completion} ${circumference}`}
-          />
-        </svg>
-        <div className="absolute inset-0 grid place-items-center text-center">
-          <div>
-            <div className="text-[2.25rem] font-black leading-none tracking-[-0.06em] text-[#159447]">{currentIndex + 1}</div>
-            <div className="mt-1 text-xs font-black text-[#116832]">of {totalQuestions}</div>
+    <div className="relative flex h-full min-h-[420px] w-full flex-col justify-center gap-6 overflow-hidden rounded-[1.8rem] border border-white/80 bg-white/78 p-6 text-center shadow-[0_28px_70px_rgba(7,29,58,0.1)] ring-1 ring-[#DCEFE2] backdrop-blur lg:min-h-[470px]">
+      <div className="absolute -left-14 -top-16 h-36 w-36 rounded-full bg-[#BFE4C8]/50 blur-2xl" />
+      <div className="absolute -bottom-20 right-0 h-44 w-44 rounded-full bg-[#F5E9C8]/55 blur-3xl" />
+      <div className="relative">
+        <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#789184]">Progress</p>
+        <div className="mx-auto mt-5 flex h-[180px] w-[180px] items-center justify-center rounded-full bg-[radial-gradient(circle,#FFFFFF_0%,#F8FCF7_58%,#EEF8EE_100%)] shadow-[inset_0_0_0_1px_rgba(216,234,221,0.9),0_20px_46px_rgba(7,29,58,0.1)]">
+          <svg viewBox="0 0 128 128" className="h-[152px] w-[152px] -rotate-90" aria-hidden="true">
+            <circle cx="64" cy="64" r={radius} fill="none" stroke="#E0EFE4" strokeWidth="9" strokeLinecap="round" />
+            <circle cx="64" cy="64" r={radius} fill="none" stroke="#159447" strokeWidth="9" strokeLinecap="round" strokeDasharray={`${completion} ${circumference}`} className="drop-shadow-sm" />
+          </svg>
+          <div className="absolute inset-x-0 top-[82px] grid place-items-center text-center">
+            <div>
+              <div className="text-[2.7rem] font-semibold leading-none tracking-[-0.035em] text-[#159447]">{currentIndex + 1}</div>
+              <div className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-[#116832]">of {totalQuestions}</div>
+            </div>
           </div>
+        </div>
+      </div>
+      <div className="relative space-y-3">
+        <div className="rounded-2xl border border-[#E3F0E7] bg-white/90 px-4 py-3 shadow-[0_12px_28px_rgba(7,29,58,0.05)]">
+          <p className="text-base font-semibold tracking-[-0.02em] text-[#071D3A]">{answeredCount}/{totalQuestions} answered</p>
+        </div>
+        <div className="rounded-2xl border border-[#E3F0E7] bg-white/62 px-4 py-3 text-left">
+          <p className="text-sm font-bold leading-5 text-[#536173]">Short answers now. Useful office plays after submit.</p>
         </div>
       </div>
     </div>
@@ -370,7 +371,7 @@ export function BlueprintIntakeForm() {
   }
 
   return (
-    <div className="overflow-hidden rounded-[2rem] border border-[#D8E9DC] bg-[radial-gradient(circle_at_0%_100%,rgba(191,228,200,0.55),transparent_28%),linear-gradient(115deg,#FCFBF6_0%,#FDFDF8_52%,#F1F9F1_100%)] p-5 shadow-[0_28px_82px_rgba(7,29,58,0.08)] sm:p-7 lg:rounded-[2.2rem] lg:p-10">
+    <div className="overflow-hidden rounded-[2rem] border border-[#D8E9DC] bg-[radial-gradient(circle_at_0%_100%,rgba(191,228,200,0.55),transparent_28%),linear-gradient(115deg,#FCFBF6_0%,#FDFDF8_52%,#F1F9F1_100%)] p-5 shadow-[0_28px_82px_rgba(7,29,58,0.08)] sm:p-7 lg:rounded-[2.2rem] lg:p-8 2xl:p-9">
       <input
         type="text"
         name="website"
@@ -382,29 +383,18 @@ export function BlueprintIntakeForm() {
         aria-hidden="true"
       />
 
-      <div className="grid gap-8 lg:grid-cols-[0.72fr_minmax(470px,1.1fr)_0.52fr] lg:items-center xl:grid-cols-[0.72fr_minmax(520px,1.1fr)_0.52fr]">
-        <div className="self-start lg:pt-8">
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#159447] text-white shadow-[0_12px_26px_rgba(21,148,71,0.24)]">
-              <ClipboardList className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#116832]">Blueprint intake</p>
-          </div>
-          <h2 className="mt-5 max-w-[310px] text-[2.15rem] font-black leading-[0.94] tracking-[-0.07em] text-[#071D3A] sm:text-[2.7rem] lg:text-[2.35rem] xl:text-[2.7rem]">One question at a time.</h2>
-          <p className="mt-4 max-w-[330px] text-sm font-semibold leading-6 text-[#465467]">Answer, tap next, and we turn the messy details into a useful custom Blueprint PDF without making you fill out a giant consultant form.</p>
+      <div className="grid gap-5 lg:grid-cols-[250px_minmax(450px,1fr)_290px] lg:items-stretch 2xl:grid-cols-[300px_minmax(560px,1fr)_minmax(340px,0.72fr)] 2xl:gap-6">
+        <div className="order-2 lg:order-1 lg:flex">
+          <ProgressRing currentIndex={currentIndex} answeredCount={answeredCount} />
         </div>
 
-        <div className="rounded-[1.55rem] border border-[#E1E8E3] bg-white p-5 text-center shadow-[0_24px_70px_rgba(7,29,58,0.12)] sm:p-7 lg:p-8 xl:p-10">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#EEF8EE] px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-[#116832]">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            {questionLabel}
-          </div>
-          <p className="mt-6 text-[11px] font-black uppercase tracking-[0.24em] text-[#6B8756]">{currentField.eyebrow}</p>
-          <h3 className="mx-auto mt-3 max-w-[620px] text-[2.25rem] font-black leading-[0.98] tracking-[-0.065em] text-[#071D3A] sm:text-[3.25rem] lg:text-[3.2rem] xl:text-[3.55rem]">{currentField.question}</h3>
+        <div className="order-1 flex min-h-[360px] flex-col justify-center rounded-[1.65rem] border border-[#E1E8E3] bg-white p-5 text-center shadow-[0_24px_70px_rgba(7,29,58,0.12)] sm:p-7 lg:order-2 lg:min-h-[430px] lg:p-8 xl:min-h-[470px] xl:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.16em] text-[#116832]">{questionLabel}</p>
+          <h3 className="mx-auto mt-4 max-w-[640px] text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#071D3A] sm:text-[3.25rem] lg:text-[3.25rem] xl:text-[3.65rem]">{currentField.question}</h3>
           <p className="mx-auto mt-4 max-w-[560px] text-sm font-semibold leading-6 text-[#536173] sm:text-base">{currentField.helper}</p>
-          <div className="mx-auto mt-7 max-w-[560px]">{renderControl()}</div>
+          <div className="mx-auto mt-7 w-full max-w-[590px]">{renderControl()}</div>
 
-          <div className="mx-auto mt-7 grid max-w-[560px] gap-3 sm:grid-cols-[0.82fr_1.18fr]">
+          <div className="mx-auto mt-7 grid w-full max-w-[590px] gap-3 sm:grid-cols-[0.82fr_1.18fr]">
             <button
               type="button"
               onClick={goBack}
@@ -437,12 +427,24 @@ export function BlueprintIntakeForm() {
           {message ? <p className={`mt-4 text-center text-sm font-bold ${status === "error" ? "text-[#B42318]" : "text-[#116832]"}`}>{message}</p> : null}
         </div>
 
-        <div className="hidden lg:flex lg:justify-center">
-          <ProgressRing currentIndex={currentIndex} answeredCount={answeredCount} />
-        </div>
-
-        <div className="lg:hidden">
-          <ProgressRing currentIndex={currentIndex} answeredCount={answeredCount} />
+        <div className="order-3 flex min-h-[420px] flex-col justify-between overflow-hidden rounded-[1.8rem] border border-[#DDEBE2] bg-[#071D3A] p-6 text-white shadow-[0_28px_70px_rgba(7,29,58,0.14)] lg:min-h-[470px] lg:p-7 2xl:min-h-[520px]">
+          <div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-[#8EF0A7] ring-1 ring-white/14">
+              <FileText className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <h3 className="mt-6 max-w-[270px] text-[2rem] font-semibold leading-[1.03] tracking-[-0.035em] xl:text-[2.25rem]">Built from your exact answers.</h3>
+            <p className="mt-4 max-w-[280px] text-sm font-semibold leading-6 text-white/72">The custom PDF turns this intake into prompts, office workflow fixes, and staff-ready plays for the bottlenecks you name.</p>
+          </div>
+          <div className="mt-8 space-y-3">
+            {["Tools and handoffs", "Billing and follow-up drag", "One messy office example"].map((item) => (
+              <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.07] px-4 py-4 shadow-[0_18px_34px_rgba(0,0,0,0.12)]">
+                <div className="flex items-center gap-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#8EF0A7] shadow-[0_0_0_5px_rgba(142,240,167,0.12)]" />
+                  <span className="text-sm font-bold leading-5 text-white/88">{item}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
