@@ -1,5 +1,6 @@
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Check, CircleDollarSign, ClipboardCheck, MapPinned, MessageSquareReply, MonitorCheck, RefreshCw, UsersRound, Wrench, type LucideIcon } from "lucide-react"
+import { ArrowRight, Check, ClipboardCheck, MapPinned, MonitorCheck, ShieldCheck, UsersRound, type LucideIcon } from "lucide-react"
 
 type PricingSearchParams = Record<string, string | string[] | undefined>
 
@@ -77,51 +78,38 @@ function BulletList({ items }: { items: string[] }) {
 export function PricingPage({ searchParams: _searchParams }: { searchParams: PricingSearchParams }) {
   return (
     <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
-      <section className="relative isolate overflow-hidden bg-[#071D3A] px-4 pb-16 pt-28 text-white sm:px-6 sm:pt-32 lg:px-8 lg:pb-20 lg:pt-[8.25rem]">
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_82%_18%,rgba(34,197,94,0.22),transparent_34%),radial-gradient(circle_at_16%_82%,rgba(21,128,61,0.22),transparent_32%),linear-gradient(135deg,#06172e_0%,#071D3A_54%,#0a2a34_100%)]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="max-w-3xl">
-            <h1 className="text-balance text-[2.55rem] font-semibold leading-[0.99] tracking-[-0.035em] text-white sm:text-[4.25rem] lg:text-[5rem]">AI Office Ops keeps the installed workflow from going stale.</h1>
-            <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/78">After Stanley Systems installs the first workflow, Ops keeps the office system checked, adjusted, and useful: broken handoffs get fixed, prompts get sharpened, staff questions get answered, and the monthly proof stays visible.</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/contact?path=ai-office-ops" className={greenButton}>Ask about AI Office Ops <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/16">Start with the Map</Link></div>
-            <div className="mt-7 grid gap-3 text-sm font-bold leading-6 text-white/76 sm:grid-cols-3">
-              <span className="rounded-2xl border border-white/15 bg-white/8 px-4 py-3">For installed workflows</span>
-              <span className="rounded-2xl border border-white/15 bg-white/8 px-4 py-3">$500/mo starting</span>
-              <span className="rounded-2xl border border-white/15 bg-white/8 px-4 py-3">Monthly proof report</span>
+      <section className="relative isolate min-h-[540px] overflow-hidden bg-[#FBFCF7] px-4 pb-10 pt-28 text-[#071D3A] sm:min-h-[560px] sm:px-6 sm:pt-32 lg:min-h-[560px] lg:px-8 lg:pb-8 lg:pt-[6.5rem]">
+        <Image
+          src="/images/uploaded/ai-office-ops/ai-office-ops-laptop-mockup.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="-z-30 object-cover object-[73%_center] sm:object-[70%_center] lg:object-[68%_center]"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(251,252,247,0.99)_0%,rgba(251,252,247,0.97)_56%,rgba(251,252,247,0.88)_100%)] sm:bg-[linear-gradient(90deg,rgba(251,252,247,0.99)_0%,rgba(251,252,247,0.96)_31%,rgba(251,252,247,0.66)_48%,rgba(251,252,247,0.18)_67%,rgba(251,252,247,0)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-28 bg-gradient-to-b from-transparent via-[#FBFCF7]/80 to-[#FBFCF7]" />
+        <div className="mx-auto flex min-h-[380px] max-w-7xl items-center lg:min-h-[380px]">
+          <div className="max-w-[38rem] pb-2 lg:pb-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#DDEBE2] bg-white/82 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#15803D] shadow-[0_12px_30px_rgba(7,29,58,0.05)] backdrop-blur-md">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              AI Office Ops
             </div>
-          </div>
-          <div className="rounded-[2rem] border border-white/14 bg-white/[0.07] p-4 shadow-[0_34px_100px_rgba(0,0,0,0.32)] backdrop-blur-xl sm:p-5 lg:p-6">
-            <div className="rounded-[1.5rem] border border-white/12 bg-[#06172E]/80 p-5">
-              <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
-                <div>
-                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#86efac]">Monthly operating loop</p>
-                  <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-white">Checked, fixed, improved.</h2>
-                </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#15803D] text-white shadow-[0_16px_34px_rgba(21,128,61,0.32)]"><RefreshCw className="h-6 w-6" /></div>
-              </div>
-              <div className="mt-5 grid gap-3">
-                {[
-                  [MessageSquareReply, "Follow-up path", "Missed calls, stale quotes, review requests, and repeat-work lists keep getting next steps."],
-                  [Wrench, "Workflow upkeep", "Prompts, SOPs, routing rules, and automations get adjusted when the real office changes."],
-                  [CircleDollarSign, "Proof report", "Each month shows what moved: jobs followed up, issues found, fixes made, and next improvements."],
-                ].map(([Icon, title, copy]) => {
-                  const I = Icon as typeof MessageSquareReply
-                  return (
-                    <div key={title as string} className="grid grid-cols-[auto_1fr] gap-4 rounded-2xl border border-white/10 bg-white/[0.06] p-4">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#15803D]"><I className="h-5 w-5" /></div>
-                      <div>
-                        <h3 className="text-base font-extrabold text-white">{title as string}</h3>
-                        <p className="mt-1 text-sm font-semibold leading-6 text-white/66">{copy as string}</p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
+            <h1 className="mt-5 text-balance text-[2.85rem] font-semibold leading-[0.99] tracking-[-0.04em] text-[#071D3A] sm:text-[4.25rem] lg:text-[4.1rem] lg:leading-[0.96] lg:tracking-[-0.035em]">
+              AI Office Ops keeps every office workflow <span className="text-[#15803D]">running after install.</span>
+            </h1>
+            <p className="mt-4 max-w-[34rem] text-base font-semibold leading-7 text-[#536173] sm:text-lg sm:leading-7">AI Office Ops checks follow-ups, fixes broken handoffs, updates automations, and sends a monthly proof report.</p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row"><Link href="/contact?path=ai-office-ops" className={greenButton}>Ask about AI Office Ops <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="#ops-report" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#DDEBE2] bg-white/86 px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_12px_28px_rgba(7,29,58,0.06)] backdrop-blur-md transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white">See Monthly Report</Link></div>
+            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm font-bold leading-6 text-[#536173]">
+              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 rounded-full bg-[#15803D] p-0.5 text-white" />For installed Stanley Systems workflows</span>
+              <span aria-hidden="true" className="hidden h-1 w-1 rounded-full bg-[#536173]/45 sm:inline-block" />
+              <span>$500/mo starting</span>
             </div>
           </div>
         </div>
       </section>
-      <section aria-label="What AI Office Ops does" className="bg-[#FBFCF7] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <section id="ops-report" aria-label="What AI Office Ops does" className="bg-[#FBFCF7] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="mx-auto grid max-w-7xl gap-6 rounded-[2rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_24px_70px_rgba(7,29,58,0.07)] sm:p-7 lg:grid-cols-[0.92fr_1.08fr] lg:p-8">
           <div className="rounded-[1.5rem] bg-[#F4FBF5] p-6 lg:p-8">
             <h2 className="text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.035em] text-[#071D3A] sm:text-[3.15rem]">Ops is for the work after the first build.</h2>
