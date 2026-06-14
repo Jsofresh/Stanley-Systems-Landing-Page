@@ -24,8 +24,6 @@ const requiredFields: Array<keyof AiOfficeBlueprintIntake> = [
   "informationStuck",
   "copyCheckRewrite",
   "billingDelays",
-  "toolsInvolved",
-  "desiredOutputType",
   "aiComfortLevel",
   "messyOfficeExample",
 ]

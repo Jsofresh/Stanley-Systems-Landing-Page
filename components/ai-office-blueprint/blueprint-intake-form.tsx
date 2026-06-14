@@ -5,8 +5,6 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Loader2 } from "lucide-react"
 
 const inputClass = "min-h-14 w-full rounded-[1.1rem] border border-[#BFD7C8] bg-white px-5 py-4 text-base font-semibold text-[#102033] shadow-[0_1px_0_rgba(255,255,255,0.95)_inset] outline-none transition placeholder:text-[#9AA8B6] focus:border-[#15803D] focus:ring-4 focus:ring-[#BFE4C8]/55"
 
-const totalQuestions = 16
-
 type Status = "idle" | "sending" | "sent" | "error"
 type FieldType = "text" | "email" | "textarea" | "select"
 
@@ -23,8 +21,6 @@ type FieldName =
   | "copyCheckRewrite"
   | "billingDelays"
   | "missedFollowUp"
-  | "toolsInvolved"
-  | "desiredOutputType"
   | "aiComfortLevel"
   | "messyOfficeExample"
 
@@ -140,22 +136,6 @@ const fields: IntakeField[] = [
     placeholder: "High-value estimates sit until the owner asks who followed up...",
   },
   {
-    name: "toolsInvolved",
-    eyebrow: "Workflow map",
-    question: "Which tools are involved in the messy workflow?",
-    helper: "List everything touched: inbox, texts, phone, forms, CRM, accounting, spreadsheets, notes, Slack, Teams, paper.",
-    type: "textarea",
-    placeholder: "Email, texts, phone, Housecall Pro, QuickBooks, Google Sheets...",
-  },
-  {
-    name: "desiredOutputType",
-    eyebrow: "Useful output",
-    question: "What should AI help produce for the team?",
-    helper: "Examples: billing notes, customer replies, follow-up lists, job summaries, decision briefs, invoice prep, playbooks.",
-    type: "textarea",
-    placeholder: "A clean billing-ready job summary, customer update, and missing-info checklist...",
-  },
-  {
     name: "aiComfortLevel",
     eyebrow: "Adoption fit",
     question: "How comfortable is your team with AI right now?",
@@ -173,6 +153,7 @@ const fields: IntakeField[] = [
   },
 ]
 
+const totalQuestions = fields.length
 const blankData = Object.fromEntries(fields.map((field) => [field.name, ""])) as Record<FieldName, string>
 
 function validateEmail(value: string) {
@@ -222,6 +203,7 @@ export function BlueprintIntakeForm() {
   const [formData, setFormData] = useState<Record<FieldName, string>>(blankData)
   const [website, setWebsite] = useState("")
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null>(null)
+  const cardRef = useRef<HTMLDivElement | null>(null)
 
   const currentField = fields[currentIndex]
   const currentValue = formData[currentField.name]
@@ -231,6 +213,16 @@ export function BlueprintIntakeForm() {
   const questionLabel = useMemo(() => `Question ${currentIndex + 1} of ${fields.length}`, [currentIndex])
 
   useEffect(() => {
+    const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+
+    if (isMobile) {
+      inputRef.current?.blur()
+      const timeout = window.setTimeout(() => {
+        cardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      }, 80)
+      return () => window.clearTimeout(timeout)
+    }
+
     const raf = requestAnimationFrame(() => inputRef.current?.focus({ preventScroll: true }))
     return () => cancelAnimationFrame(raf)
   }, [currentIndex])
@@ -242,6 +234,7 @@ export function BlueprintIntakeForm() {
   }
 
   function goBack() {
+    inputRef.current?.blur()
     setStatus("idle")
     setMessage("")
     setCurrentIndex((index) => Math.max(index - 1, 0))
@@ -253,6 +246,7 @@ export function BlueprintIntakeForm() {
       setMessage(currentField.name === "email" ? "Enter a real email so we can send the finished Blueprint." : "Answer this question before moving on.")
       return
     }
+    inputRef.current?.blur()
     setStatus("idle")
     setMessage("")
     setCurrentIndex((index) => Math.min(index + 1, fields.length - 1))
@@ -283,13 +277,13 @@ export function BlueprintIntakeForm() {
       const response = await fetch("/api/ai-office-blueprint", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, website: website.trim() }),
+        body: JSON.stringify({ ...formData, toolsInvolved: "", desiredOutputType: "", website: website.trim() }),
       })
       const result = await response.json().catch(() => ({}))
       if (!response.ok || !result.ok) throw new Error(result.error || "Could not queue the Blueprint.")
 
       setStatus("sent")
-      setMessage(result.message || "Good. Your answers were accepted. Stanley Systems is building your custom Blueprint PDF now.")
+      setMessage(result.message || "Check your email shortly. Stanley Systems is building your custom Blueprint PDF now.")
       setFormData(blankData)
       setWebsite("")
       setCurrentIndex(0)
@@ -383,12 +377,23 @@ export function BlueprintIntakeForm() {
         aria-hidden="true"
       />
 
+      {status === "sent" ? (
+        <div className="mx-auto flex min-h-[430px] max-w-3xl flex-col items-center justify-center rounded-[1.65rem] border border-[#CFE8D5] bg-white/94 p-7 text-center shadow-[0_24px_70px_rgba(7,29,58,0.1)] sm:p-10">
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#EEF8EE] text-[#15803D] shadow-[0_18px_38px_rgba(21,128,61,0.14)]">
+            <CheckCircle2 className="h-8 w-8" aria-hidden="true" />
+          </span>
+          <p className="mt-6 text-sm font-black uppercase tracking-[0.22em] text-[#116832]">Blueprint request received</p>
+          <h3 className="mt-4 text-[2.35rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-[3.35rem]">Check your email shortly.</h3>
+          <p className="mx-auto mt-5 max-w-xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems is building your custom AI Office Blueprint and will send the PDF to the email you entered.</p>
+          {message ? <p className="mt-5 text-sm font-bold text-[#116832]">{message}</p> : null}
+        </div>
+      ) : (
       <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-stretch 2xl:grid-cols-[350px_minmax(0,1fr)] 2xl:gap-7">
-        <div className="order-2 lg:order-1 lg:flex">
+        <div className="order-2 hidden lg:order-1 lg:flex">
           <ProgressRing currentIndex={currentIndex} answeredCount={answeredCount} />
         </div>
 
-        <div className="order-1 flex min-h-[410px] flex-col justify-center rounded-[1.65rem] border border-[#E1E8E3] bg-white/94 p-6 text-center shadow-[0_24px_70px_rgba(7,29,58,0.1)] sm:p-8 lg:order-2 lg:min-h-[520px] lg:p-10 xl:p-12">
+        <div ref={cardRef} className="order-1 flex scroll-mt-[116px] flex-col justify-center rounded-[1.65rem] border border-[#E1E8E3] bg-white/94 p-6 text-center shadow-[0_24px_70px_rgba(7,29,58,0.1)] sm:min-h-[410px] sm:p-8 lg:order-2 lg:min-h-[520px] lg:p-10 xl:p-12">
           <p className="text-sm font-black uppercase tracking-[0.22em] text-[#116832]">{questionLabel}</p>
           <h3 className="mx-auto mt-6 max-w-[760px] text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.045em] text-[#071D3A] sm:text-[3.6rem] lg:text-[4rem] xl:text-[4.35rem]">{currentField.question}</h3>
           <p className="mx-auto mt-6 max-w-[620px] text-base font-semibold leading-7 text-[#536173] sm:text-lg">{currentField.helper}</p>
@@ -427,6 +432,7 @@ export function BlueprintIntakeForm() {
           {message ? <p className={`mt-5 text-center text-sm font-bold ${status === "error" ? "text-[#B42318]" : "text-[#116832]"}`}>{message}</p> : null}
         </div>
       </div>
+      )}
     </div>
   )
 }

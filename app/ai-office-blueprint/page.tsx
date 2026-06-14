@@ -32,10 +32,10 @@ export default function AiOfficeBlueprintPage() {
             fill
             priority
             sizes="100vw"
-            className="-z-30 object-cover object-[72%_58%]"
+            className="-z-30 object-cover object-[82%_54%] sm:object-[72%_58%]"
             aria-hidden="true"
           />
-          <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(251,250,246,0.99)_0%,rgba(251,250,246,0.96)_31%,rgba(251,250,246,0.66)_52%,rgba(251,250,246,0.08)_80%,rgba(251,250,246,0)_100%)]" />
+          <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(251,250,246,0.99)_0%,rgba(251,250,246,0.98)_54%,rgba(251,250,246,0.82)_78%,rgba(251,250,246,0.52)_100%)] sm:bg-[linear-gradient(90deg,rgba(251,250,246,0.99)_0%,rgba(251,250,246,0.96)_31%,rgba(251,250,246,0.66)_52%,rgba(251,250,246,0.08)_80%,rgba(251,250,246,0)_100%)]" />
           <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/82 to-transparent" />
           <div className="absolute inset-x-0 bottom-[-1px] z-0 h-48 bg-[linear-gradient(180deg,transparent_0%,rgba(251,250,246,0.6)_42%,#F4EFE8_100%)]" />
           <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1420px] items-start px-5 pb-24 pt-[132px] sm:px-10 sm:pt-[148px] lg:px-[84px] lg:pt-[154px] xl:pt-[164px]">
@@ -47,7 +47,7 @@ export default function AiOfficeBlueprintPage() {
               </h1>
               <div className="mt-4 h-[3px] w-[70px] rounded-full bg-[#15803D]" />
               <p className="mt-4 max-w-[560px] text-[1.08rem] font-medium leading-[1.5] tracking-normal text-[#425168] sm:text-[1.14rem]">
-                Start with the free blueprint. Answer 16 workflow questions. Get custom staff plays, copy/paste prompts, and one quick win.
+                Start with the free blueprint. Answer 14 workflow questions. Get custom staff plays, copy/paste prompts, and one quick win.
               </p>
               <div className="mt-5 flex w-full max-w-[630px] flex-col overflow-hidden rounded-[1.25rem] border border-[#E0E8DD] bg-white/88 shadow-[0_20px_48px_rgba(7,29,58,0.075)] backdrop-blur-sm sm:flex-row">
                 {heroChips.map(({ icon: Icon, label }) => (
@@ -101,7 +101,7 @@ export default function AiOfficeBlueprintPage() {
             <section id="blueprint-form" className="scroll-mt-56 lg:scroll-mt-60" aria-labelledby="custom-blueprint-heading">
               <div className="mx-auto mb-7 w-full max-w-4xl text-center">
                 <h2 id="custom-blueprint-heading" className="text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.035em] text-[#071D3A] sm:text-[3.35rem]">Get the custom AI Office Blueprint.</h2>
-                <p className="mx-auto mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Answer 16 focused questions. Stanley Systems uses your answers to build a bespoke PDF with prompts, workflow changes, and staff-ready AI plays for your exact office bottlenecks.</p>
+                <p className="mx-auto mt-3 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Answer 14 focused questions. Stanley Systems uses your answers to build a bespoke PDF with prompts, workflow changes, and staff-ready AI plays for your exact office bottlenecks.</p>
               </div>
               <div className="mx-auto w-full">
                 <BlueprintIntakeForm />
@@ -112,7 +112,7 @@ export default function AiOfficeBlueprintPage() {
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#116832] shadow-[0_14px_28px_rgba(7,29,58,0.07)]"><ClipboardList className="h-7 w-7" /></span>
               <div>
                 <h2 className="text-2xl font-semibold tracking-[-0.03em]">Why the questionnaire matters</h2>
-                <p className="mt-1 text-base font-semibold leading-7 text-[#536173]">The generic PDF helps anyone. The custom PDF uses the 16 answers to produce prompts and workflows around the user’s tools, stuck points, billing drag, follow-up gaps, and real messy office example.</p>
+                <p className="mt-1 text-base font-semibold leading-7 text-[#536173]">The generic PDF helps anyone. The custom PDF uses the 14 answers to produce prompts and workflows around the user’s tools, stuck points, billing drag, follow-up gaps, and real messy office example.</p>
               </div>
               <Link href="/workflow-audit" className="inline-flex items-center text-sm font-extrabold text-[#116832] lg:justify-self-end">Need the full Map instead? <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </aside>
