@@ -79,9 +79,10 @@ function HeroImageSlideshow() {
 function CalculatorSpine() {
   return (
     <PageSection id="calculator" className="relative isolate min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-10 text-[#071D3A] md:py-12 lg:min-h-0 lg:py-16" fullDesktop={false}>
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_16%,rgba(83,217,134,0.16),transparent_32%),linear-gradient(180deg,#fbfcf7_0%,#eef6ee_100%)]" />
-      <div className="mx-auto grid min-h-[500px] max-w-[88rem] items-center gap-8 lg:grid-cols-2 lg:gap-12">
-        <div className="max-w-[690px] py-2 md:py-4">
+      <Image src={uploadedHomeImages.checklistLaptop.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-[62%_center]" priority aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(251,252,247,0.96)_0%,rgba(251,252,247,0.9)_38%,rgba(251,252,247,0.62)_61%,rgba(251,252,247,0.18)_100%),linear-gradient(180deg,rgba(251,252,247,0.92)_0%,rgba(245,249,242,0.5)_48%,rgba(238,246,238,0.92)_100%),radial-gradient(circle_at_24%_50%,rgba(251,252,247,0.94),transparent_42%)]" />
+      <div className="mx-auto grid min-h-[500px] max-w-[88rem] items-center">
+        <div className="max-w-[690px] rounded-[2rem] border border-white/45 bg-[#fbfcf7]/58 p-5 shadow-[0_22px_70px_rgba(7,29,58,0.08)] backdrop-blur-[2px] md:p-7 lg:bg-[#fbfcf7]/44">
           <h2 className="max-w-[690px] text-[clamp(2.35rem,4.4vw,4.45rem)] font-extrabold leading-[0.94] tracking-[-0.014em] text-[#071D3A]">
             <span className="block">Before you hire</span>
             <span className="block">another admin,</span>
@@ -93,11 +94,6 @@ function CalculatorSpine() {
             <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_16px_36px_rgba(10,85,38,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Book the AI Office Map <ArrowRight className="h-4 w-4" /></CTALink>
             <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d5e5da] bg-white px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] transition hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Get the Free Blueprint</CTALink>
           </div>
-        </div>
-        <div className="relative hidden min-h-[280px] overflow-hidden rounded-[2.2rem] border border-[#d2e7d2] bg-white shadow-[0_26px_76px_rgba(7,29,58,0.13)] sm:min-h-[340px] lg:block lg:min-h-[360px]">
-          <Image src={uploadedHomeImages.checklistLaptop.src} alt={uploadedHomeImages.checklistLaptop.alt} fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover object-center" priority />
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.28)_0%,rgba(255,255,255,0.08)_34%,rgba(255,255,255,0)_70%),linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0)_58%,rgba(7,29,58,0.06)_100%)]" />
-          <div className="absolute left-5 top-5 rounded-full border border-[#c6e7cf] bg-white/88 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.12em] text-[#116832] shadow-[0_12px_30px_rgba(7,29,58,0.08)] backdrop-blur-md sm:left-7 sm:top-7">Free first step</div>
         </div>
       </div>
     </PageSection>
