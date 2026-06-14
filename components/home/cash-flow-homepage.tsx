@@ -80,9 +80,9 @@ function CalculatorSpine() {
   return (
     <PageSection id="calculator" className="relative isolate min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-10 text-[#071D3A] md:py-12 lg:min-h-0 lg:py-16" fullDesktop={false}>
       <Image src={uploadedHomeImages.checklistLaptop.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-[62%_center]" priority aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(251,252,247,0.96)_0%,rgba(251,252,247,0.9)_38%,rgba(251,252,247,0.62)_61%,rgba(251,252,247,0.18)_100%),linear-gradient(180deg,rgba(251,252,247,0.92)_0%,rgba(245,249,242,0.5)_48%,rgba(238,246,238,0.92)_100%),radial-gradient(circle_at_24%_50%,rgba(251,252,247,0.94),transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(251,252,247,0.58)_0%,rgba(251,252,247,0.36)_38%,rgba(251,252,247,0.14)_61%,rgba(251,252,247,0.02)_100%),linear-gradient(180deg,rgba(251,252,247,0.32)_0%,rgba(245,249,242,0.04)_48%,rgba(238,246,238,0.28)_100%),radial-gradient(circle_at_22%_50%,rgba(251,252,247,0.34),transparent_38%)]" />
       <div className="mx-auto grid min-h-[500px] max-w-[88rem] items-center">
-        <div className="max-w-[690px] rounded-[2rem] border border-white/45 bg-[#fbfcf7]/58 p-5 shadow-[0_22px_70px_rgba(7,29,58,0.08)] backdrop-blur-[2px] md:p-7 lg:bg-[#fbfcf7]/44">
+        <div className="max-w-[690px] py-2 pl-[8vw] md:py-4 lg:-translate-x-[5%]">
           <h2 className="max-w-[690px] text-[clamp(2.35rem,4.4vw,4.45rem)] font-extrabold leading-[0.94] tracking-[-0.014em] text-[#071D3A]">
             <span className="block">Before you hire</span>
             <span className="block">another admin,</span>
