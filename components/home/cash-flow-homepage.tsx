@@ -1,6 +1,6 @@
 import Image from "next/image"
 import type { ReactNode } from "react"
-import { ArrowRight, Clock3, ListChecks, Map, UsersRound } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
@@ -36,13 +36,6 @@ const buttonBase = "inline-flex min-h-[58px] items-center justify-center rounded
 const greenButton = `${buttonBase} bg-[#15803D] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.24)] hover:-translate-y-0.5 hover:bg-[#116f35] focus:ring-offset-[#071422]`
 const lightButton = `${buttonBase} border border-[#d5e5da] bg-white text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-[#f4fbf6] focus:ring-offset-white`
 const darkGhostButton = `${buttonBase} border border-white/18 bg-white/8 text-white shadow-[0_16px_36px_rgba(0,0,0,0.18)] hover:-translate-y-0.5 hover:bg-white/12 focus:ring-offset-[#071422]`
-
-const officeMapPills = [
-  { text: "60-Minute Focused Session", Icon: Clock3 },
-  { text: "Prompts + Staff AI Plays", Icon: ListChecks },
-  { text: "Fixes + Install Priority", Icon: Map },
-  { text: "Built for Trade & Service Teams", Icon: UsersRound },
-]
 
 function PageSection({ id, children, className = "", navTheme = "light", fullDesktop = true }: { id?: string; children: ReactNode; className?: string; navTheme?: "light" | "dark"; fullDesktop?: boolean }) {
   return (
@@ -121,16 +114,6 @@ function AssessmentSection() {
             <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[58px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_42px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Book the AI Office Map <ArrowRight className="h-5 w-5" aria-hidden="true" /></CTALink>
             <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[58px] items-center justify-center rounded-full border border-white/22 bg-white/9 px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_42px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-white/36 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Get the Free Blueprint</CTALink>
           </div>
-        </div>
-        <div className="mt-9 hidden max-w-[1120px] flex-wrap gap-3 text-white/92 lg:mt-10 lg:flex">
-          {officeMapPills.map(({ text, Icon }) => (
-            <div key={text} className="flex min-h-[58px] w-fit items-center gap-2.5 rounded-[0.95rem] border border-white/14 bg-white/[0.06] px-3 py-2 backdrop-blur-[2px] sm:px-3.5">
-              <Icon className="h-6 w-6 shrink-0 text-[#53d986]" strokeWidth={2} aria-hidden="true" />
-              <p className="whitespace-nowrap text-[0.9rem] font-extrabold leading-none tracking-[-0.01em] text-white sm:text-[0.95rem]">
-                {text}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </PageSection>
