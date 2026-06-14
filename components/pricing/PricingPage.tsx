@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Check, ClipboardCheck, MapPinned, MonitorCheck, ShieldCheck, UsersRound, type LucideIcon } from "lucide-react"
+import { ArrowRight, Check, ClipboardCheck, MapPinned, MonitorCheck, UsersRound, type LucideIcon } from "lucide-react"
 
 type PricingSearchParams = Record<string, string | string[] | undefined>
 
@@ -92,20 +92,11 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
         <div className="absolute inset-x-0 bottom-0 -z-10 h-28 bg-gradient-to-b from-transparent via-[#FBFCF7]/80 to-[#FBFCF7]" />
         <div className="mx-auto flex min-h-[380px] max-w-7xl items-center lg:min-h-[380px]">
           <div className="max-w-[38rem] pb-2 lg:pb-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#DDEBE2] bg-white/82 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[#15803D] shadow-[0_12px_30px_rgba(7,29,58,0.05)] backdrop-blur-md">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              AI Office Ops
-            </div>
-            <h1 className="mt-5 text-balance text-[2.85rem] font-semibold leading-[0.99] tracking-[-0.04em] text-[#071D3A] sm:text-[4.25rem] lg:text-[4.1rem] lg:leading-[0.96] lg:tracking-[-0.035em]">
+            <h1 className="text-balance text-[2.85rem] font-semibold leading-[0.99] tracking-[-0.04em] text-[#071D3A] sm:text-[4.25rem] lg:text-[4.1rem] lg:leading-[0.96] lg:tracking-[-0.035em]">
               AI Office Ops keeps every office workflow <span className="text-[#15803D]">running after install.</span>
             </h1>
             <p className="mt-4 max-w-[34rem] text-base font-semibold leading-7 text-[#536173] sm:text-lg sm:leading-7">AI Office Ops checks follow-ups, fixes broken handoffs, updates automations, and sends a monthly proof report.</p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row"><Link href="/contact?path=ai-office-ops" className={greenButton}>Ask about AI Office Ops <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="#ops-report" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#DDEBE2] bg-white/86 px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_12px_28px_rgba(7,29,58,0.06)] backdrop-blur-md transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white">See Monthly Report</Link></div>
-            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm font-bold leading-6 text-[#536173]">
-              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4 rounded-full bg-[#15803D] p-0.5 text-white" />For installed Stanley Systems workflows</span>
-              <span aria-hidden="true" className="hidden h-1 w-1 rounded-full bg-[#536173]/45 sm:inline-block" />
-              <span>$500/mo starting</span>
-            </div>
           </div>
         </div>
       </section>
