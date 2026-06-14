@@ -100,17 +100,18 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
           </div>
         </div>
       </section>
-      <section id="ops-report" aria-label="What AI Office Ops does" className="bg-[#FBFCF7] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <section id="ops-report" aria-label="What AI Office Ops does" className="scroll-mt-28 bg-[#FBFCF7] px-4 py-10 sm:scroll-mt-32 sm:px-6 lg:px-8 lg:py-14">
         <div className="mx-auto grid max-w-7xl gap-6 rounded-[2rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_24px_70px_rgba(7,29,58,0.07)] sm:p-7 lg:grid-cols-[0.92fr_1.08fr] lg:p-8">
           <div className="rounded-[1.5rem] bg-[#F4FBF5] p-6 lg:p-8">
-            <h2 className="text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.035em] text-[#071D3A] sm:text-[3.15rem]">Ops is for the work after the first build.</h2>
+            <h2 className="text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.035em] text-[#071D3A] sm:text-[3.15rem]">Office Ops keeps your AI office working after launch</h2>
             <p className="mt-5 text-base font-semibold leading-7 text-[#536173]">The Sprint installs the first useful workflow. Ops keeps it alive when staff changes, calls pile up, new bottlenecks appear, and the owner needs the system to keep improving without starting another project from scratch.</p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2">
             {[
-              ["01", "Watch the live handoffs", "Find the places where work is still waiting, getting retyped, or falling between people."],
-              ["02", "Tune the office playbook", "Improve prompts, templates, staff steps, and approval rules from real usage."],
-              ["03", "Add the next small win", "Layer in missed-call, estimate, review, referral, or repeat-customer improvements as the business is ready."],
+              ["01", "Continuous AI training for your staff", "Keep staff using the workflows the right way as habits, questions, and responsibilities change."],
+              ["02", "Updated prompts, templates, and playbooks", "Improve the exact prompts, templates, staff steps, and approval rules from real office usage."],
+              ["03", "Ongoing AI workflow maintenance", "Fix the places where work is still waiting, getting retyped, or falling between people."],
+              ["04", "Support as your office, tools, and team change", "Adjust the AI office as new bottlenecks, tools, roles, and busy seasons show up."],
             ].map(([number, title, copy]) => (
               <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5">
                 <p className="text-sm font-extrabold text-[#15803D]">{number}</p>
