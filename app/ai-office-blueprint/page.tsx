@@ -72,7 +72,7 @@ export default function AiOfficeBlueprintPage() {
           </div>
         </section>
 
-        <section data-motion-exempt className="bg-[#F4EFE8] px-4 pb-24 pt-10 sm:px-6 lg:px-8 lg:pb-36 lg:pt-14">
+        <section data-motion-exempt className="relative z-20 -mt-[10svh] bg-[#F4EFE8] px-4 pb-24 pt-10 sm:px-6 lg:px-8 lg:pb-36 lg:pt-14">
           <div className={`${contentShell} space-y-12`}>
             <section id="generic-blueprint-section" aria-labelledby="generic-blueprint-heading" className="relative left-1/2 isolate mx-0 flex min-h-[calc(100svh-104px)] w-screen -translate-x-1/2 scroll-mt-[136px] overflow-hidden bg-[#F8F4EC] sm:min-h-[calc(100svh-104px)] lg:min-h-[calc(100svh-104px)]">
               <Image
