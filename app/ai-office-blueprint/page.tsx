@@ -56,16 +56,16 @@ export default function AiOfficeBlueprintPage() {
                 </a>
               </div>
             </div>
-            <div className="relative mx-auto mt-1 w-full max-w-[449px] sm:max-w-[598px] lg:mt-0 lg:max-w-[713px] lg:translate-x-[15%] lg:justify-self-end">
-              <div className="absolute inset-x-[10%] bottom-[2%] h-[20%] rounded-full bg-[#15803D]/10 blur-3xl" aria-hidden="true" />
+            <div className="relative mx-auto mt-1 w-full max-w-[561px] sm:max-w-[748px] lg:mt-0 lg:max-w-[891px] lg:translate-x-[15%] lg:justify-self-end">
+              <div className="absolute inset-x-[8%] bottom-[1%] h-[22%] rounded-full bg-[#15803D]/10 blur-3xl" aria-hidden="true" />
               <Image
                 src="/images/uploaded/ai-office-blueprint/stanley-ai-office-blueprint-upscaled.jpg"
                 alt="AI Office Blueprint package with staff plays, copy/paste prompts, and a quick-win checklist."
                 width={1280}
                 height={960}
                 priority
-                sizes="(min-width: 1024px) 713px, (min-width: 640px) 598px, 449px"
-                className="relative z-10 h-auto w-full mix-blend-multiply object-contain drop-shadow-[0_28px_55px_rgba(7,29,58,0.1)] [mask-image:radial-gradient(ellipse_76%_72%_at_50%_52%,#000_52%,rgba(0,0,0,0.72)_68%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_76%_72%_at_50%_52%,#000_52%,rgba(0,0,0,0.72)_68%,transparent_100%)]"
+                sizes="(min-width: 1024px) 891px, (min-width: 640px) 748px, 561px"
+                className="relative z-10 h-auto w-full mix-blend-multiply object-contain drop-shadow-[0_28px_55px_rgba(7,29,58,0.1)] [mask-image:radial-gradient(ellipse_76%_72%_at_50%_52%,#000_50%,rgba(0,0,0,0.7)_66%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_76%_72%_at_50%_52%,#000_50%,rgba(0,0,0,0.7)_66%,transparent_100%)]"
               />
             </div>
           </div>
