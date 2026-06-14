@@ -25,46 +25,43 @@ export default function AiOfficeBlueprintPage() {
     <>
       <SiteHeader />
       <main className="min-h-screen overflow-x-hidden bg-[#FBF8F2] text-[#071D3A]">
-        <section data-nav-theme="light" className="relative isolate overflow-hidden bg-[#FBFAF6] pt-24 text-[#071D3A] sm:pt-28 lg:pt-14">
-          <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_77%_52%,rgba(21,128,61,0.09),transparent_34%),linear-gradient(180deg,#FBFAF6_0%,#FBFAF6_78%,#F4EFE8_100%)]" />
-          <div className="pointer-events-none absolute bottom-[-26px] right-[-78px] top-[132px] z-0 hidden w-[74vw] max-w-[975px] md:block lg:right-[-58px] lg:top-[128px] xl:right-[-18px] xl:top-[118px]">
-            <div className="absolute inset-0 overflow-hidden" style={{ WebkitMaskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 10%, #000 24%, #000 76%, rgba(0,0,0,0.58) 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%)", maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 10%, #000 24%, #000 76%, rgba(0,0,0,0.58) 88%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%)", WebkitMaskComposite: "source-in", maskComposite: "intersect" }}>
-              <Image
-                src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-product-shot.jpg"
-                alt=""
-                fill
-                priority
-                sizes="(min-width: 1280px) 975px, 74vw"
-                className="scale-125 object-contain object-center drop-shadow-[0_28px_60px_rgba(7,29,58,0.12)]"
-                aria-hidden="true"
-              />
-            </div>
-          </div>
-          <div className="absolute inset-x-0 bottom-[-1px] z-0 h-44 bg-[linear-gradient(180deg,transparent_0%,rgba(251,250,246,0.72)_38%,#F4EFE8_100%)]" />
-          <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1420px] items-start px-5 pb-20 pt-14 sm:min-h-[660px] sm:px-10 sm:pt-[72px] lg:min-h-[640px] lg:px-[84px] lg:pb-20 lg:pt-[88px] xl:min-h-[660px] xl:pt-[96px]">
+        <section data-nav-theme="light" className="relative isolate min-h-[100svh] overflow-hidden bg-[#FBFAF6] text-[#071D3A]">
+          <Image
+            src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-hero-wide.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="-z-30 object-cover object-[72%_58%]"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(251,250,246,0.99)_0%,rgba(251,250,246,0.96)_31%,rgba(251,250,246,0.66)_52%,rgba(251,250,246,0.08)_80%,rgba(251,250,246,0)_100%)]" />
+          <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/82 to-transparent" />
+          <div className="absolute inset-x-0 bottom-[-1px] z-0 h-48 bg-[linear-gradient(180deg,transparent_0%,rgba(251,250,246,0.6)_42%,#F4EFE8_100%)]" />
+          <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1420px] items-start px-5 pb-24 pt-[132px] sm:px-10 sm:pt-[148px] lg:px-[84px] lg:pt-[154px] xl:pt-[164px]">
             <div className="max-w-[640px]">
-              <h1 className="text-[3.25rem] font-bold leading-[0.98] tracking-[-0.028em] text-[#071D3A] sm:text-[3.85rem] lg:text-[4.35rem] xl:text-[4.65rem]">
+              <h1 className="text-[3.1rem] font-bold leading-[0.98] tracking-[-0.026em] text-[#071D3A] sm:text-[3.65rem] lg:text-[4.05rem] xl:text-[4.35rem]">
                 Get the Free
                 <br />
                 AI Office Blueprint
               </h1>
-              <div className="mt-5 h-[3px] w-[70px] rounded-full bg-[#15803D]" />
-              <p className="mt-5 max-w-[560px] text-[1.12rem] font-medium leading-[1.55] tracking-normal text-[#425168] sm:text-[1.18rem]">
+              <div className="mt-4 h-[3px] w-[70px] rounded-full bg-[#15803D]" />
+              <p className="mt-4 max-w-[560px] text-[1.08rem] font-medium leading-[1.5] tracking-normal text-[#425168] sm:text-[1.14rem]">
                 Start with the free blueprint. Answer 16 workflow questions. Get custom staff plays, copy/paste prompts, and one quick win.
               </p>
-              <div className="mt-6 flex w-full max-w-[630px] flex-col overflow-hidden rounded-[1.25rem] border border-[#E0E8DD] bg-white/88 shadow-[0_20px_48px_rgba(7,29,58,0.075)] backdrop-blur-sm sm:flex-row">
+              <div className="mt-5 flex w-full max-w-[630px] flex-col overflow-hidden rounded-[1.25rem] border border-[#E0E8DD] bg-white/88 shadow-[0_20px_48px_rgba(7,29,58,0.075)] backdrop-blur-sm sm:flex-row">
                 {heroChips.map(({ icon: Icon, label }) => (
-                  <div key={label} className="flex min-h-[64px] flex-1 items-center gap-3 border-[#E0E8DD] px-5 py-3 text-[14px] font-bold leading-[1.12] tracking-normal text-[#071D3A] sm:border-l sm:first:border-l-0">
+                  <div key={label} className="flex min-h-[58px] flex-1 items-center gap-3 border-[#E0E8DD] px-5 py-3 text-[14px] font-bold leading-[1.12] tracking-normal text-[#071D3A] sm:border-l sm:first:border-l-0">
                     <Icon className="h-5 w-5 shrink-0 text-[#15803D]" strokeWidth={1.9} />
                     <span className="min-w-0">{label}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-6 flex flex-col gap-4 sm:flex-row">
-                <DownloadPdfButton className="inline-flex h-[62px] min-w-[225px] items-center justify-center gap-3 rounded-[1.25rem] border border-[#DDE5DA] bg-white/94 px-7 text-[15px] font-bold text-[#071D3A] shadow-[0_14px_30px_rgba(7,29,58,0.07)] backdrop-blur-sm transition hover:-translate-y-0.5">
+              <div className="mt-5 flex flex-col gap-4 sm:flex-row">
+                <DownloadPdfButton className="inline-flex h-[56px] min-w-[225px] items-center justify-center gap-3 rounded-[1.25rem] border border-[#DDE5DA] bg-white/94 px-7 text-[15px] font-bold text-[#071D3A] shadow-[0_14px_30px_rgba(7,29,58,0.07)] backdrop-blur-sm transition hover:-translate-y-0.5">
                   Download free PDF
                 </DownloadPdfButton>
-                <a href="#blueprint-form" className="inline-flex h-[62px] min-w-[225px] items-center justify-center rounded-[1.25rem] bg-[#15803D] px-7 text-[15px] font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.26)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
+                <a href="#blueprint-form" className="inline-flex h-[56px] min-w-[225px] items-center justify-center rounded-[1.25rem] bg-[#15803D] px-7 text-[15px] font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.26)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
                   Get custom version <ArrowRight className="ml-3 h-5 w-5" />
                 </a>
               </div>

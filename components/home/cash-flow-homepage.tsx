@@ -94,9 +94,9 @@ function CalculatorSpine() {
             <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d5e5da] bg-white px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] transition hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Get the Free Blueprint</CTALink>
           </div>
         </div>
-        <div className="relative min-h-[320px] overflow-hidden rounded-[2.2rem] border border-[#d2e7d2] bg-white shadow-[0_26px_76px_rgba(7,29,58,0.13)] sm:min-h-[400px] lg:min-h-[470px]">
-          <Image src={uploadedHomeImages.calculator.src} alt="AI Office Blueprint product shot showing the free office workflow report" fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover object-[58%_center]" priority />
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.78)_0%,rgba(255,255,255,0.26)_36%,rgba(255,255,255,0)_70%),linear-gradient(180deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_58%,rgba(7,29,58,0.08)_100%)]" />
+        <div className="relative min-h-[280px] overflow-hidden rounded-[2.2rem] border border-[#d2e7d2] bg-white shadow-[0_26px_76px_rgba(7,29,58,0.13)] sm:min-h-[340px] lg:min-h-[360px]">
+          <Image src={uploadedHomeImages.checklistLaptop.src} alt={uploadedHomeImages.checklistLaptop.alt} fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover object-center" priority />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.28)_0%,rgba(255,255,255,0.08)_34%,rgba(255,255,255,0)_70%),linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0)_58%,rgba(7,29,58,0.06)_100%)]" />
           <div className="absolute left-5 top-5 rounded-full border border-[#c6e7cf] bg-white/88 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.12em] text-[#116832] shadow-[0_12px_30px_rgba(7,29,58,0.08)] backdrop-blur-md sm:left-7 sm:top-7">Free first step</div>
         </div>
       </div>
