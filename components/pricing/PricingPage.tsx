@@ -3,10 +3,10 @@ import { ArrowRight, Check, CircleDollarSign, ClipboardCheck, MapPinned, Message
 
 type PricingSearchParams = Record<string, string | string[] | undefined>
 
-const card = "relative flex min-h-[31.5rem] flex-col overflow-hidden rounded-[1.75rem] border border-[#E7EAE6] bg-white px-7 pb-6 pt-7 text-center shadow-[0_18px_48px_rgba(7,29,58,0.055)]"
+const card = "relative flex min-h-[31.5rem] flex-col overflow-hidden rounded-[1.75rem] border border-[#E7EAE6] bg-white px-7 pb-6 pt-7 text-center shadow-[0_18px_48px_rgba(7,29,58,0.055)] lg:min-h-[28.35rem] lg:px-6 lg:pb-5 lg:pt-6"
 const greenButton = "inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_22px_48px_rgba(21,128,61,0.28)]"
 const lightButton = "inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-[#F4FBF5]"
-const ladderButton = "inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#0F6F33] bg-white px-5 py-3 text-sm font-extrabold text-[#0F6F33] transition hover:-translate-y-0.5 hover:bg-[#F4FBF5]"
+const ladderButton = "inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#0F6F33] bg-white px-5 py-3 text-sm font-extrabold text-[#0F6F33] transition hover:-translate-y-0.5 hover:bg-[#F4FBF5] lg:min-h-11 lg:py-2"
 
 const offerIcons: Record<string, LucideIcon> = {
   "ai-office-blueprint": ClipboardCheck,
@@ -61,7 +61,7 @@ const offers = [
 
 function BulletList({ items }: { items: string[] }) {
   return (
-    <ul className="grid gap-3 text-left text-sm font-semibold leading-6 text-[#102033]">
+    <ul className="grid gap-3 text-left text-sm font-semibold leading-6 text-[#102033] lg:gap-2 lg:text-[13px] lg:leading-5">
       {items.map((item) => (
         <li key={item} className="flex gap-3">
           <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-[#15803D] text-[#15803D]">
@@ -142,7 +142,7 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
           </div>
         </div>
       </section>
-      <section aria-label="Offer ladder" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+      <section aria-label="Offer ladder" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:max-w-[92rem] lg:px-8">
         <h2 className="mx-auto max-w-5xl text-center text-balance text-[2.45rem] font-semibold leading-[1.05] tracking-[-0.052em] text-[#07132B] sm:text-5xl lg:text-[3.55rem]">
           From ideas to installed AI workflows. We meet you at every step.
         </h2>
@@ -158,18 +158,18 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
                   </div>
                 ) : null}
 
-                <div className={`${offer.featured ? "mt-7" : ""} mx-auto flex h-[7.25rem] w-full max-w-[12.5rem] items-center justify-center text-[#15803D]`}>
-                  <div className="relative flex h-24 w-28 items-center justify-center rounded-[1.35rem] bg-[#F4FBF5] ring-1 ring-[#DDEBE2]">
-                    <span className="absolute -right-3 top-7 h-11 w-11 rounded-full bg-[#E8F6EC]" />
-                    <Icon className="relative h-14 w-14 stroke-[1.55]" />
+                <div className={`${offer.featured ? "mt-7 lg:mt-6" : ""} mx-auto flex h-[6.5rem] w-full max-w-[12.5rem] items-center justify-center text-[#15803D] lg:h-[5.85rem]`}>
+                  <div className="relative flex h-24 w-28 items-center justify-center rounded-[1.35rem] bg-[#F4FBF5] ring-1 ring-[#DDEBE2] lg:h-20 lg:w-24">
+                    <span className="absolute -right-3 top-7 h-11 w-11 rounded-full bg-[#E8F6EC] lg:top-6 lg:h-9 lg:w-9" />
+                    <Icon className="relative h-14 w-14 stroke-[1.55] lg:h-12 lg:w-12" />
                   </div>
                 </div>
 
-                <h3 className="mt-4 min-h-[3.4rem] text-2xl font-semibold leading-[1.02] tracking-[-0.04em] text-[#07132B]">{offer.title}</h3>
-                <p className="mt-3 text-[2rem] font-extrabold leading-none tracking-[-0.045em] text-[#15803D]">{offer.price}</p>
-                <p className="mx-auto mt-4 min-h-[4.6rem] max-w-[16.5rem] text-center text-sm font-semibold leading-6 text-[#334B60]">{offer.body}</p>
+                <h3 className="mt-3 min-h-[3.05rem] text-2xl font-semibold leading-[1.02] tracking-[-0.04em] text-[#07132B] lg:min-h-[2.65rem] lg:text-[1.35rem]">{offer.title}</h3>
+                <p className="mt-3 text-[2rem] font-extrabold leading-none tracking-[-0.045em] text-[#15803D] lg:mt-2 lg:text-[1.75rem]">{offer.price}</p>
+                <p className="mx-auto mt-3 min-h-[4.15rem] max-w-[18.95rem] text-center text-sm font-semibold leading-6 text-[#334B60] lg:min-h-[3.35rem] lg:text-[13px] lg:leading-5">{offer.body}</p>
 
-                <div className="mt-5 border-t border-[#E1E5DE] pt-5">
+                <div className="mt-4 border-t border-[#E1E5DE] pt-4">
                   <BulletList items={offer.bullets} />
                 </div>
 
