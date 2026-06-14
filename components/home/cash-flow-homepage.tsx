@@ -78,22 +78,26 @@ function HeroImageSlideshow() {
 
 function CalculatorSpine() {
   return (
-    <PageSection id="calculator" className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#eef5ed] py-12 text-[#071D3A] md:py-16 lg:py-20" fullDesktop={false}>
-      <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden bg-[#eef5ed]">
-        <Image src={uploadedHomeImages.calculator.src} alt="" fill sizes="100vw" className="scale-125 object-cover object-[62%_center]" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#eef5ed_0%,rgba(238,245,237,0.98)_23%,rgba(238,245,237,0.7)_45%,rgba(238,245,237,0.14)_68%,#eef5ed_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#eef5ed_0%,rgba(238,245,237,0.08)_28%,rgba(238,245,237,0.12)_70%,#eef5ed_100%)]" />
-      </div>
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(247,251,244,0.98)_0%,rgba(247,251,244,0.94)_34%,rgba(247,251,244,0.66)_54%,rgba(247,251,244,0.18)_75%,rgba(247,251,244,0.02)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(247,251,244,0.72)_0%,rgba(247,251,244,0.16)_42%,rgba(247,251,244,0.76)_100%)]" />
-      <div className="mx-auto flex min-h-[520px] max-w-[88rem] items-center md:min-h-[600px] lg:min-h-[680px]">
-        <div className="max-w-[760px] py-10 md:py-14">
-          <h2 className="max-w-[720px] text-balance text-[clamp(2.7rem,5.6vw,6rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-[#071D3A]">Before you hire another admin, find the office work AI should clean up first.</h2>
-          <p className="mt-6 max-w-[640px] text-base font-semibold leading-7 text-[#35475d] sm:text-lg md:text-xl md:leading-8">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the fixes, tools, prompts, and install priority.</p>
+    <PageSection id="calculator" className="relative isolate scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-10 text-[#071D3A] md:py-12 lg:py-16" fullDesktop={false}>
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_16%,rgba(83,217,134,0.16),transparent_32%),linear-gradient(180deg,#fbfcf7_0%,#eef6ee_100%)]" />
+      <div className="mx-auto grid min-h-[500px] max-w-[88rem] items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div className="max-w-[690px] py-2 md:py-4">
+          <h2 className="max-w-[690px] text-[clamp(2.35rem,4.4vw,4.45rem)] font-extrabold leading-[0.94] tracking-[-0.014em] text-[#071D3A]">
+            <span className="block">Before you hire</span>
+            <span className="block">another admin,</span>
+            <span className="block">find the office work</span>
+            <span className="block">AI should clean up first.</span>
+          </h2>
+          <p className="mt-6 max-w-[610px] text-base font-semibold leading-7 text-[#35475d] sm:text-lg md:text-xl md:leading-8">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the fixes, tools, prompts, and install priority.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_16px_36px_rgba(10,85,38,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Book the AI Office Map <ArrowRight className="h-4 w-4" /></CTALink>
-            <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d5e5da] bg-white/92 px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Get the Free Blueprint</CTALink>
+            <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d5e5da] bg-white px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] transition hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Get the Free Blueprint</CTALink>
           </div>
+        </div>
+        <div className="relative min-h-[320px] overflow-hidden rounded-[2.2rem] border border-[#d2e7d2] bg-white shadow-[0_26px_76px_rgba(7,29,58,0.13)] sm:min-h-[400px] lg:min-h-[470px]">
+          <Image src={uploadedHomeImages.calculator.src} alt="AI Office Blueprint product shot showing the free office workflow report" fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover object-[58%_center]" priority />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.78)_0%,rgba(255,255,255,0.26)_36%,rgba(255,255,255,0)_70%),linear-gradient(180deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0)_58%,rgba(7,29,58,0.08)_100%)]" />
+          <div className="absolute left-5 top-5 rounded-full border border-[#c6e7cf] bg-white/88 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.12em] text-[#116832] shadow-[0_12px_30px_rgba(7,29,58,0.08)] backdrop-blur-md sm:left-7 sm:top-7">Free first step</div>
         </div>
       </div>
     </PageSection>
