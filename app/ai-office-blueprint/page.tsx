@@ -26,20 +26,10 @@ export default function AiOfficeBlueprintPage() {
       <SiteHeader />
       <main className="min-h-screen overflow-x-hidden bg-[#FBF8F2] text-[#071D3A]">
         <section data-nav-theme="light" className="relative isolate min-h-[100svh] overflow-hidden bg-[#FBFAF6] text-[#071D3A]">
-          <Image
-            src="/images/uploaded/ai-office-blueprint/ai-office-blueprint-hero-wide.jpg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="-z-30 object-cover object-[82%_54%] sm:object-[72%_58%]"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(251,250,246,0.99)_0%,rgba(251,250,246,0.98)_54%,rgba(251,250,246,0.82)_78%,rgba(251,250,246,0.52)_100%)] sm:bg-[linear-gradient(90deg,rgba(251,250,246,0.99)_0%,rgba(251,250,246,0.96)_31%,rgba(251,250,246,0.66)_52%,rgba(251,250,246,0.08)_80%,rgba(251,250,246,0)_100%)]" />
           <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/82 to-transparent" />
           <div className="absolute inset-x-0 bottom-[-1px] z-0 h-48 bg-[linear-gradient(180deg,transparent_0%,rgba(251,250,246,0.6)_42%,#F4EFE8_100%)]" />
-          <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1420px] items-start px-5 pb-24 pt-[132px] sm:px-10 sm:pt-[148px] lg:px-[84px] lg:pt-[154px] xl:pt-[164px]">
-            <div className="max-w-[640px]">
+          <div className="relative z-10 mx-auto grid min-h-[100svh] w-full max-w-[1420px] items-center gap-8 px-5 pb-24 pt-[132px] sm:px-10 sm:pt-[148px] lg:grid-cols-[minmax(0,0.95fr)_minmax(520px,1fr)] lg:gap-10 lg:px-[84px] lg:pt-[154px] xl:gap-16 xl:pt-[164px]">
+            <div className="max-w-[640px] lg:-translate-x-[5%]">
               <h1 className="text-[3.1rem] font-bold leading-[0.98] tracking-[-0.026em] text-[#071D3A] sm:text-[3.65rem] lg:text-[4.05rem] xl:text-[4.35rem]">
                 Get the Free
                 <br />
@@ -65,6 +55,18 @@ export default function AiOfficeBlueprintPage() {
                   Get custom version <ArrowRight className="ml-3 h-5 w-5" />
                 </a>
               </div>
+            </div>
+            <div className="relative mx-auto mt-1 w-full max-w-[449px] sm:max-w-[598px] lg:mt-0 lg:max-w-[713px] lg:translate-x-[15%] lg:justify-self-end">
+              <div className="absolute inset-x-[10%] bottom-[2%] h-[20%] rounded-full bg-[#15803D]/10 blur-3xl" aria-hidden="true" />
+              <Image
+                src="/images/uploaded/ai-office-blueprint/stanley-ai-office-blueprint-upscaled.jpg"
+                alt="AI Office Blueprint package with staff plays, copy/paste prompts, and a quick-win checklist."
+                width={1280}
+                height={960}
+                priority
+                sizes="(min-width: 1024px) 713px, (min-width: 640px) 598px, 449px"
+                className="relative z-10 h-auto w-full mix-blend-multiply object-contain drop-shadow-[0_28px_55px_rgba(7,29,58,0.1)] [mask-image:radial-gradient(ellipse_76%_72%_at_50%_52%,#000_52%,rgba(0,0,0,0.72)_68%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_76%_72%_at_50%_52%,#000_52%,rgba(0,0,0,0.72)_68%,transparent_100%)]"
+              />
             </div>
           </div>
         </section>
