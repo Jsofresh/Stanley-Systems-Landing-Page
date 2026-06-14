@@ -78,10 +78,10 @@ function HeroImageSlideshow() {
 
 function CalculatorSpine() {
   return (
-    <PageSection id="calculator" className="relative isolate min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-12 text-[#071D3A] md:py-14 lg:grid lg:min-h-screen lg:items-start lg:py-0" fullDesktop={false}>
+    <PageSection id="calculator" className="relative isolate min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-12 text-[#071D3A] md:py-14 lg:grid lg:min-h-screen lg:items-center lg:py-0" fullDesktop={false}>
       <Image src={uploadedHomeImages.checklistLaptop.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-[64%_center] lg:object-[68%_center]" priority aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(251,252,247,0.70)_0%,rgba(251,252,247,0.52)_25%,rgba(251,252,247,0.24)_52%,rgba(251,252,247,0.04)_100%),linear-gradient(180deg,rgba(251,252,247,0.20)_0%,rgba(245,249,242,0.01)_48%,rgba(238,246,238,0.16)_100%),radial-gradient(circle_at_18%_50%,rgba(251,252,247,0.34),transparent_42%)]" />
-      <div className="mx-auto grid w-full max-w-[92rem] items-center lg:pt-10">
+      <div className="mx-auto grid w-full max-w-[92rem] items-center lg:translate-y-8">
         <div className="w-full max-w-[760px] px-1 py-4 sm:px-3 md:px-5 lg:max-w-[920px] lg:px-0 lg:py-0">
           <h2 className="text-[clamp(2.45rem,7.2vw,4.95rem)] font-extrabold leading-[0.94] tracking-[-0.03em] text-[#071D3A] lg:text-[clamp(3.05rem,4.8vw,4.05rem)] lg:leading-[0.92]">
             <span className="block lg:hidden">Before you hire another admin, find the office work AI should clean up first.</span>
