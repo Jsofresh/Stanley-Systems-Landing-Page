@@ -1,4 +1,5 @@
 import type {
+  CompanyBrainAttachment,
   CompanyBrainBlock,
   SendCompanyBrainMessageInput,
   SendCompanyBrainMessageResponse,
@@ -66,6 +67,36 @@ const closeoutRows = [
 
 function text(id: string, value: string): CompanyBrainBlock {
   return { type: "text", id, text: value }
+}
+
+function buildAttachmentBlocks(attachments: CompanyBrainAttachment[] = []): CompanyBrainBlock[] {
+  if (!attachments.length) return []
+
+  return [
+    text(
+      "uploaded-attachments-answer",
+      `I attached ${attachments.length === 1 ? "that file" : `${attachments.length} files`} to this chat turn.`,
+    ),
+    {
+      type: "sources",
+      id: "uploaded-attachment-sources",
+      title: "Attached files",
+      sources: attachments.map((attachment) => ({
+        id: attachment.id,
+        label: attachment.name,
+        detail: `${attachment.type || "file"} · ${formatBytes(attachment.size)}`,
+        system: "Files" as const,
+      })),
+    },
+  ]
+}
+
+function formatBytes(bytes: number) {
+  if (!Number.isFinite(bytes) || bytes <= 0) return "0 B"
+  const units = ["B", "KB", "MB", "GB"]
+  const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1)
+  const value = bytes / 1024 ** index
+  return `${value >= 10 || index === 0 ? value.toFixed(0) : value.toFixed(1)} ${units[index]}`
 }
 
 function lower(value: string) {
@@ -353,7 +384,7 @@ export async function sendCompanyBrainMessage(
       id: `assistant-${Date.now()}`,
       role: "assistant",
       createdAt: new Date().toISOString(),
-      blocks: buildMockBlocks(input.message),
+      blocks: [...buildAttachmentBlocks(input.attachments), ...buildMockBlocks(input.message)],
     },
   }
 }

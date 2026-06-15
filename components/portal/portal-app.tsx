@@ -1,6 +1,6 @@
 "use client"
 
-import { FormEvent, KeyboardEvent, useMemo, useState } from "react"
+import { FormEvent, KeyboardEvent, useMemo, useRef, useState, type ChangeEvent } from "react"
 import Link from "next/link"
 import {
   ArrowUp,
@@ -29,6 +29,7 @@ import { cn } from "@/lib/utils"
 import { sendCompanyBrainMessage } from "@/lib/company-brain/mock"
 import type {
   Artifact,
+  CompanyBrainAttachment,
   CompanyBrainBlock,
   CompanyBrainMessage,
   PreparedAction,
@@ -65,32 +66,42 @@ type PreviewState =
 export function PortalApp() {
   const [messages, setMessages] = useState<CompanyBrainMessage[]>(initialMessages)
   const [input, setInput] = useState("")
+  const [attachments, setAttachments] = useState<CompanyBrainAttachment[]>([])
   const [isSending, setIsSending] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [preview, setPreview] = useState<PreviewState>(null)
 
   const hasMessages = messages.length > 0
 
-  async function sendMessage(messageText = input) {
+  async function sendMessage(messageText = input, messageAttachments = attachments) {
     const trimmed = messageText.trim()
-    if (!trimmed || isSending) return
+    if ((!trimmed && messageAttachments.length === 0) || isSending) return
 
     const userMessage: CompanyBrainMessage = {
       id: `user-${Date.now()}`,
       role: "user",
       createdAt: new Date().toISOString(),
-      blocks: [{ type: "text", id: `user-text-${Date.now()}`, text: trimmed }],
+      blocks: [
+        ...(trimmed ? [{ type: "text" as const, id: `user-text-${Date.now()}`, text: trimmed }] : []),
+        ...messageAttachments.map((attachment) => ({
+          type: "attachment" as const,
+          id: `user-attachment-${attachment.id}`,
+          attachment,
+        })),
+      ],
     }
 
     setMessages((current) => [...current, userMessage])
     setInput("")
+    setAttachments([])
     setIsSending(true)
 
     try {
       const response = await sendCompanyBrainMessage({
         companyId: "bayview-service-co",
         conversationId: "mock-conversation",
-        message: trimmed,
+        message: trimmed || "Review attached file.",
+        attachments: messageAttachments,
       })
       setMessages((current) => [...current, response.message])
     } catch {
@@ -130,6 +141,8 @@ export function PortalApp() {
       onClose={() => setSidebarOpen(false)}
       onNewChat={() => {
         setMessages([])
+        setInput("")
+        setAttachments([])
         setSidebarOpen(false)
       }}
     />
@@ -204,8 +217,10 @@ export function PortalApp() {
               </div>
               <ChatComposer
                 input={input}
+                attachments={attachments}
                 disabled={isSending}
                 onInput={setInput}
+                onAttachments={setAttachments}
                 onSubmit={handleSubmit}
                 onKeyDown={handleKeyDown}
               />
@@ -311,8 +326,12 @@ function ChatMessage({
       ) : null}
       <div className={cn("min-w-0", isUser ? "max-w-[84%]" : "max-w-[min(100%,720px)] flex-1")}>
         {isUser ? (
-          <div className="rounded-2xl rounded-tr-md bg-[#102033] px-4 py-3 text-sm font-medium leading-6 text-white shadow-sm">
-            {message.blocks.map((block) => (block.type === "text" ? <p key={block.id}>{block.text}</p> : null))}
+          <div className="space-y-2 rounded-2xl rounded-tr-md bg-[#102033] px-4 py-3 text-sm font-medium leading-6 text-white shadow-sm">
+            {message.blocks.map((block) => {
+              if (block.type === "text") return <p key={block.id}>{block.text}</p>
+              if (block.type === "attachment") return <AttachmentPill key={block.id} attachment={block.attachment} tone="dark" />
+              return null
+            })}
           </div>
         ) : (
           <div className="space-y-3">
@@ -519,24 +538,111 @@ function TableCard({ table, onPreview }: { table: TablePreview; onPreview: () =>
   )
 }
 
+function formatAttachmentSize(bytes: number) {
+  if (!Number.isFinite(bytes) || bytes <= 0) return "0 B"
+  const units = ["B", "KB", "MB", "GB"]
+  const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1)
+  const value = bytes / 1024 ** index
+  return `${value >= 10 || index === 0 ? value.toFixed(0) : value.toFixed(1)} ${units[index]}`
+}
+
+function AttachmentPill({
+  attachment,
+  onRemove,
+  tone = "light",
+}: {
+  attachment: CompanyBrainAttachment
+  onRemove?: () => void
+  tone?: "light" | "dark"
+}) {
+  const dark = tone === "dark"
+
+  return (
+    <span
+      className={cn(
+        "inline-flex max-w-full items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold",
+        dark ? "border-white/15 bg-white/10 text-white" : "border-[#d9eadf] bg-[#f5fbf7] text-[#2d4c36]",
+      )}
+    >
+      <FileText className="h-3.5 w-3.5 shrink-0" />
+      <span className="truncate">{attachment.name}</span>
+      <span className={cn("shrink-0 font-semibold", dark ? "text-white/65" : "text-[#6c7a6f]")}>{formatAttachmentSize(attachment.size)}</span>
+      {onRemove ? (
+        <button
+          type="button"
+          onClick={onRemove}
+          className={cn("ml-0.5 rounded-full p-0.5", dark ? "hover:bg-white/15" : "hover:bg-white")}
+          aria-label={`Remove ${attachment.name}`}
+        >
+          <X className="h-3.5 w-3.5" />
+        </button>
+      ) : null}
+    </span>
+  )
+}
+
 function ChatComposer({
   input,
+  attachments,
   disabled,
   onInput,
+  onAttachments,
   onSubmit,
   onKeyDown,
 }: {
   input: string
+  attachments: CompanyBrainAttachment[]
   disabled: boolean
   onInput: (value: string) => void
+  onAttachments: (value: CompanyBrainAttachment[]) => void
   onSubmit: (event: FormEvent) => void
   onKeyDown: (event: KeyboardEvent<HTMLTextAreaElement>) => void
 }) {
-  const canSend = input.trim().length > 0 && !disabled
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const canSend = (input.trim().length > 0 || attachments.length > 0) && !disabled
+
+  function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(event.target.files ?? [])
+    if (!files.length) return
+
+    onAttachments([
+      ...attachments,
+      ...files.map((file, index) => ({
+        id: `file-${Date.now()}-${index}-${file.name.replace(/[^a-z0-9._-]+/gi, "-")}`,
+        name: file.name,
+        size: file.size,
+        type: file.type || "application/octet-stream",
+      })),
+    ])
+    event.target.value = ""
+  }
+
+  function removeAttachment(id: string) {
+    onAttachments(attachments.filter((attachment) => attachment.id !== id))
+  }
 
   return (
     <form onSubmit={onSubmit} className="sticky bottom-0 bg-[#f7f2ea] pb-2 pt-3">
       <div className="rounded-2xl border border-[#d8d0c4] bg-white p-2 shadow-[0_16px_48px_rgba(16,32,51,0.08)]">
+        <input
+          ref={fileInputRef}
+          type="file"
+          multiple
+          className="sr-only"
+          onChange={handleFileChange}
+          aria-label="Attach files"
+        />
+        {attachments.length ? (
+          <div className="flex flex-wrap gap-2 border-b border-[#eee7dc] px-2 pb-2">
+            {attachments.map((attachment) => (
+              <AttachmentPill
+                key={attachment.id}
+                attachment={attachment}
+                onRemove={() => removeAttachment(attachment.id)}
+              />
+            ))}
+          </div>
+        ) : null}
         <textarea
           value={input}
           disabled={disabled}
@@ -549,8 +655,9 @@ function ChatComposer({
         <div className="flex items-center justify-between gap-3 border-t border-[#eee7dc] px-2 pt-2">
           <button
             type="button"
-            disabled
-            className="inline-flex h-9 items-center gap-2 rounded-lg px-2.5 text-sm font-semibold text-[#7b8378] disabled:opacity-70"
+            disabled={disabled}
+            onClick={() => fileInputRef.current?.click()}
+            className="inline-flex h-9 items-center gap-2 rounded-lg px-2.5 text-sm font-semibold text-[#7b8378] transition hover:bg-[#fbf8f2] hover:text-[#102033] disabled:cursor-not-allowed disabled:opacity-70"
           >
             <Paperclip className="h-4 w-4" />
             Attach

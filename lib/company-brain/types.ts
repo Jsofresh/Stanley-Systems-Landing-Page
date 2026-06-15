@@ -13,6 +13,13 @@ export type SourceChip = {
   system: "Jobber" | "QBO" | "Files" | "Email" | "CRM" | "Notes"
 }
 
+export type CompanyBrainAttachment = {
+  id: string
+  name: string
+  size: number
+  type: string
+}
+
 export type PreparedAction = {
   id: string
   title: string
@@ -60,6 +67,11 @@ export type CompanyBrainBlock =
       text: string
     }
   | {
+      type: "attachment"
+      id: string
+      attachment: CompanyBrainAttachment
+    }
+  | {
       type: "sources"
       id: string
       title?: string
@@ -104,6 +116,7 @@ export type SendCompanyBrainMessageInput = {
   companyId: string
   conversationId: string
   message: string
+  attachments?: CompanyBrainAttachment[]
 }
 
 export type SendCompanyBrainMessageResponse = {
