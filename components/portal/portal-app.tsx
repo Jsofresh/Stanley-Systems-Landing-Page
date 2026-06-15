@@ -1,6 +1,6 @@
 "use client"
 
-import { FormEvent, KeyboardEvent, useMemo, useRef, useState, type ChangeEvent } from "react"
+import { FormEvent, KeyboardEvent, useMemo, useRef, useState, type ChangeEvent, type DragEvent } from "react"
 import Link from "next/link"
 import {
   ArrowUp,
@@ -581,6 +581,15 @@ function AttachmentPill({
   )
 }
 
+function fileToAttachment(file: File, index: number): CompanyBrainAttachment {
+  return {
+    id: `file-${Date.now()}-${index}-${file.name.replace(/[^a-z0-9._-]+/gi, "-")}`,
+    name: file.name,
+    size: file.size,
+    type: file.type || "application/octet-stream",
+  }
+}
+
 function ChatComposer({
   input,
   attachments,
@@ -599,22 +608,37 @@ function ChatComposer({
   onKeyDown: (event: KeyboardEvent<HTMLTextAreaElement>) => void
 }) {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const [isDraggingFile, setIsDraggingFile] = useState(false)
   const canSend = (input.trim().length > 0 || attachments.length > 0) && !disabled
 
-  function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
-    const files = Array.from(event.target.files ?? [])
+  function addFiles(files: File[]) {
     if (!files.length) return
+    onAttachments([...attachments, ...files.map(fileToAttachment)])
+  }
 
-    onAttachments([
-      ...attachments,
-      ...files.map((file, index) => ({
-        id: `file-${Date.now()}-${index}-${file.name.replace(/[^a-z0-9._-]+/gi, "-")}`,
-        name: file.name,
-        size: file.size,
-        type: file.type || "application/octet-stream",
-      })),
-    ])
+  function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+    addFiles(Array.from(event.target.files ?? []))
     event.target.value = ""
+  }
+
+  function handleDragOver(event: DragEvent<HTMLDivElement>) {
+    if (disabled || !event.dataTransfer.types.includes("Files")) return
+    event.preventDefault()
+    event.dataTransfer.dropEffect = "copy"
+    setIsDraggingFile(true)
+  }
+
+  function handleDragLeave(event: DragEvent<HTMLDivElement>) {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+      setIsDraggingFile(false)
+    }
+  }
+
+  function handleDrop(event: DragEvent<HTMLDivElement>) {
+    if (disabled) return
+    event.preventDefault()
+    setIsDraggingFile(false)
+    addFiles(Array.from(event.dataTransfer.files ?? []))
   }
 
   function removeAttachment(id: string) {
@@ -623,7 +647,17 @@ function ChatComposer({
 
   return (
     <form onSubmit={onSubmit} className="sticky bottom-0 bg-[#f7f2ea] pb-2 pt-3">
-      <div className="rounded-2xl border border-[#d8d0c4] bg-white p-2 shadow-[0_16px_48px_rgba(16,32,51,0.08)]">
+      <div
+        data-testid="portal-attachment-dropzone"
+        onDragOver={handleDragOver}
+        onDragEnter={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        className={cn(
+          "rounded-2xl border bg-white p-2 shadow-[0_16px_48px_rgba(16,32,51,0.08)] transition",
+          isDraggingFile ? "border-[#15803d] ring-4 ring-[#15803d]/15" : "border-[#d8d0c4]",
+        )}
+      >
         <input
           ref={fileInputRef}
           type="file"
