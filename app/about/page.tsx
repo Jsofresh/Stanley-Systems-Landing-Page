@@ -21,7 +21,7 @@ export default function PAGE() {
           <h1 className="max-w-5xl text-[2.6rem] font-semibold leading-[0.98] tracking-[-0.055em] sm:text-[4.4rem]">Home-service companies do good field work. Profit gets slowed down in office drag.</h1>
           <p className="mt-5 max-w-3xl text-lg font-semibold leading-8 text-[#42596C]">Stanley Systems exists to make the current office team faster, sharper, and more profitable before the owner hires another admin. We install AI into the real handoffs between field-service software, accounting, inbox, phones, texts, and staff workflows.</p>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">{["More jobs processed without dumping more manual work on staff.", "Cleaner records because repetitive copying and checking gets handled earlier.", "Faster follow-up because estimates, issues, and billing readiness stop depending on memory."].map((item) => <article key={item} className="rounded-[1.5rem] border border-[#DDEBE2] bg-white p-6 text-lg font-bold leading-8 text-[#34495F] shadow-[0_14px_38px_rgba(7,29,58,0.05)]">{item}</article>)}</div>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Link href="/workflow-audit" className={primary}>Book the AI Office Map</Link><Link href="/invoicing-delay-cash-flow-calculator" className={secondary}>Calculate Your Admin Drag</Link></div>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row"><Link href="/ai-office-map" className={primary}>Book the AI Office Map</Link><Link href="/invoicing-delay-cash-flow-calculator" className={secondary}>Calculate Your Admin Drag</Link></div>
         </section>
 
       </main>

@@ -28,7 +28,7 @@ const footerLinks: FooterSection[] = [
   {
     label: "Solutions",
     links: [
-      { title: "AI Office Map", href: "/workflow-audit" },
+      { title: "AI Office Map", href: "/ai-office-map" },
       { title: "Free AI Office Blueprint", href: "/ai-office-blueprint" },
       { title: "AI Office Installation Sprint", href: "/systems-installation-sprint" },
       { title: "AI Office Ops", href: "/pricing#ai-office-ops" },

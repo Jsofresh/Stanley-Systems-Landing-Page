@@ -49,7 +49,7 @@ export default function MissedEstimateFollowUpPage() {
                 Stanley Systems helps service businesses fix the gap between sending the quote and following up on time. When that step depends on memory, the next busy day wins. Good jobs go cold quietly.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
+                <Link href="/ai-office-map" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
                   Book the AI Office Map
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

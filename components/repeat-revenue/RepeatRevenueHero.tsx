@@ -18,7 +18,7 @@ export function RepeatRevenueHero() {
       <div className="relative mx-auto grid max-w-7xl gap-9 pb-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:pb-16">
         <div className="max-w-3xl">
           <nav className="text-sm font-semibold text-[#33475B]" aria-label="Breadcrumb">
-            <a href="/systems" className="underline decoration-[#1F7A3A]/50 underline-offset-4 hover:text-[#1F7A3A]">Systems</a>
+            <a href="/systems-installation-sprint" className="underline decoration-[#1F7A3A]/50 underline-offset-4 hover:text-[#1F7A3A]">Systems</a>
             <span className="mx-2 text-[#7C98B6]">/</span>
             <span>AI Office Ops</span>
           </nav>

@@ -49,7 +49,8 @@ const navGroups: MegaMenuGroup[] = [
     items: [
       { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Answer one focused workflow form and get a custom first-pass AI office plan." },
       { label: "Generic Blueprint PDF", href: "/ai-office-blueprint#generic-blueprint-section", description: "Jump straight to the generic AI Office Blueprint download section." },
-      { label: "AI Office Map", href: "/workflow-audit", description: "Ready for the paid diagnostic? Book the next step." },
+      { label: "AI Office Map", href: "/ai-office-map", description: "Ready for the paid diagnostic? Book the next step." },
+      { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate where delayed office work is costing money." },
     ],
     featured: {
       title: "Want the first read before you buy?",
@@ -60,20 +61,20 @@ const navGroups: MegaMenuGroup[] = [
   },
   {
     label: "AI Office Map",
-    href: "/workflow-audit",
+    href: "/ai-office-map",
     eyebrow: "Paid first step",
     summary: "The Map turns office drag into a fix list: prompts, handoff changes, tool guidance, quick wins, and first install priority.",
     widthClass: "w-[min(520px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Book the AI Office Map", href: "/workflow-audit", description: "The $197 diagnostic that finds what your office should fix first." },
-      { label: "What You Get", href: "/workflow-audit#deliverables", description: "See the deliverables: fix list, staff plays, priority matrix, and install plan." },
+      { label: "Book the AI Office Map", href: "/ai-office-map", description: "The $197 diagnostic that finds what your office should fix first." },
+      { label: "What You Get", href: "/ai-office-map#deliverables", description: "See the deliverables: fix list, staff plays, priority matrix, and install plan." },
       { label: "Pricing", href: "/pricing", description: "See the full path from free Blueprint to Map, Sprint, and Ops." },
     ],
     featured: {
       title: "The Map comes before the build.",
       copy: "Use it to avoid spending time or money on the wrong workflow.",
-      href: "/workflow-audit",
+      href: "/ai-office-map",
       cta: "Book the AI Office Map",
     },
   },
@@ -86,9 +87,8 @@ const navGroups: MegaMenuGroup[] = [
     columnsClass: "grid-cols-1",
     items: [
       { label: "AI Office Installation Sprint", href: "/systems-installation-sprint", description: "The build phase for the first workflow worth installing." },
-      { label: "Cash Flow Collection System", href: "/systems/cashflow-control", description: "A focused path for billing readiness, invoices, and collection follow-up." },
-      { label: "Repeat Revenue System", href: "/systems/repeat-revenue", description: "A focused path for follow-up, reactivation, reviews, and repeat work." },
-      { label: "Both Systems", href: "/systems/both-systems", description: "When the business needs cash-flow control and repeat-revenue follow-up together." },
+      { label: "What the Sprint Installs", href: "/systems-installation-sprint#sprint-includes", description: "See the workflows, staff training, SOPs, and proof report included in the Sprint." },
+      { label: "Pricing", href: "/pricing", description: "See the path from Free Blueprint to Map, Sprint, and Ops." },
     ],
     featured: {
       title: "Know the first workflow already?",
@@ -143,6 +143,7 @@ const navGroups: MegaMenuGroup[] = [
     columnsClass: "grid-cols-1",
     items: [
       { label: "How Stanley Systems Works", href: "/how-stanley-systems-works", description: "See the full path from diagnosis to installed workflow." },
+      { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate how delayed office work hits cash flow." },
       { label: "Case Notes", href: "/stanley-systems-case-study", description: "See how workflow gaps turn into owner-time problems." },
       { label: "Blog", href: "/blog", description: "Plain-English notes on AI office workflows and admin drag." },
       { label: "Contact", href: "/contact", description: "Send the workflow problem straight to Stanley Systems." },
@@ -343,12 +344,10 @@ export function SiteHeader() {
             <span className="hidden sm:inline">+1 (617) 958-6372</span>
           </a>
           <div className="flex items-center gap-3 md:hidden">
-            <a href="/login" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Login</a>
             <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Start Free</a>
-            <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Map</a>
+            <a href="/ai-office-map" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Map</a>
           </div>
           <div className="hidden items-center gap-5 md:flex">
-            <a href="/login" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Client Login</a>
             <a href="/pricing" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Pricing</a>
             <a href="/contact" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
           </div>
@@ -566,7 +565,7 @@ export function HeroSection() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CTALink
-                href="/workflow-audit"
+                href="/ai-office-map"
                 kind="systems"
                 location="home_hero_primary"
                 analyticsEvent="audit_checkout_clicked"

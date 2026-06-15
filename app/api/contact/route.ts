@@ -15,6 +15,32 @@ function cleanAlertType(body: Record<string, unknown>) {
   return clean(body?.telegram_alert_type) || clean(body?.form_type) || clean(body?.status) || "contact_form"
 }
 
+function yesNo(value: boolean) {
+  return value ? "Yes" : "No"
+}
+
+function buildTelegramMessage(payload: Record<string, unknown>) {
+  const lines = [
+    "📬 Stanley Systems website contact",
+    `Type: ${clean(payload.form_type) || clean(payload.telegram_alert_type) || "contact_routing_request"}`,
+    `Name: ${clean(payload.name) || "Not provided"}`,
+    `Company: ${clean(payload.company) || clean(payload.business) || "Not provided"}`,
+    `Email: ${clean(payload.email) || "Not provided"}`,
+    `Phone: ${clean(payload.phone) || "Not provided"}`,
+    `Business type: ${clean(payload.businessType) || clean(payload.business_type) || "Not provided"}`,
+    `Bottleneck: ${clean(payload.bottleneck) || clean(payload.main_issue) || "Not provided"}`,
+    `Invoice delay: ${clean(payload.invoiceDelay) || "Not provided"}`,
+    `Current process: ${clean(payload.currentProcess) || "Not provided"}`,
+    `Problem: ${clean(payload.problem) || clean(payload.message) || "Not provided"}`,
+    `SMS consent: ${yesNo(payload.smsConsent === true)}`,
+    `Page: ${clean(payload.page) || clean(payload.source_page) || "/contact"}`,
+    `Source: ${clean(payload.source) || "website-contact-form"}`,
+    `Submitted: ${clean(payload.submitted_at) || clean(payload.submittedAt) || new Date().toISOString()}`,
+  ]
+
+  return lines.join("\n")
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -58,6 +84,12 @@ export async function POST(request: Request) {
       page: clean(body?.page) || "/contact",
       submitted_at: clean(body?.submitted_at) || new Date().toISOString(),
       submittedAt: new Date().toISOString(),
+    }
+
+    const telegram_message = buildTelegramMessage(payload)
+    const webhookPayload = {
+      ...payload,
+      telegram_message,
     }
 
     if (payload.website) {
@@ -105,7 +137,8 @@ export async function POST(request: Request) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(webhookPayload),
+        signal: AbortSignal.timeout(8000),
       })
 
       if (!webhookResponse.ok) {

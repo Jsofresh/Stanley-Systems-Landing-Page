@@ -63,9 +63,9 @@ export const pricingPackages: PricingPackage[] = [
     cta: "Book the $197 AI Office Map",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_WORKFLOW_AUDIT_PAYMENT_LINK",
-      url: "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+      url: "https://buy.stripe.com/3cI7sKcHZder5I5cFkg7e09",
     },
-    packageRoute: "/workflow-audit",
+    packageRoute: "/ai-office-map",
     analyticsPackageId: "workflow_audit",
     notes: [
       "45-60 minute owner or office-manager session.",

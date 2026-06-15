@@ -36,7 +36,7 @@ export function PlanCard({ plan, featured = false }: { plan: PricingPlan; featur
   const rows = compactRows(plan)
   return (
     <article
-      id={plan.id === "workflow_audit" ? "workflow-audit" : plan.id.replaceAll("_", "-")}
+      id={plan.id === "workflow_audit" ? "ai-office-map" : plan.id.replaceAll("_", "-")}
       className={`group flex h-full flex-col rounded-[1.25rem] border bg-white p-4 shadow-[0_12px_28px_rgba(15,23,42,0.055)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#15803D] hover:shadow-[0_24px_60px_rgba(21,128,61,0.14)] hover:ring-2 hover:ring-[#b7e4c7] ${
         featured || isAudit ? "border-[#b8e2c4] ring-1 ring-[#d7f1de]" : "border-[#dfe7ee]"
       }`}

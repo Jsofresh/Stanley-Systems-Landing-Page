@@ -24,7 +24,7 @@ const systems: ProductSystem[] = [
   {
     title: "AI Office Installation Sprint",
     promise: "Get finished work billed, followed up, and paid faster.",
-    href: "/systems/office workflow-control",
+    href: "/systems-installation-sprint",
     analyticsLocation: "home_systems_cashflow_control",
     packageName: "AI Office Installation Sprint",
     ctaLabel: "See the AI Office Installation Sprint",
@@ -40,7 +40,7 @@ const systems: ProductSystem[] = [
     title: "AI Office Ops",
     promise:
       "Turn missed calls, happy customers, reviews, referrals, and past customers into more booked work.",
-    href: "/systems/repeat-revenue",
+    href: "/systems-installation-sprint",
     analyticsLocation: "home_systems_repeat_revenue",
     packageName: "AI Office Ops",
     ctaLabel: "See the AI Office Ops",

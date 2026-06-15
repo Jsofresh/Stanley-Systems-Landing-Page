@@ -248,11 +248,11 @@ function primaryCtaLabelFor(pricingPackage: PricingPackage) {
 
 function secondaryCtaFor(pricingPackage: PricingPackage): PricingPlan["secondaryCta"] {
   if (pricingPackage.publicName === "AI Office Installation Sprint") {
-    return { label: "See the billing readiness workflow", action: "systems", href: "/systems/cashflow-control" }
+    return { label: "See the billing readiness workflow", action: "systems", href: "/systems-installation-sprint" }
   }
 
   if (pricingPackage.publicName === "AI Office Ops") {
-    return { label: "See the repeat leak", action: "systems", href: "/systems/repeat-revenue" }
+    return { label: "See the repeat leak", action: "systems", href: "/systems-installation-sprint" }
   }
 
   if (pricingPackage.publicName === "AI Office Installation Sprint + Ops") {

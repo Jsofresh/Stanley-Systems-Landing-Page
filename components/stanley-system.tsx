@@ -57,7 +57,7 @@ export function AIOfficeInstallationPackageCard({ ctaProps }: PackageCardProps) 
       title="AI Office Installation Sprint"
       copy="Move finished jobs toward invoice, payment, and owner visibility without forcing the office to rebuild the story by hand."
       bullets={["Billing handoffs get visible.", "Cash movement stops depending on memory.", "Owner cleanup hours come down."]}
-      href="/systems/office workflow-control"
+      href="/systems-installation-sprint"
       ctaProps={ctaProps}
     />
   )
@@ -69,7 +69,7 @@ export function RepeatRevenueSystemPackageCard({ ctaProps }: PackageCardProps) {
       title="AI Office Ops"
       copy="Keep follow-up, reviews, referrals, missed calls, and seasonal work moving through a path the team can run."
       bullets={["Past customer lists stop sitting idle.", "Missed calls and stale quotes get next steps.", "Repeat work becomes a system, not luck."]}
-      href="/systems/repeat-revenue"
+      href="/systems-installation-sprint"
       ctaProps={ctaProps}
     />
   )

@@ -68,7 +68,7 @@ export default function SpeedUpInvoicingPage() {
               Most service businesses do not have an invoicing problem because the team is lazy. They have one because the next step after the job gets done still depends on memory, re-entry, and somebody in the office piecing it together later.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/workflow-audit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
+              <Link href="/ai-office-map" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
                 Book the AI Office Map
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -144,7 +144,7 @@ export default function SpeedUpInvoicingPage() {
                 Read the marine shop case study
               </Link>
               <Link
-                href="/workflow-audit"
+                href="/ai-office-map"
                 className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#166534]"
               >
                 Book the AI Office Map
@@ -164,7 +164,7 @@ export default function SpeedUpInvoicingPage() {
               </div>
               <div className="flex flex-col gap-3 lg:items-end">
                 <Link
-                  href="/workflow-audit"
+                  href="/ai-office-map"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-semibold text-[#071D3A] transition hover:bg-slate-100"
                 >
                   Book the AI Office Map

@@ -34,7 +34,7 @@ const offers = [
     price: "$197",
     body: "A focused session that turns office drag into practical fixes, staff AI prompts, workflow tips, tool guidance, and the first workflow worth installing.",
     bullets: ["45-60 minute owner or office-manager session", "Fix list, prompts, and staff AI plays", "Tool + workflow recommendations", "$197 credited toward your AI Office Installation Sprint"],
-    href: "/workflow-audit",
+    href: "/ai-office-map",
     cta: "Book the AI Office Map",
     featured: true,
   },
@@ -92,11 +92,11 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
         <div className="absolute inset-x-0 bottom-0 -z-10 h-28 bg-gradient-to-b from-transparent via-[#FBFCF7]/80 to-[#FBFCF7]" />
         <div className="mx-auto flex min-h-[380px] max-w-7xl items-center lg:min-h-[380px]">
           <div className="max-w-[38rem] pb-2 lg:pb-3">
-            <h1 className="text-balance text-[2.85rem] font-semibold leading-[0.99] tracking-[-0.04em] text-[#071D3A] sm:text-[4.25rem] lg:text-[4.1rem] lg:leading-[0.96] lg:tracking-[-0.035em]">
-              AI Office Ops keeps every office workflow <span className="text-[#15803D]">running after install.</span>
+            <h1 className="text-balance text-[2.65rem] font-semibold leading-[1.03] tracking-[-0.025em] text-[#071D3A] sm:text-[4.05rem] lg:text-[3.85rem] lg:leading-[1.01] lg:tracking-[-0.025em]">
+              Start free. Map the work. Install the first AI office workflow. <span className="text-[#15803D]">Keep it running.</span>
             </h1>
-            <p className="mt-4 max-w-[34rem] text-base font-semibold leading-7 text-[#536173] sm:text-lg sm:leading-7">AI Office Ops checks follow-ups, fixes broken handoffs, updates automations, and sends a monthly proof report.</p>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row"><Link href="/contact?path=ai-office-ops" className={greenButton}>Ask about AI Office Ops <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="#ops-report" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#DDEBE2] bg-white/86 px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_12px_28px_rgba(7,29,58,0.06)] backdrop-blur-md transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white">See Monthly Report</Link></div>
+            <p className="mt-4 max-w-[36rem] text-base font-semibold leading-7 text-[#536173] sm:text-lg sm:leading-7">Use the free Blueprint for starter plays, the $197 AI Office Map to find the first workflow, the $3,500+ Sprint to install it, and AI Office Ops when you need it maintained monthly.</p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row"><Link href="/ai-office-blueprint" className={greenButton}>Get the Free Blueprint <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="#offers" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#DDEBE2] bg-white/86 px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_12px_28px_rgba(7,29,58,0.06)] backdrop-blur-md transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white">Compare the four steps</Link></div>
           </div>
         </div>
       </section>
@@ -115,14 +115,14 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
             ].map(([number, title, copy]) => (
               <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5">
                 <p className="text-sm font-extrabold text-[#15803D]">{number}</p>
-                <h3 className="mt-5 text-xl font-extrabold tracking-[-0.025em] text-[#071D3A]">{title}</h3>
-                <p className="mt-3 text-sm font-semibold leading-6 text-[#536173]">{copy}</p>
+                <h3 className="mt-5 text-[1.12rem] font-bold leading-7 tracking-normal text-[#071D3A]">{title}</h3>
+                <p className="mt-3 text-sm font-medium leading-7 tracking-[0.01em] text-[#536173]">{copy}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
-      <section aria-label="Offer ladder" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:max-w-[92rem] lg:px-8">
+      <section id="offers" aria-label="Offer ladder" className="scroll-mt-28 mx-auto max-w-7xl px-4 py-10 sm:scroll-mt-32 sm:px-6 sm:py-12 lg:max-w-[92rem] lg:px-8">
         <h2 className="mx-auto max-w-5xl text-center text-balance text-[2.45rem] font-semibold leading-[1.05] tracking-[-0.052em] text-[#07132B] sm:text-5xl lg:text-[3.55rem]">
           From ideas to installed AI workflows. We meet you at every step.
         </h2>

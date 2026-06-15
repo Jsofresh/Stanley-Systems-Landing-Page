@@ -75,7 +75,7 @@ export function FinalCTASection() {
           <div className="border-t border-[#dbe7cf] bg-white/72 p-5 sm:p-7 lg:border-l lg:border-t-0 lg:p-8">
             <div className="overflow-hidden rounded-[24px] border border-[#dfe8da] bg-white shadow-[0_14px_32px_rgba(15,23,42,0.06)]">
               <Image
-                src="/images/uploaded/homepage/workflow-audit-first-leak-found.jpg"
+                src="/images/uploaded/homepage/ai-office-map-first-leak-found.jpg"
                 alt="AI Office Map visual showing the first admin drag found before the next fix is built."
                 width={1280}
                 height={960}

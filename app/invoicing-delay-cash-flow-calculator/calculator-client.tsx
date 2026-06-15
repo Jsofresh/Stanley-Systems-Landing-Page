@@ -33,7 +33,7 @@ type StepKey =
   | "resultDiagnosis"
   | "resultMath";
 
-const auditHref = "/workflow-audit"
+const auditHref = "/ai-office-map"
 const CALCULATOR_LOADING_DURATION_MS = 2000
 
 const STEP_ORDER: StepKey[] = [

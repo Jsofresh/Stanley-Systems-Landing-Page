@@ -5,7 +5,7 @@ import { Menu, Phone, X } from "lucide-react"
 import Link from "next/link"
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
-const mapHref = `${basePath}/workflow-audit`
+const mapHref = `${basePath}/ai-office-map`
 const blueprintHref = `${basePath}/ai-office-blueprint`
 
 const navigation = [

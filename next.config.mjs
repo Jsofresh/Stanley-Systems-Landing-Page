@@ -11,6 +11,45 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/workflow-audit",
+        destination: "/ai-office-map",
+        permanent: true,
+      },
+      {
+        source: "/workflow-audit/:path*",
+        destination: "/ai-office-map/:path*",
+        permanent: true,
+      },
+      {
+        source: "/car-dealerships",
+        destination: "/who-stanley-systems-helps",
+        permanent: true,
+      },
+      {
+        source: "/systems",
+        destination: "/systems-installation-sprint",
+        permanent: true,
+      },
+      {
+        source: "/systems/cashflow-control",
+        destination: "/systems-installation-sprint",
+        permanent: true,
+      },
+      {
+        source: "/systems/repeat-revenue",
+        destination: "/systems-installation-sprint",
+        permanent: true,
+      },
+      {
+        source: "/systems/both-systems",
+        destination: "/systems-installation-sprint",
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

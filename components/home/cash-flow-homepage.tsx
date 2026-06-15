@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 
-const mapHref = "/workflow-audit"
+const mapHref = "/ai-office-map"
 const blueprintHref = "/ai-office-blueprint"
 const sprintHref = "/systems-installation-sprint"
 

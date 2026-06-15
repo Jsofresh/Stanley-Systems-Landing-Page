@@ -266,7 +266,7 @@ export function PaidInvoicingDelayCalculatorClient() {
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="/workflow-audit"
+                  href="/ai-office-map"
                   onClick={() => track("stanley_paid_calc_booking_cta_clicked", { severity: result.severity, trade })}
                   className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#166534]"
                 >

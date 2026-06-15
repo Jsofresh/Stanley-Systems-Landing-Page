@@ -28,7 +28,7 @@ export function AIOfficeWorkflowDemoProofStrip() {
               <Link href="/how-stanley-systems-works" prefetch={false} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(21,128,61,0.18)] transition hover:bg-[#17612E]">
                 Watch demo proof <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link href="/workflow-audit" prefetch={false} className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]">
+              <Link href="/ai-office-map" prefetch={false} className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]">
                 Book the AI Office Map
               </Link>
             </div>

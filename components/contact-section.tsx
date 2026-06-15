@@ -25,8 +25,8 @@ const contactCards = [
 
 const fitPoints = [
   "Reviewed by a real person",
-  "Paid AI Office Map first, not a generic sales call",
-  "Built for service businesses with admin drags in the office workflow",
+  "Routed to the right next step: Free Blueprint, AI Office Map, Sprint, Ops, or a simple fit answer",
+  "Built for service businesses where office work slows jobs, invoices, and follow-up",
 ]
 
 const workflowOptions = [
@@ -77,9 +77,10 @@ export function ContactSection() {
         },
         body: JSON.stringify({
           ...formData,
-          telegram_alert_type: "cash_flow_assessment_application",
-          form_type: "cash_flow_assessment_application",
+          telegram_alert_type: "contact_routing_request",
+          form_type: "contact_routing_request",
           source: "contact-page-form",
+          source_section: "contact_page_form",
           page: "/contact",
         }),
       })
@@ -124,10 +125,10 @@ export function ContactSection() {
           <div className="rounded-[2rem] border border-[#ece4d6] bg-[linear-gradient(180deg,#f9f6ef_0%,#ffffff_100%)] p-7 shadow-[0_20px_60px_rgba(15,23,42,0.06)] sm:p-8">
 
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              A better first step than another generic contact form.
+              Send the office bottleneck that keeps slowing work down.
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
-              This starts the paid AI Office Map path. If there is a real breakdown in your follow-up, calls, paperwork, or invoicing, Stanley Systems uses this to see where money may be leaking first.
+              Tell Stanley Systems where calls, paperwork, billing, or follow-up keep getting stuck. We will point you to the Free Blueprint, AI Office Map, Installation Sprint, AI Office Ops, or a simple fit answer.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -208,10 +209,10 @@ export function ContactSection() {
 
             <div className="mb-6">
               <h3 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-[2rem]">
-                Apply for the AI Office Map
+                Tell us what is stuck
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-[15px]">
-                Answer a few quick questions so Stanley Systems can see whether there is a real revenue problem worth checking first.
+                Answer a few quick questions so Stanley Systems can route you to the right next step instead of a generic sales call.
               </p>
             </div>
 
@@ -227,6 +228,7 @@ export function ContactSection() {
                     <span className="mb-2 block text-sm font-medium text-slate-700">{field.label}</span>
                     <input
                       type={field.key === "email" ? "email" : field.key === "phone" ? "tel" : "text"}
+                      name={field.key}
                       required={field.key === "name" || field.key === "email" || field.key === "company"}
                       value={formData[field.key as keyof typeof formData]}
                       onChange={(event) => updateField(field.key as keyof typeof formData, event.target.value)}
@@ -241,6 +243,7 @@ export function ContactSection() {
                 <span className="mb-2 block text-sm font-medium text-slate-700">What kind of service business do you run?*</span>
                 <input
                   type="text"
+                  name="businessType"
                   required
                   value={formData.businessType}
                   onChange={(event) => updateField("businessType", event.target.value)}
@@ -253,6 +256,7 @@ export function ContactSection() {
                 <span className="mb-2 block text-sm font-medium text-slate-700">Where do things usually get stuck?*</span>
                 <select
                   required
+                  name="bottleneck"
                   value={formData.bottleneck}
                   onChange={(event) => updateField("bottleneck", event.target.value)}
                   className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
@@ -270,6 +274,7 @@ export function ContactSection() {
                 <span className="mb-2 block text-sm font-medium text-slate-700">How long after a job is done does the invoice usually go out?</span>
                 <input
                   type="text"
+                  name="invoiceDelay"
                   value={formData.invoiceDelay}
                   onChange={(event) => updateField("invoiceDelay", event.target.value)}
                   placeholder="Same day, 2 days later, weekly batch, when someone has time, etc."
@@ -281,6 +286,7 @@ export function ContactSection() {
                 <span className="mb-2 block text-sm font-medium text-slate-700">What happens today when a new lead or job comes in?*</span>
                 <textarea
                   rows={4}
+                  name="currentProcess"
                   required
                   value={formData.currentProcess}
                   onChange={(event) => updateField("currentProcess", event.target.value)}
@@ -293,6 +299,7 @@ export function ContactSection() {
                 <span className="mb-2 block text-sm font-medium text-slate-700">What is the biggest headache you want fixed first?*</span>
                 <textarea
                   rows={5}
+                  name="problem"
                   required
                   value={formData.problem}
                   onChange={(event) => updateField("problem", event.target.value)}
@@ -345,7 +352,7 @@ export function ContactSection() {
                 disabled={submitState === "submitting"}
                 className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#166534] px-6 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-[#14532d] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {submitState === "submitting" ? "Sending..." : "Apply for the AI Office Map"}
+                {submitState === "submitting" ? "Sending..." : "Send this to Stanley Systems"}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </button>
             </form>
