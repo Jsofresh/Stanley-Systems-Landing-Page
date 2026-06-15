@@ -343,10 +343,12 @@ export function SiteHeader() {
             <span className="hidden sm:inline">+1 (617) 958-6372</span>
           </a>
           <div className="flex items-center gap-3 md:hidden">
+            <a href="/login" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Login</a>
             <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Start Free</a>
             <a href="/workflow-audit" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Map</a>
           </div>
           <div className="hidden items-center gap-5 md:flex">
+            <a href="/login" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Client Login</a>
             <a href="/pricing" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Pricing</a>
             <a href="/contact" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Contact</a>
           </div>
