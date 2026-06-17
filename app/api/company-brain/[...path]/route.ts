@@ -6,6 +6,7 @@ const ALLOWED_PATHS = new Set([
   "control/summary",
   "control/needs-attention",
   "brain/chat",
+  "actions/confirm",
   "health",
 ])
 
@@ -60,7 +61,8 @@ async function forward(request: NextRequest, context: RouteContext) {
   const path = resolvedPath(context.params.path)
   if (!ALLOWED_PATHS.has(path)) return jsonError("company_brain_path_not_allowed", 404)
 
-  const target = `${BRAIN_BASE_URL}/${path}${request.nextUrl.search}`
+  const upstreamPath = path === "actions/confirm" ? "chatgpt/actions/confirm" : path
+  const target = `${BRAIN_BASE_URL}/${upstreamPath}${request.nextUrl.search}`
   const headers: Record<string, string> = {
     accept: "application/json",
     "x-stanley-surface": "portal",
@@ -73,7 +75,7 @@ async function forward(request: NextRequest, context: RouteContext) {
   let body: string | undefined
   if (request.method !== "GET" && request.method !== "HEAD") {
     const incomingText = await request.text()
-    if (path === "brain/chat") {
+    if (path === "brain/chat" || path === "actions/confirm") {
       let incoming: Record<string, unknown> = {}
       try {
         incoming = incomingText ? JSON.parse(incomingText) : {}
