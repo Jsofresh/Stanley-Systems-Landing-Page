@@ -108,7 +108,6 @@ export default function OfficeHandoffProblemsPage() {
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {[
                   ...internalPageLinks,
-                  { title: "How Stanley Systems works", href: "/how-stanley-systems-works" },
                   { title: "Read the slow invoicing article", href: "/blog/real-cost-of-slow-invoicing-service-business" },
                 ].map((page) => (
                   <Link

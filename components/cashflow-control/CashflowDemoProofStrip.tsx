@@ -25,8 +25,8 @@ export function AIOfficeWorkflowDemoProofStrip() {
               Before you buy, the demo should show what triggers the workflow, which billing details get checked, who gets notified when something is missing, and how the job keeps moving toward collected cash.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <Link href="/how-stanley-systems-works" prefetch={false} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(21,128,61,0.18)] transition hover:bg-[#17612E]">
-                Watch demo proof <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <Link href="/ai-office-map" prefetch={false} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(21,128,61,0.18)] transition hover:bg-[#17612E]">
+                Book the AI Office Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <Link href="/ai-office-map" prefetch={false} className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]">
                 Book the AI Office Map
@@ -34,7 +34,7 @@ export function AIOfficeWorkflowDemoProofStrip() {
             </div>
           </div>
 
-          <Link href="/how-stanley-systems-works" prefetch={false} className="group relative block min-h-[285px] overflow-hidden bg-[#F8FBF9] sm:min-h-[340px] lg:min-h-[390px]">
+          <Link href="/ai-office-map" prefetch={false} className="group relative block min-h-[285px] overflow-hidden bg-[#F8FBF9] sm:min-h-[340px] lg:min-h-[390px]">
             <Image
               src="/images/uploaded/money-leak-map/money-leak-map-stanley-systems-workflow-automation.jpg"
               alt="Office Workflow Control demo visual showing intake, job records, billing checks, routing, invoices, and payment follow-up connected into one workflow."

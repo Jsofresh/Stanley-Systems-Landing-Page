@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/contact",
     "/field-service-automation",
-    "/how-stanley-systems-works",
     "/invoicing-delay-cash-flow-calculator",
     "/marine-service-automation",
     "/missed-estimate-follow-up-for-service-businesses",
