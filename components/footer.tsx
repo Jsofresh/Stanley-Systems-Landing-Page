@@ -32,7 +32,6 @@ const footerLinks: FooterSection[] = [
       { title: "Free AI Office Blueprint", href: "/ai-office-blueprint" },
       { title: "AI Office Installation Sprint", href: "/systems-installation-sprint" },
       { title: "AI Office Ops", href: "/pricing#ai-office-ops" },
-      { title: "How Stanley Systems Works", href: "/how-stanley-systems-works" },
       { title: "Who We Help", href: "/who-stanley-systems-helps" },
     ],
   },
@@ -48,7 +47,6 @@ const footerLinks: FooterSection[] = [
     label: "Company",
     links: [
       { title: "About", href: "/about" },
-      { title: "How Stanley Systems Works", href: "/how-stanley-systems-works" },
       { title: "Pricing", href: "/pricing" },
       { title: "Proof", href: "/stanley-systems-case-study" },
       { title: "Blog", href: "/blog" },

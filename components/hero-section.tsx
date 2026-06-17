@@ -142,7 +142,6 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "How Stanley Systems Works", href: "/how-stanley-systems-works", description: "See the full path from diagnosis to installed workflow." },
       { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate how delayed office work hits cash flow." },
       { label: "Case Notes", href: "/stanley-systems-case-study", description: "See how workflow gaps turn into owner-time problems." },
       { label: "Blog", href: "/blog", description: "Plain-English notes on AI office workflows and admin drag." },
