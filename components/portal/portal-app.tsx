@@ -307,6 +307,7 @@ export function PortalApp() {
               </button>
               <Link
                 href="/portal/settings"
+                prefetch={false}
                 className="grid h-9 w-9 place-items-center rounded-lg text-[#506070] transition hover:bg-white hover:text-[#15803d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
                 aria-label="Settings"
               >
@@ -351,7 +352,7 @@ function PortalSidebar({ session, onLogout, onClose, onNewChat }: { session: Por
   return (
     <div className="flex h-full flex-col px-3 py-4">
       <div className="mb-4 flex items-center justify-between px-2">
-        <Link href="/portal" className="min-w-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]">
+        <Link href="/portal" prefetch={false} className="min-w-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]">
           <span className="block truncate text-base font-bold text-[#102033]">Stanley Systems</span>
           <span className="block truncate text-xs text-[#667085]">Company Brain</span>
         </Link>
@@ -396,6 +397,7 @@ function PortalSidebar({ session, onLogout, onClose, onNewChat }: { session: Por
       <div className="border-t border-[#e6dccd] pt-3">
         <Link
           href="/portal/settings"
+          prefetch={false}
           className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm font-semibold text-[#435266] transition hover:bg-white hover:text-[#102033] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
         >
           <Settings className="h-4 w-4 text-[#15803d]" />

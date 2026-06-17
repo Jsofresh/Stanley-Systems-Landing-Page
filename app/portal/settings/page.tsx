@@ -6,37 +6,37 @@ const settings = [
     icon: Building2,
     title: "Company",
     value: "Bayview Service Co.",
-    description: "Mock company profile for portal preview.",
+    description: "Fixed test company for the brain-test Company Brain runtime.",
   },
   {
     icon: UserRound,
     title: "Account",
-    value: "owner@bayviewservice.example",
-    description: "Demo user with owner-level review access.",
+    value: "Signed-in persona account",
+    description: "The portal session carries actor, role, company, and session context into brain-test.",
   },
   {
     icon: UsersRound,
     title: "Users and roles",
-    value: "Owner, admin, staff",
-    description: "Placeholder role map only. Permissions will live in the Company Brain runtime later.",
+    value: "Owner, dispatcher, accounting, field tech, outsider",
+    description: "Runtime tool/action rails enforce role permissions before source or model access.",
   },
   {
     icon: Gauge,
     title: "Usage",
-    value: "Mock usage summary",
-    description: "Spend and request totals are placeholders for the first frontend pass.",
+    value: "Runtime usage ledger",
+    description: "Proof, telemetry, and prepared-action state are tracked on the Company Brain runtime.",
   },
   {
     icon: PlugZap,
     title: "Connected brain status",
-    value: "Mock brain online",
-    description: "No real Company Brain VPS routing or connector sync is connected yet.",
+    value: "brain-test runtime",
+    description: "The live portal talks to brain-test through the same-origin Company Brain proxy.",
   },
   {
     icon: CreditCard,
     title: "Billing",
-    value: "Account placeholder",
-    description: "Billing settings are visual only in this mock portal.",
+    value: "Billing readiness checks",
+    description: "QBO/Jobber billing answers must include source chips and prepared/not-sent actions.",
   },
   {
     icon: ShieldCheck,
@@ -58,6 +58,7 @@ export default function PortalSettingsPage() {
       <div className="mx-auto w-full max-w-4xl">
         <Link
           href="/portal"
+          prefetch={false}
           className="inline-flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-bold text-[#435266] transition hover:bg-white hover:text-[#15803d]"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -68,7 +69,7 @@ export default function PortalSettingsPage() {
           <p className="text-sm font-bold uppercase text-[#15803d]">Settings</p>
           <h1 className="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Portal basics</h1>
           <p className="mt-3 max-w-2xl text-base leading-7 text-[#667085]">
-            Minimal mock settings for the first Company Brain frontend. Live routing, permissions, and writebacks are not connected.
+            Live Company Brain test portal state. This page is safe-status only; source records, connector payloads, secrets, and action ledgers stay on the brain-test runtime boundary.
           </p>
         </header>
 
