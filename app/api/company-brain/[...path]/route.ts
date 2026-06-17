@@ -61,7 +61,7 @@ async function forward(request: NextRequest, context: RouteContext) {
   const path = resolvedPath(context.params.path)
   if (!ALLOWED_PATHS.has(path)) return jsonError("company_brain_path_not_allowed", 404)
 
-  const upstreamPath = path === "actions/confirm" ? "chatgpt/actions/confirm" : path
+  const upstreamPath = path === "actions/confirm" ? "brain/actions/confirm" : path
   const target = `${BRAIN_BASE_URL}/${upstreamPath}${request.nextUrl.search}`
   const headers: Record<string, string> = {
     accept: "application/json",
