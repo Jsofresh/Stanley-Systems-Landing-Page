@@ -154,7 +154,7 @@ function toBlocks(response: BrainChatResponse): CompanyBrainBlock[] {
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
   const controller = new AbortController()
-  const timeout = window.setTimeout(() => controller.abort(), init?.method === "POST" ? 30000 : 12000)
+  const timeout = window.setTimeout(() => controller.abort(), init?.method === "POST" ? 90000 : 12000)
   const response = await fetch(`${BRAIN_BASE_URL}${path}`, {
     ...init,
     signal: controller.signal,
