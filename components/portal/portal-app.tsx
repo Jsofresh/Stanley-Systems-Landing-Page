@@ -29,10 +29,8 @@ import {
 import { cn } from "@/lib/utils"
 import {
   getCompanyBrainSummary,
-  getNeedsAttention,
   sendCompanyBrainMessage,
   type BrainSummary,
-  type NeedsAttentionCard,
 } from "@/lib/company-brain/live"
 import type {
   Artifact,
@@ -43,15 +41,6 @@ import type {
   SourceChip,
   TablePreview,
 } from "@/lib/company-brain/types"
-
-const prompts = [
-  "Can we bill Johnson?",
-  "What needs attention today?",
-  "Show me the QBO invoice mismatch.",
-  "What happened with Maria Ramirez?",
-  "Which completed jobs are missing an invoice?",
-  "Draft the follow-up but do not send it.",
-]
 
 const recentConversations = [
   "Johnson billing check",
@@ -107,7 +96,6 @@ export function PortalApp() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [preview, setPreview] = useState<PreviewState>(null)
   const [summary, setSummary] = useState<BrainSummary | null>(null)
-  const [attentionCards, setAttentionCards] = useState<NeedsAttentionCard[]>([])
   const [statusError, setStatusError] = useState<string | null>(null)
   const isSendingRef = useRef(false)
 
@@ -139,13 +127,9 @@ export function PortalApp() {
     let cancelled = false
     async function loadLiveWorkflow() {
       try {
-        const [summaryResponse, attentionResponse] = await Promise.all([
-          getCompanyBrainSummary(),
-          getNeedsAttention(),
-        ])
+        const summaryResponse = await getCompanyBrainSummary()
         if (cancelled) return
         setSummary(summaryResponse)
-        setAttentionCards(attentionResponse.cards ?? [])
         setStatusError(null)
       } catch (error) {
         if (cancelled) return
@@ -327,7 +311,7 @@ export function PortalApp() {
                     {isSending ? <TypingMessage /> : null}
                   </div>
                 ) : (
-                  <EmptyState summary={summary} attentionCards={attentionCards} statusError={statusError} onPrompt={sendMessage} />
+                  <EmptyState summary={summary} statusError={statusError} />
                 )}
               </div>
               <ChatComposer
@@ -422,95 +406,30 @@ function PortalSidebar({ session, onLogout, onClose, onNewChat }: { session: Por
 
 function EmptyState({
   summary,
-  attentionCards,
   statusError,
-  onPrompt,
 }: {
   summary: BrainSummary | null
-  attentionCards: NeedsAttentionCard[]
   statusError: string | null
-  onPrompt: (prompt: string) => Promise<void>
 }) {
+  const jobberCount = summary?.source_record_counts?.jobber ?? "—"
+  const qboCount = summary?.source_record_counts?.quickbooks ?? "—"
+
   return (
     <div className="py-8 md:py-10">
-      <div className="mx-auto max-w-4xl">
-        <div className="rounded-3xl border border-[#e1d8ca] bg-white p-5 shadow-sm md:p-7">
-          <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-            <div className="max-w-2xl">
-              <p className="text-sm font-bold text-[#15803d]">Stanley Office Console</p>
-              <h1 className="mt-2 text-3xl font-bold leading-tight text-[#102033] md:text-4xl">
-                Ask Stanley Systems about live office work, then review the proof before anyone acts.
-              </h1>
-              <p className="mt-3 text-sm leading-6 text-[#5f6d7a] md:text-base">
-                This page is connected to the brain-test Company Brain runtime. It reads Jobber and QBO source records, shows what needs attention, and keeps every action prepared, not sent.
-              </p>
-            </div>
-            <div className="shrink-0 rounded-2xl border border-[#d9eadf] bg-[#f5fbf7] p-4 text-sm">
-              <p className="font-bold text-[#102033]">Live source state</p>
-              <p className="mt-1 text-[#5f6d7a]">Runtime: {summary?.runtime_version ?? "connecting"}</p>
-              <p className="text-[#5f6d7a]">Jobber: {summary?.source_record_counts?.jobber ?? "—"} records</p>
-              <p className="text-[#5f6d7a]">QBO: {summary?.source_record_counts?.quickbooks ?? "—"} records</p>
-              <p className="mt-2 text-xs font-bold text-[#15803d]">Raw control-plane data included: {summary?.raw_customer_data_included ? "yes" : "no"}</p>
-            </div>
-          </div>
+      <div className="mx-auto max-w-3xl">
+        <div className="rounded-3xl border border-[#e1d8ca] bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-bold text-[#15803d]">{summary ? `${jobberCount} Jobber / ${qboCount} QBO records live` : "Company Brain connecting"}</p>
+          <h1 className="mt-2 text-3xl font-bold leading-tight text-[#102033] md:text-4xl">
+            Bayview Office Console
+          </h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#5f6d7a] md:text-base">
+            Ask what needs attention, what is blocked, or what should be drafted next. Stanley shows the proof before anything leaves the office.
+          </p>
           {statusError ? (
             <div className="mt-5 rounded-xl border border-[#f0c6c0] bg-[#fff7f5] p-3 text-sm font-semibold text-[#9c2f24]">
               Live workflow unavailable: {statusError}
             </div>
           ) : null}
-        </div>
-
-        <div className="mt-5 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-2xl border border-[#e1d8ca] bg-[#fbf8f2] p-4 md:p-5">
-            <div className="flex items-center justify-between gap-3">
-              <h2 className="text-lg font-bold text-[#102033]">Needs attention</h2>
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-[#15803d]">
-                {attentionCards.length || "—"} live cards
-              </span>
-            </div>
-            <div className="mt-4 space-y-3">
-              {attentionCards.slice(0, 4).map((card) => (
-                <button
-                  key={card.card_id}
-                  type="button"
-                  className="w-full rounded-xl border border-[#e1d8ca] bg-white p-3 text-left transition hover:border-[#b9d8c2] hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
-                  onClick={() => void onPrompt(card.title)}
-                >
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-[#102033] px-2 py-1 text-[10px] font-bold uppercase text-white">
-                      {card.priority}
-                    </span>
-                    <span className="text-xs font-bold uppercase text-[#15803d]">{card.status.replace(/_/g, " ")}</span>
-                  </div>
-                  <p className="mt-2 font-bold text-[#102033]">{card.title}</p>
-                  <p className="mt-1 text-sm leading-6 text-[#5f6d7a]">{card.summary}</p>
-                  <p className="mt-2 text-xs font-semibold text-[#435266]">Next safe action: {card.next_safe_action}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-[#e1d8ca] bg-white p-4 md:p-5">
-            <h2 className="text-lg font-bold text-[#102033]">Ask Stanley</h2>
-            <p className="mt-1 text-sm leading-6 text-[#5f6d7a]">
-              Try a real brain-test prompt. Answers show source chips, proof IDs, model-route metadata, and a prepared action when one is useful.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {prompts.map((prompt) => (
-                <button
-                  type="button"
-                  key={prompt}
-                  className="rounded-full border border-[#d9eadf] bg-[#f5fbf7] px-3 py-2 text-xs font-bold text-[#2d4c36] transition hover:bg-[#eaf7ef] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
-                  onClick={() => void onPrompt(prompt)}
-                >
-                  {prompt}
-                </button>
-              ))}
-            </div>
-            <div className="mt-5 rounded-xl border border-[#d9eadf] bg-[#f5fbf7] p-3 text-xs leading-5 text-[#435266]">
-              DeepSeek V4 Pro may reason over bounded source snippets when the runtime has approved config. The harness still owns all writes and sends.
-            </div>
-          </div>
         </div>
       </div>
     </div>
