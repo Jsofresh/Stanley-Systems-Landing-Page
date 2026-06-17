@@ -4,7 +4,7 @@ import type { ReactNode } from "react"
 import { Download } from "lucide-react"
 
 const pdfHref = "/ai-office-blueprint/download-pdf"
-const pdfFilename = "stanley-ai-office-blueprint-7-fixes.pdf"
+const pdfFilename = "stanley-5-ai-office-workflows.pdf"
 
 export function DownloadPdfButton({
   children,

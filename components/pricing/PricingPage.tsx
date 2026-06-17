@@ -85,21 +85,20 @@ function BulletList({ items }: { items: string[] }) {
 export function PricingPage({ searchParams: _searchParams }: { searchParams: PricingSearchParams }) {
   return (
     <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
-      <section className="relative isolate overflow-hidden bg-[#FBFCF7] px-4 pb-10 pt-28 text-[#071D3A] sm:px-6 sm:pt-32 lg:min-h-[clamp(545px,42.9vw,660px)] lg:px-8 lg:pb-8 lg:pt-[6.25rem]">
+      <section className="relative isolate min-h-[720px] overflow-hidden bg-[#FBFCF7] px-4 pb-20 pt-[8.5rem] text-[#071D3A] sm:px-6 sm:pt-[9rem] lg:px-8 lg:pb-24 lg:pt-[9.4rem]">
         <Image
-          src="/images/uploaded/ai-office-ops/ai-office-ops-laptop-mockup.jpg"
+          src="/images/uploaded/ai-office-ops/ai-office-ops-laptop-mockup-enhanced.jpg"
           alt=""
-          width={1280}
-          height={549}
+          fill
           priority
           sizes="100vw"
-          className="absolute inset-x-0 top-0 -z-30 h-auto w-full max-w-none"
+          className="absolute inset-0 -z-30 object-contain object-top"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(251,252,247,0.98)_0%,rgba(251,252,247,0.96)_58%,rgba(251,252,247,0.91)_100%)] sm:bg-[linear-gradient(90deg,rgba(251,252,247,0.99)_0%,rgba(251,252,247,0.95)_29%,rgba(251,252,247,0.55)_48%,rgba(251,252,247,0.10)_68%,rgba(251,252,247,0)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-b from-transparent via-[#FBFCF7]/82 to-[#FBFCF7]" />
-        <div className="mx-auto flex min-h-[330px] max-w-7xl items-center lg:min-h-[340px]">
-          <div className="max-w-[38rem] pb-2 lg:pb-3">
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(251,252,247,0.97)_0%,rgba(251,252,247,0.95)_54%,#FBFCF7_88%,#FBFCF7_100%)] sm:bg-[linear-gradient(90deg,rgba(251,252,247,0.99)_0%,rgba(251,252,247,0.96)_30%,rgba(251,252,247,0.56)_50%,rgba(251,252,247,0.12)_70%,rgba(251,252,247,0)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-b from-transparent via-[#FBFCF7]/90 to-[#FBFCF7]" />
+        <div className="mx-auto flex max-w-7xl items-start">
+          <div className="max-w-[38rem]">
             <h1 className="text-balance text-[2.65rem] font-semibold leading-[1.03] tracking-[-0.025em] text-[#071D3A] sm:text-[4.05rem] lg:text-[3.85rem] lg:leading-[1.01] lg:tracking-[-0.025em]">
               Start free. Map the work. Install the first AI office workflow. <span className="text-[#15803D]">Keep it running.</span>
             </h1>
