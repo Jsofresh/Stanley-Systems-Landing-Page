@@ -35,7 +35,8 @@
     "design-loop:run": "node --experimental-strip-types scripts/design-loop/run-design-loop.ts",
     "stanley:preview:fast": "bash scripts/stanley-start-fast-preview.sh",
     "stanley:preview:fast:stop": "bash scripts/stanley-stop-fast-preview.sh",
-    "stanley:qa:home": "node scripts/stanley-fast-homepage-qa.js"
+    "stanley:qa:home": "node scripts/stanley-fast-homepage-qa.js",
+    "company-brain:browser-regression": "node scripts/company-brain-local-browser-regression.js"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
