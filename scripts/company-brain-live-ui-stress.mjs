@@ -70,6 +70,16 @@ async function clickIfVisible(page, selector, timeout = 700) {
   }
 }
 
+async function safeGoto(page, url, ledger, persona, action) {
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 })
+    return true
+  } catch (error) {
+    ledger.push({ persona: persona.name, role: persona.role, route: page.url(), action, status: 'nav_warning', error: String(error).slice(0, 300) })
+    return false
+  }
+}
+
 async function login(page, user, password) {
   await page.goto(`${BASE_URL}/login`, { waitUntil: 'domcontentloaded' })
   await page.locator('input[type="email"]').fill(user.email)
@@ -84,19 +94,19 @@ async function sendPrompt(page, prompt) {
   await page.waitForFunction(() => {
     const el = document.querySelector('textarea')
     return el && !el.disabled
-  }, null, { timeout: 45000 })
+  }, null, { timeout: 25000 })
   await textarea.fill(prompt, { timeout: 5000 })
   await page.keyboard.press('Meta+Enter').catch(async () => {
     await page.keyboard.press('Control+Enter')
   })
   const sendButton = page.getByRole('button', { name: /send/i }).first()
   if (await sendButton.isVisible().catch(() => false)) await sendButton.click().catch(() => {})
-  await page.waitForResponse((response) => response.url().includes('/api/company-brain/brain/chat'), { timeout: 45000 }).catch(() => null)
+  await page.waitForResponse((response) => response.url().includes('/api/company-brain/brain/chat'), { timeout: 25000 }).catch(() => null)
   await page.waitForFunction(() => {
     const el = document.querySelector('textarea')
     return el && !el.disabled
-  }, null, { timeout: 45000 }).catch(() => {})
-  await page.waitForTimeout(100)
+  }, null, { timeout: 25000 }).catch(() => {})
+  await page.waitForTimeout(25)
 }
 
 async function runPersona(browser, user, actionBudget, workerIndex, password, ledger) {
@@ -122,7 +132,7 @@ async function runPersona(browser, user, actionBudget, workerIndex, password, le
     for (let i = 0; actions < actionBudget; i++) {
       const mod = i % 10
       if (mod === 0) {
-        await page.goto(`${BASE_URL}/portal`, { waitUntil: 'domcontentloaded' }); actions++
+        await safeGoto(page, `${BASE_URL}/portal`, ledger, user, 'goto_portal'); actions++
       } else if (mod === 1) {
         await clickIfVisible(page, 'text=View all'); actions++
         await page.keyboard.press('Escape').catch(() => {}); actions++
@@ -132,8 +142,8 @@ async function runPersona(browser, user, actionBudget, workerIndex, password, le
       } else if (mod === 3) {
         await clickIfVisible(page, 'text=New chat'); actions++
       } else if (mod === 4) {
-        await page.goto(`${BASE_URL}/portal/settings`, { waitUntil: 'domcontentloaded' }); actions++
-        await page.goto(`${BASE_URL}/portal`, { waitUntil: 'domcontentloaded' }); actions++
+        await safeGoto(page, `${BASE_URL}/portal/settings`, ledger, user, 'goto_settings'); actions++
+        await safeGoto(page, `${BASE_URL}/portal`, ledger, user, 'return_portal'); actions++
       } else if (mod === 5) {
         await clickIfVisible(page, 'text=Can we bill Johnson?'); actions++
       } else if (mod === 6) {

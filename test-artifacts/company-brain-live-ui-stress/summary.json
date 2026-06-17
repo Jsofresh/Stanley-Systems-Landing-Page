@@ -1,9 +1,9 @@
 {
-  "started": "2026-06-17T16:24:48.688Z",
-  "finished": "2026-06-17T16:34:48.361Z",
+  "started": "2026-06-17T16:49:01.419Z",
+  "finished": "2026-06-17T16:56:56.137Z",
   "base_url": "https://stanley-systems.com",
   "requested_actions": 1000,
-  "observed_actions": 473,
+  "observed_actions": 408,
   "personas": [
     {
       "name": "Sarah Owner",
@@ -56,8 +56,8 @@
       "actorId": "adversary-outsider"
     }
   ],
-  "failures": 9,
-  "api_failures": 0,
-  "console_errors": 7,
+  "failures": 7,
+  "api_failures": 3,
+  "console_errors": 3,
   "password": "present_redacted"
 }

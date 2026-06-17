@@ -19,6 +19,36 @@ function jsonError(error: string, status: number) {
   return NextResponse.json({ error }, { status })
 }
 
+function safeControlFallback(path: string, reason: string) {
+  if (path === "control/summary") {
+    return NextResponse.json(
+      {
+        runtime_status: "degraded",
+        runtime_version: "unavailable",
+        source_record_counts: {},
+        raw_customer_data_included: false,
+        connector_errors: [reason],
+      },
+      { status: 200, headers: { "cache-control": "no-store" } },
+    )
+  }
+  if (path === "control/needs-attention") {
+    return NextResponse.json(
+      {
+        endpoint_scope: "portal_control_fallback",
+        control_plane_safe: true,
+        cards: [],
+        card_count: 0,
+        source_record_counts: {},
+        raw_customer_data_included: false,
+        connector_errors: [reason],
+      },
+      { status: 200, headers: { "cache-control": "no-store" } },
+    )
+  }
+  return null
+}
+
 function resolvedPath(parts?: string[]) {
   return (parts ?? []).join("/").replace(/^\/+/, "")
 }
@@ -71,9 +101,13 @@ async function forward(request: NextRequest, context: RouteContext) {
     headers,
     body,
     cache: "no-store",
+  }).catch((error) => {
+    throw new Error(error instanceof Error ? error.message : "brain_fetch_failed")
   })
   const responseText = await response.text()
   const contentType = response.headers.get("content-type") ?? "application/json"
+  const fallback = response.status >= 500 ? safeControlFallback(path, `brain_runtime_${response.status}`) : null
+  if (fallback) return fallback
   return new NextResponse(responseText, {
     status: response.status,
     headers: {

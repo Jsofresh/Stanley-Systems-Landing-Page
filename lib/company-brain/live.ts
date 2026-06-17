@@ -153,13 +153,16 @@ function toBlocks(response: BrainChatResponse): CompanyBrainBlock[] {
 }
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
+  const controller = new AbortController()
+  const timeout = window.setTimeout(() => controller.abort(), init?.method === "POST" ? 30000 : 12000)
   const response = await fetch(`${BRAIN_BASE_URL}${path}`, {
     ...init,
+    signal: controller.signal,
     headers: {
       "content-type": "application/json",
       ...(init?.headers ?? {}),
     },
-  })
+  }).finally(() => window.clearTimeout(timeout))
   if (!response.ok) {
     const body = await response.text().catch(() => "")
     throw new Error(`Company Brain API ${response.status}: ${body.slice(0, 180)}`)
