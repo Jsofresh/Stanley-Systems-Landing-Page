@@ -123,16 +123,6 @@ function toPreparedAction(response: BrainChatResponse): PreparedAction | null {
   }
 }
 
-function routeLine(response: BrainChatResponse) {
-  const route = response.model_route
-  if (!route) return "Model route: unavailable."
-  const provider = route.provider === "deepseek" ? "DeepSeek V4 Pro" : "deterministic fallback"
-  const attempted = route.external_model_call_attempted ? "attempted" : "not attempted"
-  const succeeded = route.external_model_call_succeeded ? "succeeded" : route.fallback_used ? "fell back" : "not used"
-  const snippets = route.source_snippet_count ?? 0
-  return `Model route: ${provider} · ${attempted} · ${succeeded} · ${snippets} bounded source snippet${snippets === 1 ? "" : "s"} · raw records sent: ${route.raw_records_sent_to_model ? "yes" : "no"} · external side effects: ${route.external_side_effects_allowed ? "allowed" : "disabled"}.`
-}
-
 function toBlocks(response: BrainChatResponse): CompanyBrainBlock[] {
   const blocks: CompanyBrainBlock[] = [text(`answer-${response.proof_id ?? Date.now()}`, response.answer)]
   const sourceChips = (response.source_chips ?? []).map(toSourceChip)
@@ -146,7 +136,7 @@ function toBlocks(response: BrainChatResponse): CompanyBrainBlock[] {
   blocks.push(
     text(
       `proof-${response.proof_id ?? Date.now()}`,
-      `Proof: ${response.proof_id ?? "not recorded"}. ${routeLine(response)}`,
+      "Proof saved. No records were changed and nothing was sent.",
     ),
   )
   return blocks
