@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react"
 import { SiteHeader } from "@/components/hero-section"
 import { Footer } from "@/components/footer"
 import { pricingPackageById } from "@/lib/pricing/source-of-truth"
+import { AiOfficeMapInfoForm } from "@/components/ai-office-map-info-form"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
 const primary = "inline-flex min-h-14 items-center justify-center rounded-full bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
@@ -16,8 +17,8 @@ export default function Page() {
       <main className="min-h-screen bg-[#FBF8F2] text-[#071D3A]">
         <section id="assessment" className="relative isolate flex min-h-[100svh] scroll-mt-[120px] items-center overflow-hidden bg-[#071D3A] py-24 text-white lg:min-h-screen lg:py-28">
           <img src="/images/uploaded/ai-office/owner-reviewing-paperwork.jpg" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,29,58,0.98)_0%,rgba(7,29,58,0.91)_46%,rgba(7,29,58,0.62)_78%,rgba(7,29,58,0.5)_100%)]" />
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_14%,rgba(83,217,134,0.2),transparent_34%),linear-gradient(180deg,rgba(7,29,58,0.08)_0%,rgba(7,29,58,0.88)_100%)]" />
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,29,58,0.90)_0%,rgba(7,29,58,0.78)_44%,rgba(7,29,58,0.44)_76%,rgba(7,29,58,0.30)_100%)]" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_14%,rgba(83,217,134,0.16),transparent_34%),linear-gradient(180deg,rgba(7,29,58,0.02)_0%,rgba(7,29,58,0.62)_100%)]" />
           <div className="w-full px-4 sm:px-6 lg:px-0">
             <div className="max-w-[900px] lg:ml-[15vw]">
               <h1 className="text-balance text-[3rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.6rem] sm:tracking-[-0.045em]">Find the Office Work AI Should Remove First.</h1>
@@ -79,6 +80,8 @@ export default function Page() {
             </div>
           </div>
         </section>
+
+        <AiOfficeMapInfoForm />
       </main>
       <Footer />
     </>

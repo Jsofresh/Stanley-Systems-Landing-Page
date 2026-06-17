@@ -20,9 +20,11 @@ function yesNo(value: boolean) {
 }
 
 function buildTelegramMessage(payload: Record<string, unknown>) {
+  const formType = clean(payload.form_type) || clean(payload.telegram_alert_type) || "contact_routing_request"
+  const title = formType === "ai_office_map_info" ? "🗺️ AI Office Map info request" : "📬 Stanley Systems website contact"
   const lines = [
-    "📬 Stanley Systems website contact",
-    `Type: ${clean(payload.form_type) || clean(payload.telegram_alert_type) || "contact_routing_request"}`,
+    title,
+    `Type: ${formType}`,
     `Name: ${clean(payload.name) || "Not provided"}`,
     `Company: ${clean(payload.company) || clean(payload.business) || "Not provided"}`,
     `Email: ${clean(payload.email) || "Not provided"}`,
@@ -118,6 +120,13 @@ export async function POST(request: Request) {
         )
       }
     } else if (payload.form_type === "installation_sprint_contact") {
+      if (!payload.name || !payload.email || !payload.company || !payload.businessType || !payload.problem) {
+        return NextResponse.json(
+          { ok: false, error: "Missing required fields." },
+          { status: 400 },
+        )
+      }
+    } else if (payload.form_type === "ai_office_map_info") {
       if (!payload.name || !payload.email || !payload.company || !payload.businessType || !payload.problem) {
         return NextResponse.json(
           { ok: false, error: "Missing required fields." },

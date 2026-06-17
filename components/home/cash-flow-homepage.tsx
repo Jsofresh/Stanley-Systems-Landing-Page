@@ -112,7 +112,6 @@ function AssessmentSection() {
           <p className="mt-6 max-w-[720px] text-balance text-lg font-semibold leading-8 text-white/84 sm:text-xl">A focused session that turns office drag into concrete fixes, staff AI prompts, workflow tips, tool guidance, and the first workflow to install.</p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[58px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_42px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Book the AI Office Map <ArrowRight className="h-5 w-5" aria-hidden="true" /></CTALink>
-            <CTALink href={blueprintHref} kind="systems" location="home_ai_office_map_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[58px] items-center justify-center rounded-full border border-white/22 bg-white/9 px-8 py-4 text-base font-extrabold text-white shadow-[0_18px_42px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-white/36 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Get the Free Blueprint</CTALink>
           </div>
         </div>
       </div>
@@ -176,7 +175,7 @@ export function CashFlowHomepage() {
             <h1 className="max-w-[900px] text-balance text-[clamp(2.05rem,5vw,5.25rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-white sm:translate-y-10">Make your office team faster, sharper, and more profitable with AI.</h1>
             <div className="mt-7 flex flex-col gap-4 sm:mt-24 sm:flex-row">
               <CTALink href={blueprintHref} kind="systems" location="home_hero_primary" ctaLabel="Get the Free Blueprint" className={`${greenButton} px-8 text-[1.05rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02]`}>Get the Free Blueprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-              <CTALink href={mapHref} kind="systems" location="home_hero_secondary" ctaLabel="Book the AI Office Map" className={darkGhostButton}>Book the AI Office Map</CTALink>
+              <CTALink href={mapHref} kind="systems" location="home_hero_secondary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-5 py-3 text-sm font-extrabold text-white shadow-[0_12px_26px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:self-center">Book the AI Office Map</CTALink>
             </div>
           </div>
         </div>
