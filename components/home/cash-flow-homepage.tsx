@@ -134,7 +134,7 @@ function SprintSection() {
           <h2 className="text-balance text-center text-[clamp(2.25rem,5vw,4.9rem)] font-extrabold leading-[0.92] tracking-[-0.04em]">Install AI office workflows.</h2>
           <p className="mx-auto mt-5 max-w-3xl text-base font-semibold leading-7 text-[#536173] sm:text-lg">We install the priority workflows from your Map: billing readiness, follow-up, inbox routing, SOP support, or service recovery.</p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-            <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="See the Installation Sprint" className={`${lightButton} px-8`}>See the Installation Sprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+            <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="See the AI Office Installation Sprint" className={`${lightButton} px-8`}>See the AI Office Installation Sprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
             <CTALink href={mapHref} kind="systems" location="home_sprint_secondary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">Book the AI Office Map</CTALink>
           </div>
         </div>
@@ -173,10 +173,10 @@ export function CashFlowHomepage() {
         <HeroImageSlideshow />
         <div className="mx-auto w-full max-w-[92rem]">
           <div className="relative z-10 max-w-[900px]">
-            <h1 className="max-w-[900px] text-balance text-[clamp(2.05rem,5vw,5.25rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-white sm:translate-y-10">Train your office team to handle more paperwork, billing, and job admin without hiring another person.</h1>
+            <h1 className="max-w-[900px] text-balance text-[clamp(2.05rem,5vw,5.25rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-white sm:translate-y-10">Make your office team faster, sharper, and more profitable with AI.</h1>
             <div className="mt-7 flex flex-col gap-4 sm:mt-24 sm:flex-row">
-              <CTALink href={mapHref} kind="systems" location="home_hero_primary" ctaLabel="Book the AI Office Map" className={`${greenButton} px-8 text-[1.05rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02]`}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-              <CTALink href={blueprintHref} kind="systems" location="home_hero_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
+              <CTALink href={blueprintHref} kind="systems" location="home_hero_primary" ctaLabel="Get the Free Blueprint" className={`${greenButton} px-8 text-[1.05rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02]`}>Get the Free Blueprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+              <CTALink href={mapHref} kind="systems" location="home_hero_secondary" ctaLabel="Book the AI Office Map" className={darkGhostButton}>Book the AI Office Map</CTALink>
             </div>
           </div>
         </div>

@@ -77,7 +77,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "cashflow_control_monthly",
     publicName: "AI Office Installation Sprint",
-    shortCheckoutName: "Installation Sprint Deposit",
+    shortCheckoutName: "AI Office Installation Sprint Deposit",
     price: 3500,
     priceDisplay: "$3,500 starting",
     billingPeriod: "one_time",
@@ -92,7 +92,7 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCreditDisplay: "$3,303 starting after credit",
     savings: null,
     badge: "Priority workflows",
-    cta: "See the Installation Sprint",
+    cta: "See the AI Office Installation Sprint",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_CASHFLOW_CONTROL_MONTHLY_PAYMENT_LINK",
       url: "https://buy.stripe.com/28E7sKdM38Yb2vTaxcg7e03",
@@ -163,7 +163,7 @@ export const pricingPackages: PricingPackage[] = [
   {
     id: "cashflow_control_yearly",
     publicName: "AI Office Installation Sprint",
-    shortCheckoutName: "Installation Sprint Legacy Yearly Link",
+    shortCheckoutName: "AI Office Installation Sprint Legacy Yearly Link",
     price: 3500,
     priceDisplay: "$3,500 starting",
     billingPeriod: "yearly",
@@ -178,7 +178,7 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCreditDisplay: "$3,303 starting after credit",
     savings: null,
     badge: "Legacy checkout link retained",
-    cta: "See the Installation Sprint",
+    cta: "See the AI Office Installation Sprint",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_CASHFLOW_CONTROL_YEARLY_PAYMENT_LINK",
       url: "https://buy.stripe.com/aFa3cu5fxa2f3zX7l0g7e07",
@@ -196,7 +196,7 @@ export const pricingPackages: PricingPackage[] = [
     setupFee: 0,
     setupFeeDisplay: "$0 setup after Sprint",
     waivedSetup: true,
-    waivedSetupDisplay: "Scoped after Installation Sprint",
+    waivedSetupDisplay: "Scoped after AI Office Installation Sprint",
     auditCredit: 0,
     auditCreditDisplay: "Sprint installed first",
     auditCreditLabel: "After AI Office Map credit",

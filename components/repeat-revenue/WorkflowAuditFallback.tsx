@@ -42,7 +42,7 @@ export function WorkflowAuditFallback() {
           <h3 className="text-3xl font-bold tracking-[-0.04em]">Your AI Office Map credit is visible before you buy.</h3>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             <div className="rounded-2xl border border-[#D5DEE8] bg-[#F8FCF9] p-4">
-              <p className="text-sm font-bold text-[#516F90]">Installation Sprint</p>
+              <p className="text-sm font-bold text-[#516F90]">AI Office Installation Sprint</p>
               <p className="mt-2 text-5xl font-extrabold tracking-[-0.06em] text-[#102033]">$197</p>
               <p className="mt-1 text-sm font-bold text-[#124E25]">credit</p>
             </div>

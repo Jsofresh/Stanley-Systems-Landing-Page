@@ -12,7 +12,7 @@ const navigation = [
   { name: "Home", href: `${basePath}/` },
   { name: "AI Office Map", href: mapHref },
   { name: "Free Blueprint", href: blueprintHref },
-  { name: "Installation Sprint", href: `${basePath}/systems-installation-sprint` },
+  { name: "AI Office Installation Sprint", href: `${basePath}/systems-installation-sprint` },
   { name: "AI Office Ops", href: `${basePath}/pricing#ai-office-ops` },
   { name: "Who we help", href: `${basePath}/who-stanley-systems-helps` },
   { name: "Blog", href: `${basePath}/blog` },

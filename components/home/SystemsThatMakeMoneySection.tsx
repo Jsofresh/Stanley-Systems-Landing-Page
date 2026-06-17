@@ -103,7 +103,7 @@ function ProductSystemCard({ system }: { system: ProductSystem }) {
           ctaLabel={system.ctaLabel}
           className="mt-5 inline-flex items-center text-[14px] font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B]"
         >
-          {system.title.includes("Office Workflow") ? "See Installation Sprint" : "Ask about AI Office Ops"}
+          {system.title.includes("Office Workflow") ? "See AI Office Installation Sprint" : "Ask about AI Office Ops"}
           <ArrowRight className="ml-2 h-3.5 w-3.5" aria-hidden="true" />
         </CTALink>
       </div>

@@ -14,7 +14,7 @@ const systems = [
     label: "Install workflows",
     promise: "Install practical workflows that make billing, follow-up, records, and staff handoffs move faster.",
     signs: ["Finished jobs wait before billing", "Open balances need follow-up", "The owner keeps checking if invoices moved"],
-    cta: "See the Installation Sprint",
+    cta: "See the AI Office Installation Sprint",
     packageId: "cashflow_control_monthly",
     price: pricingPackageById.cashflow_control_monthly.priceDisplay,
     setup: pricingPackageById.cashflow_control_monthly.setupFeeDisplay,

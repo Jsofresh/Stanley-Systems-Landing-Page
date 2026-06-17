@@ -79,7 +79,7 @@ export const cashflowUpsellChips = [
 ]
 
 export const cashflowResultPanel = {
-  title: "AI Office Ops + Installation Sprint is the stronger fix.",
+  title: "AI Office Ops + AI Office Installation Sprint is the stronger fix.",
   body: "AI Office Ops brings customers back. AI Office Installation Sprint helps finished work turn into collected cash faster.",
   fixes: [
     "AI Office Ops protects future revenue",

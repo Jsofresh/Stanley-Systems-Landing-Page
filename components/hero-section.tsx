@@ -5,7 +5,7 @@ import { ArrowRight, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 
-const headline = "Train your office team to handle more paperwork, billing, and job admin without hiring another person."
+const headline = "Make your office team faster, sharper, and more profitable with AI."
 const subheadline = "Stanley Systems helps growing service and trade businesses train office staff on AI and install practical workflows around the work they already do."
 
 const heroVideoVersion = "manual-clock-20260507"
@@ -79,7 +79,7 @@ const navGroups: MegaMenuGroup[] = [
     },
   },
   {
-    label: "Installation Sprint",
+    label: "AI Office Installation Sprint",
     href: "/systems-installation-sprint",
     eyebrow: "Build the workflow",
     summary: "After the Map, the Sprint turns the highest-leverage workflow into installed prompts, automations, staff process, and operating docs.",

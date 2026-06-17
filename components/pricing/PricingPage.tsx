@@ -46,7 +46,7 @@ const offers = [
     body: "Turn your AI Office Map into staff training, your company playbook, and practical office workflows around the tools your staff already uses.",
     bullets: ["Workflows from your AI Office Map", "Your company playbook", "Staff AI training session", "Proof report + 30 days light support"],
     href: "/systems-installation-sprint",
-    cta: "See the Installation Sprint",
+    cta: "See the AI Office Installation Sprint",
   },
   {
     step: "Operate",

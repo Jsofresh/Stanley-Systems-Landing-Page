@@ -121,7 +121,7 @@ const directPurchaseChecklists: Record<PricingPackageId, string[]> = {
     "Office work AI should remove first.",
     "Staff prompts and AI plays your team can use now.",
     "Tool and workflow recommendations.",
-    "First Installation Sprint priority.",
+    "First AI Office Installation Sprint priority.",
   ],
   cashflow_control_monthly: [
     "Customer recorded, job moves, invoice goes out.",
@@ -199,7 +199,7 @@ function priceRowsFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
     return [
       { label: "AI Office Map", value: pricingPackage.priceDisplay },
-      { label: "Installation Sprint credit", value: "$197 credited toward your AI Office Installation Sprint" },
+      { label: "AI Office Installation Sprint credit", value: "$197 credited toward your AI Office Installation Sprint" },
     ]
   }
 

@@ -128,7 +128,7 @@ export function ContactSection() {
               Send the office bottleneck that keeps slowing work down.
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
-              Tell Stanley Systems where calls, paperwork, billing, or follow-up keep getting stuck. We will point you to the Free Blueprint, AI Office Map, Installation Sprint, AI Office Ops, or a simple fit answer.
+              Tell Stanley Systems where calls, paperwork, billing, or follow-up keep getting stuck. We will point you to the Free Blueprint, AI Office Map, AI Office Installation Sprint, AI Office Ops, or a simple fit answer.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">

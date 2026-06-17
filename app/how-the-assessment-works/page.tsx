@@ -76,7 +76,7 @@ const deliverables = [
   ["Problem list", "The places where money, time, customers, or follow-up are slipping through the cracks."],
   ["Cost of each issue", "A plain-English look at what each problem may be costing your business."],
   ["Fix priority", "What should be fixed first, what can wait, and what is not worth overbuilding."],
-  ["Build plan if you want help", "If you do not want to build it yourself, Stanley Systems can use the AI Office Map to scope the Installation Sprint."],
+  ["Build plan if you want help", "If you do not want to build it yourself, Stanley Systems can use the AI Office Map to scope the AI Office Installation Sprint."],
 ]
 
 const faqs = [
