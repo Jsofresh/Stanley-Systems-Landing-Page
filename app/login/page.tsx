@@ -24,14 +24,14 @@ export default function LoginPage() {
               Company Brain access for service-business teams.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-[#5f6d7a]">
-              Use the mock login to open a company-branded chat workspace. The portal shows prepared answers, sources, artifacts, and actions without connecting to live systems.
+              Sign in as a real test persona for Bayview Service Co. Each user gets a distinct actor, role, and session before the Stanley UI talks to the brain-test Company Brain runtime.
             </p>
           </div>
 
           <div className="rounded-2xl border border-[#ded6c8] bg-[#fffdf8] p-5 shadow-[0_24px_70px_rgba(16,32,51,0.10)] sm:p-7">
             <div>
               <h2 className="text-2xl font-bold text-[#102033]">Sign in</h2>
-              <p className="mt-2 text-sm leading-6 text-[#667085]">Mock account. No password check or external send occurs.</p>
+              <p className="mt-2 text-sm leading-6 text-[#667085]">Non-production Company Brain personas. The session is routed through the live Stanley UI to brain-test.</p>
             </div>
             <LoginForm />
           </div>

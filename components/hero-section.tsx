@@ -407,6 +407,12 @@ export function SiteHeader() {
             })}
           </nav>
           <div className="hidden items-center gap-2 md:flex">
+            <a
+              href="/login"
+              className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full border border-white/18 bg-white/9 px-3 text-[13px] font-bold text-white/90 transition duration-200 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] xl:px-4"
+            >
+              Login
+            </a>
             <CTALink
               href="/ai-office-blueprint"
               kind="systems"
@@ -510,6 +516,13 @@ export function SiteHeader() {
                   </div>
                 )
               })}
+              <a
+                href="/login"
+                onClick={() => setMobileOpen(false)}
+                className="mt-3 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d9efe2] bg-white px-5 text-sm font-bold text-[#0B1F33] shadow-[0_10px_22px_rgba(7,29,58,0.08)]"
+              >
+                Login
+              </a>
               <CTALink
                 href="/ai-office-blueprint"
                 kind="systems"

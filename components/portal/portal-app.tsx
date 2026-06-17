@@ -2,6 +2,7 @@
 
 import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState, type ChangeEvent, type DragEvent } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
   ArrowUp,
   CheckCircle2,
@@ -61,6 +62,17 @@ const recentConversations = [
 
 const initialMessages: CompanyBrainMessage[] = []
 
+type PortalSession = {
+  actorId: string
+  name: string
+  email: string
+  role: string
+  roleLabel: string
+  companyId: string
+  companyName: string
+  sessionKey: string
+}
+
 const sensitiveDisplayPatterns = [
   /access_token/gi,
   /refresh_token/gi,
@@ -85,6 +97,9 @@ type PreviewState =
   | null
 
 export function PortalApp() {
+  const router = useRouter()
+  const [session, setSession] = useState<PortalSession | null>(null)
+  const [authLoading, setAuthLoading] = useState(true)
   const [messages, setMessages] = useState<CompanyBrainMessage[]>(initialMessages)
   const [input, setInput] = useState("")
   const [attachments, setAttachments] = useState<CompanyBrainAttachment[]>([])
@@ -99,6 +114,28 @@ export function PortalApp() {
   const hasMessages = messages.length > 0
 
   useEffect(() => {
+    let cancelled = false
+    async function loadSession() {
+      try {
+        const response = await fetch("/api/portal/session", { cache: "no-store" })
+        if (!response.ok) {
+          router.replace("/login")
+          return
+        }
+        const data = (await response.json()) as { session: PortalSession }
+        if (!cancelled) setSession(data.session)
+      } finally {
+        if (!cancelled) setAuthLoading(false)
+      }
+    }
+    void loadSession()
+    return () => {
+      cancelled = true
+    }
+  }, [router])
+
+  useEffect(() => {
+    if (!session) return
     let cancelled = false
     async function loadLiveWorkflow() {
       try {
@@ -119,7 +156,12 @@ export function PortalApp() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [session])
+
+  async function handleLogout() {
+    await fetch("/api/portal/logout", { method: "POST" }).catch(() => null)
+    router.replace("/login")
+  }
 
   async function sendMessage(messageText = input, messageAttachments = attachments) {
     const trimmed = messageText.trim()
@@ -188,6 +230,8 @@ export function PortalApp() {
 
   const sidebar = (
     <PortalSidebar
+      session={session}
+      onLogout={handleLogout}
       onClose={() => setSidebarOpen(false)}
       onNewChat={() => {
         setMessages([])
@@ -197,6 +241,19 @@ export function PortalApp() {
       }}
     />
   )
+
+
+  if (authLoading) {
+    return (
+      <div className="grid min-h-screen place-items-center bg-[#f7f2ea] px-4 text-[#102033]">
+        <div className="rounded-2xl border border-[#ded6c8] bg-white px-6 py-5 text-sm font-bold shadow-sm">
+          Opening Stanley UI session…
+        </div>
+      </div>
+    )
+  }
+
+  if (!session) return null
 
   return (
     <div className="min-h-screen bg-[#f7f2ea] text-[#102033]">
@@ -233,14 +290,21 @@ export function PortalApp() {
                 <Menu className="h-5 w-5" />
               </Button>
               <div className="min-w-0">
-                <p className="truncate text-sm font-bold text-[#102033]">Bayview Service Co.</p>
-                <p className="truncate text-xs text-[#667085]">Live Company Brain workflow</p>
+                <p className="truncate text-sm font-bold text-[#102033]">{session.companyName}</p>
+                <p className="truncate text-xs text-[#667085]">{session.name} · {session.roleLabel}</p>
               </div>
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold text-[#667085]">
               <span className="hidden rounded-full border border-[#d9eadf] bg-white px-3 py-1.5 text-[#15803d] sm:inline-flex">
                 {summary ? `Live · ${summary.source_record_counts?.jobber ?? 0} Jobber / ${summary.source_record_counts?.quickbooks ?? 0} QBO` : "Connecting live"}
               </span>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="hidden rounded-full border border-[#ded6c8] bg-white px-3 py-1.5 text-xs font-bold text-[#435266] transition hover:text-[#15803d] sm:inline-flex"
+              >
+                Sign out
+              </button>
               <Link
                 href="/portal/settings"
                 className="grid h-9 w-9 place-items-center rounded-lg text-[#506070] transition hover:bg-white hover:text-[#15803d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
@@ -283,7 +347,7 @@ export function PortalApp() {
   )
 }
 
-function PortalSidebar({ onClose, onNewChat }: { onClose: () => void; onNewChat: () => void }) {
+function PortalSidebar({ session, onLogout, onClose, onNewChat }: { session: PortalSession; onLogout: () => void; onClose: () => void; onNewChat: () => void }) {
   return (
     <div className="flex h-full flex-col px-3 py-4">
       <div className="mb-4 flex items-center justify-between px-2">
@@ -338,8 +402,16 @@ function PortalSidebar({ onClose, onNewChat }: { onClose: () => void; onNewChat:
           Settings and account
         </Link>
         <div className="mt-3 rounded-lg border border-[#e3dacb] bg-white px-3 py-3">
-          <p className="text-sm font-bold text-[#102033]">Bayview Service Co.</p>
-          <p className="mt-1 text-xs leading-5 text-[#667085]">Live brain-test session. Actions stay prepared, not sent.</p>
+          <p className="text-sm font-bold text-[#102033]">{session.companyName}</p>
+          <p className="mt-1 text-xs leading-5 text-[#667085]">{session.name} · {session.roleLabel}</p>
+          <p className="mt-1 text-[11px] leading-5 text-[#667085]">Live brain-test session: {session.sessionKey}</p>
+          <button
+            type="button"
+            onClick={onLogout}
+            className="mt-3 rounded-full border border-[#ded6c8] bg-[#fbf8f2] px-3 py-1.5 text-xs font-bold text-[#435266] transition hover:text-[#15803d]"
+          >
+            Sign out
+          </button>
         </div>
       </div>
     </div>

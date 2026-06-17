@@ -6,10 +6,7 @@ import type {
   SourceChip,
 } from "@/lib/company-brain/types"
 
-const BRAIN_BASE_URL = "https://brain-test.stanley-systems.com"
-const COMPANY_ID = "bayview_synthetic"
-const USER_ROLE = "office_admin"
-const SURFACE = "portal"
+const BRAIN_BASE_URL = "/api/company-brain"
 
 type BrainSourceChip = {
   connector?: string
@@ -184,10 +181,9 @@ export async function sendCompanyBrainMessage(
   const data = await fetchJson<BrainChatResponse>("/brain/chat", {
     method: "POST",
     body: JSON.stringify({
-      company_id: COMPANY_ID,
-      surface: SURFACE,
-      user_role: USER_ROLE,
       message: input.message,
+      attachments: input.attachments ?? [],
+      conversation_id: input.conversationId,
     }),
   })
 
