@@ -1,0 +1,63 @@
+{
+  "started": "2026-06-17T16:24:48.688Z",
+  "finished": "2026-06-17T16:34:48.361Z",
+  "base_url": "https://stanley-systems.com",
+  "requested_actions": 1000,
+  "observed_actions": 473,
+  "personas": [
+    {
+      "name": "Sarah Owner",
+      "role": "owner",
+      "actorId": "sarah-owner"
+    },
+    {
+      "name": "Mike Dispatcher",
+      "role": "dispatcher_admin",
+      "actorId": "mike-dispatch"
+    },
+    {
+      "name": "Lisa Accounting",
+      "role": "accounting_admin",
+      "actorId": "lisa-accounting"
+    },
+    {
+      "name": "Ray Field Tech",
+      "role": "field_tech",
+      "actorId": "ray-tech"
+    },
+    {
+      "name": "Adversarial Outsider",
+      "role": "outsider",
+      "actorId": "adversary-outsider"
+    },
+    {
+      "name": "Sarah Owner",
+      "role": "owner",
+      "actorId": "sarah-owner"
+    },
+    {
+      "name": "Mike Dispatcher",
+      "role": "dispatcher_admin",
+      "actorId": "mike-dispatch"
+    },
+    {
+      "name": "Lisa Accounting",
+      "role": "accounting_admin",
+      "actorId": "lisa-accounting"
+    },
+    {
+      "name": "Ray Field Tech",
+      "role": "field_tech",
+      "actorId": "ray-tech"
+    },
+    {
+      "name": "Adversarial Outsider",
+      "role": "outsider",
+      "actorId": "adversary-outsider"
+    }
+  ],
+  "failures": 9,
+  "api_failures": 0,
+  "console_errors": 7,
+  "password": "present_redacted"
+}
