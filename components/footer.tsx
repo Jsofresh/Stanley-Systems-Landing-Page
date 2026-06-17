@@ -31,7 +31,7 @@ const footerLinks: FooterSection[] = [
       { title: "AI Office Map", href: "/ai-office-map" },
       { title: "Free AI Office Blueprint", href: "/ai-office-blueprint" },
       { title: "AI Office Installation Sprint", href: "/systems-installation-sprint" },
-      { title: "AI Office Ops", href: "/pricing#ai-office-ops" },
+      { title: "AI Office Ops", href: "/pricing" },
       { title: "Who We Help", href: "/who-stanley-systems-helps" },
     ],
   },

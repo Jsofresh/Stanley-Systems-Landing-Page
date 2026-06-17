@@ -99,13 +99,13 @@ const navGroups: MegaMenuGroup[] = [
   },
   {
     label: "AI Office Ops",
-    href: "/pricing#ai-office-ops",
+    href: "/pricing",
     eyebrow: "Ongoing support",
     summary: "After a workflow is installed, Ops keeps it monitored, fixed, improved, and useful as the office changes.",
     widthClass: "w-[min(460px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "AI Office Ops", href: "/pricing#ai-office-ops", description: "Monthly support for installed workflows after the Sprint." },
+      { label: "AI Office Ops", href: "/pricing", description: "Monthly support for installed workflows after the Sprint." },
       { label: "Pricing", href: "/pricing", description: "See the full offer ladder and ongoing support options." },
       { label: "Contact", href: "/contact?path=ops", description: "Ask whether Ops fits your current setup." },
     ],
