@@ -61,6 +61,22 @@ const recentConversations = [
 
 const initialMessages: CompanyBrainMessage[] = []
 
+const sensitiveDisplayPatterns = [
+  /access_token/gi,
+  /refresh_token/gi,
+  /client_secret/gi,
+  /authorization_code/gi,
+  /DEEPSEEK_API_KEY/gi,
+  /credential file path/gi,
+  /\/opt\/company-brain-runtime(?:\/[^\s]*)?/gi,
+  /\/secrets(?:\/[^\s]*)?/gi,
+  /secrets\/(?:[^\s]*)?/gi,
+]
+
+function sanitizePortalDisplayText(value: string) {
+  return sensitiveDisplayPatterns.reduce((current, pattern) => current.replace(pattern, "[redacted]"), value)
+}
+
 type PreviewState =
   | { type: "artifact"; artifact: Artifact }
   | { type: "action"; action: PreparedAction }
@@ -78,6 +94,7 @@ export function PortalApp() {
   const [summary, setSummary] = useState<BrainSummary | null>(null)
   const [attentionCards, setAttentionCards] = useState<NeedsAttentionCard[]>([])
   const [statusError, setStatusError] = useState<string | null>(null)
+  const isSendingRef = useRef(false)
 
   const hasMessages = messages.length > 0
 
@@ -106,7 +123,8 @@ export function PortalApp() {
 
   async function sendMessage(messageText = input, messageAttachments = attachments) {
     const trimmed = messageText.trim()
-    if ((!trimmed && messageAttachments.length === 0) || isSending) return
+    if ((!trimmed && messageAttachments.length === 0) || isSendingRef.current) return
+    isSendingRef.current = true
 
     const userMessage: CompanyBrainMessage = {
       id: `user-${Date.now()}`,
@@ -151,6 +169,7 @@ export function PortalApp() {
       }
       setMessages((current) => [...current, errorMessage])
     } finally {
+      isSendingRef.current = false
       setIsSending(false)
     }
   }
@@ -444,7 +463,7 @@ function ChatMessage({
         {isUser ? (
           <div className="space-y-2 rounded-2xl rounded-tr-md bg-[#102033] px-4 py-3 text-sm font-medium leading-6 text-white shadow-sm">
             {message.blocks.map((block) => {
-              if (block.type === "text") return <p key={block.id}>{block.text}</p>
+              if (block.type === "text") return <p key={block.id}>{sanitizePortalDisplayText(block.text)}</p>
               if (block.type === "attachment") return <AttachmentPill key={block.id} attachment={block.attachment} tone="dark" />
               return null
             })}
@@ -469,7 +488,7 @@ function MessageBlock({
   onPreview: (preview: PreviewState) => void
 }) {
   if (block.type === "text") {
-    return <p className="text-[15px] leading-7 text-[#25384b]">{block.text}</p>
+    return <p className="text-[15px] leading-7 text-[#25384b]">{sanitizePortalDisplayText(block.text)}</p>
   }
 
   if (block.type === "sources") {
