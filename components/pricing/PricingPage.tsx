@@ -78,7 +78,7 @@ function BulletList({ items }: { items: string[] }) {
 export function PricingPage({ searchParams: _searchParams }: { searchParams: PricingSearchParams }) {
   return (
     <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
-      <section className="relative isolate min-h-[540px] overflow-hidden bg-[#FBFCF7] px-4 pb-10 pt-28 text-[#071D3A] sm:min-h-[560px] sm:px-6 sm:pt-32 lg:min-h-[560px] lg:px-8 lg:pb-8 lg:pt-[6.5rem]">
+      <section className="relative isolate min-h-[500px] overflow-hidden bg-[#FBFCF7] px-4 pb-6 pt-28 text-[#071D3A] sm:min-h-[520px] sm:px-6 sm:pt-32 lg:min-h-[520px] lg:px-8 lg:pb-4 lg:pt-[6.75rem]">
         <Image
           src="/images/uploaded/ai-office-ops/ai-office-ops-laptop-mockup.jpg"
           alt=""
@@ -90,7 +90,7 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
         />
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(251,252,247,0.99)_0%,rgba(251,252,247,0.97)_56%,rgba(251,252,247,0.88)_100%)] sm:bg-[linear-gradient(90deg,rgba(251,252,247,0.99)_0%,rgba(251,252,247,0.96)_31%,rgba(251,252,247,0.66)_48%,rgba(251,252,247,0.18)_67%,rgba(251,252,247,0)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-28 bg-gradient-to-b from-transparent via-[#FBFCF7]/80 to-[#FBFCF7]" />
-        <div className="mx-auto flex min-h-[380px] max-w-7xl items-center lg:min-h-[380px]">
+        <div className="mx-auto flex min-h-[330px] max-w-7xl items-center lg:min-h-[330px]">
           <div className="max-w-[38rem] pb-2 lg:pb-3">
             <h1 className="text-balance text-[2.65rem] font-semibold leading-[1.03] tracking-[-0.025em] text-[#071D3A] sm:text-[4.05rem] lg:text-[3.85rem] lg:leading-[1.01] lg:tracking-[-0.025em]">
               Start free. Map the work. Install the first AI office workflow. <span className="text-[#15803D]">Keep it running.</span>
@@ -100,23 +100,23 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
           </div>
         </div>
       </section>
-      <section id="ops-report" aria-label="What AI Office Ops does" className="scroll-mt-28 bg-[#FBFCF7] px-4 py-10 sm:scroll-mt-32 sm:px-6 lg:px-8 lg:py-14">
-        <div className="mx-auto grid max-w-7xl gap-6 rounded-[2rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_24px_70px_rgba(7,29,58,0.07)] sm:p-7 lg:grid-cols-[0.92fr_1.08fr] lg:p-8">
-          <div className="rounded-[1.5rem] bg-[#F4FBF5] p-6 lg:p-8">
-            <h2 className="text-[2.15rem] font-semibold leading-[1.02] tracking-[-0.035em] text-[#071D3A] sm:text-[3.15rem]">Office Ops keeps your AI office working after launch</h2>
-            <p className="mt-5 text-base font-semibold leading-7 text-[#536173]">The Sprint installs the first useful workflow. Ops keeps it alive when staff changes, calls pile up, new bottlenecks appear, and the owner needs the system to keep improving without starting another project from scratch.</p>
+      <section id="ops-report" aria-label="What AI Office Ops does" className="scroll-mt-28 bg-[#FBFCF7] px-4 py-6 sm:scroll-mt-32 sm:px-6 lg:px-8 lg:py-10">
+        <div className="mx-auto grid max-w-7xl gap-5 rounded-[2rem] border border-[#DDEBE2] bg-white p-5 shadow-[0_24px_70px_rgba(7,29,58,0.07)] sm:p-6 lg:grid-cols-[0.92fr_1.08fr] lg:p-7">
+          <div className="rounded-[1.5rem] bg-[#F4FBF5] p-6 lg:p-7">
+            <h2 className="text-[2.05rem] font-semibold leading-[1.02] tracking-[-0.035em] text-[#071D3A] sm:text-[2.9rem]">Office Ops keeps your AI office working after launch</h2>
+            <p className="mt-4 text-base font-semibold leading-7 text-[#536173]">The Sprint installs the first useful workflow. Ops keeps it alive when staff changes, calls pile up, new bottlenecks appear, and the owner needs the system to keep improving without starting another project from scratch.</p>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-3.5 md:grid-cols-2">
             {[
               ["01", "Continuous AI training for your staff", "Keep staff using the workflows the right way as habits, questions, and responsibilities change."],
               ["02", "Updated prompts, templates, and playbooks", "Improve the exact prompts, templates, staff steps, and approval rules from real office usage."],
               ["03", "Ongoing AI workflow maintenance", "Fix the places where work is still waiting, getting retyped, or falling between people."],
               ["04", "Support as your office, tools, and team change", "Adjust the AI office as new bottlenecks, tools, roles, and busy seasons show up."],
             ].map(([number, title, copy]) => (
-              <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-5">
+              <article key={title} className="rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFCF7] p-[1.125rem] sm:p-5">
                 <p className="text-sm font-extrabold text-[#15803D]">{number}</p>
-                <h3 className="mt-5 text-[1.12rem] font-bold leading-7 tracking-normal text-[#071D3A]">{title}</h3>
-                <p className="mt-3 text-sm font-medium leading-7 tracking-[0.01em] text-[#536173]">{copy}</p>
+                <h3 className="mt-4 text-[1.08rem] font-bold leading-6 tracking-normal text-[#071D3A]">{title}</h3>
+                <p className="mt-2.5 text-sm font-medium leading-6 tracking-[0.01em] text-[#536173]">{copy}</p>
               </article>
             ))}
           </div>
