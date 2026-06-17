@@ -42,12 +42,11 @@ import type {
   TablePreview,
 } from "@/lib/company-brain/types"
 
-const recentConversations = [
-  "Johnson billing check",
-  "Customer follow-up draft",
-  "Closeout photo list",
-  "Owner summary packet",
-]
+type RecentConversation = {
+  id: string
+  title: string
+  messages: CompanyBrainMessage[]
+}
 
 const initialMessages: CompanyBrainMessage[] = []
 
@@ -97,7 +96,10 @@ export function PortalApp() {
   const [preview, setPreview] = useState<PreviewState>(null)
   const [summary, setSummary] = useState<BrainSummary | null>(null)
   const [statusError, setStatusError] = useState<string | null>(null)
+  const [currentConversationId, setCurrentConversationId] = useState(() => `conversation-${Date.now()}`)
+  const [recentConversations, setRecentConversations] = useState<RecentConversation[]>([])
   const isSendingRef = useRef(false)
+  const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const hasMessages = messages.length > 0
 
@@ -142,6 +144,25 @@ export function PortalApp() {
     }
   }, [session])
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ block: "end" })
+  }, [messages, isSending])
+
+  useEffect(() => {
+    if (!messages.length) return
+    const firstUserText = messages
+      .find((message) => message.role === "user")
+      ?.blocks.find((block) => block.type === "text")
+    const title = firstUserText?.type === "text" ? firstUserText.text.slice(0, 54) : "New conversation"
+    setRecentConversations((current) => {
+      const next = [
+        { id: currentConversationId, title, messages },
+        ...current.filter((item) => item.id !== currentConversationId),
+      ]
+      return next.slice(0, 8)
+    })
+  }, [messages, currentConversationId])
+
   async function handleLogout() {
     await fetch("/api/portal/logout", { method: "POST" }).catch(() => null)
     router.replace("/login")
@@ -174,7 +195,7 @@ export function PortalApp() {
     try {
       const response = await sendCompanyBrainMessage({
         companyId: "bayview_synthetic",
-        conversationId: "live-brain-test-conversation",
+        conversationId: currentConversationId,
         message: trimmed || "Review attached file.",
         attachments: messageAttachments,
       })
@@ -217,7 +238,16 @@ export function PortalApp() {
       session={session}
       onLogout={handleLogout}
       onClose={() => setSidebarOpen(false)}
+      recentConversations={recentConversations}
+      onOpenRecent={(conversation) => {
+        setCurrentConversationId(conversation.id)
+        setMessages(conversation.messages)
+        setInput("")
+        setAttachments([])
+        setSidebarOpen(false)
+      }}
       onNewChat={() => {
+        setCurrentConversationId(`conversation-${Date.now()}`)
         setMessages([])
         setInput("")
         setAttachments([])
@@ -240,8 +270,8 @@ export function PortalApp() {
   if (!session) return null
 
   return (
-    <div className="min-h-screen bg-[#f7f2ea] text-[#102033]">
-      <div className="flex min-h-screen">
+    <div className="h-screen overflow-hidden bg-[#f7f2ea] text-[#102033]">
+      <div className="flex h-full min-h-0">
         <aside className="hidden w-[280px] shrink-0 border-r border-[#ded6c8] bg-[#fbf8f2] lg:block">
           {sidebar}
         </aside>
@@ -260,7 +290,7 @@ export function PortalApp() {
           </div>
         ) : null}
 
-        <main className="flex min-w-0 flex-1 flex-col">
+        <main className="flex min-h-0 min-w-0 flex-1 flex-col">
           <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-[#e7decf] bg-[#fbf8f2]/92 px-4 backdrop-blur md:h-16 md:px-6">
             <div className="flex min-w-0 items-center gap-3">
               <Button
@@ -300,15 +330,16 @@ export function PortalApp() {
             </div>
           </header>
 
-          <section className="flex min-h-0 flex-1 flex-col">
-            <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col px-4 pb-4 pt-5 md:px-6 md:pb-6">
-              <div className="min-h-0 flex-1">
+          <section className="flex min-h-0 flex-1 flex-col overflow-hidden">
+            <div className="mx-auto flex h-full min-h-0 w-full max-w-4xl flex-1 flex-col px-4 pt-5 md:px-6">
+              <div className="min-h-0 flex-1 overflow-y-auto pr-1 pb-6">
                 {hasMessages ? (
                   <div className="space-y-7 pb-6">
                     {messages.map((message) => (
                       <ChatMessage key={message.id} message={message} onPreview={setPreview} />
                     ))}
                     {isSending ? <TypingMessage /> : null}
+                    <div ref={messagesEndRef} aria-hidden="true" />
                   </div>
                 ) : (
                   <EmptyState summary={summary} statusError={statusError} />
@@ -332,7 +363,21 @@ export function PortalApp() {
   )
 }
 
-function PortalSidebar({ session, onLogout, onClose, onNewChat }: { session: PortalSession; onLogout: () => void; onClose: () => void; onNewChat: () => void }) {
+function PortalSidebar({
+  session,
+  onLogout,
+  onClose,
+  onNewChat,
+  recentConversations,
+  onOpenRecent,
+}: {
+  session: PortalSession
+  onLogout: () => void
+  onClose: () => void
+  onNewChat: () => void
+  recentConversations: RecentConversation[]
+  onOpenRecent: (conversation: RecentConversation) => void
+}) {
   return (
     <div className="flex h-full flex-col px-3 py-4">
       <div className="mb-4 flex items-center justify-between px-2">
@@ -364,17 +409,19 @@ function PortalSidebar({ session, onLogout, onClose, onNewChat }: { session: Por
       <div className="mt-6 flex-1 overflow-y-auto">
         <p className="px-2 text-xs font-bold uppercase text-[#7a746b]">Recent</p>
         <div className="mt-2 space-y-1">
-          {recentConversations.map((item) => (
+          {recentConversations.length ? recentConversations.map((conversation) => (
             <button
               type="button"
-              key={item}
+              key={conversation.id}
               className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm font-medium text-[#435266] transition hover:bg-white hover:text-[#102033]"
-              onClick={onClose}
+              onClick={() => onOpenRecent(conversation)}
             >
               <FileText className="h-4 w-4 shrink-0 text-[#8a9588]" />
-              <span className="truncate">{item}</span>
+              <span className="truncate">{conversation.title}</span>
             </button>
-          ))}
+          )) : (
+            <p className="px-2.5 py-2 text-sm leading-5 text-[#7a746b]">Recent chats will show here after you ask Stanley something.</p>
+          )}
         </div>
       </div>
 
@@ -390,7 +437,6 @@ function PortalSidebar({ session, onLogout, onClose, onNewChat }: { session: Por
         <div className="mt-3 rounded-lg border border-[#e3dacb] bg-white px-3 py-3">
           <p className="text-sm font-bold text-[#102033]">{session.companyName}</p>
           <p className="mt-1 text-xs leading-5 text-[#667085]">{session.name} · {session.roleLabel}</p>
-          <p className="mt-1 text-[11px] leading-5 text-[#667085]">Live brain-test session: {session.sessionKey}</p>
           <button
             type="button"
             onClick={onLogout}
@@ -774,7 +820,7 @@ function ChatComposer({
   }
 
   return (
-    <form onSubmit={onSubmit} className="sticky bottom-0 bg-[#f7f2ea] pb-2 pt-3">
+    <form onSubmit={onSubmit} className="shrink-0 bg-[#f7f2ea] pb-4 pt-3 md:pb-6">
       <div
         data-testid="portal-attachment-dropzone"
         onDragOver={handleDragOver}
@@ -835,7 +881,6 @@ function ChatComposer({
           </Button>
         </div>
       </div>
-      <p className="mt-2 text-center text-xs text-[#7a746b]">Live brain-test workflow. Prepared actions are never sent.</p>
     </form>
   )
 }

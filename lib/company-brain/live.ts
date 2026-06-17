@@ -112,7 +112,7 @@ function titleFromAction(type?: string) {
 
 function toPreparedAction(response: BrainChatResponse): PreparedAction | null {
   const action = response.suggested_action
-  if (!action || action.type === "none") return null
+  if (!action || action.type === "none" || action.type === "clarify_request" || action.type === "clarify_entity" || action.type === "safety_refusal") return null
   return {
     id: `action-${response.proof_id ?? Date.now()}`,
     title: titleFromAction(action.type),
@@ -133,12 +133,14 @@ function toBlocks(response: BrainChatResponse): CompanyBrainBlock[] {
   if (action) {
     blocks.push({ type: "action", id: `action-${response.proof_id ?? Date.now()}`, action })
   }
-  blocks.push(
-    text(
-      `proof-${response.proof_id ?? Date.now()}`,
-      "Proof saved. No records were changed and nothing was sent.",
-    ),
-  )
+  if (sourceChips.length || action) {
+    blocks.push(
+      text(
+        `proof-${response.proof_id ?? Date.now()}`,
+        "Proof saved. No records were changed and nothing was sent.",
+      ),
+    )
+  }
   return blocks
 }
 
