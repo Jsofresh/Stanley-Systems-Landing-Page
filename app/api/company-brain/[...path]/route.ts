@@ -6,9 +6,14 @@ const ALLOWED_PATHS = new Set([
   "control/summary",
   "control/needs-attention",
   "brain/chat",
+  "brain/uploads",
   "actions/confirm",
   "health",
 ])
+
+function isAllowedPath(path: string) {
+  return ALLOWED_PATHS.has(path) || /^artifacts\/artifact_[A-Za-z0-9_-]+$/.test(path)
+}
 
 type RouteContext = {
   params: {
@@ -59,9 +64,9 @@ async function forward(request: NextRequest, context: RouteContext) {
   if (!session) return jsonError("portal_login_required", 401)
 
   const path = resolvedPath(context.params.path)
-  if (!ALLOWED_PATHS.has(path)) return jsonError("company_brain_path_not_allowed", 404)
+  if (!isAllowedPath(path)) return jsonError("company_brain_path_not_allowed", 404)
 
-  const upstreamPath = path === "actions/confirm" ? "brain/actions/confirm" : path
+  const upstreamPath = path === "actions/confirm" ? "brain/actions/confirm" : path.startsWith("artifacts/") ? `brain/${path}` : path
   const target = `${BRAIN_BASE_URL}/${upstreamPath}${request.nextUrl.search}`
   const headers: Record<string, string> = {
     accept: "application/json",
@@ -75,30 +80,45 @@ async function forward(request: NextRequest, context: RouteContext) {
   if (!proxyKey) return jsonError("company_brain_proxy_not_configured", 503)
   headers["x-stanley-brain-proxy-key"] = proxyKey
 
-  let body: string | undefined
+  let body: BodyInit | undefined
   if (request.method !== "GET" && request.method !== "HEAD") {
-    const incomingText = await request.text()
-    if (path === "brain/chat" || path === "actions/confirm") {
-      let incoming: Record<string, unknown> = {}
-      try {
-        incoming = incomingText ? JSON.parse(incomingText) : {}
-      } catch {
-        return jsonError("invalid_json", 400)
-      }
-      body = JSON.stringify({
-        ...incoming,
-        company_id: session.companyId,
-        surface: "portal",
-        user_role: session.role,
-        actor_id: session.actorId,
-        actor_name: session.name,
-        actor_email: session.email,
-        session_key: session.sessionKey,
-      })
+    if (path === "brain/uploads") {
+      const incoming = await request.formData()
+      const form = new FormData()
+      for (const [key, value] of incoming.entries()) form.append(key, value)
+      form.set("company_id", session.companyId)
+      form.set("surface", "portal")
+      form.set("user_role", session.role)
+      form.set("actor_id", session.actorId)
+      form.set("actor_name", session.name)
+      form.set("actor_email", session.email)
+      form.set("session_key", session.sessionKey)
+      body = form
+      delete headers["accept"]
     } else {
-      body = incomingText
+      const incomingText = await request.text()
+      if (path === "brain/chat" || path === "actions/confirm") {
+        let incoming: Record<string, unknown> = {}
+        try {
+          incoming = incomingText ? JSON.parse(incomingText) : {}
+        } catch {
+          return jsonError("invalid_json", 400)
+        }
+        body = JSON.stringify({
+          ...incoming,
+          company_id: session.companyId,
+          surface: "portal",
+          user_role: session.role,
+          actor_id: session.actorId,
+          actor_name: session.name,
+          actor_email: session.email,
+          session_key: session.sessionKey,
+        })
+      } else {
+        body = incomingText
+      }
+      headers["content-type"] = "application/json"
     }
-    headers["content-type"] = "application/json"
   }
 
   const response = await fetch(target, {
@@ -109,16 +129,19 @@ async function forward(request: NextRequest, context: RouteContext) {
   }).catch((error) => {
     throw new Error(error instanceof Error ? error.message : "brain_fetch_failed")
   })
-  const responseText = await response.text()
   const contentType = response.headers.get("content-type") ?? "application/json"
   const fallback = response.status >= 500 ? safeControlFallback(path, `brain_runtime_${response.status}`) : null
   if (fallback) return fallback
-  return new NextResponse(responseText, {
+  const responseBody = path.startsWith("artifacts/") ? await response.arrayBuffer() : await response.text()
+  const responseHeaders: Record<string, string> = {
+    "content-type": contentType,
+    "cache-control": "no-store",
+  }
+  const disposition = response.headers.get("content-disposition")
+  if (disposition) responseHeaders["content-disposition"] = disposition
+  return new NextResponse(responseBody, {
     status: response.status,
-    headers: {
-      "content-type": contentType,
-      "cache-control": "no-store",
-    },
+    headers: responseHeaders,
   })
 }
 

@@ -1,4 +1,6 @@
 import type {
+  Artifact,
+  CompanyBrainAttachment,
   CompanyBrainBlock,
   PreparedAction,
   SendCompanyBrainMessageInput,
@@ -16,8 +18,29 @@ type BrainSourceChip = {
   brief_source?: string
 }
 
+type BrainArtifact = {
+  id: string
+  title: string
+  kind: Artifact["kind"]
+  status: Artifact["status"]
+  description: string
+  fileName?: string
+  extension?: Artifact["extension"]
+  mimeType?: string
+  downloadUrl?: string
+}
+
+type BrainBlock =
+  | { type: "text"; text: string }
+  | { type: "artifact"; artifact?: BrainArtifact; [key: string]: unknown }
+  | { type: "error"; code?: string; message?: string; title?: string }
+  | { type: "attachment"; attachment?: CompanyBrainAttachment; [key: string]: unknown }
+
 type BrainChatResponse = {
   answer: string
+  blocks?: BrainBlock[]
+  artifacts?: BrainArtifact[]
+  errorCode?: string
   brief_sources?: string[]
   source_chips?: BrainSourceChip[]
   suggested_action?: {
@@ -123,24 +146,85 @@ function toPreparedAction(response: BrainChatResponse): PreparedAction | null {
   }
 }
 
+function userSafeErrorMessage(code?: string, fallback?: string) {
+  const messages: Record<string, string> = {
+    upload_missing_bytes: "I received the file name, but not the file contents. Please reattach it.",
+    unsupported_file_type: "I can read screenshots, PDFs, CSVs, spreadsheets, docs, and text files. This file type is not supported yet.",
+    file_too_large: "That file is too large for this chat. Try a smaller file or split it into smaller parts.",
+    extraction_failed: "I received the file, but couldn’t read its contents yet.",
+    artifact_failed: "I found the records, but couldn’t create the PDF file yet. Nothing was changed.",
+    runtime_failed: "I couldn’t finish from the company brain right now. Try again in a minute.",
+    permission_denied: "I can’t access that from this role.",
+  }
+  return (code ? messages[code] : undefined) ?? fallback ?? messages.runtime_failed
+}
+
+function toArtifact(artifact: BrainArtifact): Artifact {
+  return {
+    id: artifact.id,
+    title: artifact.title,
+    kind: artifact.kind,
+    status: artifact.status,
+    description: artifact.description,
+    fileName: artifact.fileName,
+    extension: artifact.extension,
+    mimeType: artifact.mimeType,
+    downloadUrl: artifact.downloadUrl,
+    file: artifact.fileName && artifact.extension && artifact.mimeType ? {
+      fileName: artifact.fileName,
+      extension: artifact.extension === "csv" ? "txt" : artifact.extension,
+      mimeType: artifact.mimeType,
+      title: artifact.title,
+      plainText: artifact.description,
+    } : undefined,
+  }
+}
+
 function toBlocks(response: BrainChatResponse): CompanyBrainBlock[] {
-  return [text(`answer-${response.proof_id ?? Date.now()}`, response.answer)]
+  const blocks: CompanyBrainBlock[] = []
+  const seenArtifacts = new Set<string>()
+  const rawBlocks = response.blocks ?? []
+  rawBlocks.forEach((block, index) => {
+    if (block.type === "text" && typeof block.text === "string") {
+      blocks.push(text(`answer-${response.proof_id ?? Date.now()}-${index}`, block.text))
+    } else if (block.type === "artifact") {
+      const artifact = block.artifact ?? (block.id ? block as unknown as BrainArtifact : undefined)
+      if (artifact?.id) {
+        seenArtifacts.add(artifact.id)
+        blocks.push({ type: "artifact", id: `artifact-${artifact.id}`, artifact: toArtifact(artifact) })
+      }
+    } else if (block.type === "error") {
+      const code = block.code
+      blocks.push({ type: "error", id: `error-${index}`, title: "Company Brain couldn’t finish that", message: userSafeErrorMessage(typeof code === "string" ? code : undefined, block.message) })
+    } else if (block.type === "attachment" && block.attachment) {
+      blocks.push({ type: "attachment", id: `attachment-${block.attachment.id}`, attachment: block.attachment })
+    }
+  })
+  ;(response.artifacts ?? []).forEach((artifact) => {
+    if (!seenArtifacts.has(artifact.id)) blocks.push({ type: "artifact", id: `artifact-${artifact.id}`, artifact: toArtifact(artifact) })
+  })
+  if (!blocks.some((block) => block.type === "text") && response.answer) {
+    blocks.unshift(text(`answer-${response.proof_id ?? Date.now()}`, response.answer))
+  }
+  if (!blocks.length) {
+    blocks.push({ type: "error", id: `error-${Date.now()}`, title: "Company Brain couldn’t finish that", message: userSafeErrorMessage(response.errorCode) })
+  }
+  return blocks
 }
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
   const controller = new AbortController()
   const timeout = window.setTimeout(() => controller.abort(), init?.method === "POST" ? 90000 : 12000)
+  const headers = new Headers(init?.headers)
+  if (!(init?.body instanceof FormData) && !headers.has("content-type")) headers.set("content-type", "application/json")
   const response = await fetch(`${BRAIN_BASE_URL}${path}`, {
     ...init,
     signal: controller.signal,
-    headers: {
-      "content-type": "application/json",
-      ...(init?.headers ?? {}),
-    },
+    headers,
   }).finally(() => window.clearTimeout(timeout))
   if (!response.ok) {
-    const body = await response.text().catch(() => "")
-    throw new Error(`Company Brain API ${response.status}: ${body.slice(0, 180)}`)
+    const body = await response.json().catch(() => null) as { errorCode?: string; error?: string } | null
+    throw new Error(userSafeErrorMessage(body?.errorCode, body?.error))
   }
   return (await response.json()) as T
 }
@@ -151,6 +235,21 @@ export async function getCompanyBrainSummary(): Promise<BrainSummary> {
 
 export async function getNeedsAttention(): Promise<NeedsAttentionResponse> {
   return fetchJson<NeedsAttentionResponse>("/control/needs-attention")
+}
+
+export async function uploadCompanyBrainFiles(conversationId: string, files: File[]): Promise<CompanyBrainAttachment[]> {
+  if (!files.length) return []
+  const form = new FormData()
+  form.set("conversation_id", conversationId)
+  files.forEach((file) => form.append("file", file, file.name))
+  const data = await fetchJson<{ attachments: CompanyBrainAttachment[] }>("/brain/uploads", {
+    method: "POST",
+    body: form,
+  })
+  return data.attachments.map((attachment) => ({
+    ...attachment,
+    type: attachment.type ?? attachment.mimeType,
+  }))
 }
 
 export async function sendCompanyBrainMessage(

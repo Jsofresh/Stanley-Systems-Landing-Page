@@ -2,7 +2,7 @@ export type CompanyBrainRole = "user" | "assistant"
 
 export type PreparedActionStatus = "prepared_not_sent" | "sent" | "cancelled" | "needs_review"
 
-export type ArtifactKind = "pdf" | "spreadsheet" | "html" | "document"
+export type ArtifactKind = "pdf" | "spreadsheet" | "html" | "document" | "text"
 
 export type ArtifactStatus = "preparing" | "ready" | "failed" | "needs_revision"
 
@@ -13,11 +13,18 @@ export type SourceChip = {
   system: "Jobber" | "QBO" | "Files" | "Email" | "CRM" | "Notes"
 }
 
+export type AttachmentKind = "image" | "pdf" | "text" | "spreadsheet" | "document" | "unsupported"
+
 export type CompanyBrainAttachment = {
   id: string
   name: string
   size: number
-  type: string
+  type?: string
+  mimeType: string
+  kind: AttachmentKind
+  status: "ready" | "failed"
+  extractionStatus: "pending" | "ready" | "failed"
+  errorCode?: string
 }
 
 export type PreparedAction = {
@@ -48,6 +55,10 @@ export type Artifact = {
   kind: ArtifactKind
   status: ArtifactStatus
   description: string
+  fileName?: string
+  extension?: "pdf" | "html" | "xlsx" | "docx" | "txt" | "csv"
+  mimeType?: string
+  downloadUrl?: string
   preview?: string
   file?: ArtifactFile
 }

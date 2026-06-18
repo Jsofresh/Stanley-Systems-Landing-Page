@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils"
 import {
   getCompanyBrainSummary,
   sendCompanyBrainMessage,
+  uploadCompanyBrainFiles,
   type BrainSummary,
 } from "@/lib/company-brain/live"
 import type {
@@ -92,6 +93,7 @@ export function PortalApp() {
   const [input, setInput] = useState("")
   const [attachments, setAttachments] = useState<CompanyBrainAttachment[]>([])
   const [isSending, setIsSending] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [preview, setPreview] = useState<PreviewState>(null)
   const [summary, setSummary] = useState<BrainSummary | null>(null)
@@ -200,7 +202,7 @@ export function PortalApp() {
         attachments: messageAttachments,
       })
       setMessages((current) => [...current, response.message])
-    } catch {
+    } catch (error) {
       const errorMessage: CompanyBrainMessage = {
         id: `assistant-error-${Date.now()}`,
         role: "assistant",
@@ -209,8 +211,8 @@ export function PortalApp() {
           {
             type: "error",
             id: "send-error",
-            title: "I couldn’t answer that yet",
-            message: "I hit a connection issue before I could finish. Nothing was sent or changed — try again in a minute.",
+            title: "Company Brain couldn’t finish that",
+            message: error instanceof Error ? error.message : "I couldn’t finish from the company brain right now. Try again in a minute.",
           },
         ],
       }
@@ -348,9 +350,11 @@ export function PortalApp() {
               <ChatComposer
                 input={input}
                 attachments={attachments}
-                disabled={isSending}
+                disabled={isSending || isUploading}
                 onInput={setInput}
+                conversationId={currentConversationId}
                 onAttachments={setAttachments}
+                onUploading={setIsUploading}
                 onSubmit={handleSubmit}
                 onKeyDown={handleKeyDown}
               />
@@ -499,7 +503,7 @@ function ChatMessage({
         {isUser ? (
           <div className="space-y-2 rounded-2xl rounded-tr-md bg-[#102033] px-4 py-3 text-sm font-medium leading-6 text-white shadow-sm">
             {message.blocks.map((block) => {
-              if (block.type === "text") return <p key={block.id}>{sanitizePortalDisplayText(block.text)}</p>
+              if (block.type === "text") return <AssistantText key={block.id} text={block.text} tone="dark" />
               if (block.type === "attachment") return <AttachmentPill key={block.id} attachment={block.attachment} tone="dark" />
               return null
             })}
@@ -516,6 +520,28 @@ function ChatMessage({
   )
 }
 
+function AssistantText({ text, tone = "light" }: { text: string; tone?: "light" | "dark" }) {
+  const safe = sanitizePortalDisplayText(text)
+  const lines = safe.split(/\n+/).map((line) => line.trim()).filter(Boolean)
+  const dark = tone === "dark"
+  if (!lines.length) return null
+  return (
+    <div className={cn("space-y-1.5 text-[15px] leading-6", dark ? "text-white" : "text-[#25384b]")}>
+      {lines.map((line, index) => {
+        const bullet = line.match(/^[-*•]\s+(.+)$/)
+        const numbered = line.match(/^(\d+[.)])\s+(.+)$/)
+        if (bullet) {
+          return <div key={`${index}-${line}`} className="flex gap-2"><span className={cn("mt-0.5", dark ? "text-white/75" : "text-[#15803d]")}>•</span><span>{bullet[1]}</span></div>
+        }
+        if (numbered) {
+          return <div key={`${index}-${line}`} className="flex gap-2"><span className={cn("shrink-0 font-bold", dark ? "text-white/75" : "text-[#15803d]")}>{numbered[1]}</span><span>{numbered[2]}</span></div>
+        }
+        return <p key={`${index}-${line}`} className="max-w-prose">{line}</p>
+      })}
+    </div>
+  )
+}
+
 function MessageBlock({
   block,
   onPreview,
@@ -524,7 +550,7 @@ function MessageBlock({
   onPreview: (preview: PreviewState) => void
 }) {
   if (block.type === "text") {
-    return <p className="text-[15px] leading-7 text-[#25384b]">{sanitizePortalDisplayText(block.text)}</p>
+    return <AssistantText text={block.text} />
   }
 
   if (block.type === "sources") {
@@ -654,13 +680,13 @@ function ArtifactCard({ artifact, onPreview }: { artifact: Artifact; onPreview: 
           >
             Preview
           </Button>
-          {artifact.file ? (
+          {artifact.downloadUrl || artifact.file ? (
             <Button
               type="button"
               className="h-9 rounded-lg bg-[#15803d] text-white hover:bg-[#116832]"
               onClick={() => downloadArtifact(artifact)}
             >
-              Download {artifact.file.extension.toUpperCase()}
+              Download {(artifact.extension ?? artifact.file?.extension ?? artifact.kind).toUpperCase()}
             </Button>
           ) : null}
         </div>
@@ -737,7 +763,7 @@ function AttachmentPill({
     >
       <FileText className="h-3.5 w-3.5 shrink-0" />
       <span className="truncate">{attachment.name}</span>
-      <span className={cn("shrink-0 font-semibold", dark ? "text-white/65" : "text-[#6c7a6f]")}>{formatAttachmentSize(attachment.size)}</span>
+      <span className={cn("shrink-0 font-semibold", dark ? "text-white/65" : "text-[#6c7a6f]")}>{attachment.kind} · {formatAttachmentSize(attachment.size)}</span>
       {onRemove ? (
         <button
           type="button"
@@ -752,29 +778,24 @@ function AttachmentPill({
   )
 }
 
-function fileToAttachment(file: File, index: number): CompanyBrainAttachment {
-  return {
-    id: `file-${Date.now()}-${index}-${file.name.replace(/[^a-z0-9._-]+/gi, "-")}`,
-    name: file.name,
-    size: file.size,
-    type: file.type || "application/octet-stream",
-  }
-}
-
 function ChatComposer({
   input,
   attachments,
   disabled,
   onInput,
+  conversationId,
   onAttachments,
+  onUploading,
   onSubmit,
   onKeyDown,
 }: {
   input: string
   attachments: CompanyBrainAttachment[]
+  conversationId: string
   disabled: boolean
   onInput: (value: string) => void
   onAttachments: (value: CompanyBrainAttachment[]) => void
+  onUploading: (value: boolean) => void
   onSubmit: (event: FormEvent) => void
   onKeyDown: (event: KeyboardEvent<HTMLTextAreaElement>) => void
 }) {
@@ -782,13 +803,35 @@ function ChatComposer({
   const [isDraggingFile, setIsDraggingFile] = useState(false)
   const canSend = (input.trim().length > 0 || attachments.length > 0) && !disabled
 
-  function addFiles(files: File[]) {
+  async function addFiles(files: File[]) {
     if (!files.length) return
-    onAttachments([...attachments, ...files.map(fileToAttachment)])
+    onUploading(true)
+    try {
+      const uploaded = await uploadCompanyBrainFiles(conversationId, files)
+      onAttachments([...attachments, ...uploaded])
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "I received the file, but couldn’t read its contents yet."
+      onAttachments([
+        ...attachments,
+        ...files.map((file, index) => ({
+          id: `failed-${Date.now()}-${index}`,
+          name: file.name,
+          size: file.size,
+          type: file.type || "application/octet-stream",
+          mimeType: file.type || "application/octet-stream",
+          kind: "unsupported" as const,
+          status: "failed" as const,
+          extractionStatus: "failed" as const,
+          errorCode: message,
+        })),
+      ])
+    } finally {
+      onUploading(false)
+    }
   }
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
-    addFiles(Array.from(event.target.files ?? []))
+    void addFiles(Array.from(event.target.files ?? []))
     event.target.value = ""
   }
 
@@ -809,7 +852,7 @@ function ChatComposer({
     if (disabled) return
     event.preventDefault()
     setIsDraggingFile(false)
-    addFiles(Array.from(event.dataTransfer.files ?? []))
+    void addFiles(Array.from(event.dataTransfer.files ?? []))
   }
 
   function removeAttachment(id: string) {
@@ -899,6 +942,10 @@ function TypingMessage() {
 
 
 function downloadArtifact(artifact: Artifact) {
+  if (artifact.downloadUrl) {
+    window.location.href = artifact.downloadUrl
+    return
+  }
   if (!artifact.file) return
 
   const blob = createArtifactBlob(artifact)
@@ -1142,17 +1189,17 @@ function PreviewContent({ preview }: { preview: NonNullable<PreviewState> }) {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-bold uppercase text-[#15803d]">{preview.artifact.kind}</p>
-            {preview.artifact.file ? (
-              <p className="mt-1 text-xs font-semibold text-[#667085]">{preview.artifact.file.fileName}</p>
+            {preview.artifact.fileName || preview.artifact.file ? (
+              <p className="mt-1 text-xs font-semibold text-[#667085]">{preview.artifact.fileName ?? preview.artifact.file?.fileName}</p>
             ) : null}
           </div>
-          {preview.artifact.file ? (
+          {preview.artifact.downloadUrl || preview.artifact.file ? (
             <Button
               type="button"
               className="h-9 rounded-lg bg-[#15803d] text-white hover:bg-[#116832]"
               onClick={() => downloadArtifact(preview.artifact)}
             >
-              Download {preview.artifact.file.extension.toUpperCase()}
+              Download {(preview.artifact.extension ?? preview.artifact.file?.extension ?? preview.artifact.kind).toUpperCase()}
             </Button>
           ) : null}
         </div>
