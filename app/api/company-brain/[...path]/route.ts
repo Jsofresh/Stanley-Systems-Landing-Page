@@ -25,6 +25,25 @@ function jsonError(error: string, status: number) {
   return NextResponse.json({ error }, { status })
 }
 
+
+function chatTimeoutFallback() {
+  return NextResponse.json(
+    {
+      answer: "I couldn’t finish from the company brain right now. Try again in a minute.",
+      errorCode: "runtime_failed",
+      blocks: [
+        {
+          type: "error",
+          code: "runtime_failed",
+          message: "I couldn’t finish from the company brain right now. Try again in a minute.",
+        },
+      ],
+      suggested_action: { type: "boundary_error", status: "blocked", draft: "Nothing was sent or changed." },
+    },
+    { status: 200, headers: { "cache-control": "no-store" } },
+  )
+}
+
 function safeControlFallback(path: string, reason: string) {
   if (path === "control/summary") {
     return NextResponse.json(
@@ -121,14 +140,24 @@ async function forward(request: NextRequest, context: RouteContext) {
     }
   }
 
-  const response = await fetch(target, {
-    method: request.method,
-    headers,
-    body,
-    cache: "no-store",
-  }).catch((error) => {
+  const controller = new AbortController()
+  const timeoutMs = path === "brain/chat" ? 45000 : path === "brain/uploads" ? 60000 : 20000
+  const timeout = setTimeout(() => controller.abort(), timeoutMs)
+  let response: Response
+  try {
+    response = await fetch(target, {
+      method: request.method,
+      headers,
+      body,
+      cache: "no-store",
+      signal: controller.signal,
+    })
+  } catch (error) {
+    if (path === "brain/chat") return chatTimeoutFallback()
     throw new Error(error instanceof Error ? error.message : "brain_fetch_failed")
-  })
+  } finally {
+    clearTimeout(timeout)
+  }
   const contentType = response.headers.get("content-type") ?? "application/json"
   const fallback = response.status >= 500 ? safeControlFallback(path, `brain_runtime_${response.status}`) : null
   if (fallback) return fallback
