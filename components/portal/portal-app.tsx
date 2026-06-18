@@ -9,9 +9,11 @@ import {
   Clock3,
   FileText,
   Menu,
+  MessageSquare,
   MessageSquarePlus,
+  MoreHorizontal,
   Paperclip,
-  Send,
+  Search,
   Settings,
   Sheet,
   Sparkles,
@@ -272,9 +274,9 @@ export function PortalApp() {
   if (!session) return null
 
   return (
-    <div className="h-screen overflow-hidden bg-[#f7f2ea] text-[#102033]">
+    <div className="h-screen overflow-hidden bg-[#f7f7f5] text-[#0f1720]">
       <div className="flex h-full min-h-0">
-        <aside className="hidden w-[280px] shrink-0 border-r border-[#ded6c8] bg-[#fbf8f2] lg:block">
+        <aside className="hidden w-[276px] shrink-0 border-r border-[#e7e7e4] bg-[#ececea] lg:block">
           {sidebar}
         </aside>
 
@@ -286,57 +288,51 @@ export function PortalApp() {
               aria-label="Close sidebar"
               onClick={() => setSidebarOpen(false)}
             />
-            <aside className="relative h-full w-[min(320px,86vw)] border-r border-[#ded6c8] bg-[#fbf8f2] shadow-2xl">
+            <aside className="relative h-full w-[min(320px,86vw)] border-r border-[#e7e7e4] bg-[#ececea] shadow-2xl">
               {sidebar}
             </aside>
           </div>
         ) : null}
 
         <main className="flex min-h-0 min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-[#e7decf] bg-[#fbf8f2]/92 px-4 backdrop-blur md:h-16 md:px-6">
-            <div className="flex min-w-0 items-center gap-3">
+          <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-[#ececea] bg-[#f7f7f5]/90 px-3 backdrop-blur md:px-5">
+            <div className="flex min-w-0 items-center gap-2">
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="h-9 w-9 rounded-lg text-[#102033] lg:hidden"
+                className="grid h-9 w-9 place-items-center rounded-lg text-[#4b5563] transition hover:bg-black/5 lg:hidden"
                 onClick={() => setSidebarOpen(true)}
                 aria-label="Open sidebar"
               >
                 <Menu className="h-5 w-5" />
               </Button>
-              <div className="min-w-0">
-                <p className="truncate text-sm font-bold text-[#102033]">{session.companyName}</p>
-                <p className="truncate text-xs text-[#667085]">{session.name} · {session.roleLabel}</p>
+              <div className="min-w-0 rounded-lg px-2 py-1.5">
+                <p className="truncate text-sm font-semibold text-[#111827]">Company Brain</p>
+                <p className="truncate text-xs text-[#737373]">{session.companyName} · {session.roleLabel}</p>
               </div>
             </div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#667085]">
-              <span className="hidden rounded-full border border-[#d9eadf] bg-white px-3 py-1.5 text-[#15803d] sm:inline-flex">
-                {summary ? "Bayview records connected" : "Connecting"}
+            <div className="flex items-center gap-2">
+              <span className="hidden rounded-full border border-[#deded9] bg-white px-3 py-1.5 text-xs font-medium text-[#525252] sm:inline-flex">
+                {summary ? "Records connected" : "Connecting"}
               </span>
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="hidden rounded-full border border-[#ded6c8] bg-white px-3 py-1.5 text-xs font-bold text-[#435266] transition hover:text-[#15803d] sm:inline-flex"
-              >
-                Sign out
-              </button>
               <Link
                 href="/portal/settings"
                 prefetch={false}
-                className="grid h-9 w-9 place-items-center rounded-lg text-[#506070] transition hover:bg-white hover:text-[#15803d] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
+                className="grid h-8 w-8 place-items-center rounded-full bg-[#111827] text-xs font-bold text-white transition hover:bg-black focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
                 aria-label="Settings"
+                title={`${session.name} settings`}
               >
-                <Settings className="h-4 w-4" />
+                {session.companyName.slice(0, 1) || "B"}
               </Link>
             </div>
           </header>
 
           <section className="flex min-h-0 flex-1 flex-col overflow-hidden">
-            <div className="mx-auto flex h-full min-h-0 w-full max-w-4xl flex-1 flex-col px-4 pt-5 md:px-6">
+            <div className="mx-auto flex h-full min-h-0 w-full max-w-3xl flex-1 flex-col px-4 pt-5 md:px-6">
               <div className="min-h-0 flex-1 overflow-y-auto pr-1 pb-6">
                 {hasMessages ? (
-                  <div className="space-y-7 pb-6">
+                  <div className="space-y-7 pb-6 pt-3">
                     {messages.map((message) => (
                       <ChatMessage key={message.id} message={message} onPreview={setPreview} />
                     ))}
@@ -383,11 +379,14 @@ function PortalSidebar({
   onOpenRecent: (conversation: RecentConversation) => void
 }) {
   return (
-    <div className="flex h-full flex-col px-3 py-4">
-      <div className="mb-4 flex items-center justify-between px-2">
-        <Link href="/portal" prefetch={false} className="min-w-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]">
-          <span className="block truncate text-base font-bold text-[#102033]">Stanley Systems</span>
-          <span className="block truncate text-xs text-[#667085]">Company Brain</span>
+    <div className="flex h-full flex-col px-3 py-3">
+      <div className="mb-3 flex items-center justify-between px-2 py-1.5">
+        <Link href="/portal" prefetch={false} className="flex min-w-0 items-center gap-2 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]">
+          <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#111827] text-xs font-bold text-white">S</div>
+          <div className="min-w-0">
+            <span className="block truncate text-sm font-semibold text-[#111827]">Stanley Systems</span>
+            <span className="block truncate text-xs text-[#737373]">Company Brain</span>
+          </div>
         </Link>
         <Button
           type="button"
@@ -401,54 +400,60 @@ function PortalSidebar({
         </Button>
       </div>
 
-      <Button
+      <button
         type="button"
-        className="h-11 justify-start rounded-lg bg-[#15803d] px-3 text-white hover:bg-[#116832]"
+        className="mb-3 flex h-11 items-center gap-2 rounded-xl border border-[#dadad7] bg-white px-3 text-sm font-medium text-[#111827] shadow-sm transition hover:bg-[#f9f9f8]"
         onClick={onNewChat}
       >
         <MessageSquarePlus className="h-4 w-4" />
         New chat
-      </Button>
+      </button>
 
-      <div className="mt-6 flex-1 overflow-y-auto">
-        <p className="px-2 text-xs font-bold uppercase text-[#7a746b]">Recent</p>
-        <div className="mt-2 space-y-1">
+      <div className="min-h-0 flex-1 overflow-y-auto border-t border-black/5 pt-3">
+        <div className="mb-2 flex items-center justify-between px-2 text-xs font-medium text-[#737373]">
+          <span>Recent</span>
+          <Search className="h-3.5 w-3.5" />
+        </div>
+        <div className="space-y-0.5">
           {recentConversations.length ? recentConversations.map((conversation) => (
             <button
               type="button"
               key={conversation.id}
-              className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm font-medium text-[#435266] transition hover:bg-white hover:text-[#102033]"
+              className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm text-[#374151] transition hover:bg-white/65"
               onClick={() => onOpenRecent(conversation)}
             >
-              <FileText className="h-4 w-4 shrink-0 text-[#8a9588]" />
+              <MessageSquare className="h-3.5 w-3.5 shrink-0 text-[#78716c]" />
               <span className="truncate">{conversation.title}</span>
             </button>
           )) : (
-            <p className="px-2.5 py-2 text-sm leading-5 text-[#7a746b]">Recent chats will show here after you ask Stanley something.</p>
+            <p className="px-2.5 py-2 text-sm leading-5 text-[#737373]">Recent chats will show here after you ask Stanley something.</p>
           )}
         </div>
       </div>
 
-      <div className="border-t border-[#e6dccd] pt-3">
+      <div className="border-t border-black/5 pt-3">
         <Link
           href="/portal/settings"
           prefetch={false}
-          className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm font-semibold text-[#435266] transition hover:bg-white hover:text-[#102033] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
+          className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm text-[#374151] transition hover:bg-white/65 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]"
         >
-          <Settings className="h-4 w-4 text-[#15803d]" />
-          Settings and account
+          <Settings className="h-4 w-4" />
+          Settings
         </Link>
-        <div className="mt-3 rounded-lg border border-[#e3dacb] bg-white px-3 py-3">
-          <p className="text-sm font-bold text-[#102033]">{session.companyName}</p>
-          <p className="mt-1 text-xs leading-5 text-[#667085]">{session.name} · {session.roleLabel}</p>
-          <button
-            type="button"
-            onClick={onLogout}
-            className="mt-3 rounded-full border border-[#ded6c8] bg-[#fbf8f2] px-3 py-1.5 text-xs font-bold text-[#435266] transition hover:text-[#15803d]"
-          >
-            Sign out
-          </button>
+        <div className="mt-2 flex items-center gap-2 rounded-xl px-2 py-2">
+          <div className="grid h-8 w-8 place-items-center rounded-full bg-[#0f1720] text-xs font-bold text-white">{session.companyName.slice(0, 1) || "B"}</div>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-[#111827]">{session.companyName}</p>
+            <p className="truncate text-xs text-[#737373]">{session.name} · {session.roleLabel}</p>
+          </div>
         </div>
+        <button
+          type="button"
+          onClick={onLogout}
+          className="mt-1 rounded-full px-2.5 py-1.5 text-xs font-medium text-[#737373] transition hover:bg-white/65 hover:text-[#111827]"
+        >
+          Sign out
+        </button>
       </div>
     </div>
   )
@@ -462,22 +467,20 @@ function EmptyState({
   statusError: string | null
 }) {
   return (
-    <div className="py-8 md:py-10">
-      <div className="mx-auto max-w-3xl">
-        <div className="rounded-3xl border border-[#e1d8ca] bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-bold text-[#15803d]">{summary ? "Bayview records connected" : "Connecting your office records"}</p>
-          <h1 className="mt-2 text-3xl font-bold leading-tight text-[#102033] md:text-4xl">
-            Bayview Office Console
-          </h1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#5f6d7a] md:text-base">
-            Ask what needs attention, what is blocked, or what should be drafted next. Stanley can look things up, draft follow-ups, and ask before making important changes.
-          </p>
-          {statusError ? (
-            <div className="mt-5 rounded-xl border border-[#f0c6c0] bg-[#fff7f5] p-3 text-sm font-semibold text-[#9c2f24]">
-              I’m having trouble reaching the office records right now. Try again in a minute.
-            </div>
-          ) : null}
-        </div>
+    <div className="flex min-h-full items-center justify-center px-4 py-10">
+      <div className="w-full max-w-3xl text-center">
+        <p className="mb-4 text-xs font-medium text-[#737373]">{summary ? "Bayview records connected" : "Connecting records"}</p>
+        <h1 className="text-[34px] font-semibold tracking-[-0.04em] text-[#111827] md:text-[44px]">
+          How can I help?
+        </h1>
+        <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#737373]">
+          Ask about billing, jobs, customers, uploaded files, or follow-up. I’ll ask before sending or changing anything.
+        </p>
+        {statusError ? (
+          <div className="mx-auto mt-5 max-w-lg rounded-2xl border border-[#f0c6c0] bg-white p-3 text-sm font-medium text-[#9c2f24]">
+            I’m having trouble reaching the office records right now. Try again in a minute.
+          </div>
+        ) : null}
       </div>
     </div>
   )
@@ -493,15 +496,15 @@ function ChatMessage({
   const isUser = message.role === "user"
 
   return (
-    <article className={cn("flex gap-3", isUser ? "justify-end" : "justify-start")}>
+    <article className={cn("group flex gap-4", isUser ? "justify-end" : "justify-start")}>
       {!isUser ? (
-        <div className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#15803d] text-white">
+        <div className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#111827] text-white">
           <Sparkles className="h-4 w-4" />
         </div>
       ) : null}
-      <div className={cn("min-w-0", isUser ? "max-w-[84%]" : "max-w-[min(100%,720px)] flex-1")}>
+      <div className={cn("min-w-0", isUser ? "max-w-[82%]" : "max-w-[min(100%,720px)] flex-1")}>
         {isUser ? (
-          <div className="space-y-2 rounded-2xl rounded-tr-md bg-[#102033] px-4 py-3 text-sm font-medium leading-6 text-white shadow-sm">
+          <div className="space-y-2 rounded-[22px] bg-[#2f3137] px-4 py-2.5 text-[15px] font-medium leading-7 text-white">
             {message.blocks.map((block) => {
               if (block.type === "text") return <AssistantText key={block.id} text={block.text} tone="dark" />
               if (block.type === "attachment") return <AttachmentPill key={block.id} attachment={block.attachment} tone="dark" />
@@ -860,7 +863,7 @@ function ChatComposer({
   }
 
   return (
-    <form onSubmit={onSubmit} className="shrink-0 bg-[#f7f2ea] pb-4 pt-3 md:pb-6">
+    <form onSubmit={onSubmit} className="shrink-0 bg-[#f7f7f5] pb-4 pt-3 md:pb-6">
       <div
         data-testid="portal-attachment-dropzone"
         onDragOver={handleDragOver}
@@ -868,8 +871,8 @@ function ChatComposer({
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         className={cn(
-          "rounded-2xl border bg-white p-2 shadow-[0_16px_48px_rgba(16,32,51,0.08)] transition",
-          isDraggingFile ? "border-[#15803d] ring-4 ring-[#15803d]/15" : "border-[#d8d0c4]",
+          "rounded-[28px] border bg-white p-2 shadow-[0_10px_34px_rgba(15,23,32,0.08)] transition focus-within:shadow-[0_16px_46px_rgba(15,23,32,0.12)]",
+          isDraggingFile ? "border-[#15803d] ring-4 ring-[#15803d]/15" : "border-[#deded9]",
         )}
       >
         <input
@@ -881,7 +884,7 @@ function ChatComposer({
           aria-label="Attach files"
         />
         {attachments.length ? (
-          <div className="flex flex-wrap gap-2 border-b border-[#eee7dc] px-2 pb-2">
+          <div className="flex flex-wrap gap-2 border-b border-[#eeeeeb] px-2 pb-2">
             {attachments.map((attachment) => (
               <AttachmentPill
                 key={attachment.id}
@@ -895,30 +898,36 @@ function ChatComposer({
           value={input}
           disabled={disabled}
           rows={1}
-          placeholder="Ask about billing, jobs, customers, files, or follow-up..."
+          placeholder="Message Company Brain"
           onChange={(event) => onInput(event.target.value)}
           onKeyDown={onKeyDown}
-          className="max-h-36 min-h-14 w-full resize-none bg-transparent px-3 py-4 text-[15px] leading-6 tracking-normal text-[#102033] outline-none placeholder:text-[#8a9380] disabled:cursor-not-allowed"
+          className="max-h-40 min-h-[58px] w-full resize-none bg-transparent px-3 py-4 text-[15px] leading-6 tracking-normal text-[#111827] outline-none placeholder:text-[#8a8a86] disabled:cursor-not-allowed"
         />
-        <div className="flex items-center justify-between gap-3 border-t border-[#eee7dc] px-2 pt-2">
+        <div className="flex items-center justify-between gap-3 border-t border-[#eeeeeb] px-2 pt-2">
           <button
             type="button"
             disabled={disabled}
             onClick={() => fileInputRef.current?.click()}
-            className="inline-flex h-9 items-center gap-2 rounded-lg px-2.5 text-sm font-semibold text-[#7b8378] transition hover:bg-[#fbf8f2] hover:text-[#102033] disabled:cursor-not-allowed disabled:opacity-70"
+            className="grid h-9 w-9 place-items-center rounded-full text-[#5f6368] transition hover:bg-black/5 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            <Paperclip className="h-4 w-4" />
-            Attach
+            <Paperclip className="h-5 w-5" />
           </button>
-          <Button
-            type="submit"
-            disabled={!canSend}
-            className="h-9 rounded-lg bg-[#15803d] px-3 text-white hover:bg-[#116832]"
-            aria-label="Send message"
-          >
-            {disabled ? <Clock3 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-            <span className="hidden sm:inline">Send</span>
-          </Button>
+          <div className="flex items-center gap-1">
+            <button type="button" className="hidden h-9 items-center gap-2 rounded-full px-3 text-sm text-[#5f6368] transition hover:bg-black/5 sm:inline-flex">
+              <Search className="h-4 w-4" /> Search records
+            </button>
+            <button type="button" className="grid h-9 w-9 place-items-center rounded-full text-[#5f6368] transition hover:bg-black/5" aria-label="More">
+              <MoreHorizontal className="h-5 w-5" />
+            </button>
+            <Button
+              type="submit"
+              disabled={!canSend}
+              className="grid h-9 w-9 rounded-full bg-[#111827] p-0 text-white hover:bg-black disabled:bg-[#d4d4d0]"
+              aria-label="Send message"
+            >
+              {disabled ? <Clock3 className="h-4 w-4 animate-spin" /> : <ArrowUp className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
       </div>
     </form>
