@@ -71,6 +71,9 @@ async function forward(request: NextRequest, context: RouteContext) {
     "x-stanley-actor-role": session.role,
     "x-stanley-session-key": session.sessionKey,
   }
+  const proxyKey = process.env.COMPANY_BRAIN_PROXY_KEY
+  if (!proxyKey) return jsonError("company_brain_proxy_not_configured", 503)
+  headers["x-stanley-brain-proxy-key"] = proxyKey
 
   let body: string | undefined
   if (request.method !== "GET" && request.method !== "HEAD") {

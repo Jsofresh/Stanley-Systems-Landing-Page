@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { cookies } from "next/headers"
-import { createHash } from "crypto"
+import { createHash, createHmac, timingSafeEqual } from "crypto"
 import { findPortalUserByEmail, publicPortalUsers, type PortalTestUser } from "@/lib/portal/test-users"
 
 export const PORTAL_SESSION_COOKIE = "stanley_portal_session"
@@ -18,14 +18,31 @@ type PortalSession = {
   issuedAt: string
 }
 
+function sessionSecret() {
+  const secret = process.env.PORTAL_SESSION_SECRET
+  if (!secret || secret.length < 32) throw new Error("PORTAL_SESSION_SECRET is not configured")
+  return secret
+}
+
+function signPayload(payload: string) {
+  return createHmac("sha256", sessionSecret()).update(payload).digest("base64url")
+}
+
 function encodeSession(session: PortalSession) {
-  return Buffer.from(JSON.stringify(session), "utf8").toString("base64url")
+  const payload = Buffer.from(JSON.stringify(session), "utf8").toString("base64url")
+  return `${payload}.${signPayload(payload)}`
 }
 
 function decodeSession(value: string | undefined): PortalSession | null {
   if (!value) return null
   try {
-    const parsed = JSON.parse(Buffer.from(value, "base64url").toString("utf8")) as PortalSession
+    const [payload, signature] = value.split(".")
+    if (!payload || !signature) return null
+    const expected = signPayload(payload)
+    const suppliedBuffer = Buffer.from(signature)
+    const expectedBuffer = Buffer.from(expected)
+    if (suppliedBuffer.length !== expectedBuffer.length || !timingSafeEqual(suppliedBuffer, expectedBuffer)) return null
+    const parsed = JSON.parse(Buffer.from(payload, "base64url").toString("utf8")) as PortalSession
     if (!parsed.actorId || !parsed.email || !parsed.companyId || !parsed.sessionKey) return null
     return parsed
   } catch {
