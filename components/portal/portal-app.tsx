@@ -943,7 +943,12 @@ function TypingMessage() {
 
 function downloadArtifact(artifact: Artifact) {
   if (artifact.downloadUrl) {
-    window.location.href = artifact.downloadUrl
+    const anchor = document.createElement("a")
+    anchor.href = artifact.downloadUrl
+    anchor.download = artifact.fileName ?? artifact.file?.fileName ?? `${artifact.title}.${artifact.extension ?? artifact.kind}`
+    document.body.appendChild(anchor)
+    anchor.click()
+    anchor.remove()
     return
   }
   if (!artifact.file) return
