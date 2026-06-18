@@ -11,7 +11,6 @@ import {
   Menu,
   MessageSquare,
   MessageSquarePlus,
-  MoreHorizontal,
   Paperclip,
   Search,
   Settings,
@@ -332,7 +331,7 @@ export function PortalApp() {
             <div className="mx-auto flex h-full min-h-0 w-full max-w-3xl flex-1 flex-col px-4 pt-5 md:px-6">
               <div className="min-h-0 flex-1 overflow-y-auto pr-1 pb-6">
                 {hasMessages ? (
-                  <div className="space-y-7 pb-6 pt-3">
+                  <div className="space-y-4 pb-6 pt-3">
                     {messages.map((message) => (
                       <ChatMessage key={message.id} message={message} onPreview={setPreview} />
                     ))}
@@ -496,12 +495,7 @@ function ChatMessage({
   const isUser = message.role === "user"
 
   return (
-    <article className={cn("group flex gap-4", isUser ? "justify-end" : "justify-start")}>
-      {!isUser ? (
-        <div className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#111827] text-white">
-          <Sparkles className="h-4 w-4" />
-        </div>
-      ) : null}
+    <article className={cn("group flex", isUser ? "justify-end" : "justify-start")}>
       <div className={cn("min-w-0", isUser ? "max-w-[82%]" : "max-w-[min(100%,720px)] flex-1")}>
         {isUser ? (
           <div className="space-y-2 rounded-[22px] bg-[#2f3137] px-4 py-2.5 text-[15px] font-medium leading-7 text-white">
@@ -512,7 +506,7 @@ function ChatMessage({
             })}
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-2">
             {message.blocks.map((block) => (
               <MessageBlock key={block.id} block={block} onPreview={onPreview} />
             ))}
@@ -529,7 +523,7 @@ function AssistantText({ text, tone = "light" }: { text: string; tone?: "light" 
   const dark = tone === "dark"
   if (!lines.length) return null
   return (
-    <div className={cn("space-y-1.5 text-[15px] leading-6", dark ? "text-white" : "text-[#25384b]")}>
+    <div className={cn("space-y-1 text-[15px] leading-[1.55]", dark ? "text-white" : "text-[#1f2937]")}>
       {lines.map((line, index) => {
         const bullet = line.match(/^[-*•]\s+(.+)$/)
         const numbered = line.match(/^(\d+[.)])\s+(.+)$/)
@@ -913,12 +907,6 @@ function ChatComposer({
             <Paperclip className="h-5 w-5" />
           </button>
           <div className="flex items-center gap-1">
-            <button type="button" className="hidden h-9 items-center gap-2 rounded-full px-3 text-sm text-[#5f6368] transition hover:bg-black/5 sm:inline-flex">
-              <Search className="h-4 w-4" /> Search records
-            </button>
-            <button type="button" className="grid h-9 w-9 place-items-center rounded-full text-[#5f6368] transition hover:bg-black/5" aria-label="More">
-              <MoreHorizontal className="h-5 w-5" />
-            </button>
             <Button
               type="submit"
               disabled={!canSend}
