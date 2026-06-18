@@ -209,8 +209,8 @@ export function PortalApp() {
           {
             type: "error",
             id: "send-error",
-            title: "Message failed",
-            message: "The live Company Brain workflow could not answer. Nothing was sent or written back.",
+            title: "I couldn’t answer that yet",
+            message: "I hit a connection issue before I could finish. Nothing was sent or changed — try again in a minute.",
           },
         ],
       }
@@ -310,7 +310,7 @@ export function PortalApp() {
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold text-[#667085]">
               <span className="hidden rounded-full border border-[#d9eadf] bg-white px-3 py-1.5 text-[#15803d] sm:inline-flex">
-                {summary ? `Live · ${summary.source_record_counts?.jobber ?? 0} Jobber / ${summary.source_record_counts?.quickbooks ?? 0} QBO` : "Connecting live"}
+                {summary ? "Bayview records connected" : "Connecting"}
               </span>
               <button
                 type="button"
@@ -457,23 +457,20 @@ function EmptyState({
   summary: BrainSummary | null
   statusError: string | null
 }) {
-  const jobberCount = summary?.source_record_counts?.jobber ?? "—"
-  const qboCount = summary?.source_record_counts?.quickbooks ?? "—"
-
   return (
     <div className="py-8 md:py-10">
       <div className="mx-auto max-w-3xl">
         <div className="rounded-3xl border border-[#e1d8ca] bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-bold text-[#15803d]">{summary ? `${jobberCount} Jobber / ${qboCount} QBO records live` : "Company Brain connecting"}</p>
+          <p className="text-sm font-bold text-[#15803d]">{summary ? "Bayview records connected" : "Connecting your office records"}</p>
           <h1 className="mt-2 text-3xl font-bold leading-tight text-[#102033] md:text-4xl">
             Bayview Office Console
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-[#5f6d7a] md:text-base">
-            Ask what needs attention, what is blocked, or what should be drafted next. Stanley shows the proof before anything leaves the office.
+            Ask what needs attention, what is blocked, or what should be drafted next. Stanley can look things up, draft follow-ups, and ask before making important changes.
           </p>
           {statusError ? (
             <div className="mt-5 rounded-xl border border-[#f0c6c0] bg-[#fff7f5] p-3 text-sm font-semibold text-[#9c2f24]">
-              Live workflow unavailable: {statusError}
+              I’m having trouble reaching the office records right now. Try again in a minute.
             </div>
           ) : null}
         </div>

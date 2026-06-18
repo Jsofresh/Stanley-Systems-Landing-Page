@@ -124,24 +124,7 @@ function toPreparedAction(response: BrainChatResponse): PreparedAction | null {
 }
 
 function toBlocks(response: BrainChatResponse): CompanyBrainBlock[] {
-  const blocks: CompanyBrainBlock[] = [text(`answer-${response.proof_id ?? Date.now()}`, response.answer)]
-  const sourceChips = (response.source_chips ?? []).map(toSourceChip)
-  if (sourceChips.length) {
-    blocks.push({ type: "sources", id: `sources-${response.proof_id ?? Date.now()}`, title: "Live source records", sources: sourceChips })
-  }
-  const action = toPreparedAction(response)
-  if (action) {
-    blocks.push({ type: "action", id: `action-${response.proof_id ?? Date.now()}`, action })
-  }
-  if (sourceChips.length || action) {
-    blocks.push(
-      text(
-        `proof-${response.proof_id ?? Date.now()}`,
-        "Proof saved. No records were changed and nothing was sent.",
-      ),
-    )
-  }
-  return blocks
+  return [text(`answer-${response.proof_id ?? Date.now()}`, response.answer)]
 }
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
