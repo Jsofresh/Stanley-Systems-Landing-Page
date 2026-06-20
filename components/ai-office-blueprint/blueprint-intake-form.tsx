@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useMemo, useRef, useState, type ChangeEvent, type KeyboardEvent } from "react"
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2 } from "lucide-react"
 
@@ -386,6 +387,13 @@ export function BlueprintIntakeForm() {
           <h3 className="mt-4 text-[2.35rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-[3.35rem]">Check your email shortly.</h3>
           <p className="mx-auto mt-5 max-w-xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems is building your custom AI Office Blueprint and will send the PDF to the email you entered.</p>
           {message ? <p className="mt-5 text-sm font-bold text-[#116832]">{message}</p> : null}
+          <Link
+            href="/ai-office-map"
+            className="group mt-7 inline-flex min-h-[58px] items-center justify-center rounded-full bg-[linear-gradient(180deg,#19A452_0%,#12843C_100%)] px-7 py-3 text-base font-black text-white shadow-[0_18px_38px_rgba(21,128,61,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_50px_rgba(21,128,61,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D]"
+          >
+            Book the AI Office Map
+            <ArrowRight className="ml-3 h-5 w-5 transition group-hover:translate-x-0.5" aria-hidden="true" />
+          </Link>
         </div>
       ) : (
       <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-stretch 2xl:grid-cols-[350px_minmax(0,1fr)] 2xl:gap-7">
@@ -430,6 +438,23 @@ export function BlueprintIntakeForm() {
           </div>
 
           {message ? <p className={`mt-5 text-center text-sm font-bold ${status === "error" ? "text-[#B42318]" : "text-[#116832]"}`}>{message}</p> : null}
+        </div>
+
+        <div className="order-3 lg:col-span-2">
+          <div className="grid gap-5 overflow-hidden rounded-[1.45rem] border border-[#CFE8D5] bg-white/82 p-5 text-left shadow-[0_18px_46px_rgba(7,29,58,0.06)] ring-1 ring-white/80 backdrop-blur sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:p-6">
+            <div>
+              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#116832]">Want the paid fix plan?</p>
+              <h4 className="mt-2 text-[1.45rem] font-semibold leading-[1.1] tracking-[-0.005em] text-[#071D3A] sm:text-[1.68rem]">Turn your Blueprint into an AI Office Map.</h4>
+              <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-[#536173] sm:text-base">Stanley Systems will rank the first office workflow to fix, what it should pay back, and what to build next.</p>
+            </div>
+            <Link
+              href="/ai-office-map"
+              className="group inline-flex min-h-[56px] items-center justify-center rounded-full bg-[linear-gradient(180deg,#19A452_0%,#12843C_100%)] px-6 py-3 text-base font-black text-white shadow-[0_18px_38px_rgba(21,128,61,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_50px_rgba(21,128,61,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:min-w-[220px]"
+            >
+              Get the AI Office Map
+              <ArrowRight className="ml-3 h-5 w-5 transition group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </div>
       )}
