@@ -542,6 +542,7 @@ export function SiteHeader() {
 export function HeroSection() {
   return (
     <section
+      id="hero"
       data-audit-page="/"
       data-audit-section="home.hero"
       data-nav-theme="dark"

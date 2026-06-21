@@ -14,6 +14,16 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/how-stanley-systems-works",
+        destination: "/#hero",
+        permanent: true,
+      },
+      {
+        source: "/how-stanley-systems-works/:path*",
+        destination: "/#hero",
+        permanent: true,
+      },
+      {
         source: "/workflow-audit",
         destination: "/ai-office-map",
         permanent: true,
