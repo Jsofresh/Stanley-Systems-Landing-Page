@@ -12,7 +12,7 @@ Primary promise: More jobs processed. Cleaner records. Faster follow-up. Same of
 
 Start here:
 - Free AI Office Blueprint: https://stanley-systems.com/ai-office-blueprint
-- AI Office Map: https://stanley-systems.com/workflow-audit
+- AI Office Map: https://stanley-systems.com/ai-office-map
 - AI Office Installation Sprint: https://stanley-systems.com/systems-installation-sprint
 - Pricing: https://stanley-systems.com/pricing
 - Contact: https://stanley-systems.com/contact

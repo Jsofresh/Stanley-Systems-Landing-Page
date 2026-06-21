@@ -8,4 +8,4 @@ The leaks are usually not dramatic. They are late invoices, weak handoffs, misse
 
 Stanley Systems helps owners find the leaks, see which billing, follow-up, review, referral, or repeat-customer systems should be installed first, and get those systems built.
 
-Start here: https://stanley-systems.com/workflow-audit
+Start here: https://stanley-systems.com/ai-office-map

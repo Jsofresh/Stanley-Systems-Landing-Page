@@ -24,6 +24,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/how-the-assessment-works",
+        destination: "/ai-office-map",
+        permanent: true,
+      },
+      {
+        source: "/how-the-assessment-works/:path*",
+        destination: "/ai-office-map/:path*",
+        permanent: true,
+      },
+      {
         source: "/car-dealerships",
         destination: "/who-stanley-systems-helps",
         permanent: true,
