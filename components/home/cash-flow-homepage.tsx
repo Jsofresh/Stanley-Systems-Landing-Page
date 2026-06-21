@@ -85,9 +85,9 @@ function HeroProofStrip() {
   ]
 
   return (
-    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="relative isolate flex min-h-[450px] items-center overflow-hidden bg-[#FBFCF7] px-5 py-14 text-center text-[#071D3A] md:px-8 md:py-[4.5rem] lg:min-h-[505px] lg:px-10 lg:py-20">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-[#071422] via-[#dff5e6]/70 to-transparent" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-44 bg-gradient-to-b from-transparent via-[#F6FAF2]/78 to-[#f5f9f2]" />
+    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="relative isolate flex min-h-[500px] items-center overflow-hidden bg-[#FBFCF7] px-5 py-16 text-center text-[#071D3A] md:px-8 md:py-20 lg:min-h-[555px] lg:px-10 lg:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-44 bg-gradient-to-b from-[#071422] via-[#dff5e6]/70 to-transparent" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent via-[#F6FAF2]/78 to-[#f5f9f2]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_16%_18%,rgba(83,217,134,0.24),transparent_32%),radial-gradient(circle_at_84%_30%,rgba(83,217,134,0.20),transparent_34%),radial-gradient(circle_at_50%_100%,rgba(7,29,58,0.05),transparent_42%),linear-gradient(180deg,#EAF8ED_0%,#FBFCF7_46%,#F5F9F2_100%)]" />
       <div aria-hidden="true" className="pointer-events-none absolute left-4 top-12 z-[1] h-48 w-48 rounded-full opacity-32 [background-image:radial-gradient(#93d6a8_1px,transparent_1.3px)] [background-size:11px_11px] md:left-14 lg:h-[14.5rem] lg:w-[14.5rem]" />
       <div aria-hidden="true" className="pointer-events-none absolute bottom-14 right-5 z-[1] h-40 w-40 rounded-full opacity-26 [background-image:radial-gradient(#93d6a8_1px,transparent_1.3px)] [background-size:11px_11px] lg:right-14 lg:h-[12.5rem] lg:w-[12.5rem]" />
@@ -100,9 +100,9 @@ function HeroProofStrip() {
               <div aria-hidden="true" className="absolute -left-12 bottom-0 h-24 w-24 rounded-full bg-[#15803D]/8 blur-3xl" />
               <div aria-hidden="true" className="absolute bottom-6 right-6 h-[5.5rem] w-24 opacity-18 [background-image:radial-gradient(#15803D_1px,transparent_1.2px)] [background-size:8px_8px]" />
               {card.subValue ? (
-                <div className="relative flex items-baseline justify-center gap-2 text-[#15803D]">
-                  <span className="text-[clamp(3.45rem,5.1vw,5.45rem)] font-extrabold leading-[0.84] tracking-[-0.06em]">{card.value}</span>
-                  <span className="max-w-[9rem] text-left text-[clamp(1.75rem,2.6vw,2.7rem)] font-extrabold leading-[0.86] tracking-[-0.055em]">{card.subValue}</span>
+                <div className="relative flex flex-col items-center justify-center text-[#15803D]">
+                  <span className="block text-[clamp(3.7rem,5.4vw,5.8rem)] font-extrabold leading-[0.84] tracking-[-0.06em]">{card.value}</span>
+                  <span className="mt-2 block text-center text-[clamp(1.45rem,2.2vw,2.25rem)] font-extrabold leading-[0.9] tracking-[-0.02em]">{card.subValue}</span>
                 </div>
               ) : (
                 <p className="relative text-[clamp(2.95rem,5.05vw,5.45rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-[#15803D]">{card.value}</p>
