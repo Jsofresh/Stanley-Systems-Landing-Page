@@ -33,23 +33,34 @@ export function InstallationSprintContactForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          source: "stanley_systems_website",
+          form_name: "start_sprint_contact",
+          offer: "ai_office_installation_sprint",
+          intent: "start_sprint_conversation",
+          page_url: typeof window !== "undefined" ? window.location.href : "/systems-installation-sprint",
+          submitted_at: new Date().toISOString(),
           name: formData.name,
+          business: formData.company,
+          company: formData.company,
           email: formData.email,
           phone: formData.phone,
-          company: formData.company,
-          business: formData.company,
-          businessType: formData.businessType,
           business_type: formData.businessType,
+          businessType: formData.businessType,
+          workflow_to_install_first: formData.workflow,
           problem: formData.workflow,
           main_issue: formData.workflow,
           message: formData.workflow,
+          sms_consent: formData.smsConsent,
           smsConsent: formData.smsConsent,
-          telegram_alert_type: "installation_sprint_contact",
-          form_type: "installation_sprint_contact",
-          source: "installation-sprint-page-form",
-          source_section: "installation_sprint_contact",
+          utm: typeof window !== "undefined" ? Object.fromEntries(["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].map((key) => [key.replace("utm_", ""), new URLSearchParams(window.location.search).get(key) || ""])) : {},
+          context: {
+            section: "start_sprint_contact",
+            cta_text: "Start the Sprint conversation",
+          },
+          telegram_alert_type: "start_sprint_contact",
+          form_type: "start_sprint_contact",
+          source_section: "start_sprint_contact",
           page: "/systems-installation-sprint",
-          submitted_at: new Date().toISOString(),
         }),
       })
 
@@ -59,25 +70,25 @@ export function InstallationSprintContactForm() {
       }
 
       setSubmitState("success")
-      setSubmitMessage(result?.message || "Thanks. Stanley Systems received your installation note and will reply soon.")
+      setSubmitMessage(result?.message || "Got it. Stanley Systems will review this and reply with the next step for starting the Sprint.")
       setFormData(initialForm)
     } catch (error) {
       setSubmitState("error")
-      setSubmitMessage(error instanceof Error ? `${error.message} If needed, email jaden@stanley-systems.com directly.` : "Something went wrong. If needed, email jaden@stanley-systems.com directly.")
+      setSubmitMessage(error instanceof Error ? `${error.message} Please try again or email Stanley Systems directly.` : "Something went wrong. Please try again or email Stanley Systems directly.")
     }
   }
 
   return (
-    <section id="installation-contact" className="bg-[#FBFCF7] px-4 pb-20 pt-4 sm:px-6 lg:px-8 lg:pb-28">
+    <section id="installation-contact" className="scroll-mt-[120px] bg-[#FBFCF7] px-4 pb-20 pt-4 sm:px-6 lg:px-8 lg:pb-28">
       <div className="mx-auto grid max-w-6xl gap-8 rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_24px_70px_rgba(7,29,58,0.08)] sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10">
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Installation contact</p>
-          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.7rem]">Tell us what you want installed.</h2>
+          <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Start the Sprint</p>
+          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.7rem]">Get in contact to start the Sprint.</h2>
           <p className="mt-5 max-w-xl text-lg font-semibold leading-8 text-[#536173]">
-            This is intentionally short. Send the workflow you want fixed and Stanley Systems will reply with the clean next step.
+            Send the workflow you want fixed first. Stanley Systems will review it and reply with the clean next step for starting your AI Office Installation Sprint.
           </p>
           <div className="mt-6 rounded-[1.5rem] border border-[#CFE8D5] bg-[#F4FBF5] p-5 text-sm font-bold leading-6 text-[#116832]">
-            Best fit: you already know the office workflow that needs to move faster — billing readiness, follow-up, records, handoffs, or job admin.
+            Best fit: you already know the office workflow that needs to move faster — billing readiness, estimate follow-up, customer handoffs, job notes, records, or admin routing.
           </div>
         </div>
 
@@ -126,7 +137,7 @@ export function InstallationSprintContactForm() {
           </label>
 
           <label className="block">
-            <span className="mb-2 block text-sm font-bold text-[#334B60]">What workflow do you want installed first?*</span>
+            <span className="mb-2 block text-sm font-bold text-[#334B60]">Workflow to install first*</span>
             <textarea
               rows={4}
               required
@@ -140,6 +151,7 @@ export function InstallationSprintContactForm() {
           <label className="flex items-start gap-3 rounded-2xl border border-[#DDEBE2] bg-[#FBFCF7] px-4 py-3 text-sm leading-6 text-[#536173]">
             <input
               type="checkbox"
+              required
               checked={formData.smsConsent}
               onChange={(event) => updateField("smsConsent", event.target.checked)}
               className="mt-1 h-4 w-4 rounded border border-[#cbd5c0] text-[#15803D] focus:ring-2 focus:ring-[#15803D]/20"
@@ -153,7 +165,7 @@ export function InstallationSprintContactForm() {
           </label>
 
           <button type="submit" disabled={submitState === "submitting"} className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-2xl bg-[#15803D] px-6 py-4 text-base font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832] disabled:cursor-not-allowed disabled:opacity-70">
-            {submitState === "submitting" ? "Sending..." : "Send installation note"}
+            {submitState === "submitting" ? "Sending..." : "Start the Sprint conversation"}
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </button>
         </form>

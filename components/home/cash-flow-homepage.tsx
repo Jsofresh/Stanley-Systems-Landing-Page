@@ -76,6 +76,37 @@ function HeroImageSlideshow() {
   )
 }
 
+
+function HeroProofStrip() {
+  const proofCards = [
+    { value: "520+", label: "hours of admin drag targeted each year" },
+    { value: "95%", label: "less manual work on installed workflows" },
+    { value: "Same team", label: "more jobs processed before the next admin hire" },
+  ]
+
+  return (
+    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="relative isolate overflow-hidden bg-[#FBFCF7] px-5 py-8 text-[#071D3A] md:px-8 md:py-10 lg:px-10">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 -top-16 -z-20 h-32 bg-gradient-to-b from-[#071422] via-[#eef8ee] to-[#FBFCF7]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_14%_10%,rgba(83,217,134,0.20),transparent_28%),radial-gradient(circle_at_88%_25%,rgba(83,217,134,0.16),transparent_30%),linear-gradient(180deg,#FBFCF7_0%,#F8FBF4_100%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute left-6 top-8 -z-10 h-28 w-28 rounded-full opacity-35 [background-image:radial-gradient(#93d6a8_1px,transparent_1.2px)] [background-size:10px_10px] md:left-16" />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-4 right-8 -z-10 h-24 w-24 rounded-full opacity-30 [background-image:radial-gradient(#93d6a8_1px,transparent_1.2px)] [background-size:10px_10px]" />
+
+      <div className="mx-auto max-w-[88rem]">
+        <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
+          {proofCards.map((card) => (
+            <article key={card.value} className="relative overflow-hidden rounded-[1.65rem] border border-[#DDEBE2] bg-white px-6 py-7 shadow-[0_18px_48px_rgba(7,29,58,0.07)] sm:px-7 lg:px-8 lg:py-8">
+              <div aria-hidden="true" className="absolute -right-8 -top-10 h-24 w-24 rounded-full bg-[#53D986]/16 blur-2xl" />
+              <div aria-hidden="true" className="absolute bottom-4 right-5 h-16 w-20 opacity-20 [background-image:radial-gradient(#15803D_1px,transparent_1.2px)] [background-size:8px_8px]" />
+              <p className="relative text-[clamp(2.65rem,5vw,4.5rem)] font-semibold leading-[0.9] tracking-[-0.035em] text-[#15803D]">{card.value}</p>
+              <p className="relative mt-4 max-w-[18rem] text-[1.05rem] font-semibold leading-6 text-[#293D52]">{card.label}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function CalculatorSpine() {
   return (
     <PageSection id="calculator" className="relative isolate min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-12 text-[#071D3A] md:py-14 lg:grid lg:min-h-screen lg:items-center lg:py-0" fullDesktop={false}>
@@ -183,6 +214,7 @@ export function CashFlowHomepage() {
           <SoftwareLogoMarquee />
         </div>
       </section>
+      <HeroProofStrip />
       <CalculatorSpine />
       <AssessmentSection />
       <SprintSection />
