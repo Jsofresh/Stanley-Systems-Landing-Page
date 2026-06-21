@@ -1,0 +1,55 @@
+{
+  "base": "https://stanley-systems.com",
+  "events": [
+    {
+      "name": "desktop-home",
+      "url": "https://stanley-systems.com/",
+      "status": 200,
+      "title": "Stanley Systems | AI Office Map",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/qa/browser-screenshots/desktop-home.png"
+    },
+    {
+      "name": "desktop-ai-office-map",
+      "url": "https://stanley-systems.com/ai-office-map",
+      "status": 200,
+      "title": "Stanley Systems | AI Office Map",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/qa/browser-screenshots/desktop-ai-office-map.png"
+    },
+    {
+      "name": "desktop-pricing",
+      "url": "https://stanley-systems.com/pricing",
+      "status": 200,
+      "title": "Pricing | AI Office Map | Stanley Systems",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/qa/browser-screenshots/desktop-pricing.png"
+    },
+    {
+      "name": "desktop-contact",
+      "url": "https://stanley-systems.com/contact",
+      "status": 200,
+      "title": "Stanley Systems | AI Office Map",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/qa/browser-screenshots/desktop-contact.png"
+    },
+    {
+      "name": "mobile-home",
+      "url": "https://stanley-systems.com/",
+      "status": 200,
+      "title": "Stanley Systems | AI Office Map",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/qa/browser-screenshots/mobile-home.png"
+    },
+    {
+      "name": "mobile-blueprint",
+      "url": "https://stanley-systems.com/ai-office-blueprint",
+      "status": 200,
+      "title": "Free AI Office Blueprint | Stanley Systems",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/qa/browser-screenshots/mobile-blueprint.png"
+    },
+    {
+      "name": "mobile-pricing",
+      "url": "https://stanley-systems.com/pricing",
+      "status": 200,
+      "title": "Pricing | AI Office Map | Stanley Systems",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/qa/browser-screenshots/mobile-pricing.png"
+    }
+  ],
+  "failures": []
+}
