@@ -81,24 +81,25 @@ function HeroProofStrip() {
   const proofCards = [
     { value: "520+", label: "hours of admin drag targeted each year" },
     { value: "95%", label: "less manual work on installed workflows" },
-    { value: "Same team", label: "more jobs processed before the next admin hire" },
+    { value: "1 hire delayed", label: "Remove enough office drag to avoid the next admin hire." },
   ]
 
   return (
-    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="relative isolate overflow-hidden bg-[#FBFCF7] px-5 py-8 text-[#071D3A] md:px-8 md:py-10 lg:px-10">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 -top-16 -z-20 h-32 bg-gradient-to-b from-[#071422] via-[#eef8ee] to-[#FBFCF7]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_14%_10%,rgba(83,217,134,0.20),transparent_28%),radial-gradient(circle_at_88%_25%,rgba(83,217,134,0.16),transparent_30%),linear-gradient(180deg,#FBFCF7_0%,#F8FBF4_100%)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute left-6 top-8 -z-10 h-28 w-28 rounded-full opacity-35 [background-image:radial-gradient(#93d6a8_1px,transparent_1.2px)] [background-size:10px_10px] md:left-16" />
-      <div aria-hidden="true" className="pointer-events-none absolute bottom-4 right-8 -z-10 h-24 w-24 rounded-full opacity-30 [background-image:radial-gradient(#93d6a8_1px,transparent_1.2px)] [background-size:10px_10px]" />
+    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="relative isolate flex min-h-[500px] items-center overflow-hidden bg-[#FBFCF7] px-5 py-16 text-[#071D3A] md:px-8 md:py-20 lg:min-h-[560px] lg:px-10 lg:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 -top-20 -z-20 h-44 bg-gradient-to-b from-[#071422] via-[#e9f7ed] to-[#FBFCF7]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_16%_18%,rgba(83,217,134,0.26),transparent_32%),radial-gradient(circle_at_84%_30%,rgba(83,217,134,0.22),transparent_34%),radial-gradient(circle_at_50%_100%,rgba(7,29,58,0.06),transparent_42%),linear-gradient(180deg,#F2FBF1_0%,#FBFCF7_47%,#F6FAF2_100%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute left-4 top-12 -z-10 h-52 w-52 rounded-full opacity-35 [background-image:radial-gradient(#93d6a8_1px,transparent_1.3px)] [background-size:11px_11px] md:left-14 lg:h-64 lg:w-64" />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-14 right-5 -z-10 h-44 w-44 rounded-full opacity-28 [background-image:radial-gradient(#93d6a8_1px,transparent_1.3px)] [background-size:11px_11px] lg:right-14 lg:h-56 lg:w-56" />
 
-      <div className="mx-auto max-w-[88rem]">
-        <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
+      <div className="mx-auto w-full max-w-[92rem]">
+        <div className="grid gap-5 md:grid-cols-3 lg:gap-8">
           {proofCards.map((card) => (
-            <article key={card.value} className="relative overflow-hidden rounded-[1.65rem] border border-[#DDEBE2] bg-white px-6 py-7 shadow-[0_18px_48px_rgba(7,29,58,0.07)] sm:px-7 lg:px-8 lg:py-8">
-              <div aria-hidden="true" className="absolute -right-8 -top-10 h-24 w-24 rounded-full bg-[#53D986]/16 blur-2xl" />
-              <div aria-hidden="true" className="absolute bottom-4 right-5 h-16 w-20 opacity-20 [background-image:radial-gradient(#15803D_1px,transparent_1.2px)] [background-size:8px_8px]" />
-              <p className="relative text-[clamp(2.65rem,5vw,4.5rem)] font-semibold leading-[0.9] tracking-[-0.035em] text-[#15803D]">{card.value}</p>
-              <p className="relative mt-4 max-w-[18rem] text-[1.05rem] font-semibold leading-6 text-[#293D52]">{card.label}</p>
+            <article key={card.value} className="relative flex min-h-[210px] flex-col justify-center overflow-hidden rounded-[1.9rem] border border-[#D8E8DE] bg-white/94 px-7 py-9 shadow-[0_26px_70px_rgba(7,29,58,0.10)] sm:px-8 md:min-h-[230px] lg:min-h-[245px] lg:px-9 lg:py-10">
+              <div aria-hidden="true" className="absolute -right-10 -top-12 h-32 w-32 rounded-full bg-[#53D986]/18 blur-2xl" />
+              <div aria-hidden="true" className="absolute -left-12 bottom-0 h-28 w-28 rounded-full bg-[#15803D]/8 blur-3xl" />
+              <div aria-hidden="true" className="absolute bottom-6 right-6 h-24 w-28 opacity-20 [background-image:radial-gradient(#15803D_1px,transparent_1.2px)] [background-size:8px_8px]" />
+              <p className="relative text-[clamp(3.25rem,5.6vw,6.05rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-[#15803D]">{card.value}</p>
+              <p className="relative mt-5 max-w-[21rem] text-[1.08rem] font-extrabold leading-6 text-[#20344A] sm:text-[1.15rem] lg:text-[1.2rem] lg:leading-7">{card.label}</p>
             </article>
           ))}
         </div>
