@@ -85,10 +85,10 @@ function HeroProofStrip() {
   ]
 
   return (
-    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="relative isolate flex min-h-[500px] items-center overflow-hidden bg-[#FBFCF7] px-5 py-16 text-center text-[#071D3A] md:px-8 md:py-20 lg:min-h-[555px] lg:px-10 lg:py-24">
+    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="relative isolate flex min-h-[500px] items-center overflow-hidden bg-transparent px-5 py-16 text-center text-[#071D3A] md:px-8 md:py-20 lg:min-h-[555px] lg:px-10 lg:py-24">
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-44 bg-gradient-to-b from-[#071422] via-[#dff5e6]/70 to-transparent" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent via-[#F6FAF2]/78 to-[#f5f9f2]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_16%_18%,rgba(83,217,134,0.24),transparent_32%),radial-gradient(circle_at_84%_30%,rgba(83,217,134,0.20),transparent_34%),radial-gradient(circle_at_50%_100%,rgba(7,29,58,0.05),transparent_42%),linear-gradient(180deg,#EAF8ED_0%,#FBFCF7_46%,#F5F9F2_100%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-[-1px] z-[1] h-72 bg-gradient-to-b from-transparent via-[#F6FAF2]/52 to-transparent" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_16%_18%,rgba(83,217,134,0.24),transparent_32%),radial-gradient(circle_at_84%_30%,rgba(83,217,134,0.20),transparent_34%),radial-gradient(circle_at_50%_92%,rgba(7,29,58,0.05),transparent_48%),linear-gradient(180deg,#EAF8ED_0%,rgba(251,252,247,0.98)_46%,rgba(245,249,242,0.76)_78%,rgba(245,249,242,0)_100%)]" />
       <div aria-hidden="true" className="pointer-events-none absolute left-4 top-12 z-[1] h-48 w-48 rounded-full opacity-32 [background-image:radial-gradient(#93d6a8_1px,transparent_1.3px)] [background-size:11px_11px] md:left-14 lg:h-[14.5rem] lg:w-[14.5rem]" />
       <div aria-hidden="true" className="pointer-events-none absolute bottom-14 right-5 z-[1] h-40 w-40 rounded-full opacity-26 [background-image:radial-gradient(#93d6a8_1px,transparent_1.3px)] [background-size:11px_11px] lg:right-14 lg:h-[12.5rem] lg:w-[12.5rem]" />
 
@@ -118,9 +118,10 @@ function HeroProofStrip() {
 
 function CalculatorSpine() {
   return (
-    <PageSection id="calculator" className="relative isolate min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-12 text-[#071D3A] md:py-14 lg:grid lg:min-h-screen lg:items-center lg:py-0" fullDesktop={false}>
+    <PageSection id="calculator" className="relative isolate -mt-28 min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] pt-40 pb-12 text-[#071D3A] md:-mt-32 md:pt-44 md:pb-14 lg:-mt-40 lg:grid lg:min-h-screen lg:items-center lg:pt-40 lg:pb-0" fullDesktop={false}>
       <Image src={uploadedHomeImages.checklistLaptop.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-[64%_center] lg:object-[68%_center]" priority aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(251,252,247,0.70)_0%,rgba(251,252,247,0.52)_25%,rgba(251,252,247,0.24)_52%,rgba(251,252,247,0.04)_100%),linear-gradient(180deg,rgba(251,252,247,0.20)_0%,rgba(245,249,242,0.01)_48%,rgba(238,246,238,0.16)_100%),radial-gradient(circle_at_18%_50%,rgba(251,252,247,0.34),transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34%] bg-[linear-gradient(180deg,rgba(245,249,242,0.82)_0%,rgba(245,249,242,0.46)_18%,rgba(245,249,242,0.15)_36%,rgba(245,249,242,0)_62%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(251,252,247,0.70)_0%,rgba(251,252,247,0.52)_25%,rgba(251,252,247,0.24)_52%,rgba(251,252,247,0.04)_100%),linear-gradient(180deg,rgba(245,249,242,0.06)_0%,rgba(245,249,242,0)_36%,rgba(238,246,238,0.16)_100%),radial-gradient(circle_at_18%_50%,rgba(251,252,247,0.34),transparent_42%)]" />
       <div className="mx-auto grid w-full max-w-[92rem] items-center lg:translate-y-8">
         <div className="w-full max-w-[760px] px-1 py-4 sm:px-3 md:px-5 lg:max-w-[920px] lg:px-0 lg:py-0">
           <h2 className="text-[clamp(2.45rem,7.2vw,4.95rem)] font-extrabold leading-[0.94] tracking-[-0.03em] text-[#071D3A] lg:text-[clamp(3.05rem,4.8vw,4.05rem)] lg:leading-[0.92]">
