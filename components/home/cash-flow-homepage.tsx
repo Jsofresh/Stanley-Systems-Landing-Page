@@ -85,17 +85,20 @@ function HeroProofStrip() {
   ]
 
   return (
-    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="relative isolate flex min-h-[465px] items-center overflow-hidden bg-[#FBFCF7] px-5 pt-16 pb-12 text-center text-[#071D3A] md:px-8 md:pt-20 md:pb-16 lg:min-h-[520px] lg:px-10 lg:pt-24 lg:pb-[4.75rem]">
+    <section data-nav-theme="light" data-audit-section="home.hero-proof-strip" className="stanley-proof-strip relative isolate flex min-h-[465px] items-center overflow-hidden bg-[#FBFCF7] px-5 pt-16 pb-12 text-center text-[#071D3A] md:px-8 md:pt-20 md:pb-16 lg:min-h-[520px] lg:px-10 lg:pt-24 lg:pb-[4.75rem]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-44 bg-gradient-to-b from-[#071422] via-[#dff5e6]/70 to-transparent" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-52 bg-[linear-gradient(180deg,transparent_0%,rgba(242,247,239,0.62)_32%,rgba(231,239,231,0.86)_70%,#f5f9f2_100%),radial-gradient(circle_at_70%_100%,rgba(111,126,113,0.16),transparent_46%),radial-gradient(circle_at_24%_88%,rgba(83,217,134,0.10),transparent_40%)]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_16%_18%,rgba(83,217,134,0.24),transparent_32%),radial-gradient(circle_at_84%_30%,rgba(83,217,134,0.20),transparent_34%),radial-gradient(circle_at_50%_100%,rgba(90,108,93,0.07),transparent_44%),linear-gradient(180deg,#EAF8ED_0%,#FBFCF7_42%,#EDF5ED_100%)]" />
+      <div aria-hidden="true" className="stanley-proof-glow pointer-events-none absolute left-[10%] top-[22%] z-[1] h-72 w-72 rounded-full bg-[#53D986]/18 blur-[76px]" />
+      <div aria-hidden="true" className="stanley-proof-glow stanley-proof-glow--secondary pointer-events-none absolute right-[9%] bottom-[16%] z-[1] h-64 w-64 rounded-full bg-[#15803D]/12 blur-[82px]" />
+      <div aria-hidden="true" className="stanley-proof-texture pointer-events-none absolute inset-0 z-[1] opacity-[0.38]" />
       <div aria-hidden="true" className="pointer-events-none absolute left-4 top-12 z-[1] h-48 w-48 rounded-full opacity-32 [background-image:radial-gradient(#93d6a8_1px,transparent_1.3px)] [background-size:11px_11px] md:left-14 lg:h-[14.5rem] lg:w-[14.5rem]" />
       <div aria-hidden="true" className="pointer-events-none absolute bottom-14 right-5 z-[1] h-40 w-40 rounded-full opacity-26 [background-image:radial-gradient(#93d6a8_1px,transparent_1.3px)] [background-size:11px_11px] lg:right-14 lg:h-[12.5rem] lg:w-[12.5rem]" />
 
       <div className="relative z-10 mx-auto w-full max-w-[82.8rem]">
         <div className="grid gap-5 md:grid-cols-3 lg:gap-7">
           {proofCards.map((card) => (
-            <article key={card.value} className="relative flex min-h-[190px] flex-col items-center justify-center overflow-hidden rounded-[1.75rem] border border-[#D8E8DE] bg-white/94 px-6 py-8 shadow-[0_23px_63px_rgba(7,29,58,0.09)] sm:px-7 md:min-h-[207px] lg:min-h-[220px] lg:px-8 lg:py-9">
+            <article key={card.value} className="stanley-proof-card relative flex min-h-[190px] flex-col items-center justify-center overflow-hidden rounded-[1.75rem] border border-[#D8E8DE] bg-white/94 px-6 py-8 shadow-[0_23px_63px_rgba(7,29,58,0.09)] sm:px-7 md:min-h-[207px] lg:min-h-[220px] lg:px-8 lg:py-9">
               <div aria-hidden="true" className="absolute -right-10 -top-12 h-28 w-28 rounded-full bg-[#53D986]/18 blur-2xl" />
               <div aria-hidden="true" className="absolute -left-12 bottom-0 h-24 w-24 rounded-full bg-[#15803D]/8 blur-3xl" />
               <div aria-hidden="true" className="absolute bottom-6 right-6 h-[5.5rem] w-24 opacity-18 [background-image:radial-gradient(#15803D_1px,transparent_1.2px)] [background-size:8px_8px]" />
