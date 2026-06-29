@@ -54,13 +54,13 @@ function HeroImageSlideshow() {
     <>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden lg:hidden">
         <div className="absolute inset-0 bg-[#071422]" />
-        <div className="absolute inset-0 overflow-hidden opacity-80 blur-[0.25px] saturate-[0.9] sm:bottom-auto sm:left-auto sm:right-[-14%] sm:top-[50%] sm:h-[86svh] sm:w-[78vw] sm:-translate-y-1/2 sm:opacity-100 sm:blur-[0.35px] sm:saturate-[0.94]">
+        <div className="absolute inset-0 overflow-hidden opacity-100 saturate-[0.96] sm:bottom-auto sm:left-auto sm:right-[-14%] sm:top-[50%] sm:h-[86svh] sm:w-[78vw] sm:-translate-y-1/2 sm:blur-[0.35px] sm:saturate-[0.94]">
           {mobileHeroSlideshowImages.map((image, index) => (
             <Image key={`mobile-${image.src}`} src={image.src} alt="" fill priority={index === 0} sizes="100vw" className="stanley-hero-slideshow-image stanley-hero-slideshow-image--mobile object-cover" style={{ animationDelay: `${index * 6}s`, objectPosition: image.objectPosition }} />
           ))}
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.96)_32%,rgba(7,20,34,0.82)_58%,rgba(7,20,34,0.72)_100%)] sm:bg-[linear-gradient(90deg,#071422_0%,#071422_42%,rgba(7,20,34,0.76)_56%,rgba(7,20,34,0.28)_74%,rgba(7,20,34,0.04)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#071422_0%,rgba(7,20,34,0.68)_14%,rgba(7,20,34,0.38)_45%,rgba(7,20,34,0.82)_100%)] sm:bg-[linear-gradient(180deg,#071422_0%,rgba(7,20,34,0.52)_10%,rgba(7,20,34,0.04)_36%,rgba(7,20,34,0.16)_78%,#071422_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,0.9)_34%,rgba(7,20,34,0.56)_68%,rgba(7,20,34,0.28)_100%)] sm:bg-[linear-gradient(90deg,#071422_0%,#071422_42%,rgba(7,20,34,0.76)_56%,rgba(7,20,34,0.28)_74%,rgba(7,20,34,0.04)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#071422_0%,rgba(7,20,34,0.54)_18%,rgba(7,20,34,0.14)_46%,rgba(7,20,34,0.34)_82%,rgba(7,20,34,0.7)_100%)] sm:bg-[linear-gradient(180deg,#071422_0%,rgba(7,20,34,0.52)_10%,rgba(7,20,34,0.04)_36%,rgba(7,20,34,0.16)_78%,#071422_100%)]" />
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[70%] overflow-hidden lg:block">
         <div className="absolute inset-y-0 right-[-10%] w-[112%] overflow-hidden" style={{ WebkitMaskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 16%, #000 34%, #000 82%, rgba(0,0,0,0.42) 92%, transparent 100%)", maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 16%, #000 34%, #000 82%, rgba(0,0,0,0.42) 92%, transparent 100%)" }}>
@@ -211,12 +211,12 @@ function FinalOfficeCTA() {
 export function CashFlowHomepage() {
   return (
     <>
-      <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" className="relative isolate flex min-h-[430px] items-start overflow-hidden bg-[#071422] px-5 pb-8 pt-[96px] text-white sm:min-h-[100svh] sm:pb-12 sm:pt-[108px] md:items-center md:px-8 md:pb-32 md:pt-[132px] lg:px-10 lg:pb-36 lg:pt-[150px]">
+      <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" className="relative isolate flex min-h-[100svh] items-start overflow-hidden bg-[#071422] px-5 pb-10 pt-[100px] text-white sm:pb-12 sm:pt-[108px] md:items-center md:px-8 md:pb-32 md:pt-[132px] lg:px-10 lg:pb-36 lg:pt-[150px]">
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_74%_28%,rgba(83,217,134,0.16),transparent_30%),radial-gradient(circle_at_8%_12%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
         <HeroImageSlideshow />
         <div className="mx-auto w-full max-w-[92rem]">
           <div className="relative z-10 max-w-[900px]">
-            <h1 className="max-w-[900px] text-balance text-[clamp(1.9rem,9vw,2.75rem)] font-extrabold leading-[0.96] tracking-[-0.025em] text-white sm:translate-y-10 sm:text-[clamp(2.05rem,5vw,5.25rem)] sm:leading-[0.93]">Make your office team faster, sharper, and more profitable with AI.</h1>
+            <h1 className="max-w-[900px] text-balance text-[clamp(1.95rem,9.6vw,3rem)] font-extrabold leading-[0.95] tracking-[-0.025em] text-white drop-shadow-[0_12px_38px_rgba(0,0,0,0.38)] sm:translate-y-10 sm:text-[clamp(2.05rem,5vw,5.25rem)] sm:leading-[0.93]">Make your office team faster, sharper, and more profitable with AI.</h1>
             <div className="mt-6 flex flex-col gap-3 sm:mt-24 sm:flex-row sm:gap-4">
               <CTALink href={blueprintHref} kind="systems" location="home_hero_primary" ctaLabel="Get the Free Blueprint" className={`${greenButton} min-h-[52px] px-6 py-3 text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02] sm:min-h-[58px] sm:px-8 sm:py-4 sm:text-[1.05rem]`}>Get the Free Blueprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
               <CTALink href={mapHref} kind="systems" location="home_hero_secondary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-5 py-3 text-sm font-extrabold text-white shadow-[0_12px_26px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-h-[46px] sm:self-center">Book the AI Office Map</CTALink>
