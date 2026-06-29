@@ -54,7 +54,7 @@ function HeroImageSlideshow() {
     <>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden lg:hidden">
         <div className="absolute inset-0 bg-[#071422]" />
-        <div className="absolute right-[-14%] top-[50%] h-[86svh] w-[78vw] -translate-y-1/2 overflow-hidden opacity-100 blur-[0.35px] saturate-[0.94]" style={{ WebkitMaskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 12%, rgba(0,0,0,0.85) 25%, #000 38%, #000 100%)", maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 12%, rgba(0,0,0,0.85) 25%, #000 38%, #000 100%)" }}>
+        <div className="absolute right-[-18%] top-[58%] h-[560px] w-[82vw] -translate-y-1/2 overflow-hidden opacity-100 blur-[0.35px] saturate-[0.94] sm:right-[-14%] sm:top-[50%] sm:h-[86svh] sm:w-[78vw]" style={{ WebkitMaskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 12%, rgba(0,0,0,0.85) 25%, #000 38%, #000 100%)", maskImage: "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 12%, rgba(0,0,0,0.85) 25%, #000 38%, #000 100%)" }}>
           {mobileHeroSlideshowImages.map((image, index) => (
             <Image key={`mobile-${image.src}`} src={image.src} alt="" fill priority={index === 0} sizes="78vw" className="stanley-hero-slideshow-image stanley-hero-slideshow-image--mobile object-cover" style={{ animationDelay: `${index * 6}s`, objectPosition: image.objectPosition }} />
           ))}
@@ -121,20 +121,20 @@ function HeroProofStrip() {
 
 function CalculatorSpine() {
   return (
-    <PageSection id="calculator" className="relative isolate min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-12 text-[#071D3A] md:py-14 lg:grid lg:min-h-screen lg:items-center lg:py-0" fullDesktop={false}>
+    <PageSection id="calculator" className="relative isolate min-h-[calc(100svh-104px)] scroll-mt-[120px] overflow-hidden bg-[#f5f9f2] py-10 text-[#071D3A] md:py-14 lg:grid lg:min-h-screen lg:items-center lg:py-0" fullDesktop={false}>
       <Image src={uploadedHomeImages.checklistLaptop.src} alt="" fill sizes="100vw" className="-z-20 object-cover object-[64%_center] lg:object-[68%_center]" priority aria-hidden="true" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[210px] bg-gradient-to-b from-[#f5f9f2] via-[#f5f9f2]/72 to-transparent md:h-[220px]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(251,252,247,0.70)_0%,rgba(251,252,247,0.52)_25%,rgba(251,252,247,0.24)_52%,rgba(251,252,247,0.04)_100%),linear-gradient(180deg,rgba(251,252,247,0.34)_0%,rgba(245,249,242,0.06)_26%,rgba(245,249,242,0.01)_48%,rgba(238,246,238,0.16)_100%),radial-gradient(circle_at_18%_50%,rgba(251,252,247,0.34),transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[250px] bg-gradient-to-b from-[#f5f9f2] via-[#f5f9f2]/82 to-transparent md:h-[220px]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(251,252,247,0.96)_0%,rgba(251,252,247,0.88)_36%,rgba(251,252,247,0.74)_62%,rgba(238,246,238,0.38)_100%)] md:bg-[linear-gradient(90deg,rgba(251,252,247,0.70)_0%,rgba(251,252,247,0.52)_25%,rgba(251,252,247,0.24)_52%,rgba(251,252,247,0.04)_100%),linear-gradient(180deg,rgba(251,252,247,0.34)_0%,rgba(245,249,242,0.06)_26%,rgba(245,249,242,0.01)_48%,rgba(238,246,238,0.16)_100%),radial-gradient(circle_at_18%_50%,rgba(251,252,247,0.34),transparent_42%)]" />
       <div className="mx-auto grid w-full max-w-[92rem] items-center lg:translate-y-8">
-        <div className="w-full max-w-[760px] px-1 py-4 sm:px-3 md:px-5 lg:max-w-[920px] lg:px-0 lg:py-0">
-          <h2 className="text-[clamp(2.45rem,7.2vw,4.95rem)] font-extrabold leading-[0.94] tracking-[-0.03em] text-[#071D3A] lg:text-[clamp(3.05rem,4.8vw,4.05rem)] lg:leading-[0.92]">
+        <div className="w-full max-w-[760px] rounded-[1.65rem] bg-[#FBFCF7]/88 px-5 py-6 shadow-[0_22px_70px_rgba(7,29,58,0.08)] backdrop-blur-[2px] sm:px-6 md:bg-transparent md:px-5 md:py-4 md:shadow-none md:backdrop-blur-0 lg:max-w-[920px] lg:px-0 lg:py-0">
+          <h2 className="text-[clamp(2.1rem,9vw,3rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-[#071D3A] sm:text-[clamp(2.45rem,7.2vw,4.95rem)] lg:text-[clamp(3.05rem,4.8vw,4.05rem)] lg:leading-[0.92]">
             <span className="block lg:hidden">Before you hire another admin, find the office work AI should clean up first.</span>
             <span className="hidden whitespace-nowrap lg:block">Before you hire another admin,</span>
             <span className="hidden whitespace-nowrap lg:block">find the office work</span>
             <span className="hidden whitespace-nowrap lg:block">AI should clean up first.</span>
           </h2>
-          <p className="mt-5 max-w-[650px] text-base font-semibold leading-7 text-[#35475d] sm:text-lg md:text-xl md:leading-8 lg:mt-4">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the fixes, tools, prompts, and install priority.</p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center lg:mt-6">
+          <p className="mt-5 hidden max-w-[650px] text-base font-semibold leading-7 text-[#35475d] md:block md:text-xl md:leading-8 lg:mt-4">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the fixes, tools, prompts, and install priority.</p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center lg:mt-6">
             <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_16px_36px_rgba(10,85,38,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Book the AI Office Map <ArrowRight className="h-4 w-4" /></CTALink>
             <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d5e5da] bg-white px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] transition hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Get the Free Blueprint</CTALink>
           </div>
@@ -211,15 +211,15 @@ function FinalOfficeCTA() {
 export function CashFlowHomepage() {
   return (
     <>
-      <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" className="relative isolate flex min-h-[100svh] items-start overflow-hidden bg-[#071422] px-5 pb-12 pt-[108px] text-white md:items-center md:px-8 md:pb-32 md:pt-[132px] lg:px-10 lg:pb-36 lg:pt-[150px]">
+      <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" className="relative isolate flex min-h-[690px] items-start overflow-hidden bg-[#071422] px-5 pb-10 pt-[100px] text-white sm:min-h-[100svh] sm:pb-12 sm:pt-[108px] md:items-center md:px-8 md:pb-32 md:pt-[132px] lg:px-10 lg:pb-36 lg:pt-[150px]">
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_74%_28%,rgba(83,217,134,0.16),transparent_30%),radial-gradient(circle_at_8%_12%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
         <HeroImageSlideshow />
         <div className="mx-auto w-full max-w-[92rem]">
           <div className="relative z-10 max-w-[900px]">
-            <h1 className="max-w-[900px] text-balance text-[clamp(2.05rem,5vw,5.25rem)] font-extrabold leading-[0.93] tracking-[-0.025em] text-white sm:translate-y-10">Make your office team faster, sharper, and more profitable with AI.</h1>
-            <div className="mt-7 flex flex-col gap-4 sm:mt-24 sm:flex-row">
-              <CTALink href={blueprintHref} kind="systems" location="home_hero_primary" ctaLabel="Get the Free Blueprint" className={`${greenButton} px-8 text-[1.05rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02]`}>Get the Free Blueprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-              <CTALink href={mapHref} kind="systems" location="home_hero_secondary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-5 py-3 text-sm font-extrabold text-white shadow-[0_12px_26px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:self-center">Book the AI Office Map</CTALink>
+            <h1 className="max-w-[900px] text-balance text-[clamp(1.95rem,10vw,3.1rem)] font-extrabold leading-[0.95] tracking-[-0.025em] text-white sm:translate-y-10 sm:text-[clamp(2.05rem,5vw,5.25rem)] sm:leading-[0.93]">Make your office team faster, sharper, and more profitable with AI.</h1>
+            <div className="mt-6 flex flex-col gap-3 sm:mt-24 sm:flex-row sm:gap-4">
+              <CTALink href={blueprintHref} kind="systems" location="home_hero_primary" ctaLabel="Get the Free Blueprint" className={`${greenButton} min-h-[54px] px-6 py-3 text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02] sm:min-h-[58px] sm:px-8 sm:py-4 sm:text-[1.05rem]`}>Get the Free Blueprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+              <CTALink href={mapHref} kind="systems" location="home_hero_secondary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[50px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-5 py-3 text-sm font-extrabold text-white shadow-[0_12px_26px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-h-[46px] sm:self-center">Book the AI Office Map</CTALink>
             </div>
           </div>
         </div>
