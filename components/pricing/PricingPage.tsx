@@ -85,7 +85,7 @@ function BulletList({ items }: { items: string[] }) {
 export function PricingPage({ searchParams: _searchParams }: { searchParams: PricingSearchParams }) {
   return (
     <main className="min-h-screen overflow-hidden bg-[#f7f7f4] text-[#102033]">
-      <section className="relative isolate min-h-[720px] overflow-hidden bg-[#FBFCF7] px-4 pb-20 pt-[8.5rem] text-[#071D3A] sm:px-6 sm:pt-[9rem] lg:px-8 lg:pb-24 lg:pt-[9.4rem]">
+      <section className="relative isolate min-h-[820px] overflow-hidden bg-[#FBFCF7] px-4 pb-20 pt-[8.5rem] text-[#071D3A] sm:min-h-[860px] sm:px-6 sm:pt-[9rem] lg:min-h-[880px] lg:px-8 lg:pb-24 lg:pt-[9.4rem]">
         <Image
           src="/images/uploaded/ai-office-ops/ai-office-ops-laptop-mockup-enhanced.jpg"
           alt=""
