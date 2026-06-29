@@ -211,7 +211,7 @@ function FinalOfficeCTA() {
 export function CashFlowHomepage() {
   return (
     <>
-      <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" className="relative isolate flex min-h-[100svh] items-start overflow-hidden bg-[#071422] px-5 pb-10 pt-[100px] text-white sm:pb-12 sm:pt-[108px] md:items-center md:px-8 md:pb-32 md:pt-[132px] lg:px-10 lg:pb-36 lg:pt-[150px]">
+      <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" className="relative isolate flex min-h-[100svh] items-start overflow-hidden bg-[#071422] px-5 pb-10 pt-[34svh] text-white sm:pb-12 sm:pt-[108px] md:items-center md:px-8 md:pb-32 md:pt-[132px] lg:px-10 lg:pb-36 lg:pt-[150px]">
         <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_74%_28%,rgba(83,217,134,0.16),transparent_30%),radial-gradient(circle_at_8%_12%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,#071422_0%,#05101c_100%)]" />
         <HeroImageSlideshow />
         <div className="mx-auto w-full max-w-[92rem]">
