@@ -7,7 +7,8 @@ import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 import { AiOfficeMapInfoForm } from "@/components/ai-office-map-info-form"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-const primary = "inline-flex min-h-14 items-center justify-center rounded-full bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
+const primary = "inline-flex min-h-[3.75rem] items-center justify-center rounded-full bg-[#15803D] px-[2.14rem] py-[1.07rem] text-[1.07rem] font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
+const secondary = "inline-flex min-h-[3.75rem] items-center justify-center rounded-full border border-white/30 bg-white/12 px-[2.14rem] py-[1.07rem] text-[1.07rem] font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
 const auditCheckoutHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
 export const metadata: Metadata = {
@@ -36,15 +37,13 @@ export default function Page() {
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,29,58,0.90)_0%,rgba(7,29,58,0.78)_44%,rgba(7,29,58,0.44)_76%,rgba(7,29,58,0.30)_100%)]" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_14%,rgba(83,217,134,0.16),transparent_34%),linear-gradient(180deg,rgba(7,29,58,0.02)_0%,rgba(7,29,58,0.62)_100%)]" />
           <div className="w-full px-4 sm:px-6 lg:px-0">
-            <div className="max-w-[900px] lg:ml-[15vw]">
-              <p className="mb-5 text-sm font-black uppercase tracking-[0.22em] text-[#8DF3A4]">AI Profit Map</p>
-              <h1 className="text-balance text-[3rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.6rem] sm:tracking-[-0.045em]">AI Profit Map</h1>
-              <p className="mt-6 max-w-[780px] text-xl font-semibold leading-9 text-white/84">Find where office work is costing time, cash, and customer follow-up. Then get the AI fix plan to make the business more profitable.</p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Buy the $97 AI Profit Map <ArrowRight className="ml-2 h-5 w-5" /></a>
-                <Link href="/ai-office-blueprint" className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/30 bg-white/12 px-8 py-4 text-base font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18">Get the Free Blueprint</Link>
+            <div className="max-w-[963px] lg:ml-[5vw]">
+              <h1 className="text-balance text-[3.21rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.99rem] sm:tracking-[-0.045em]">AI Profit Map</h1>
+              <p className="mt-6 max-w-[835px] text-[1.3375rem] font-semibold leading-[2.4rem] text-white/84">Find where office work is costing time, cash, and customer follow-up. Then get the AI fix plan to make the business more profitable.</p>
+              <div className="mt-[2.14rem] flex flex-col gap-[1.07rem] sm:flex-row">
+                <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Buy the $97 AI Profit Map <ArrowRight className="ml-2 h-[1.34rem] w-[1.34rem]" /></a>
+                <Link href="/ai-office-blueprint" className={secondary}>Get the Free Blueprint</Link>
               </div>
-              <p className="mt-5 max-w-[720px] text-base font-semibold leading-7 text-white/66">Built for service businesses with office drag around billing prep, job notes, records, follow-up, handoffs, and inbox work.</p>
             </div>
           </div>
         </section>
