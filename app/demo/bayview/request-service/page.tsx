@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react'
 
-const inputStyle = { width: '100%', border: '1px solid rgba(15,23,42,.18)', background: '#ffffff', color: '#0f172a', borderRadius: 12, padding: '12px 13px', outline: 'none', fontSize: 15 }
+const inputStyle = { width: '100%', boxSizing: 'border-box' as const, border: '1px solid rgba(15,23,42,.18)', background: '#ffffff', color: '#0f172a', borderRadius: 12, padding: '12px 13px', outline: 'none', fontSize: 15 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return <label style={{ display: 'grid', gap: 7, color: '#1f2937', fontSize: 13, fontWeight: 800 }}>{label}{children}</label>
@@ -40,33 +40,43 @@ export default function BayviewRequestServicePage() {
   }
 
   return (
-    <main style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #e0f2fe 0%, #f8fafc 42%, #fff7ed 100%)', color: '#0f172a', fontFamily: 'Inter, ui-sans-serif, system-ui', padding: 24 }}>
+    <main style={{ minHeight: '100vh', overflowX: 'hidden', background: 'linear-gradient(135deg, #e0f2fe 0%, #f8fafc 42%, #fff7ed 100%)', color: '#0f172a', fontFamily: 'Inter, ui-sans-serif, system-ui', padding: 24 }}>
+      <style jsx>{`
+        @media (max-width: 720px) {
+          main { padding: 18px !important; }
+          .bayview-header { flex-direction: column; align-items: flex-start !important; }
+          .bayview-title { font-size: clamp(3.2rem, 17vw, 4.4rem) !important; }
+          .bayview-service-card { width: 100%; min-width: 0 !important; box-sizing: border-box; }
+          .bayview-grid, .bayview-field-grid { grid-template-columns: minmax(0, 1fr) !important; }
+          .bayview-card { min-width: 0; box-sizing: border-box; }
+        }
+      `}</style>
       <section style={{ maxWidth: 1120, margin: '0 auto' }}>
-        <header style={{ display: 'flex', justifyContent: 'space-between', gap: 20, alignItems: 'center', marginBottom: 26 }}>
+        <header className="bayview-header" style={{ display: 'flex', justifyContent: 'space-between', gap: 20, alignItems: 'center', marginBottom: 26 }}>
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: '#0369a1', fontWeight: 900, letterSpacing: 1.5, textTransform: 'uppercase', fontSize: 12 }}>
               <span style={{ width: 12, height: 12, background: '#f97316', borderRadius: 999, display: 'inline-block' }} /> Bayview Heating & Air
             </div>
-            <h1 style={{ margin: '10px 0 8px', fontSize: 46, lineHeight: 1.02 }}>Request HVAC service</h1>
+            <h1 className="bayview-title" style={{ margin: '10px 0 8px', fontSize: 46, lineHeight: 1.02 }}>Request HVAC service</h1>
             <p style={{ margin: 0, maxWidth: 700, color: '#475569', fontSize: 18, lineHeight: 1.55 }}>Tell us what is happening, how urgent it is, and when you are available. Our office will review the request and follow up with the next available appointment window.</p>
           </div>
-          <div style={{ background: '#0f172a', color: '#e0f2fe', borderRadius: 20, padding: 18, minWidth: 240, boxShadow: '0 20px 60px rgba(15,23,42,.18)' }}>
+          <div className="bayview-service-card" style={{ background: '#0f172a', color: '#e0f2fe', borderRadius: 20, padding: 18, minWidth: 240, boxShadow: '0 20px 60px rgba(15,23,42,.18)' }}>
             <div style={{ fontSize: 12, color: '#93c5fd', textTransform: 'uppercase', letterSpacing: 1.3, fontWeight: 900 }}>Service area</div>
             <div style={{ fontSize: 22, fontWeight: 900, marginTop: 6 }}>San Francisco Bay Area</div>
             <div style={{ color: '#cbd5e1', marginTop: 8 }}>Heating, cooling, tune-ups, diagnostics, replacements.</div>
           </div>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr .75fr', gap: 20, alignItems: 'start' }}>
-          <form onSubmit={submit} style={{ background: 'rgba(255,255,255,.9)', border: '1px solid rgba(15,23,42,.12)', borderRadius: 24, padding: 22, boxShadow: '0 24px 80px rgba(15,23,42,.12)', display: 'grid', gap: 14 }}>
+        <div className="bayview-grid" style={{ display: 'grid', gridTemplateColumns: '1.1fr .75fr', gap: 20, alignItems: 'start' }}>
+          <form onSubmit={submit} className="bayview-card" style={{ background: 'rgba(255,255,255,.9)', border: '1px solid rgba(15,23,42,.12)', borderRadius: 24, padding: 22, boxShadow: '0 24px 80px rgba(15,23,42,.12)', display: 'grid', gap: 14 }}>
             <h2 style={{ margin: 0, fontSize: 25 }}>Service request details</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="bayview-field-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               <Field label="Full name"><input style={inputStyle} value={form.customerName} onChange={(e) => setForm({ ...form, customerName: e.target.value })} required /></Field>
               <Field label="Phone"><input style={inputStyle} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required /></Field>
             </div>
             <Field label="Email"><input style={inputStyle} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></Field>
             <Field label="Service address"><input style={inputStyle} value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} required /></Field>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="bayview-field-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               <Field label="What do you need help with?">
                 <select style={inputStyle} value={form.issueType} onChange={(e) => setForm({ ...form, issueType: e.target.value })}>
                   <option>No heat</option>

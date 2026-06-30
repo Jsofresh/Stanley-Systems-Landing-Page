@@ -80,3 +80,6 @@ oauth-tokens.json
 
 # Reference materials (often copyrighted)
 references/
+
+# Mobile QA evidence screenshots are regenerable and large; keep CSV/report canonical.
+qa/browser-screenshots/
