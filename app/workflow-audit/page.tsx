@@ -7,7 +7,7 @@ import { pricingPackageById } from "@/lib/pricing/source-of-truth"
 import { AiOfficeMapInfoForm } from "@/components/ai-office-map-info-form"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-const primary = "inline-flex min-h-[3.75rem] items-center justify-center rounded-full bg-[#15803D] px-[2.14rem] py-[1.07rem] text-[1.07rem] font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
+const primary = "relative inline-flex min-h-[3.75rem] items-center justify-center overflow-hidden rounded-full border border-[#9cffb1]/70 bg-[linear-gradient(135deg,#31e981_0%,#16a34a_44%,#0f6f3b_100%)] px-[2.14rem] py-[1.07rem] text-[1.07rem] font-extrabold text-white shadow-[0_0_0_1px_rgba(156,255,177,0.22),0_0_30px_rgba(75,255,137,0.46),0_18px_55px_rgba(21,128,61,0.48),inset_0_1px_0_rgba(255,255,255,0.36)] ring-1 ring-[#a7ffbd]/45 transition before:absolute before:inset-0 before:rounded-full before:bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.42),transparent_42%)] before:opacity-90 before:content-[''] hover:-translate-y-0.5 hover:bg-[#116832] hover:shadow-[0_0_0_1px_rgba(156,255,177,0.30),0_0_42px_rgba(75,255,137,0.62),0_22px_64px_rgba(21,128,61,0.58),inset_0_1px_0_rgba(255,255,255,0.42)] [&>*]:relative"
 const secondary = "inline-flex min-h-[3.75rem] items-center justify-center rounded-full border border-white/30 bg-white/12 px-[2.14rem] py-[1.07rem] text-[1.07rem] font-extrabold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/18"
 const auditCheckoutHref = pricingPackageById.workflow_audit.stripePaymentLink.url
 
