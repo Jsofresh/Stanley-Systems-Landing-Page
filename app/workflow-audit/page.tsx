@@ -37,9 +37,9 @@ export default function Page() {
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(7,29,58,0.90)_0%,rgba(7,29,58,0.78)_44%,rgba(7,29,58,0.44)_76%,rgba(7,29,58,0.30)_100%)]" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_14%,rgba(83,217,134,0.16),transparent_34%),linear-gradient(180deg,rgba(7,29,58,0.02)_0%,rgba(7,29,58,0.62)_100%)]" />
           <div className="w-full px-4 sm:px-6 lg:px-0">
-            <div className="max-w-[963px] lg:ml-[5vw]">
+            <div className="max-w-[963px] lg:ml-[10vw]">
               <h1 className="text-balance text-[3.21rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.99rem] sm:tracking-[-0.045em]">AI Profit Map</h1>
-              <p className="mt-6 max-w-[835px] text-[1.3375rem] font-semibold leading-[2.4rem] text-white/84">Find where office work is costing time, cash, and customer follow-up. Then get the AI fix plan to make the business more profitable.</p>
+              <p className="mt-6 max-w-[720px] text-[1.3375rem] font-semibold leading-[2.4rem] text-white/84">Find where office work is costing time, cash, and customer follow-up. Then get the AI fix plan to make the business more profitable.</p>
               <div className="mt-[2.14rem] flex flex-col gap-[1.07rem] sm:flex-row">
                 <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Buy the $97 AI Profit Map <ArrowRight className="ml-2 h-[1.34rem] w-[1.34rem]" /></a>
                 <Link href="/ai-office-blueprint" className={secondary}>Get the Free Blueprint</Link>
