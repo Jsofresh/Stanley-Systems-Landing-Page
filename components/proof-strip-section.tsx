@@ -75,9 +75,9 @@ export function ProofStripSection() {
       data-audit-page="/"
       data-audit-section="home.workflow-audit-paths"
       data-audit-priority="3"
-      data-audit-offer="AI Office Map"
-      data-audit-purpose="Explain the two money paths checked by the AI Office Map before the two systems are introduced."
-      title="The AI Office Map checks two money paths."
+      data-audit-offer="AI Profit Map"
+      data-audit-purpose="Explain the two money paths checked by the AI Profit Map before the two systems are introduced."
+      title="The AI Profit Map checks two money paths."
       description="One path finds cash stuck after the work is done. The other checks the customer list your business already owns before more money gets spent chasing new leads."
       className="relative z-10 scroll-mt-28 bg-transparent px-4 pb-8 pt-4 sm:scroll-mt-32 sm:pb-10 sm:pt-5 lg:scroll-mt-36 lg:py-10"
       containerClassName="rounded-[1.35rem] border border-[#e4eadf] bg-white/95 px-4 py-5 shadow-[0_18px_44px_rgba(15,23,42,0.055)] sm:rounded-[1.75rem] sm:px-6 sm:py-6 lg:px-7 lg:py-7"
@@ -97,14 +97,14 @@ export function ProofStripSection() {
           analyticsEvent="audit_checkout_clicked"
           analyticsSource="homepage_workflow_audit_paths"
           packageId="workflow_audit"
-          packageName="AI Office Map"
+          packageName="AI Profit Map"
           billingPeriod="one_time"
-          ctaLabel="Book the AI Office Map"
+          ctaLabel="Buy the AI Profit Map"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_16px_34px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] sm:px-8"
         >
-          Book the AI Office Map
+          Buy the AI Profit Map
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </CTALink>
         <CTALink

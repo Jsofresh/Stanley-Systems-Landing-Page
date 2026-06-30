@@ -40,9 +40,9 @@ export default function BlogPage() {
           <div className="rounded-[2rem] bg-[#071D3A] p-6 text-white sm:p-8 lg:flex lg:items-center lg:justify-between lg:gap-8">
             <div>
               <h2 className="text-3xl font-semibold tracking-[-0.04em]">Want the leak found in your own business?</h2>
-              <p className="mt-3 max-w-3xl text-base font-medium leading-7 text-[#DDEBE2]">The AI Office Map turns the ideas here into a specific fix list for your office workflow.</p>
+              <p className="mt-3 max-w-3xl text-base font-medium leading-7 text-[#DDEBE2]">The AI Profit Map turns the ideas here into a specific fix list for your office workflow.</p>
             </div>
-            <Link href="/ai-office-map" className="mt-6 inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:bg-[#F4FBF5] lg:mt-0">Book the AI Office Map</Link>
+            <Link href="/ai-profit-map" className="mt-6 inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:bg-[#F4FBF5] lg:mt-0">Buy the AI Profit Map</Link>
           </div>
         </section>
 

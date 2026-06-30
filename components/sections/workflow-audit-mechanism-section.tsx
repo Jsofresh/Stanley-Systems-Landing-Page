@@ -104,7 +104,7 @@ export function WorkflowAuditMechanismSection() {
       }
       description={
         <span className="mx-auto block max-w-[700px] text-pretty text-[15px] font-medium leading-6 text-[#334B60] sm:text-[18px] sm:leading-7">
-          Estimate where revenue is slipping through the cracks. Then the AI Office Map turns those numbers into a clear plan.
+          Estimate where revenue is slipping through the cracks. Then the AI Profit Map turns those numbers into a clear plan.
         </span>
       }
     >
@@ -166,7 +166,7 @@ export function WorkflowAuditMechanismSection() {
         <VisualCard className="flex h-full flex-col rounded-[20px] border-[#DEE9E3] bg-white p-5 shadow-[0_16px_38px_rgba(7,29,58,0.07)] sm:p-6 lg:p-6">
           <HeaderStep
             index="2"
-            title="AI Office Map"
+            title="AI Profit Map"
             description="We analyze your leaks and show you what to fix first."
             Icon={UploadedShieldCheckDisplayAsset}
           />
@@ -202,10 +202,10 @@ export function WorkflowAuditMechanismSection() {
           href={auditHref}
           kind="systems"
           location="home_section_4_workflow_audit_mechanism"
-          ctaLabel="Book AI Office Map"
+          ctaLabel="Book AI Profit Map"
           className="inline-flex min-h-[56px] w-full max-w-[390px] items-center justify-center rounded-[12px] bg-[#08A64B] px-6 py-3 text-[20px] font-extrabold tracking-[-0.01em] text-white shadow-[0_14px_28px_rgba(8,166,75,0.2)] transition hover:-translate-y-0.5 hover:bg-[#087B3F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#08A64B] sm:w-auto sm:min-w-[390px] sm:text-[23px]"
         >
-          Book AI Office Map
+          Book AI Profit Map
           <span className="ml-4 text-[30px] leading-none" aria-hidden="true">›</span>
         </CTALink>
       </div>

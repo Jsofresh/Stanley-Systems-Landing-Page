@@ -9,10 +9,10 @@ const cards: PackagePricingCard[] = [
     package: plans.cashflowMonthly,
     description: "Best for shops that need customer intake, billing, final bill, and follow-up to stop depending on manual re-entry.",
     install: "$199 installation",
-    credit: "AI Office Map credit: -$197 if you start there first",
+    credit: "AI Profit Map credit: -$194 if you start there first",
     callout: null,
     cta: "Buy monthly",
-    secondary: "Book the AI Office Map",
+    secondary: "Buy the AI Profit Map",
     bullets: ["Customer intake to billing workflow", "Webhook, form, or job-system handoffs", "Billing-ready checks", "Missing billing detail routing"],
   },
   {
@@ -22,10 +22,10 @@ const cards: PackagePricingCard[] = [
     package: plans.cashflowYearly,
     description: "Best first-year value for automating the intake-to-final-bill path for the year.",
     install: "Install discount: -$199",
-    credit: "AI Office Map credit: -$197 if you start there first",
+    credit: "AI Profit Map credit: -$194 if you start there first",
     callout: "-$1,250 first-year package savings",
     cta: "Buy yearly",
-    secondary: "Book the AI Office Map",
+    secondary: "Buy the AI Profit Map",
     bullets: ["Everything in monthly", "Customer intake to cash collection", "Invoice and final-bill path", "Lower first-year cost"],
   },
   {
@@ -35,10 +35,10 @@ const cards: PackagePricingCard[] = [
     package: plans.completeMonthly,
     description: "For shops where billing readiness, follow-up, and job admin all need a cleaner installed workflow.",
     install: "$449 installation",
-    credit: "AI Office Map credit: -$197 if you start there first",
+    credit: "AI Profit Map credit: -$194 if you start there first",
     callout: null,
     cta: "Buy both monthly",
-    secondary: "Book the AI Office Map",
+    secondary: "Buy the AI Profit Map",
     bullets: ["AI Office Installation Sprint", "AI Office Ops", "Open-balance visibility", "Reviews, referrals, and reactivation"],
   },
   {
@@ -48,10 +48,10 @@ const cards: PackagePricingCard[] = [
     package: plans.completeYearly,
     description: "The full revenue-control path with yearly savings and an installation discount.",
     install: "Install discount: -$449",
-    credit: "AI Office Map credit: -$197 if you start there first",
+    credit: "AI Profit Map credit: -$194 if you start there first",
     callout: "-$2,700 first-year package savings",
     cta: "Buy both yearly",
-    secondary: "Book the AI Office Map",
+    secondary: "Buy the AI Profit Map",
     bullets: ["AI Office Installation Sprint", "AI Office Ops", "Lowest first-year bundle cost", "Best full-system economics"],
   },
 ]
@@ -63,7 +63,7 @@ export function AIOfficeWorkflowPricing() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-[2.4rem] font-semibold leading-[1] tracking-[-0.04em] text-[#071D3A] sm:text-5xl">Pick your office workflow fix.</h2>
           <p className="mt-4 text-base leading-7 text-[#536173] sm:text-lg">
-            Buy Office Workflow Control now, or start with the AI Office Map and credit it toward a system. Yearly options show the rounded monthly price first and bill yearly.
+            Buy Office Workflow Control now, or start with the AI Profit Map and credit it toward a system. Yearly options show the rounded monthly price first and bill yearly.
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export function AIOfficeWorkflowPricing() {
         />
 
         <p className="mt-5 rounded-[1.25rem] border border-[#BFE4C8] bg-[#F4FBF5] p-4 text-sm font-semibold leading-6 text-[#536173]">
-          Start with the AI Office Map if you have not bought it yet. The Map shows whether this billing readiness path is the first workflow worth installing.
+          Start with the AI Profit Map if you have not bought it yet. The Map shows whether this billing readiness path is the first workflow worth installing.
         </p>
       </div>
     </section>

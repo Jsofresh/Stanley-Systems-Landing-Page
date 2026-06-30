@@ -49,7 +49,7 @@ const navGroups: MegaMenuGroup[] = [
     items: [
       { label: "Free AI Office Blueprint", href: "/ai-office-blueprint", description: "Answer one focused workflow form and get a custom first-pass AI office plan." },
       { label: "Generic Blueprint PDF", href: "/ai-office-blueprint#generic-blueprint-section", description: "Jump straight to the generic AI Office Blueprint download section." },
-      { label: "AI Office Map", href: "/ai-office-map", description: "Ready for the paid diagnostic? Book the next step." },
+      { label: "AI Profit Map", href: "/ai-profit-map", description: "Ready for the paid diagnostic? Book the next step." },
       { label: "Admin Drag Calculator", href: "/invoicing-delay-cash-flow-calculator", description: "Estimate where delayed office work is costing money." },
     ],
     featured: {
@@ -60,22 +60,22 @@ const navGroups: MegaMenuGroup[] = [
     },
   },
   {
-    label: "AI Office Map",
-    href: "/ai-office-map",
+    label: "AI Profit Map",
+    href: "/ai-profit-map",
     eyebrow: "Paid first step",
     summary: "The Map turns office drag into a fix list: prompts, handoff changes, tool guidance, quick wins, and first install priority.",
     widthClass: "w-[min(520px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Book the AI Office Map", href: "/ai-office-map", description: "The $197 diagnostic that finds what your office should fix first." },
-      { label: "What You Get", href: "/ai-office-map#deliverables", description: "See the deliverables: fix list, staff plays, priority matrix, and install plan." },
+      { label: "Buy the AI Profit Map", href: "/ai-profit-map", description: "The $97 diagnostic that finds what your office should fix first." },
+      { label: "What You Get", href: "/ai-profit-map#deliverables", description: "See the deliverables: fix list, staff plays, priority matrix, and install plan." },
       { label: "Pricing", href: "/pricing", description: "See the full path from free Blueprint to Map, Sprint, and Ops." },
     ],
     featured: {
       title: "The Map comes before the build.",
       copy: "Use it to avoid spending time or money on the wrong workflow.",
-      href: "/ai-office-map",
-      cta: "Book the AI Office Map",
+      href: "/ai-profit-map",
+      cta: "Buy the AI Profit Map",
     },
   },
   {
@@ -344,7 +344,7 @@ export function SiteHeader() {
           </a>
           <div className="flex items-center gap-3 md:hidden">
             <a href="/ai-office-blueprint" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Start Free</a>
-            <a href="/ai-office-map" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Map</a>
+            <a href="/ai-profit-map" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Map</a>
           </div>
           <div className="hidden items-center gap-5 md:flex">
             <a href="/pricing" className="transition hover:text-[#15803D] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#53d986]">Pricing</a>
@@ -547,7 +547,7 @@ export function HeroSection() {
       data-audit-section="home.hero"
       data-nav-theme="dark"
       data-audit-priority="5"
-      data-audit-offer="AI Office Map"
+      data-audit-offer="AI Profit Map"
       data-audit-purpose="Make the owner understand that Stanley Systems finds boring admin drags and builds the system that stops them."
       className="relative isolate overflow-hidden bg-[#071422] pt-[100px] text-white"
     >
@@ -578,15 +578,15 @@ export function HeroSection() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CTALink
-                href="/ai-office-map"
+                href="/ai-profit-map"
                 kind="systems"
                 location="home_hero_primary"
                 analyticsEvent="audit_checkout_clicked"
                 analyticsSource="homepage_hero"
-                ctaLabel="Book the AI Office Map"
+                ctaLabel="Buy the AI Profit Map"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#15803D] px-6 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_18px_42px_rgba(10,85,38,0.34)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422]"
               >
-                Book the AI Office Map
+                Buy the AI Profit Map
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </CTALink>
               <a

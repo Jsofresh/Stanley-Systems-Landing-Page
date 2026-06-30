@@ -116,7 +116,7 @@ export default function AiOfficeBlueprintPage() {
                 <h2 className="text-2xl font-semibold tracking-[-0.03em]">Why the questionnaire matters</h2>
                 <p className="mt-1 text-base font-semibold leading-7 text-[#536173]">The generic PDF helps anyone. The custom PDF uses the 14 answers to produce prompts and workflows around the user’s tools, stuck points, billing drag, follow-up gaps, and real messy office example.</p>
               </div>
-              <Link href="/ai-office-map" className="inline-flex items-center text-sm font-extrabold text-[#116832] lg:justify-self-end">Need the full Map instead? <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/ai-profit-map" className="inline-flex items-center text-sm font-extrabold text-[#116832] lg:justify-self-end">Need the full Map instead? <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </aside>
           </div>
         </section>

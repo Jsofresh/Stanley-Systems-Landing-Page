@@ -24,24 +24,39 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/ai-office-map",
+        destination: "/ai-profit-map",
+        statusCode: 301,
+      },
+      {
+        source: "/ai-office-map/:path*",
+        destination: "/ai-profit-map/:path*",
+        statusCode: 301,
+      },
+      {
+        source: "/ai-office-map.md",
+        destination: "/ai-profit-map.md",
+        statusCode: 301,
+      },
+      {
         source: "/workflow-audit",
-        destination: "/ai-office-map",
-        permanent: true,
+        destination: "/ai-profit-map",
+        statusCode: 301,
       },
       {
         source: "/workflow-audit/:path*",
-        destination: "/ai-office-map/:path*",
-        permanent: true,
+        destination: "/ai-profit-map/:path*",
+        statusCode: 301,
       },
       {
         source: "/how-the-assessment-works",
-        destination: "/ai-office-map",
-        permanent: true,
+        destination: "/ai-profit-map",
+        statusCode: 301,
       },
       {
         source: "/how-the-assessment-works/:path*",
-        destination: "/ai-office-map/:path*",
-        permanent: true,
+        destination: "/ai-profit-map/:path*",
+        statusCode: 301,
       },
       {
         source: "/car-dealerships",

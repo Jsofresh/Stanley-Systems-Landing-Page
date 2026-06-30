@@ -5,12 +5,12 @@ import { Menu, Phone, X } from "lucide-react"
 import Link from "next/link"
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
-const mapHref = `${basePath}/ai-office-map`
+const mapHref = `${basePath}/ai-profit-map`
 const blueprintHref = `${basePath}/ai-office-blueprint`
 
 const navigation = [
   { name: "Home", href: `${basePath}/` },
-  { name: "AI Office Map", href: mapHref },
+  { name: "AI Profit Map", href: mapHref },
   { name: "Free Blueprint", href: blueprintHref },
   { name: "AI Office Installation Sprint", href: `${basePath}/systems-installation-sprint` },
   { name: "AI Office Ops", href: `${basePath}/pricing` },
@@ -139,11 +139,11 @@ export function GlassmorphismNav() {
                 href={mapHref}
                 data-analytics-event="ai_office_map_cta_clicked"
                 data-analytics-source="site_nav"
-                data-cta-label="Book the AI Office Map"
+                data-cta-label="Buy the AI Profit Map"
                 data-cta-location="desktop_nav_ai_office_map"
                 className="inline-flex min-w-[180px] whitespace-nowrap items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-7 py-2.5 text-[15px] font-semibold text-white shadow-[0_12px_28px_rgba(21,128,61,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#116832]"
               >
-                Book the AI Office Map
+                Buy the AI Profit Map
               </a>
             </div>
           </div>
@@ -196,12 +196,12 @@ export function GlassmorphismNav() {
                   href={mapHref}
                   data-analytics-event="ai_office_map_cta_clicked"
                   data-analytics-source="site_nav"
-                  data-cta-label="Book the AI Office Map"
+                  data-cta-label="Buy the AI Profit Map"
                   data-cta-location="mobile_nav_ai_office_map"
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#15803D] bg-[#15803D] px-5 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(21,128,61,0.16)] transition-all duration-200 hover:bg-[#116832]"
                   onClick={() => setIsOpen(false)}
                 >
-                  Book the AI Office Map
+                  Buy the AI Profit Map
                 </a>
               </div>
             </div>

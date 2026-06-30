@@ -56,19 +56,19 @@ export function HowItWorksSection() {
       data-audit-page="/"
       data-audit-section="home.workflow-audit"
       data-audit-priority="5"
-      data-audit-offer="AI Office Map"
-      data-audit-purpose="Show that the AI Office Map finds admin drags hiding inside the office workflow."
+      data-audit-offer="AI Profit Map"
+      data-audit-purpose="Show that the AI Profit Map finds admin drags hiding inside the office workflow."
       className="relative z-10 scroll-mt-28 px-4 py-8 sm:scroll-mt-32 sm:py-10 lg:scroll-mt-36 lg:py-8"
     >
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-[#d9e4d0] bg-[linear-gradient(180deg,#f4faef_0%,#fbfaf4_68%,#fffefa_100%)] p-4 shadow-[0_20px_58px_rgba(16,32,51,0.08)] sm:rounded-[2rem] sm:p-5 lg:p-6">
         <div className="grid gap-5 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:items-center lg:gap-6">
           <div className="min-w-0">
             <h2 className="max-w-[35rem] text-[1.95rem] font-semibold leading-[1.03] text-[#102033] sm:text-[2.65rem] lg:text-[2.8rem]">
-              The calculator shows the leak. The AI Office Map finds the source.
+              The calculator shows the leak. The AI Profit Map finds the source.
             </h2>
 
             <p className="mt-3 max-w-[35rem] text-base leading-7 text-[#48576C] sm:text-[1.05rem] sm:leading-7">
-              The AI Office Map turns the calculator range into a clear action report: which invoices, estimates, calls, and follow-ups are holding money back, and what to fix first.
+              The AI Profit Map turns the calculator range into a clear action report: which invoices, estimates, calls, and follow-ups are holding money back, and what to fix first.
             </p>
 
             <div className="mt-4 grid gap-2.5">
@@ -115,7 +115,7 @@ export function HowItWorksSection() {
               <p className="mt-3 flex max-w-[34rem] items-start gap-2.5 rounded-[1rem] border border-[#cfe8d5] bg-[#edf9f1] px-3.5 py-2.5 text-sm leading-6 text-[#34465B] shadow-[0_10px_24px_rgba(21,128,61,0.07)]">
                 <IconShieldCheck className="mt-0.5 h-4.5 w-4.5 shrink-0 text-[#15803D]" stroke={2} aria-hidden />
                 <span>
-                  If Stanley Systems cannot find one clear admin drag we can fix, qualified businesses get the AI Office Map fee back.{" "}
+                  If Stanley Systems cannot find one clear admin drag we can fix, qualified businesses get the AI Profit Map fee back.{" "}
                   <a href="/terms-and-conditions#audit-guarantee-terms" className="font-semibold text-[#102033] underline decoration-[#15803D]/35 underline-offset-4 transition hover:text-[#15803D]">
                     See guarantee terms.
                   </a>
@@ -128,7 +128,7 @@ export function HowItWorksSection() {
             <div className="border-b border-[#ece4d8] pb-3 text-center">
               <div className="mx-auto max-w-[34rem]">
                 <h3 className="mt-1.5 text-2xl font-semibold leading-tight text-[#102033] sm:text-[1.85rem]">
-                  AI Office Map
+                  AI Profit Map
                 </h3>
                 <p className="mt-1 text-sm leading-6 text-[#667085]">
                   Example assessment snapshot: where money is stuck and which fix should move first.

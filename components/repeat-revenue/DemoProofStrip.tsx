@@ -20,16 +20,16 @@ export function DemoProofStrip() {
               Before you buy, the demo should show who gets contacted, how replies reach the office, and how open follow-up opportunities stay visible.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Link href="/ai-office-map" prefetch={false} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(21,128,61,0.20)] transition hover:bg-[#17612E]">
-                Book the AI Office Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <Link href="/ai-profit-map" prefetch={false} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(21,128,61,0.20)] transition hover:bg-[#17612E]">
+                Buy the AI Profit Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link href="/ai-office-map" prefetch={false} className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]">
-                Book the AI Office Map
+              <Link href="/ai-profit-map" prefetch={false} className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]">
+                Buy the AI Profit Map
               </Link>
             </div>
           </div>
 
-          <Link href="/ai-office-map" prefetch={false} className="group relative block min-h-[300px] overflow-hidden bg-[#F8FBF9] sm:min-h-[380px] lg:min-h-[430px]">
+          <Link href="/ai-profit-map" prefetch={false} className="group relative block min-h-[300px] overflow-hidden bg-[#F8FBF9] sm:min-h-[380px] lg:min-h-[430px]">
             <Image
               src="/images/repeat-revenue/demo-video-placeholder.png"
               alt="AI Office Ops demo visual showing customer list, missed call, review ask, referral ask, and booked job objects connected by green paths."

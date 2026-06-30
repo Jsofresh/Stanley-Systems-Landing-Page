@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
 import { SoftwareLogoMarquee } from "@/components/home/software-logo-marquee"
 
-const mapHref = "/ai-office-map"
+const mapHref = "/ai-profit-map"
 const blueprintHref = "/ai-office-blueprint"
 const sprintHref = "/systems-installation-sprint"
 
@@ -22,7 +22,7 @@ const mobileHeroSlideshowImages = [
 
 const uploadedHomeImages = {
   calculator: { src: "/images/uploaded/homepage/ai-office/ai-office-blueprint-product-shot.jpg", alt: "AI Office Blueprint product shot showing the free office workflow report", width: 1280, height: 1070 },
-  map: { src: "/images/uploaded/homepage/ai-office/ai-office-map-laptop.jpg", alt: "AI Office Map with behind, already handled, still chased, and workflow columns", width: 1280, height: 960 },
+  map: { src: "/images/uploaded/homepage/ai-office/ai-profit-map-laptop.jpg", alt: "AI Profit Map with behind, already handled, still chased, and workflow columns", width: 1280, height: 960 },
   officeAdmin: { src: "/images/uploaded/homepage/ai-office/service-owner-office-admin-shot.jpg", alt: "Service business owner and office admin reviewing paperwork at a desk", width: 1280, height: 720 },
   checklistLaptop: { src: "/images/uploaded/homepage/ai-office/office-desk-invoice-checklist-highvis.jpg", alt: "Office desk with invoice checklist and high visibility service work context", width: 1280, height: 548 },
   sprint: { src: "/images/uploaded/homepage/ai-office/easy-ai-use-for-your-team.jpg", alt: "Easy AI Use for Your Team card showing text message, portal, AI chat, and source checked paths feeding an answer ready panel", width: 1254, height: 1254 },
@@ -135,7 +135,7 @@ function CalculatorSpine() {
           </h2>
           <p className="mt-5 hidden max-w-[650px] text-base font-semibold leading-7 text-[#35475d] md:block md:text-xl md:leading-8 lg:mt-4">Start with the free Blueprint for practical AI staff plays, or book the full Map when you want the fixes, tools, prompts, and install priority.</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center lg:mt-6">
-            <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_16px_36px_rgba(10,85,38,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Book the AI Office Map <ArrowRight className="h-4 w-4" /></CTALink>
+            <CTALink href={mapHref} kind="systems" location="home_blueprint_spine_primary" ctaLabel="Buy the AI Profit Map" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_16px_36px_rgba(10,85,38,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116f35] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Buy the AI Profit Map <ArrowRight className="h-4 w-4" /></CTALink>
             <CTALink href={blueprintHref} kind="systems" location="home_blueprint_spine_secondary" ctaLabel="Get the Free Blueprint" className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-[#d5e5da] bg-white px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_14px_34px_rgba(7,29,58,0.08)] transition hover:-translate-y-0.5 hover:border-[#9ed9b2] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-white sm:px-7 sm:text-base">Get the Free Blueprint</CTALink>
           </div>
         </div>
@@ -152,10 +152,10 @@ function AssessmentSection() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(5,15,25,0.08)_0%,rgba(5,15,25,0.22)_72%,rgba(5,15,25,0.5)_100%),radial-gradient(circle_at_18%_20%,rgba(83,217,134,0.12),transparent_32%)]" />
       <div className="mx-auto flex w-full max-w-[88rem] flex-col justify-center">
         <div className="max-w-[790px] pt-10 md:pt-14 lg:pt-8">
-          <h2 className="max-w-[780px] text-balance text-[clamp(3rem,7vw,6.7rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.28)]">Start with the AI Office Map.</h2>
+          <h2 className="max-w-[780px] text-balance text-[clamp(3rem,7vw,6.7rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.28)]">Start with the AI Profit Map.</h2>
           <p className="mt-6 max-w-[720px] text-balance text-lg font-semibold leading-8 text-white/84 sm:text-xl">A focused session that turns office drag into concrete fixes, staff AI prompts, workflow tips, tool guidance, and the first workflow to install.</p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Office Map" billingPeriod="one_time" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[58px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_42px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Book the AI Office Map <ArrowRight className="h-5 w-5" aria-hidden="true" /></CTALink>
+            <CTALink href={mapHref} kind="checkout" location="home_ai_office_map_primary" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage" packageId="workflow_audit" packageName="AI Profit Map" billingPeriod="one_time" ctaLabel="Buy the AI Profit Map" className="inline-flex min-h-[58px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-8 py-4 text-base font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_18px_42px_rgba(0,0,0,0.28)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-w-[270px] sm:text-lg">Buy the AI Profit Map <ArrowRight className="h-5 w-5" aria-hidden="true" /></CTALink>
           </div>
         </div>
       </div>
@@ -178,7 +178,7 @@ function SprintSection() {
           <p className="mx-auto mt-5 max-w-3xl text-base font-semibold leading-7 text-[#536173] sm:text-lg">We install the priority workflows from your Map: billing readiness, follow-up, inbox routing, SOP support, or service recovery.</p>
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <CTALink href={sprintHref} kind="systems" location="home_sprint_primary" ctaLabel="See the AI Office Installation Sprint" className={`${lightButton} px-8`}>See the AI Office Installation Sprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-            <CTALink href={mapHref} kind="systems" location="home_sprint_secondary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">Book the AI Office Map</CTALink>
+            <CTALink href={mapHref} kind="systems" location="home_sprint_secondary" ctaLabel="Buy the AI Profit Map" className="inline-flex min-h-11 items-center justify-center rounded-full px-2 text-sm font-extrabold text-[#116832] underline decoration-[#9ed9b2] underline-offset-4 transition hover:text-[#071D3A]">Buy the AI Profit Map</CTALink>
           </div>
         </div>
         <div className="mt-7 grid gap-4 md:grid-cols-3">
@@ -200,7 +200,7 @@ function FinalOfficeCTA() {
         <h2 className="mx-auto max-w-[860px] text-balance text-[clamp(2.15rem,5vw,4.9rem)] font-extrabold leading-[0.92] tracking-[-0.025em]">Find the office work slowing down profit.</h2>
         <p className="mx-auto mt-5 max-w-[680px] text-base font-semibold leading-7 text-white/70 sm:text-lg">Book the Map or get the free Blueprint for practical AI plays, fixes, and the next workflow worth improving.</p>
         <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <CTALink href={mapHref} kind="systems" location="home_final_primary" ctaLabel="Book the AI Office Map" className={greenButton}>Book the AI Office Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
+          <CTALink href={mapHref} kind="systems" location="home_final_primary" ctaLabel="Buy the AI Profit Map" className={greenButton}>Buy the AI Profit Map <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
           <CTALink href={blueprintHref} kind="systems" location="home_final_secondary" ctaLabel="Get the Free Blueprint" className={darkGhostButton}>Get the Free Blueprint</CTALink>
         </div>
       </div>
@@ -219,7 +219,7 @@ export function CashFlowHomepage() {
             <h1 className="max-w-[900px] text-balance text-[clamp(1.95rem,9.6vw,3rem)] font-extrabold leading-[0.95] tracking-[-0.025em] text-white drop-shadow-[0_12px_38px_rgba(0,0,0,0.38)] sm:translate-y-10 sm:text-[clamp(2.05rem,5vw,5.25rem)] sm:leading-[0.93]">Make your office team faster, sharper, and more profitable with AI.</h1>
             <div className="mt-6 flex flex-col gap-3 sm:mt-24 sm:flex-row sm:gap-4">
               <CTALink href={blueprintHref} kind="systems" location="home_hero_primary" ctaLabel="Get the Free Blueprint" className={`${greenButton} min-h-[52px] px-6 py-3 text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_20px_50px_rgba(83,217,134,0.28)] hover:-translate-y-1 hover:scale-[1.02] sm:min-h-[58px] sm:px-8 sm:py-4 sm:text-[1.05rem]`}>Get the Free Blueprint <ArrowRight className="ml-2 h-4 w-4" /></CTALink>
-              <CTALink href={mapHref} kind="systems" location="home_hero_secondary" ctaLabel="Book the AI Office Map" className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-5 py-3 text-sm font-extrabold text-white shadow-[0_12px_26px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-h-[46px] sm:self-center">Book the AI Office Map</CTALink>
+              <CTALink href={mapHref} kind="systems" location="home_hero_secondary" ctaLabel="Buy the AI Profit Map" className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/18 bg-white/8 px-5 py-3 text-sm font-extrabold text-white shadow-[0_12px_26px_rgba(0,0,0,0.16)] transition hover:-translate-y-0.5 hover:bg-white/12 focus:outline-none focus:ring-2 focus:ring-[#53d986] focus:ring-offset-2 focus:ring-offset-[#071422] sm:min-h-[46px] sm:self-center">Buy the AI Profit Map</CTALink>
             </div>
           </div>
         </div>

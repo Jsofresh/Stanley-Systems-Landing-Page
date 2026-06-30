@@ -227,7 +227,7 @@ function PackagePricingCardView({
           analyticsEvent="audit_checkout_clicked"
           analyticsSource={analyticsSource}
           packageId="workflow_audit"
-          packageName="AI Office Map"
+          packageName="AI Profit Map"
           billingPeriod="one_time"
           ctaLabel={card.secondary}
           target="_blank"

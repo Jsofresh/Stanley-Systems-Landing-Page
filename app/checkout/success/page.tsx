@@ -25,7 +25,7 @@ const nextSteps = [
   },
   {
     title: "We begin setup or assessment",
-    copy: "If you bought the AI Office Map, Stanley Systems starts the Map process. If you bought a system, Stanley Systems starts onboarding and implementation.",
+    copy: "If you bought the AI Profit Map, Stanley Systems starts the Map process. If you bought a system, Stanley Systems starts onboarding and implementation.",
   },
 ]
 

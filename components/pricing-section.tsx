@@ -34,7 +34,7 @@ const systems = [
 
 const pricingPreview = [
   {
-    name: "AI Office Map",
+    name: "AI Profit Map",
     price: pricingPackageById.workflow_audit.priceDisplay,
     note: "Paid diagnostic before a build.",
     href: "#final-audit",
@@ -43,14 +43,14 @@ const pricingPreview = [
   {
     name: "AI Office Installation Sprint",
     price: pricingPackageById.cashflow_control_monthly.priceDisplay,
-    note: `${pricingPackageById.cashflow_control_monthly.setupFeeDisplay}. AI Office Map credit can apply.`,
+    note: `${pricingPackageById.cashflow_control_monthly.setupFeeDisplay}. AI Profit Map credit can apply.`,
     href: cashflowHref,
     cta: "View system",
   },
   {
     name: "AI Office Ops",
     price: pricingPackageById.repeat_revenue_monthly.priceDisplay,
-    note: `${pricingPackageById.repeat_revenue_monthly.setupFeeDisplay}. AI Office Map credit can apply.`,
+    note: `${pricingPackageById.repeat_revenue_monthly.setupFeeDisplay}. AI Profit Map credit can apply.`,
     href: repeatRevenueHref,
     cta: "View system",
   },
@@ -75,7 +75,7 @@ export function PricingSection() {
             </h2>
           </div>
           <p className="max-w-3xl text-base leading-7 text-[#4d5a68] sm:text-lg">
-            Stanley Systems starts with the AI Office Map, then installs the workflows that help the same office team process more jobs, keep cleaner records, and follow up faster.
+            Stanley Systems starts with the AI Profit Map, then installs the workflows that help the same office team process more jobs, keep cleaner records, and follow up faster.
           </p>
         </div>
 
@@ -123,7 +123,7 @@ export function PricingSection() {
         <div className="mt-6 rounded-[1.35rem] border border-[#e2dbcf] bg-[#fbfaf7] p-4 shadow-[0_18px_42px_rgba(16,32,51,0.05)] sm:p-5">
           <div className="grid gap-3 lg:grid-cols-[0.76fr_1.24fr] lg:items-center">
             <div>
-              <h3 className="mt-2 text-2xl font-bold leading-tight text-[#102033]">Start with the AI Office Map, then install the workflows that match the drag.</h3>
+              <h3 className="mt-2 text-2xl font-bold leading-tight text-[#102033]">Start with the AI Profit Map, then install the workflows that match the drag.</h3>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
               {pricingPreview.map((item) => (
@@ -165,10 +165,10 @@ export function PricingSection() {
               location="homepage_pricing_audit"
               analyticsEvent="package_compare_clicked"
               analyticsSource="homepage_pricing_preview"
-              ctaLabel="See how the AI Office Map works"
+              ctaLabel="See how the AI Profit Map works"
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d6e5ca] bg-white px-6 py-3 text-sm font-bold text-[#102033] transition hover:border-[#15803D]/40 hover:bg-[#f2fbf5]"
             >
-              See how the AI Office Map works
+              See how the AI Profit Map works
             </CTALink>
           </div>
         </div>

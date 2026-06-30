@@ -33,7 +33,7 @@ const faqSchema = {
       name: "What if we are not sure where the real problem is?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "That is exactly what the AI Office Map is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat work. You leave knowing which workflow matters first.",
+        text: "That is exactly what the AI Profit Map is for. Stanley Systems checks the path from lead to job, job to invoice, invoice to payment, and customer to repeat work. You leave knowing which workflow matters first.",
       },
     },
     {
@@ -41,7 +41,7 @@ const faqSchema = {
       name: "I have been burned by consultants before. Why is this different?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Stanley Systems is not selling a giant strategy deck. The AI Office Map finds specific admin drag points, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
+        text: "Stanley Systems is not selling a giant strategy deck. The AI Profit Map finds specific admin drag points, then the build focuses on practical fixes your team can actually use: cleaner handoffs, faster billing, better follow-up, and fewer missed customer opportunities.",
       },
     },
   ],

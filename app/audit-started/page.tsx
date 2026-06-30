@@ -5,16 +5,16 @@ import { ArrowRight, CheckCircle2, CalendarCheck } from "lucide-react"
 import { MarketingPageShell } from "@/components/marketing-page-shell"
 
 export const metadata: Metadata = {
-  title: "AI Office Map Started | Stanley Systems",
-  description: "Complete the intake after paying for the Stanley Systems AI Office Map.",
+  title: "AI Profit Map Started | Stanley Systems",
+  description: "Complete the intake after paying for the Stanley Systems AI Profit Map.",
 }
 
 const steps = [
   "Payment received",
   "Complete intake",
-  "Complete AI Office Map intake",
+  "Complete AI Profit Map intake",
   "Share screen, exports, screenshots, or temporary user access if needed",
-  "Receive AI Office Map findings and first-workflow recommendation",
+  "Receive AI Profit Map findings and first-workflow recommendation",
 ]
 
 export default function AuditStartedPage() {
@@ -22,11 +22,11 @@ export default function AuditStartedPage() {
     <MarketingPageShell>
       <main className="px-4 pb-20 pt-32 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl rounded-[2rem] border border-[#DDEBE2] bg-white p-7 shadow-[0_20px_60px_rgba(7,29,58,0.08)] sm:p-10">
-          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Your AI Office Map is paid. Complete the intake next.</h1>
+          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] text-[#071D3A] sm:text-6xl">Your AI Profit Map is paid. Complete the intake next.</h1>
           <p className="mt-5 text-lg font-semibold leading-8 text-[#536173]">Complete the intake so Stanley Systems can review how your office handles jobs, invoices, estimates, follow-up, reviews, referrals, and handoffs today.</p>
 
           <div className="mt-8 rounded-[1.5rem] border border-[#DDEBE2] bg-[#FBFEFA] p-5">
-            <h2 className="text-xl font-extrabold tracking-[-0.02em] text-[#071D3A]">AI Office Map progress</h2>
+            <h2 className="text-xl font-extrabold tracking-[-0.02em] text-[#071D3A]">AI Profit Map progress</h2>
             <ol className="mt-4 grid gap-3">
               {steps.map((step, index) => (
                 <li key={step} className="flex gap-3 text-sm font-semibold leading-6 text-[#536173]">
@@ -43,7 +43,7 @@ export default function AuditStartedPage() {
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/audit-intake" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">Complete AI Office Map intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <Link href="/audit-intake" className="inline-flex min-h-13 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white hover:bg-[#116832]">Complete AI Profit Map intake <ArrowRight className="ml-2 h-4 w-4" /></Link>
             <a href="mailto:jaden@stanley-systems.com?subject=AI%20Office%20Map%20booking%20link" className="inline-flex min-h-13 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] hover:bg-[#F4FBF5]"><CalendarCheck className="mr-2 h-4 w-4" />Send me the booking link by email</a>
           </div>
         </div>

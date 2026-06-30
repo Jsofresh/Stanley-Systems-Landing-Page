@@ -18,14 +18,14 @@ export function RepeatRevenueFAQ() {
               analyticsEvent="audit_checkout_clicked"
               analyticsSource="repeat_revenue_page"
               packageId="workflow_audit"
-              packageName="AI Office Map"
+              packageName="AI Profit Map"
               billingPeriod="one_time"
-              ctaLabel="Book the AI Office Map"
+              ctaLabel="Buy the AI Profit Map"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md bg-[#15803D] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#17612E]"
             >
-              Book the AI Office Map
+              Buy the AI Profit Map
             </CTALink>
             <CTALink
               href={repeatMonthly.stripePaymentLink.url}

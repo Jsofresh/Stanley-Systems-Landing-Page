@@ -31,7 +31,7 @@ const problems = [
 const fixes = [
   ["AI Office Installation Sprint", "Moves finished work toward billing-ready, invoice follow-up, and collected cash with fewer office chases."],
   ["AI Office Ops", "Turns past customers, missed calls, reviews, referrals, and seasonal follow-up into cleaner booked-work paths."],
-  ["AI Office Map", "Finds the first admin drag before the shop buys or builds the wrong system."],
+  ["AI Profit Map", "Finds the first admin drag before the shop buys or builds the wrong system."],
 ]
 
 const workflows = [
@@ -56,8 +56,8 @@ export default function MarineServiceAutomationPage() {
                 Get more jobs billed, followed up, reviewed, referred, and rebooked before the season slips away. Marine service shops lose money when missed calls, slow estimates, delayed invoicing, and seasonal follow-up depend on memory.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/ai-office-map" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white shadow-[0_18px_42px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">
-                  Book the AI Office Map
+                <Link href="/ai-profit-map" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white shadow-[0_18px_42px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]">
+                  Buy the AI Profit Map
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link href="/invoicing-delay-cash-flow-calculator" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#c8d8cd] bg-white px-6 py-3 text-base font-bold text-[#071D3A] transition hover:bg-[#f3faf1]">
@@ -108,9 +108,9 @@ export default function MarineServiceAutomationPage() {
 
           <section data-nav-theme="light" className="mt-8 rounded-[2rem] border border-[#cfe8d5] bg-[#eef9f2] p-6 text-center sm:p-8">
             <h2 className="text-[2.15rem] font-semibold leading-[1.05] tracking-[-0.045em] text-[#071D3A] sm:text-[3.25rem]">Start with the leak, not the software.</h2>
-            <p className="mx-auto mt-3 max-w-3xl text-base font-medium leading-7 text-[#42596C]">Book the AI Office Map and find which handoff is costing the shop first.</p>
-            <Link href="/ai-office-map" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white transition hover:bg-[#116832]">
-              Book the AI Office Map
+            <p className="mx-auto mt-3 max-w-3xl text-base font-medium leading-7 text-[#42596C]">Buy the AI Profit Map and find which handoff is costing the shop first.</p>
+            <Link href="/ai-profit-map" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white transition hover:bg-[#116832]">
+              Buy the AI Profit Map
               <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
             </Link>
           </section>

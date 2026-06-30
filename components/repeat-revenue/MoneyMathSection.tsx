@@ -41,14 +41,14 @@ export function MoneyMathSection() {
             analyticsEvent="audit_checkout_clicked"
             analyticsSource="repeat_revenue_page"
             packageId="workflow_audit"
-            packageName="AI Office Map"
+            packageName="AI Profit Map"
             billingPeriod="one_time"
-            ctaLabel="Run the AI Office Map"
+            ctaLabel="Run the AI Profit Map"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex min-h-12 w-fit items-center justify-center gap-2 rounded-md bg-[#15803D] px-7 py-3 text-sm font-bold text-white shadow-[0_0_24px_rgba(21,128,61,0.20)] transition hover:bg-[#17612E]"
           >
-            Run the AI Office Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Run the AI Profit Map <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </CTALink>
         </div>
 
@@ -61,7 +61,7 @@ export function MoneyMathSection() {
             className="absolute inset-0 h-full w-full object-contain object-center p-3 sm:p-4"
           />
           <p className="absolute bottom-4 left-4 right-4 rounded-xl bg-white/90 px-4 py-3 text-sm font-bold leading-6 text-[#124E25] shadow-[0_10px_28px_rgba(16,32,51,0.12)] ring-1 ring-[#C8D8CE] backdrop-blur">
-            Example only. The AI Office Map uses your real records.
+            Example only. The AI Profit Map uses your real records.
           </p>
         </div>
       </div>

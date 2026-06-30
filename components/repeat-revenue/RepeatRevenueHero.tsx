@@ -53,18 +53,18 @@ export function RepeatRevenueHero() {
               analyticsEvent="audit_checkout_clicked"
               analyticsSource="repeat_revenue_page"
               packageId="workflow_audit"
-              packageName="AI Office Map"
+              packageName="AI Profit Map"
               billingPeriod="one_time"
-              ctaLabel="Book the AI Office Map"
+              ctaLabel="Buy the AI Profit Map"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center rounded-md border-2 border-[#15803D] bg-white px-7 py-3 text-sm font-bold text-[#102033] transition hover:bg-[#F4FBF6]"
             >
-              Book the AI Office Map
+              Buy the AI Profit Map
             </CTALink>
           </div>
           <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#33475B]">
-            AI Office Map credit: $197 off monthly or $197 off yearly. Yearly saves 20% and waives installation.
+            AI Profit Map credit: $194 off the AI Office Installation Sprint. Yearly saves 20% and waives installation.
           </p>
         </div>
 

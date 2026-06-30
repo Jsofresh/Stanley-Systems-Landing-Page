@@ -131,7 +131,7 @@ export function trackCheckoutOutcomeViewed(eventName: "checkout_success_viewed" 
   trackStanleyEvent(eventName, {
     event_source: safeSearchParam("source") || "stripe_redirect",
     package_id: safeSearchParam("package") || safeSearchParam("package_id") || "workflow_audit",
-    package_name: safeSearchParam("package_name") || "AI Office Map",
+    package_name: safeSearchParam("package_name") || "AI Profit Map",
   })
 }
 
@@ -146,7 +146,7 @@ export function trackCalculatorCtaClicked(properties: AttributionProperties = {}
 export function trackAuditCheckoutClicked(properties: AttributionProperties = {}) {
   trackStanleyEvent("audit_checkout_clicked", {
     package_id: "workflow_audit",
-    package_name: "AI Office Map",
+    package_name: "AI Profit Map",
     ...properties,
   })
 }

@@ -31,7 +31,7 @@ function yesNo(value: boolean) {
 function buildTelegramMessage(payload: Record<string, unknown>) {
   const formType = clean(payload.form_type) || clean(payload.form_name) || clean(payload.telegram_alert_type) || "contact_routing_request"
   const title = formType === "ai_office_map_info"
-    ? "🗺️ AI Office Map info request"
+    ? "🗺️ AI Profit Map info request"
     : formType === "start_sprint_contact"
       ? "🛠️ Start Sprint contact request"
       : "📬 Stanley Systems website contact"

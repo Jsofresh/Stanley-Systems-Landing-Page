@@ -17,7 +17,7 @@ const faqs = [
   {
     question: "What if we are not sure which leak matters most?",
     answer:
-      "That is exactly why the calculator and AI Office Map come first. The goal is to identify whether billing readiness, office handoffs, missed follow-up, or staff SOP support should be fixed before anything gets built.",
+      "That is exactly why the calculator and AI Profit Map come first. The goal is to identify whether billing readiness, office handoffs, missed follow-up, or staff SOP support should be fixed before anything gets built.",
   },
   {
     question: "Is this going to turn into a big project?",
@@ -98,8 +98,8 @@ export function FAQSection() {
       data-audit-page="/"
       data-audit-section="home.faq"
       data-audit-priority="2"
-      data-audit-offer="AI Office Map"
-      data-audit-purpose="Answer buying objections before the visitor books the AI Office Map."
+      data-audit-offer="AI Profit Map"
+      data-audit-purpose="Answer buying objections before the visitor books the AI Profit Map."
       className="relative z-10 scroll-mt-28 px-4 py-10 sm:scroll-mt-32 sm:py-12 lg:scroll-mt-36 lg:py-14"
     >
       <div className="mx-auto max-w-7xl">

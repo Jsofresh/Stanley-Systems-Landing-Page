@@ -77,14 +77,14 @@ export function MobileStickyCTA() {
           analyticsEvent="audit_checkout_clicked"
           analyticsSource="mobile_sticky_cta"
           packageId="workflow_audit"
-          packageName="AI Office Map"
+          packageName="AI Profit Map"
           billingPeriod="one_time"
-          ctaLabel="Book the AI Office Map"
+          ctaLabel="Buy the AI Profit Map"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-full bg-[#15803D] px-3 py-3 text-[13px] font-semibold text-white"
         >
-          Book $197 Map
+          Buy $97 Map
         </CTALink>
       </div>
     </div>

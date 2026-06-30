@@ -25,7 +25,7 @@ const contactCards = [
 
 const fitPoints = [
   "Reviewed by a real person",
-  "Routed to the right next step: Free Blueprint, AI Office Map, Sprint, Ops, or a simple fit answer",
+  "Routed to the right next step: Free Blueprint, AI Profit Map, Sprint, Ops, or a simple fit answer",
   "Built for service businesses where office work slows jobs, invoices, and follow-up",
 ]
 
@@ -128,7 +128,7 @@ export function ContactSection() {
               Send the office bottleneck that keeps slowing work down.
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
-              Tell Stanley Systems where calls, paperwork, billing, or follow-up keep getting stuck. We will point you to the Free Blueprint, AI Office Map, AI Office Installation Sprint, AI Office Ops, or a simple fit answer.
+              Tell Stanley Systems where calls, paperwork, billing, or follow-up keep getting stuck. We will point you to the Free Blueprint, AI Profit Map, AI Office Installation Sprint, AI Office Ops, or a simple fit answer.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -183,7 +183,7 @@ export function ContactSection() {
                 <div>
                   <h3 className="text-xl font-semibold text-slate-900">What happens next</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-[15px]">
-                    Stanley Systems reviews what you send, looks for the revenue problem, and reaches out if there is a clear place to inspect through the AI Office Map.
+                    Stanley Systems reviews what you send, looks for the revenue problem, and reaches out if there is a clear place to inspect through the AI Profit Map.
                   </p>
                 </div>
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">

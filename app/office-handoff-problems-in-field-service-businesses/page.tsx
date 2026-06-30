@@ -49,8 +49,8 @@ export default function OfficeHandoffProblemsPage() {
                 Stanley Systems helps field-service businesses clean up the handoff between the field, the office, and billing. When that handoff is messy, the business keeps paying for the job long after the crew has moved on.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/ai-office-map" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
-                  Book the AI Office Map
+                <Link href="/ai-profit-map" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#15803D] px-6 py-3 text-sm font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:-translate-y-0.5 hover:bg-[#116832]">
+                  Buy the AI Profit Map
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <Link href="/invoicing-delay-cash-flow-calculator" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CFE8D5] bg-white px-6 py-3 text-sm font-extrabold text-[#116832] transition hover:-translate-y-0.5 hover:bg-[#f3fbf5]">

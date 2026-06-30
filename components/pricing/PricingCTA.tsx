@@ -11,7 +11,7 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
         Find the office work your current team should fix first.
       </h2>
       <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-[#536173] sm:text-lg">
-        Book the AI Office Map. Stanley Systems will turn office drag into concrete fixes, staff AI prompts, tool guidance, quick wins, and the first AI-guided workflow worth installing.
+        Buy the AI Profit Map. Stanley Systems will turn office drag into concrete fixes, staff AI prompts, tool guidance, quick wins, and the first AI-guided workflow worth installing.
       </p>
       <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
         <CTALink
@@ -23,10 +23,10 @@ export function PricingCTA({ primaryOffer }: { primaryOffer: WorkflowAuditOffer 
           packageId={primaryOffer.analyticsPackageId}
           packageName={primaryOffer.packageName}
           billingPeriod={primaryOffer.billingPeriod}
-          ctaLabel="Book the AI Office Map"
+          ctaLabel="Buy the AI Profit Map"
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-base font-bold text-white shadow-[0_18px_38px_rgba(21,128,61,0.24)] transition hover:bg-[#116832] sm:px-8"
         >
-          Book the AI Office Map
+          Buy the AI Profit Map
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </CTALink>
         <CTALink

@@ -261,16 +261,16 @@ export function PaidInvoicingDelayCalculatorClient() {
               </div>
               <p className="mt-3 text-base leading-7 text-slate-600">
                 {highSeverity
-                  ? "When completed work keeps sitting before billing, the business usually feels it in slower cash, office cleanup, and more owner rescue work. Your next step is the $197 AI Office Map."
-                  : "This looks like a fixable office-step issue. Start with the checklist, then use the AI Office Map to see where work is getting stuck and which workflow should be installed first."}
+                  ? "When completed work keeps sitting before billing, the business usually feels it in slower cash, office cleanup, and more owner rescue work. Your next step is the $97 AI Profit Map."
+                  : "This looks like a fixable office-step issue. Start with the checklist, then use the AI Profit Map to see where work is getting stuck and which workflow should be installed first."}
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="/ai-office-map"
+                  href="/ai-profit-map"
                   onClick={() => track("stanley_paid_calc_booking_cta_clicked", { severity: result.severity, trade })}
                   className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#166534]"
                 >
-                  Book the AI Office Map
+                  Buy the AI Profit Map
                 </a>
                 <a
                   href="mailto:jaden@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist"

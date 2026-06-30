@@ -244,7 +244,7 @@ def generate_blueprint(record: dict[str, Any]) -> dict[str, Any]:
         ],
         "recommendedWorkflow": workflow,
         "recommendedWorkflowReason": f"The intake points to {workflow_reason}. That is the fastest place to create capacity without forcing {business} to switch systems first.",
-        "whatMapWouldReveal": f"The full AI Office Map would trace where this drag starts, which fields in {', '.join(tools[:3])} already have the needed data, what staff still must approve, and the first install priority for turning this into a repeatable workflow.",
+        "whatMapWouldReveal": f"The full AI Profit Map would trace where this drag starts, which fields in {', '.join(tools[:3])} already have the needed data, what staff still must approve, and the first install priority for turning this into a repeatable workflow.",
         "bookingUrl": BOOKING_URL,
     }
 

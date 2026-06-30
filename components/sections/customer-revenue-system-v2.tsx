@@ -116,10 +116,10 @@ export function CustomerRevenueSystemV2() {
 
               <div className="mt-7 flex w-full min-w-0 flex-col gap-3 sm:flex-row">
                 <a
-                  href="/pricing#ai-office-map"
+                  href="/pricing#ai-profit-map"
                   className="inline-flex items-center justify-center rounded-full bg-[#0caf58] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(12,175,88,0.24)] transition hover:bg-[#098f49]"
                 >
-                  Book the AI Office Map
+                  Buy the AI Profit Map
                 </a>
                 <a
                   href="/invoicing-delay-cash-flow-calculator"

@@ -11,7 +11,7 @@ const ladderButton = "inline-flex min-h-12 w-full items-center justify-center ro
 
 const offerIcons: Record<string, LucideIcon> = {
   "ai-office-blueprint": ClipboardCheck,
-  "ai-office-map": MapPinned,
+  "ai-profit-map": MapPinned,
   "installation-sprint": UsersRound,
   "ai-office-ops": MonitorCheck,
 }
@@ -36,13 +36,13 @@ const offers = [
   },
   {
     step: "Diagnostic",
-    id: "ai-office-map",
-    title: "AI Office Map",
-    price: "$197",
+    id: "ai-profit-map",
+    title: "AI Profit Map",
+    price: "$97",
     body: "A focused session that turns office drag into practical fixes, staff AI prompts, workflow tips, tool guidance, and the first workflow worth installing.",
-    bullets: ["45-60 minute owner or office-manager session", "Fix list, prompts, and staff AI plays", "Tool + workflow recommendations", "$197 credited toward your AI Office Installation Sprint"],
-    href: "/ai-office-map",
-    cta: "Book the AI Office Map",
+    bullets: ["45-60 minute owner or office-manager session", "Fix list, prompts, and staff AI plays", "Tool + workflow recommendations", "$194 credited toward your AI Office Installation Sprint"],
+    href: "/ai-profit-map",
+    cta: "Buy the AI Profit Map",
     featured: true,
   },
   {
@@ -50,8 +50,8 @@ const offers = [
     id: "installation-sprint",
     title: "AI Office Installation Sprint",
     price: "$3,500 starting",
-    body: "Turn your AI Office Map into staff training, your company playbook, and practical office workflows around the tools your staff already uses.",
-    bullets: ["Workflows from your AI Office Map", "Your company playbook", "Staff AI training session", "Proof report + 30 days light support"],
+    body: "Turn your AI Profit Map into staff training, your company playbook, and practical office workflows around the tools your staff already uses.",
+    bullets: ["Workflows from your AI Profit Map", "Your company playbook", "Staff AI training session", "Proof report + 30 days light support"],
     href: "/systems-installation-sprint",
     cta: "See the AI Office Installation Sprint",
   },
@@ -102,7 +102,7 @@ export function PricingPage({ searchParams: _searchParams }: { searchParams: Pri
             <h1 className="text-balance text-[2.65rem] font-semibold leading-[1.03] tracking-[-0.025em] text-[#071D3A] sm:text-[4.05rem] lg:text-[3.85rem] lg:leading-[1.01] lg:tracking-[-0.025em]">
               Start free. Map the work. Install the first AI office workflow. <span className="text-[#15803D]">Keep it running.</span>
             </h1>
-            <p className="mt-4 max-w-[36rem] text-base font-semibold leading-7 text-[#536173] sm:text-lg sm:leading-7">Use the free Blueprint for starter plays, the $197 AI Office Map to find the first workflow, the $3,500+ Sprint to install it, and AI Office Ops when you need it maintained monthly.</p>
+            <p className="mt-4 max-w-[36rem] text-base font-semibold leading-7 text-[#536173] sm:text-lg sm:leading-7">Use the free Blueprint for starter plays, the $97 AI Profit Map to find the first workflow, the $3,500+ Sprint to install it, and AI Office Ops when you need it maintained monthly.</p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row"><Link href="/ai-office-blueprint" className={greenButton}>Get the Free Blueprint <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="#offers" className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#DDEBE2] bg-white/86 px-6 py-3 text-sm font-extrabold text-[#071D3A] shadow-[0_12px_28px_rgba(7,29,58,0.06)] backdrop-blur-md transition hover:-translate-y-0.5 hover:border-[#15803D] hover:bg-white">Compare the four steps</Link></div>
           </div>
         </div>

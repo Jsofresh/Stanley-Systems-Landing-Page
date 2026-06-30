@@ -40,9 +40,9 @@ const fontAliases = {
   "--font-work-sans": "var(--font-neue-montreal)",
 } as React.CSSProperties
 
-const siteTitle = "Stanley Systems | AI Office Map"
+const siteTitle = "Stanley Systems | AI Profit Map"
 const siteDescription =
-  "Stanley Systems installs an AI office layer on top of the software your business already uses, reducing costly manual office work across billing, follow-up, customer records, and software handoffs."
+  "Stanley Systems offers the AI Profit Map and installs AI office workflows for service businesses where office process is costing time, cash, customer follow-up, and profit."
 const siteLogoPath = "/stanley-systems-logo-reference.jpg"
 const siteLogoUrl = `https://stanley-systems.com${siteLogoPath}`
 
@@ -94,10 +94,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What is the AI Office Map?",
+        name: "What is the AI Profit Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It is a $197 diagnostic where Stanley Systems finds the office work AI should remove first, then gives you practical fixes, staff AI prompts, workflow tips, tool guidance, quick wins, and the first install priority.",
+          text: "It is a $97 AI office diagnostic where Stanley Systems finds where office work is costing time, cash, and customer follow-up, then gives you an AI fix plan and $194 Installation Sprint credit if you move forward within 14 days.",
         },
       },
       {
@@ -113,7 +113,7 @@ export default function RootLayout({
         name: "What if we are not sure where the real leak is?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "That is exactly what the AI Office Map is for: it turns office drag into fixes, prompts, tool guidance, quick wins, and the AI workflow to install first.",
+          text: "That is exactly what the AI Profit Map is for: it turns office drag into a Priority Fix List, AI Opportunity Map, Quick-Win AI Assets, and a Profit Implementation Plan.",
         },
       },
       {
@@ -126,7 +126,7 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What happens after the AI Office Map?",
+        name: "What happens after the AI Profit Map?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Stanley Systems shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first, then turns that plan into systems your business can use.",

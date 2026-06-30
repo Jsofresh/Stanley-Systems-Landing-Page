@@ -46,12 +46,12 @@ export function AiOfficeMapInfoForm() {
           message: formData.question,
           smsConsent: formData.smsConsent,
           telegram_alert_type: "ai_office_map_info",
-          form_type: "ai_office_map_info",
-          intent: "AI Office Map info request",
-          source: "ai-office-map-info-form",
-          source_section: "ai_office_map_info",
-          page: "/ai-office-map",
-          source_page: "/ai-office-map",
+          form_type: "ai_profit_map_info",
+          intent: "AI Profit Map info request",
+          source: "ai-profit-map-info-form",
+          source_section: "ai_profit_map_info",
+          page: "/ai-profit-map",
+          source_page: "/ai-profit-map",
           submitted_at: new Date().toISOString(),
         }),
       })
@@ -62,7 +62,7 @@ export function AiOfficeMapInfoForm() {
       }
 
       setSubmitState("success")
-      setSubmitMessage(result?.message || "Thanks. Stanley Systems received your AI Office Map question and will reply soon.")
+      setSubmitMessage(result?.message || "Thanks. Stanley Systems received your AI Profit Map question and will reply soon.")
       setFormData(initialForm)
     } catch (error) {
       setSubmitState("error")
@@ -75,7 +75,7 @@ export function AiOfficeMapInfoForm() {
       <div className="mx-auto grid max-w-6xl gap-8 rounded-[2rem] border border-[#DDEBE2] bg-white p-6 shadow-[0_24px_70px_rgba(7,29,58,0.08)] sm:p-8 lg:grid-cols-[0.92fr_1.08fr] lg:p-10">
         <div>
           <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#15803D]">Get more info</p>
-          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.7rem]">Ask about the AI Office Map.</h2>
+          <h2 className="mt-4 text-[2.35rem] font-semibold leading-[1] tracking-[-0.045em] text-[#071D3A] sm:text-[3.7rem]">Ask about the AI Profit Map.</h2>
           <p className="mt-5 max-w-xl text-lg font-semibold leading-8 text-[#536173]">
             Send your contact info and the office problem you want looked at. Stanley Systems will route the note and reply with the clean next step.
           </p>

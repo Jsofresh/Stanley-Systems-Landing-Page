@@ -74,5 +74,5 @@ export const sampleGeneratedBlueprint: AiOfficeBlueprint = {
     "This workflow touches cash speed, office workload, customer communication, and owner interruptions. It is the highest-value first place to make AI useful.",
   whatMapWouldReveal:
     "The full Map would show which fields must be captured, where your current software already helps, what staff should review, and which handoffs can be standardized first.",
-  bookingUrl: "/ai-office-map",
+  bookingUrl: "/ai-profit-map",
 }

@@ -91,10 +91,10 @@ export type PricingCalculatorContext = {
 
 const directPurchasePromises: Record<PricingPackageId, string> = {
   workflow_audit: "Find the office work AI should remove first, then leave with the fixes to start removing it.",
-  cashflow_control_monthly: "Turn your AI Office Map into staff training, a company playbook, and practical office workflows.",
+  cashflow_control_monthly: "Turn your AI Profit Map into staff training, a company playbook, and practical office workflows.",
   repeat_revenue_monthly: "Keep installed workflows monitored, fixed, improved, and useful to staff.",
   both_systems_monthly: "Install priority workflows, then keep improving them month by month.",
-  cashflow_control_yearly: "Turn your AI Office Map into staff training, a company playbook, and practical office workflows.",
+  cashflow_control_yearly: "Turn your AI Profit Map into staff training, a company playbook, and practical office workflows.",
   repeat_revenue_yearly: "Bring past customers back for the year and remove the installation charge.",
   both_systems_yearly: "Fix both leaks with the best first-year price.",
 }
@@ -103,7 +103,7 @@ const directPurchaseDescriptions: Record<PricingPackageId, string> = {
   workflow_audit:
     "Stanley Systems traces office drag just far enough to give you practical fixes, staff AI prompts, workflow tips, tool guidance, and the first AI-guided workflow worth installing.",
   cashflow_control_monthly:
-    "For businesses ready to turn the AI Office Map into staff training, your company playbook, and practical workflows around existing tools.",
+    "For businesses ready to turn the AI Profit Map into staff training, your company playbook, and practical workflows around existing tools.",
   repeat_revenue_monthly:
     "For past customers who bought once, stopped hearing from you, and now book with whoever follows up first.",
   both_systems_monthly:
@@ -198,8 +198,8 @@ const packageDemos: Partial<Record<PricingPackageId, PackageDemo>> = {
 function priceRowsFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
     return [
-      { label: "AI Office Map", value: pricingPackage.priceDisplay },
-      { label: "AI Office Installation Sprint credit", value: "$197 credited toward your AI Office Installation Sprint" },
+      { label: "AI Profit Map", value: pricingPackage.priceDisplay },
+      { label: "AI Office Installation Sprint credit", value: "$194 credited toward your AI Office Installation Sprint" },
     ]
   }
 
@@ -210,26 +210,26 @@ function priceRowsFor(pricingPackage: PricingPackage) {
       value: pricingPackage.waivedSetupDisplay || pricingPackage.setupFeeDisplay,
     },
     {
-      label: "AI Office Map credit",
+      label: "AI Profit Map credit",
       value: pricingPackage.auditCreditDisplay,
     },
-    { label: "First year after AI Office Map credit", value: pricingPackage.firstYearCostAfterAuditCreditDisplay },
+    { label: "First year after AI Profit Map credit", value: pricingPackage.firstYearCostAfterAuditCreditDisplay },
     ...(pricingPackage.savings ? [{ label: "Savings", value: pricingPackage.savings.display }] : []),
   ]
 }
 
 function priceNoteFor(pricingPackage: PricingPackage) {
   if (pricingPackage.id === "workflow_audit") {
-    return `${pricingPackage.priceDisplay} AI Office Map. $197 credited toward your AI Office Installation Sprint when you move forward.`
+    return `${pricingPackage.priceDisplay} AI Profit Map. $194 credited toward your AI Office Installation Sprint when you move forward.`
   }
 
   const setupCopy = pricingPackage.waivedSetup
     ? pricingPackage.waivedSetupDisplay
     : pricingPackage.setupFeeDisplay
-  const creditCopy = pricingPackage.auditCredit > 0 ? "$197 credited toward your AI Office Installation Sprint if you bought the AI Office Map first" : pricingPackage.auditCreditDisplay
+  const creditCopy = pricingPackage.auditCredit > 0 ? "$194 credited toward your AI Office Installation Sprint if you bought the AI Profit Map first" : pricingPackage.auditCreditDisplay
   const savingsCopy = pricingPackage.savings ? ` ${pricingPackage.savings.display}.` : ""
 
-  return `${pricingPackage.priceDisplay} + ${setupCopy}. ${creditCopy}. First year after AI Office Map credit: ${pricingPackage.firstYearCostAfterAuditCreditDisplay}.${savingsCopy}`
+  return `${pricingPackage.priceDisplay} + ${setupCopy}. ${creditCopy}. First year after AI Profit Map credit: ${pricingPackage.firstYearCostAfterAuditCreditDisplay}.${savingsCopy}`
 }
 
 function checkoutHrefFor(pricingPackage: PricingPackage) {
@@ -283,7 +283,7 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
       ? "You leave with fixes, prompts, tool guidance, and a recommendation: what to automate, remove, restructure, or delegate."
       : "After checkout, onboarding and fit, access, and scope review happen before the build begins.",
     scopeNote: isAudit
-      ? "If no clear first workflow is found for a qualified business, the AI Office Map fee is refunded."
+      ? "If no clear first workflow is found for a qualified business, the AI Profit Map fee is refunded."
       : "Buying starts onboarding. The build begins after fit, access, and scope review. If this is not the right fit, Stanley Systems may refund, redirect, or pause before work begins.",
     cta: {
       label: href ? primaryCtaLabelFor(pricingPackage) : "Checkout paused",
@@ -304,23 +304,23 @@ function planFromPackage(pricingPackage: PricingPackage): PricingPlan {
 
 export const workflowAuditOffer: WorkflowAuditOffer = {
   ...planFromPackage(pricingPackageById.workflow_audit),
-  title: "AI Office Map",
-  shortTitle: "AI Office Map",
+  title: "AI Profit Map",
+  shortTitle: "AI Profit Map",
   promise: "Find the office work AI should remove first.",
   description: "In one focused session, Stanley Systems traces office drag just far enough to turn it into useful fixes: staff AI prompts, workflow tips, tool recommendations, quick wins, and the first AI-guided workflow worth installing.",
   id: "workflow_audit",
   kind: "front_door_audit",
   contactPathOnly: false,
   cta: {
-    label: "Book the $197 AI Office Map",
+    label: "Buy the $97 AI Profit Map",
     action: "checkout",
     href: pricingPackageById.workflow_audit.stripePaymentLink.url,
   },
   guarantee: {
-    headline: "If Stanley Systems cannot find one clear admin drag we can fix, you get your AI Office Map fee back.",
+    headline: "If Stanley Systems cannot find one clear admin drag we can fix, you get your AI Profit Map fee back.",
     qualificationCopy:
-      "The guarantee applies to qualified service businesses with enough job, invoice, customer, call, estimate, or review volume for the workflow review to matter. Stanley Systems needs access to the relevant systems and a reachable decision maker or operations contact during the AI Office Map.",
-    scopeCopy: "The refund applies to the AI Office Map fee only. It does not include a system build.",
+      "The guarantee applies to qualified service businesses with enough job, invoice, customer, call, estimate, or review volume for the workflow review to matter. Stanley Systems needs access to the relevant systems and a reachable decision maker or operations contact during the AI Profit Map.",
+    scopeCopy: "The refund applies to the AI Profit Map fee only. It does not include a system build.",
   },
 }
 
@@ -331,30 +331,30 @@ export const postAuditPlans: PricingPlan[] = pricingPackages
 export const auditCreditTerm: AuditCreditTerm = {
   status: "approved",
   copy:
-    "Bought the AI Office Map first? $197 is credited toward your AI Office Installation Sprint. The credit follows the stated checkout and written follow-up terms.",
-  nonStackingCopy: "If the AI Office Map is refunded because no clear first workflow is found, there is no build credit.",
+    "Bought the AI Profit Map first? $194 is credited toward your AI Office Installation Sprint. The credit follows the stated checkout and written follow-up terms.",
+  nonStackingCopy: "If the AI Profit Map is refunded because no clear first workflow is found, there is no build credit.",
 }
 
 export const pricingFAQItems: PricingFAQItem[] = [
   {
-    question: "Is the AI Office Map required before buying a package?",
+    question: "Is the AI Profit Map required before buying a package?",
     answer:
-      "The AI Office Map is the recommended first paid step before the AI Office Installation Sprint. It gives you the fix list, staff AI prompts, tool guidance, workflow recommendations, and install priorities needed to build the right first workflow.",
+      "The AI Profit Map is the recommended first paid step before the AI Office Installation Sprint. It gives you the fix list, staff AI prompts, tool guidance, workflow recommendations, and install priorities needed to build the right first workflow.",
   },
   {
-    question: "How does the AI Office Map credit work?",
+    question: "How does the AI Profit Map credit work?",
     answer:
-      "$197 is credited toward your AI Office Installation Sprint when you move forward. If the AI Office Map is refunded because no clear first workflow is found, no package credit is also owed.",
+      "$194 is credited toward your AI Office Installation Sprint when you move forward. If the AI Profit Map is refunded because no clear first workflow is found, no package credit is also owed.",
   },
   {
-    question: "What does the AI Office Map guarantee mean?",
+    question: "What does the AI Profit Map guarantee mean?",
     answer:
-      "If your business qualifies and Stanley Systems cannot find one clear first workflow it can reasonably help fix, you get the AI Office Map fee back. The refund applies to the AI Office Map fee only. It does not include a free system build, subscription fee, third-party cost, or package credit.",
+      "If your business qualifies and Stanley Systems cannot find one clear first workflow it can reasonably help fix, you get the AI Profit Map fee back. The refund applies to the AI Profit Map fee only. It does not include a free system build, subscription fee, third-party cost, or package credit.",
   },
   {
-    question: "Who qualifies for the AI Office Map guarantee?",
+    question: "Who qualifies for the AI Profit Map guarantee?",
     answer:
-      "The guarantee is for active service businesses with enough real job, customer, billing, estimate, review, call, or follow-up activity to inspect. Stanley Systems also needs timely access to the relevant tools or records and a reachable decision maker or operations contact during the AI Office Map.",
+      "The guarantee is for active service businesses with enough real job, customer, billing, estimate, review, call, or follow-up activity to inspect. Stanley Systems also needs timely access to the relevant tools or records and a reachable decision maker or operations contact during the AI Profit Map.",
   },
   {
     question: "Can I buy AI Office Installation Sprint or AI Office Ops directly?",
@@ -377,9 +377,9 @@ export const pricingFAQItems: PricingFAQItem[] = [
       "The package price covers the selected system plan and the setup/onboarding scope described at checkout or in written follow-up. It does not include unlimited custom development, unsupported platform workarounds, third-party software costs, ad spend, legal/compliance advice, or guaranteed revenue, profit, customers, collection, review, ranking, or call-volume results.",
   },
   {
-    question: "Do promotion codes or AI Office Map credits always apply?",
+    question: "Do promotion codes or AI Profit Map credits always apply?",
     answer:
-      "Promotion code and AI Office Map credit availability depends on the active checkout link and Stripe settings at the time of purchase. The standard public credit is $197 credited toward your AI Office Installation Sprint.",
+      "Promotion code and AI Profit Map credit availability depends on the active checkout link and Stripe settings at the time of purchase. The standard public credit is $194 credited toward your AI Office Installation Sprint.",
   },
   {
     question: "Can Stanley Systems work inside my current tools?",

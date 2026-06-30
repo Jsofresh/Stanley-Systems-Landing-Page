@@ -7,7 +7,7 @@ import { ArrowRight, CalendarDays, CheckCircle2, ClipboardCheck, Mail, ShieldChe
 import { trackOnboardingFormStarted, trackOnboardingFormSubmitted } from "@/components/posthog-provider"
 
 const whatBoughtOptions = [
-  "AI Office Map",
+  "AI Profit Map",
   "AI Office Installation Sprint — monthly",
   "AI Office Installation Sprint — yearly",
   "AI Office Ops — monthly",
@@ -25,8 +25,8 @@ const accessReadinessOptions = [
 ]
 
 const boughtPrefillMap: Record<string, string> = {
-  workflow_audit: "AI Office Map",
-  audit: "AI Office Map",
+  workflow_audit: "AI Profit Map",
+  audit: "AI Profit Map",
   cashflow_control_monthly: "AI Office Installation Sprint — monthly",
   cashflow_control_yearly: "AI Office Installation Sprint — yearly",
   repeat_revenue_monthly: "AI Office Ops — monthly",

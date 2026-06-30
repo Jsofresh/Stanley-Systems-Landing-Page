@@ -132,7 +132,7 @@ def email_body_html(business_name: str) -> str:
       <p>Thanks for filling out the AI Office Blueprint form.</p>
       <p>Your customized Stanley Systems Blueprint for <strong>{safe_business}</strong> is attached as a downloadable PDF.</p>
       <p>Start with the first staff prompt and the one-week workflow change. The goal is not generic AI tips. It is to help your team turn messy job notes, billing details, follow-ups, and office handoffs into cleaner work faster.</p>
-      <p>If you want Stanley Systems to map the full workflow and install the first AI Office system, book the AI Office Map here:<br><a href="https://stanley-systems.com/workflow-audit">https://stanley-systems.com/workflow-audit</a></p>
+      <p>If you want Stanley Systems to map the full workflow and install the first AI Office system, book the AI Profit Map here:<br><a href="https://stanley-systems.com/workflow-audit">https://stanley-systems.com/workflow-audit</a></p>
       <p>Stanley Systems</p>
     </div>
     """.strip()
