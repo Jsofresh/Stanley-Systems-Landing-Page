@@ -7,7 +7,6 @@ const ALLOWED_PATHS = new Set([
   "control/needs-attention",
   "brain/chat",
   "brain/uploads",
-  "actions/confirm",
   "health",
 ])
 
@@ -29,18 +28,18 @@ function jsonError(error: string, status: number) {
 function chatTimeoutFallback() {
   return NextResponse.json(
     {
-      answer: "I couldn’t finish from the company brain right now. Try again in a minute.",
-      errorCode: "runtime_failed",
+      answer: "The company agent is unavailable right now. Nothing was created or changed.",
+      errorCode: "company_agent_unavailable",
       blocks: [
         {
           type: "error",
           code: "runtime_failed",
-          message: "I couldn’t finish from the company brain right now. Try again in a minute.",
+          message: "The company agent is unavailable right now. Nothing was created or changed.",
         },
       ],
       suggested_action: { type: "boundary_error", status: "blocked", draft: "Nothing was sent or changed." },
     },
-    { status: 200, headers: { "cache-control": "no-store" } },
+    { status: 503, headers: { "cache-control": "no-store" } },
   )
 }
 

@@ -122,12 +122,6 @@ export function GlassmorphismNav() {
             </div>
 
             <div className="hidden min-w-[470px] items-center justify-end gap-2 md:flex">
-              <Link
-                href={`${basePath}/login`}
-                className="inline-flex whitespace-nowrap items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6] hover:text-[#15803d]"
-              >
-                Login
-              </Link>
               <a
                 href="tel:+16179586372"
                 className="inline-flex whitespace-nowrap items-center rounded-full border border-[#d8d1c4] bg-white px-4 py-2.5 text-[13px] font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6]"
@@ -178,13 +172,6 @@ export function GlassmorphismNav() {
                   </Link>
                 ))}
                 <div className="my-2 h-px bg-[#ebe5db]" />
-                <Link
-                  href={`${basePath}/login`}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3.5 text-base font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6] hover:text-[#15803d]"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Login
-                </Link>
                 <a
                   href="tel:+16179586372"
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3.5 text-base font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6]"

@@ -9,14 +9,10 @@ const HEADLESS = process.env.HEADLESS !== 'false'
 const CONCURRENCY = Math.max(1, Number(process.env.STANLEY_UI_STRESS_CONCURRENCY || '5'))
 const OUT_DIR = process.env.STANLEY_UI_STRESS_OUT || path.resolve('test-artifacts/company-brain-live-ui-stress')
 const testUsersPath = path.resolve('lib/portal/test-users.ts')
-const sessionPath = path.resolve('lib/portal/session.ts')
 
 function readPassword() {
   if (process.env.STANLEY_PORTAL_TEST_PASSWORD) return process.env.STANLEY_PORTAL_TEST_PASSWORD
-  const source = fs.readFileSync(sessionPath, 'utf8')
-  const match = source.match(/const TEST_PASSWORD = "([^"]+)"/)
-  if (!match) throw new Error('Missing STANLEY_PORTAL_TEST_PASSWORD and could not parse test password')
-  return match[1]
+  throw new Error('Missing STANLEY_PORTAL_TEST_PASSWORD; live UI stress tests must not parse passwords from source')
 }
 
 function readUsers() {

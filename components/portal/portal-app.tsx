@@ -60,7 +60,6 @@ type PortalSession = {
   roleLabel: string
   companyId: string
   companyName: string
-  sessionKey: string
 }
 
 const sensitiveDisplayPatterns = [
@@ -213,7 +212,7 @@ export function PortalApp() {
             type: "error",
             id: "send-error",
             title: "Company Brain couldn’t finish that",
-            message: error instanceof Error ? error.message : "I couldn’t finish from the company brain right now. Try again in a minute.",
+            message: error instanceof Error ? error.message : "The company agent is unavailable right now. Nothing was created or changed.",
           },
         ],
       }

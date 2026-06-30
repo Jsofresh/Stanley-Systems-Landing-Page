@@ -153,7 +153,8 @@ function userSafeErrorMessage(code?: string, fallback?: string) {
     file_too_large: "That file is too large for this chat. Try a smaller file or split it into smaller parts.",
     extraction_failed: "I received the file, but couldn’t read its contents yet.",
     artifact_failed: "I found the records, but couldn’t create the PDF file yet. Nothing was changed.",
-    runtime_failed: "I couldn’t finish from the company brain right now. Try again in a minute.",
+    runtime_failed: "The company agent is unavailable right now. Nothing was created or changed.",
+    company_agent_unavailable: "The company agent is unavailable right now. Nothing was created or changed.",
     permission_denied: "I can’t access that from this role.",
   }
   return (code ? messages[code] : undefined) ?? fallback ?? messages.runtime_failed
@@ -169,7 +170,7 @@ function toArtifact(artifact: BrainArtifact): Artifact {
     fileName: artifact.fileName,
     extension: artifact.extension,
     mimeType: artifact.mimeType,
-    downloadUrl: artifact.downloadUrl,
+    downloadUrl: artifact.downloadUrl?.startsWith("/api/company-brain/") ? artifact.downloadUrl : undefined,
     file: artifact.fileName && artifact.extension && artifact.mimeType ? {
       fileName: artifact.fileName,
       extension: artifact.extension === "csv" ? "txt" : artifact.extension,

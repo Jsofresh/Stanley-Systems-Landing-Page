@@ -6,13 +6,11 @@ import { ArrowRight, BriefcaseBusiness, LockKeyhole, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PORTAL_TEST_USERS } from "@/lib/portal/test-users"
 
-const TEST_PASSWORD = "stanley-test"
-
 export function LoginForm() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState(PORTAL_TEST_USERS[0]?.email ?? "")
-  const [password, setPassword] = useState(TEST_PASSWORD)
+  const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
 
   const selectedUser = useMemo(

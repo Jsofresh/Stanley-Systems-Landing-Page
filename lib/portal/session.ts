@@ -4,7 +4,8 @@ import { createHash, createHmac, timingSafeEqual } from "crypto"
 import { findPortalUserByEmail, publicPortalUsers, type PortalTestUser } from "@/lib/portal/test-users"
 
 export const PORTAL_SESSION_COOKIE = "stanley_portal_session"
-const TEST_PASSWORD = "stanley-test"
+const FALLBACK_TEST_PASSWORD = "stanley-test"
+const SESSION_MAX_AGE_MS = 12 * 60 * 60 * 1000
 
 type PortalSession = {
   actorId: string
@@ -17,6 +18,8 @@ type PortalSession = {
   sessionKey: string
   issuedAt: string
 }
+
+export type PublicPortalSession = Omit<PortalSession, "sessionKey">
 
 function sessionSecret() {
   const secret = process.env.PORTAL_SESSION_SECRET
@@ -44,6 +47,10 @@ function decodeSession(value: string | undefined): PortalSession | null {
     if (suppliedBuffer.length !== expectedBuffer.length || !timingSafeEqual(suppliedBuffer, expectedBuffer)) return null
     const parsed = JSON.parse(Buffer.from(payload, "base64url").toString("utf8")) as PortalSession
     if (!parsed.actorId || !parsed.email || !parsed.companyId || !parsed.sessionKey) return null
+    const issuedAt = Date.parse(parsed.issuedAt || "")
+    if (!Number.isFinite(issuedAt) || Date.now() - issuedAt > SESSION_MAX_AGE_MS) return null
+    const currentUser = findPortalUserByEmail(parsed.email)
+    if (!currentUser || currentUser.actorId !== parsed.actorId || currentUser.companyId !== parsed.companyId) return null
     return parsed
   } catch {
     return null
@@ -99,13 +106,18 @@ export function clearPortalSessionCookie(response: NextResponse) {
 export function verifyPortalLogin(email: string, password: string) {
   const user = findPortalUserByEmail(email)
   if (!user) return null
-  if (password !== TEST_PASSWORD) return null
+  const expectedPassword = process.env.PORTAL_TEST_PASSWORD || FALLBACK_TEST_PASSWORD
+  if (password !== expectedPassword) return null
   return user
+}
+
+export function publicPortalSession(session: PortalSession): PublicPortalSession {
+  const { sessionKey: _sessionKey, ...publicSession } = session
+  return publicSession
 }
 
 export function portalLoginHints() {
   return {
     users: publicPortalUsers(),
-    password_hint: "Shared test password configured for non-production persona accounts.",
   }
 }

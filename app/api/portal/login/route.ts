@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { createPortalSession, setPortalSessionCookie, verifyPortalLogin } from "@/lib/portal/session"
+import { createPortalSession, publicPortalSession, setPortalSessionCookie, verifyPortalLogin } from "@/lib/portal/session"
 
 export async function POST(request: NextRequest) {
   let body: { email?: string; password?: string }
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   }
 
   const session = createPortalSession(user)
-  const response = NextResponse.json({ ok: true, session })
+  const response = NextResponse.json({ ok: true, session: publicPortalSession(session) })
   setPortalSessionCookie(response, session)
   return response
 }
