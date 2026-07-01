@@ -140,7 +140,7 @@ async function forward(request: NextRequest, context: RouteContext) {
   }
 
   const controller = new AbortController()
-  const timeoutMs = path === "brain/chat" ? 45000 : path === "brain/uploads" ? 60000 : 20000
+  const timeoutMs = path === "brain/chat" ? 180000 : path === "brain/uploads" ? 60000 : 20000
   const timeout = setTimeout(() => controller.abort(), timeoutMs)
   let response: Response
   try {

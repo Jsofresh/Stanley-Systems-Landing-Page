@@ -171,8 +171,9 @@ export function PortalApp() {
   }
 
   async function sendMessage(messageText = input, messageAttachments = attachments) {
-    const trimmed = messageText.trim()
-    if ((!trimmed && messageAttachments.length === 0) || isSendingRef.current) return
+    const rawMessage = messageText
+    const hasText = rawMessage.trim().length > 0
+    if ((!hasText && messageAttachments.length === 0) || isSendingRef.current) return
     isSendingRef.current = true
 
     const userMessage: CompanyBrainMessage = {
@@ -180,7 +181,7 @@ export function PortalApp() {
       role: "user",
       createdAt: new Date().toISOString(),
       blocks: [
-        ...(trimmed ? [{ type: "text" as const, id: `user-text-${Date.now()}`, text: trimmed }] : []),
+        ...(hasText ? [{ type: "text" as const, id: `user-text-${Date.now()}`, text: rawMessage }] : []),
         ...messageAttachments.map((attachment) => ({
           type: "attachment" as const,
           id: `user-attachment-${attachment.id}`,
@@ -198,7 +199,7 @@ export function PortalApp() {
       const response = await sendCompanyBrainMessage({
         companyId: "bayview_synthetic",
         conversationId: currentConversationId,
-        message: trimmed || "Review attached file.",
+        message: rawMessage,
         attachments: messageAttachments,
       })
       setMessages((current) => [...current, response.message])

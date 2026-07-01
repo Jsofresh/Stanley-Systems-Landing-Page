@@ -215,7 +215,7 @@ function toBlocks(response: BrainChatResponse): CompanyBrainBlock[] {
 
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
   const controller = new AbortController()
-  const timeout = window.setTimeout(() => controller.abort(), init?.method === "POST" ? 90000 : 12000)
+  const timeout = window.setTimeout(() => controller.abort(), init?.method === "POST" ? 180000 : 12000)
   const headers = new Headers(init?.headers)
   if (!(init?.body instanceof FormData) && !headers.has("content-type")) headers.set("content-type", "application/json")
   const response = await fetch(`${BRAIN_BASE_URL}${path}`, {
