@@ -78,6 +78,44 @@ function sanitizePortalDisplayText(value: string) {
   return sensitiveDisplayPatterns.reduce((current, pattern) => current.replace(pattern, "[redacted]"), value)
 }
 
+type StoredPortalHistory = {
+  currentConversationId: string
+  recentConversations: RecentConversation[]
+}
+
+function portalHistoryKey(session: PortalSession) {
+  return `stanley-ui:company-brain-history:${session.companyId}:${session.actorId}`
+}
+
+function loadPortalHistory(session: PortalSession): StoredPortalHistory | null {
+  if (typeof window === "undefined") return null
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(portalHistoryKey(session)) || "null") as StoredPortalHistory | null
+    if (!parsed?.currentConversationId || !Array.isArray(parsed.recentConversations)) return null
+    return {
+      currentConversationId: parsed.currentConversationId,
+      recentConversations: parsed.recentConversations
+        .filter((conversation) => conversation?.id && Array.isArray(conversation.messages))
+        .slice(0, 12),
+    }
+  } catch {
+    return null
+  }
+}
+
+function savePortalHistory(session: PortalSession, currentConversationId: string, recentConversations: RecentConversation[]) {
+  if (typeof window === "undefined") return
+  const payload: StoredPortalHistory = {
+    currentConversationId,
+    recentConversations: recentConversations.slice(0, 12),
+  }
+  try {
+    window.localStorage.setItem(portalHistoryKey(session), JSON.stringify(payload))
+  } catch {
+    // Browser storage can be unavailable in private mode; chat still works in-memory.
+  }
+}
+
 type PreviewState =
   | { type: "artifact"; artifact: Artifact }
   | { type: "action"; action: PreparedAction }
@@ -101,6 +139,7 @@ export function PortalApp() {
   const [currentConversationId, setCurrentConversationId] = useState(() => `conversation-${Date.now()}`)
   const [recentConversations, setRecentConversations] = useState<RecentConversation[]>([])
   const isSendingRef = useRef(false)
+  const historyLoadedRef = useRef(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const hasMessages = messages.length > 0
@@ -145,6 +184,23 @@ export function PortalApp() {
       cancelled = true
     }
   }, [session])
+
+  useEffect(() => {
+    if (!session) return
+    const saved = loadPortalHistory(session)
+    if (saved) {
+      setCurrentConversationId(saved.currentConversationId)
+      setRecentConversations(saved.recentConversations)
+      const active = saved.recentConversations.find((conversation) => conversation.id === saved.currentConversationId)
+      setMessages(active?.messages ?? [])
+    }
+    historyLoadedRef.current = true
+  }, [session])
+
+  useEffect(() => {
+    if (!session || !historyLoadedRef.current) return
+    savePortalHistory(session, currentConversationId, recentConversations)
+  }, [session, currentConversationId, recentConversations])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ block: "end" })
@@ -238,7 +294,7 @@ export function PortalApp() {
 
   const sidebar = (
     <PortalSidebar
-      session={session}
+      session={session!}
       onLogout={handleLogout}
       onClose={() => setSidebarOpen(false)}
       recentConversations={recentConversations}
@@ -613,12 +669,16 @@ function MessageBlock({
     )
   }
 
-  return (
-    <div className="rounded-lg border border-[#f0c6c0] bg-[#fff7f5] p-4">
-      <p className="font-bold text-[#9c2f24]">{block.title}</p>
-      <p className="mt-1 text-sm leading-6 text-[#7a3b35]">{block.message}</p>
-    </div>
-  )
+  if (block.type === "error" && "title" in block && "message" in block) {
+    return (
+      <div className="rounded-lg border border-[#f0c6c0] bg-[#fff7f5] p-4">
+        <p className="font-bold text-[#9c2f24]">{block.title}</p>
+        <p className="mt-1 text-sm leading-6 text-[#7a3b35]">{block.message}</p>
+      </div>
+    )
+  }
+
+  return null
 }
 
 function ActionCard({ action, onPreview }: { action: PreparedAction; onPreview: () => void }) {
