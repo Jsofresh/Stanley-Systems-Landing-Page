@@ -187,6 +187,43 @@ function artifactIdsFromChatResponse(value: unknown) {
   }))].slice(0, 20)
 }
 
+function publicControlResponse(path: string, responseBody: string) {
+  if (path !== "control/summary" && path !== "control/needs-attention") return responseBody
+  try {
+    const parsed = JSON.parse(responseBody) as Record<string, unknown>
+    if (!parsed || Array.isArray(parsed)) return responseBody
+    if (path === "control/summary") {
+      return JSON.stringify({
+        runtime_status: typeof parsed.runtime_status === "string" ? parsed.runtime_status : "unavailable",
+        runtime_version: typeof parsed.runtime_version === "string" ? parsed.runtime_version : "unavailable",
+        source_record_counts: parsed.source_record_counts && typeof parsed.source_record_counts === "object" && !Array.isArray(parsed.source_record_counts)
+          ? parsed.source_record_counts
+          : {},
+        raw_customer_data_included: parsed.raw_customer_data_included === true,
+      })
+    }
+    const cards = Array.isArray(parsed.cards)
+      ? parsed.cards.flatMap((card) => {
+        if (!card || typeof card !== "object" || Array.isArray(card)) return []
+        const { source_ids: _sourceIds, ...safeCard } = card as Record<string, unknown>
+        return [safeCard]
+      }).slice(0, 50)
+      : []
+    return JSON.stringify({
+      endpoint_scope: typeof parsed.endpoint_scope === "string" ? parsed.endpoint_scope : "portal_control",
+      control_plane_safe: parsed.control_plane_safe === true,
+      cards,
+      card_count: cards.length,
+      source_record_counts: parsed.source_record_counts && typeof parsed.source_record_counts === "object" && !Array.isArray(parsed.source_record_counts)
+        ? parsed.source_record_counts
+        : {},
+      raw_customer_data_included: parsed.raw_customer_data_included === true,
+    })
+  } catch {
+    return JSON.stringify({ error: "invalid_upstream_response" })
+  }
+}
+
 async function forward(request: NextRequest, context: RouteContext) {
   const session = getPortalSession()
   if (!session) return jsonError("portal_login_required", 401)
@@ -350,7 +387,8 @@ async function forward(request: NextRequest, context: RouteContext) {
       }
     }
   }
-  return new NextResponse(responseBody, {
+  const publicBody = publicControlResponse(path, responseBody)
+  return new NextResponse(publicBody, {
     status: response.status,
     headers: securityHeaders({ "content-type": "application/json" }),
   })
