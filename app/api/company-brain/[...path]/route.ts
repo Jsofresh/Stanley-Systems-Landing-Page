@@ -58,7 +58,8 @@ function approvalRequestIsSameOrigin(request: NextRequest) {
       .flatMap((value) => {
         try {
           const url = new URL(value)
-          return url.protocol === "https:" || (process.env.NODE_ENV !== "production" && url.protocol === "http:")
+          const loopbackHttp = url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)
+          return url.protocol === "https:" || loopbackHttp
             ? [url.origin]
             : []
         } catch {
