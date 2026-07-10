@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server"
 import { getPortalSession, portalSessionStoreDir } from "@/lib/portal/session"
 import { grantPortalArtifactAccess, portalArtifactAccessAllowed } from "@/lib/portal/artifact-grants"
 
+const TRUSTED_PORTAL_ORIGINS = new Set([
+  "https://stanley-systems.com",
+  "https://www.stanley-systems.com",
+])
 const ALLOWED_PATHS = new Set([
   "control/summary",
   "control/needs-attention",
@@ -46,7 +50,24 @@ function approvalRequestIsSameOrigin(request: NextRequest) {
   if (!origin || request.headers.get("x-stanley-csrf") !== "portal-action") return false
   if (fetchSite && fetchSite !== "same-origin") return false
   try {
-    return new URL(origin).origin === request.nextUrl.origin
+    const normalizedOrigin = new URL(origin).origin
+    const configuredOrigins = (process.env.STANLEY_TRUSTED_ORIGINS ?? "")
+      .split(",")
+      .map((value) => value.trim())
+      .filter(Boolean)
+      .flatMap((value) => {
+        try {
+          const url = new URL(value)
+          return url.protocol === "https:" || (process.env.NODE_ENV !== "production" && url.protocol === "http:")
+            ? [url.origin]
+            : []
+        } catch {
+          return []
+        }
+      })
+    const trustedOrigins = new Set(configuredOrigins.length ? configuredOrigins : TRUSTED_PORTAL_ORIGINS)
+    if (process.env.NODE_ENV !== "production") trustedOrigins.add(request.nextUrl.origin)
+    return trustedOrigins.has(normalizedOrigin)
   } catch {
     return false
   }
