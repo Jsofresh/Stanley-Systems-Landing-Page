@@ -1,5 +1,8 @@
 import Link from "next/link"
 import { ArrowLeft, Bell, Building2, CreditCard, Gauge, PlugZap, ShieldCheck, UserRound, UsersRound } from "lucide-react"
+import { requirePortalSession } from "@/lib/portal/session"
+
+export const dynamic = "force-dynamic"
 
 const settings = [
   {
@@ -53,6 +56,7 @@ const settings = [
 ]
 
 export default function PortalSettingsPage() {
+  requirePortalSession()
   return (
     <main className="min-h-screen bg-[#f7f2ea] px-4 py-6 text-[#102033] sm:px-6">
       <div className="mx-auto w-full max-w-4xl">

@@ -28,7 +28,9 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
+import { appendMessageToConversation, replaceConversationMessages } from "@/lib/portal/conversation-state"
 import {
+  confirmCompanyBrainAction,
   getCompanyBrainSummary,
   sendCompanyBrainMessage,
   uploadCompanyBrainFiles,
@@ -60,6 +62,7 @@ type PortalSession = {
   roleLabel: string
   companyId: string
   companyName: string
+  loginSessionId: string
 }
 
 const sensitiveDisplayPatterns = [
@@ -79,24 +82,37 @@ function sanitizePortalDisplayText(value: string) {
 }
 
 type StoredPortalHistory = {
+  version: 1
+  savedAt: number
   currentConversationId: string
   recentConversations: RecentConversation[]
 }
 
+const PORTAL_HISTORY_VERSION = 1 as const
+const PORTAL_HISTORY_TTL_MS = 4 * 60 * 60 * 1000
+const PORTAL_HISTORY_MAX_BYTES = 1_000_000
+
 function portalHistoryKey(session: PortalSession) {
-  return `stanley-ui:company-brain-history:${session.companyId}:${session.actorId}`
+  return `stanley-ui:company-brain-history:${session.companyId}:${session.actorId}:${session.loginSessionId}`
 }
 
 function loadPortalHistory(session: PortalSession): StoredPortalHistory | null {
   if (typeof window === "undefined") return null
   try {
-    const parsed = JSON.parse(window.localStorage.getItem(portalHistoryKey(session)) || "null") as StoredPortalHistory | null
-    if (!parsed?.currentConversationId || !Array.isArray(parsed.recentConversations)) return null
+    const key = portalHistoryKey(session)
+    const parsed = JSON.parse(window.sessionStorage.getItem(key) || "null") as StoredPortalHistory | null
+    if (parsed?.version !== PORTAL_HISTORY_VERSION || !Number.isFinite(parsed.savedAt) || Date.now() - parsed.savedAt > PORTAL_HISTORY_TTL_MS) {
+      window.sessionStorage.removeItem(key)
+      return null
+    }
+    if (!parsed.currentConversationId || !Array.isArray(parsed.recentConversations)) return null
     return {
+      version: PORTAL_HISTORY_VERSION,
+      savedAt: parsed.savedAt,
       currentConversationId: parsed.currentConversationId,
       recentConversations: parsed.recentConversations
         .filter((conversation) => conversation?.id && Array.isArray(conversation.messages))
-        .slice(0, 12),
+        .slice(0, 8),
     }
   } catch {
     return null
@@ -106,19 +122,32 @@ function loadPortalHistory(session: PortalSession): StoredPortalHistory | null {
 function savePortalHistory(session: PortalSession, currentConversationId: string, recentConversations: RecentConversation[]) {
   if (typeof window === "undefined") return
   const payload: StoredPortalHistory = {
+    version: PORTAL_HISTORY_VERSION,
+    savedAt: Date.now(),
     currentConversationId,
-    recentConversations: recentConversations.slice(0, 12),
+    recentConversations: recentConversations.slice(0, 8).map((conversation) => ({
+      ...conversation,
+      messages: conversation.messages.slice(-60),
+    })),
   }
   try {
-    window.localStorage.setItem(portalHistoryKey(session), JSON.stringify(payload))
+    let serialized = JSON.stringify(payload)
+    if (serialized.length > PORTAL_HISTORY_MAX_BYTES) {
+      const active = payload.recentConversations.find((conversation) => conversation.id === currentConversationId)
+      serialized = JSON.stringify({
+        ...payload,
+        recentConversations: active ? [{ ...active, messages: active.messages.slice(-20) }] : [],
+      })
+    }
+    window.sessionStorage.setItem(portalHistoryKey(session), serialized)
   } catch {
-    // Browser storage can be unavailable in private mode; chat still works in-memory.
+    // Session storage can be unavailable in private mode; chat still works in-memory.
   }
 }
 
 type PreviewState =
   | { type: "artifact"; artifact: Artifact }
-  | { type: "action"; action: PreparedAction }
+  | { type: "action"; action: PreparedAction; conversationId?: string }
   | { type: "table"; table: TablePreview }
   | { type: "sources"; sources: SourceChip[]; title?: string }
   | null
@@ -136,13 +165,21 @@ export function PortalApp() {
   const [preview, setPreview] = useState<PreviewState>(null)
   const [summary, setSummary] = useState<BrainSummary | null>(null)
   const [statusError, setStatusError] = useState<string | null>(null)
+  const [approvingActionReference, setApprovingActionReference] = useState<string | null>(null)
+  const [approvalError, setApprovalError] = useState<string | null>(null)
   const [currentConversationId, setCurrentConversationId] = useState(() => `conversation-${Date.now()}`)
   const [recentConversations, setRecentConversations] = useState<RecentConversation[]>([])
+  const currentConversationIdRef = useRef(currentConversationId)
   const isSendingRef = useRef(false)
+  const approvalPendingRef = useRef(new Set<string>())
   const historyLoadedRef = useRef(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const hasMessages = messages.length > 0
+
+  useEffect(() => {
+    currentConversationIdRef.current = currentConversationId
+  }, [currentConversationId])
 
   useEffect(() => {
     let cancelled = false
@@ -189,6 +226,7 @@ export function PortalApp() {
     if (!session) return
     const saved = loadPortalHistory(session)
     if (saved) {
+      currentConversationIdRef.current = saved.currentConversationId
       setCurrentConversationId(saved.currentConversationId)
       setRecentConversations(saved.recentConversations)
       const active = saved.recentConversations.find((conversation) => conversation.id === saved.currentConversationId)
@@ -222,15 +260,44 @@ export function PortalApp() {
   }, [messages, currentConversationId])
 
   async function handleLogout() {
-    await fetch("/api/portal/logout", { method: "POST" }).catch(() => null)
+    let response: Response
+    try {
+      response = await fetch("/api/portal/logout", { method: "POST" })
+    } catch {
+      setStatusError("Logout could not be confirmed. You are still signed in; try again.")
+      return
+    }
+    if (!response.ok) {
+      setStatusError("Logout could not be confirmed. You are still signed in; try again.")
+      return
+    }
+    if (session && typeof window !== "undefined") {
+      try {
+        window.sessionStorage.removeItem(portalHistoryKey(session))
+      } catch {
+        // Cookie revocation is authoritative when browser storage is unavailable.
+      }
+    }
+    historyLoadedRef.current = false
+    setRecentConversations([])
+    setMessages([])
     router.replace("/login")
   }
 
   async function sendMessage(messageText = input, messageAttachments = attachments) {
     const rawMessage = messageText
     const hasText = rawMessage.trim().length > 0
+    const hasUnreadyAttachment = messageAttachments.some((attachment) => attachment.status !== "ready" || attachment.extractionStatus !== "ready")
+    if (hasUnreadyAttachment) {
+      setStatusError("Remove any attachment that has not finished processing before sending.")
+      return
+    }
     if ((!hasText && messageAttachments.length === 0) || isSendingRef.current) return
     isSendingRef.current = true
+    const originConversationId = currentConversationIdRef.current
+    const originTitle = hasText
+      ? rawMessage.trim().slice(0, 54)
+      : messageAttachments[0]?.name.slice(0, 54) || "New conversation"
 
     const userMessage: CompanyBrainMessage = {
       id: `user-${Date.now()}`,
@@ -246,7 +313,14 @@ export function PortalApp() {
       ],
     }
 
-    setMessages((current) => [...current, userMessage])
+    const originMessages = [...messages, userMessage]
+    setMessages((current) => currentConversationIdRef.current === originConversationId ? [...current, userMessage] : current)
+    setRecentConversations((current) => replaceConversationMessages(
+      current,
+      originConversationId,
+      originTitle,
+      originMessages,
+    ).slice(0, 8))
     setInput("")
     setAttachments([])
     setIsSending(true)
@@ -254,11 +328,21 @@ export function PortalApp() {
     try {
       const response = await sendCompanyBrainMessage({
         companyId: "bayview_synthetic",
-        conversationId: currentConversationId,
+        conversationId: originConversationId,
         message: rawMessage,
         attachments: messageAttachments,
       })
-      setMessages((current) => [...current, response.message])
+      setRecentConversations((current) => appendMessageToConversation(
+        current,
+        originConversationId,
+        response.message,
+        originTitle,
+      ).slice(0, 8))
+      if (currentConversationIdRef.current === originConversationId) {
+        setMessages((current) => current.some((message) => message.id === response.message.id)
+          ? current
+          : [...current, response.message])
+      }
     } catch (error) {
       const errorMessage: CompanyBrainMessage = {
         id: `assistant-error-${Date.now()}`,
@@ -269,14 +353,62 @@ export function PortalApp() {
             type: "error",
             id: "send-error",
             title: "Company Brain couldn’t finish that",
-            message: error instanceof Error ? error.message : "The company agent is unavailable right now. Nothing was created or changed.",
+            message: error instanceof Error
+              ? error.message
+              : "The request outcome is unknown. Check recent activity before trying again.",
           },
         ],
       }
-      setMessages((current) => [...current, errorMessage])
+      setRecentConversations((current) => appendMessageToConversation(
+        current,
+        originConversationId,
+        errorMessage,
+        originTitle,
+      ).slice(0, 8))
+      if (currentConversationIdRef.current === originConversationId) {
+        setMessages((current) => current.some((message) => message.id === errorMessage.id)
+          ? current
+          : [...current, errorMessage])
+      }
     } finally {
       isSendingRef.current = false
       setIsSending(false)
+    }
+  }
+
+  async function approvePreparedAction(action: PreparedAction, originConversationId: string) {
+    const actionReference = action.approvalReference?.trim() ?? ""
+    if (!actionReference || !/^actref_[A-Za-z0-9_-]{32,240}$/.test(actionReference)) {
+      setApprovalError("This prepared action is no longer available. Prepare it again from the same conversation.")
+      return
+    }
+    const pendingKey = `${originConversationId}:${actionReference}`
+    if (approvalPendingRef.current.has(pendingKey)) return
+    approvalPendingRef.current.add(pendingKey)
+    setApprovingActionReference(actionReference)
+    setApprovalError(null)
+    try {
+      const response = await confirmCompanyBrainAction(originConversationId, actionReference)
+      const originTitle = recentConversations.find((conversation) => conversation.id === originConversationId)?.title ?? action.title
+      setRecentConversations((current) => appendMessageToConversation(
+        current,
+        originConversationId,
+        response.message,
+        originTitle,
+      ).slice(0, 8))
+      if (currentConversationIdRef.current === originConversationId) {
+        setMessages((current) => current.some((message) => message.id === response.message.id)
+          ? current
+          : [...current, response.message])
+      }
+      setPreview(null)
+    } catch (error) {
+      setApprovalError(error instanceof Error
+        ? error.message
+        : "Stanley could not verify the approval result. Check the original conversation before trying again.")
+    } finally {
+      approvalPendingRef.current.delete(pendingKey)
+      setApprovingActionReference((current) => current === actionReference ? null : current)
     }
   }
 
@@ -299,6 +431,11 @@ export function PortalApp() {
       onClose={() => setSidebarOpen(false)}
       recentConversations={recentConversations}
       onOpenRecent={(conversation) => {
+        if (isUploading) {
+          setStatusError("Wait for the attachment upload to finish before switching conversations.")
+          return
+        }
+        currentConversationIdRef.current = conversation.id
         setCurrentConversationId(conversation.id)
         setMessages(conversation.messages)
         setInput("")
@@ -306,7 +443,13 @@ export function PortalApp() {
         setSidebarOpen(false)
       }}
       onNewChat={() => {
-        setCurrentConversationId(`conversation-${Date.now()}`)
+        if (isUploading) {
+          setStatusError("Wait for the attachment upload to finish before starting another conversation.")
+          return
+        }
+        const nextConversationId = `conversation-${Date.now()}`
+        currentConversationIdRef.current = nextConversationId
+        setCurrentConversationId(nextConversationId)
         setMessages([])
         setInput("")
         setAttachments([])
@@ -389,7 +532,16 @@ export function PortalApp() {
                 {hasMessages ? (
                   <div className="space-y-4 pb-6 pt-3">
                     {messages.map((message) => (
-                      <ChatMessage key={message.id} message={message} onPreview={setPreview} />
+                      <ChatMessage
+                        key={message.id}
+                        message={message}
+                        onPreview={(nextPreview) => {
+                          setApprovalError(null)
+                          setPreview(nextPreview?.type === "action"
+                            ? { ...nextPreview, conversationId: currentConversationId }
+                            : nextPreview)
+                        }}
+                      />
                     ))}
                     {isSending ? <TypingMessage /> : null}
                     <div ref={messagesEndRef} aria-hidden="true" />
@@ -406,6 +558,7 @@ export function PortalApp() {
                 conversationId={currentConversationId}
                 onAttachments={setAttachments}
                 onUploading={setIsUploading}
+                onUploadError={setStatusError}
                 onSubmit={handleSubmit}
                 onKeyDown={handleKeyDown}
               />
@@ -413,7 +566,15 @@ export function PortalApp() {
           </section>
         </main>
       </div>
-      <PreviewDialog preview={preview} onClose={() => setPreview(null)} />
+      <PreviewDialog
+        preview={preview}
+        onClose={() => {
+          if (!approvingActionReference) setPreview(null)
+        }}
+        onApprove={(action, conversationId) => void approvePreparedAction(action, conversationId)}
+        approvingActionReference={approvingActionReference}
+        approvalError={approvalError}
+      />
     </div>
   )
 }
@@ -737,13 +898,13 @@ function ArtifactCard({ artifact, onPreview }: { artifact: Artifact; onPreview: 
           >
             Preview
           </Button>
-          {artifact.downloadUrl || artifact.file ? (
+          {artifact.status === "ready" && artifact.downloadUrl ? (
             <Button
               type="button"
               className="h-9 rounded-lg bg-[#15803d] text-white hover:bg-[#116832]"
               onClick={() => downloadArtifact(artifact)}
             >
-              Download {(artifact.extension ?? artifact.file?.extension ?? artifact.kind).toUpperCase()}
+              Download {(artifact.extension ?? artifact.kind).toUpperCase()}
             </Button>
           ) : null}
         </div>
@@ -843,6 +1004,7 @@ function ChatComposer({
   conversationId,
   onAttachments,
   onUploading,
+  onUploadError,
   onSubmit,
   onKeyDown,
 }: {
@@ -853,12 +1015,14 @@ function ChatComposer({
   onInput: (value: string) => void
   onAttachments: (value: CompanyBrainAttachment[]) => void
   onUploading: (value: boolean) => void
+  onUploadError: (value: string | null) => void
   onSubmit: (event: FormEvent) => void
   onKeyDown: (event: KeyboardEvent<HTMLTextAreaElement>) => void
 }) {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [isDraggingFile, setIsDraggingFile] = useState(false)
-  const canSend = (input.trim().length > 0 || attachments.length > 0) && !disabled
+  const attachmentsReady = attachments.every((attachment) => attachment.status === "ready" && attachment.extractionStatus === "ready")
+  const canSend = (input.trim().length > 0 || attachments.length > 0) && attachmentsReady && !disabled
 
   async function addFiles(files: File[]) {
     if (!files.length) return
@@ -866,22 +1030,10 @@ function ChatComposer({
     try {
       const uploaded = await uploadCompanyBrainFiles(conversationId, files)
       onAttachments([...attachments, ...uploaded])
+      onUploadError(null)
     } catch (error) {
-      const message = error instanceof Error ? error.message : "I received the file, but couldn’t read its contents yet."
-      onAttachments([
-        ...attachments,
-        ...files.map((file, index) => ({
-          id: `failed-${Date.now()}-${index}`,
-          name: file.name,
-          size: file.size,
-          type: file.type || "application/octet-stream",
-          mimeType: file.type || "application/octet-stream",
-          kind: "unsupported" as const,
-          status: "failed" as const,
-          extractionStatus: "failed" as const,
-          errorCode: message,
-        })),
-      ])
+      const message = error instanceof Error ? error.message : "The file could not be uploaded. Remove it and try again."
+      onUploadError(message)
     } finally {
       onUploading(false)
     }
@@ -999,230 +1151,29 @@ function TypingMessage() {
 
 
 function downloadArtifact(artifact: Artifact) {
-  if (artifact.downloadUrl) {
-    const anchor = document.createElement("a")
-    anchor.href = artifact.downloadUrl
-    anchor.download = artifact.fileName ?? artifact.file?.fileName ?? `${artifact.title}.${artifact.extension ?? artifact.kind}`
-    document.body.appendChild(anchor)
-    anchor.click()
-    anchor.remove()
-    return
-  }
-  if (!artifact.file) return
-
-  const blob = createArtifactBlob(artifact)
-  const url = URL.createObjectURL(blob)
+  if (artifact.status !== "ready" || !artifact.downloadUrl) return
   const anchor = document.createElement("a")
-  anchor.href = url
-  anchor.download = artifact.file.fileName
+  anchor.href = artifact.downloadUrl
+  anchor.download = artifact.fileName ?? `${artifact.title}.${artifact.extension ?? artifact.kind}`
+  anchor.rel = "noopener"
   document.body.appendChild(anchor)
   anchor.click()
   anchor.remove()
-  URL.revokeObjectURL(url)
 }
 
-function createArtifactBlob(artifact: Artifact): Blob {
-  const file = artifact.file
-  if (!file) return new Blob([artifact.preview ?? artifact.description], { type: "text/plain" })
-
-  if (file.extension === "pdf") {
-    return new Blob([buildPdf(file.title, file.plainText ?? artifact.preview ?? artifact.description)], { type: file.mimeType })
-  }
-
-  if (file.extension === "html") {
-    return new Blob([file.html ?? artifact.preview ?? ""], { type: file.mimeType })
-  }
-
-  if (file.extension === "xlsx") {
-    return new Blob([buildXlsx(file.table ?? { columns: ["Item"], rows: [{ Item: artifact.preview ?? artifact.title }] })], {
-      type: file.mimeType,
-    })
-  }
-
-  if (file.extension === "docx") {
-    return new Blob([buildDocx(file.title, file.plainText ?? artifact.preview ?? artifact.description)], { type: file.mimeType })
-  }
-
-  return new Blob([file.plainText ?? artifact.preview ?? artifact.description], { type: file.mimeType })
-}
-
-function buildPdf(title: string, body: string) {
-  const lines = [title, "", ...body.split("\n")].slice(0, 36)
-  const escaped = lines.map((line) => line.replace(/[\\()]/g, "\\$&"))
-  const textOps = escaped.map((line, index) => `BT /F1 12 Tf 72 ${720 - index * 18} Td (${line}) Tj ET`).join("\n")
-  const objects = [
-    "<< /Type /Catalog /Pages 2 0 R >>",
-    "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
-    "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>",
-    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
-    `<< /Length ${textOps.length} >>\nstream\n${textOps}\nendstream`,
-  ]
-  let pdf = "%PDF-1.4\n"
-  const offsets = [0]
-  objects.forEach((object, index) => {
-    offsets.push(pdf.length)
-    pdf += `${index + 1} 0 obj\n${object}\nendobj\n`
-  })
-  const xrefStart = pdf.length
-  pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`
-  offsets.slice(1).forEach((offset) => {
-    pdf += `${String(offset).padStart(10, "0")} 00000 n \n`
-  })
-  pdf += `trailer << /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefStart}\n%%EOF`
-  return pdf
-}
-
-type SheetRows = { columns: string[]; rows: Array<Record<string, string>> }
-
-function buildXlsx(table: SheetRows) {
-  const sheetRows = [table.columns, ...table.rows.map((row) => table.columns.map((column) => row[column] ?? ""))]
-  const sheetData = sheetRows
-    .map((row, rowIndex) => {
-      const cells = row
-        .map((value, columnIndex) => {
-          const ref = `${columnName(columnIndex)}${rowIndex + 1}`
-          return `<c r="${ref}" t="inlineStr"><is><t>${escapeXml(value)}</t></is></c>`
-        })
-        .join("")
-      return `<row r="${rowIndex + 1}">${cells}</row>`
-    })
-    .join("")
-
-  return zipFiles([
-    {
-      name: "[Content_Types].xml",
-      text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>',
-    },
-    {
-      name: "_rels/.rels",
-      text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>',
-    },
-    {
-      name: "xl/workbook.xml",
-      text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Company Brain" sheetId="1" r:id="rId1"/></sheets></workbook>',
-    },
-    {
-      name: "xl/_rels/workbook.xml.rels",
-      text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>',
-    },
-    {
-      name: "xl/worksheets/sheet1.xml",
-      text: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${sheetData}</sheetData></worksheet>`,
-    },
-  ])
-}
-
-function buildDocx(title: string, body: string) {
-  const paragraphs = [title, "", ...body.split("\n")]
-    .map((line) => `<w:p><w:r><w:t>${escapeXml(line)}</w:t></w:r></w:p>`)
-    .join("")
-
-  return zipFiles([
-    {
-      name: "[Content_Types].xml",
-      text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>',
-    },
-    {
-      name: "_rels/.rels",
-      text: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>',
-    },
-    {
-      name: "word/document.xml",
-      text: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${paragraphs}<w:sectPr/></w:body></w:document>`,
-    },
-  ])
-}
-
-function columnName(index: number) {
-  let name = ""
-  let cursor = index + 1
-  while (cursor > 0) {
-    const remainder = (cursor - 1) % 26
-    name = String.fromCharCode(65 + remainder) + name
-    cursor = Math.floor((cursor - 1) / 26)
-  }
-  return name
-}
-
-function escapeXml(value: string) {
-  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
-}
-
-function zipFiles(files: Array<{ name: string; text: string }>) {
-  const encoder = new TextEncoder()
-  const localParts: Uint8Array[] = []
-  const centralParts: Uint8Array[] = []
-  let offset = 0
-
-  files.forEach((file) => {
-    const nameBytes = encoder.encode(file.name)
-    const data = encoder.encode(file.text)
-    const crc = crc32(data)
-    const localHeader = zipHeader(30)
-    localHeader.setUint32(0, 0x04034b50, true)
-    localHeader.setUint16(4, 20, true)
-    localHeader.setUint16(8, 0, true)
-    localHeader.setUint32(14, crc, true)
-    localHeader.setUint32(18, data.length, true)
-    localHeader.setUint32(22, data.length, true)
-    localHeader.setUint16(26, nameBytes.length, true)
-    localParts.push(localHeader.bytes, nameBytes, data)
-
-    const centralHeader = zipHeader(46)
-    centralHeader.setUint32(0, 0x02014b50, true)
-    centralHeader.setUint16(4, 20, true)
-    centralHeader.setUint16(6, 20, true)
-    centralHeader.setUint16(10, 0, true)
-    centralHeader.setUint32(16, crc, true)
-    centralHeader.setUint32(20, data.length, true)
-    centralHeader.setUint32(24, data.length, true)
-    centralHeader.setUint16(28, nameBytes.length, true)
-    centralHeader.setUint32(42, offset, true)
-    centralParts.push(centralHeader.bytes, nameBytes)
-
-    offset += localHeader.bytes.length + nameBytes.length + data.length
-  })
-
-  const centralOffset = offset
-  const centralSize = centralParts.reduce((sum, part) => sum + part.length, 0)
-  const endHeader = zipHeader(22)
-  endHeader.setUint32(0, 0x06054b50, true)
-  endHeader.setUint16(8, files.length, true)
-  endHeader.setUint16(10, files.length, true)
-  endHeader.setUint32(12, centralSize, true)
-  endHeader.setUint32(16, centralOffset, true)
-
-  return concatBytes([...localParts, ...centralParts, endHeader.bytes])
-}
-
-function zipHeader(size: number) {
-  const bytes = new Uint8Array(size)
-  return { bytes, setUint16: (offset: number, value: number, le: boolean) => new DataView(bytes.buffer).setUint16(offset, value, le), setUint32: (offset: number, value: number, le: boolean) => new DataView(bytes.buffer).setUint32(offset, value, le) }
-}
-
-function concatBytes(parts: Uint8Array[]) {
-  const total = parts.reduce((sum, part) => sum + part.length, 0)
-  const output = new Uint8Array(total)
-  let offset = 0
-  parts.forEach((part) => {
-    output.set(part, offset)
-    offset += part.length
-  })
-  return output
-}
-
-function crc32(data: Uint8Array) {
-  let crc = 0xffffffff
-  for (let index = 0; index < data.length; index += 1) {
-    crc ^= data[index]
-    for (let bit = 0; bit < 8; bit += 1) {
-      crc = crc & 1 ? (crc >>> 1) ^ 0xedb88320 : crc >>> 1
-    }
-  }
-  return (crc ^ 0xffffffff) >>> 0
-}
-
-function PreviewDialog({ preview, onClose }: { preview: PreviewState; onClose: () => void }) {
+function PreviewDialog({
+  preview,
+  onClose,
+  onApprove,
+  approvingActionReference,
+  approvalError,
+}: {
+  preview: PreviewState
+  onClose: () => void
+  onApprove: (action: PreparedAction, conversationId: string) => void
+  approvingActionReference: string | null
+  approvalError: string | null
+}) {
   const title = useMemo(() => {
     if (!preview) return ""
     if (preview.type === "artifact") return preview.artifact.title
@@ -1231,37 +1182,62 @@ function PreviewDialog({ preview, onClose }: { preview: PreviewState; onClose: (
     return preview.title ?? "Sources"
   }, [preview])
 
+  const approvalPending = preview?.type === "action"
+    && Boolean(preview.action.approvalReference)
+    && preview.action.approvalReference === approvingActionReference
+
   return (
-    <Dialog open={Boolean(preview)} onOpenChange={(open) => (!open ? onClose() : null)}>
+    <Dialog open={Boolean(preview)} onOpenChange={(open) => (!open && !approvalPending ? onClose() : null)}>
       <DialogContent className="max-h-[85svh] overflow-y-auto rounded-xl border-[#ded6c8] bg-[#fffdf8] text-[#102033] sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>Preview only. No writebacks or external sends are connected.</DialogDescription>
+          <DialogDescription>
+            {preview?.type === "action"
+              ? "Review the exact prepared change before approving it. Stanley will verify the provider result before reporting completion."
+              : "Preview the runtime-created result before downloading or using it."}
+          </DialogDescription>
         </DialogHeader>
-        {preview ? <PreviewContent preview={preview} /> : null}
+        {preview ? (
+          <PreviewContent
+            preview={preview}
+            onApprove={onApprove}
+            approvalPending={approvalPending}
+            approvalError={approvalError}
+          />
+        ) : null}
       </DialogContent>
     </Dialog>
   )
 }
 
-function PreviewContent({ preview }: { preview: NonNullable<PreviewState> }) {
+function PreviewContent({
+  preview,
+  onApprove,
+  approvalPending,
+  approvalError,
+}: {
+  preview: NonNullable<PreviewState>
+  onApprove: (action: PreparedAction, conversationId: string) => void
+  approvalPending: boolean
+  approvalError: string | null
+}) {
   if (preview.type === "artifact") {
     return (
       <div className="rounded-lg border border-[#e1d8ca] bg-white p-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-bold uppercase text-[#15803d]">{preview.artifact.kind}</p>
-            {preview.artifact.fileName || preview.artifact.file ? (
-              <p className="mt-1 text-xs font-semibold text-[#667085]">{preview.artifact.fileName ?? preview.artifact.file?.fileName}</p>
+            {preview.artifact.fileName ? (
+              <p className="mt-1 text-xs font-semibold text-[#667085]">{preview.artifact.fileName}</p>
             ) : null}
           </div>
-          {preview.artifact.downloadUrl || preview.artifact.file ? (
+          {preview.artifact.status === "ready" && preview.artifact.downloadUrl ? (
             <Button
               type="button"
               className="h-9 rounded-lg bg-[#15803d] text-white hover:bg-[#116832]"
               onClick={() => downloadArtifact(preview.artifact)}
             >
-              Download {(preview.artifact.extension ?? preview.artifact.file?.extension ?? preview.artifact.kind).toUpperCase()}
+              Download {(preview.artifact.extension ?? preview.artifact.kind).toUpperCase()}
             </Button>
           ) : null}
         </div>
@@ -1274,14 +1250,27 @@ function PreviewContent({ preview }: { preview: NonNullable<PreviewState> }) {
   }
 
   if (preview.type === "action") {
+    const canApprove = Boolean(preview.action.approvalReference && preview.conversationId)
     return (
       <div className="rounded-lg border border-[#d8e7dc] bg-white p-4">
         <p className="text-sm leading-6 text-[#4d5d69]">{preview.action.description}</p>
         <div className="mt-4 rounded-lg bg-[#f5fbf7] p-4 text-sm leading-6 text-[#102033]">
           {preview.action.preview}
         </div>
-        <Button type="button" disabled className="mt-4 rounded-lg bg-[#15803d] text-white">
-          Prepared, not sent
+        {approvalError ? (
+          <p role="alert" className="mt-3 rounded-lg border border-[#f0c6c0] bg-[#fff7f5] p-3 text-sm text-[#9c2f24]">
+            {approvalError}
+          </p>
+        ) : null}
+        <Button
+          type="button"
+          disabled={!canApprove || approvalPending}
+          onClick={() => {
+            if (preview.conversationId) onApprove(preview.action, preview.conversationId)
+          }}
+          className="mt-4 rounded-lg bg-[#15803d] text-white hover:bg-[#116832] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {approvalPending ? "Approving…" : canApprove ? "Approve and execute" : "Prepare again to approve"}
         </Button>
       </div>
     )

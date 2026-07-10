@@ -1,7 +1,12 @@
 import Link from "next/link"
+import { redirect } from "next/navigation"
 import { LoginForm } from "@/components/portal/login-form"
+import { getPortalSession } from "@/lib/portal/session"
+
+export const dynamic = "force-dynamic"
 
 export default function LoginPage() {
+  if (getPortalSession()) redirect("/portal")
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f7f2ea] px-4 py-6 text-[#102033] sm:px-6">
       <div className="mx-auto flex min-h-[calc(100svh-3rem)] w-full max-w-6xl min-w-0 flex-col">
@@ -24,14 +29,14 @@ export default function LoginPage() {
               Company Brain access for service-business teams.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-[#5f6d7a] [overflow-wrap:anywhere] sm:[overflow-wrap:normal]">
-              Sign in as a real test persona for Bayview Service Co. Each user gets a distinct actor, role, and session before the Stanley UI talks to the brain-test Company Brain runtime.
+              Sign in to your company workspace. Your account carries the right role and permissions into every office conversation.
             </p>
           </div>
 
           <div className="min-w-0 rounded-2xl border border-[#ded6c8] bg-[#fffdf8] p-5 shadow-[0_24px_70px_rgba(16,32,51,0.10)] sm:p-7">
             <div>
               <h2 className="text-2xl font-bold text-[#102033]">Sign in</h2>
-              <p className="mt-2 text-sm leading-6 text-[#667085]">Non-production Company Brain personas. The session is routed through the live Stanley UI to brain-test.</p>
+              <p className="mt-2 text-sm leading-6 text-[#667085]">Use the credentials assigned to your company account.</p>
             </div>
             <LoginForm />
           </div>

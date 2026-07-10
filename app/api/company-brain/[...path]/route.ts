@@ -1,17 +1,55 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getPortalSession } from "@/lib/portal/session"
+import { getPortalSession, portalSessionStoreDir } from "@/lib/portal/session"
+import { grantPortalArtifactAccess, portalArtifactAccessAllowed } from "@/lib/portal/artifact-grants"
 
-const BRAIN_BASE_URL = "https://brain-test.stanley-systems.com"
 const ALLOWED_PATHS = new Set([
   "control/summary",
   "control/needs-attention",
   "brain/chat",
   "brain/uploads",
+  "actions/confirm",
   "health",
 ])
+const MAX_UPLOAD_FILES = 5
+const MAX_UPLOAD_BYTES = 20 * 1024 * 1024
+const MAX_UPLOAD_TOTAL_BYTES = 30 * 1024 * 1024
+const MAX_JSON_BYTES = 1024 * 1024
+const MAX_ARTIFACT_BYTES = 25 * 1024 * 1024
+const ALLOWED_UPLOAD_TYPES = new Set([
+  "application/pdf",
+  "text/plain",
+  "text/csv",
+  "application/csv",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "image/png",
+  "image/jpeg",
+  "image/webp",
+])
+const ALLOWED_UPLOAD_EXTENSIONS = new Set(["pdf", "txt", "csv", "docx", "xlsx", "png", "jpg", "jpeg", "webp"])
+const ARTIFACT_EXTENSIONS: Record<string, string> = {
+  "application/pdf": "pdf",
+  "text/csv": "csv",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xlsx",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "docx",
+  "text/plain": "txt",
+  "text/html": "html",
+}
 
 function isAllowedPath(path: string) {
   return ALLOWED_PATHS.has(path) || /^artifacts\/artifact_[A-Za-z0-9_-]+$/.test(path)
+}
+
+function approvalRequestIsSameOrigin(request: NextRequest) {
+  const origin = request.headers.get("origin")
+  const fetchSite = request.headers.get("sec-fetch-site")
+  if (!origin || request.headers.get("x-stanley-csrf") !== "portal-action") return false
+  if (fetchSite && fetchSite !== "same-origin") return false
+  try {
+    return new URL(origin).origin === request.nextUrl.origin
+  } catch {
+    return false
+  }
 }
 
 type RouteContext = {
@@ -20,61 +58,133 @@ type RouteContext = {
   }
 }
 
-function jsonError(error: string, status: number) {
-  return NextResponse.json({ error }, { status })
+function securityHeaders(extra?: Record<string, string>) {
+  return {
+    "cache-control": "no-store",
+    "x-content-type-options": "nosniff",
+    ...extra,
+  }
 }
 
-
-function chatTimeoutFallback() {
-  return NextResponse.json(
-    {
-      answer: "The company agent is unavailable right now. Nothing was created or changed.",
-      errorCode: "company_agent_unavailable",
-      blocks: [
-        {
-          type: "error",
-          code: "runtime_failed",
-          message: "The company agent is unavailable right now. Nothing was created or changed.",
-        },
-      ],
-      suggested_action: { type: "boundary_error", status: "blocked", draft: "Nothing was sent or changed." },
-    },
-    { status: 503, headers: { "cache-control": "no-store" } },
-  )
+function jsonError(error: string, status: number, headers?: Record<string, string>) {
+  return NextResponse.json({ error }, { status, headers: securityHeaders(headers) })
 }
 
-function safeControlFallback(path: string, reason: string) {
+function unavailableResponse(path: string) {
   if (path === "control/summary") {
     return NextResponse.json(
       {
-        runtime_status: "degraded",
+        runtime_status: "unavailable",
         runtime_version: "unavailable",
         source_record_counts: {},
         raw_customer_data_included: false,
-        connector_errors: [reason],
+        error: "company_brain_unavailable",
       },
-      { status: 200, headers: { "cache-control": "no-store" } },
+      { status: 503, headers: securityHeaders() },
     )
   }
   if (path === "control/needs-attention") {
     return NextResponse.json(
       {
-        endpoint_scope: "portal_control_fallback",
+        endpoint_scope: "portal_control_unavailable",
         control_plane_safe: true,
         cards: [],
         card_count: 0,
         source_record_counts: {},
         raw_customer_data_included: false,
-        connector_errors: [reason],
+        error: "company_brain_unavailable",
       },
-      { status: 200, headers: { "cache-control": "no-store" } },
+      { status: 503, headers: securityHeaders() },
     )
   }
-  return null
+  if (path === "brain/chat") {
+    return NextResponse.json(
+      {
+        errorCode: "company_agent_unavailable",
+        error: "Company Brain is unavailable, and the request outcome is unknown. Check recent activity before trying again.",
+      },
+      { status: 503, headers: securityHeaders() },
+    )
+  }
+  return jsonError("company_brain_unavailable", 503)
 }
 
 function resolvedPath(parts?: string[]) {
   return (parts ?? []).join("/").replace(/^\/+/, "")
+}
+
+function upstreamBaseUrl() {
+  const raw = process.env.COMPANY_BRAIN_UPSTREAM_URL
+  if (!raw) return null
+  try {
+    const url = new URL(raw)
+    const localDevelopment = process.env.NODE_ENV !== "production" && url.protocol === "http:" && ["127.0.0.1", "localhost"].includes(url.hostname)
+    if (url.protocol !== "https:" && !localDevelopment) return null
+    if (url.username || url.password || url.search || url.hash) return null
+    url.pathname = `${url.pathname.replace(/\/+$/, "")}/`
+    return url
+  } catch {
+    return null
+  }
+}
+
+function safeConversationId(value: unknown) {
+  if (typeof value !== "string") return ""
+  return /^[A-Za-z0-9_.:-]{1,160}$/.test(value) ? value : ""
+}
+
+function sanitizedAttachments(value: unknown) {
+  if (!Array.isArray(value) || value.length > MAX_UPLOAD_FILES) return []
+  return value.flatMap((item) => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) return []
+    const input = item as Record<string, unknown>
+    const id = typeof input.id === "string" && /^attachment_[A-Za-z0-9_-]{6,160}$/.test(input.id) ? input.id : ""
+    if (!id) return []
+    return [{
+      id,
+      name: typeof input.name === "string" ? input.name.slice(0, 240) : "attachment",
+      size: typeof input.size === "number" && Number.isFinite(input.size) ? Math.max(0, Math.min(input.size, MAX_UPLOAD_BYTES)) : 0,
+      mimeType: typeof input.mimeType === "string" ? input.mimeType.slice(0, 160) : "application/octet-stream",
+      kind: typeof input.kind === "string" ? input.kind.slice(0, 40) : "file",
+      status: "ready",
+      extractionStatus: "ready",
+    }]
+  })
+}
+
+function uploadTypeAllowed(file: File) {
+  const extension = file.name.toLowerCase().split(".").at(-1) ?? ""
+  const type = file.type.split(";", 1)[0].toLowerCase()
+  return ALLOWED_UPLOAD_EXTENSIONS.has(extension) && (!type || ALLOWED_UPLOAD_TYPES.has(type))
+}
+
+function artifactHeaders(contentType: string, artifactId: string, size: number) {
+  const extension = ARTIFACT_EXTENSIONS[contentType]
+  if (!extension) return null
+  return securityHeaders({
+    "content-type": contentType,
+    "content-length": String(size),
+    "content-disposition": `attachment; filename="${artifactId}.${extension}"`,
+    "content-security-policy": "default-src 'none'; sandbox",
+    "x-frame-options": "DENY",
+  })
+}
+
+function artifactIdsFromChatResponse(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return []
+  const response = value as Record<string, unknown>
+  const candidates: unknown[] = []
+  if (Array.isArray(response.artifacts)) candidates.push(...response.artifacts)
+  if (Array.isArray(response.blocks)) {
+    response.blocks.forEach((block) => {
+      if (block && typeof block === "object" && !Array.isArray(block)) candidates.push((block as Record<string, unknown>).artifact)
+    })
+  }
+  return [...new Set(candidates.flatMap((candidate) => {
+    if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) return []
+    const id = (candidate as Record<string, unknown>).id
+    return typeof id === "string" && /^artifact_[A-Za-z0-9_-]{6,160}$/.test(id) ? [id] : []
+  }))].slice(0, 20)
 }
 
 async function forward(request: NextRequest, context: RouteContext) {
@@ -83,27 +193,52 @@ async function forward(request: NextRequest, context: RouteContext) {
 
   const path = resolvedPath(context.params.path)
   if (!isAllowedPath(path)) return jsonError("company_brain_path_not_allowed", 404)
+  if (path.startsWith("artifacts/")) {
+    const artifactId = path.split("/").at(-1) ?? ""
+    try {
+      if (!portalArtifactAccessAllowed(portalSessionStoreDir(), session.sessionKey, artifactId)) return jsonError("artifact_not_found", 404)
+    } catch {
+      return jsonError("artifact_authorization_unavailable", 503)
+    }
+  }
+  const baseUrl = upstreamBaseUrl()
+  const proxyKey = process.env.COMPANY_BRAIN_PROXY_KEY
+  if (!baseUrl || !proxyKey) return jsonError("company_brain_proxy_not_configured", 503)
 
   const upstreamPath = path === "actions/confirm" ? "brain/actions/confirm" : path.startsWith("artifacts/") ? `brain/${path}` : path
-  const target = `${BRAIN_BASE_URL}/${upstreamPath}${request.nextUrl.search}`
+  const target = new URL(upstreamPath, baseUrl)
+  const artifactRequest = path.startsWith("artifacts/")
   const headers: Record<string, string> = {
-    accept: "application/json",
+    accept: artifactRequest ? "application/octet-stream" : "application/json",
     "x-stanley-surface": "portal",
     "x-stanley-company-id": session.companyId,
     "x-stanley-actor-id": session.actorId,
     "x-stanley-actor-role": session.role,
     "x-stanley-session-key": session.sessionKey,
+    "x-stanley-brain-proxy-key": proxyKey,
   }
-  const proxyKey = process.env.COMPANY_BRAIN_PROXY_KEY
-  if (!proxyKey) return jsonError("company_brain_proxy_not_configured", 503)
-  headers["x-stanley-brain-proxy-key"] = proxyKey
 
   let body: BodyInit | undefined
   if (request.method !== "GET" && request.method !== "HEAD") {
+    const declaredLength = Number(request.headers.get("content-length") ?? "0")
     if (path === "brain/uploads") {
-      const incoming = await request.formData()
+      if (Number.isFinite(declaredLength) && declaredLength > MAX_UPLOAD_TOTAL_BYTES) return jsonError("file_too_large", 413)
+      let incoming: FormData
+      try {
+        incoming = await request.formData()
+      } catch {
+        return jsonError("invalid_upload", 400)
+      }
+      const files = incoming.getAll("file").filter((value): value is File => value instanceof File)
+      const totalBytes = files.reduce((sum, file) => sum + file.size, 0)
+      if (!files.length || files.length > MAX_UPLOAD_FILES) return jsonError("invalid_upload_count", 400)
+      if (totalBytes > MAX_UPLOAD_TOTAL_BYTES || files.some((file) => file.size <= 0 || file.size > MAX_UPLOAD_BYTES)) return jsonError("file_too_large", 413)
+      if (files.some((file) => !uploadTypeAllowed(file))) return jsonError("unsupported_file_type", 415)
+      const conversationId = safeConversationId(incoming.get("conversation_id"))
+      if (!conversationId) return jsonError("invalid_conversation", 400)
       const form = new FormData()
-      for (const [key, value] of incoming.entries()) form.append(key, value)
+      form.set("conversation_id", conversationId)
+      files.forEach((file) => form.append("file", file, file.name.slice(0, 240)))
       form.set("company_id", session.companyId)
       form.set("surface", "portal")
       form.set("user_role", session.role)
@@ -112,18 +247,44 @@ async function forward(request: NextRequest, context: RouteContext) {
       form.set("actor_email", session.email)
       form.set("session_key", session.sessionKey)
       body = form
-      delete headers["accept"]
     } else {
+      if (Number.isFinite(declaredLength) && declaredLength > MAX_JSON_BYTES) return jsonError("request_too_large", 413)
       const incomingText = await request.text()
-      if (path === "brain/chat" || path === "actions/confirm") {
-        let incoming: Record<string, unknown> = {}
-        try {
-          incoming = incomingText ? JSON.parse(incomingText) : {}
-        } catch {
-          return jsonError("invalid_json", 400)
-        }
+      if (Buffer.byteLength(incomingText, "utf8") > MAX_JSON_BYTES) return jsonError("request_too_large", 413)
+      let incoming: Record<string, unknown>
+      try {
+        const parsed = incomingText ? JSON.parse(incomingText) : {}
+        if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return jsonError("invalid_json", 400)
+        incoming = parsed as Record<string, unknown>
+      } catch {
+        return jsonError("invalid_json", 400)
+      }
+      if (path === "brain/chat") {
+        const message = typeof incoming.message === "string" ? incoming.message.trim().slice(0, 20_000) : ""
+        const conversationId = safeConversationId(incoming.conversation_id)
+        if (!message && !Array.isArray(incoming.attachments)) return jsonError("invalid_message", 400)
+        if (!conversationId) return jsonError("invalid_conversation", 400)
         body = JSON.stringify({
-          ...incoming,
+          message,
+          attachments: sanitizedAttachments(incoming.attachments),
+          conversation_id: conversationId,
+          company_id: session.companyId,
+          surface: "portal",
+          user_role: session.role,
+          actor_id: session.actorId,
+          actor_name: session.name,
+          actor_email: session.email,
+          session_key: session.sessionKey,
+        })
+      } else if (path === "actions/confirm") {
+        if (!approvalRequestIsSameOrigin(request)) return jsonError("approval_csrf_rejected", 403)
+        const actionReference = typeof incoming.action_reference === "string" && /^actref_[A-Za-z0-9_-]{32,240}$/.test(incoming.action_reference)
+          ? incoming.action_reference
+          : ""
+        if (!actionReference) return jsonError("invalid_confirmation", 400)
+        body = JSON.stringify({
+          action_reference: actionReference,
+          confirmation_phrase: "approved",
           company_id: session.companyId,
           surface: "portal",
           user_role: session.role,
@@ -133,7 +294,7 @@ async function forward(request: NextRequest, context: RouteContext) {
           session_key: session.sessionKey,
         })
       } else {
-        body = incomingText
+        return jsonError("method_not_allowed", 405)
       }
       headers["content-type"] = "application/json"
     }
@@ -150,26 +311,48 @@ async function forward(request: NextRequest, context: RouteContext) {
       body,
       cache: "no-store",
       signal: controller.signal,
+      redirect: "error",
     })
-  } catch (error) {
-    if (path === "brain/chat") return chatTimeoutFallback()
-    throw new Error(error instanceof Error ? error.message : "brain_fetch_failed")
+  } catch {
+    return unavailableResponse(path)
   } finally {
     clearTimeout(timeout)
   }
-  const contentType = response.headers.get("content-type") ?? "application/json"
-  const fallback = response.status >= 500 ? safeControlFallback(path, `brain_runtime_${response.status}`) : null
-  if (fallback) return fallback
-  const responseBody = path.startsWith("artifacts/") ? await response.arrayBuffer() : await response.text()
-  const responseHeaders: Record<string, string> = {
-    "content-type": contentType,
-    "cache-control": "no-store",
+
+  if (response.status >= 500) return unavailableResponse(path)
+  if (artifactRequest && response.ok) {
+    const rawContentType = (response.headers.get("content-type") ?? "").split(";", 1)[0].toLowerCase()
+    const size = Number(response.headers.get("content-length") ?? "0")
+    const artifactId = path.split("/").at(-1) ?? "artifact"
+    if (!Number.isFinite(size) || size <= 0 || size > MAX_ARTIFACT_BYTES || !response.body) return jsonError("artifact_failed", 502)
+    const responseHeaders = artifactHeaders(rawContentType, artifactId, size)
+    if (!responseHeaders) return jsonError("artifact_type_not_allowed", 415)
+    return new NextResponse(response.body, { status: response.status, headers: responseHeaders })
   }
-  const disposition = response.headers.get("content-disposition")
-  if (disposition) responseHeaders["content-disposition"] = disposition
+
+  const responseLength = Number(response.headers.get("content-length") ?? "0")
+  if (Number.isFinite(responseLength) && responseLength > MAX_JSON_BYTES) return jsonError("upstream_response_too_large", 502)
+  const responseBody = await response.text()
+  if (Buffer.byteLength(responseBody, "utf8") > MAX_JSON_BYTES) return jsonError("upstream_response_too_large", 502)
+  if (path === "brain/chat" && response.ok) {
+    let parsed: unknown
+    try {
+      parsed = JSON.parse(responseBody)
+    } catch {
+      return jsonError("invalid_upstream_response", 502)
+    }
+    const artifactIds = artifactIdsFromChatResponse(parsed)
+    if (artifactIds.length) {
+      try {
+        grantPortalArtifactAccess(portalSessionStoreDir(), session.sessionKey, artifactIds)
+      } catch {
+        return jsonError("artifact_authorization_unavailable", 503)
+      }
+    }
+  }
   return new NextResponse(responseBody, {
     status: response.status,
-    headers: responseHeaders,
+    headers: securityHeaders({ "content-type": "application/json" }),
   })
 }
 

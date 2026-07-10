@@ -34,6 +34,7 @@ export type PreparedAction = {
   status: PreparedActionStatus
   ctaLabel: string
   preview: string
+  approvalReference?: string
 }
 
 export type ArtifactFile = {

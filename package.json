@@ -36,7 +36,15 @@
     "stanley:preview:fast": "bash scripts/stanley-start-fast-preview.sh",
     "stanley:preview:fast:stop": "bash scripts/stanley-stop-fast-preview.sh",
     "stanley:qa:home": "node scripts/stanley-fast-homepage-qa.js",
-    "company-brain:browser-regression": "node scripts/company-brain-local-browser-regression.js"
+    "company-brain:browser-regression": "node scripts/company-brain-local-browser-regression.js",
+    "company-brain:test-auth": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test scripts/company-brain-portal-auth-tests.mjs",
+    "company-brain:test-conversations": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test scripts/company-brain-conversation-tests.mjs",
+    "company-brain:test-response-mapper": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test scripts/company-brain-response-mapper-tests.mjs",
+    "company-brain:test-proxy-security": "node --test scripts/company-brain-proxy-security-tests.mjs",
+    "company-brain:test-artifact-grants": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test scripts/company-brain-artifact-grant-tests.mjs",
+    "company-brain:test-routes": "node scripts/company-brain-route-integration-tests.mjs",
+    "company-brain:test-routes-candidate": "python3 scripts/run-company-brain-route-integration.py",
+    "company-brain:generate-credential": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/generate-portal-credential.mjs"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
