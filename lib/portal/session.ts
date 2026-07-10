@@ -1,10 +1,18 @@
-import { NextResponse } from "next/server"
+import { createHash } from "node:crypto"
 import { cookies } from "next/headers"
-import { createHash, createHmac, timingSafeEqual } from "crypto"
-import { findPortalUserByEmail, publicPortalUsers, type PortalTestUser } from "@/lib/portal/test-users"
+import { redirect } from "next/navigation"
+import { NextResponse } from "next/server"
+import { verifyPortalCredential } from "@/lib/portal/auth-credentials"
+import { createPortalSessionCore } from "@/lib/portal/session-core"
+import {
+  activatePortalSessionFile,
+  isPortalSessionFileActive,
+  revokePortalSessionFile,
+} from "@/lib/portal/session-store"
+import { findPortalUserByEmail, type PortalTestUser } from "@/lib/portal/test-users"
+import { decodePortalSessionToken, encodePortalSessionToken } from "@/lib/portal/session-token"
 
 export const PORTAL_SESSION_COOKIE = "stanley_portal_session"
-const FALLBACK_TEST_PASSWORD = "stanley-test"
 const SESSION_MAX_AGE_MS = 12 * 60 * 60 * 1000
 
 type PortalSession = {
@@ -19,7 +27,7 @@ type PortalSession = {
   issuedAt: string
 }
 
-export type PublicPortalSession = Omit<PortalSession, "sessionKey">
+export type PublicPortalSession = Omit<PortalSession, "sessionKey"> & { loginSessionId: string }
 
 function sessionSecret() {
   const secret = process.env.PORTAL_SESSION_SECRET
@@ -27,67 +35,59 @@ function sessionSecret() {
   return secret
 }
 
-function signPayload(payload: string) {
-  return createHmac("sha256", sessionSecret()).update(payload).digest("base64url")
+export function portalSessionStoreDir() {
+  const storeDir = process.env.PORTAL_SESSION_STORE_DIR
+  if (!storeDir) throw new Error("PORTAL_SESSION_STORE_DIR is not configured")
+  if (process.env.NODE_ENV === "production" && process.env.PORTAL_SESSION_DEPLOYMENT_MODE !== "single-host-shared-filesystem") {
+    throw new Error("PORTAL_SESSION_DEPLOYMENT_MODE is not configured")
+  }
+  return storeDir
 }
 
-function encodeSession(session: PortalSession) {
-  const payload = Buffer.from(JSON.stringify(session), "utf8").toString("base64url")
-  return `${payload}.${signPayload(payload)}`
+function decodeSignedPortalSession(value: string | undefined): PortalSession | null {
+  const parsed = decodePortalSessionToken(value, sessionSecret(), Date.now(), SESSION_MAX_AGE_MS)
+  if (!parsed) return null
+  const currentUser = findPortalUserByEmail(parsed.email)
+  if (!currentUser || currentUser.actorId !== parsed.actorId || currentUser.companyId !== parsed.companyId || currentUser.role !== parsed.role) return null
+  return parsed as PortalSession
 }
 
-function decodeSession(value: string | undefined): PortalSession | null {
-  if (!value) return null
+function decodeActivePortalSession(value: string | undefined): PortalSession | null {
+  const parsed = decodeSignedPortalSession(value)
+  if (!parsed) return null
   try {
-    const [payload, signature] = value.split(".")
-    if (!payload || !signature) return null
-    const expected = signPayload(payload)
-    const suppliedBuffer = Buffer.from(signature)
-    const expectedBuffer = Buffer.from(expected)
-    if (suppliedBuffer.length !== expectedBuffer.length || !timingSafeEqual(suppliedBuffer, expectedBuffer)) return null
-    const parsed = JSON.parse(Buffer.from(payload, "base64url").toString("utf8")) as PortalSession
-    if (!parsed.actorId || !parsed.email || !parsed.companyId || !parsed.sessionKey) return null
-    const issuedAt = Date.parse(parsed.issuedAt || "")
-    if (!Number.isFinite(issuedAt) || Date.now() - issuedAt > SESSION_MAX_AGE_MS) return null
-    const currentUser = findPortalUserByEmail(parsed.email)
-    if (!currentUser || currentUser.actorId !== parsed.actorId || currentUser.companyId !== parsed.companyId) return null
+    if (!isPortalSessionFileActive(portalSessionStoreDir(), parsed.sessionKey)) return null
     return parsed
   } catch {
     return null
   }
 }
 
-function sessionKeyFor(user: PortalTestUser) {
-  const digest = createHash("sha256")
-    .update(`${user.companyId}:${user.actorId}:${user.email}`)
-    .digest("hex")
-    .slice(0, 12)
-  return `ui:${user.companyId}:${user.sessionPrefix}:${digest}`
-}
-
 export function createPortalSession(user: PortalTestUser): PortalSession {
-  return {
-    actorId: user.actorId,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    roleLabel: user.roleLabel,
-    companyId: user.companyId,
-    companyName: user.companyName,
-    sessionKey: sessionKeyFor(user),
-    issuedAt: new Date().toISOString(),
-  }
+  const session = { ...createPortalSessionCore(user), role: user.role }
+  activatePortalSessionFile(portalSessionStoreDir(), session.sessionKey, Date.parse(session.issuedAt), SESSION_MAX_AGE_MS)
+  return session
 }
 
 export function getPortalSession(): PortalSession | null {
-  return decodeSession(cookies().get(PORTAL_SESSION_COOKIE)?.value)
+  return decodeActivePortalSession(cookies().get(PORTAL_SESSION_COOKIE)?.value)
+}
+
+export function getPortalSessionForRevocation(): PortalSession | null {
+  return decodeSignedPortalSession(cookies().get(PORTAL_SESSION_COOKIE)?.value)
+}
+
+export function requirePortalSession(): PortalSession {
+  const session = getPortalSession()
+  if (!session) redirect("/login")
+  return session
 }
 
 export function setPortalSessionCookie(response: NextResponse, session: PortalSession) {
-  response.cookies.set(PORTAL_SESSION_COOKIE, encodeSession(session), {
+  response.cookies.set(PORTAL_SESSION_COOKIE, encodePortalSessionToken(session, sessionSecret()), {
     httpOnly: true,
     sameSite: "lax",
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     path: "/",
     maxAge: 60 * 60 * 12,
   })
@@ -97,27 +97,28 @@ export function clearPortalSessionCookie(response: NextResponse) {
   response.cookies.set(PORTAL_SESSION_COOKIE, "", {
     httpOnly: true,
     sameSite: "lax",
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     path: "/",
     maxAge: 0,
   })
 }
 
+export function revokePortalSession(session: PortalSession | null) {
+  if (!session) return false
+  return revokePortalSessionFile(portalSessionStoreDir(), session.sessionKey)
+}
+
 export function verifyPortalLogin(email: string, password: string) {
+  const credentialVerified = verifyPortalCredential(email, password)
   const user = findPortalUserByEmail(email)
-  if (!user) return null
-  const expectedPassword = process.env.PORTAL_TEST_PASSWORD || FALLBACK_TEST_PASSWORD
-  if (password !== expectedPassword) return null
+  if (!credentialVerified || !user) return null
   return user
 }
 
 export function publicPortalSession(session: PortalSession): PublicPortalSession {
   const { sessionKey: _sessionKey, ...publicSession } = session
-  return publicSession
-}
-
-export function portalLoginHints() {
   return {
-    users: publicPortalUsers(),
+    ...publicSession,
+    loginSessionId: createHash("sha256").update(session.sessionKey).digest("base64url").slice(0, 24),
   }
 }
