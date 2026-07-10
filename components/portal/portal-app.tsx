@@ -327,7 +327,7 @@ export function PortalApp() {
 
     try {
       const response = await sendCompanyBrainMessage({
-        companyId: "bayview_synthetic",
+        companyId: session?.companyId ?? "",
         conversationId: originConversationId,
         message: rawMessage,
         attachments: messageAttachments,

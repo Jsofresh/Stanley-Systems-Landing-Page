@@ -38,7 +38,7 @@ const user = {
   email: "sarah.owner@bayview.test",
   role: "owner",
   roleLabel: "Owner",
-  companyId: "bayview_synthetic",
+  companyId: "bayview_test",
   companyName: "Bayview Service Co.",
   sessionPrefix: "sarah",
 }
@@ -65,7 +65,7 @@ test("same actor receives a cryptographically distinct login session each time",
   const first = createPortalSessionCore(user, new Date("2026-07-09T20:00:00Z"))
   const second = createPortalSessionCore(user, new Date("2026-07-09T20:00:00Z"))
   assert.notEqual(first.sessionKey, second.sessionKey)
-  assert.match(first.sessionKey, /^ui:bayview_synthetic:sarah:/)
+  assert.match(first.sessionKey, /^ui:bayview_test:sarah:/)
   assert.equal(first.actorId, user.actorId)
   assert.equal(first.companyId, user.companyId)
 })

@@ -9,7 +9,7 @@ export type PortalTestUser = {
   sessionPrefix: string
 }
 
-export const PORTAL_TEST_COMPANY_ID = "bayview_synthetic"
+export const PORTAL_TEST_COMPANY_ID = "bayview_test"
 export const PORTAL_TEST_COMPANY_NAME = "Bayview Service Co."
 
 export const PORTAL_TEST_USERS: PortalTestUser[] = [
