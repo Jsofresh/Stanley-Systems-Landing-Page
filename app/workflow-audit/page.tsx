@@ -42,7 +42,7 @@ export default function Page() {
               <p className="mt-6 max-w-[720px] text-[1.3375rem] font-semibold leading-[2.4rem] text-white/84">Find where office work is costing time, cash, and customer follow-up. Then get the AI fix plan to make the business more profitable.</p>
               <div className="mt-[2.14rem] flex flex-col gap-[1.07rem] sm:flex-row">
                 <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Buy the $97 AI Profit Map <ArrowRight className="ml-2 h-[1.34rem] w-[1.34rem]" /></a>
-                <Link href="/ai-office-blueprint" className={secondary}>Get the Free Blueprint</Link>
+                <Link href="/systems-installation-sprint" className={secondary}>See the AI Office Installation Sprint</Link>
               </div>
             </div>
           </div>
