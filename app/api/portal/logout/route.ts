@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import {
+  assertPortalSessionStoreReady,
   clearPortalSessionCookie,
   getPortalSessionForRevocation,
   revokePortalSession,
@@ -8,8 +9,9 @@ import {
 export const dynamic = "force-dynamic"
 
 export async function POST() {
-  const session = getPortalSessionForRevocation()
   try {
+    assertPortalSessionStoreReady()
+    const session = getPortalSessionForRevocation()
     if (session) revokePortalSession(session)
   } catch {
     return NextResponse.json(

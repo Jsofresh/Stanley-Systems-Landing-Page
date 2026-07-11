@@ -5,6 +5,7 @@ import { NextResponse } from "next/server"
 import { verifyPortalCredential } from "@/lib/portal/auth-credentials"
 import { createPortalSessionCore } from "@/lib/portal/session-core"
 import {
+  assertPortalSessionStoreAvailable,
   activatePortalSessionFile,
   isPortalSessionFileActive,
   revokePortalSessionFile,
@@ -42,6 +43,10 @@ export function portalSessionStoreDir() {
     throw new Error("PORTAL_SESSION_DEPLOYMENT_MODE is not configured")
   }
   return storeDir
+}
+
+export function assertPortalSessionStoreReady() {
+  assertPortalSessionStoreAvailable(portalSessionStoreDir())
 }
 
 function decodeSignedPortalSession(value: string | undefined): PortalSession | null {

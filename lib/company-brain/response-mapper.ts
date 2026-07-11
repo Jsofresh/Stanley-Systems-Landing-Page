@@ -104,6 +104,11 @@ function toPreparedAction(response: BrainChatResponse): PreparedAction | null {
   const preparedStatuses = new Set(["prepared_not_sent", "needs_review", "needs_confirmation", "approval_required"])
   const completedStatuses = new Set(["executed", "executed_verified", "already_completed", "provider_write_receipt_available"])
   if (!preparedStatuses.has(status) && !completedStatuses.has(status)) return null
+  const hasApprovalReference = typeof response.action_plan?.action_reference === "string" && /^actref_[A-Za-z0-9_-]{32,240}$/.test(response.action_plan.action_reference)
+  // Never render a clickable approval card for an approval-required response that
+  // has no actor-bound confirmation reference. The text answer remains visible,
+  // while a real bound reference unlocks the explicit review/confirm rail.
+  if (status === "approval_required" && !hasApprovalReference) return null
   const completed = completedStatuses.has(status)
   return {
     id: "prepared-action",

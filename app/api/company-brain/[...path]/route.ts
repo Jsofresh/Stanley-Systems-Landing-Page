@@ -343,6 +343,7 @@ async function forward(request: NextRequest, context: RouteContext) {
         if (!actionReference) return jsonError("invalid_confirmation", 400)
         body = JSON.stringify({
           action_reference: actionReference,
+          conversation_id: safeConversationId(incoming.conversation_id),
           confirmation_phrase: "approved",
           company_id: session.companyId,
           surface: "portal",

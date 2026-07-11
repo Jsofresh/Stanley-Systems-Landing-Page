@@ -47,6 +47,11 @@ def main() -> int:
         raise SystemExit("usage: run-company-brain-route-integration.py <dist-dir>")
 
     root = Path(__file__).resolve().parents[1]
+    dist_dir = Path(sys.argv[1]).resolve()
+    try:
+        dist_env = str(dist_dir.relative_to(root))
+    except ValueError as exc:
+        raise RuntimeError("candidate_dist_must_be_inside_site_repo") from exc
     private_path = Path(os.environ.get("PORTAL_ROUTE_TEST_PRIVATE_FILE") or "/tmp/stanley-route-test.private.json")
     private = json.loads(private_path.read_text(encoding="utf-8"))
     credential = str(private["credential"])
@@ -60,11 +65,15 @@ def main() -> int:
     base_url = f"http://localhost:{port}"
     log_path = temp_root / "candidate.log"
 
+    server_mode = os.environ.get("PORTAL_ROUTE_TEST_SERVER_MODE", "production")
+    if server_mode not in {"production", "development"}:
+        raise RuntimeError("invalid_portal_route_server_mode")
+    server_command = [str(root / "node_modules/.bin/next"), "dev" if server_mode == "development" else "start", "-p", str(port), "-H", "127.0.0.1"]
     env = os.environ.copy()
     env.update(
         {
-            "NODE_ENV": "production",
-            "STANLEY_NEXT_DIST_DIR": sys.argv[1],
+            "NODE_ENV": "development" if server_mode == "development" else "production",
+            "STANLEY_NEXT_DIST_DIR": dist_env,
             "PORTAL_SESSION_SECRET": secrets.token_urlsafe(48),
             "PORTAL_SESSION_STORE_DIR": str(store_dir),
             "PORTAL_SESSION_DEPLOYMENT_MODE": "single-host-shared-filesystem",
@@ -78,7 +87,7 @@ def main() -> int:
 
     with log_path.open("w", encoding="utf-8") as log_file:
         process = subprocess.Popen(
-            [str(root / "node_modules/.bin/next"), "start", "-p", str(port), "-H", "127.0.0.1"],
+            server_command,
             cwd=root,
             env=env,
             stdout=log_file,
@@ -117,7 +126,10 @@ def main() -> int:
             except subprocess.TimeoutExpired:
                 process.kill()
                 process.wait(timeout=5)
-            shutil.rmtree(temp_root, ignore_errors=True)
+            if os.environ.get("PORTAL_ROUTE_TEST_KEEP_TEMP") == "1":
+                print(f"route_test_temp={temp_root}")
+            else:
+                shutil.rmtree(temp_root, ignore_errors=True)
 
 
 if __name__ == "__main__":

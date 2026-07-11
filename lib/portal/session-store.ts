@@ -20,6 +20,10 @@ function validatedStoreDir(storeDir: string, create = false) {
   return storeDir
 }
 
+export function assertPortalSessionStoreAvailable(storeDir: string) {
+  validatedStoreDir(storeDir)
+}
+
 function sessionFile(storeDir: string, sessionKey: string, create = false) {
   const digest = createHash("sha256").update(sessionKey).digest("hex")
   return join(validatedStoreDir(storeDir, create), `${digest}.json`)

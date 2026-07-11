@@ -110,7 +110,7 @@ export async function confirmCompanyBrainAction(
   const data = await fetchJson<BrainChatResponse>("/actions/confirm", {
     method: "POST",
     headers: { "x-stanley-csrf": "portal-action" },
-    body: JSON.stringify({ action_reference: actionReference }),
+    body: JSON.stringify({ action_reference: actionReference, conversation_id: conversationId }),
   })
   return {
     conversationId,
