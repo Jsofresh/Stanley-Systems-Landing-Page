@@ -2,93 +2,103 @@ import { readFileSync } from 'node:fs'
 import type { ReactNode } from 'react'
 import { CheckCircleDisplayAsset, DollarCircleDisplayAsset, FileEstimateDisplayAsset, FileInvoiceDisplayAsset, MessageBubbleDisplayAsset, PhoneMissedDisplayAsset, ShieldCheckDisplayAsset, TrendUpDisplayAsset, UserDisplayAsset, UsersDisplayAsset, CompletedJobBadgeDisplayAsset, PaidJobBadgeDisplayAsset, OfficeAlertBadgeDisplayAsset, CustomerReactivationCheckDisplayAsset, RepeatCustomerLoopDisplayAsset, InvoiceDelayClockDisplayAsset, BrokenHandoffBadgeDisplayAsset, ManualHandoffBadgeDisplayAsset, OpenBalanceFollowUpBadgeDisplayAsset, EstimateNextStepBadgeDisplayAsset, PaymentReceivedBadgeDisplayAsset, CashCollectedBadgeDisplayAsset, CalendarCashflowTrendDisplayAsset, RepeatCustomerCycleDisplayAsset, MoneyLeakRoutingDisplayAsset, InvoiceEditDisplayAsset, TargetClickDisplayAsset, PaymentHoldDisplayAsset, DelayedInvoiceDisplayAsset } from '@/components/visual-kit'
 
+const FALLBACK_REFERENCE_PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='
+
+function readReference(path: string) {
+  try {
+    return readFileSync(path).toString('base64')
+  } catch {
+    return FALLBACK_REFERENCE_PNG
+  }
+}
+
 const references = {
-  'check-circle': readFileSync(
+  'check-circle': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/check-circle.png',
   ).toString('base64'),
-  'dollar-circle': readFileSync(
+  'dollar-circle': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/dollar-circle.png',
   ).toString('base64'),
-  'file-estimate': readFileSync(
+  'file-estimate': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/file-estimate.png',
   ).toString('base64'),
-  'file-invoice': readFileSync(
+  'file-invoice': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/file-invoice.png',
   ).toString('base64'),
-  'message-bubble': readFileSync(
+  'message-bubble': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/message-bubble.png',
   ).toString('base64'),
-  'phone-missed': readFileSync(
+  'phone-missed': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/phone-missed.png',
   ).toString('base64'),
-  'shield-check': readFileSync(
+  'shield-check': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/shield-check.png',
   ).toString('base64'),
-  'trend-up': readFileSync(
+  'trend-up': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/trend-up.png',
   ).toString('base64'),
-  'user': readFileSync(
+  'user': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/user.png',
   ).toString('base64'),
-  'users': readFileSync(
+  'users': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/users.png',
   ).toString('base64'),
-  'completed-job-badge': readFileSync(
+  'completed-job-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/completed-job-badge.png',
   ).toString('base64'),
-  'paid-job-badge': readFileSync(
+  'paid-job-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/paid-job-badge.png',
   ).toString('base64'),
-  'office-alert-badge': readFileSync(
+  'office-alert-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/office-alert-badge.png',
   ).toString('base64'),
-  'customer-reactivation-check': readFileSync(
+  'customer-reactivation-check': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/customer-reactivation-check.png',
   ).toString('base64'),
-  'repeat-customer-loop': readFileSync(
+  'repeat-customer-loop': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/repeat-customer-loop.png',
   ).toString('base64'),
-  'invoice-delay-clock': readFileSync(
+  'invoice-delay-clock': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/invoice-delay-clock.png',
   ).toString('base64'),
-  'broken-handoff-badge': readFileSync(
+  'broken-handoff-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/broken-handoff-badge.png',
   ).toString('base64'),
-  'manual-handoff-badge': readFileSync(
+  'manual-handoff-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/manual-handoff-badge.png',
   ).toString('base64'),
-  'open-balance-follow-up-badge': readFileSync(
+  'open-balance-follow-up-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/open-balance-follow-up-badge.png',
   ).toString('base64'),
-  'estimate-next-step-badge': readFileSync(
+  'estimate-next-step-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/estimate-next-step-badge.png',
   ).toString('base64'),
-  'payment-received-badge': readFileSync(
+  'payment-received-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/payment-received-badge.png',
   ).toString('base64'),
-  'cash-collected-badge': readFileSync(
+  'cash-collected-badge': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/primitives/cash-collected-badge.png',
   ).toString('base64'),
 
-  'calendar-cashflow-trend': readFileSync(
+  'calendar-cashflow-trend': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/supplemental/icon-candidates/calendar-cashflow-trend-icon.png',
   ).toString('base64'),
-  'repeat-customer-cycle': readFileSync(
+  'repeat-customer-cycle': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/supplemental/icon-candidates/repeat-customer-cycle-icon.png',
   ).toString('base64'),
-  'money-leak-routing': readFileSync(
+  'money-leak-routing': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/supplemental/icon-candidates/money-leak-routing-icon.png',
   ).toString('base64'),
-  'invoice-edit': readFileSync(
+  'invoice-edit': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/supplemental/icon-candidates/invoice-edit-icon.png',
   ).toString('base64'),
-  'target-click': readFileSync(
+  'target-click': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/supplemental/icon-candidates/target-click-icon.png',
   ).toString('base64'),
-  'payment-hold': readFileSync(
+  'payment-hold': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/supplemental/icon-candidates/payment-hold-icon.png',
   ).toString('base64'),
-  'delayed-invoice': readFileSync(
+  'delayed-invoice': readReference(
     '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/supplemental/icon-candidates/delayed-invoice-icon.png',
   ).toString('base64'),
 }
