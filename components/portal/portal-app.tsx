@@ -1,12 +1,10 @@
 "use client"
 
-import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState, type ChangeEvent, type DragEvent } from "react"
+import { FormEvent, KeyboardEvent, useEffect, useRef, useState, type ChangeEvent, type DragEvent } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
   ArrowUp,
-  CheckCircle2,
-  Clock3,
   FileText,
   Menu,
   MessageSquare,
@@ -28,20 +26,21 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
-import { appendMessageToConversation, replaceConversationMessages } from "@/lib/portal/conversation-state"
 import {
-  confirmCompanyBrainAction,
+  getCompanyBrainSessionMessages,
+  getCompanyBrainSessions,
   getCompanyBrainSummary,
-  sendCompanyBrainMessage,
+  streamCompanyBrainMessage,
+  cancelCompanyBrainSession,
   uploadCompanyBrainFiles,
   type BrainSummary,
+  type NativeCompletion,
 } from "@/lib/company-brain/live"
 import type {
   Artifact,
   CompanyBrainAttachment,
   CompanyBrainBlock,
   CompanyBrainMessage,
-  PreparedAction,
   SourceChip,
   TablePreview,
 } from "@/lib/company-brain/types"
@@ -49,7 +48,9 @@ import type {
 type RecentConversation = {
   id: string
   title: string
-  messages: CompanyBrainMessage[]
+  lastActive?: number
+  messageCount?: number
+  preview?: string
 }
 
 const initialMessages: CompanyBrainMessage[] = []
@@ -81,76 +82,143 @@ function sanitizePortalDisplayText(value: string) {
   return sensitiveDisplayPatterns.reduce((current, pattern) => current.replace(pattern, "[redacted]"), value)
 }
 
-type StoredPortalHistory = {
-  version: 1
-  savedAt: number
-  currentConversationId: string
-  recentConversations: RecentConversation[]
+function messageText(message: CompanyBrainMessage) {
+  return message.blocks
+    .filter((block): block is Extract<CompanyBrainBlock, { type: "text" }> => block.type === "text")
+    .map((block) => block.text)
+    .join(" ")
 }
 
-const PORTAL_HISTORY_VERSION = 1 as const
-const PORTAL_HISTORY_TTL_MS = 4 * 60 * 60 * 1000
-const PORTAL_HISTORY_MAX_BYTES = 1_000_000
-
-function portalHistoryKey(session: PortalSession) {
-  return `stanley-ui:company-brain-history:${session.companyId}:${session.actorId}:${session.loginSessionId}`
-}
-
-function loadPortalHistory(session: PortalSession): StoredPortalHistory | null {
-  if (typeof window === "undefined") return null
-  try {
-    const key = portalHistoryKey(session)
-    const parsed = JSON.parse(window.sessionStorage.getItem(key) || "null") as StoredPortalHistory | null
-    if (parsed?.version !== PORTAL_HISTORY_VERSION || !Number.isFinite(parsed.savedAt) || Date.now() - parsed.savedAt > PORTAL_HISTORY_TTL_MS) {
-      window.sessionStorage.removeItem(key)
-      return null
-    }
-    if (!parsed.currentConversationId || !Array.isArray(parsed.recentConversations)) return null
-    return {
-      version: PORTAL_HISTORY_VERSION,
-      savedAt: parsed.savedAt,
-      currentConversationId: parsed.currentConversationId,
-      recentConversations: parsed.recentConversations
-        .filter((conversation) => conversation?.id && Array.isArray(conversation.messages))
-        .slice(0, 8),
-    }
-  } catch {
-    return null
-  }
-}
-
-function savePortalHistory(session: PortalSession, currentConversationId: string, recentConversations: RecentConversation[]) {
-  if (typeof window === "undefined") return
-  const payload: StoredPortalHistory = {
-    version: PORTAL_HISTORY_VERSION,
-    savedAt: Date.now(),
-    currentConversationId,
-    recentConversations: recentConversations.slice(0, 8).map((conversation) => ({
-      ...conversation,
-      messages: conversation.messages.slice(-60),
-    })),
-  }
-  try {
-    let serialized = JSON.stringify(payload)
-    if (serialized.length > PORTAL_HISTORY_MAX_BYTES) {
-      const active = payload.recentConversations.find((conversation) => conversation.id === currentConversationId)
-      serialized = JSON.stringify({
-        ...payload,
-        recentConversations: active ? [{ ...active, messages: active.messages.slice(-20) }] : [],
-      })
-    }
-    window.sessionStorage.setItem(portalHistoryKey(session), serialized)
-  } catch {
-    // Session storage can be unavailable in private mode; chat still works in-memory.
+function conversationMetadata(id: string, messages: CompanyBrainMessage[], fallbackTitle = "New conversation"): RecentConversation {
+  const firstUserText = messages.find((message) => message.role === "user")
+  const latest = messages.at(-1)
+  return {
+    id,
+    title: messageText(firstUserText ?? { blocks: [], id: "", role: "user", createdAt: "" }).slice(0, 54) || fallbackTitle,
+    preview: messageText(latest ?? { blocks: [], id: "", role: "assistant", createdAt: "" }).slice(0, 220),
+    messageCount: messages.length,
+    lastActive: Date.now(),
   }
 }
 
 type PreviewState =
   | { type: "artifact"; artifact: Artifact }
-  | { type: "action"; action: PreparedAction; conversationId?: string }
   | { type: "table"; table: TablePreview }
   | { type: "sources"; sources: SourceChip[]; title?: string }
   | null
+
+function nativeArtifactBlock(value: unknown, index: number): Extract<CompanyBrainBlock, { type: "artifact" }> | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null
+  const item = value as Record<string, unknown>
+  const id = typeof item.id === "string" ? item.id : ""
+  if (!/^artifact_[A-Za-z0-9_-]{6,160}$/.test(id)) return null
+  const rawKind = typeof item.kind === "string" ? item.kind : "text"
+  const kind: Artifact["kind"] = rawKind === "xlsx" || rawKind === "csv" ? "spreadsheet" : ["pdf", "html", "document", "text", "spreadsheet"].includes(rawKind) ? rawKind as Artifact["kind"] : "text"
+  const status: Artifact["status"] = item.status === "ready" || item.status === "failed" || item.status === "preparing" || item.status === "needs_revision"
+    ? item.status
+    : "ready"
+  return {
+    type: "artifact",
+    id: `artifact-${id}-${index}`,
+    artifact: {
+      id,
+      title: typeof item.title === "string" ? item.title : typeof item.name === "string" ? item.name : "Company artifact",
+      kind,
+      status,
+      description: typeof item.description === "string" ? item.description : "Authorized company artifact.",
+      fileName: typeof item.fileName === "string" ? item.fileName : undefined,
+      extension: typeof item.extension === "string" ? item.extension as Artifact["extension"] : undefined,
+      mimeType: typeof item.mimeType === "string" ? item.mimeType : undefined,
+      downloadUrl: typeof item.downloadUrl === "string" ? item.downloadUrl : undefined,
+    },
+  }
+}
+
+function nativeCompletionBlocks(response: NativeCompletion): CompanyBrainBlock[] {
+  const blocks: CompanyBrainBlock[] = []
+  const seenArtifactIds = new Set<string>()
+  const rawBlocks = Array.isArray(response.blocks) ? response.blocks : []
+
+  rawBlocks.forEach((value, index) => {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return
+    const block = value as Record<string, unknown>
+    const type = typeof block.type === "string" ? block.type : ""
+    if (type === "text" && typeof block.text === "string") {
+      blocks.push({ type: "text", id: `native-text-${index}`, text: block.text })
+      return
+    }
+    if (type === "artifact") {
+      const artifact = nativeArtifactBlock(block.artifact ?? block, index)
+      if (artifact) {
+        seenArtifactIds.add(artifact.artifact.id)
+        blocks.push(artifact)
+      }
+      return
+    }
+    if (type === "table" && block.table && typeof block.table === "object" && !Array.isArray(block.table)) {
+      const table = block.table as Record<string, unknown>
+      const columns = Array.isArray(table.columns)
+        ? table.columns.filter((column): column is string => typeof column === "string").slice(0, 24)
+        : []
+      const rows = Array.isArray(table.rows)
+        ? table.rows
+          .filter((row): row is Record<string, unknown> => Boolean(row && typeof row === "object" && !Array.isArray(row)))
+          .slice(0, 200)
+          .map((row) => Object.fromEntries(Object.entries(row).map(([key, cell]) => [key, typeof cell === "string" ? cell : String(cell ?? "")])) as Record<string, string>)
+        : []
+      if (columns.length) {
+        blocks.push({
+          type: "table",
+          id: `native-table-${index}`,
+          table: {
+            id: typeof table.id === "string" ? table.id : `native-table-${index}`,
+            title: typeof table.title === "string" ? table.title : "Company records",
+            columns,
+            rows,
+            rowCount: typeof table.rowCount === "number" ? table.rowCount : rows.length,
+          },
+        })
+      }
+      return
+    }
+    if (type === "clarification" && typeof block.question === "string") {
+      blocks.push({
+        type: "clarification",
+        id: `native-clarification-${index}`,
+        question: block.question,
+        options: Array.isArray(block.options)
+          ? block.options.filter((option): option is string => typeof option === "string").slice(0, 8)
+          : [],
+      })
+      return
+    }
+    if (type === "error") {
+      blocks.push({
+        type: "error",
+        id: `native-error-${index}`,
+        title: "Company Brain couldn’t finish that",
+        message: typeof block.message === "string" ? block.message : "Company Brain could not complete that request.",
+      })
+    }
+  })
+
+  if (!blocks.some((block) => block.type === "text") && response.answer) {
+    blocks.unshift({ type: "text", id: "native-answer", text: response.answer })
+  }
+  ;(response.artifacts ?? []).forEach((artifact, index) => {
+    if (seenArtifactIds.has(artifact.id)) return
+    const block = nativeArtifactBlock(artifact, index)
+    if (block) blocks.push(block)
+  })
+  return blocks.length
+    ? blocks
+    : [{
+      type: "error",
+      id: "native-empty",
+      title: "Company Brain couldn’t finish that",
+      message: "Company Brain completed without a user-visible response. Check the conversation again before retrying.",
+    }]
+}
 
 export function PortalApp() {
   const router = useRouter()
@@ -165,13 +233,15 @@ export function PortalApp() {
   const [preview, setPreview] = useState<PreviewState>(null)
   const [summary, setSummary] = useState<BrainSummary | null>(null)
   const [statusError, setStatusError] = useState<string | null>(null)
-  const [approvingActionReference, setApprovingActionReference] = useState<string | null>(null)
-  const [approvalError, setApprovalError] = useState<string | null>(null)
+  const [activityLabel, setActivityLabel] = useState("Stanley is working…")
+  const [approvalChoices, setApprovalChoices] = useState<string[]>([])
+  const [approvalConversationId, setApprovalConversationId] = useState<string | null>(null)
   const [currentConversationId, setCurrentConversationId] = useState(() => `conversation-${Date.now()}`)
   const [recentConversations, setRecentConversations] = useState<RecentConversation[]>([])
+  const [historyReady, setHistoryReady] = useState(false)
   const currentConversationIdRef = useRef(currentConversationId)
+  const activeConversationIdRef = useRef<string | null>(null)
   const isSendingRef = useRef(false)
-  const approvalPendingRef = useRef(new Set<string>())
   const historyLoadedRef = useRef(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
@@ -224,21 +294,55 @@ export function PortalApp() {
 
   useEffect(() => {
     if (!session) return
-    const saved = loadPortalHistory(session)
-    if (saved) {
-      currentConversationIdRef.current = saved.currentConversationId
-      setCurrentConversationId(saved.currentConversationId)
-      setRecentConversations(saved.recentConversations)
-      const active = saved.recentConversations.find((conversation) => conversation.id === saved.currentConversationId)
-      setMessages(active?.messages ?? [])
+    let cancelled = false
+    async function loadRemoteHistory() {
+      try {
+        const remote = await getCompanyBrainSessions()
+        if (cancelled) return
+        const summaries: RecentConversation[] = remote.map((conversation) => ({
+          id: conversation.id,
+          title: conversation.title || "New conversation",
+          lastActive: conversation.last_active,
+          messageCount: conversation.message_count,
+          preview: conversation.preview,
+        }))
+        if (summaries.length) {
+          const activeId = summaries[0].id
+          currentConversationIdRef.current = activeId
+          setCurrentConversationId(activeId)
+          setRecentConversations(summaries.slice(0, 8))
+          const history = await getCompanyBrainSessionMessages(activeId)
+          if (cancelled) return
+          setMessages(history.map((message) => ({
+            id: message.id,
+            role: message.role,
+            createdAt: message.timestamp ? new Date(message.timestamp * 1000).toISOString() : new Date().toISOString(),
+            blocks: [{ type: "text", id: `${message.id}-text`, text: message.content }],
+          })))
+        } else {
+          setRecentConversations([])
+          setMessages([])
+        }
+      } catch {
+        // Do not restore a stale browser-owned transcript or sidebar index.
+        // Hermes history is the only authoritative reload source.
+        if (!cancelled) {
+          setRecentConversations([])
+          setMessages([])
+        }
+      } finally {
+        if (!cancelled) {
+          historyLoadedRef.current = true
+          setHistoryReady(true)
+        }
+      }
     }
-    historyLoadedRef.current = true
+    void loadRemoteHistory()
+    return () => {
+      cancelled = true
+    }
   }, [session])
 
-  useEffect(() => {
-    if (!session || !historyLoadedRef.current) return
-    savePortalHistory(session, currentConversationId, recentConversations)
-  }, [session, currentConversationId, recentConversations])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ block: "end" })
@@ -246,17 +350,11 @@ export function PortalApp() {
 
   useEffect(() => {
     if (!messages.length) return
-    const firstUserText = messages
-      .find((message) => message.role === "user")
-      ?.blocks.find((block) => block.type === "text")
-    const title = firstUserText?.type === "text" ? firstUserText.text.slice(0, 54) : "New conversation"
-    setRecentConversations((current) => {
-      const next = [
-        { id: currentConversationId, title, messages },
-        ...current.filter((item) => item.id !== currentConversationId),
-      ]
-      return next.slice(0, 8)
-    })
+    const metadata = conversationMetadata(currentConversationId, messages)
+    setRecentConversations((current) => [
+      metadata,
+      ...current.filter((item) => item.id !== currentConversationId),
+    ].slice(0, 8))
   }, [messages, currentConversationId])
 
   async function handleLogout() {
@@ -270,13 +368,6 @@ export function PortalApp() {
     if (!response.ok) {
       setStatusError("Logout could not be confirmed. You are still signed in; try again.")
       return
-    }
-    if (session && typeof window !== "undefined") {
-      try {
-        window.sessionStorage.removeItem(portalHistoryKey(session))
-      } catch {
-        // Cookie revocation is authoritative when browser storage is unavailable.
-      }
     }
     historyLoadedRef.current = false
     setRecentConversations([])
@@ -295,6 +386,7 @@ export function PortalApp() {
     if ((!hasText && messageAttachments.length === 0) || isSendingRef.current) return
     isSendingRef.current = true
     const originConversationId = currentConversationIdRef.current
+    activeConversationIdRef.current = originConversationId
     const originTitle = hasText
       ? rawMessage.trim().slice(0, 54)
       : messageAttachments[0]?.name.slice(0, 54) || "New conversation"
@@ -312,103 +404,116 @@ export function PortalApp() {
         })),
       ],
     }
-
     const originMessages = [...messages, userMessage]
     setMessages((current) => currentConversationIdRef.current === originConversationId ? [...current, userMessage] : current)
-    setRecentConversations((current) => replaceConversationMessages(
-      current,
-      originConversationId,
-      originTitle,
-      originMessages,
-    ).slice(0, 8))
+    setRecentConversations((current) => [
+      conversationMetadata(originConversationId, originMessages, originTitle),
+      ...current.filter((item) => item.id !== originConversationId),
+    ].slice(0, 8))
     setInput("")
     setAttachments([])
+    setApprovalChoices([])
+    setApprovalConversationId(null)
     setIsSending(true)
 
+    const streamingMessageId = `assistant-stream-${Date.now()}`
+    let streamedText = ""
+    const updateStreamingMessage = (text: string) => {
+      const partial: CompanyBrainMessage = {
+        id: streamingMessageId,
+        role: "assistant",
+        createdAt: new Date().toISOString(),
+        blocks: [{ type: "text", id: `${streamingMessageId}-text`, text }],
+      }
+      if (currentConversationIdRef.current === originConversationId) {
+        setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), partial])
+      }
+    }
+
     try {
-      const response = await sendCompanyBrainMessage({
+      const response = await streamCompanyBrainMessage({
         companyId: session?.companyId ?? "",
         conversationId: originConversationId,
         message: rawMessage,
         attachments: messageAttachments,
+      }, (event) => {
+        if (event.event === "run.started") setActivityLabel("Stanley is working…")
+        if (event.event === "tool.progress") {
+          const state = typeof event.data.state === "string" ? event.data.state : ""
+          setActivityLabel(state.includes("completed") ? "Stanley is verifying the result…" : "Stanley is checking the connected records…")
+        }
+        if (event.event === "approval.request") {
+          const choices = Array.isArray(event.data.choices)
+            ? event.data.choices.filter((choice): choice is string => typeof choice === "string").slice(0, 8)
+            : []
+          if (currentConversationIdRef.current === originConversationId && choices.length) {
+            setApprovalChoices(choices)
+            setApprovalConversationId(originConversationId)
+          }
+        }
+        if (event.event === "assistant.delta" && typeof event.data.delta === "string") {
+          streamedText += event.data.delta
+          updateStreamingMessage(streamedText)
+        }
       })
-      setRecentConversations((current) => appendMessageToConversation(
-        current,
-        originConversationId,
-        response.message,
-        originTitle,
-      ).slice(0, 8))
+      if (response.status && response.status !== "completed") {
+        throw new Error(response.status === "cancelled"
+          ? "The request was stopped. Check the conversation before retrying."
+          : "Company Brain could not complete that request. Check recent activity before trying again.")
+      }
+      const assistantMessage: CompanyBrainMessage = {
+        id: `assistant-${Date.now()}`,
+        role: "assistant",
+        createdAt: new Date().toISOString(),
+        blocks: nativeCompletionBlocks(response),
+      }
+      const completedMessages = [...originMessages, assistantMessage]
+      setRecentConversations((current) => [
+        conversationMetadata(originConversationId, completedMessages, originTitle),
+        ...current.filter((item) => item.id !== originConversationId),
+      ].slice(0, 8))
       if (currentConversationIdRef.current === originConversationId) {
-        setMessages((current) => current.some((message) => message.id === response.message.id)
-          ? current
-          : [...current, response.message])
+        setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), assistantMessage])
       }
     } catch (error) {
       const errorMessage: CompanyBrainMessage = {
         id: `assistant-error-${Date.now()}`,
         role: "assistant",
         createdAt: new Date().toISOString(),
-        blocks: [
-          {
-            type: "error",
-            id: "send-error",
-            title: "Company Brain couldn’t finish that",
-            message: error instanceof Error
-              ? error.message
-              : "The request outcome is unknown. Check recent activity before trying again.",
-          },
-        ],
+        blocks: [{
+          type: "error",
+          id: "send-error",
+          title: "Company Brain couldn’t finish that",
+          message: error instanceof Error
+            ? error.message
+            : "The request outcome is unknown. Check recent activity before trying again.",
+        }],
       }
-      setRecentConversations((current) => appendMessageToConversation(
-        current,
-        originConversationId,
-        errorMessage,
-        originTitle,
-      ).slice(0, 8))
+      const failedMessages = [...originMessages, errorMessage]
+      setRecentConversations((current) => [
+        conversationMetadata(originConversationId, failedMessages, originTitle),
+        ...current.filter((item) => item.id !== originConversationId),
+      ].slice(0, 8))
       if (currentConversationIdRef.current === originConversationId) {
-        setMessages((current) => current.some((message) => message.id === errorMessage.id)
-          ? current
-          : [...current, errorMessage])
+        setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), errorMessage])
       }
     } finally {
+      if (activeConversationIdRef.current === originConversationId) activeConversationIdRef.current = null
       isSendingRef.current = false
       setIsSending(false)
+      setActivityLabel("Stanley is working…")
     }
   }
 
-  async function approvePreparedAction(action: PreparedAction, originConversationId: string) {
-    const actionReference = action.approvalReference?.trim() ?? ""
-    if (!actionReference || !/^actref_[A-Za-z0-9_-]{32,240}$/.test(actionReference)) {
-      setApprovalError("This prepared action is no longer available. Prepare it again from the same conversation.")
-      return
-    }
-    const pendingKey = `${originConversationId}:${actionReference}`
-    if (approvalPendingRef.current.has(pendingKey)) return
-    approvalPendingRef.current.add(pendingKey)
-    setApprovingActionReference(actionReference)
-    setApprovalError(null)
+
+  async function handleCancel() {
+    const conversationId = activeConversationIdRef.current
+    if (!conversationId) return
     try {
-      const response = await confirmCompanyBrainAction(originConversationId, actionReference)
-      const originTitle = recentConversations.find((conversation) => conversation.id === originConversationId)?.title ?? action.title
-      setRecentConversations((current) => appendMessageToConversation(
-        current,
-        originConversationId,
-        response.message,
-        originTitle,
-      ).slice(0, 8))
-      if (currentConversationIdRef.current === originConversationId) {
-        setMessages((current) => current.some((message) => message.id === response.message.id)
-          ? current
-          : [...current, response.message])
-      }
-      setPreview(null)
-    } catch (error) {
-      setApprovalError(error instanceof Error
-        ? error.message
-        : "Stanley could not verify the approval result. Check the original conversation before trying again.")
-    } finally {
-      approvalPendingRef.current.delete(pendingKey)
-      setApprovingActionReference((current) => current === actionReference ? null : current)
+      await cancelCompanyBrainSession(conversationId)
+      setStatusError("Stopping that request…")
+    } catch {
+      setStatusError("The stop request could not be confirmed. Check the conversation before retrying.")
     }
   }
 
@@ -437,7 +542,18 @@ export function PortalApp() {
         }
         currentConversationIdRef.current = conversation.id
         setCurrentConversationId(conversation.id)
-        setMessages(conversation.messages)
+        setMessages([])
+        void getCompanyBrainSessionMessages(conversation.id).then((history) => {
+          if (currentConversationIdRef.current !== conversation.id) return
+          setMessages(history.map((message) => ({
+            id: message.id,
+            role: message.role,
+            createdAt: message.timestamp ? new Date(message.timestamp * 1000).toISOString() : new Date().toISOString(),
+            blocks: [{ type: "text" as const, id: `${message.id}-text`, text: message.content }],
+          })))
+        }).catch(() => {
+          setStatusError("That conversation could not be loaded right now.")
+        })
         setInput("")
         setAttachments([])
         setSidebarOpen(false)
@@ -535,46 +651,56 @@ export function PortalApp() {
                       <ChatMessage
                         key={message.id}
                         message={message}
-                        onPreview={(nextPreview) => {
-                          setApprovalError(null)
-                          setPreview(nextPreview?.type === "action"
-                            ? { ...nextPreview, conversationId: currentConversationId }
-                            : nextPreview)
-                        }}
+                        onPreview={setPreview}
+                        onChoice={(choice) => void sendMessage(choice, [])}
                       />
                     ))}
-                    {isSending ? <TypingMessage /> : null}
+                    {isSending ? <TypingMessage label={activityLabel} /> : null}
                     <div ref={messagesEndRef} aria-hidden="true" />
                   </div>
                 ) : (
                   <EmptyState summary={summary} statusError={statusError} />
                 )}
               </div>
+              {approvalConversationId === currentConversationId && approvalChoices.length ? (
+                <div className="mb-3 rounded-xl border border-[#d9eadf] bg-[#f5fbf7] p-3">
+                  <p className="text-xs font-bold uppercase tracking-wide text-[#667085]">Stanley is waiting for your choice</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {approvalChoices.map((choice) => (
+                      <button
+                        key={choice}
+                        type="button"
+                        className="rounded-full border border-[#cfe6d7] bg-white px-3 py-1.5 text-xs font-bold text-[#15803d] hover:bg-[#eef9f2]"
+                        onClick={() => {
+                          setApprovalChoices([])
+                          setApprovalConversationId(null)
+                          void sendMessage(choice, [])
+                        }}
+                      >
+                        {choice}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
               <ChatComposer
                 input={input}
                 attachments={attachments}
-                disabled={isSending || isUploading}
+                disabled={isSending || isUploading || !historyReady}
                 onInput={setInput}
                 conversationId={currentConversationId}
                 onAttachments={setAttachments}
                 onUploading={setIsUploading}
                 onUploadError={setStatusError}
                 onSubmit={handleSubmit}
+                onCancel={isSending ? () => void handleCancel() : undefined}
                 onKeyDown={handleKeyDown}
               />
             </div>
           </section>
         </main>
+        <PreviewDialog preview={preview} onClose={() => setPreview(null)} />
       </div>
-      <PreviewDialog
-        preview={preview}
-        onClose={() => {
-          if (!approvingActionReference) setPreview(null)
-        }}
-        onApprove={(action, conversationId) => void approvePreparedAction(action, conversationId)}
-        approvingActionReference={approvingActionReference}
-        approvalError={approvalError}
-      />
     </div>
   )
 }
@@ -705,9 +831,11 @@ function EmptyState({
 function ChatMessage({
   message,
   onPreview,
+  onChoice,
 }: {
   message: CompanyBrainMessage
   onPreview: (preview: PreviewState) => void
+  onChoice: (choice: string) => void
 }) {
   const isUser = message.role === "user"
 
@@ -725,7 +853,7 @@ function ChatMessage({
         ) : (
           <div className="space-y-2">
             {message.blocks.map((block) => (
-              <MessageBlock key={block.id} block={block} onPreview={onPreview} />
+              <MessageBlock key={block.id} block={block} onPreview={onPreview} onChoice={onChoice} />
             ))}
           </div>
         )}
@@ -759,9 +887,11 @@ function AssistantText({ text, tone = "light" }: { text: string; tone?: "light" 
 function MessageBlock({
   block,
   onPreview,
+  onChoice,
 }: {
   block: CompanyBrainBlock
   onPreview: (preview: PreviewState) => void
+  onChoice: (choice: string) => void
 }) {
   if (block.type === "text") {
     return <AssistantText text={block.text} />
@@ -797,10 +927,6 @@ function MessageBlock({
     )
   }
 
-  if (block.type === "action") {
-    return <ActionCard action={block.action} onPreview={() => onPreview({ type: "action", action: block.action })} />
-  }
-
   if (block.type === "artifact") {
     return (
       <ArtifactCard artifact={block.artifact} onPreview={() => onPreview({ type: "artifact", artifact: block.artifact })} />
@@ -821,6 +947,7 @@ function MessageBlock({
               type="button"
               key={option}
               className="rounded-full border border-[#cfe6d7] bg-white px-3 py-1.5 text-xs font-bold text-[#15803d]"
+              onClick={() => onChoice(option)}
             >
               {option}
             </button>
@@ -840,33 +967,6 @@ function MessageBlock({
   }
 
   return null
-}
-
-function ActionCard({ action, onPreview }: { action: PreparedAction; onPreview: () => void }) {
-  return (
-    <div className="rounded-lg border border-[#d8e7dc] bg-white p-4 shadow-sm">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-[#15803d]" />
-            <p className="font-bold text-[#102033]">{action.title}</p>
-            <span className="rounded-full bg-[#ddf7e8] px-2 py-1 text-[11px] font-bold uppercase text-[#116832]">
-              Prepared, not sent
-            </span>
-          </div>
-          <p className="mt-2 text-sm leading-6 text-[#5f6d7a]">{action.description}</p>
-        </div>
-        <Button
-          type="button"
-          variant="outline"
-          className="h-9 rounded-lg border-[#cfe3d5] bg-[#fbfefc] text-[#15803d] hover:bg-[#eef9f2]"
-          onClick={onPreview}
-        >
-          {action.ctaLabel}
-        </Button>
-      </div>
-    </div>
-  )
 }
 
 function ArtifactCard({ artifact, onPreview }: { artifact: Artifact; onPreview: () => void }) {
@@ -890,14 +990,6 @@ function ArtifactCard({ artifact, onPreview }: { artifact: Artifact; onPreview: 
           </div>
         </div>
         <div className="flex flex-wrap gap-2 sm:justify-end">
-          <Button
-            type="button"
-            variant="outline"
-            className="h-9 rounded-lg border-[#d8d0c4] bg-[#fbf8f2] text-[#102033] hover:bg-white"
-            onClick={onPreview}
-          >
-            Preview
-          </Button>
           {artifact.status === "ready" && artifact.downloadUrl ? (
             <Button
               type="button"
@@ -1006,6 +1098,7 @@ function ChatComposer({
   onUploading,
   onUploadError,
   onSubmit,
+  onCancel,
   onKeyDown,
 }: {
   input: string
@@ -1017,6 +1110,7 @@ function ChatComposer({
   onUploading: (value: boolean) => void
   onUploadError: (value: string | null) => void
   onSubmit: (event: FormEvent) => void
+  onCancel?: () => void
   onKeyDown: (event: KeyboardEvent<HTMLTextAreaElement>) => void
 }) {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
@@ -1119,14 +1213,25 @@ function ChatComposer({
             <Paperclip className="h-5 w-5" />
           </button>
           <div className="flex items-center gap-1">
-            <Button
-              type="submit"
-              disabled={!canSend}
-              className="grid h-9 w-9 rounded-full bg-[#111827] p-0 text-white hover:bg-black disabled:bg-[#d4d4d0]"
-              aria-label="Send message"
-            >
-              {disabled ? <Clock3 className="h-4 w-4 animate-spin" /> : <ArrowUp className="h-5 w-5" />}
-            </Button>
+            {onCancel ? (
+              <Button
+                type="button"
+                onClick={onCancel}
+                className="grid h-9 w-9 rounded-full bg-[#9c2f24] p-0 text-white hover:bg-[#7f251c]"
+                aria-label="Stop request"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                disabled={!canSend}
+                className="grid h-9 w-9 rounded-full bg-[#111827] p-0 text-white hover:bg-black disabled:bg-[#d4d4d0]"
+                aria-label="Send message"
+              >
+                <ArrowUp className="h-5 w-5" />
+              </Button>
+            )}
           </div>
         </div>
       </div>
@@ -1134,16 +1239,19 @@ function ChatComposer({
   )
 }
 
-function TypingMessage() {
+function TypingMessage({ label }: { label: string }) {
   return (
     <div className="flex gap-3">
       <div className="mt-1 grid h-8 w-8 place-items-center rounded-lg bg-[#15803d] text-white">
         <Sparkles className="h-4 w-4" />
       </div>
-      <div className="flex items-center gap-1 rounded-lg border border-[#e1d8ca] bg-white px-4 py-3">
-        <span className="h-2 w-2 animate-pulse rounded-full bg-[#15803d]" />
-        <span className="h-2 w-2 animate-pulse rounded-full bg-[#9ac8a8] [animation-delay:120ms]" />
-        <span className="h-2 w-2 animate-pulse rounded-full bg-[#c4d7c9] [animation-delay:240ms]" />
+      <div className="rounded-lg border border-[#e1d8ca] bg-white px-4 py-3">
+        <div className="flex items-center gap-1">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-[#15803d]" />
+          <span className="h-2 w-2 animate-pulse rounded-full bg-[#9ac8a8] [animation-delay:120ms]" />
+          <span className="h-2 w-2 animate-pulse rounded-full bg-[#c4d7c9] [animation-delay:240ms]" />
+        </div>
+        <p className="mt-2 text-xs font-semibold text-[#667085]">{label}</p>
       </div>
     </div>
   )
@@ -1164,63 +1272,26 @@ function downloadArtifact(artifact: Artifact) {
 function PreviewDialog({
   preview,
   onClose,
-  onApprove,
-  approvingActionReference,
-  approvalError,
 }: {
   preview: PreviewState
   onClose: () => void
-  onApprove: (action: PreparedAction, conversationId: string) => void
-  approvingActionReference: string | null
-  approvalError: string | null
 }) {
-  const title = useMemo(() => {
-    if (!preview) return ""
-    if (preview.type === "artifact") return preview.artifact.title
-    if (preview.type === "action") return preview.action.title
-    if (preview.type === "table") return preview.table.title
-    return preview.title ?? "Sources"
-  }, [preview])
-
-  const approvalPending = preview?.type === "action"
-    && Boolean(preview.action.approvalReference)
-    && preview.action.approvalReference === approvingActionReference
-
   return (
-    <Dialog open={Boolean(preview)} onOpenChange={(open) => (!open && !approvalPending ? onClose() : null)}>
+    <Dialog open={Boolean(preview)} onOpenChange={(open) => (!open ? onClose() : null)}>
       <DialogContent className="max-h-[85svh] overflow-y-auto rounded-xl border-[#ded6c8] bg-[#fffdf8] text-[#102033] sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>
-            {preview?.type === "action"
-              ? "Review the exact prepared change before approving it. Stanley will verify the provider result before reporting completion."
-              : "Preview the runtime-created result before downloading or using it."}
-          </DialogDescription>
+          <DialogTitle>
+            {preview?.type === "artifact" ? preview.artifact.title : preview?.type === "table" ? preview.table.title : "Checked records"}
+          </DialogTitle>
+          <DialogDescription>Preview the runtime-created result before downloading or using it.</DialogDescription>
         </DialogHeader>
-        {preview ? (
-          <PreviewContent
-            preview={preview}
-            onApprove={onApprove}
-            approvalPending={approvalPending}
-            approvalError={approvalError}
-          />
-        ) : null}
+        {preview ? <PreviewContent preview={preview} /> : null}
       </DialogContent>
     </Dialog>
   )
 }
 
-function PreviewContent({
-  preview,
-  onApprove,
-  approvalPending,
-  approvalError,
-}: {
-  preview: NonNullable<PreviewState>
-  onApprove: (action: PreparedAction, conversationId: string) => void
-  approvalPending: boolean
-  approvalError: string | null
-}) {
+function PreviewContent({ preview }: { preview: NonNullable<PreviewState> }) {
   if (preview.type === "artifact") {
     return (
       <div className="rounded-lg border border-[#e1d8ca] bg-white p-4">
@@ -1249,32 +1320,6 @@ function PreviewContent({
     )
   }
 
-  if (preview.type === "action") {
-    const canApprove = Boolean(preview.action.approvalReference && preview.conversationId)
-    return (
-      <div className="rounded-lg border border-[#d8e7dc] bg-white p-4">
-        <p className="text-sm leading-6 text-[#4d5d69]">{preview.action.description}</p>
-        <div className="mt-4 rounded-lg bg-[#f5fbf7] p-4 text-sm leading-6 text-[#102033]">
-          {preview.action.preview}
-        </div>
-        {approvalError ? (
-          <p role="alert" className="mt-3 rounded-lg border border-[#f0c6c0] bg-[#fff7f5] p-3 text-sm text-[#9c2f24]">
-            {approvalError}
-          </p>
-        ) : null}
-        <Button
-          type="button"
-          disabled={!canApprove || approvalPending}
-          onClick={() => {
-            if (preview.conversationId) onApprove(preview.action, preview.conversationId)
-          }}
-          className="mt-4 rounded-lg bg-[#15803d] text-white hover:bg-[#116832] disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {approvalPending ? "Approving…" : canApprove ? "Approve and execute" : "Prepare again to approve"}
-        </Button>
-      </div>
-    )
-  }
 
   if (preview.type === "table") {
     return <TableCard table={preview.table} onPreview={() => undefined} />

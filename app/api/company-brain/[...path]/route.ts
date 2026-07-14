@@ -41,7 +41,9 @@ const ARTIFACT_EXTENSIONS: Record<string, string> = {
 }
 
 function isAllowedPath(path: string) {
-  return ALLOWED_PATHS.has(path) || /^artifacts\/artifact_[A-Za-z0-9_-]+$/.test(path)
+  return ALLOWED_PATHS.has(path)
+    || /^artifacts\/artifact_[A-Za-z0-9_-]+$/.test(path)
+    || /^brain\/sessions(?:\/[A-Za-z0-9_.:-]+(?:\/messages|\/chat\/stream|\/cancel))?$/.test(path)
 }
 
 function approvalRequestIsSameOrigin(request: NextRequest) {
@@ -246,6 +248,73 @@ function publicControlResponse(path: string, responseBody: string) {
   }
 }
 
+function nativeCompletionArtifactIds(frame: string) {
+  const eventMatch = frame.match(/(?:^|\n)event:\s*([^\r\n]+)/)
+  if (eventMatch?.[1]?.trim() !== "stanley.completed") return []
+  const data = frame
+    .split("\n")
+    .filter((line) => line.startsWith("data:"))
+    .map((line) => line.slice(5).trimStart())
+    .join("\n")
+  try {
+    return artifactIdsFromChatResponse(JSON.parse(data))
+  } catch {
+    return []
+  }
+}
+
+async function authorizedNativeStream(response: Response, sessionKey: string) {
+  if (!response.body) return null
+  const reader = response.body.getReader()
+  const decoder = new TextDecoder()
+  const encoder = new TextEncoder()
+  const stream = new TransformStream<Uint8Array, Uint8Array>()
+  const writer = stream.writable.getWriter()
+
+  void (async () => {
+    let buffer = ""
+    try {
+      while (true) {
+        const next = await reader.read()
+        if (next.done) {
+          buffer += decoder.decode()
+          if (buffer) await writer.write(encoder.encode(buffer))
+          break
+        }
+        buffer += decoder.decode(next.value, { stream: true })
+        const frames = buffer.split("\n\n")
+        buffer = frames.pop() ?? ""
+        for (const frame of frames) {
+          const artifactIds = nativeCompletionArtifactIds(frame)
+          if (artifactIds.length) {
+            try {
+              grantPortalArtifactAccess(portalSessionStoreDir(), sessionKey, artifactIds)
+            } catch {
+              await writer.write(encoder.encode(
+                `event: error\ndata: ${JSON.stringify({ message: "The completed artifact could not be authorized." })}\n\nevent: done\ndata: {}\n\n`,
+              ))
+              await reader.cancel()
+              return
+            }
+          }
+          await writer.write(encoder.encode(`${frame}\n\n`))
+        }
+      }
+    } catch {
+      // The browser/runtime connection can close during cancellation. The
+      // upstream stream already owns the authoritative run outcome.
+    } finally {
+      try {
+        await writer.close()
+      } catch {
+        // The client may have disconnected while the stream was closing.
+      }
+    }
+  })()
+
+  return stream.readable
+}
+
 async function forward(request: NextRequest, context: RouteContext) {
   const session = getPortalSession()
   if (!session) return jsonError("portal_login_required", 401)
@@ -267,11 +336,15 @@ async function forward(request: NextRequest, context: RouteContext) {
   const upstreamPath = path === "actions/confirm" ? "brain/actions/confirm" : path.startsWith("artifacts/") ? `brain/${path}` : path
   const target = new URL(upstreamPath, baseUrl)
   const artifactRequest = path.startsWith("artifacts/")
+  const nativeSessionRequest = /^brain\/sessions(?:\/[^/]+(?:\/messages|\/chat\/stream|\/cancel))?$/.test(path)
+  const nativeStreamRequest = /^brain\/sessions\/[^/]+\/chat\/stream$/.test(path)
   const headers: Record<string, string> = {
-    accept: artifactRequest ? "application/octet-stream" : "application/json",
+    accept: artifactRequest ? "application/octet-stream" : nativeStreamRequest ? "text/event-stream" : "application/json",
     "x-stanley-surface": "portal",
     "x-stanley-company-id": session.companyId,
     "x-stanley-actor-id": session.actorId,
+    "x-stanley-actor-name": session.name,
+    "x-stanley-actor-email": session.email,
     "x-stanley-actor-role": session.role,
     "x-stanley-session-key": session.sessionKey,
     "x-stanley-brain-proxy-key": proxyKey,
@@ -335,6 +408,34 @@ async function forward(request: NextRequest, context: RouteContext) {
           actor_email: session.email,
           session_key: session.sessionKey,
         })
+      } else if (nativeSessionRequest) {
+        const pathConversation = path.split("/")[2] ?? ""
+        let conversationId = pathConversation
+        try {
+          conversationId = decodeURIComponent(pathConversation)
+        } catch {
+          return jsonError("invalid_conversation", 400)
+        }
+        conversationId = safeConversationId(conversationId || incoming.conversation_id)
+        if (path === "brain/sessions") {
+          if (!conversationId) return jsonError("invalid_conversation", 400)
+          body = JSON.stringify({
+            conversation_id: conversationId,
+            title: typeof incoming.title === "string" ? incoming.title.slice(0, 160) : "New conversation",
+          })
+        } else if (path.endsWith("/chat/stream")) {
+          const message = typeof incoming.message === "string" ? incoming.message.trim().slice(0, 20_000) : ""
+          if (!conversationId || (!message && !Array.isArray(incoming.attachments))) return jsonError("invalid_message", 400)
+          body = JSON.stringify({
+            conversation_id: conversationId,
+            message,
+            attachments: sanitizedAttachments(incoming.attachments),
+            title: typeof incoming.title === "string" ? incoming.title.slice(0, 160) : "New conversation",
+          })
+        } else {
+          if (!conversationId) return jsonError("invalid_conversation", 400)
+          body = JSON.stringify({ conversation_id: conversationId })
+        }
       } else if (path === "actions/confirm") {
         if (!approvalRequestIsSameOrigin(request)) return jsonError("approval_csrf_rejected", 403)
         const actionReference = typeof incoming.action_reference === "string" && /^actref_[A-Za-z0-9_-]{32,240}$/.test(incoming.action_reference)
@@ -361,7 +462,7 @@ async function forward(request: NextRequest, context: RouteContext) {
   }
 
   const controller = new AbortController()
-  const timeoutMs = path === "brain/chat" ? 180000 : path === "brain/uploads" ? 60000 : 20000
+  const timeoutMs = nativeStreamRequest || path === "brain/chat" ? 180000 : path === "brain/uploads" ? 60000 : 20000
   const timeout = setTimeout(() => controller.abort(), timeoutMs)
   let response: Response
   try {
@@ -380,6 +481,17 @@ async function forward(request: NextRequest, context: RouteContext) {
   }
 
   if (response.status >= 500) return unavailableResponse(path)
+  if (nativeStreamRequest && response.ok && response.body) {
+    const readable = await authorizedNativeStream(response, session.sessionKey)
+    return new NextResponse(readable ?? response.body, {
+      status: response.status,
+      headers: securityHeaders({
+        "content-type": "text/event-stream",
+        "cache-control": "no-cache, no-store",
+        "x-accel-buffering": "no",
+      }),
+    })
+  }
   if (artifactRequest && response.ok) {
     const rawContentType = (response.headers.get("content-type") ?? "").split(";", 1)[0].toLowerCase()
     const size = Number(response.headers.get("content-length") ?? "0")
