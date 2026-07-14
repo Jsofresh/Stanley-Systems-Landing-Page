@@ -81,5 +81,10 @@ oauth-tokens.json
 # Reference materials (often copyrighted)
 references/
 
+# Local build snapshots and generated Company Brain stress evidence; retained on disk, not source
+/.next*/
+/tmp/
+/test-artifacts/company-brain-live-ui-stress*/
+
 # Mobile QA evidence screenshots are regenerable and large; keep CSV/report canonical.
 qa/browser-screenshots/

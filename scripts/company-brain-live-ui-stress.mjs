@@ -101,8 +101,23 @@ function gate(name, state, probe, exitStatus, artifacts = []) {
 async function login(page, user, password, trace) {
   await page.goto(`${BASE_URL.replace(/\/$/, '')}/login`, { waitUntil: 'domcontentloaded', timeout: 20000 })
   trace.push({ event: 'login_page', at: now(), route: redactRoute(page.url()) })
-  await page.locator('input[type="email"]').fill(user.email)
-  await page.locator('input[type="password"]').fill(password)
+  const email = page.locator('input[type="email"]').first()
+  const passwordInput = page.locator('input[type="password"]').first()
+  await email.waitFor({ state: 'visible', timeout: 10000 })
+  await passwordInput.waitFor({ state: 'visible', timeout: 10000 })
+  // The login form is a controlled client component. Under concurrent cold
+  // navigations, the server-rendered email DOM value can be cleared when
+  // hydration applies the initial React state. Fill both fields and verify
+  // they remain stable before submitting, rather than racing hydration.
+  let stable = false
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    await email.fill(user.email)
+    await passwordInput.fill(password)
+    await page.waitForTimeout(150)
+    stable = (await email.inputValue()) === user.email && (await passwordInput.inputValue()) === password
+    if (stable) break
+  }
+  if (!stable) throw new Error('login_form_values_not_stable_after_hydration')
   await page.getByRole('button', { name: /sign in/i }).click()
   await page.waitForURL(/\/portal/, { timeout: 20000 })
   await page.waitForLoadState('domcontentloaded')
