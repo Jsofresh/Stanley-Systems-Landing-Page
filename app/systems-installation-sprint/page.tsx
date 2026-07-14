@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 import { InstallationSprintContactForm } from "@/components/installation-sprint-contact-form"
 
 const shell = "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-const primary = "inline-flex min-h-12 items-center justify-center rounded-[0.7rem] bg-[#15923D] px-6 py-3 text-base font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.28)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
+const primary = "inline-flex min-h-14 items-center justify-center rounded-[0.7rem] bg-[#15923D] px-7 py-4 text-lg font-extrabold text-white shadow-[0_16px_34px_rgba(21,128,61,0.28)] transition hover:-translate-y-0.5 hover:bg-[#116832]"
 const heroWins = ["Faster billing", "Fewer dropped handoffs", "Clear next steps"]
 
 export default function PAGE() {
@@ -18,18 +18,17 @@ export default function PAGE() {
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#061629_0%,rgba(6,22,41,0.96)_17%,rgba(6,22,41,0.80)_38%,rgba(6,22,41,0.28)_58%,rgba(6,22,41,0.04)_78%,rgba(6,22,41,0.08)_100%)]" />
           <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,22,41,0.10)_0%,rgba(6,22,41,0.02)_48%,#061629_100%)]" />
           <div className={`${shell} flex min-h-[560px] w-full items-center lg:min-h-0`}>
-            <div className="max-w-[580px]">
-              <h1 className="text-balance text-[3.05rem] font-semibold leading-[0.98] tracking-[-0.033em] text-white sm:text-[3.65rem] lg:text-[3.72rem]">Get more done with the team you already have.</h1>
-              <p className="mt-4 max-w-[520px] text-lg font-medium leading-7 text-white/86">We install the office workflows that speed up billing, follow-up, and admin work without adding another office hire.</p>
-              <ul className="mt-5 grid gap-2 text-lg font-semibold leading-6 text-white/88" aria-label="Installation Sprint outcomes">
+            <div className="max-w-[650px] 2xl:-translate-x-16">
+              <h1 className="text-balance text-[3.25rem] font-semibold leading-[0.96] tracking-[-0.033em] text-white sm:text-[3.95rem] lg:text-[4.15rem]">Get more done with the team you already have.</h1>
+              <ul className="mt-7 grid gap-2.5 text-xl font-semibold leading-7 text-white/88" aria-label="Installation Sprint outcomes">
                 {heroWins.map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#15923D] text-white shadow-[0_8px_18px_rgba(21,146,61,0.28)]"><Check className="h-4 w-4" strokeWidth={3} /></span>
+                  <li key={item} className="flex items-center gap-3.5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#15923D] text-white shadow-[0_8px_18px_rgba(21,146,61,0.28)]"><Check className="h-[1.1rem] w-[1.1rem]" strokeWidth={3} /></span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row"><Link href="#installation-contact" className={primary}>Install Your First Workflow <ArrowRight className="ml-2 h-4 w-4" /></Link><Link href="/pricing" className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-[0.7rem] border border-white/60 bg-[#071D3A]/20 px-6 py-3 text-base font-extrabold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/12">Compare Map, Sprint, and Ops</Link></div>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row"><Link href="#installation-contact" className={primary}>Install Your First Workflow <ArrowRight className="ml-2 h-5 w-5" /></Link><Link href="/pricing" className="inline-flex min-h-14 items-center justify-center whitespace-nowrap rounded-[0.7rem] border border-white/60 bg-[#071D3A]/20 px-7 py-4 text-lg font-extrabold text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/12">Compare Map, Sprint, and Ops</Link></div>
             </div>
           </div>
         </section>
