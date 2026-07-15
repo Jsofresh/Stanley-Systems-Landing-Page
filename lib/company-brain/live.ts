@@ -136,14 +136,15 @@ export async function streamCompanyBrainMessage(
   let buffer = ""
   let answer = ""
   let completion: BrainChatResponse | null = null
+  let sawDone = false
   const consume = (chunk: string) => {
     buffer += chunk
-    const frames = buffer.split(/\n\n/)
+    const frames = buffer.split(/\r?\n\r?\n/)
     buffer = frames.pop() ?? ""
     for (const frame of frames) {
       let eventName = "message"
       const dataLines: string[] = []
-      for (const line of frame.split(/\n/)) {
+      for (const line of frame.split(/\r?\n/)) {
         if (line.startsWith("event:")) eventName = line.slice(6).trim()
         if (line.startsWith("data:")) dataLines.push(line.slice(5).trimStart())
       }
@@ -157,6 +158,7 @@ export async function streamCompanyBrainMessage(
       onEvent?.({ event: eventName, data })
       if (eventName === "assistant.delta") answer += typeof data.delta === "string" ? data.delta : ""
       if (eventName === "stanley.completed") completion = data as unknown as BrainChatResponse
+      if (eventName === "done") sawDone = true
       if (eventName === "error") throw new Error(userSafeErrorMessage("runtime_failed", typeof data.message === "string" ? data.message : undefined))
     }
   }
@@ -170,11 +172,10 @@ export async function streamCompanyBrainMessage(
   } finally {
     window.clearTimeout(timeout)
   }
-  if (completion) return completion
-  return {
-    answer: answer || "Company Brain could not finish that request.",
-    blocks: [{ type: "text", text: answer || "Company Brain could not finish that request." }],
+  if (!completion || !sawDone) {
+    throw new Error("Company Brain could not finish that request. Check recent activity before trying again.")
   }
+  return completion
 }
 
 

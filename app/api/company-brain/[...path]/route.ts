@@ -170,8 +170,6 @@ function sanitizedAttachments(value: unknown) {
       size: typeof input.size === "number" && Number.isFinite(input.size) ? Math.max(0, Math.min(input.size, MAX_UPLOAD_BYTES)) : 0,
       mimeType: typeof input.mimeType === "string" ? input.mimeType.slice(0, 160) : "application/octet-stream",
       kind: typeof input.kind === "string" ? input.kind.slice(0, 40) : "file",
-      status: "ready",
-      extractionStatus: "ready",
     }]
   })
 }
@@ -263,6 +261,96 @@ function nativeCompletionArtifactIds(frame: string) {
   }
 }
 
+function publicStreamText(value: unknown, limit = 12000) {
+  if (typeof value !== "string") return ""
+  return value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "").slice(0, limit)
+}
+
+function publicArtifact(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null
+  const artifact = value as Record<string, unknown>
+  const id = typeof artifact.id === "string" && /^artifact_[A-Za-z0-9_-]{6,160}$/.test(artifact.id) ? artifact.id : ""
+  const downloadUrl = typeof artifact.downloadUrl === "string" && /^\/api\/company-brain\/artifacts\/artifact_[A-Za-z0-9_-]{6,160}$/.test(artifact.downloadUrl)
+    ? artifact.downloadUrl
+    : undefined
+  if (!id) return null
+  return {
+    id,
+    title: publicStreamText(artifact.title, 160),
+    kind: publicStreamText(artifact.kind, 40),
+    status: ["ready", "preparing", "failed", "needs_revision"].includes(String(artifact.status)) ? artifact.status : "preparing",
+    description: publicStreamText(artifact.description, 1000),
+    fileName: publicStreamText(artifact.fileName, 240) || undefined,
+    extension: publicStreamText(artifact.extension, 16) || undefined,
+    mimeType: publicStreamText(artifact.mimeType, 120) || undefined,
+    downloadUrl,
+    preview: publicStreamText(artifact.preview, 4000) || undefined,
+  }
+}
+
+function projectNativeEvent(eventName: string, value: unknown) {
+  const source = value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}
+  if (eventName === "run.started") return { event: "run.started", data: { status: "running" } }
+  if (eventName === "message.started") return { event: "message.started", data: {} }
+  if (eventName === "assistant.delta") {
+    const delta = publicStreamText(source.delta, 4000)
+    return delta ? { event: "assistant.delta", data: { delta } } : null
+  }
+  if (eventName === "assistant.completed") {
+    return { event: "assistant.completed", data: { content: publicStreamText(source.content), completed: true } }
+  }
+  if (["tool.started", "tool.completed", "tool.failed", "tool.progress", "reasoning.available"].includes(eventName)) {
+    return {
+      event: "tool.progress",
+      data: {
+        state: eventName,
+        label: eventName === "tool.completed" ? "verifying" : eventName === "tool.failed" ? "failed" : "working",
+      },
+    }
+  }
+  if (eventName === "approval.request") {
+    const choices = Array.isArray(source.choices)
+      ? source.choices.filter((choice): choice is string => typeof choice === "string").map((choice) => publicStreamText(choice, 40)).filter(Boolean).slice(0, 8)
+      : []
+    return choices.length ? { event: "approval.request", data: { choices } } : null
+  }
+  if (eventName === "stanley.completed") {
+    const artifacts = Array.isArray(source.artifacts) ? source.artifacts.map(publicArtifact).filter(Boolean).slice(0, 20) : []
+    const blocks: Array<Record<string, unknown>> = []
+    if (Array.isArray(source.blocks)) {
+      for (const block of source.blocks.slice(0, 24)) {
+        if (!block || typeof block !== "object" || Array.isArray(block)) continue
+        const item = block as Record<string, unknown>
+        if (item.type === "text") {
+          const text = publicStreamText(item.text)
+          if (text) blocks.push({ type: "text", text })
+        } else if (item.type === "artifact") {
+          const artifact = publicArtifact(item.artifact)
+          if (artifact) blocks.push({ type: "artifact", artifact })
+        }
+      }
+    }
+    const status = source.status === "completed" || source.status === "failed" || source.status === "cancelled" ? source.status : "failed"
+    const usageSource = source.usage && typeof source.usage === "object" && !Array.isArray(source.usage) ? source.usage as Record<string, unknown> : {}
+    const usage = Object.fromEntries(Object.entries(usageSource).filter(([key, item]) => /^(input_tokens|output_tokens|total_tokens)$/.test(key) && typeof item === "number"))
+    return {
+      event: "stanley.completed",
+      data: {
+        object: "hermes.portal.completion",
+        status,
+        answer: publicStreamText(source.answer),
+        blocks,
+        artifacts,
+        usage,
+        conversation_id: publicStreamText(source.conversation_id, 160),
+      },
+    }
+  }
+  if (eventName === "error") return { event: "error", data: { message: "Company Brain could not finish that request." } }
+  if (eventName === "done") return { event: "done", data: {} }
+  return null
+}
+
 async function authorizedNativeStream(response: Response, sessionKey: string) {
   if (!response.body) return null
   const reader = response.body.getReader()
@@ -270,6 +358,37 @@ async function authorizedNativeStream(response: Response, sessionKey: string) {
   const encoder = new TextEncoder()
   const stream = new TransformStream<Uint8Array, Uint8Array>()
   const writer = stream.writable.getWriter()
+  let sawDone = false
+
+  const writeFrame = async (frame: string) => {
+    if (!frame.trim()) return
+    const artifactIds = nativeCompletionArtifactIds(frame)
+    if (artifactIds.length) {
+      try {
+        grantPortalArtifactAccess(portalSessionStoreDir(), sessionKey, artifactIds)
+      } catch {
+        sawDone = true
+        await writer.write(encoder.encode(
+          `event: error\ndata: ${JSON.stringify({ message: "The completed artifact could not be authorized." })}\n\nevent: done\ndata: {}\n\n`,
+        ))
+        await reader.cancel()
+        return
+      }
+    }
+    const eventMatch = frame.match(/(?:^|\n)event:\s*([^\r\n]+)/)
+    const dataLines = frame.split(/\r?\n/).filter((line) => line.startsWith("data:")).map((line) => line.slice(5).trimStart())
+    if (!eventMatch || !dataLines.length) return
+    let payload: unknown = {}
+    try {
+      payload = JSON.parse(dataLines.join("\n"))
+    } catch {
+      return
+    }
+    const projected = projectNativeEvent(eventMatch[1].trim(), payload)
+    if (!projected) return
+    if (projected.event === "done") sawDone = true
+    await writer.write(encoder.encode(`event: ${projected.event}\ndata: ${JSON.stringify(projected.data)}\n\n`))
+  }
 
   void (async () => {
     let buffer = ""
@@ -278,31 +397,31 @@ async function authorizedNativeStream(response: Response, sessionKey: string) {
         const next = await reader.read()
         if (next.done) {
           buffer += decoder.decode()
-          if (buffer) await writer.write(encoder.encode(buffer))
+          if (buffer.trim()) await writeFrame(buffer)
+          if (!sawDone) {
+            sawDone = true
+            await writer.write(encoder.encode(
+              `event: error\ndata: ${JSON.stringify({ message: "Company Brain stream ended before completion." })}\n\nevent: done\ndata: {}\n\n`,
+            ))
+          }
           break
         }
         buffer += decoder.decode(next.value, { stream: true })
-        const frames = buffer.split("\n\n")
+        const frames = buffer.split(/\r?\n\r?\n/)
         buffer = frames.pop() ?? ""
-        for (const frame of frames) {
-          const artifactIds = nativeCompletionArtifactIds(frame)
-          if (artifactIds.length) {
-            try {
-              grantPortalArtifactAccess(portalSessionStoreDir(), sessionKey, artifactIds)
-            } catch {
-              await writer.write(encoder.encode(
-                `event: error\ndata: ${JSON.stringify({ message: "The completed artifact could not be authorized." })}\n\nevent: done\ndata: {}\n\n`,
-              ))
-              await reader.cancel()
-              return
-            }
-          }
-          await writer.write(encoder.encode(`${frame}\n\n`))
-        }
+        for (const frame of frames) await writeFrame(frame)
       }
     } catch {
-      // The browser/runtime connection can close during cancellation. The
-      // upstream stream already owns the authoritative run outcome.
+      if (!sawDone) {
+        try {
+          sawDone = true
+          await writer.write(encoder.encode(
+            `event: error\ndata: ${JSON.stringify({ message: "Company Brain stream was interrupted. Check recent activity before trying again." })}\n\nevent: done\ndata: {}\n\n`,
+          ))
+        } catch {
+          // The browser may have disconnected during cancellation.
+        }
+      }
     } finally {
       try {
         await writer.close()
@@ -314,6 +433,7 @@ async function authorizedNativeStream(response: Response, sessionKey: string) {
 
   return stream.readable
 }
+
 
 async function forward(request: NextRequest, context: RouteContext) {
   const session = getPortalSession()

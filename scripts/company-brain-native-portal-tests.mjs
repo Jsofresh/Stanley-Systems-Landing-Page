@@ -30,6 +30,9 @@ test("native stream exposes generic progress/completion state", () => {
   assert.match(portal, /onChoice/)
   assert.match(live, /status\?: \"completed\" \| \"failed\" \| \"cancelled\"/)
   assert.match(live, /stanley\.completed/)
+  assert.match(live, /sawDone/)
+  assert.doesNotMatch(live, /Company Brain could not finish that request\.\",\n    blocks:/)
+  assert.doesNotMatch(route, /\\\\n/)
 })
 
 test("authenticated proxy binds actor identity and authorizes native artifacts", () => {
