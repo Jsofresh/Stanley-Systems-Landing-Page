@@ -42,3 +42,10 @@ test("authenticated proxy binds actor identity and authorizes native artifacts",
   assert.match(route, /grantPortalArtifactAccess\(portalSessionStoreDir\(\), sessionKey, artifactIds\)/)
   assert.match(route, /nativeCompletionArtifactIds/)
 })
+
+test("portal remains a thin conversation surface with no client approval endpoint or action doctrine", () => {
+  assert.doesNotMatch(route, /actions\/confirm/)
+  assert.doesNotMatch(route, /action_reference/)
+  assert.doesNotMatch(route, /confirmation_phrase/)
+  assert.doesNotMatch(portal, /approvalReference/)
+})

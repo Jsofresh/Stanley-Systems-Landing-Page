@@ -1,6 +1,5 @@
 export type CompanyBrainRole = "user" | "assistant"
 
-export type PreparedActionStatus = "prepared_not_sent" | "sent" | "cancelled" | "needs_review"
 
 export type ArtifactKind = "pdf" | "spreadsheet" | "html" | "document" | "text"
 
@@ -27,15 +26,6 @@ export type CompanyBrainAttachment = {
   errorCode?: string
 }
 
-export type PreparedAction = {
-  id: string
-  title: string
-  description: string
-  status: PreparedActionStatus
-  ctaLabel: string
-  preview: string
-  approvalReference?: string
-}
 
 export type ArtifactFile = {
   fileName: string
@@ -88,11 +78,6 @@ export type CompanyBrainBlock =
       id: string
       title?: string
       sources: SourceChip[]
-    }
-  | {
-      type: "action"
-      id: string
-      action: PreparedAction
     }
   | {
       type: "artifact"

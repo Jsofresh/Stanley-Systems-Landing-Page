@@ -2,16 +2,11 @@ import { NextRequest, NextResponse } from "next/server"
 import { getPortalSession, portalSessionStoreDir } from "@/lib/portal/session"
 import { grantPortalArtifactAccess, portalArtifactAccessAllowed } from "@/lib/portal/artifact-grants"
 
-const TRUSTED_PORTAL_ORIGINS = new Set([
-  "https://stanley-systems.com",
-  "https://www.stanley-systems.com",
-])
 const ALLOWED_PATHS = new Set([
   "control/summary",
   "control/needs-attention",
   "brain/chat",
   "brain/uploads",
-  "actions/confirm",
   "health",
 ])
 const MAX_UPLOAD_FILES = 5
@@ -44,36 +39,6 @@ function isAllowedPath(path: string) {
   return ALLOWED_PATHS.has(path)
     || /^artifacts\/artifact_[A-Za-z0-9_-]+$/.test(path)
     || /^brain\/sessions(?:\/[A-Za-z0-9_.:-]+(?:\/messages|\/chat\/stream|\/cancel))?$/.test(path)
-}
-
-function approvalRequestIsSameOrigin(request: NextRequest) {
-  const origin = request.headers.get("origin")
-  const fetchSite = request.headers.get("sec-fetch-site")
-  if (!origin || request.headers.get("x-stanley-csrf") !== "portal-action") return false
-  if (fetchSite && fetchSite !== "same-origin") return false
-  try {
-    const normalizedOrigin = new URL(origin).origin
-    const configuredOrigins = (process.env.STANLEY_TRUSTED_ORIGINS ?? "")
-      .split(",")
-      .map((value) => value.trim())
-      .filter(Boolean)
-      .flatMap((value) => {
-        try {
-          const url = new URL(value)
-          const loopbackHttp = url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)
-          return url.protocol === "https:" || loopbackHttp
-            ? [url.origin]
-            : []
-        } catch {
-          return []
-        }
-      })
-    const trustedOrigins = new Set(configuredOrigins.length ? configuredOrigins : TRUSTED_PORTAL_ORIGINS)
-    if (process.env.NODE_ENV !== "production") trustedOrigins.add(request.nextUrl.origin)
-    return trustedOrigins.has(normalizedOrigin)
-  } catch {
-    return false
-  }
 }
 
 type RouteContext = {
@@ -453,7 +418,7 @@ async function forward(request: NextRequest, context: RouteContext) {
   const proxyKey = process.env.COMPANY_BRAIN_PROXY_KEY
   if (!baseUrl || !proxyKey) return jsonError("company_brain_proxy_not_configured", 503)
 
-  const upstreamPath = path === "actions/confirm" ? "brain/actions/confirm" : path.startsWith("artifacts/") ? `brain/${path}` : path
+  const upstreamPath = path.startsWith("artifacts/") ? `brain/${path}` : path
   const target = new URL(upstreamPath, baseUrl)
   const artifactRequest = path.startsWith("artifacts/")
   const nativeSessionRequest = /^brain\/sessions(?:\/[^/]+(?:\/messages|\/chat\/stream|\/cancel))?$/.test(path)
@@ -556,24 +521,6 @@ async function forward(request: NextRequest, context: RouteContext) {
           if (!conversationId) return jsonError("invalid_conversation", 400)
           body = JSON.stringify({ conversation_id: conversationId })
         }
-      } else if (path === "actions/confirm") {
-        if (!approvalRequestIsSameOrigin(request)) return jsonError("approval_csrf_rejected", 403)
-        const actionReference = typeof incoming.action_reference === "string" && /^actref_[A-Za-z0-9_-]{32,240}$/.test(incoming.action_reference)
-          ? incoming.action_reference
-          : ""
-        if (!actionReference) return jsonError("invalid_confirmation", 400)
-        body = JSON.stringify({
-          action_reference: actionReference,
-          conversation_id: safeConversationId(incoming.conversation_id),
-          confirmation_phrase: "approved",
-          company_id: session.companyId,
-          surface: "portal",
-          user_role: session.role,
-          actor_id: session.actorId,
-          actor_name: session.name,
-          actor_email: session.email,
-          session_key: session.sessionKey,
-        })
       } else {
         return jsonError("method_not_allowed", 405)
       }

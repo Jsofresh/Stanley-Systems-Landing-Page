@@ -27,7 +27,7 @@ const settings = [
     icon: Gauge,
     title: "Usage",
     value: "Runtime usage ledger",
-    description: "Proof, telemetry, and prepared-action state are tracked on the Company Brain runtime.",
+    description: "Proof, telemetry, and conversation state are tracked on the Company Brain runtime.",
   },
   {
     icon: PlugZap,

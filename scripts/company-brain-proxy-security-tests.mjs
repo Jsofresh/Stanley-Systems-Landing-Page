@@ -12,11 +12,11 @@ test("proxy upstream is protected configuration rather than a hardcoded deployme
   assert.match(route, /COMPANY_BRAIN_UPSTREAM_URL/)
 })
 
-test("approval confirmation is explicitly allowlisted and accepts only the safe action reference", () => {
-  assert.match(route, /"actions\/confirm"/)
-  assert.match(route, /action_reference/)
-  assert.equal(route.includes("incoming.action_plan_id"), false)
-  assert.equal(route.includes("incoming.confirmation_token"), false)
+test("clients cannot attest or reconstruct provider actions outside Hermes conversation turns", () => {
+  assert.equal(route.includes('"actions/confirm"'), false)
+  assert.equal(route.includes("brain/actions/confirm"), false)
+  assert.equal(route.includes("action_reference"), false)
+  assert.equal(route.includes("confirmation_phrase"), false)
 })
 
 test("artifact proxy streams forced attachments with browser hardening", () => {

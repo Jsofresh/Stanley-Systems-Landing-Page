@@ -2,18 +2,15 @@ import test from "node:test"
 import assert from "node:assert/strict"
 import { mapCompanyBrainResponseBlocks } from "../lib/company-brain/response-mapper.ts"
 
-test("top-level source and prepared-action intent become visible blocks without raw source IDs", () => {
+test("top-level source metadata becomes visible without raw source IDs or client action reconstruction", () => {
   const blocks = mapCompanyBrainResponseBlocks({
     answer: "I found the customer and prepared the update.",
     proof_id: "public-proof",
     blocks: [{ type: "text", text: "I found the customer and prepared the update." }],
     source_chips: [{ connector: "jobber", record_type: "client", source_id: "internal-record-123", label: "Customer record", brief_source: "Jobber customer" }],
-    suggested_action: { type: "customer_update", status: "prepared_not_sent", execution_mode: "approval_required_or_manual", draft: "Update the service address after review." },
-    action_plan: { action_reference: "actref_safeapproval1234567890abcdefghijk" },
   })
-  assert.deepEqual(blocks.map((block) => block.type), ["text", "sources", "action"])
+  assert.deepEqual(blocks.map((block) => block.type), ["text", "sources"])
   assert.equal(JSON.stringify(blocks).includes("internal-record-123"), false)
-  assert.equal(blocks.at(-1).action.approvalReference, "actref_safeapproval1234567890abcdefghijk")
 })
 
 test("runtime artifacts never synthesize client-side document bytes", () => {

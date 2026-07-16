@@ -2,7 +2,6 @@ import type {
   Artifact,
   CompanyBrainAttachment,
   CompanyBrainBlock,
-  PreparedAction,
   SourceChip,
   TablePreview,
 } from "./types.ts"
@@ -42,16 +41,6 @@ export type BrainChatResponse = {
   errorCode?: string
   brief_sources?: string[]
   source_chips?: BrainSourceChip[]
-  suggested_action?: {
-    type?: string
-    status?: string
-    execution_mode?: string
-    draft?: string
-  }
-  action_plan?: {
-    action_reference?: string
-    status?: string
-  } | null
   proof_id?: string
 }
 
@@ -92,38 +81,6 @@ function toSourceChip(source: BrainSourceChip, index: number): SourceChip {
   }
 }
 
-function titleFromAction(type?: string) {
-  if (!type || type === "none") return "Prepared office review"
-  return safeText(type.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()), "Prepared office review", 160)
-}
-
-function toPreparedAction(response: BrainChatResponse): PreparedAction | null {
-  const action = response.suggested_action
-  if (!action || !action.type || ["none", "clarify_request", "clarify_entity", "safety_refusal", "boundary_error"].includes(action.type)) return null
-  const status = action.status ?? ""
-  const preparedStatuses = new Set(["prepared_not_sent", "needs_review", "needs_confirmation", "approval_required"])
-  const completedStatuses = new Set(["executed", "executed_verified", "already_completed", "provider_write_receipt_available"])
-  if (!preparedStatuses.has(status) && !completedStatuses.has(status)) return null
-  const hasApprovalReference = typeof response.action_plan?.action_reference === "string" && /^actref_[A-Za-z0-9_-]{32,240}$/.test(response.action_plan.action_reference)
-  // Never render a clickable approval card for an approval-required response that
-  // has no actor-bound confirmation reference. The text answer remains visible,
-  // while a real bound reference unlocks the explicit review/confirm rail.
-  if (status === "approval_required" && !hasApprovalReference) return null
-  const completed = completedStatuses.has(status)
-  return {
-    id: "prepared-action",
-    title: titleFromAction(action.type),
-    description: completed
-      ? "Completed and checked against the connected office system."
-      : `${status === "prepared_not_sent" ? "Prepared, not sent." : "Needs review."} ${action.execution_mode === "approval_required_or_manual" ? "A person must approve it first." : "Review required."}`,
-    status: completed ? "sent" : status === "needs_review" || status === "needs_confirmation" ? "needs_review" : "prepared_not_sent",
-    ctaLabel: completed ? "View result" : "Review action",
-    preview: safeText(action.draft, completed ? "Completed." : "Prepared for office review only.", 4_000),
-    approvalReference: !completed && typeof response.action_plan?.action_reference === "string" && /^actref_[A-Za-z0-9_-]{32,240}$/.test(response.action_plan.action_reference)
-      ? response.action_plan.action_reference
-      : undefined,
-  }
-}
 
 const mimeByExtension: Partial<Record<NonNullable<Artifact["extension"]>, string>> = {
   pdf: "application/pdf",
@@ -203,12 +160,6 @@ export function mapCompanyBrainResponseBlocks(response: BrainChatResponse): Comp
   }
   const sources = (response.source_chips ?? []).map(toSourceChip)
   if (sources.length) blocks.push({ type: "sources", id: "sources", title: "Checked records", sources })
-  const action = toPreparedAction(response)
-  if (action) blocks.push({ type: "action", id: "action", action })
-  const actionType = response.suggested_action?.type
-  if (["clarify_request", "clarify_entity"].includes(actionType ?? "") && response.answer && !blocks.some((block) => block.type === "clarification")) {
-    blocks.push({ type: "clarification", id: "clarification", question: safeText(response.answer, "What should I use?", 1_000), options: [] })
-  }
   if (!blocks.length) {
     blocks.push({ type: "error", id: "error", title: "Company Brain couldn’t finish that", message: userSafeErrorMessage(response.errorCode) })
   }

@@ -67,38 +67,12 @@ const crossSessionArtifact = await request("/api/company-brain/artifacts/artifac
 })
 assert.equal(crossSessionArtifact.status, 404)
 
-const noCsrf = await request("/api/company-brain/actions/confirm", {
+const clientConfirmation = await request("/api/company-brain/actions/confirm", {
   method: "POST",
   headers: { cookie: firstCookie, "content-type": "application/json" },
   body: JSON.stringify({ action_reference: `actref_${"a".repeat(32)}` }),
 })
-assert.equal(noCsrf.status, 403)
-
-const wrongOrigin = await request("/api/company-brain/actions/confirm", {
-  method: "POST",
-  headers: {
-    cookie: firstCookie,
-    "content-type": "application/json",
-    origin: "https://attacker.invalid",
-    "sec-fetch-site": "cross-site",
-    "x-stanley-csrf": "portal-action",
-  },
-  body: JSON.stringify({ action_reference: `actref_${"a".repeat(32)}` }),
-})
-assert.equal(wrongOrigin.status, 403)
-
-const sameOriginInvalidReference = await request("/api/company-brain/actions/confirm", {
-  method: "POST",
-  headers: {
-    cookie: firstCookie,
-    "content-type": "application/json",
-    origin: baseUrl,
-    "sec-fetch-site": "same-origin",
-    "x-stanley-csrf": "portal-action",
-  },
-  body: JSON.stringify({ action_reference: "actref_invalid" }),
-})
-assert.equal(sameOriginInvalidReference.status, 400)
+assert.equal(clientConfirmation.status, 404)
 
 const emptyUpload = new FormData()
 emptyUpload.set("conversation_id", "conversation-route-test")
