@@ -535,7 +535,12 @@ export function PortalApp() {
       onLogout={handleLogout}
       onClose={() => setSidebarOpen(false)}
       recentConversations={recentConversations}
+      busy={isSending || isUploading}
       onOpenRecent={(conversation) => {
+        if (isSendingRef.current) {
+          setStatusError("Finish or stop the active request before switching conversations.")
+          return
+        }
         if (isUploading) {
           setStatusError("Wait for the attachment upload to finish before switching conversations.")
           return
@@ -559,6 +564,10 @@ export function PortalApp() {
         setSidebarOpen(false)
       }}
       onNewChat={() => {
+        if (isSendingRef.current) {
+          setStatusError("Finish or stop the active request before starting another conversation.")
+          return
+        }
         if (isUploading) {
           setStatusError("Wait for the attachment upload to finish before starting another conversation.")
           return
@@ -710,6 +719,7 @@ function PortalSidebar({
   onLogout,
   onClose,
   onNewChat,
+  busy,
   recentConversations,
   onOpenRecent,
 }: {
@@ -717,6 +727,7 @@ function PortalSidebar({
   onLogout: () => void
   onClose: () => void
   onNewChat: () => void
+  busy: boolean
   recentConversations: RecentConversation[]
   onOpenRecent: (conversation: RecentConversation) => void
 }) {
@@ -746,6 +757,8 @@ function PortalSidebar({
         type="button"
         className="mb-3 flex h-11 items-center gap-2 rounded-xl border border-[#dadad7] bg-white px-3 text-sm font-medium text-[#111827] shadow-sm transition hover:bg-[#f9f9f8]"
         onClick={onNewChat}
+        disabled={busy}
+        aria-disabled={busy}
       >
         <MessageSquarePlus className="h-4 w-4" />
         New chat
@@ -763,6 +776,8 @@ function PortalSidebar({
               key={conversation.id}
               className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-sm text-[#374151] transition hover:bg-white/65"
               onClick={() => onOpenRecent(conversation)}
+              disabled={busy}
+              aria-disabled={busy}
             >
               <MessageSquare className="h-3.5 w-3.5 shrink-0 text-[#78716c]" />
               <span className="truncate">{conversation.title}</span>

@@ -39,18 +39,18 @@ const settings = [
     icon: CreditCard,
     title: "Billing",
     value: "Billing readiness checks",
-    description: "QBO/Jobber billing answers must include source chips and prepared/not-sent actions.",
+    description: "Billing answers use current connected-provider reads and verified readback; stale source snapshots never establish provider truth.",
   },
   {
     icon: ShieldCheck,
     title: "Safety",
-    value: "Review before send",
-    description: "Prepared actions stay inside chat until reviewed.",
+    value: "Exact in-chat approval",
+    description: "Hermes binds consequential work to the signed-in user, conversation, exact action, and a later approval turn. The browser cannot author or confirm provider actions directly.",
   },
   {
     icon: Bell,
     title: "Notifications",
-    value: "Prepared action alerts",
+    value: "Conversation status only",
     description: "Placeholder only. No emails, SMS, or app alerts are sent.",
   },
 ]

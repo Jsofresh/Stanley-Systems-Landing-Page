@@ -49,3 +49,10 @@ test("portal remains a thin conversation surface with no client approval endpoin
   assert.doesNotMatch(route, /confirmation_phrase/)
   assert.doesNotMatch(portal, /approvalReference/)
 })
+
+test("active requests cannot be detached from their originating conversation", () => {
+  assert.match(portal, /if \(isSendingRef\.current\) \{[\s\S]*?before switching conversations/)
+  assert.match(portal, /if \(isSendingRef\.current\) \{[\s\S]*?before starting another conversation/)
+  assert.match(portal, /busy=\{isSending \|\| isUploading\}/)
+  assert.match(portal, /disabled=\{busy\}/)
+})
