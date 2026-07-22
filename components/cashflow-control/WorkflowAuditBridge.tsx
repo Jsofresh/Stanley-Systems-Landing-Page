@@ -4,7 +4,7 @@ import { CTALink } from "@/components/cta-link"
 import { plans } from "./tokens"
 
 const auditSteps = [
-  ["1", "Pay $97", "Buy the AI Profit Map."],
+  ["1", "Pay $197", "Buy the AI Profit Map."],
   ["2", "Map office work", "Use the numbers, not a guess."],
   ["3", "Choose the build", "Choose the build priority with confidence."],
   ["4", "Credit applied", "$194 credited toward your AI Office Installation Sprint."],

@@ -84,7 +84,7 @@ export function MobileStickyCTA() {
           rel="noopener noreferrer"
           className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-full bg-[#15803D] px-3 py-3 text-[13px] font-semibold text-white"
         >
-          Buy $97 Map
+          Buy $197 Map
         </CTALink>
       </div>
     </div>

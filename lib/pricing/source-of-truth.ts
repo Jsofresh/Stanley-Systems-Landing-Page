@@ -46,8 +46,8 @@ export const pricingPackages: PricingPackage[] = [
     id: "workflow_audit",
     publicName: "AI Profit Map",
     shortCheckoutName: "AI Profit Map",
-    price: 97,
-    priceDisplay: "$97",
+    price: 197,
+    priceDisplay: "$197",
     billingPeriod: "one_time",
     setupFee: 0,
     setupFeeDisplay: "$0",
@@ -56,14 +56,14 @@ export const pricingPackages: PricingPackage[] = [
     auditCredit: 0,
     auditCreditDisplay: "$194 credited toward your AI Office Installation Sprint",
     auditCreditLabel: "Included",
-    firstYearCostAfterAuditCredit: 97,
-    firstYearCostAfterAuditCreditDisplay: "$97",
+    firstYearCostAfterAuditCredit: 197,
+    firstYearCostAfterAuditCreditDisplay: "$197",
     savings: null,
     badge: "Best first step",
-    cta: "Buy the $97 AI Profit Map",
+    cta: "Buy the $197 AI Profit Map",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_WORKFLOW_AUDIT_PAYMENT_LINK",
-      url: "https://buy.stripe.com/dRm5kCgYf8YbdaxbBgg7e0a",
+      url: "https://buy.stripe.com/3cI7sKcHZder5I5cFkg7e09",
     },
     packageRoute: "/ai-profit-map",
     analyticsPackageId: "workflow_audit",
@@ -71,7 +71,7 @@ export const pricingPackages: PricingPackage[] = [
       "45-60 minute owner or office-manager session.",
       "Turns admin drag into concrete fixes, prompts, tool guidance, and quick wins.",
       "Includes staff AI plays, workflow recommendations, and the first install priority.",
-      "$97 counts as $194 toward your AI Office Installation Sprint when you move forward within 14 days.",
+      "$197 counts as $194 toward your AI Office Installation Sprint when you move forward within 14 days.",
     ],
   },
   {
@@ -152,7 +152,7 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCreditDisplay: "$9,306 starting first year after credit",
     savings: null,
     badge: "Install + improve",
-    cta: "Buy the $97 AI Profit Map",
+    cta: "Buy the $197 AI Profit Map",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_BOTH_SYSTEMS_MONTHLY_PAYMENT_LINK",
       url: "https://buy.stripe.com/28EbJ0bDV7U7eeBeNsg7e05",
@@ -230,7 +230,7 @@ export const pricingPackages: PricingPackage[] = [
     firstYearCostAfterAuditCreditDisplay: "$9,306 starting first year after credit",
     savings: null,
     badge: "Legacy checkout link retained",
-    cta: "Buy the $97 AI Profit Map",
+    cta: "Buy the $197 AI Profit Map",
     stripePaymentLink: {
       envName: "NEXT_PUBLIC_STRIPE_BOTH_SYSTEMS_YEARLY_PAYMENT_LINK",
       url: "https://buy.stripe.com/eVq3cu9vN5LZgmJfRwg7e08",
@@ -259,7 +259,7 @@ export const workflowAuditPricingPackage = pricingPackageById.workflow_audit
 
 export const pricingSourceOfTruthNotes = [
   "Approved public offer ladder: Free AI Office Blueprint, AI Profit Map, AI Office Installation Sprint, AI Office Ops.",
-  "Public prices: $97 AI Profit Map, $3,500 starting Installation Sprint, $500/mo starting AI Office Ops.",
+  "Public prices: $197 AI Profit Map, $3,500 starting Installation Sprint, $500/mo starting AI Office Ops.",
   "Existing Stripe Payment Links are intentionally retained for now by Jaden approval and may not match public offer names/prices yet.",
   "Do not create or change Stripe links in this rewrite pass.",
 ]

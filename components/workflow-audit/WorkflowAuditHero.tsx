@@ -15,7 +15,7 @@ export function WorkflowAuditHero() {
             <div className="relative z-10 max-w-[680px]">
               <p className={page.eyebrow}>AI Profit Map</p>
               <h1 className="mt-2 max-w-[560px] text-[clamp(1.9rem,2.72vw,2.95rem)] font-semibold leading-[1.04] tracking-[-0.034em] text-[#071D3A]">
-                Start with the $97 AI Profit Map.
+                Start with the $197 AI Profit Map.
               </h1>
               <p className="mt-7 max-w-[560px] text-base font-medium leading-7 text-[#42596C] sm:mt-8 sm:text-lg sm:leading-8 lg:mt-9 xl:mt-10">
                 In one focused session, Stanley Systems traces office drag just far enough to turn it into practical fixes: staff AI prompts, workflow tips, tool guidance, quick wins, and the first AI-guided workflow worth installing.

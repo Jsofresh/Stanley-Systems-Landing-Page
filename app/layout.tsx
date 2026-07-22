@@ -97,7 +97,7 @@ export default function RootLayout({
         name: "What is the AI Profit Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It is a $97 AI office diagnostic where Stanley Systems finds where office work is costing time, cash, and customer follow-up, then gives you an AI fix plan and $194 Installation Sprint credit if you move forward within 14 days.",
+          text: "It is a $197 AI office diagnostic where Stanley Systems finds where office work is costing time, cash, and customer follow-up, then gives you an AI fix plan and $194 Installation Sprint credit if you move forward within 14 days.",
         },
       },
       {

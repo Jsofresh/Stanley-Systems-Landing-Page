@@ -312,7 +312,7 @@ export const workflowAuditOffer: WorkflowAuditOffer = {
   kind: "front_door_audit",
   contactPathOnly: false,
   cta: {
-    label: "Buy the $97 AI Profit Map",
+    label: "Buy the $197 AI Profit Map",
     action: "checkout",
     href: pricingPackageById.workflow_audit.stripePaymentLink.url,
   },

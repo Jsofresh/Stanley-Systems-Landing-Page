@@ -67,7 +67,7 @@ const navGroups: MegaMenuGroup[] = [
     widthClass: "w-[min(520px,calc(100vw-2rem))]",
     columnsClass: "grid-cols-1",
     items: [
-      { label: "Buy the AI Profit Map", href: "/ai-profit-map", description: "The $97 diagnostic that finds what your office should fix first." },
+      { label: "Buy the AI Profit Map", href: "/ai-profit-map", description: "The $197 diagnostic that finds what your office should fix first." },
       { label: "What You Get", href: "/ai-profit-map#deliverables", description: "See the deliverables: fix list, staff plays, priority matrix, and install plan." },
       { label: "Pricing", href: "/pricing", description: "See the full path from free Blueprint to Map, Sprint, and Ops." },
     ],

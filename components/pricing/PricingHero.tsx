@@ -8,7 +8,7 @@ export function PricingHero({ offer, calculatorContext }: { offer: WorkflowAudit
     <section className="px-4 pt-24 sm:px-6 sm:pt-28 lg:px-8 lg:pt-[7.5rem]">
       <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#e7e1d6] bg-white px-5 py-8 text-center shadow-[0_24px_70px_rgba(15,23,42,0.075)] sm:rounded-[2.5rem] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
         <h1 className="mx-auto max-w-5xl text-balance text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#102033] sm:text-5xl lg:text-[4.25rem]">
-          Start with the $97 AI Profit Map. Then install only the workflows worth building.
+          Start with the $197 AI Profit Map. Then install only the workflows worth building.
         </h1>
         <p className="mx-auto mt-5 max-w-3xl text-base font-semibold leading-7 text-[#536173]">Stanley Systems first maps where office work is slowing down billing, follow-up, records, and job admin. If there is a clear fit, the AI Office Installation Sprint turns that map into staff training, a company playbook, and practical installed office workflows.</p>
         <div className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">

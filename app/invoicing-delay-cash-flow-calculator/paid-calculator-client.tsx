@@ -261,7 +261,7 @@ export function PaidInvoicingDelayCalculatorClient() {
               </div>
               <p className="mt-3 text-base leading-7 text-slate-600">
                 {highSeverity
-                  ? "When completed work keeps sitting before billing, the business usually feels it in slower cash, office cleanup, and more owner rescue work. Your next step is the $97 AI Profit Map."
+                  ? "When completed work keeps sitting before billing, the business usually feels it in slower cash, office cleanup, and more owner rescue work. Your next step is the $197 AI Profit Map."
                   : "This looks like a fixable office-step issue. Start with the checklist, then use the AI Profit Map to see where work is getting stuck and which workflow should be installed first."}
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">

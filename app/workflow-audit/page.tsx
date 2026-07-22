@@ -41,7 +41,7 @@ export default function Page() {
               <h1 className="text-balance text-[3.21rem] font-semibold leading-[0.96] tracking-[-0.025em] sm:text-[5.99rem] sm:tracking-[-0.045em]">AI Profit Map</h1>
               <p className="mt-6 max-w-[720px] text-[1.3375rem] font-semibold leading-[2.4rem] text-white/84">Find where office work is costing time, cash, and customer follow-up. Then get the AI fix plan to make the business more profitable.</p>
               <div className="mt-[2.14rem] flex flex-col gap-[1.07rem] sm:flex-row">
-                <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Buy the $97 AI Profit Map <ArrowRight className="ml-2 h-[1.34rem] w-[1.34rem]" /></a>
+                <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className={primary}>Buy the $197 AI Profit Map <ArrowRight className="ml-2 h-[1.34rem] w-[1.34rem]" /></a>
                 <Link href="/systems-installation-sprint" className={secondary}>See the AI Office Installation Sprint</Link>
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function Page() {
             <h2 className="mx-auto max-w-4xl text-balance text-[2.65rem] font-semibold leading-[0.98] tracking-[-0.032em] text-white sm:text-[4rem] lg:text-[4.45rem]">Buy the AI Profit Map</h2>
 
             <div className="mx-auto mt-6 max-w-[520px] rounded-[1.35rem] border border-white/13 bg-white/[0.035] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-md sm:p-6">
-              <p className="text-[3.4rem] font-semibold leading-none tracking-[-0.045em] text-white sm:text-[3.95rem]">$97</p>
+              <p className="text-[3.4rem] font-semibold leading-none tracking-[-0.045em] text-white sm:text-[3.95rem]">$197</p>
               <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-[#8DF3A4] sm:text-sm">Counts as $194 toward the Sprint for 14 days</p>
               <a href={auditCheckoutHref} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-16 w-full items-center justify-center rounded-full border border-[#7df19b]/50 bg-[#22c55e] px-6 py-4 text-lg font-extrabold text-white shadow-[0_18px_44px_rgba(34,197,94,0.28),inset_0_1px_0_rgba(255,255,255,0.22)] transition hover:-translate-y-0.5 hover:bg-[#16a34a] sm:text-xl">
                 Buy the AI Profit Map <ArrowRight className="ml-3 h-6 w-6" aria-hidden="true" />

@@ -150,7 +150,7 @@ export function FitAccessPricing() {
 
           <aside className="rounded-[1.75rem] border border-[#cfe8d5] bg-white p-5 text-[#071D3A] shadow-[0_16px_46px_rgba(7,29,58,0.08)]">
             <h3 className="text-3xl font-semibold tracking-[-0.04em] text-[#071D3A]">AI Profit Map</h3>
-            <div className="mt-3 flex items-end gap-2"><span className="text-5xl font-semibold tracking-[-0.04em] text-[#071D3A]">$97</span><span className="pb-2 text-sm font-bold text-[#536173]">paid first step</span></div>
+            <div className="mt-3 flex items-end gap-2"><span className="text-5xl font-semibold tracking-[-0.04em] text-[#071D3A]">$197</span><span className="pb-2 text-sm font-bold text-[#536173]">paid first step</span></div>
             <p className="mt-3 text-base font-semibold leading-7 text-[#334B60]">You leave with concrete fixes, staff AI prompts, workflow tips, tool guidance, quick wins, and the first AI-guided workflow worth installing.</p>
             <ul className="mt-5 grid gap-2 text-sm font-semibold leading-5 text-[#334B60] sm:grid-cols-2">
               {includes.map((item, index) => <li key={item} className={`flex gap-2 ${index > 3 ? "hidden sm:flex" : ""}`}><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#15803D]" />{item}</li>)}
