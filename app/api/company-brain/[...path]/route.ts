@@ -253,6 +253,30 @@ function publicArtifact(value: unknown) {
   }
 }
 
+function publicProviderVerification(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
+  const source = value as Record<string, unknown>
+  const status = ["verified", "invalid", "not_applicable"].includes(String(source.status))
+    ? String(source.status)
+    : "invalid"
+  const receiptSource = source.source === "server_turn_receipt" ? "server_turn_receipt" : undefined
+  const connectors = Array.isArray(source.connectors)
+    ? source.connectors
+      .filter((item): item is string => typeof item === "string" && /^[a-z0-9_-]{1,40}$/i.test(item))
+      .slice(0, 12)
+    : []
+  const safeCount = (item: unknown) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 100
+    ? item
+    : 0
+  return {
+    status,
+    source: receiptSource,
+    connectors,
+    action_count: safeCount(source.action_count),
+    verified_action_count: safeCount(source.verified_action_count),
+  }
+}
+
 function projectNativeEvent(eventName: string, value: unknown) {
   const source = value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}
   if (eventName === "run.started") return { event: "run.started", data: { status: "running" } }
@@ -308,6 +332,7 @@ function projectNativeEvent(eventName: string, value: unknown) {
         artifacts,
         usage,
         conversation_id: publicStreamText(source.conversation_id, 160),
+        provider_verification: publicProviderVerification(source.provider_verification),
       },
     }
   }

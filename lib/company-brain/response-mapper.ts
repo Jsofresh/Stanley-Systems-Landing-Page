@@ -34,6 +34,14 @@ type BrainBlock =
   | { type: "table"; table?: TablePreview; [key: string]: unknown }
   | { type: "clarification"; question?: string; options?: string[]; [key: string]: unknown }
 
+export type BrainProviderVerification = {
+  status: "verified" | "invalid" | "not_applicable"
+  source?: "server_turn_receipt"
+  connectors: string[]
+  action_count: number
+  verified_action_count: number
+}
+
 export type BrainChatResponse = {
   answer: string
   blocks?: BrainBlock[]
@@ -42,6 +50,7 @@ export type BrainChatResponse = {
   brief_sources?: string[]
   source_chips?: BrainSourceChip[]
   proof_id?: string
+  provider_verification?: BrainProviderVerification
 }
 
 const sensitivePatterns: Array<[RegExp, string]> = [
