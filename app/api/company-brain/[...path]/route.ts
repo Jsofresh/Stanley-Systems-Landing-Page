@@ -439,6 +439,12 @@ async function forward(request: NextRequest, context: RouteContext) {
       return jsonError("artifact_authorization_unavailable", 503)
     }
   }
+  if (session.role === "outsider" && path.startsWith("brain/")) {
+    return NextResponse.json(
+      { errorCode: "permission_denied", error: "This account does not have permission for that request." },
+      { status: 403, headers: securityHeaders() },
+    )
+  }
   const baseUrl = upstreamBaseUrl()
   const proxyKey = process.env.COMPANY_BRAIN_PROXY_KEY
   if (!baseUrl || !proxyKey) return jsonError("company_brain_proxy_not_configured", 503)

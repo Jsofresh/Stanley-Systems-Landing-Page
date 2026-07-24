@@ -44,3 +44,19 @@ test("degraded control responses fail HTTP readiness instead of reporting health
   assert.equal(route.includes("{ status: 200"), false)
   assert.match(route, /status: 503/)
 })
+
+test("signed outsider brain requests fail closed before upstream access", () => {
+  const guardNeedle = 'session.role === "outsider" && path.startsWith("brain/")'
+  const guardIndex = route.indexOf(guardNeedle)
+  const upstreamConfigIndex = route.indexOf("const baseUrl = upstreamBaseUrl()", guardIndex)
+  const fetchIndex = route.indexOf("response = await fetch(target", guardIndex)
+  assert.ok(guardIndex >= 0, "outsider brain guard must exist")
+  assert.ok(upstreamConfigIndex > guardIndex, "guard must precede upstream configuration")
+  assert.ok(fetchIndex > upstreamConfigIndex, "guard must precede fetch(target)")
+  const guard = route.slice(guardIndex, upstreamConfigIndex)
+  assert.match(guard, /permission_denied/)
+  assert.match(guard, /status:\s*403/)
+  assert.match(guard, /securityHeaders\(\)/)
+  assert.match(route, /"x-stanley-actor-role":\s*session\.role/)
+  assert.doesNotMatch(route, /"x-stanley-actor-role":\s*(?:request|body|incoming)\./)
+})

@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const crypto = require('crypto')
 const { chromium } = require('playwright')
+const { isPermissionDenied } = require('./company-brain-denial-contract.cjs')
 
 const BASE_URL = process.env.COMPANY_BRAIN_BASE_URL || 'https://stanley-systems.com'
 const PASSWORD = process.env.COMPANY_BRAIN_TEST_PASSWORD
@@ -76,7 +77,6 @@ async function login(page, persona) {
 async function runPersona(browser, persona, personaDir) {
   fs.mkdirSync(personaDir, { recursive: true })
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } })
-  await context.tracing.start({ screenshots: true, snapshots: true, sources: false })
   const page = await context.newPage()
   const consoleErrors = []
   const failedRequests = []
@@ -87,8 +87,13 @@ async function runPersona(browser, persona, personaDir) {
 
   const started = Date.now()
   const result = { label: persona.label, ok: false }
+  let loginSucceeded = false
+  let tracingStarted = false
   try {
     await login(page, persona)
+    loginSucceeded = true
+    await context.tracing.start({ screenshots: true, snapshots: true, sources: false })
+    tracingStarted = true
     await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => null)
 
     // Current portal contract: Company Brain label + composer visible (replaces stale "Bayview Office Console" heading).
@@ -133,7 +138,7 @@ async function runPersona(browser, persona, personaDir) {
 
     if (persona.expectDenied) {
       // Permission denial: assistant must indicate denial and must not leak provenance of denied data.
-      const denied = /permission denied|not permitted|do not have (access|permission)|cannot (show|access|provide)/i.test(assistant)
+      const denied = isPermissionDenied(assistant)
       if (!denied) throw new Error(`${persona.label}: expected permission denial, got non-denial response`)
       result.permission_denied = true
     } else {
@@ -156,7 +161,24 @@ async function runPersona(browser, persona, personaDir) {
     result.error = String(err.message).slice(0, 400)
     await page.screenshot({ path: path.join(personaDir, 'failure.png'), fullPage: true }).catch(() => null)
   } finally {
-    await context.tracing.stop({ path: path.join(personaDir, 'trace.zip') }).catch(() => null)
+    if (tracingStarted) {
+      await context.tracing.stop({ path: path.join(personaDir, 'trace.zip') }).catch(() => null)
+    }
+    if (loginSucceeded) {
+      try {
+        const logoutResponse = await page.request.post(`${BASE_URL}/api/portal/logout`)
+        result.logout_status = logoutResponse.status()
+        await logoutResponse.dispose()
+        if (result.logout_status !== 200) {
+          result.ok = false
+          if (!result.error) result.error = `${persona.label}: logout failed (status ${result.logout_status})`
+        }
+      } catch {
+        result.logout_status = null
+        result.ok = false
+        if (!result.error) result.error = `${persona.label}: logout request failed`
+      }
+    }
     await context.close().catch(() => null)
   }
 
@@ -209,6 +231,7 @@ async function main() {
       console_error_count: r.console_error_count,
       failed_request_count: r.failed_request_count,
       api_responses: r.api_responses,
+      logout_status: r.logout_status,
       error: r.error,
     })),
     max_response_latency_ms: Math.max(...results.map(r => r.response_latency_ms || 0)),
