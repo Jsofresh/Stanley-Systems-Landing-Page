@@ -56,8 +56,18 @@ test("listeners cover both login and workflow pages and failure screenshots eith
   assert.match(runPersona, /targetPage\.on\('response'/)
 })
 
+test("logout uses a relative same-origin page fetch and returns numeric response status", () => {
+  const logout = runPersona.slice(runPersona.indexOf("const logoutPage"), runPersona.indexOf("await workflowContext?.close"))
+  assert.match(logout, /logoutPage\.evaluate\(async \(\) =>/)
+  assert.match(logout, /fetch\(\s*['"]\/api\/portal\/logout['"]\s*,\s*\{/)
+  assert.match(logout, /method:\s*['"]POST['"]/)
+  assert.match(logout, /credentials:\s*['"]same-origin['"]/)
+  assert.match(logout, /return response\.status/)
+  assert.doesNotMatch(runPersona, /\.request\.post\(/)
+})
+
 test("logout status is required and projected into the summary", () => {
-  assert.match(runPersona, /result\.logout_status\s*=\s*logoutResponse\.status\(\)/)
+  assert.match(runPersona, /result\.logout_status\s*=\s*await logoutPage\.evaluate/)
   assert.match(runPersona, /result\.logout_status\s*!==\s*200/)
   assert.match(source, /logout_status:\s*r\.logout_status/)
 })

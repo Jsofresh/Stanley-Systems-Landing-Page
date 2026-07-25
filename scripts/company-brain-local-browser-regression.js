@@ -186,9 +186,13 @@ async function runPersona(browser, persona, personaDir) {
     if (loginSucceeded) {
       try {
         const logoutPage = page ?? loginPage
-        const logoutResponse = await logoutPage.request.post(`${BASE_URL}/api/portal/logout`)
-        result.logout_status = logoutResponse.status()
-        await logoutResponse.dispose()
+        result.logout_status = await logoutPage.evaluate(async () => {
+          const response = await fetch('/api/portal/logout', {
+            method: 'POST',
+            credentials: 'same-origin',
+          })
+          return response.status
+        })
         if (result.logout_status !== 200) {
           result.ok = false
           if (!result.error) result.error = `${persona.label}: logout failed (status ${result.logout_status})`
