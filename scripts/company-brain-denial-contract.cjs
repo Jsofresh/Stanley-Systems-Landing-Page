@@ -14,9 +14,10 @@ function isPermissionDenied(value) {
   const normalized = value.replace(/\s+/g, " ")
   if (DENIAL_PATTERNS.some((pattern) => pattern.test(normalized))) return true
 
-  const blockedRequest = /\b(?:request|access) (?:is|was) blocked\b/i.test(normalized)
-  const authorizationContext = /\b(?:admins?|administrators?|owners?|permissions?|roles?|access level|scope)\b/i.test(normalized)
-  return blockedRequest && authorizationContext
+  const authorizationContext = /\b(?:field tech|roles?|admins?|administrators?|owners?|access level|permissions?)\b/i.test(normalized)
+  const scopeBoundary = /\b(?:company-wide|assigned[- ]jobs?|outside|scope|access level|billing records?|accounting|revenue records?)\b/i.test(normalized)
+  const refusal = /\b(?:can(?:not|['’]t)|blocked|not (?:authorized|allowed|available|within)|requires?|only|would need)\b/i.test(normalized)
+  return authorizationContext && scopeBoundary && refusal
 }
 
 module.exports = { isPermissionDenied }
