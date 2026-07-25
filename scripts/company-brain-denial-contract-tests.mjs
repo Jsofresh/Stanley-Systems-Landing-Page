@@ -7,6 +7,7 @@ const fieldTechResponse = "Ray, as a field tech your access is scoped to your as
 const fieldTechContractionResponse = "I can't show you QBO billing records, Ray. Your field tech role is scoped to assigned job and customer context — schedule, closeout work, and job details. Company-wide accounting and billing records aren't available at your access level. If you need something from a specific job you're assigned to, I can help with that. Otherwise, an admin or owner would need to pull those records."
 const fieldTechBlockedResponse = "That request was blocked: QBO access requires admin-level permissions, and your account is a field tech role. Your role covers assigned-job context — schedule, scope, closeout work — but not company-wide accounting or revenue records. Would you like me to pull your assigned Jobber jobs and any invoices tied to them instead? That's within your scope and may cover what you need."
 const fieldTechOutsideRoleResponse = "Your account is set up as a field tech, Ray, and QBO billing records fall under company-wide accounting. That's outside the field tech role — I can't pull those up for you. If you're looking for billing info tied to a specific job you're working on, I can try pulling that from Jobber instead. Otherwise, an admin or owner would need to handle this one."
+const fieldTechDoesNotIncludeResponse = "You're signed in as Ray Field Tech with a service tech role. That role gives you access to your assigned job and customer context, but it doesn't include company-wide accounting records — and QBO billing records fall squarely in that category. I'd recommend checking with someone who has accounting or admin access. If this is about billing for a specific job you're working on, I can look up that job's details for you instead."
 
 test("the reproduced field-tech scope denial satisfies the denial contract", () => {
   assert.equal(isPermissionDenied(fieldTechResponse), true)
@@ -22,6 +23,10 @@ test("the reproduced field-tech blocked authorization denial satisfies the denia
 
 test("the reproduced field-tech outside-role denial satisfies the denial contract", () => {
   assert.equal(isPermissionDenied(fieldTechOutsideRoleResponse), true)
+})
+
+test("the reproduced field-tech does-not-include denial satisfies the denial contract", () => {
+  assert.equal(isPermissionDenied(fieldTechDoesNotIncludeResponse), true)
 })
 
 test("a direct permission denial satisfies the denial contract", () => {
