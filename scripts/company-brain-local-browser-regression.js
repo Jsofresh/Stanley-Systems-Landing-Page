@@ -76,24 +76,40 @@ async function login(page, persona) {
 
 async function runPersona(browser, persona, personaDir) {
   fs.mkdirSync(personaDir, { recursive: true })
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } })
-  const page = await context.newPage()
   const consoleErrors = []
   const failedRequests = []
   const apiResponses = []
-  page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(String(msg.text()).slice(0, 300)) })
-  page.on('requestfailed', req => { try { failedRequests.push({ url: new URL(req.url()).pathname, error: req.failure()?.errorText || 'failed' }) } catch { failedRequests.push({ url: req.url(), error: 'failed' }) } })
-  page.on('response', r => { try { const p = new URL(r.url()).pathname; if (p.startsWith('/api/company-brain/') || p.startsWith('/api/portal/')) apiResponses.push({ path: p, status: r.status() }) } catch {} })
+  const wirePage = targetPage => {
+    targetPage.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(String(msg.text()).slice(0, 300)) })
+    targetPage.on('requestfailed', req => { try { failedRequests.push({ url: new URL(req.url()).pathname, error: req.failure()?.errorText || 'failed' }) } catch { failedRequests.push({ url: req.url(), error: 'failed' }) } })
+    targetPage.on('response', r => { try { const p = new URL(r.url()).pathname; if (p.startsWith('/api/company-brain/') || p.startsWith('/api/portal/')) apiResponses.push({ path: p, status: r.status() }) } catch {} })
+  }
 
   const started = Date.now()
   const result = { label: persona.label, ok: false }
+  let loginContext = null
+  let loginPage = null
+  let workflowContext = null
+  let page = null
   let loginSucceeded = false
   let tracingStarted = false
   try {
-    await login(page, persona)
+    loginContext = await browser.newContext({ viewport: { width: 1440, height: 1000 } })
+    loginPage = await loginContext.newPage()
+    wirePage(loginPage)
+    await login(loginPage, persona)
     loginSucceeded = true
-    await context.tracing.start({ screenshots: true, snapshots: true, sources: false })
+
+    // Keep the authenticated handoff in memory: login itself must never enter a trace archive.
+    const storageState = await loginContext.storageState()
+    workflowContext = await browser.newContext({ viewport: { width: 1440, height: 1000 }, storageState })
+    await workflowContext.tracing.start({ screenshots: true, snapshots: true, sources: false })
     tracingStarted = true
+    page = await workflowContext.newPage()
+    wirePage(page)
+    await loginContext.close()
+
+    await page.goto(`${BASE_URL}/portal`, { waitUntil: 'domcontentloaded', timeout: 60000 })
     await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => null)
 
     // Current portal contract: Company Brain label + composer visible (replaces stale "Bayview Office Console" heading).
@@ -159,14 +175,18 @@ async function runPersona(browser, persona, personaDir) {
     result.ok = true
   } catch (err) {
     result.error = String(err.message).slice(0, 400)
-    await page.screenshot({ path: path.join(personaDir, 'failure.png'), fullPage: true }).catch(() => null)
+    const screenshotPage = page ?? loginPage
+    if (screenshotPage) {
+      await screenshotPage.screenshot({ path: path.join(personaDir, 'failure.png'), fullPage: true }).catch(() => null)
+    }
   } finally {
-    if (tracingStarted) {
-      await context.tracing.stop({ path: path.join(personaDir, 'trace.zip') }).catch(() => null)
+    if (tracingStarted && workflowContext) {
+      await workflowContext.tracing.stop({ path: path.join(personaDir, 'trace.zip') }).catch(() => null)
     }
     if (loginSucceeded) {
       try {
-        const logoutResponse = await page.request.post(`${BASE_URL}/api/portal/logout`)
+        const logoutPage = page ?? loginPage
+        const logoutResponse = await logoutPage.request.post(`${BASE_URL}/api/portal/logout`)
         result.logout_status = logoutResponse.status()
         await logoutResponse.dispose()
         if (result.logout_status !== 200) {
@@ -179,7 +199,8 @@ async function runPersona(browser, persona, personaDir) {
         if (!result.error) result.error = `${persona.label}: logout request failed`
       }
     }
-    await context.close().catch(() => null)
+    await workflowContext?.close().catch(() => null)
+    await loginContext?.close().catch(() => null)
   }
 
   result.console_errors = consoleErrors
