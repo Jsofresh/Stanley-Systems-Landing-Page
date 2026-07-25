@@ -2,7 +2,7 @@ const DENIAL_PATTERNS = [
   /permission denied/i,
   /not permitted/i,
   /do(?:es)? not have (?:access|permission)/i,
-  /cannot (?:show|access|provide)/i,
+  /can(?:not|['’]t) (?:show|access|provide)/i,
   /access is scoped to/i,
   /outside that scope/i,
 ]
