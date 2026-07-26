@@ -274,6 +274,8 @@ function publicProviderVerification(value: unknown) {
     connectors,
     action_count: safeCount(source.action_count),
     verified_action_count: safeCount(source.verified_action_count),
+    completed_batch_replay: source.completed_batch_replay === true,
+    mutation_dispatch_count: safeCount(source.mutation_dispatch_count),
   }
 }
 
@@ -289,6 +291,7 @@ function publicWorkResult(value: unknown) {
   ) return undefined
   const safeCount = (item: unknown) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 64 ? item : undefined
   const safeCode = (item: unknown) => typeof item === "string" && /^[a-z][a-z_]{0,79}$/.test(item) ? item : undefined
+  const safeOperation = (item: unknown) => typeof item === "string" && /^[a-z][A-Za-z0-9_.]{0,79}$/.test(item) ? item : undefined
   const safeScalar = (item: unknown) => (
     item === null
     || typeof item === "boolean"
@@ -303,12 +306,14 @@ function publicWorkResult(value: unknown) {
     const unit = item as Record<string, unknown>
     const kind = String(unit.kind)
     const entityCode = safeCode(unit.entity_code)
+    const operation = kind === "provider_action" ? safeOperation(unit.operation) : ""
     const system = typeof unit.system === "string" && (/^[a-z][a-z_]{0,39}$/.test(unit.system) || unit.system === "")
       ? unit.system
       : undefined
     if (
       !["provider_action", "source_read", "conversation"].includes(kind)
       || !entityCode
+      || operation === undefined
       || system === undefined
       || !["matched_existing", "created_new", "updated_existing", "deleted_existing", "read_existing", "unspecified"].includes(String(unit.disposition))
       || !["pending_approval", "read_verified", "executed_verified", "executed_unverified", "unknown_outcome", "blocked", "failed", "stale", "source_verified", "nonfactual"].includes(String(unit.outcome))
@@ -345,6 +350,7 @@ function publicWorkResult(value: unknown) {
     return [{
       kind,
       entity_code: entityCode,
+      operation,
       disposition: unit.disposition,
       outcome: unit.outcome,
       system,

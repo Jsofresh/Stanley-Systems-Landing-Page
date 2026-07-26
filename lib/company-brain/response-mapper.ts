@@ -40,6 +40,8 @@ export type BrainProviderVerification = {
   connectors: string[]
   action_count: number
   verified_action_count: number
+  completed_batch_replay: boolean
+  mutation_dispatch_count: number
 }
 
 export type BrainWorkResult = {
@@ -51,6 +53,7 @@ export type BrainWorkResult = {
   units: Array<{
     kind: "provider_action" | "source_read" | "conversation"
     entity_code: string
+    operation: string
     disposition: "matched_existing" | "created_new" | "updated_existing" | "deleted_existing" | "read_existing" | "unspecified"
     outcome: "pending_approval" | "read_verified" | "executed_verified" | "executed_unverified" | "unknown_outcome" | "blocked" | "failed" | "stale" | "source_verified" | "nonfactual"
     system: string

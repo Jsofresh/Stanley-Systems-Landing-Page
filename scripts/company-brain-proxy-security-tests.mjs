@@ -40,6 +40,17 @@ test("ambiguous proxy failures do not claim that no mutation occurred", () => {
   assert.match(route, /outcome is unknown/i)
 })
 
+test("public work-result units retain only a validated provider operation code", () => {
+  assert.match(route, /const safeOperation =/)
+  assert.match(route, /operation === undefined/)
+  assert.match(route, /operation,/)
+})
+
+test("public provider verification retains deterministic replay and dispatch facts", () => {
+  assert.match(route, /completed_batch_replay/)
+  assert.match(route, /mutation_dispatch_count/)
+})
+
 test("degraded control responses fail HTTP readiness instead of reporting healthy 200", () => {
   assert.equal(route.includes("{ status: 200"), false)
   assert.match(route, /status: 503/)
