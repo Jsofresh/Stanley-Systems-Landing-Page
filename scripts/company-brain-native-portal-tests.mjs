@@ -53,6 +53,19 @@ test("native completion projects only validated structured work-result facts", (
   assert.match(route, /verifiedUnitCount !== units\.filter/)
 })
 
+test("native approval projection preserves only an exact deterministic binding", () => {
+  assert.match(route, /function publicApprovalRequest/)
+  assert.match(route, /company_brain\.approval_request\.v1/)
+  assert.match(route, /pending_approval/)
+  assert.match(route, /\^approval_\[0-9a-f\]\{24\}\$/)
+  assert.match(route, /Number\.isSafeInteger\(source\.action_count\)/)
+  assert.match(route, /new Set\(connectors\)\.size !== connectors\.length/)
+  assert.match(route, /choices\[0\] !== "Approve"/)
+  assert.match(route, /choices\[1\] !== "Cancel"/)
+  assert.match(route, /data: request/)
+  assert.doesNotMatch(route, /data: \{ choices \}/)
+})
+
 test("authenticated proxy binds actor identity and authorizes native artifacts", () => {
   assert.match(route, /x-stanley-actor-name/) 
   assert.match(route, /x-stanley-actor-email/)

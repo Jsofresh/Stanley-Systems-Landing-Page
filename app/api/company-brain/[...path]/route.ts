@@ -389,6 +389,48 @@ function publicWorkResult(value: unknown) {
   }
 }
 
+function publicApprovalRequest(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
+  const source = value as Record<string, unknown>
+  const allowed = new Set(["schema", "state", "approval_ref", "action_count", "connectors", "choices"])
+  const keys = Object.keys(source)
+  if (keys.length !== allowed.size || keys.some((key) => !allowed.has(key))) return undefined
+  const actionCount = typeof source.action_count === "number"
+    && Number.isSafeInteger(source.action_count)
+    && source.action_count >= 1
+    && source.action_count <= 8
+    ? source.action_count
+    : undefined
+  const connectors = Array.isArray(source.connectors)
+    ? source.connectors.filter((item): item is string => typeof item === "string")
+    : []
+  const choices = Array.isArray(source.choices) ? source.choices : []
+  if (
+    source.schema !== "company_brain.approval_request.v1"
+    || source.state !== "pending_approval"
+    || typeof source.approval_ref !== "string"
+    || !/^approval_[0-9a-f]{24}$/.test(source.approval_ref)
+    || actionCount === undefined
+    || connectors.length < 1
+    || connectors.length > 3
+    || connectors.length !== (source.connectors as unknown[]).length
+    || new Set(connectors).size !== connectors.length
+    || connectors.some((connector) => !/^[a-z][a-z0-9_]{0,31}$/.test(connector))
+    || connectors.some((connector, index) => index > 0 && connectors[index - 1].localeCompare(connector) >= 0)
+    || choices.length !== 2
+    || choices[0] !== "Approve"
+    || choices[1] !== "Cancel"
+  ) return undefined
+  return {
+    schema: source.schema,
+    state: source.state,
+    approval_ref: source.approval_ref,
+    action_count: actionCount,
+    connectors,
+    choices: ["Approve", "Cancel"],
+  }
+}
+
 function projectNativeEvent(eventName: string, value: unknown) {
   const source = value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}
   if (eventName === "run.started") return { event: "run.started", data: { status: "running" } }
@@ -410,10 +452,8 @@ function projectNativeEvent(eventName: string, value: unknown) {
     }
   }
   if (eventName === "approval.request") {
-    const choices = Array.isArray(source.choices)
-      ? source.choices.filter((choice): choice is string => typeof choice === "string").map((choice) => publicStreamText(choice, 40)).filter(Boolean).slice(0, 8)
-      : []
-    return choices.length ? { event: "approval.request", data: { choices } } : null
+    const request = publicApprovalRequest(source)
+    return request ? { event: "approval.request", data: request } : null
   }
   if (eventName === "stanley.completed") {
     const artifacts = Array.isArray(source.artifacts) ? source.artifacts.map(publicArtifact).filter(Boolean).slice(0, 20) : []
