@@ -283,54 +283,46 @@ function publicWorkResult(value: unknown) {
   if (
     source.schema !== "company_brain.work_result.v1"
     || !["verified", "approval_required", "partial", "failed", "reconciliation_required"].includes(String(source.status))
-    || typeof source.record_digest !== "string"
-    || !/^[0-9a-f]{64}$/.test(source.record_digest)
     || !Array.isArray(source.units)
+    || source.units.length < 1
     || source.units.length > 64
   ) return undefined
   const safeCount = (item: unknown) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 64 ? item : undefined
-  const safeArtifactCount = (item: unknown) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 1_000_000_000 ? item : undefined
+  const safeCode = (item: unknown) => typeof item === "string" && /^[a-z][a-z_]{0,79}$/.test(item) ? item : undefined
   const safeScalar = (item: unknown) => (
     item === null
     || typeof item === "boolean"
     || typeof item === "number" && Number.isFinite(item)
-    || typeof item === "string" && item.length <= 1000
+    || typeof item === "string"
+      && item.length <= 1000
+      && !/\b(?:provider:ref_|ref_[0-9a-f]{16,}|access[_ -]?token|refresh[_ -]?token|client[_ -]?secret|authorization[_ -]?code|bearer\s+[a-z0-9._~-]+)/i.test(item)
+      && !/\/(?:opt|home|root|run)\/[a-z0-9_./-]+/i.test(item)
   )
   const units = source.units.flatMap((item) => {
     if (!item || typeof item !== "object" || Array.isArray(item)) return []
     const unit = item as Record<string, unknown>
+    const kind = String(unit.kind)
+    const entityCode = safeCode(unit.entity_code)
+    const system = typeof unit.system === "string" && (/^[a-z][a-z_]{0,39}$/.test(unit.system) || unit.system === "")
+      ? unit.system
+      : undefined
     if (
-      !["provider_action", "artifact"].includes(String(unit.kind))
-      || !["matched_existing", "created_new", "updated_existing", "deleted_existing", "read_existing", "artifact_created", "unspecified"].includes(String(unit.disposition))
-      || !["pending_approval", "read_verified", "executed_verified", "executed_unverified", "unknown_outcome", "blocked", "failed", "stale"].includes(String(unit.outcome))
-      || typeof unit.unit_digest !== "string"
-      || !/^[0-9a-f]{64}$/.test(unit.unit_digest)
+      !["provider_action", "source_read", "conversation"].includes(kind)
+      || !entityCode
+      || system === undefined
+      || !["matched_existing", "created_new", "updated_existing", "deleted_existing", "read_existing", "unspecified"].includes(String(unit.disposition))
+      || !["pending_approval", "read_verified", "executed_verified", "executed_unverified", "unknown_outcome", "blocked", "failed", "stale", "source_verified", "nonfactual"].includes(String(unit.outcome))
     ) return []
-    const requested = unit.requested && typeof unit.requested === "object" && !Array.isArray(unit.requested)
-      ? { summary: publicStreamText((unit.requested as Record<string, unknown>).summary, 500) }
-      : { summary: "" }
-    const subjectSource = unit.subject && typeof unit.subject === "object" && !Array.isArray(unit.subject)
-      ? unit.subject as Record<string, unknown>
-      : {}
-    const subject = {
-      entity_type: publicStreamText(subjectSource.entity_type, 120),
-      label: publicStreamText(subjectSource.label, 240) || undefined,
-    }
     const claims = Array.isArray(unit.claims) ? unit.claims.flatMap((claim) => {
       if (!claim || typeof claim !== "object" || Array.isArray(claim)) return []
       const fact = claim as Record<string, unknown>
       if (
-        typeof fact.claim_id !== "string"
-        || !/^[A-Za-z][A-Za-z0-9_.:-]{0,127}$/.test(fact.claim_id)
-        || !["readback_assertion", "provider_result", "artifact_evidence"].includes(String(fact.source))
+        !safeCode(fact.fact_code)
         || fact.verified !== true
         || !safeScalar(fact.value)
       ) return []
       return [{
-        claim_id: fact.claim_id,
-        label: publicStreamText(fact.label, 120),
-        source: fact.source,
-        path: publicStreamText(fact.path, 240),
+        fact_code: fact.fact_code,
         value: fact.value,
         verified: true,
       }]
@@ -338,67 +330,28 @@ function publicWorkResult(value: unknown) {
     const omissions = Array.isArray(unit.omissions) ? unit.omissions.flatMap((omission) => {
       if (!omission || typeof omission !== "object" || Array.isArray(omission)) return []
       const omitted = omission as Record<string, unknown>
-      const field = publicStreamText(omitted.field, 120)
-      const reason = publicStreamText(omitted.reason, 300)
-      return field && reason ? [{ field, reason }] : []
+      const fieldCode = safeCode(omitted.field_code)
+      const reasonCode = safeCode(omitted.reason_code)
+      return fieldCode && reasonCode ? [{ field_code: fieldCode, reason_code: reasonCode }] : []
     }).slice(0, 64) : []
     const failures = Array.isArray(unit.failures) ? unit.failures.flatMap((failure) => {
       if (!failure || typeof failure !== "object" || Array.isArray(failure)) return []
-      const reason = publicStreamText((failure as Record<string, unknown>).reason, 300)
-      return reason ? [{ reason }] : []
+      const reasonCode = safeCode((failure as Record<string, unknown>).reason_code)
+      return reasonCode ? [{ reason_code: reasonCode }] : []
     }).slice(0, 64) : []
-    const executedSource = unit.executed && typeof unit.executed === "object" && !Array.isArray(unit.executed)
-      ? unit.executed as Record<string, unknown>
-      : {}
-    const executed = String(executedSource.kind) === "provider_action"
-      ? {
-          kind: "provider_action",
-          connector: publicStreamText(executedSource.connector, 40),
-          operation: publicStreamText(executedSource.operation, 160),
-        }
-      : String(executedSource.kind) === "artifact_generation"
-        ? {
-            kind: "artifact_generation",
-            artifact_kind: publicStreamText(executedSource.artifact_kind, 80),
-          }
-        : undefined
-    if (!executed) return []
-    const artifactSource = unit.artifact && typeof unit.artifact === "object" && !Array.isArray(unit.artifact)
-      ? unit.artifact as Record<string, unknown>
-      : undefined
-    const artifact = artifactSource
-      ? {
-          kind: publicStreamText(artifactSource.kind, 80),
-          identity: publicStreamText(artifactSource.identity, 500),
-          row_count: safeArtifactCount(artifactSource.row_count),
-          provenance_count: safeArtifactCount(artifactSource.provenance_count),
-          provenance_digest: typeof artifactSource.provenance_digest === "string" && /^[0-9a-f]{64}$/.test(artifactSource.provenance_digest)
-            ? artifactSource.provenance_digest
-            : undefined,
-        }
-      : undefined
-    if (unit.kind === "artifact" && (
-      !artifact
-      || !artifact.kind
-      || !artifact.identity
-      || artifact.row_count === undefined
-      || artifact.provenance_count === undefined
-      || !artifact.provenance_digest
-    )) return []
+    if (kind === "provider_action" && !["jobber", "quickbooks"].includes(system)) return []
+    if (kind === "source_read" && (system !== "source_archive" || unit.outcome !== "source_verified" || unit.disposition !== "read_existing")) return []
+    if (kind === "conversation" && (system !== "" || unit.outcome !== "nonfactual" || unit.disposition !== "unspecified" || claims.length)) return []
     return [{
-      kind: unit.kind,
-      requested,
-      subject,
+      kind,
+      entity_code: entityCode,
       disposition: unit.disposition,
       outcome: unit.outcome,
-      connector: publicStreamText(unit.connector, 40),
-      executed,
+      system,
       claims,
       omissions,
       omissions_complete: unit.omissions_complete === true,
       failures,
-      artifact,
-      unit_digest: unit.unit_digest,
     }]
   })
   if (units.length !== source.units.length) return undefined
@@ -411,24 +364,24 @@ function publicWorkResult(value: unknown) {
     || verifiedUnitCount > unitCount
   ) return undefined
   const outcomes = new Set(units.map((unit) => String(unit.outcome)))
-  const expectedStatus = [...outcomes].every((outcome) => ["read_verified", "executed_verified"].includes(outcome))
+  const verifiedOutcomes = ["read_verified", "executed_verified", "source_verified", "nonfactual"]
+  const expectedStatus = [...outcomes].every((outcome) => verifiedOutcomes.includes(outcome))
     ? "verified"
-    : outcomes.has("pending_approval") && [...outcomes].every((outcome) => ["read_verified", "pending_approval"].includes(outcome))
+    : outcomes.has("pending_approval") && [...outcomes].every((outcome) => [...verifiedOutcomes, "pending_approval"].includes(outcome))
       ? "approval_required"
       : [...outcomes].some((outcome) => ["executed_unverified", "unknown_outcome"].includes(outcome))
         ? "reconciliation_required"
-        : [...outcomes].some((outcome) => ["read_verified", "executed_verified"].includes(outcome))
+        : [...outcomes].some((outcome) => verifiedOutcomes.includes(outcome))
           ? "partial"
           : "failed"
   if (
     source.status !== expectedStatus
-    || verifiedUnitCount !== units.filter((unit) => ["read_verified", "executed_verified"].includes(String(unit.outcome))).length
+    || verifiedUnitCount !== units.filter((unit) => verifiedOutcomes.includes(String(unit.outcome))).length
     || (source.omissions_complete === true) !== units.every((unit) => unit.omissions_complete === true)
   ) return undefined
   return {
     schema: source.schema,
     status: source.status,
-    record_digest: source.record_digest,
     unit_count: unitCount,
     verified_unit_count: verifiedUnitCount,
     omissions_complete: source.omissions_complete === true,
