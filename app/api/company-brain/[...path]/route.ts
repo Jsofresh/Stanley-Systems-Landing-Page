@@ -277,6 +277,150 @@ function publicProviderVerification(value: unknown) {
   }
 }
 
+function publicWorkResult(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
+  const source = value as Record<string, unknown>
+  if (
+    source.schema !== "company_brain.work_result.v1"
+    || !["verified", "approval_required", "partial", "failed", "reconciliation_required"].includes(String(source.status))
+    || typeof source.record_digest !== "string"
+    || !/^[0-9a-f]{64}$/.test(source.record_digest)
+    || !Array.isArray(source.units)
+    || source.units.length > 64
+  ) return undefined
+  const safeCount = (item: unknown) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 64 ? item : undefined
+  const safeArtifactCount = (item: unknown) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 1_000_000_000 ? item : undefined
+  const safeScalar = (item: unknown) => (
+    item === null
+    || typeof item === "boolean"
+    || typeof item === "number" && Number.isFinite(item)
+    || typeof item === "string" && item.length <= 1000
+  )
+  const units = source.units.flatMap((item) => {
+    if (!item || typeof item !== "object" || Array.isArray(item)) return []
+    const unit = item as Record<string, unknown>
+    if (
+      !["provider_action", "artifact"].includes(String(unit.kind))
+      || !["matched_existing", "created_new", "updated_existing", "deleted_existing", "read_existing", "artifact_created", "unspecified"].includes(String(unit.disposition))
+      || !["pending_approval", "read_verified", "executed_verified", "executed_unverified", "unknown_outcome", "blocked", "failed", "stale"].includes(String(unit.outcome))
+      || typeof unit.unit_digest !== "string"
+      || !/^[0-9a-f]{64}$/.test(unit.unit_digest)
+    ) return []
+    const requested = unit.requested && typeof unit.requested === "object" && !Array.isArray(unit.requested)
+      ? { summary: publicStreamText((unit.requested as Record<string, unknown>).summary, 500) }
+      : { summary: "" }
+    const subjectSource = unit.subject && typeof unit.subject === "object" && !Array.isArray(unit.subject)
+      ? unit.subject as Record<string, unknown>
+      : {}
+    const subject = {
+      entity_type: publicStreamText(subjectSource.entity_type, 120),
+      label: publicStreamText(subjectSource.label, 240) || undefined,
+    }
+    const claims = Array.isArray(unit.claims) ? unit.claims.flatMap((claim) => {
+      if (!claim || typeof claim !== "object" || Array.isArray(claim)) return []
+      const fact = claim as Record<string, unknown>
+      if (
+        typeof fact.claim_id !== "string"
+        || !/^[A-Za-z][A-Za-z0-9_.:-]{0,127}$/.test(fact.claim_id)
+        || !["readback_assertion", "provider_result", "artifact_evidence"].includes(String(fact.source))
+        || fact.verified !== true
+        || !safeScalar(fact.value)
+      ) return []
+      return [{
+        claim_id: fact.claim_id,
+        label: publicStreamText(fact.label, 120),
+        source: fact.source,
+        path: publicStreamText(fact.path, 240),
+        value: fact.value,
+        verified: true,
+      }]
+    }).slice(0, 64) : []
+    const omissions = Array.isArray(unit.omissions) ? unit.omissions.flatMap((omission) => {
+      if (!omission || typeof omission !== "object" || Array.isArray(omission)) return []
+      const omitted = omission as Record<string, unknown>
+      const field = publicStreamText(omitted.field, 120)
+      const reason = publicStreamText(omitted.reason, 300)
+      return field && reason ? [{ field, reason }] : []
+    }).slice(0, 64) : []
+    const failures = Array.isArray(unit.failures) ? unit.failures.flatMap((failure) => {
+      if (!failure || typeof failure !== "object" || Array.isArray(failure)) return []
+      const reason = publicStreamText((failure as Record<string, unknown>).reason, 300)
+      return reason ? [{ reason }] : []
+    }).slice(0, 64) : []
+    const executedSource = unit.executed && typeof unit.executed === "object" && !Array.isArray(unit.executed)
+      ? unit.executed as Record<string, unknown>
+      : {}
+    const executed = String(executedSource.kind) === "provider_action"
+      ? {
+          kind: "provider_action",
+          connector: publicStreamText(executedSource.connector, 40),
+          operation: publicStreamText(executedSource.operation, 160),
+        }
+      : String(executedSource.kind) === "artifact_generation"
+        ? {
+            kind: "artifact_generation",
+            artifact_kind: publicStreamText(executedSource.artifact_kind, 80),
+          }
+        : undefined
+    if (!executed) return []
+    const artifactSource = unit.artifact && typeof unit.artifact === "object" && !Array.isArray(unit.artifact)
+      ? unit.artifact as Record<string, unknown>
+      : undefined
+    const artifact = artifactSource
+      ? {
+          kind: publicStreamText(artifactSource.kind, 80),
+          identity: publicStreamText(artifactSource.identity, 500),
+          row_count: safeArtifactCount(artifactSource.row_count),
+          provenance_count: safeArtifactCount(artifactSource.provenance_count),
+          provenance_digest: typeof artifactSource.provenance_digest === "string" && /^[0-9a-f]{64}$/.test(artifactSource.provenance_digest)
+            ? artifactSource.provenance_digest
+            : undefined,
+        }
+      : undefined
+    if (unit.kind === "artifact" && (
+      !artifact
+      || !artifact.kind
+      || !artifact.identity
+      || artifact.row_count === undefined
+      || artifact.provenance_count === undefined
+      || !artifact.provenance_digest
+    )) return []
+    return [{
+      kind: unit.kind,
+      requested,
+      subject,
+      disposition: unit.disposition,
+      outcome: unit.outcome,
+      connector: publicStreamText(unit.connector, 40),
+      executed,
+      claims,
+      omissions,
+      omissions_complete: unit.omissions_complete === true,
+      failures,
+      artifact,
+      unit_digest: unit.unit_digest,
+    }]
+  })
+  if (units.length !== source.units.length) return undefined
+  const unitCount = safeCount(source.unit_count)
+  const verifiedUnitCount = safeCount(source.verified_unit_count)
+  if (
+    unitCount === undefined
+    || verifiedUnitCount === undefined
+    || unitCount !== units.length
+    || verifiedUnitCount > unitCount
+  ) return undefined
+  return {
+    schema: source.schema,
+    status: source.status,
+    record_digest: source.record_digest,
+    unit_count: unitCount,
+    verified_unit_count: verifiedUnitCount,
+    omissions_complete: source.omissions_complete === true,
+    units,
+  }
+}
+
 function projectNativeEvent(eventName: string, value: unknown) {
   const source = value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}
   if (eventName === "run.started") return { event: "run.started", data: { status: "running" } }
@@ -333,6 +477,7 @@ function projectNativeEvent(eventName: string, value: unknown) {
         usage,
         conversation_id: publicStreamText(source.conversation_id, 160),
         provider_verification: publicProviderVerification(source.provider_verification),
+        work_result: publicWorkResult(source.work_result),
       },
     }
   }

@@ -38,6 +38,17 @@ test("native stream exposes generic progress/completion state", () => {
   assert.doesNotMatch(route, /\\\\n/)
 })
 
+test("native completion projects only validated structured work-result facts", () => {
+  assert.match(route, /function publicWorkResult/)
+  assert.match(route, /company_brain\.work_result\.v1/)
+  assert.match(route, /work_result: publicWorkResult\(source\.work_result\)/)
+  assert.match(route, /matched_existing/)
+  assert.match(route, /created_new/)
+  assert.match(route, /artifact_evidence/)
+  assert.match(route, /provenance_digest/)
+  assert.match(route, /unitCount !== units\.length/)
+})
+
 test("authenticated proxy binds actor identity and authorizes native artifacts", () => {
   assert.match(route, /x-stanley-actor-name/) 
   assert.match(route, /x-stanley-actor-email/)

@@ -42,6 +42,30 @@ export type BrainProviderVerification = {
   verified_action_count: number
 }
 
+export type BrainWorkResult = {
+  schema: "company_brain.work_result.v1"
+  status: "verified" | "approval_required" | "partial" | "failed" | "reconciliation_required"
+  record_digest: string
+  unit_count: number
+  verified_unit_count: number
+  omissions_complete: boolean
+  units: Array<{
+    kind: "provider_action" | "artifact"
+    requested: { summary: string }
+    subject: { entity_type: string; label?: string }
+    disposition: "matched_existing" | "created_new" | "updated_existing" | "deleted_existing" | "read_existing" | "artifact_created" | "unspecified"
+    outcome: "pending_approval" | "read_verified" | "executed_verified" | "executed_unverified" | "unknown_outcome" | "blocked" | "failed" | "stale"
+    connector: string
+    executed: { kind: "provider_action"; connector: string; operation: string } | { kind: "artifact_generation"; artifact_kind: string }
+    claims: Array<{ claim_id: string; label: string; source: "readback_assertion" | "provider_result" | "artifact_evidence"; path: string; value: unknown; verified: true }>
+    omissions: Array<{ field: string; reason: string }>
+    omissions_complete: boolean
+    failures: Array<{ reason: string }>
+    artifact?: { kind: string; identity: string; row_count: number; provenance_count: number; provenance_digest: string }
+    unit_digest: string
+  }>
+}
+
 export type BrainChatResponse = {
   answer: string
   blocks?: BrainBlock[]
@@ -51,6 +75,7 @@ export type BrainChatResponse = {
   source_chips?: BrainSourceChip[]
   proof_id?: string
   provider_verification?: BrainProviderVerification
+  work_result?: BrainWorkResult
 }
 
 const sensitivePatterns: Array<[RegExp, string]> = [
