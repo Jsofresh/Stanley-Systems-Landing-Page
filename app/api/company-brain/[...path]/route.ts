@@ -410,6 +410,21 @@ function publicWorkResult(value: unknown) {
     || unitCount !== units.length
     || verifiedUnitCount > unitCount
   ) return undefined
+  const outcomes = new Set(units.map((unit) => String(unit.outcome)))
+  const expectedStatus = [...outcomes].every((outcome) => ["read_verified", "executed_verified"].includes(outcome))
+    ? "verified"
+    : outcomes.has("pending_approval") && [...outcomes].every((outcome) => ["read_verified", "pending_approval"].includes(outcome))
+      ? "approval_required"
+      : [...outcomes].some((outcome) => ["executed_unverified", "unknown_outcome"].includes(outcome))
+        ? "reconciliation_required"
+        : [...outcomes].some((outcome) => ["read_verified", "executed_verified"].includes(outcome))
+          ? "partial"
+          : "failed"
+  if (
+    source.status !== expectedStatus
+    || verifiedUnitCount !== units.filter((unit) => ["read_verified", "executed_verified"].includes(String(unit.outcome))).length
+    || (source.omissions_complete === true) !== units.every((unit) => unit.omissions_complete === true)
+  ) return undefined
   return {
     schema: source.schema,
     status: source.status,

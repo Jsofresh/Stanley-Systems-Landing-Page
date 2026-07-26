@@ -47,6 +47,8 @@ test("native completion projects only validated structured work-result facts", (
   assert.match(route, /artifact_evidence/)
   assert.match(route, /provenance_digest/)
   assert.match(route, /unitCount !== units\.length/)
+  assert.match(route, /source\.status !== expectedStatus/)
+  assert.match(route, /verifiedUnitCount !== units\.filter/)
 })
 
 test("authenticated proxy binds actor identity and authorizes native artifacts", () => {
