@@ -8,7 +8,7 @@ const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const route = readFileSync(resolve(repoRoot, "app/api/company-brain/[...path]/route.ts"), "utf8")
 const live = readFileSync(resolve(repoRoot, "lib/company-brain/live.ts"), "utf8")
 
-const MINIMUM_MS = 480000
+const MINIMUM_MS = 900000
 const REVERTED_MS = 180000
 
 function extractProxyStreamTimeout(source) {
@@ -23,19 +23,19 @@ function extractClientStreamTimeout(source) {
   return Number(match[1])
 }
 
-test("proxy native-stream / brain/chat timeout is at least 480000ms", () => {
+test("proxy native-stream / brain/chat timeout is at least 900000ms", () => {
   const proxyStreamTimeout = extractProxyStreamTimeout(route)
   assert.ok(
     proxyStreamTimeout >= MINIMUM_MS,
-    `proxy native-stream timeout ${proxyStreamTimeout}ms is below the 480000ms minimum`,
+    `proxy native-stream timeout ${proxyStreamTimeout}ms is below the 900000ms minimum`,
   )
 })
 
-test("client stream AbortController timeout is at least 480000ms", () => {
+test("client stream AbortController timeout is at least 900000ms", () => {
   const clientStreamTimeout = extractClientStreamTimeout(live)
   assert.ok(
     clientStreamTimeout >= MINIMUM_MS,
-    `client stream timeout ${clientStreamTimeout}ms is below the 480000ms minimum`,
+    `client stream timeout ${clientStreamTimeout}ms is below the 900000ms minimum`,
   )
 })
 

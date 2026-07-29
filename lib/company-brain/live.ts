@@ -108,7 +108,7 @@ export async function streamCompanyBrainMessage(
   onEvent?: (event: NativeStreamEvent) => void,
 ): Promise<NativeCompletion> {
   const controller = new AbortController()
-  const timeout = window.setTimeout(() => controller.abort(), 480000)
+  const timeout = window.setTimeout(() => controller.abort(), 900000)
   let response: Response
   try {
     response = await fetch(`${BRAIN_BASE_URL}/brain/sessions/${encodeURIComponent(input.conversationId)}/chat/stream`, {
