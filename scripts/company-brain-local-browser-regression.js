@@ -14,9 +14,17 @@ if (!PASSWORD) {
 
 const CHROMIUM_PATH = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || '/usr/bin/chromium'
 const OUT_DIR = process.env.COMPANY_BRAIN_REGRESSION_OUT || path.join(__dirname, '..', 'company-brain-regression-artifacts')
+const ALL_PERSONAS_DIAGNOSTIC_FLAG = '--all-personas-diagnostic'
+const unknownArguments = process.argv.slice(2).filter(argument => argument !== ALL_PERSONAS_DIAGNOSTIC_FLAG)
+if (unknownArguments.length) {
+  console.error(JSON.stringify({ ok: false, error: 'unsupported browser regression argument' }))
+  process.exit(2)
+}
+const allPersonasDiagnostic = process.argv.includes(ALL_PERSONAS_DIAGNOSTIC_FLAG)
 
-// Configured test personas — role/permission/provenance checks only (no canned business phrases, no fixed provider counts).
-const personas = [
+// Sarah is the canonical live smoke identity. Other identities remain available
+// only for explicit diagnostics; role denial belongs in deterministic tests.
+const configuredPersonas = [
   {
     label: 'owner',
     email: 'sarah.owner@bayview.test',
@@ -63,6 +71,7 @@ const personas = [
     forbiddenMarkers: [/bearer\s+[a-z0-9._-]+/i, /api[_-]?key/i, /access[_-]?token/i, /client[_-]?secret/i, /traceback/i, /stack trace/i],
   },
 ]
+const personas = allPersonasDiagnostic ? configuredPersonas : [configuredPersonas[0]]
 
 async function login(page, persona) {
   await page.goto(`${BASE_URL}/login`, { waitUntil: 'domcontentloaded', timeout: 60000 })
@@ -235,6 +244,7 @@ async function main() {
   const secretLeakage = results.some(r => r.secret_or_debug_leakage === true)
   const summary = {
     ok: ok && !secretLeakage,
+    mode: allPersonasDiagnostic ? 'all_personas_diagnostic' : 'canonical_owner',
     base_url: BASE_URL,
     chromium_path: CHROMIUM_PATH,
     artifact_dir: OUT_DIR,

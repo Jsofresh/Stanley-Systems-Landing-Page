@@ -71,3 +71,11 @@ test("logout status is required and projected into the summary", () => {
   assert.match(runPersona, /result\.logout_status\s*!==\s*200/)
   assert.match(source, /logout_status:\s*r\.logout_status/)
 })
+
+test("live regression defaults to canonical owner and requires explicit all-persona diagnostics", () => {
+  assert.match(source, /const ALL_PERSONAS_DIAGNOSTIC_FLAG = '--all-personas-diagnostic'/)
+  assert.match(source, /const allPersonasDiagnostic = process\.argv\.includes\(ALL_PERSONAS_DIAGNOSTIC_FLAG\)/)
+  assert.match(source, /const personas = allPersonasDiagnostic \? configuredPersonas : \[configuredPersonas\[0\]\]/)
+  assert.match(source, /mode: allPersonasDiagnostic \? 'all_personas_diagnostic' : 'canonical_owner'/)
+  assert.doesNotMatch(source, /COMPANY_BRAIN_(?:ALL_PERSONAS|REGRESSION_PERSONAS)/)
+})
