@@ -5,7 +5,7 @@ import path from 'node:path'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-const STORAGE_DIR = '/home/jaden/.openclaw/data/stanley-demo/office-emails'
+const STORAGE_DIR = '/home/jaden/.local/share/stanley-systems/data/stanley-demo/office-emails'
 
 const demoStaff: Record<string, string> = {
   dana: 'Dana Brooks <dana@bayviewheating.demo>',

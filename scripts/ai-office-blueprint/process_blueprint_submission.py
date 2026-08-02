@@ -27,7 +27,7 @@ from pathlib import Path
 from typing import Any
 
 REPO = Path(__file__).resolve().parents[2]
-DATA_DIR = Path("/home/jaden/.openclaw/data/stanley-landing")
+DATA_DIR = Path("/home/jaden/.local/share/stanley-systems/data/stanley-landing")
 QUEUE_PATH = DATA_DIR / "ai-office-blueprint-submissions.jsonl"
 STATE_PATH = DATA_DIR / "ai-office-blueprint-email-state.json"
 LOCK_PATH = DATA_DIR / "ai-office-blueprint-email-state.lock"

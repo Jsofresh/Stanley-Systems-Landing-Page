@@ -3,7 +3,7 @@ import { tmpdir } from "node:os"
 import { join, resolve } from "node:path"
 import { spawnSync } from "node:child_process"
 
-const REPO = resolve("/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page")
+const REPO = resolve("/home/jaden/stanley-landing")
 const BRIDGE = join(REPO, "scripts", "design-loop", "agent-handoff-bridge.ts")
 
 type Scenario = {

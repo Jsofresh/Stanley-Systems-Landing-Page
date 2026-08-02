@@ -10,9 +10,9 @@ import type { AiOfficeBlueprintIntake } from "@/lib/ai-office-blueprint/types"
 const MAX_REQUEST_BYTES = 24_000
 const RATE_LIMIT_WINDOW_MS = 60_000
 const RATE_LIMIT_MAX = 5
-const SUBMISSION_LOG_PATH = "/home/jaden/.openclaw/data/stanley-landing/ai-office-blueprint-submissions.jsonl"
-const WORKER_SCRIPT_PATH = "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/scripts/ai-office-blueprint/process_blueprint_submission.py"
-const WORKER_LOG_DIR = "/home/jaden/.openclaw/data/stanley-landing/logs"
+const SUBMISSION_LOG_PATH = "/home/jaden/.local/share/stanley-systems/data/stanley-landing/ai-office-blueprint-submissions.jsonl"
+const WORKER_SCRIPT_PATH = "/home/jaden/stanley-landing/scripts/ai-office-blueprint/process_blueprint_submission.py"
+const WORKER_LOG_DIR = "/home/jaden/.local/share/stanley-systems/data/stanley-landing/logs"
 const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>()
 
 const requiredFields: Array<keyof AiOfficeBlueprintIntake> = [

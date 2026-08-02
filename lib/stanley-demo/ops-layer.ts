@@ -51,7 +51,7 @@ export type OpsLayerSnapshot = {
   actionQueue: ActionQueueItem[]
 }
 
-const DATA_ROOT = '/home/jaden/.openclaw/data/stanley-demo'
+const DATA_ROOT = '/home/jaden/.local/share/stanley-systems/data/stanley-demo'
 const JOBBER_SEED_PATHS = [
   path.join(DATA_ROOT, 'jobber-busy-day-seed-2026-06-10-rerun.json'),
   path.join(DATA_ROOT, 'jobber-busy-day-seed-2026-06-10.json'),

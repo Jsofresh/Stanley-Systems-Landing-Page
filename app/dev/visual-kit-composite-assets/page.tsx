@@ -14,28 +14,28 @@ function readReference(path: string) {
 
 const references = {
   'benefit-check': readReference(
-    '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/benefit-check.png',
+    '/home/jaden/stanley-assets/openclaw-project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/benefit-check.png',
   ).toString('base64'),
   'dormant-customer-list': readReference(
-    '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/dormant-customer-list.png',
+    '/home/jaden/stanley-assets/openclaw-project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/dormant-customer-list.png',
   ).toString('base64'),
   'flow-arrow': readReference(
-    '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/flow-arrow.png',
+    '/home/jaden/stanley-assets/openclaw-project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/flow-arrow.png',
   ).toString('base64'),
   'missed-call-recovered-card': readReference(
-    '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/missed-call-recovered-card.png',
+    '/home/jaden/stanley-assets/openclaw-project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/missed-call-recovered-card.png',
   ).toString('base64'),
   'monthly-impact-cash': readReference(
-    '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/monthly-impact-cash.png',
+    '/home/jaden/stanley-assets/openclaw-project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/monthly-impact-cash.png',
   ).toString('base64'),
   'referral-opportunity-card': readReference(
-    '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/referral-opportunity-card.png',
+    '/home/jaden/stanley-assets/openclaw-project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/referral-opportunity-card.png',
   ).toString('base64'),
   'review-booster-card': readReference(
-    '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/review-booster-card.png',
+    '/home/jaden/stanley-assets/openclaw-project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/review-booster-card.png',
   ).toString('base64'),
   'sms-reactivation-phone': readReference(
-    '/home/jaden/.openclaw/workspace/project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/sms-reactivation-phone.png',
+    '/home/jaden/stanley-assets/openclaw-project/design-taste-library/references/stanley-visual-kit/2026-05-02-visual-kit-references/composites/sms-reactivation-phone.png',
   ).toString('base64'),
 }
 

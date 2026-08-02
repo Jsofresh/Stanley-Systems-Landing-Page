@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { mkdir, appendFile } from "node:fs/promises"
 import path from "node:path"
 
-const STORAGE_DIR = "/home/jaden/.openclaw/data/hcp-completed-jobs"
+const STORAGE_DIR = "/home/jaden/.local/share/stanley-systems/data/hcp-completed-jobs"
 const N8N_FORWARD_URL = process.env.STANLEY_HCP_COMPLETED_JOB_WEBHOOK_URL || "https://n8n.stanley-systems.com/webhook/s4XTGHZII1QhPZti/webhook/hcp-job-completed"
 
 function asObject(value: unknown): Record<string, unknown> {

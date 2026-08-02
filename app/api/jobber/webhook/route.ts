@@ -5,7 +5,7 @@ import path from "node:path"
 export const dynamic = "force-dynamic"
 export const runtime = "nodejs"
 
-const STORAGE_DIR = "/home/jaden/.openclaw/data/stanley-demo/jobber-webhooks"
+const STORAGE_DIR = "/home/jaden/.local/share/stanley-systems/data/stanley-demo/jobber-webhooks"
 const N8N_FORWARD_URL = process.env.STANLEY_JOBBER_WEBHOOK_FORWARD_URL || "https://n8n.stanley-systems.com/webhook/stanley-demo-jobber-intake/jobber-demo-webhook/stanley-demo-jobber-webhook"
 
 function utcDayStamp(iso: string) {

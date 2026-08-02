@@ -23,8 +23,8 @@ from googleapiclient.discovery import build
 DEFAULT_PROFILE = "/home/jaden/.hermes/profiles/stanley-scout"
 GAPI = "/home/jaden/.hermes/skills/productivity/google-workspace/scripts/google_api.py"
 PYTHON = "/home/jaden/.hermes/hermes-agent/venv/bin/python"
-OUT_DIR = Path("/home/jaden/.openclaw/data/stanley-demo/office-emails")
-STATE_FILE = Path("/home/jaden/.openclaw/data/stanley-demo/gmail-import-state.json")
+OUT_DIR = Path("/home/jaden/.local/share/stanley-systems/data/stanley-demo/office-emails")
+STATE_FILE = Path("/home/jaden/.local/share/stanley-systems/data/stanley-demo/gmail-import-state.json")
 
 STAFF_BY_TOKEN = {
     "dana": "Dana Brooks <dana@bayviewheating.demo>",

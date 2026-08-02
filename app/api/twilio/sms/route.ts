@@ -7,7 +7,7 @@ import { buildOpsLayerSnapshot } from '@/lib/stanley-demo/ops-layer'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-const STORAGE_DIR = '/home/jaden/.openclaw/data/stanley-demo/twilio-sms'
+const STORAGE_DIR = '/home/jaden/.local/share/stanley-systems/data/stanley-demo/twilio-sms'
 const SECRET_FILE = '/home/jaden/.config/stanley-systems-demo/twilio.env'
 const PUBLIC_WEBHOOK_URL = 'https://stanley-systems.com/api/twilio/sms'
 

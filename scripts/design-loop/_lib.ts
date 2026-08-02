@@ -64,11 +64,11 @@ export type Manifest = {
 
 export const SITE_REPO = resolve(process.env.STANLEY_SITE_REPO || process.cwd())
 export const SOFTWARE_FACTORY_ROOT = resolve(
-  process.env.SOFTWARE_FACTORY_ROOT || "/home/jaden/.openclaw/workspace/project/software-factory",
+  process.env.SOFTWARE_FACTORY_ROOT || "/home/jaden/stanley-assets/openclaw-project/software-factory",
 )
 export const DESIGN_AUDIT_ROOT = join(SOFTWARE_FACTORY_ROOT, "design-audit")
 export const STANLEY_OS_ROOT = resolve(
-  process.env.STANLEY_OS_ROOT || "/home/jaden/.openclaw/workspace/project/stanley-os",
+  process.env.STANLEY_OS_ROOT || "/home/jaden/stanley-assets/openclaw-project/stanley-os",
 )
 export const CONFIG_PATH = join(DESIGN_AUDIT_ROOT, "design-loop.config.json")
 

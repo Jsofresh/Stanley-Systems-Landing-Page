@@ -5,7 +5,7 @@ import path from 'node:path'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-const STORAGE_DIR = '/home/jaden/.openclaw/data/stanley-demo/qbo-oauth'
+const STORAGE_DIR = '/home/jaden/.local/share/stanley-systems/data/stanley-demo/qbo-oauth'
 const SECRET_FILE = '/home/jaden/.config/stanley-systems-demo/qbo.env'
 const TOKEN_FILE = '/home/jaden/.config/stanley-systems-demo/qbo-token.json'
 const DEFAULT_REDIRECT_URI = 'https://stanley-systems.com/api/qbo/callback'

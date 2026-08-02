@@ -7,8 +7,8 @@ const DEFAULT_MODEL = "gpt-image-2"
 const DEFAULT_QUALITY = "high"
 const MODEL_ALIAS = "GPT-Image2High"
 const DEFAULT_SIZE = "1024x1024"
-const DEFAULT_ENV_PATH = "/home/jaden/.openclaw/gateway.systemd.env"
-const DEFAULT_ARTIFACT_ROOT = "/home/jaden/.openclaw/workspace/project/software-factory/artifacts/gpt-image-section-concepts"
+const DEFAULT_ENV_PATH = "/home/jaden/.config/stanley-systems/secrets/retired-openclaw-gateway.env"
+const DEFAULT_ARTIFACT_ROOT = "/home/jaden/stanley-assets/openclaw-project/software-factory/artifacts/gpt-image-section-concepts"
 
 type Args = Record<string, string[]>
 

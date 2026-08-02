@@ -5,7 +5,7 @@ import path from 'node:path'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-const STORAGE_DIR = '/home/jaden/.openclaw/data/stanley-demo/customer-intake'
+const STORAGE_DIR = '/home/jaden/.local/share/stanley-systems/data/stanley-demo/customer-intake'
 
 function utcDayStamp(iso: string) {
   return iso.slice(0, 10)

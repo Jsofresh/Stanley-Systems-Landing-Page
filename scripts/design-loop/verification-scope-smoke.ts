@@ -50,7 +50,7 @@ writeJson(join(syntheticRunDir, "manifest.json"), {
   max_iterations: 1,
   site_repo: SITE_REPO,
   software_factory_root: DESIGN_AUDIT_ROOT.replace(/\/design-audit$/, ""),
-  stanley_os_root: "/home/jaden/.openclaw/workspace/project/stanley-os",
+  stanley_os_root: "/home/jaden/stanley-assets/openclaw-project/stanley-os",
   run_dir: syntheticRunDir,
   reports: [],
 })

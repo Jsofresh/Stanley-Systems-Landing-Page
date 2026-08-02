@@ -4,7 +4,7 @@ import crypto from "crypto"
 
 export const runtime = "nodejs"
 
-const SECRETS_DIR = process.env.CONTENT_SYSTEM_SECRETS_DIR || "/home/jaden/.openclaw/secrets/content-system"
+const SECRETS_DIR = process.env.CONTENT_SYSTEM_SECRETS_DIR || "/home/jaden/.config/stanley-systems/secrets/content-system"
 const ENV_FILE = process.env.CONTENT_SYSTEM_ENV_FILE || path.join(SECRETS_DIR, ".env")
 const TOKEN_FILE = process.env.CONTENT_SYSTEM_OAUTH_TOKEN_FILE || path.join(SECRETS_DIR, "oauth-tokens.json")
 const STATE_FILE = process.env.CONTENT_SYSTEM_OAUTH_STATE_FILE || path.join(SECRETS_DIR, "oauth-states.json")

@@ -5,7 +5,7 @@ import path from "node:path"
 export const dynamic = "force-dynamic"
 export const runtime = "nodejs"
 
-const STORAGE_DIR = "/home/jaden/.openclaw/data/stanley-demo/jobber-oauth"
+const STORAGE_DIR = "/home/jaden/.local/share/stanley-systems/data/stanley-demo/jobber-oauth"
 const SECRET_FILE = "/home/jaden/.config/stanley-systems-demo/jobber.env"
 const TOKEN_FILE = "/home/jaden/.config/stanley-systems-demo/jobber-token.json"
 const DEFAULT_REDIRECT_URI = "https://stanley-systems.com/api/jobber/oauth/callback"

@@ -6,7 +6,7 @@ import path from 'node:path'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-const STORAGE_DIR = '/home/jaden/.openclaw/data/stanley-demo/qbo-webhooks'
+const STORAGE_DIR = '/home/jaden/.local/share/stanley-systems/data/stanley-demo/qbo-webhooks'
 const SECRET_FILE = '/home/jaden/.config/stanley-systems-demo/qbo.env'
 const N8N_FORWARD_URL = process.env.STANLEY_QBO_WEBHOOK_FORWARD_URL || ''
 

@@ -14,10 +14,10 @@ import { basename, dirname, join, resolve } from "node:path"
 import { main, slugify, toBool, writeJson, writeText } from "./_lib.ts"
 
 const BRIDGE_VERSION = "agent-handoff-bridge-v1"
-const SITE_REPO = resolve(process.env.AGENT_HANDOFF_SITE_REPO || "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page")
-const TASK_ROOT = resolve(process.env.AGENT_HANDOFF_TASK_ROOT || "/home/jaden/.openclaw/workspace/project/software-factory/tasks")
-const SOFTWARE_FACTORY_ROOT = resolve(process.env.AGENT_HANDOFF_SOFTWARE_FACTORY_ROOT || "/home/jaden/.openclaw/workspace/project/software-factory")
-const STANLEY_OS_ROOT = resolve(process.env.AGENT_HANDOFF_STANLEY_OS_ROOT || "/home/jaden/.openclaw/workspace/project/stanley-os")
+const SITE_REPO = resolve(process.env.AGENT_HANDOFF_SITE_REPO || "/home/jaden/stanley-landing")
+const TASK_ROOT = resolve(process.env.AGENT_HANDOFF_TASK_ROOT || "/home/jaden/stanley-assets/openclaw-project/software-factory/tasks")
+const SOFTWARE_FACTORY_ROOT = resolve(process.env.AGENT_HANDOFF_SOFTWARE_FACTORY_ROOT || "/home/jaden/stanley-assets/openclaw-project/software-factory")
+const STANLEY_OS_ROOT = resolve(process.env.AGENT_HANDOFF_STANLEY_OS_ROOT || "/home/jaden/stanley-assets/openclaw-project/stanley-os")
 const ARTIFACT_ROOT = join(SOFTWARE_FACTORY_ROOT, "artifacts", "agent-handoff-bridge")
 const RUNS_ROOT = join(ARTIFACT_ROOT, "runs")
 const LOCK_PATH = join(ARTIFACT_ROOT, "agent-handoff-bridge.lock")

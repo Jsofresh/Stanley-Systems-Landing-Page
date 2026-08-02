@@ -103,8 +103,8 @@ type StanleyContext = {
 }
 
 const HERMES_AGENT_ROOT = process.env.HERMES_AGENT_ROOT || "/home/jaden/.hermes/hermes-agent"
-const SOFTWARE_FACTORY_ROOT = process.env.SOFTWARE_FACTORY_ROOT || "/home/jaden/.openclaw/workspace/project/software-factory"
-const STANLEY_CONTEXT_ROOT = process.env.STANLEY_CONTEXT_ROOT || "/home/jaden/.openclaw/workspace/project/stanley-context"
+const SOFTWARE_FACTORY_ROOT = process.env.SOFTWARE_FACTORY_ROOT || "/home/jaden/stanley-assets/openclaw-project/software-factory"
+const STANLEY_CONTEXT_ROOT = process.env.STANLEY_CONTEXT_ROOT || "/home/jaden/stanley-assets/openclaw-project/stanley-context"
 
 const CONTEXT_FILES = [
   "00_START_HERE.md",
@@ -572,7 +572,7 @@ function writeJudgeArtifact(artifactDir: string, basename: string, result: Visio
 }
 
 function buildCodexPatchTask(packet: ReviewPacket, route: string, context: StanleyContext, fresh: JudgeDecision, mobile: JudgeDecision, strategy: JudgeDecision, markdown: string, decision: FinalDecision, screenshots: string[], final: VisionResult): string {
-  return `# Codex Patch Task: Four-Judge Visual Review Failure\n\nStatus: patch_spec_ready\nRepo: \`/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page\`\nRoute: \`${route}\`\nSection id: \`${packet.section_id}\`\nRun id: \`${packet.run_id}\`\nReviewer: ${final.provider}/${final.model}\n\n## Boundaries\n- Do not deploy.\n- Do not restart PM2.\n- Do not run production live smoke.\n- Do not touch runtime config, secrets, credentials, n8n, QBO, HCP, Telegram config, OpenClaw config, PM2, or live workflow files.\n- Codex cannot approve its own work. Hermes must recapture screenshots and rerun the locked four-judge reviewer.\n\n## Screenshots attached to judges\n${screenshots.map((file) => `- ${file}`).join("\n")}\n\n## Context files loaded\n${context.loaded_files.map((file) => `- ${file}`).join("\n")}\n\n## Fresh Client Judge\n\`\`\`json\n${JSON.stringify(fresh, null, 2)}\n\`\`\`\n\n## Mobile Trust Judge\n\`\`\`json\n${JSON.stringify(mobile, null, 2)}\n\`\`\`\n\n## Stanley Systems Strategy Judge\n\`\`\`json\n${JSON.stringify(strategy, null, 2)}\n\`\`\`\n\n## Final markdown critique\n${markdown}\n\n## Final JSON decision\n\`\`\`json\n${JSON.stringify(decision, null, 2)}\n\`\`\`\n\n## Patch brief\n${decision.patch_brief}\n\n## Required verification after patch\n\`\`\`bash\nnpm run build\nnpm run design-loop:critical-visual-review-smoke\nnpm run design-loop:anti-ai-slop-smoke\ngit diff --check\n\`\`\`\n`
+  return `# Codex Patch Task: Four-Judge Visual Review Failure\n\nStatus: patch_spec_ready\nRepo: \`/home/jaden/stanley-landing\`\nRoute: \`${route}\`\nSection id: \`${packet.section_id}\`\nRun id: \`${packet.run_id}\`\nReviewer: ${final.provider}/${final.model}\n\n## Boundaries\n- Do not deploy.\n- Do not restart PM2.\n- Do not run production live smoke.\n- Do not touch runtime config, secrets, credentials, n8n, QBO, HCP, Telegram config, OpenClaw config, PM2, or live workflow files.\n- Codex cannot approve its own work. Hermes must recapture screenshots and rerun the locked four-judge reviewer.\n\n## Screenshots attached to judges\n${screenshots.map((file) => `- ${file}`).join("\n")}\n\n## Context files loaded\n${context.loaded_files.map((file) => `- ${file}`).join("\n")}\n\n## Fresh Client Judge\n\`\`\`json\n${JSON.stringify(fresh, null, 2)}\n\`\`\`\n\n## Mobile Trust Judge\n\`\`\`json\n${JSON.stringify(mobile, null, 2)}\n\`\`\`\n\n## Stanley Systems Strategy Judge\n\`\`\`json\n${JSON.stringify(strategy, null, 2)}\n\`\`\`\n\n## Final markdown critique\n${markdown}\n\n## Final JSON decision\n\`\`\`json\n${JSON.stringify(decision, null, 2)}\n\`\`\`\n\n## Patch brief\n${decision.patch_brief}\n\n## Required verification after patch\n\`\`\`bash\nnpm run build\nnpm run design-loop:critical-visual-review-smoke\nnpm run design-loop:anti-ai-slop-smoke\ngit diff --check\n\`\`\`\n`
 }
 
 function extractJsonObject(output: string): string | null {

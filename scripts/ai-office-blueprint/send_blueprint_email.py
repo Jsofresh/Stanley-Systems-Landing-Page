@@ -32,7 +32,7 @@ from googleapiclient.discovery import build
 
 REPO = Path(__file__).resolve().parents[2]
 TEMPLATE = REPO / "templates/ai-office-blueprint/fable-blueprint-template.html"
-DEFAULT_OUT_DIR = Path("/home/jaden/.openclaw/data/stanley-landing/ai-office-blueprints")
+DEFAULT_OUT_DIR = Path("/home/jaden/.local/share/stanley-systems/data/stanley-landing/ai-office-blueprints")
 DEFAULT_PROFILE = Path("/home/jaden/.hermes/profiles/stanley-outbound")
 
 

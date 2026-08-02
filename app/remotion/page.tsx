@@ -4,8 +4,8 @@ import { redirect } from "next/navigation"
 import { Film, FolderOpen, PlayCircle, ShieldCheck, Video } from "lucide-react"
 import { hasValidRemotionToken, REMOTION_ACCESS_COOKIE } from "@/lib/remotion-access"
 
-const repoPath = "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/remotion"
-const outputPath = "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/public/broll"
+const repoPath = "/home/jaden/stanley-landing/remotion"
+const outputPath = "/home/jaden/stanley-landing/public/broll"
 
 export default function RemotionPage() {
   const cookieStore = cookies()
