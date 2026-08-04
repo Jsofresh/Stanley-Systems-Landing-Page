@@ -1,5 +1,6 @@
 import Image from "next/image"
 import type { CSSProperties } from "react"
+import brandMark from "./assets/stanley-systems-brand-mark.png"
 import styles from "./coming-soon.module.css"
 
 const heroImages = [
@@ -38,7 +39,7 @@ export default function HomePage() {
       <div className={styles.shell}>
         <div className={styles.brand} aria-label="Stanley Systems">
           <Image
-            src="/images/stanley-systems-brand-mark.png"
+            src={brandMark}
             alt=""
             width={52}
             height={52}
