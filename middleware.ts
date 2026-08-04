@@ -4,10 +4,7 @@ import { NextResponse } from "next/server"
 export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/") return NextResponse.next()
 
-  const destination = request.nextUrl.clone()
-  destination.pathname = "/"
-  destination.search = ""
-  return NextResponse.redirect(destination, 307)
+  return NextResponse.redirect(new URL("/", "https://stanley-systems.com"), 307)
 }
 
 export const config = {
