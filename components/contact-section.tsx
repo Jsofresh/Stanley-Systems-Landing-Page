@@ -1,27 +1,43 @@
 "use client"
 
+import Link from "next/link"
 import { useState } from "react"
-import { Mail, Phone, Clock, ArrowRight, CheckCircle2, CalendarCheck } from "lucide-react"
+import { ArrowRight, CheckCircle2, ClipboardList, Mail, Phone, ShieldCheck, Wrench } from "lucide-react"
+import { trackOnboardingFormStarted, trackOnboardingFormSubmitted } from "@/components/posthog-provider"
 
 const contactCards = [
   {
     icon: Mail,
-    title: "Email us",
-    description: "Send over what is slowing the business down, and Stanley Systems will tell you where to start.",
-    value: "hello@stanley-systems.com",
-    href: "mailto:hello@stanley-systems.com",
+    title: "Email directly",
+    description: "If you would rather send notes by email, Stanley Systems can review them there too.",
+    value: "jaden@stanley-systems.com",
+    href: "mailto:jaden@stanley-systems.com",
   },
   {
     icon: Phone,
-    title: "Talk to the front desk",
-    description: "Call the front desk line to talk through what is slowing the business down and get pointed in the right direction.",
+    title: "Call directly",
+    description: "If you want to talk it through first, call and explain where things keep getting stuck.",
     compact: true,
     value: "+1 (617) 958-6372",
     href: "tel:+16179586372",
   },
 ]
 
-const faqsHours = ["Calls can be scheduled 24/7", "Meetings available around your workday", "Phone or Zoom, whichever is easier"]
+const fitPoints = [
+  "Reviewed by a real person",
+  "Routed to the right next step: Free Blueprint, AI Profit Map, Sprint, Ops, or a simple fit answer",
+  "Built for service businesses where office work slows jobs, invoices, and follow-up",
+]
+
+const workflowOptions = [
+  "Following up with leads",
+  "Scheduling and dispatch",
+  "Job details getting lost between office and field",
+  "Paperwork or admin backlog",
+  "Invoicing",
+  "Getting paid",
+  "Something else",
+]
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -29,13 +45,22 @@ export function ContactSection() {
     email: "",
     phone: "",
     company: "",
-    location: "",
+    businessType: "",
+    bottleneck: "",
+    invoiceDelay: "",
+    currentProcess: "",
     problem: "",
+    smsConsent: false,
   })
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "success" | "error">("idle")
   const [submitMessage, setSubmitMessage] = useState("")
+  const [hasStarted, setHasStarted] = useState(false)
 
   function updateField(field: keyof typeof formData, value: string) {
+    if (!hasStarted) {
+      setHasStarted(true)
+      trackOnboardingFormStarted({ event_source: "workflow_audit_contact_form" })
+    }
     setFormData((current) => ({ ...current, [field]: value }))
   }
 
@@ -52,7 +77,10 @@ export function ContactSection() {
         },
         body: JSON.stringify({
           ...formData,
+          telegram_alert_type: "contact_routing_request",
+          form_type: "contact_routing_request",
           source: "contact-page-form",
+          source_section: "contact_page_form",
           page: "/contact",
         }),
       })
@@ -64,23 +92,28 @@ export function ContactSection() {
       }
 
       setSubmitState("success")
+      trackOnboardingFormSubmitted({ event_source: "workflow_audit_contact_form" })
       setSubmitMessage(
-        result?.message || "Thanks. Stanley Systems received your note and will reply soon.",
+        result?.message || "Thanks. Stanley Systems will take a look and reach out if there is a clear revenue problem to inspect.",
       )
       setFormData({
         name: "",
         email: "",
         phone: "",
         company: "",
-        location: "",
+        businessType: "",
+        bottleneck: "",
+        invoiceDelay: "",
+        currentProcess: "",
         problem: "",
+        smsConsent: false,
       })
     } catch (error) {
       setSubmitState("error")
       setSubmitMessage(
         error instanceof Error
-          ? `${error.message} If needed, email hello@stanley-systems.com directly.`
-          : "Something went wrong. If needed, email hello@stanley-systems.com directly.",
+          ? `${error.message} If needed, email jaden@stanley-systems.com directly.`
+          : "Something went wrong. If needed, email jaden@stanley-systems.com directly.",
       )
     }
   }
@@ -88,20 +121,21 @@ export function ContactSection() {
   return (
     <section id="contact" className="relative z-10 px-4 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
           <div className="rounded-[2rem] border border-[#ece4d6] bg-[linear-gradient(180deg,#f9f6ef_0%,#ffffff_100%)] p-7 shadow-[0_20px_60px_rgba(15,23,42,0.06)] sm:p-8">
+
             <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              Get in touch with Stanley Systems.
+              Send the office bottleneck that keeps slowing work down.
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
-              Whether you need clarity, a second set of eyes, or a workflow audit, Stanley Systems can help figure out where the real operational drag is coming from.
+              Tell Stanley Systems where calls, paperwork, billing, or follow-up keep getting stuck. We will point you to the Free Blueprint, AI Profit Map, AI Office Installation Sprint, AI Office Ops, or a simple fit answer.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {contactCards.map((card) => (
                 <div
                   key={card.title}
-                  className="flex rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] lg:min-h-[15.5rem]"
+                  className="flex rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] lg:min-h-[13.5rem]"
                 >
                   <div className="flex w-full flex-col">
                     <div className="flex items-start justify-between gap-4">
@@ -122,36 +156,38 @@ export function ContactSection() {
               ))}
             </div>
 
-            <div className="mt-4 grid gap-4 lg:grid-cols-2 lg:items-stretch">
-              <div className="rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] lg:min-h-[15.5rem]">
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-xl font-semibold text-slate-900">Scheduling</h3>
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
-                    <Clock className="h-5 w-5" />
-                  </div>
+            <div className="mt-4 rounded-[1.5rem] border border-[#dfe8d9] bg-[linear-gradient(180deg,#f5f9f1_0%,#ffffff_100%)] p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-900">What we are looking for</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-[15px]">
+                    The best fit is a service business where finished work, calls, job details, customer follow-up, or invoices still depend too much on memory, inbox digging, or the owner stepping in to keep everything moving.
+                  </p>
                 </div>
-                <div className="mt-4 space-y-2.5 text-[13px] leading-5 text-slate-600 sm:text-[14px]">
-                  {faqsHours.map((row) => (
-                    <div key={row} className="rounded-xl bg-[#f8f5ee] px-4 py-2.5">
-                      {row}
-                    </div>
-                  ))}
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-[#15803D]">
+                  <Wrench className="h-5 w-5" />
                 </div>
               </div>
 
-              <div className="rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] lg:min-h-[15.5rem]">
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-xl font-semibold text-slate-900">What happens next</h3>
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
-                    <CalendarCheck className="h-5 w-5" />
+              <div className="mt-4 space-y-2.5 text-[13px] leading-5 text-slate-600 sm:text-[14px]">
+                {fitPoints.map((row) => (
+                  <div key={row} className="rounded-xl border border-[#e4ecdd] bg-white px-4 py-2.5">
+                    {row}
                   </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-4 rounded-[1.5rem] border border-[#e8dfd0] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)]">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-900">What happens next</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-[15px]">
+                    Stanley Systems reviews what you send, looks for the revenue problem, and reaches out if there is a clear place to inspect through the AI Profit Map.
+                  </p>
                 </div>
-                <p className="mt-3 text-[13px] leading-5 text-slate-600 sm:text-[14px]">
-                  Stanley Systems reviews the issue, spots the bottlenecks, and replies with the clearest next step.
-                </p>
-                <div className="mt-4 space-y-2.5 text-[13px] leading-5 text-slate-600 sm:text-[14px]">
-                  <div className="rounded-xl bg-[#f8f5ee] px-4 py-2.5">Fast first reply with real direction</div>
-                  <div className="rounded-xl bg-[#f8f5ee] px-4 py-2.5">Clear answer on next steps</div>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#f4efe6] text-[#15803D]">
+                  <ShieldCheck className="h-5 w-5" />
                 </div>
               </div>
             </div>
@@ -171,60 +207,155 @@ export function ContactSection() {
               </div>
             ) : null}
 
+            <div className="mb-6">
+              <h3 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-[2rem]">
+                Tell us what is stuck
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-[15px]">
+                Answer a few quick questions so Stanley Systems can route you to the right next step instead of a generic sales call.
+              </p>
+            </div>
+
             <form onSubmit={handleSubmit} className="grid gap-5">
-              {[
-                { key: "name", label: "Name*", placeholder: "Jane Smith" },
-                { key: "email", label: "Email*", placeholder: "jane@company.com" },
-                { key: "phone", label: "Phone", placeholder: "+1 (555) 123-4567" },
-                { key: "company", label: "Company", placeholder: "Your business name" },
-                { key: "location", label: "Location", placeholder: "City, State" },
-              ].map((field) => (
-                <label key={field.key} className="block">
-                  <span className="mb-2 block text-sm font-medium text-slate-700">{field.label}</span>
-                  <input
-                    type={field.key === "email" ? "email" : field.key === "phone" ? "tel" : "text"}
-                    required={field.key === "name" || field.key === "email"}
-                    value={formData[field.key as keyof typeof formData]}
-                    onChange={(event) => updateField(field.key as keyof typeof formData, event.target.value)}
-                    placeholder={field.placeholder}
-                    className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
-                  />
-                </label>
-              ))}
+              <div className="grid gap-5 sm:grid-cols-2">
+                {[
+                  { key: "name", label: "Full name*", placeholder: "Jane Smith" },
+                  { key: "company", label: "Business name*", placeholder: "Your business name" },
+                  { key: "email", label: "Email*", placeholder: "jane@company.com" },
+                  { key: "phone", label: "Phone number", placeholder: "+1 (555) 123-4567" },
+                ].map((field) => (
+                  <label key={field.key} className="block">
+                    <span className="mb-2 block text-sm font-medium text-slate-700">{field.label}</span>
+                    <input
+                      type={field.key === "email" ? "email" : field.key === "phone" ? "tel" : "text"}
+                      name={field.key}
+                      required={field.key === "name" || field.key === "email" || field.key === "company"}
+                      value={formData[field.key as keyof typeof formData]}
+                      onChange={(event) => updateField(field.key as keyof typeof formData, event.target.value)}
+                      placeholder={field.placeholder}
+                      className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+                    />
+                  </label>
+                ))}
+              </div>
 
               <label className="block">
-                <span className="mb-2 block text-sm font-medium text-slate-700">What’s breaking down?*</span>
-                <textarea
-                  rows={6}
+                <span className="mb-2 block text-sm font-medium text-slate-700">What kind of service business do you run?*</span>
+                <input
+                  type="text"
+                  name="businessType"
                   required
-                  value={formData.problem}
-                  onChange={(event) => updateField("problem", event.target.value)}
-                  placeholder="Tell Stanley Systems where follow-up, billing, or admin is getting stuck."
+                  value={formData.businessType}
+                  onChange={(event) => updateField("businessType", event.target.value)}
+                  placeholder="HVAC, plumbing, marine, electrical, landscaping, etc."
                   className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
                 />
               </label>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">Where do things usually get stuck?*</span>
+                <select
+                  required
+                  name="bottleneck"
+                  value={formData.bottleneck}
+                  onChange={(event) => updateField("bottleneck", event.target.value)}
+                  className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+                >
+                  <option value="">Select the biggest bottleneck</option>
+                  {workflowOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">How long after a job is done does the invoice usually go out?</span>
+                <input
+                  type="text"
+                  name="invoiceDelay"
+                  value={formData.invoiceDelay}
+                  onChange={(event) => updateField("invoiceDelay", event.target.value)}
+                  placeholder="Same day, 2 days later, weekly batch, when someone has time, etc."
+                  className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">What happens today when a new lead or job comes in?*</span>
+                <textarea
+                  rows={4}
+                  name="currentProcess"
+                  required
+                  value={formData.currentProcess}
+                  onChange={(event) => updateField("currentProcess", event.target.value)}
+                  placeholder="Walk through what happens now, from the first call or message to the next handoff."
+                  className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">What is the biggest headache you want fixed first?*</span>
+                <textarea
+                  rows={5}
+                  name="problem"
+                  required
+                  value={formData.problem}
+                  onChange={(event) => updateField("problem", event.target.value)}
+                  placeholder="Describe where follow-up, billing, paperwork, or office work keeps getting slowed down."
+                  className="w-full rounded-2xl border border-[#e2d8c7] bg-white px-4 py-3.5 text-slate-900 outline-none transition focus:border-[#15803D] focus:ring-4 focus:ring-[#15803D]/10"
+                />
+              </label>
+
+              <div className="rounded-[1.5rem] border border-[#dfe8d9] bg-white px-4 py-4 shadow-[0_12px_30px_rgba(15,23,42,0.04)]">
+                <label className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    checked={formData.smsConsent}
+                    onChange={(event) => {
+                      if (!hasStarted) {
+                        setHasStarted(true)
+                        trackOnboardingFormStarted({ event_source: "workflow_audit_contact_form" })
+                      }
+                      setFormData((current) => ({ ...current, smsConsent: event.target.checked }))
+                    }}
+                    className="mt-1 h-4 w-4 rounded border border-[#cbd5c0] text-[#15803D] focus:ring-2 focus:ring-[#15803D]/20"
+                  />
+                  <span className="text-sm leading-6 text-slate-700">
+                    I agree to receive text messages from Stanley Systems about my inquiry, appointments, service updates, billing, and account follow-up. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. {" "}
+                    <Link href="/privacy-policy" className="font-medium text-slate-900 underline underline-offset-4">
+                      Privacy Policy
+                    </Link>{" "}
+                    and {" "}
+                    <Link href="/terms-and-conditions" className="font-medium text-slate-900 underline underline-offset-4">
+                      Terms and Conditions
+                    </Link>
+                    .
+                  </span>
+                </label>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  By submitting this form, you agree to our {" "}
+                  <Link href="/privacy-policy" className="font-medium text-slate-900 underline underline-offset-4">
+                    Privacy Policy
+                  </Link>{" "}
+                  and {" "}
+                  <Link href="/terms-and-conditions" className="font-medium text-slate-900 underline underline-offset-4">
+                    Terms and Conditions
+                  </Link>
+                  .
+                </p>
+              </div>
 
               <button
                 type="submit"
                 disabled={submitState === "submitting"}
                 className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#166534] px-6 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-[#14532d] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {submitState === "submitting" ? "Sending..." : "Submit"}
+                {submitState === "submitting" ? "Sending..." : "Send this to Stanley Systems"}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </button>
             </form>
-          </div>
-        </div>
-
-        <div className="mt-6 rounded-[1.5rem] border border-[#dfe8d9] bg-[linear-gradient(180deg,#f5f9f1_0%,#ffffff_100%)] p-6 shadow-[0_12px_30px_rgba(15,23,42,0.05)] sm:p-7">
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">Best fit</div>
-            <h3 className="mt-4 text-[1.8rem] font-semibold leading-[1.18] text-slate-900 lg:text-[1.72rem]">
-              You know something is leaking time or cash. You just want it fixed cleanly.
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-[15px]">
-              If follow-up is slow, billing lags, or the office keeps re-entering the same information, Stanley Systems is built for exactly that kind of operational cleanup. The goal is not to force new complexity into the business. The goal is to remove drag, tighten the handoff, and make the workflow easier for the owner and team to trust.
-            </p>
           </div>
         </div>
       </div>

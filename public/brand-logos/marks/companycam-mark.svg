@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CompanyCam mark">
+  <g fill="none" stroke="#ffffff" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 23.5h8.2l3.2-4.5h11.2l3.2 4.5H49c4.1 0 7.2 3.1 7.2 7.1v16.7c0 4-3.1 7.1-7.2 7.1H15c-4.1 0-7.2-3.1-7.2-7.1V30.6c0-4 3.1-7.1 7.2-7.1Z"/>
+    <path d="M32 48.8s11.5-10.2 11.5-18.1c0-6.3-5-11.2-11.5-11.2s-11.5 4.9-11.5 11.2c0 7.9 11.5 18.1 11.5 18.1Z"/>
+    <circle cx="32" cy="31" r="4.8"/>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "heroH": 720,
+    "viewportH": 720,
+    "offerText": "Start the free Cash Flow Calculator.\nStart the free calculator",
+    "offerH": 174,
+    "calcH": 677.078125,
+    "leaksTitleSize": "46.72px",
+    "assessmentH": 699.5,
+    "systemsText": "Systems that help your business make more money\n\nTwo simple systems: one helps finished work turn into cash faster, and one helps past customers come back.\n\nCashflow Control System\n\nTurn finished work into collected cash faster.\n\nCompleted jobs stop waiting on office follow-up\nInvoices move out faster\nOwners get cleaner cash visibility\nSee the Cashflow Control System\nRepeat Revenue System\n\nTurn past customers, referrals, reviews, and missed calls into booked work.\n\nPast customers get reactivated\nHappy customers create reviews and referrals\nMissed calls get a recovery path\nSee the Repeat Revenue System",
+    "replacementImage": {
+      "complete": true,
+      "nw": 1280,
+      "nh": 800,
+      "src": "http://127.0.0.1:3233/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-60k-to-300k.jpg"
+    },
+    "forbiddenBuilt": false,
+    "forbiddenPick": false,
+    "overflow": 0
+  },
+  "bad": [],
+  "errs": [],
+  "failures": []
+}

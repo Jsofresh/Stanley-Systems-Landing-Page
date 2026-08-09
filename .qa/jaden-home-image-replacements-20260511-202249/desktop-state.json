@@ -1,0 +1,255 @@
+{
+  "badResponses": [],
+  "consoleErrors": [],
+  "imageState": [
+    {
+      "src": "/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-estimated-annual-leak.jpg",
+      "count": 5,
+      "states": [
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 266.8040466308594,
+            "height": 179.53631591796875,
+            "top": 135.17630004882812,
+            "left": 18.9014892578125
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 266.803955078125,
+            "height": 179.53631591796875,
+            "top": 38.95635986328125,
+            "left": 1118.700439453125
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 297.44091796875,
+            "height": 193.52651977539062,
+            "top": 394.2187805175781,
+            "left": 886.9637451171875
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 297.44091796875,
+            "height": 193.5264892578125,
+            "top": 480.15875244140625,
+            "left": 2115.962646484375
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 800,
+          "rect": {
+            "width": 776.09375,
+            "height": 485.046875,
+            "top": 898.0625,
+            "left": 606.90625
+          }
+        }
+      ]
+    },
+    {
+      "src": "/images/uploaded/homepage/cash-flow-rework/service-business-leak-types.jpg",
+      "count": 5,
+      "states": [
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 266.8040771484375,
+            "height": 179.53631591796875,
+            "top": 111.1213150024414,
+            "left": 293.8511962890625
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 266.8040771484375,
+            "height": 179.53631591796875,
+            "top": 14.901376724243164,
+            "left": 1393.650146484375
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 297.44091796875,
+            "height": 193.52651977539062,
+            "top": 372.7337951660156,
+            "left": 579.7139892578125
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 297.44091796875,
+            "height": 193.5264892578125,
+            "top": 458.67376708984375,
+            "left": 1808.712890625
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 426,
+          "rect": {
+            "width": 1326,
+            "height": 441.296875,
+            "top": 1777.703125,
+            "left": 57
+          }
+        }
+      ]
+    },
+    {
+      "src": "/images/uploaded/homepage/cash-flow-rework/cash-flow-assessment-card.jpg",
+      "count": 5,
+      "states": [
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 266.80401611328125,
+            "height": 179.5363311767578,
+            "top": 87.06632995605469,
+            "left": 568.8009643554688
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 266.8040771484375,
+            "height": 179.53631591796875,
+            "top": -9.153608322143555,
+            "left": 1668.599853515625
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 297.44097900390625,
+            "height": 193.52645874023438,
+            "top": 351.2488098144531,
+            "left": 272.4642333984375
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 297.44091796875,
+            "height": 193.5264892578125,
+            "top": 437.18878173828125,
+            "left": 1501.463134765625
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1024,
+          "naturalHeight": 1280,
+          "rect": {
+            "width": 486,
+            "height": 607.5,
+            "top": 2381,
+            "left": 857.828125
+          }
+        }
+      ]
+    },
+    {
+      "src": "/images/uploaded/homepage/cash-flow-rework/before-after-cash-flow-system.jpg",
+      "count": 5,
+      "states": [
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 266.80401611328125,
+            "height": 179.53631591796875,
+            "top": 63.01134490966797,
+            "left": 843.7506713867188
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 266.8038330078125,
+            "height": 179.53631591796875,
+            "top": -33.208595275878906,
+            "left": 1943.5496826171875
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 297.44091796875,
+            "height": 193.5264892578125,
+            "top": 329.7637939453125,
+            "left": -34.78546142578125
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 297.44091796875,
+            "height": 193.52651977539062,
+            "top": 415.7037658691406,
+            "left": 1194.21337890625
+          }
+        },
+        {
+          "complete": true,
+          "naturalWidth": 1280,
+          "naturalHeight": 589,
+          "rect": {
+            "width": 776.09375,
+            "height": 357.109375,
+            "top": 4223.875,
+            "left": 606.90625
+          }
+        }
+      ]
+    }
+  ],
+  "overflow": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "bodyScrollWidth": 1440
+  }
+}

@@ -1,0 +1,1697 @@
+{
+  "artifactDir": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-second-footer-fix-design-qa-rerun-20260504-design-coordinator",
+  "base": "http://127.0.0.1:3129",
+  "results": [
+    {
+      "name": "home-mobile",
+      "url": "/",
+      "width": 390,
+      "height": 1200,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-second-footer-fix-design-qa-rerun-20260504-design-coordinator/home-mobile.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "log",
+          "text": "[Vercel Speed Insights] Failed to load script from /_vercel/speed-insights/script.js. Please check if any content blockers are enabled and try again."
+        }
+      ],
+      "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+      "viewport": "390x1200",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflowPx": 0,
+      "noHorizontalOverflow": true,
+      "bodyTextLength": 11803,
+      "visibleOwnTextMatches": [
+        {
+          "term": "Repeat Revenue System",
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "className": "text-lg font-extrabold leading-tight text-[#102033]"
+        },
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "Repeat Revenue System",
+          "className": "mb-3 text-center text-sm font-bold leading-5 text-[#116832]"
+        }
+      ],
+      "navButton": {
+        "text": "Workflow Audit",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "rgb(17, 104, 50)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(183, 215, 191)"
+      },
+      "footerHeight": 687,
+      "footerTopGap": 25,
+      "footerVisibleChildren": [
+        {
+          "tag": "DIV",
+          "text": "© 2026 Stanley Systems. All rights reserved.SolutionsSpeed up invoicingMissed es",
+          "top": 17840,
+          "height": 598,
+          "display": "grid",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problemsIndus",
+          "top": 17840,
+          "height": 598,
+          "display": "grid",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problems",
+          "top": 17840,
+          "height": 160,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problems",
+          "top": 17840,
+          "height": 160,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "top": 17840,
+          "height": 16,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Speed up invoicing",
+          "top": 17868,
+          "height": 24,
+          "display": "inline-flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Missed estimate follow-up",
+          "top": 17898,
+          "height": 48,
+          "display": "inline-flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Office handoff problems",
+          "top": 17952,
+          "height": 48,
+          "display": "inline-flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "IndustriesMarine service businessesField service businessesWho we help",
+          "top": 17840,
+          "height": 160,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "IndustriesMarine service businessesField service businessesWho we help",
+          "top": 17840,
+          "height": 160,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "H3",
+          "text": "Industries",
+          "top": 17840,
+          "height": 16,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Marine service businesses",
+          "top": 17868,
+          "height": 48,
+          "display": "inline-flex",
+          "visibility": "visible"
+        }
+      ],
+      "cashCollectionSection": {
+        "top": 5356,
+        "height": 1734,
+        "width": 358,
+        "left": 16,
+        "right": 374
+      },
+      "cashOverflowing": [],
+      "imageCount": 33,
+      "visualKitImages": [
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/money-leak-routing-display.png",
+          "complete": true,
+          "naturalWidth": 1100,
+          "naturalHeight": 1100,
+          "rect": {
+            "x": 40,
+            "y": 1237,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/calendar-cashflow-trend-display.png",
+          "complete": true,
+          "naturalWidth": 934,
+          "naturalHeight": 934,
+          "rect": {
+            "x": 40,
+            "y": 1323,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/target-click-display.png",
+          "complete": true,
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "rect": {
+            "x": 40,
+            "y": 1409,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/delayed-invoice-display.png",
+          "complete": true,
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "rect": {
+            "x": 60,
+            "y": 1730,
+            "width": 52,
+            "height": 52
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-edit-display.png",
+          "complete": true,
+          "naturalWidth": 848,
+          "naturalHeight": 848,
+          "rect": {
+            "x": 60,
+            "y": 1830,
+            "width": 52,
+            "height": 52
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 853,
+          "rect": {
+            "x": 60,
+            "y": 1929,
+            "width": 52,
+            "height": 52
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/repeat-customer-cycle-display.png",
+          "complete": true,
+          "naturalWidth": 842,
+          "naturalHeight": 842,
+          "rect": {
+            "x": 60,
+            "y": 2029,
+            "width": 52,
+            "height": 52
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/payment-hold-display.png",
+          "complete": true,
+          "naturalWidth": 979,
+          "naturalHeight": 979,
+          "rect": {
+            "x": 65,
+            "y": 2203,
+            "width": 58,
+            "height": 58
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/delayed-invoice-display.png",
+          "complete": true,
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "rect": {
+            "x": 62,
+            "y": 3777,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-approved-display.png",
+          "complete": true,
+          "naturalWidth": 952,
+          "naturalHeight": 952,
+          "rect": {
+            "x": 62,
+            "y": 3875,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/office-rework-display.png",
+          "complete": true,
+          "naturalWidth": 1049,
+          "naturalHeight": 1049,
+          "rect": {
+            "x": 62,
+            "y": 3974,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/inactive-customers-display.png",
+          "complete": true,
+          "naturalWidth": 888,
+          "naturalHeight": 888,
+          "rect": {
+            "x": 62,
+            "y": 4072,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/first-fix-wrench-display.png",
+          "complete": true,
+          "naturalWidth": 1000,
+          "naturalHeight": 1000,
+          "rect": {
+            "x": 62,
+            "y": 4172,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/completed-job-display.png",
+          "complete": true,
+          "naturalWidth": 916,
+          "naturalHeight": 916,
+          "rect": {
+            "x": 303,
+            "y": 4721,
+            "width": 38,
+            "height": 38
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-approved-display.png",
+          "complete": true,
+          "naturalWidth": 958,
+          "naturalHeight": 958,
+          "rect": {
+            "x": 92,
+            "y": 4821,
+            "width": 28,
+            "height": 28
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/inactive-customers-display.png",
+          "complete": true,
+          "naturalWidth": 888,
+          "naturalHeight": 888,
+          "rect": {
+            "x": 303,
+            "y": 4924,
+            "width": 38,
+            "height": 38
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/referral-network-display.png",
+          "complete": true,
+          "naturalWidth": 921,
+          "naturalHeight": 921,
+          "rect": {
+            "x": 92,
+            "y": 5024,
+            "width": 28,
+            "height": 28
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/completed-job-display.png",
+          "complete": false,
+          "naturalWidth": 916,
+          "naturalHeight": 916,
+          "rect": {
+            "x": 47,
+            "y": 5846,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/billing-check-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 47,
+            "y": 5972,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-sent-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 47,
+            "y": 6127,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/office-alert-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 47,
+            "y": 6252,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-approved-display.png",
+          "complete": false,
+          "naturalWidth": 958,
+          "naturalHeight": 958,
+          "rect": {
+            "x": 47,
+            "y": 6378,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/result-check-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 47,
+            "y": 6503,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/delayed-invoice-display.png",
+          "complete": false,
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "rect": {
+            "x": 31,
+            "y": 6683,
+            "width": 44,
+            "height": 44
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/approved-handoff-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 31,
+            "y": 6785,
+            "width": 44,
+            "height": 44
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-stack-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 31,
+            "y": 6887,
+            "width": 44,
+            "height": 44
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/monthly-impact-trend-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 34,
+            "y": 7498,
+            "width": 54,
+            "height": 54
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/inactive-customers-display.png",
+          "complete": false,
+          "naturalWidth": 888,
+          "naturalHeight": 888,
+          "rect": {
+            "x": 312,
+            "y": 8048,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/review-growth-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 312,
+            "y": 8260,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/referral-network-display.png",
+          "complete": false,
+          "naturalWidth": 921,
+          "naturalHeight": 921,
+          "rect": {
+            "x": 312,
+            "y": 8492,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "complete": false,
+          "naturalWidth": 853,
+          "naturalHeight": 853,
+          "rect": {
+            "x": 312,
+            "y": 8724,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/result-check-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 16,
+            "y": 9177,
+            "width": 26,
+            "height": 26
+          }
+        }
+      ],
+      "visualKitResponses": [
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/money-leak-routing-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/calendar-cashflow-trend-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/target-click-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/delayed-invoice-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-edit-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/repeat-customer-cycle-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/payment-hold-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-approved-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/office-rework-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/inactive-customers-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/first-fix-wrench-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/completed-job-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-approved-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/referral-network-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/billing-check-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-sent-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/office-alert-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/result-check-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/approved-handoff-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-stack-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/monthly-impact-trend-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/review-growth-display.png",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "orangeLikeComputedElements": []
+    },
+    {
+      "name": "home-desktop",
+      "url": "/",
+      "width": 1440,
+      "height": 1600,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-second-footer-fix-design-qa-rerun-20260504-design-coordinator/home-desktop.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "log",
+          "text": "[Vercel Speed Insights] Failed to load script from /_vercel/speed-insights/script.js. Please check if any content blockers are enabled and try again."
+        }
+      ],
+      "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+      "viewport": "1440x1600",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "horizontalOverflowPx": 0,
+      "noHorizontalOverflow": true,
+      "bodyTextLength": 12137,
+      "visibleOwnTextMatches": [
+        {
+          "term": "Repeat Revenue System",
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "className": "text-lg font-extrabold leading-tight text-[#102033]"
+        },
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "Repeat Revenue System",
+          "className": "mb-3 text-center text-sm font-bold leading-5 text-[#116832]"
+        }
+      ],
+      "navButton": {
+        "text": "Workflow Audit",
+        "rect": {
+          "x": 1158,
+          "y": 29,
+          "width": 121,
+          "height": 67
+        },
+        "color": "rgb(17, 104, 50)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(183, 215, 191)"
+      },
+      "footerHeight": 655,
+      "footerTopGap": 41,
+      "footerVisibleChildren": [
+        {
+          "tag": "DIV",
+          "text": "Call nowBook the Workflow Audit",
+          "top": 10852,
+          "height": 84,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "Call nowBook the Workflow Audit",
+          "top": 10869,
+          "height": 50,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Call now",
+          "top": 10869,
+          "height": 50,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Book the Workflow Audit",
+          "top": 10870,
+          "height": 48,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "© 2026 Stanley Systems. All rights reserved.SolutionsSpeed up invoicingMissed es",
+          "top": 10960,
+          "height": 393,
+          "display": "grid",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "© 2026 Stanley Systems. All rights reserved.",
+          "top": 10960,
+          "height": 393,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "© 2026 Stanley Systems. All rights reserved.",
+          "top": 11104,
+          "height": 40,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "P",
+          "text": "© 2026 Stanley Systems. All rights reserved.",
+          "top": 11104,
+          "height": 40,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problemsIndus",
+          "top": 10960,
+          "height": 393,
+          "display": "grid",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problems",
+          "top": 10960,
+          "height": 202,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problems",
+          "top": 10960,
+          "height": 112,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "top": 10960,
+          "height": 16,
+          "display": "block",
+          "visibility": "visible"
+        }
+      ],
+      "cashCollectionSection": {
+        "top": 3992,
+        "height": 782,
+        "width": 1280,
+        "left": 80,
+        "right": 1360
+      },
+      "cashOverflowing": [],
+      "imageCount": 33,
+      "visualKitImages": [
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/money-leak-routing-display.png",
+          "complete": true,
+          "naturalWidth": 1100,
+          "naturalHeight": 1100,
+          "rect": {
+            "x": 100,
+            "y": 2374,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/calendar-cashflow-trend-display.png",
+          "complete": true,
+          "naturalWidth": 934,
+          "naturalHeight": 934,
+          "rect": {
+            "x": 296,
+            "y": 2374,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/target-click-display.png",
+          "complete": true,
+          "naturalWidth": 798,
+          "naturalHeight": 798,
+          "rect": {
+            "x": 492,
+            "y": 2374,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/delayed-invoice-display.png",
+          "complete": true,
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "rect": {
+            "x": 767,
+            "y": 1939,
+            "width": 52,
+            "height": 52
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-edit-display.png",
+          "complete": true,
+          "naturalWidth": 848,
+          "naturalHeight": 848,
+          "rect": {
+            "x": 1065,
+            "y": 1939,
+            "width": 52,
+            "height": 52
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 853,
+          "rect": {
+            "x": 767,
+            "y": 2041,
+            "width": 52,
+            "height": 52
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/repeat-customer-cycle-display.png",
+          "complete": true,
+          "naturalWidth": 842,
+          "naturalHeight": 842,
+          "rect": {
+            "x": 1065,
+            "y": 2041,
+            "width": 52,
+            "height": 52
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/payment-hold-display.png",
+          "complete": true,
+          "naturalWidth": 979,
+          "naturalHeight": 979,
+          "rect": {
+            "x": 772,
+            "y": 2267,
+            "width": 58,
+            "height": 58
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/delayed-invoice-display.png",
+          "complete": false,
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "rect": {
+            "x": 707,
+            "y": 2889,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-approved-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 1022,
+            "y": 2889,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/office-rework-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 707,
+            "y": 2987,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/inactive-customers-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 1022,
+            "y": 2987,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/first-fix-wrench-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 707,
+            "y": 3088,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/completed-job-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 652,
+            "y": 3647,
+            "width": 38,
+            "height": 38
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-approved-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 174,
+            "y": 3722,
+            "width": 28,
+            "height": 28
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/inactive-customers-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 1271,
+            "y": 3647,
+            "width": 38,
+            "height": 38
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/referral-network-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 793,
+            "y": 3722,
+            "width": 28,
+            "height": 28
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/completed-job-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 117,
+            "y": 4336,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/billing-check-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 367,
+            "y": 4336,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-sent-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 617,
+            "y": 4336,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/office-alert-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 867,
+            "y": 4336,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-approved-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 1117,
+            "y": 4336,
+            "width": 42,
+            "height": 42
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/result-check-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 115,
+            "y": 4519,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/delayed-invoice-display.png",
+          "complete": false,
+          "naturalWidth": 790,
+          "naturalHeight": 790,
+          "rect": {
+            "x": 95,
+            "y": 4631,
+            "width": 44,
+            "height": 44
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/approved-handoff-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 526,
+            "y": 4631,
+            "width": 44,
+            "height": 44
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-stack-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 956,
+            "y": 4631,
+            "width": 44,
+            "height": 44
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/monthly-impact-trend-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 166,
+            "y": 5165,
+            "width": 54,
+            "height": 54
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/inactive-customers-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 327,
+            "y": 5398,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/review-growth-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 650,
+            "y": 5398,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/referral-network-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 973,
+            "y": 5398,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "complete": false,
+          "naturalWidth": 853,
+          "naturalHeight": 853,
+          "rect": {
+            "x": 1296,
+            "y": 5398,
+            "width": 46,
+            "height": 46
+          }
+        },
+        {
+          "alt": "",
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/result-check-display.png",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "rect": {
+            "x": 410,
+            "y": 5742,
+            "width": 26,
+            "height": 26
+          }
+        }
+      ],
+      "visualKitResponses": [
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/money-leak-routing-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/calendar-cashflow-trend-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/target-click-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/delayed-invoice-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-edit-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/phone-missed-transparent-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/repeat-customer-cycle-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/payment-hold-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-approved-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/office-rework-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/inactive-customers-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/first-fix-wrench-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/completed-job-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-approved-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/referral-network-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/billing-check-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/invoice-sent-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/office-alert-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/result-check-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/approved-handoff-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/cash-stack-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/monthly-impact-trend-display.png",
+          "status": 200,
+          "ok": true
+        },
+        {
+          "src": "http://127.0.0.1:3129/visual-kit/display-assets/review-growth-display.png",
+          "status": 200,
+          "ok": true
+        }
+      ],
+      "orangeLikeComputedElements": []
+    },
+    {
+      "name": "pricing-mobile",
+      "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+      "width": 390,
+      "height": 1200,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-second-footer-fix-design-qa-rerun-20260504-design-coordinator/pricing-mobile.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "log",
+          "text": "[Vercel Speed Insights] Failed to load script from /_vercel/speed-insights/script.js. Please check if any content blockers are enabled and try again."
+        }
+      ],
+      "title": "Pricing | Workflow Audit | Stanley Systems",
+      "viewport": "390x1200",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflowPx": 0,
+      "noHorizontalOverflow": true,
+      "bodyTextLength": 4422,
+      "visibleOwnTextMatches": [
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that brings past customers, reviews, referrals, ",
+          "className": "mx-auto mt-6 max-w-3xl text-base leading-8 text-[#536173] sm:text-xl sm:leading-9"
+        }
+      ],
+      "navButton": {
+        "text": "Workflow Audit",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "color": "rgb(17, 104, 50)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(183, 215, 191)"
+      },
+      "footerHeight": 687,
+      "footerTopGap": 25,
+      "footerVisibleChildren": [
+        {
+          "tag": "DIV",
+          "text": "© 2026 Stanley Systems. All rights reserved.SolutionsSpeed up invoicingMissed es",
+          "top": 6886,
+          "height": 598,
+          "display": "grid",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problemsIndus",
+          "top": 6886,
+          "height": 598,
+          "display": "grid",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problems",
+          "top": 6886,
+          "height": 160,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problems",
+          "top": 6886,
+          "height": 160,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "top": 6886,
+          "height": 16,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Speed up invoicing",
+          "top": 6914,
+          "height": 24,
+          "display": "inline-flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Missed estimate follow-up",
+          "top": 6944,
+          "height": 48,
+          "display": "inline-flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Office handoff problems",
+          "top": 6998,
+          "height": 48,
+          "display": "inline-flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "IndustriesMarine service businessesField service businessesWho we help",
+          "top": 6886,
+          "height": 160,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "IndustriesMarine service businessesField service businessesWho we help",
+          "top": 6886,
+          "height": 160,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "H3",
+          "text": "Industries",
+          "top": 6886,
+          "height": 16,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Marine service businesses",
+          "top": 6914,
+          "height": 48,
+          "display": "inline-flex",
+          "visibility": "visible"
+        }
+      ],
+      "cashCollectionSection": null,
+      "cashOverflowing": [],
+      "imageCount": 1,
+      "visualKitImages": [],
+      "visualKitResponses": [],
+      "orangeLikeComputedElements": []
+    },
+    {
+      "name": "pricing-desktop",
+      "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+      "width": 1440,
+      "height": 1600,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-second-footer-fix-design-qa-rerun-20260504-design-coordinator/pricing-desktop.png",
+      "consoleMessages": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "log",
+          "text": "[Vercel Speed Insights] Failed to load script from /_vercel/speed-insights/script.js. Please check if any content blockers are enabled and try again."
+        }
+      ],
+      "title": "Pricing | Workflow Audit | Stanley Systems",
+      "viewport": "1440x1600",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "horizontalOverflowPx": 0,
+      "noHorizontalOverflow": true,
+      "bodyTextLength": 4648,
+      "visibleOwnTextMatches": [
+        {
+          "term": "Repeat Revenue System",
+          "tag": "P",
+          "text": "The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that brings past customers, reviews, referrals, ",
+          "className": "mx-auto mt-6 max-w-3xl text-base leading-8 text-[#536173] sm:text-xl sm:leading-9"
+        }
+      ],
+      "navButton": {
+        "text": "Workflow Audit",
+        "rect": {
+          "x": 1158,
+          "y": 29,
+          "width": 121,
+          "height": 67
+        },
+        "color": "rgb(17, 104, 50)",
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(183, 215, 191)"
+      },
+      "footerHeight": 655,
+      "footerTopGap": 41,
+      "footerVisibleChildren": [
+        {
+          "tag": "DIV",
+          "text": "Call nowBook the Workflow Audit",
+          "top": 4108,
+          "height": 84,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "Call nowBook the Workflow Audit",
+          "top": 4125,
+          "height": 50,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Call now",
+          "top": 4125,
+          "height": 50,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "A",
+          "text": "Book the Workflow Audit",
+          "top": 4126,
+          "height": 48,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "© 2026 Stanley Systems. All rights reserved.SolutionsSpeed up invoicingMissed es",
+          "top": 4216,
+          "height": 393,
+          "display": "grid",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "© 2026 Stanley Systems. All rights reserved.",
+          "top": 4216,
+          "height": 393,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "© 2026 Stanley Systems. All rights reserved.",
+          "top": 4360,
+          "height": 40,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "P",
+          "text": "© 2026 Stanley Systems. All rights reserved.",
+          "top": 4360,
+          "height": 40,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problemsIndus",
+          "top": 4216,
+          "height": 393,
+          "display": "grid",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problems",
+          "top": 4216,
+          "height": 202,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "DIV",
+          "text": "SolutionsSpeed up invoicingMissed estimate follow-upOffice handoff problems",
+          "top": 4216,
+          "height": 112,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "tag": "H3",
+          "text": "Solutions",
+          "top": 4216,
+          "height": 16,
+          "display": "block",
+          "visibility": "visible"
+        }
+      ],
+      "cashCollectionSection": null,
+      "cashOverflowing": [],
+      "imageCount": 1,
+      "visualKitImages": [],
+      "visualKitResponses": [],
+      "orangeLikeComputedElements": []
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "audit-output-preview-illustration",
+  "section": "Workflow Audit homepage section below calculator",
+  "intended_component": "components/how-it-works-section.tsx right-side Audit Output Preview card",
+  "prompt_used": "Wide 16:9 premium website support asset. IMPORTANT: no typography anywhere, no text, no letters, no words, no labels, no numbers, no pseudo-text, no fake UI text. Create an icon-only structured audit-output diagram on white/off-white background. Four rounded cards in a clean 2x2 audit board, connected by simple navy workflow lines. Each card contains ONLY a simple navy line icon: invoice/document icon, estimate/quote document icon, missed phone call icon, calendar/follow-up icon. One card is highlighted with a Stanley green outline and pale mint fill. Show a tiny green break/leak marker on the connector leaving the highlighted card, like a process gap or revenue leak indicator, not a pipe, not cash pouring, not coins. Optional tiny magnifying-glass pointer can be near the highlighted card but must be small and secondary. Crisp Figma-style vector, designed website asset, clean margins, simple geometric shapes, no noisy texture, no painterly shading, no stock illustration look. Palette only white/off-white, navy, slate gray, Stanley green, pale mint. No orange, no amber, no yellow, no gold, no tan, no beige wash, no sepia, no black background, no dark mode, no purple glow. No people, no robots, no AI motifs, no metric cards, no CTA, no full website mockup.",
+  "generator": "Higgsfield",
+  "model": "z_image",
+  "source_job_id": "e52f378e-5503-4edc-88f1-34358cffe215",
+  "source_variant_path": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/visual-assets/generated/audit-output-diagram-candidate-7.png",
+  "source_path": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/visual-assets/generated/audit-output-preview-illustration.source.png",
+  "output_path": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/public/images/generated/audit-output-preview-illustration.webp",
+  "status": "approved",
+  "created_at": "2026-04-29T15:59:37+00:00",
+  "reason_approved": "Approved because it is a clean diagram-style audit-output visual with connected process cards, no readable or gibberish text, no literal pipe/cash leak, one green-highlighted process leak point, and a light-mode navy/green/off-white palette that fits the right-side preview card.",
+  "palette_compliance_notes": "Final asset was locally color-cleaned from the selected Higgsfield candidate to remove remaining warm tan/yellow accent pixels. Final palette is off-white, white, navy, slate gray, Stanley green, and pale mint. No orange, amber, yellow, gold, tan wash, sepia, black background, or purple glow remains visible.",
+  "why_better_than_rejected_version": "The previous live asset relied on a literal money leak from a pipe and a dominant magnifying glass, which looked generic and AI-generated. This version is a structured audit/process diagram with icon-only invoice/document, call, and follow-up cues, a single highlighted leak point, and no noisy texture or baked-in text.",
+  "visual_qa_notes": "Pass with minor caveats: invoice and estimate are both represented by document-style icons rather than distinct labels, and a small magnifying glass remains as a secondary audit cue. Neither caveat fails the brief because the image is diagram-first, clean, and text-free."
+}

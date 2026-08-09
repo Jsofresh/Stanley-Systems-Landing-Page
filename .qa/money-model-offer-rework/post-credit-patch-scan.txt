@@ -1,0 +1,11 @@
+== old price/install scan ==
+lib/pricing/source-of-truth.ts:60:    setupFeeDisplay: "No setup fee",
+lib/pricing/source-of-truth.ts:90:    setupFeeDisplay: "No separate setup fee",
+== buyer CTAs old buy scan ==
+app/workflow-audit/page.tsx:171:            Buy the Cash Flow Assessment. Stanley Systems shows where money is being lost and which paid fix should come first.
+components/footer.tsx:92:            data-cta-label="Buy the Cash Flow Assessment"
+components/footer.tsx:99:            Buy the Cash Flow Assessment
+components/footer.tsx:154:        <p className="text-center text-xs text-slate-400">Buy the Cash Flow Assessment, contact us with unusual questions, or tap the phone number if you want the fastest answer.</p>
+components/proof-strip-section.tsx:102:          ctaLabel="Buy the Cash Flow Assessment"
+components/proof-strip-section.tsx:107:          Buy the Cash Flow Assessment
+== yearly credit scan ==

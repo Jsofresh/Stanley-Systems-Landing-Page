@@ -1,0 +1,979 @@
+browser_error: Failed to load resource: the server responded with a status of 404 (Not Found)
+browser_warning: [.WebGL-0x304405cf0000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+browser_warning: [.WebGL-0x304405cf0000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+browser_warning: [.WebGL-0x304405cf0000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+browser_warning: [.WebGL-0x304405cf0000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+browser_error: Failed to load resource: the server responded with a status of 404 (Not Found)
+{
+  "baseUrl": "http://127.0.0.1:3107/?qa=icon-fix",
+  "outDir": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa",
+  "createdAt": "2026-05-05T00:27:00.748Z",
+  "viewports": [
+    {
+      "viewportName": "desktop-1440",
+      "status": 200,
+      "overflow": {
+        "viewportWidth": 1440,
+        "documentClientWidth": 1440,
+        "documentScrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "overflow": false
+      },
+      "sections": [
+        {
+          "label": "Money Leak Map",
+          "textPresent": true,
+          "rect": {
+            "x": 0,
+            "y": 232,
+            "width": 1440,
+            "height": 782
+          },
+          "imageCount": 5,
+          "stanleyImageCount": 5,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/delayed-invoice-display.png",
+              "complete": true,
+              "naturalWidth": 790,
+              "naturalHeight": 790,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/invoice-approved-display.png",
+              "complete": true,
+              "naturalWidth": 952,
+              "naturalHeight": 952,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/office-rework-display.png",
+              "complete": true,
+              "naturalWidth": 1049,
+              "naturalHeight": 1049,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+              "complete": true,
+              "naturalWidth": 888,
+              "naturalHeight": 888,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/first-fix-wrench-display.png",
+              "complete": true,
+              "naturalWidth": 1000,
+              "naturalHeight": 1000,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "money-leak-map",
+          "viewport": "desktop-1440",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/money-leak-map-desktop-1440.png",
+          "pass": true,
+          "minImages": 5
+        },
+        {
+          "label": "Workflow Audit",
+          "textPresent": true,
+          "rect": {
+            "x": 0,
+            "y": 548,
+            "width": 1440,
+            "height": 552
+          },
+          "imageCount": 4,
+          "stanleyImageCount": 4,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/completed-job-display.png",
+              "complete": true,
+              "naturalWidth": 916,
+              "naturalHeight": 916,
+              "rectWidth": 38,
+              "rectHeight": 38,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/cash-approved-display.png",
+              "complete": true,
+              "naturalWidth": 958,
+              "naturalHeight": 958,
+              "rectWidth": 28,
+              "rectHeight": 28,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+              "complete": true,
+              "naturalWidth": 888,
+              "naturalHeight": 888,
+              "rectWidth": 38,
+              "rectHeight": 38,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/referral-network-display.png",
+              "complete": true,
+              "naturalWidth": 921,
+              "naturalHeight": 921,
+              "rectWidth": 28,
+              "rectHeight": 28,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "workflow-audit",
+          "viewport": "desktop-1440",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/workflow-audit-desktop-1440.png",
+          "pass": true,
+          "minImages": 4
+        },
+        {
+          "label": "Cash Flow Collection System",
+          "textPresent": true,
+          "rect": {
+            "x": 80,
+            "y": 159,
+            "width": 1280,
+            "height": 782
+          },
+          "imageCount": 9,
+          "stanleyImageCount": 9,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/completed-job-display.png",
+              "complete": true,
+              "naturalWidth": 916,
+              "naturalHeight": 916,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/billing-check-display.png",
+              "complete": true,
+              "naturalWidth": 823,
+              "naturalHeight": 823,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/invoice-sent-display.png",
+              "complete": true,
+              "naturalWidth": 900,
+              "naturalHeight": 900,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/office-alert-display.png",
+              "complete": true,
+              "naturalWidth": 936,
+              "naturalHeight": 936,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/cash-approved-display.png",
+              "complete": true,
+              "naturalWidth": 958,
+              "naturalHeight": 958,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/result-check-display.png",
+              "complete": true,
+              "naturalWidth": 907,
+              "naturalHeight": 907,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/delayed-invoice-display.png",
+              "complete": true,
+              "naturalWidth": 790,
+              "naturalHeight": 790,
+              "rectWidth": 44,
+              "rectHeight": 44,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/approved-handoff-display.png",
+              "complete": true,
+              "naturalWidth": 1002,
+              "naturalHeight": 1002,
+              "rectWidth": 44,
+              "rectHeight": 44,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/cash-stack-display.png",
+              "complete": true,
+              "naturalWidth": 1022,
+              "naturalHeight": 1022,
+              "rectWidth": 44,
+              "rectHeight": 44,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "cash-collection-system",
+          "viewport": "desktop-1440",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/cash-collection-system-desktop-1440.png",
+          "pass": true,
+          "minImages": 9
+        },
+        {
+          "label": "Repeat Revenue System",
+          "textPresent": true,
+          "rect": {
+            "x": 80,
+            "y": 251,
+            "width": 1280,
+            "height": 850
+          },
+          "imageCount": 6,
+          "stanleyImageCount": 6,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/monthly-impact-trend-display.png",
+              "complete": true,
+              "naturalWidth": 884,
+              "naturalHeight": 884,
+              "rectWidth": 54,
+              "rectHeight": 54,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+              "complete": true,
+              "naturalWidth": 888,
+              "naturalHeight": 888,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/review-growth-display.png",
+              "complete": true,
+              "naturalWidth": 936,
+              "naturalHeight": 936,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/referral-network-display.png",
+              "complete": true,
+              "naturalWidth": 921,
+              "naturalHeight": 921,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/phone-missed-transparent-display.png",
+              "complete": true,
+              "naturalWidth": 853,
+              "naturalHeight": 853,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/result-check-display.png",
+              "complete": true,
+              "naturalWidth": 907,
+              "naturalHeight": 907,
+              "rectWidth": 26,
+              "rectHeight": 26,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "follow-up-system",
+          "viewport": "desktop-1440",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/follow-up-system-desktop-1440.png",
+          "pass": true,
+          "minImages": 6
+        },
+        {
+          "label": "Repeat Revenue System",
+          "textPresent": true,
+          "rect": {
+            "x": 80,
+            "y": 251,
+            "width": 1280,
+            "height": 850
+          },
+          "imageCount": 6,
+          "stanleyImageCount": 6,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/monthly-impact-trend-display.png",
+              "complete": true,
+              "naturalWidth": 884,
+              "naturalHeight": 884,
+              "rectWidth": 54,
+              "rectHeight": 54,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+              "complete": true,
+              "naturalWidth": 888,
+              "naturalHeight": 888,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/review-growth-display.png",
+              "complete": true,
+              "naturalWidth": 936,
+              "naturalHeight": 936,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/referral-network-display.png",
+              "complete": true,
+              "naturalWidth": 921,
+              "naturalHeight": 921,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/phone-missed-transparent-display.png",
+              "complete": true,
+              "naturalWidth": 853,
+              "naturalHeight": 853,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/result-check-display.png",
+              "complete": true,
+              "naturalWidth": 907,
+              "naturalHeight": 907,
+              "rectWidth": 26,
+              "rectHeight": 26,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "the-follow-up-loop",
+          "viewport": "desktop-1440",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/the-follow-up-loop-desktop-1440.png",
+          "pass": true,
+          "minImages": 4
+        }
+      ]
+    },
+    {
+      "viewportName": "mobile-390",
+      "status": 200,
+      "overflow": {
+        "viewportWidth": 390,
+        "documentClientWidth": 390,
+        "documentScrollWidth": 390,
+        "bodyScrollWidth": 390,
+        "overflow": false
+      },
+      "sections": [
+        {
+          "label": "Money Leak Map",
+          "textPresent": true,
+          "rect": {
+            "x": 0,
+            "y": -160,
+            "width": 390,
+            "height": 1634
+          },
+          "imageCount": 5,
+          "stanleyImageCount": 5,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/delayed-invoice-display.png",
+              "complete": true,
+              "naturalWidth": 790,
+              "naturalHeight": 790,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/invoice-approved-display.png",
+              "complete": true,
+              "naturalWidth": 952,
+              "naturalHeight": 952,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/office-rework-display.png",
+              "complete": true,
+              "naturalWidth": 1049,
+              "naturalHeight": 1049,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+              "complete": true,
+              "naturalWidth": 888,
+              "naturalHeight": 888,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/first-fix-wrench-display.png",
+              "complete": true,
+              "naturalWidth": 1000,
+              "naturalHeight": 1000,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "money-leak-map",
+          "viewport": "mobile-390",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/money-leak-map-mobile-390.png",
+          "pass": true,
+          "minImages": 5
+        },
+        {
+          "label": "Workflow Audit",
+          "textPresent": true,
+          "rect": {
+            "x": 0,
+            "y": 200,
+            "width": 390,
+            "height": 912
+          },
+          "imageCount": 4,
+          "stanleyImageCount": 4,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/completed-job-display.png",
+              "complete": true,
+              "naturalWidth": 916,
+              "naturalHeight": 916,
+              "rectWidth": 38,
+              "rectHeight": 38,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/cash-approved-display.png",
+              "complete": true,
+              "naturalWidth": 958,
+              "naturalHeight": 958,
+              "rectWidth": 28,
+              "rectHeight": 28,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+              "complete": true,
+              "naturalWidth": 888,
+              "naturalHeight": 888,
+              "rectWidth": 38,
+              "rectHeight": 38,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/referral-network-display.png",
+              "complete": true,
+              "naturalWidth": 921,
+              "naturalHeight": 921,
+              "rectWidth": 28,
+              "rectHeight": 28,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "workflow-audit",
+          "viewport": "mobile-390",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/workflow-audit-mobile-390.png",
+          "pass": true,
+          "minImages": 4
+        },
+        {
+          "label": "Cash Flow Collection System",
+          "textPresent": true,
+          "rect": {
+            "x": 16,
+            "y": 0,
+            "width": 358,
+            "height": 1734
+          },
+          "imageCount": 9,
+          "stanleyImageCount": 9,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/completed-job-display.png",
+              "complete": true,
+              "naturalWidth": 916,
+              "naturalHeight": 916,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/billing-check-display.png",
+              "complete": true,
+              "naturalWidth": 823,
+              "naturalHeight": 823,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/invoice-sent-display.png",
+              "complete": true,
+              "naturalWidth": 900,
+              "naturalHeight": 900,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/office-alert-display.png",
+              "complete": true,
+              "naturalWidth": 936,
+              "naturalHeight": 936,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/cash-approved-display.png",
+              "complete": true,
+              "naturalWidth": 958,
+              "naturalHeight": 958,
+              "rectWidth": 42,
+              "rectHeight": 42,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/result-check-display.png",
+              "complete": true,
+              "naturalWidth": 907,
+              "naturalHeight": 907,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/delayed-invoice-display.png",
+              "complete": true,
+              "naturalWidth": 790,
+              "naturalHeight": 790,
+              "rectWidth": 44,
+              "rectHeight": 44,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/approved-handoff-display.png",
+              "complete": true,
+              "naturalWidth": 1002,
+              "naturalHeight": 1002,
+              "rectWidth": 44,
+              "rectHeight": 44,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/cash-stack-display.png",
+              "complete": true,
+              "naturalWidth": 1022,
+              "naturalHeight": 1022,
+              "rectWidth": 44,
+              "rectHeight": 44,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "cash-collection-system",
+          "viewport": "mobile-390",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/cash-collection-system-mobile-390.png",
+          "pass": true,
+          "minImages": 9
+        },
+        {
+          "label": "Repeat Revenue System",
+          "textPresent": true,
+          "rect": {
+            "x": 16,
+            "y": -322,
+            "width": 358,
+            "height": 2003
+          },
+          "imageCount": 6,
+          "stanleyImageCount": 6,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/monthly-impact-trend-display.png",
+              "complete": true,
+              "naturalWidth": 884,
+              "naturalHeight": 884,
+              "rectWidth": 54,
+              "rectHeight": 54,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+              "complete": true,
+              "naturalWidth": 888,
+              "naturalHeight": 888,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/review-growth-display.png",
+              "complete": true,
+              "naturalWidth": 936,
+              "naturalHeight": 936,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/referral-network-display.png",
+              "complete": true,
+              "naturalWidth": 921,
+              "naturalHeight": 921,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/phone-missed-transparent-display.png",
+              "complete": true,
+              "naturalWidth": 853,
+              "naturalHeight": 853,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/result-check-display.png",
+              "complete": true,
+              "naturalWidth": 907,
+              "naturalHeight": 907,
+              "rectWidth": 26,
+              "rectHeight": 26,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "follow-up-system",
+          "viewport": "mobile-390",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/follow-up-system-mobile-390.png",
+          "pass": true,
+          "minImages": 6
+        },
+        {
+          "label": "Repeat Revenue System",
+          "textPresent": true,
+          "rect": {
+            "x": 16,
+            "y": -322,
+            "width": 358,
+            "height": 2003
+          },
+          "imageCount": 6,
+          "stanleyImageCount": 6,
+          "brokenImages": [],
+          "sampleStanleyImages": [
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/monthly-impact-trend-display.png",
+              "complete": true,
+              "naturalWidth": 884,
+              "naturalHeight": 884,
+              "rectWidth": 54,
+              "rectHeight": 54,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+              "complete": true,
+              "naturalWidth": 888,
+              "naturalHeight": 888,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/review-growth-display.png",
+              "complete": true,
+              "naturalWidth": 936,
+              "naturalHeight": 936,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/referral-network-display.png",
+              "complete": true,
+              "naturalWidth": 921,
+              "naturalHeight": 921,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/phone-missed-transparent-display.png",
+              "complete": true,
+              "naturalWidth": 853,
+              "naturalHeight": 853,
+              "rectWidth": 46,
+              "rectHeight": 46,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            },
+            {
+              "src": "http://127.0.0.1:3107/visual-kit/display-assets/result-check-display.png",
+              "complete": true,
+              "naturalWidth": 907,
+              "naturalHeight": 907,
+              "rectWidth": 26,
+              "rectHeight": 26,
+              "opacity": "1",
+              "visibility": "visible",
+              "display": "block",
+              "wrapper": true
+            }
+          ],
+          "key": "the-follow-up-loop",
+          "viewport": "mobile-390",
+          "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/the-follow-up-loop-mobile-390.png",
+          "pass": true,
+          "minImages": 4
+        }
+      ]
+    }
+  ],
+  "uniqueSampleStanleyAssetUrls": [
+    "http://127.0.0.1:3107/visual-kit/display-assets/delayed-invoice-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/invoice-approved-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/office-rework-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/inactive-customers-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/first-fix-wrench-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/completed-job-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/cash-approved-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/referral-network-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/billing-check-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/invoice-sent-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/office-alert-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/result-check-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/approved-handoff-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/cash-stack-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/monthly-impact-trend-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/review-growth-display.png",
+    "http://127.0.0.1:3107/visual-kit/display-assets/phone-missed-transparent-display.png"
+  ],
+  "pass": true
+}

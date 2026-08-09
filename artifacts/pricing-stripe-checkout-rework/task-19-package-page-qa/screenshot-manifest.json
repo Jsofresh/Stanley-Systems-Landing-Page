@@ -1,0 +1,170 @@
+[
+  {
+    "route": "/pricing",
+    "viewport": "desktop",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/pricing-desktop.png",
+    "metrics": {
+      "bodyScrollWidth": 1440,
+      "docScrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyTextLength": 8104
+    }
+  },
+  {
+    "route": "/systems/cashflow-control",
+    "viewport": "desktop",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/cashflow-desktop.png",
+    "metrics": {
+      "bodyScrollWidth": 1440,
+      "docScrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyTextLength": 5431
+    }
+  },
+  {
+    "route": "/systems/repeat-revenue",
+    "viewport": "desktop",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/repeat-revenue-desktop.png",
+    "metrics": {
+      "bodyScrollWidth": 1440,
+      "docScrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyTextLength": 6791
+    }
+  },
+  {
+    "route": "/checkout/success",
+    "viewport": "desktop",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/success-desktop.png",
+    "metrics": {
+      "bodyScrollWidth": 1440,
+      "docScrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyTextLength": 1987
+    }
+  },
+  {
+    "route": "/checkout/cancel",
+    "viewport": "desktop",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/cancel-desktop.png",
+    "metrics": {
+      "bodyScrollWidth": 1440,
+      "docScrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyTextLength": 1112
+    }
+  },
+  {
+    "route": "/checkout/onboarding",
+    "viewport": "desktop",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/onboarding-desktop.png",
+    "metrics": {
+      "bodyScrollWidth": 1440,
+      "docScrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyTextLength": 2560
+    }
+  },
+  {
+    "route": "/terms-and-conditions",
+    "viewport": "desktop",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/terms-desktop.png",
+    "metrics": {
+      "bodyScrollWidth": 1440,
+      "docScrollWidth": 1440,
+      "clientWidth": 1440,
+      "bodyTextLength": 11811
+    }
+  },
+  {
+    "route": "/pricing",
+    "viewport": "mobile",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/pricing-mobile.png",
+    "metrics": {
+      "bodyScrollWidth": 390,
+      "docScrollWidth": 390,
+      "clientWidth": 390,
+      "bodyTextLength": 7849
+    }
+  },
+  {
+    "route": "/systems/cashflow-control",
+    "viewport": "mobile",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/cashflow-mobile.png",
+    "metrics": {
+      "bodyScrollWidth": 390,
+      "docScrollWidth": 390,
+      "clientWidth": 390,
+      "bodyTextLength": 5176
+    }
+  },
+  {
+    "route": "/systems/repeat-revenue",
+    "viewport": "mobile",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/repeat-revenue-mobile.png",
+    "metrics": {
+      "bodyScrollWidth": 390,
+      "docScrollWidth": 390,
+      "clientWidth": 390,
+      "bodyTextLength": 6536
+    }
+  },
+  {
+    "route": "/checkout/success",
+    "viewport": "mobile",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/success-mobile.png",
+    "metrics": {
+      "bodyScrollWidth": 390,
+      "docScrollWidth": 390,
+      "clientWidth": 390,
+      "bodyTextLength": 1732
+    }
+  },
+  {
+    "route": "/checkout/cancel",
+    "viewport": "mobile",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/cancel-mobile.png",
+    "metrics": {
+      "bodyScrollWidth": 390,
+      "docScrollWidth": 390,
+      "clientWidth": 390,
+      "bodyTextLength": 857
+    }
+  },
+  {
+    "route": "/checkout/onboarding",
+    "viewport": "mobile",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/onboarding-mobile.png",
+    "metrics": {
+      "bodyScrollWidth": 390,
+      "docScrollWidth": 390,
+      "clientWidth": 390,
+      "bodyTextLength": 2305
+    }
+  },
+  {
+    "route": "/terms-and-conditions",
+    "viewport": "mobile",
+    "status": 200,
+    "screenshot": "artifacts/pricing-stripe-checkout-rework/task-19-package-page-qa/screenshots/terms-mobile.png",
+    "metrics": {
+      "bodyScrollWidth": 390,
+      "docScrollWidth": 390,
+      "clientWidth": 390,
+      "bodyTextLength": 11556
+    }
+  }
+]

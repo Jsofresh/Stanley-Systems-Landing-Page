@@ -1,74 +1,28 @@
 "use client"
 
-import SlideIn from "@/components/SlideIn"
 import { Minus, Plus } from "lucide-react"
 import { useState } from "react"
 
 const faqs = [
   {
+    question: "Who is Stanley Systems best for?",
+    answer:
+      "Trade contractors and field service shops where work is already coming in, but billing, handoffs, follow-up, missed calls, or customer follow-up still depend too much on memory, texts, spreadsheets, and owner cleanup.",
+  },
+  {
     question: "Do we need to switch software?",
     answer:
-      "No, they do not need to switch software. Stanley Systems works inside the tools the team already uses whenever possible. The goal is usually to clean up the handoff between the systems you already have, reduce duplicate entry, and make the workflow easier to trust before talking about any bigger tool changes.",
+      "Usually no. Stanley Systems works inside the tools the team already uses whenever possible. The goal is to clean up the handoff, reduce duplicate entry, and make the workflow easier to trust before talking about bigger tool changes.",
+  },
+  {
+    question: "What if we are not sure which leak matters most?",
+    answer:
+      "That is exactly why the calculator and AI Profit Map come first. The goal is to identify whether billing readiness, office handoffs, missed follow-up, or staff SOP support should be fixed before anything gets built.",
   },
   {
     question: "Is this going to turn into a big project?",
     answer:
-      "No. The starting point is usually one or two fixes that make the clearest difference first. Stanley Systems is built to start narrow, prove the workflow works, and then expand only if there is a good reason to. That keeps the rollout easier on the owner and team.",
-  },
-  {
-    question: "Who is this best for?",
-    answer:
-      "Owner-led service businesses where billing, follow-up, office handoffs, or repeat admin are slowing things down. It is usually the best fit when the business is already getting real work in the door, but the office side is still running too much on texts, memory, spreadsheets, and people chasing each other down.",
-  },
-  {
-    question: "What if we are not sure where the real problem is?",
-    answer:
-      "That is fine. The first call is used to figure out where the bottleneck actually is. Sometimes the thing that looks like a software problem is really a handoff problem, a follow-up problem, or a visibility problem. The goal is to identify what is actually slowing cash, jobs, or communication down before anything gets built.",
-  },
-  {
-    question: "Will my team still control the workflow?",
-    answer:
-      "Yes. Your team stays in control, and you own what gets built. Stanley Systems is there to remove drag and make the next step clearer, not to lock your team into a black box. The process should be easier for your office and field staff to follow, not harder.",
-  },
-  {
-    question: "Which plan do most clients start with?",
-    answer:
-      "Most start with Growth because it covers billing and follow-up together, which are usually the two biggest cash flow leaks. It is often the right middle ground for businesses that already know more than one part of the office workflow is breaking, but do not need a giant cleanup all at once.",
-  },
-  {
-    question: "What if it is not a fit?",
-    answer:
-      "Stanley Systems will say that upfront. If the workflow is not the real problem, if the business is too early, or if there is not a clear place to create lift, that will be said directly. The point is to give a clear answer, not force a project where one does not belong.",
-  },
-  {
-    question: "How long does setup usually take?",
-    answer:
-      "It depends on the bottleneck, but the goal is to get the first useful fix in place quickly instead of dragging things out. Most of the time, the first step is not a giant rebuild. It is a focused fix that gets one part of the workflow moving better, then builds from there if needed.",
-  },
-  {
-    question: "Do I need to stop operations while this gets set up?",
-    answer:
-      "No. The goal is to improve how the business runs without disrupting the team. Stanley Systems is meant to work around the real pace of the business, so the office and field can keep moving while the first fixes are put in place and tested.",
-  },
-  {
-    question: "Will this work if our office is still pretty manual?",
-    answer:
-      "Yes. Most clients do not start with perfect systems. The work is usually to clean up the handoffs, repeat tasks, and follow-up that are still being done manually. In a lot of cases, that is exactly why Stanley Systems helps in the first place. The goal is to reduce the office drag without forcing the team into a completely different way of operating overnight.",
-  },
-  {
-    question: "Why not just use ServiceTitan, Jobber, or Housecall Pro for this?",
-    answer:
-      "If your software already solves the problem cleanly, that is great. In a lot of businesses, the bottleneck is not the software feature list. It is the handoff between systems, the way the office actually uses them, or the work that still happens outside the platform in texts, inboxes, spreadsheets, and memory. Stanley Systems is there to clean up that gap instead of pretending one tool setting solves everything.",
-  },
-  {
-    question: "Why not just hire another office person?",
-    answer:
-      "Sometimes hiring is the right move. But a lot of owners hire into a messy process and end up paying someone new to chase the same missing information. Stanley Systems is meant to make the workflow cleaner first, so the team you already have can work better and any future hire walks into a process that actually makes sense.",
-  },
-  {
-    question: "I have been burned by consultants before. Why is this different?",
-    answer:
-      "That is common. A lot of owners have paid for advice, documents, or big promises and still ended up doing the hard part themselves. Stanley Systems is built to be more practical than that. The work is to fix the bottleneck inside the real tools and handoffs your business already uses, keep it grounded, and be direct if something is not worth building.",
+      "No. The starting point is one focused money path. Stanley Systems starts narrow, proves the workflow works, and expands only when the next fix has a clear reason.",
   },
 ]
 
@@ -85,15 +39,15 @@ function FAQItem({
   onToggle: () => void
 }) {
   return (
-    <div className="rounded-[1.75rem] border border-[#ede6db] bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(249,244,252,0.9)_100%)] shadow-[0_14px_34px_rgba(188,156,205,0.14)] transition-all duration-200 hover:shadow-[0_18px_40px_rgba(188,156,205,0.20)]">
+    <div className="rounded-[1.2rem] border border-[#e5ded3] bg-white shadow-[0_12px_30px_rgba(16,32,51,0.045)] transition-all duration-200 hover:shadow-[0_16px_34px_rgba(16,32,51,0.07)]">
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="flex w-full touch-manipulation items-start gap-4 px-6 py-6 text-left sm:px-7 sm:py-7"
+        className="flex w-full touch-manipulation items-start gap-4 px-5 py-5 text-left sm:px-6 sm:py-6"
       >
-        <div className="flex-1 pr-2 text-lg font-semibold leading-8 text-slate-900 sm:text-xl">{faq.question}</div>
-        <div className="relative mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#e8dff0] bg-white text-[#5b2bbf] overflow-hidden">
+        <div className="flex-1 pr-2 text-base font-bold leading-7 text-slate-900 sm:text-lg">{faq.question}</div>
+        <div className="relative mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#cfe8d5] bg-[#f2fbf5] text-[#15803D]">
           <Plus
             className="absolute h-5 w-5 shrink-0"
             style={{
@@ -115,13 +69,13 @@ function FAQItem({
 
       <div
         style={{
-          maxHeight: isOpen ? "220px" : "0px",
+          maxHeight: isOpen ? "180px" : "0px",
           opacity: isOpen ? 1 : 0,
           overflow: "hidden",
           transition: "max-height 500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 375ms ease",
         }}
       >
-        <div className="px-6 pb-6 pr-16 text-base leading-8 text-slate-700 sm:px-7 sm:pb-7 sm:text-lg">
+        <div className="px-5 pb-5 pr-14 text-sm leading-6 text-slate-700 sm:px-6 sm:pb-6 sm:text-base sm:leading-7">
           {faq.answer}
         </div>
       </div>
@@ -139,23 +93,27 @@ export function FAQSection() {
   }
 
   return (
-    <section id="before-you-book" className="relative z-10 scroll-mt-28 px-4 py-12 sm:scroll-mt-32 sm:py-16 lg:scroll-mt-36 lg:py-20">
+    <section
+      id="before-you-book"
+      data-audit-page="/"
+      data-audit-section="home.faq"
+      data-audit-priority="2"
+      data-audit-offer="AI Profit Map"
+      data-audit-purpose="Answer buying objections before the visitor books the AI Profit Map."
+      className="relative z-10 scroll-mt-28 px-4 py-10 sm:scroll-mt-32 sm:py-12 lg:scroll-mt-36 lg:py-14"
+    >
       <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
-            <SlideIn direction="up">
-              <h2 className="text-5xl font-semibold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">Before you book</h2>
-            </SlideIn>
+            <h2 className="text-[2.15rem] font-semibold leading-tight text-slate-900 sm:text-[2.7rem] lg:text-[3.1rem]">Before you buy anything</h2>
           </div>
 
           <div className="lg:max-w-xl lg:pb-2">
-            <SlideIn direction="up" delay={120}>
-              <p className="text-xl leading-8 text-slate-700 sm:text-2xl lg:text-[1.5rem] lg:leading-10">A few common questions, answered plainly.</p>
-            </SlideIn>
+            <p className="text-base leading-7 text-slate-700 sm:text-lg">A few common objections, answered plainly.</p>
           </div>
         </div>
 
-        <div className="mt-12 grid items-start gap-6 lg:grid-cols-2 lg:gap-7">
+        <div className="mt-6 grid items-start gap-4 lg:grid-cols-2 lg:gap-5">
           <div className="flex flex-col gap-5 lg:gap-6">
             {leftColumn.map((faq) => (
               <FAQItem

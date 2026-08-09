@@ -1,44 +1,98 @@
-import SlideIn from "@/components/SlideIn"
-import { ArrowRight, Phone } from "lucide-react"
+import Image from "next/image"
+import { ArrowRight, Calculator } from "lucide-react"
 import { CTALink } from "@/components/cta-link"
-import { CTAPhoneLink } from "@/components/cta-phone-link"
+import { pricingPackageById } from "@/lib/pricing/source-of-truth"
+
+const auditHref = pricingPackageById.workflow_audit.stripePaymentLink.url
+const calculatorHref = "/invoicing-delay-cash-flow-calculator"
 
 export function FinalCTASection() {
   return (
-    <section className="relative mb-24 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-      <div className="mx-auto max-w-5xl rounded-[2.25rem] border border-[#dbe7cf] bg-[linear-gradient(180deg,#f7fbf2_0%,#ffffff_100%)] p-8 text-center shadow-[0_24px_70px_rgba(15,23,42,0.09)] sm:p-10 lg:p-14">
-        <SlideIn direction="up">
-          <h3 className="text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Show us where the office is getting stuck
-          </h3>
-        </SlideIn>
-        <SlideIn direction="up" delay={120}>
-          <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-700 sm:text-xl lg:text-[1.35rem] lg:leading-9">
-            Book a meeting. Stanley Systems will tell you what looks worth fixing first — and if it is not a fit, we will say that upfront.
-          </p>
-        </SlideIn>
-        <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
-          No pressure. No software pitch. Just a clear look at what is slowing the business down.
-        </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row">
-          <CTALink
-            href="/contact"
-            kind="book_meeting"
-            location="final_cta_primary"
-            className="group inline-flex items-center gap-3 rounded-full bg-[#15803D] px-8 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-[#166534] sm:text-xl lg:px-10 lg:py-5"
-          >
-            Let's talk about your workflow
-            <ArrowRight className="h-6 w-6 transition-transform duration-200 group-hover:translate-x-1" />
-          </CTALink>
+    <section
+      id="final-audit"
+      data-audit-page="/"
+      data-audit-section="home.final-cta"
+      data-section="cost-of-waiting"
+      data-nav-theme="light"
+      data-audit-priority="4"
+      data-audit-offer="AI Profit Map"
+      data-audit-purpose="Give qualified service businesses a clear final path to book the AI Profit Map."
+      className="relative mb-16 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14"
+    >
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#dbe7cf] bg-[linear-gradient(180deg,#f7fbf2_0%,#ffffff_100%)] shadow-[0_22px_60px_rgba(15,23,42,0.08)]">
+        <div className="grid gap-0 lg:grid-cols-[0.96fr_1.04fr] lg:items-center">
+          <div className="p-7 sm:p-9 lg:p-11">
+            <h3 className="text-balance text-[38px] font-semibold leading-[0.98] tracking-[-0.045em] text-[#102033] sm:text-[52px] lg:text-[62px]">
+              The admin drag is already happening.
+            </h3>
+            <div className="mt-5 space-y-1.5 text-[17px] font-semibold leading-7 text-[#334155] sm:text-[19px]">
+              <p>The job is done, but the invoice waits.</p>
+              <p>The estimate is sent, but nobody follows up.</p>
+              <p>The customer is saved, but nobody brings them back.</p>
+              <p>The call comes in, but nobody catches it.</p>
+            </div>
+            <p className="mt-5 max-w-2xl text-base font-bold leading-7 text-[#102033] sm:text-lg">
+              That is how service businesses lose money without noticing it.
+            </p>
+            <p className="mt-2 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
+              The AI Profit Map finds the leak, shows what it is costing, and gives you the fix list to act on.
+            </p>
 
-          <CTAPhoneLink
-            href="tel:+16179586372"
-            location="final_cta_secondary"
-            className="inline-flex items-center gap-3 rounded-full border border-[#d8d1c4] bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f3eee2] sm:text-xl lg:px-10 lg:py-5"
-          >
-            <Phone className="h-5 w-5" />
-            Call now
-          </CTAPhoneLink>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <CTALink
+                href={auditHref}
+                kind="checkout"
+                location="final_cta_primary"
+                analyticsEvent="audit_checkout_clicked"
+                analyticsSource="homepage_final_cta"
+                packageId="workflow_audit"
+                packageName="AI Profit Map"
+                billingPeriod="one_time"
+                ctaLabel="Buy the AI Profit Map"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex h-[48px] min-w-[238px] items-center justify-center gap-2 rounded-full bg-[#15803D] px-5 py-0 text-[14px] font-extrabold leading-none text-white shadow-xl transition-all duration-300 hover:scale-[1.01] hover:bg-[#166534] sm:whitespace-nowrap"
+              >
+                Buy the AI Profit Map
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </CTALink>
+
+              <CTALink
+                href={calculatorHref}
+                kind="calculator"
+                location="final_cta_secondary"
+                analyticsEvent="calculator_cta_clicked"
+                analyticsSource="homepage_final_cta"
+                ctaLabel="Run the Calculator First"
+                className="inline-flex h-[48px] min-w-[238px] items-center justify-center gap-2 rounded-full border border-[#cbd5c0] bg-white px-5 py-0 text-[14px] font-extrabold leading-none text-[#102033] shadow-[0_10px_22px_rgba(15,23,42,0.04)] transition-all duration-200 hover:border-[#15803D] hover:bg-[#f3fbf5] sm:whitespace-nowrap"
+              >
+                <Calculator className="h-4 w-4" />
+                Run the Calculator First
+              </CTALink>
+            </div>
+          </div>
+
+          <div className="border-t border-[#dbe7cf] bg-white/72 p-5 sm:p-7 lg:border-l lg:border-t-0 lg:p-8">
+            <div className="overflow-hidden rounded-[24px] border border-[#dfe8da] bg-white shadow-[0_14px_32px_rgba(15,23,42,0.06)]">
+              <Image
+                src="/images/uploaded/homepage/ai-profit-map-first-leak-found.jpg"
+                alt="AI Profit Map visual showing the first admin drag found before the next fix is built."
+                width={1280}
+                height={960}
+                className="h-auto w-full object-contain"
+                loading="eager"
+              />
+            </div>
+
+            <div className="mt-4 rounded-[22px] border border-[#b9dec3] bg-[#eaf7ee] p-5">
+              <p className="text-[23px] font-extrabold leading-tight tracking-[-0.04em] text-[#102033]">
+                AI Profit Map shows what to fix first.
+              </p>
+              <p className="mt-2 text-[14px] font-semibold leading-6 text-[#365044]">
+                Delayed invoices. Open estimates. Old customers. Missed calls.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

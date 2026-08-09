@@ -1,0 +1,98 @@
+{
+  "url": "http://127.0.0.1:3231/",
+  "viewport": "1440x1100",
+  "captured_at": "2026-05-11T02:29:21.626Z",
+  "failures": [],
+  "sections": [
+    {
+      "index": 1,
+      "tag": "section",
+      "id": "",
+      "title": "Your service business is dropping money in places nobody checks.",
+      "text": "Your service business is dropping money in places nobody checks. Missed calls. Late invoices. Forgotten follow-ups. Past customers nobody contacts again. Stanley Systems finds the ",
+      "top": 0,
+      "height": 1174,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/01-your-service-business-is-dropping-money-in-places-nobody-checks.png"
+    },
+    {
+      "index": 2,
+      "tag": "section",
+      "id": "calculator",
+      "title": "See how much money is being left on the table.",
+      "text": "See how much money is being left on the table. Answer a few plain questions about jobs, invoices, follow-up, and missed calls. The calculator gives you a number Stanley can use to ",
+      "top": 1174,
+      "height": 702,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/02-see-how-much-money-is-being-left-on-the-table.png"
+    },
+    {
+      "index": 3,
+      "tag": "section",
+      "id": "",
+      "title": "The leaks are usually boring. That is why they get missed.",
+      "text": "The leaks are usually boring. That is why they get missed. Most service businesses do not lose money in one dramatic way. They lose it in small handoffs that break every week. Miss",
+      "top": 1876,
+      "height": 719,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/03-the-leaks-are-usually-boring-that-is-why-they-get-missed.png"
+    },
+    {
+      "index": 4,
+      "tag": "section",
+      "id": "assessment",
+      "title": "Start with the Cash Flow Assessment.",
+      "text": "Start with the Cash Flow Assessment. The Cash Flow Assessment is the paid first step. Stanley looks at where money is being dropped, what it likely costs, and which system should b",
+      "top": 2596,
+      "height": 603,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/04-start-with-the-cash-flow-assessment.png"
+    },
+    {
+      "index": 5,
+      "tag": "section",
+      "id": "systems",
+      "title": "Pick the system that stops the leak.",
+      "text": "Pick the system that stops the leak. Each system fixes a different place money gets dropped. Start with the assessment if you are not sure which one matters most. Cashflow Control ",
+      "top": 3199,
+      "height": 1017,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/05-pick-the-system-that-stops-the-leak.png"
+    },
+    {
+      "index": 6,
+      "tag": "section",
+      "id": "",
+      "title": "What changes after the leak is fixed.",
+      "text": "What changes after the leak is fixed. Stanley does not add another idea for the owner to remember. It builds the steps that keep customers, jobs, bills, and follow-ups from getting",
+      "top": 4216,
+      "height": 502,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/06-what-changes-after-the-leak-is-fixed.png"
+    },
+    {
+      "index": 7,
+      "tag": "section",
+      "id": "",
+      "title": "Built for service businesses with real office drag.",
+      "text": "Built for service businesses with real office drag. Stanley Systems is for shops where the work is real, the office is busy, and the owner keeps becoming the backup system. The goa",
+      "top": 4718,
+      "height": 399,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/07-built-for-service-businesses-with-real-office-drag.png"
+    },
+    {
+      "index": 8,
+      "tag": "section",
+      "id": "",
+      "title": "Stop letting finished work and good customers slip away.",
+      "text": "Stop letting finished work and good customers slip away. Use the calculator, see the money left on the table, then start the Cash Flow Assessment. Stanley will find the leak and sh",
+      "top": 5117,
+      "height": 542,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/08-stop-letting-finished-work-and-good-customers-slip-away.png"
+    },
+    {
+      "index": 9,
+      "tag": "footer",
+      "id": "",
+      "title": "SOLUTIONS",
+      "text": "Call now Buy the Cash Flow Assessment © 2026 Stanley Systems. All rights reserved. SOLUTIONS Cashflow Control System Repeat Revenue System Speed up invoicing Missed estimate follow",
+      "top": 5659,
+      "height": 655,
+      "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/jaden-home-section-screenshots-20260511-022910/09-solutions.png"
+    }
+  ]
+}

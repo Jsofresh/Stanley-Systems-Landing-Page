@@ -1,0 +1,123 @@
+{
+  "source_artifacts": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa",
+  "output_dir": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-speedup/visual-packet",
+  "qa_json_pass": true,
+  "verification_pass": true,
+  "sections_checked": [
+    {
+      "section": "Money Leak Map",
+      "viewport": "desktop-1440",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 5,
+      "min_images": 5,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/money-leak-map-desktop-1440.png"
+    },
+    {
+      "section": "Workflow Audit",
+      "viewport": "desktop-1440",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 4,
+      "min_images": 4,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/workflow-audit-desktop-1440.png"
+    },
+    {
+      "section": "Cash Flow Collection System",
+      "viewport": "desktop-1440",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 9,
+      "min_images": 9,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/cash-collection-system-desktop-1440.png"
+    },
+    {
+      "section": "Repeat Revenue System",
+      "viewport": "desktop-1440",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 6,
+      "min_images": 6,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/follow-up-system-desktop-1440.png"
+    },
+    {
+      "section": "Repeat Revenue System",
+      "viewport": "desktop-1440",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 6,
+      "min_images": 4,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/the-follow-up-loop-desktop-1440.png"
+    },
+    {
+      "section": "Money Leak Map",
+      "viewport": "mobile-390",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 5,
+      "min_images": 5,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/money-leak-map-mobile-390.png"
+    },
+    {
+      "section": "Workflow Audit",
+      "viewport": "mobile-390",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 4,
+      "min_images": 4,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/workflow-audit-mobile-390.png"
+    },
+    {
+      "section": "Cash Flow Collection System",
+      "viewport": "mobile-390",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 9,
+      "min_images": 9,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/cash-collection-system-mobile-390.png"
+    },
+    {
+      "section": "Repeat Revenue System",
+      "viewport": "mobile-390",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 6,
+      "min_images": 6,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/follow-up-system-mobile-390.png"
+    },
+    {
+      "section": "Repeat Revenue System",
+      "viewport": "mobile-390",
+      "pass": true,
+      "text_present": true,
+      "stanley_image_count": 6,
+      "min_images": 4,
+      "broken_images": 0,
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-t_e761060a-icon-qa/the-follow-up-loop-mobile-390.png"
+    }
+  ],
+  "packet_images": [
+    {
+      "path": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-speedup/visual-packet/approval-packet-overview.png",
+      "dimensions": "1440x2067"
+    },
+    {
+      "path": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-speedup/visual-packet/desktop-five-section-contact-sheet.png",
+      "dimensions": "720x2067"
+    },
+    {
+      "path": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-speedup/visual-packet/mobile-five-section-contact-sheet.png",
+      "dimensions": "1300x1455"
+    }
+  ],
+  "approval_question": "Approve this icon/visual direction for the five sections, or tell me the section number(s) to edit?"
+}

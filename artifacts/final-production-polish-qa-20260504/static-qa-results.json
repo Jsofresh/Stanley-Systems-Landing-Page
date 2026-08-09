@@ -1,0 +1,22 @@
+{
+  "files_scanned": 196,
+  "hits": [],
+  "visual_kit_source_evidence_files": [
+    "components/calculator-path-section.tsx",
+    "components/how-it-works-section.tsx",
+    "components/pricing-section.tsx",
+    "components/proof-strip-section.tsx",
+    "components/visual-kit/composite-assets/composite-assets.tsx",
+    "components/visual-kit/display-assets/display-assets.tsx",
+    "components/visual-kit/display-assets/index.ts",
+    "components/visual-kit/index.ts",
+    "components/visual-kit/mini-features/cashflow-path-mini.tsx",
+    "components/visual-kit/mini-features/customer-revenue-loop-mini.tsx",
+    "components/visual-kit/mini-features/revenue-leak-category-grid-mini.tsx",
+    "components/visual-kit/mini-features/revenue-leak-estimate-mini.tsx",
+    "components/visual-kit/mini-features/workflow-proof-mini.tsx",
+    "components/visual-kit/shared/index.ts"
+  ],
+  "protected_status_matches": [],
+  "passed": true
+}

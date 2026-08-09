@@ -14,9 +14,9 @@ const painPoints = [
     icon: MessagesSquare,
   },
   {
-    title: "The owner becomes the backup system",
+    title: "Normal office processes cost more than they look like",
     description:
-      "Too much depends on one person remembering what was promised, what got scheduled, and what still needs attention.",
+      "Too much time goes into moving information between software, checking missing details, and remembering what still needs attention.",
     icon: Brain,
   },
   {
@@ -62,10 +62,10 @@ export function PainPointsSection() {
 
           <div className="mt-8 flex justify-center">
             <a
-              href="/contact"
+              href="/pricing"
               className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-[#166534]"
             >
-              Show us where you're getting stuck
+              See pricing paths
             </a>
           </div>
         </div>

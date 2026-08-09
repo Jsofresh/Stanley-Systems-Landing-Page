@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "annualLoaded": true,
+    "annualMask": "none",
+    "annualSrc": "http://127.0.0.1:3233/images/uploaded/homepage/cash-flow-rework/annual-money-left-on-the-table-60k-to-300k.jpg",
+    "removedCalcSub": true,
+    "assessmentEdgeOverlays": 4,
+    "overflow": 0
+  },
+  "bad": [],
+  "errs": [],
+  "failures": []
+}

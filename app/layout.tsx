@@ -4,40 +4,70 @@ import { Suspense } from "react"
 import "./globals.css"
 import { PageTransition } from "@/components/page-transition"
 import { NavigationTransition } from "@/components/navigation-transition"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Dancing_Script, Caveat } from "next/font/google"
+import localFont from "next/font/local"
 
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  variable: "--font-dancing-script",
+const neueMontreal = localFont({
+  src: [
+    {
+      path: "./fonts/neue-montreal/NeueMontreal-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/neue-montreal/NeueMontreal-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/neue-montreal/NeueMontreal-Bold.woff2",
+      weight: "700 900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-neue-montreal",
   display: "swap",
+  preload: true,
 })
 
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  display: "swap",
-})
+const fontAliases = {
+  "--font-dancing-script": "var(--font-neue-montreal)",
+  "--font-caveat": "var(--font-neue-montreal)",
+  "--font-manrope": "var(--font-neue-montreal)",
+  "--font-logo": "var(--font-neue-montreal)",
+  "--font-inter": "var(--font-neue-montreal)",
+  "--font-space-grotesk": "var(--font-neue-montreal)",
+  "--font-nunito-sans": "var(--font-neue-montreal)",
+  "--font-work-sans": "var(--font-neue-montreal)",
+} as React.CSSProperties
+
+const siteTitle = "Stanley Systems | AI Profit Map"
+const siteDescription =
+  "Stanley Systems offers the AI Profit Map and installs AI office workflows for service businesses where office process is costing time, cash, customer follow-up, and profit."
+const siteLogoPath = "/stanley-systems-logo-reference.jpg"
+const siteLogoUrl = `https://stanley-systems.com${siteLogoPath}`
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stanley-systems.com"),
-  title: "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
-  description:
-    "Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+  title: siteTitle,
+  description: siteDescription,
   openGraph: {
-    title: "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
-    description:
-      "Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+    title: siteTitle,
+    description: siteDescription,
     url: "https://stanley-systems.com",
     siteName: "Stanley Systems",
+    images: [{ url: siteLogoPath, width: 1024, height: 1024, alt: "Stanley Systems logo" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
-    description:
-      "Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+    title: siteTitle,
+    description: siteDescription,
+    images: [siteLogoPath],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   alternates: {
     canonical: "https://stanley-systems.com",
@@ -64,10 +94,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "Is this going to turn into a big project?",
+        name: "What is the AI Profit Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. The starting point is usually one or two fixes that make the clearest difference first.",
+          text: "It is a $197 AI office diagnostic where Stanley Systems finds where office work is costing time, cash, and customer follow-up, then gives you an AI fix plan and $194 Installation Sprint credit if you move forward within 14 days.",
         },
       },
       {
@@ -75,20 +105,20 @@ export default function RootLayout({
         name: "Who is this best for?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Owner-led service businesses where billing, follow-up, office handoffs, or repeat admin are slowing things down.",
+          text: "Owner-led service businesses where cash is being lost in day-to-day gaps like billing delays, missed callbacks, weak follow-up, or dormant customer lists.",
         },
       },
       {
         "@type": "Question",
-        name: "What if we are not sure where the real problem is?",
+        name: "What if we are not sure where the real leak is?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "That is fine. The first call is used to figure out where the bottleneck actually is.",
+          text: "That is exactly what the AI Profit Map is for: it turns office drag into a Priority Fix List, AI Opportunity Map, Quick-Win AI Assets, and a Profit Implementation Plan.",
         },
       },
       {
         "@type": "Question",
-        name: "Will my team still control the workflow?",
+        name: "Will my team still control the process?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Yes. Your team stays in control, and you own what gets built.",
@@ -96,18 +126,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "How long does setup usually take?",
+        name: "What happens after the AI Profit Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It depends on the bottleneck, but the goal is to get the first useful fix in place quickly instead of dragging things out.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do I need to stop operations while this gets set up?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. The goal is to improve how the business runs without disrupting the team.",
+          text: "Stanley Systems shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first, then turns that plan into systems your business can use.",
         },
       },
     ],
@@ -119,12 +141,11 @@ export default function RootLayout({
     name: "Stanley Systems",
     legalName: "Stanley Systems",
     url: "https://stanley-systems.com",
-    logo: "https://stanley-systems.com/stanley-logo-new.jpg",
-    image: "https://stanley-systems.com/stanley-logo-new.jpg",
-    description:
-      "Stanley Systems helps blue-collar service businesses remove backend bottlenecks so they can get paid faster, follow up automatically, and stop losing time to manual admin.",
+    logo: siteLogoUrl,
+    image: siteLogoUrl,
+    description: siteDescription,
     telephone: "+16179586372",
-    email: "hello@stanley-systems.com",
+    email: "jaden@stanley-systems.com",
     areaServed: ["US"],
     sameAs: [
       "https://www.linkedin.com/company/stanley-systems/",
@@ -136,7 +157,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Stanley Systems",
-    alternateName: "Stanley Systems Automation",
+    alternateName: "Stanley Systems Office Workflow Systems",
     url: "https://stanley-systems.com",
   }
 
@@ -156,12 +177,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={`font-sans antialiased ${dancingScript.variable} ${caveat.variable}`}>
+      <body className={`font-sans antialiased ${neueMontreal.variable}`} style={fontAliases}>
         <Suspense fallback={null}>
           <NavigationTransition />
           <PageTransition>{children}</PageTransition>
         </Suspense>
-        <SpeedInsights />
       </body>
     </html>
   )

@@ -1,0 +1,247 @@
+# CTA Route Manifest
+
+Generated before redesign implementation. Desired routing rules come from `docs/redesign/stanley-site-redesign-north-star.md`.
+
+## Routing rules
+
+- Cold homepage CTAs -> system explanation pages, calculator, or pricing; no premature checkout except Workflow Audit where intentionally high-intent.
+- Homepage/package cards for Cashflow Control and Repeat Revenue -> `/systems/cashflow-control` and `/systems/repeat-revenue`.
+- System explanation page CTAs -> checkout/onboarding/payment links.
+- Calculator/result CTAs -> recommended next step.
+- No public `/dev` links.
+- No stale package names.
+
+## Current href inventory
+
+- `app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx:269` href: `https://calendly.com/stanleysystems/30min`
+  - context: t with the checklist, then book a short review if you want help tightening the billing path."} </p> <div className="mt-5 flex flex-col gap-3 sm:flex-row"> <a href="https://calendly.com/stanleysystems/30min" onClick={() => track("stanley_paid_calc_booking_cta_c
+- `app/invoicing-delay-cash-flow-calculator/paid-calculator-client.tsx:276` href: `mailto:jaden@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist`
+  - context: t-semibold text-white transition hover:bg-[#166534]" > {highSeverity ? "Book a 15-minute billing audit" : "Book a review call"} </a> <a href="mailto:jaden@stanley-systems.com?subject=Send%20my%20same-day%20invoicing%20checklist" onClick={() => track("stanley_p
+- `app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1065` href: `auditHref`
+  - context: : Workflow Audit</div> <p className="mt-1 text-sm leading-6 text-slate-700">Check the real records. Find the first leak. Stop the repeat.</p> </div> </div> <Link href={auditHref} target="_blank" rel="noopener noreferrer" data-analytics-event="audit_checkout_cl
+- `app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1374` href: `auditHref`
+  - context: ext-slate-900">{copy}</div> </div> ))} </div> <div className="mt-8 grid w-full gap-3 sm:grid-cols-2 sm:justify-center lg:mt-10"> <Link href={auditHref} target="_blank" rel="noopener noreferrer" data-analytics-event="audit_checkout_clicked" data-analytics-sourc
+- `app/invoicing-delay-cash-flow-calculator/calculator-client.tsx:1386` href: `tel:+16172745391`
+  - context: {resultSummary.hasMeaningfulLeak ? `Find Where ${resultSummary.formattedCTAValue}/month Is Stuck` : "Check the Workflow"} <ArrowRight className="ml-2 h-4 w-4" /> </Link> <a href="tel:+16172745391" className="inline-flex min-h-12 w-full items-center justify-cen
+- `app/work-order-to-invoice-process-for-service-businesses/page.tsx:43` href: `/pricing`
+  - context: ms helps service businesses clean up the step between job complete and invoice ready so cash can move faster. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-s
+- `app/work-order-to-invoice-process-for-service-businesses/page.tsx:46` href: `tel:+16179586372`
+  - context: rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800"> See pricing </Link> <a href="tel:+16179586372" className="inline-flex items-center justify-center rounded-full bor
+- `app/work-order-to-invoice-process-for-service-businesses/page.tsx:104` href: `/invoicing-delay-cash-flow-calculator`
+  - context: and invoice ready, then shows where the delay is coming from and whether there is a clean fix worth building. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/invoicing-delay-cash-flow-calculator" className="inline-flex items-center jus
+- `app/work-order-to-invoice-process-for-service-businesses/page.tsx:108` href: `/office-handoff-problems-in-field-service-businesses`
+  - context: text-base font-semibold text-white transition hover:bg-[#166534]"> See what the delay is costing <ArrowRight className="ml-2 h-4 w-4" /> </Link> <Link href="/office-handoff-problems-in-field-service-businesses" className="inline-flex items-center justify-cente
+- `app/speed-up-invoicing-for-service-businesses/page.tsx:132` href: `/stanley-systems-case-study`
+  - context: n up: what happens between the work getting done and the office getting what it needs to move billing forward. </p> <div className="mt-6 flex flex-wrap gap-3"> <Link href="/stanley-systems-case-study" className="inline-flex items-center justify-center rounded-
+- `app/speed-up-invoicing-for-service-businesses/page.tsx:138` href: `/pricing`
+  - context: 8d1c4] bg-[#f8f6f1] px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-[#efe9dc]" > Read the marine shop case study </Link> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-5 py-3 text-sm fon
+- `app/speed-up-invoicing-for-service-businesses/page.tsx:158` href: `/pricing`
+  - context: the drag is coming from and whether there is a clean fix worth building. </p> </div> <div className="flex flex-col gap-3 lg:items-end"> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-base font-se
+- `app/speed-up-invoicing-for-service-businesses/page.tsx:165` href: `/office-handoff-problems-in-field-service-businesses`
+  - context: old text-slate-900 transition hover:bg-slate-100" > See pricing <ArrowRight className="ml-2 h-4 w-4" /> </Link> <Link href="/office-handoff-problems-in-field-service-businesses" className="inline-flex items-center justify-center rounded-full border border-slat
+- `app/speed-up-invoicing-for-service-businesses/page.tsx:179` href: `page.href`
+  - context: ction> <section className="mt-12"> <div className="grid gap-4 lg:grid-cols-3"> {relatedPages.map((page) => ( <Link key={page.href} href={page.href} className="rounded-[1.6rem] border border-[#e8dfd0] bg-white/90 p-6 shadow-[0_18px_60px_rgba(15,23,42,0.05)] tra
+- `app/office-handoff-problems-in-field-service-businesses/page.tsx:53` href: `/pricing`
+  - context: t handoff is messy, the business keeps paying for the job long after the crew has moved on. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3
+- `app/office-handoff-problems-in-field-service-businesses/page.tsx:59` href: `tel:+16179586372`
+  - context: 3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800" > See pricing </Link> <a href="tel:+16179586372" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-
+- `app/office-handoff-problems-in-field-service-businesses/page.tsx:122` href: `page.href`
+  - context: slow invoicing article", href: "/blog/real-cost-of-slow-invoicing-service-business" }, ].map((page) => ( <Link key={`${page.href}-${page.title}`} href={page.href} className="rounded-[1.4rem] border border-[#e8dfd0] bg-[#fbfaf7] px-5 py-5 text-slate-900 transit
+- `app/marine-service-automation/page.tsx:53` href: `/pricing`
+  - context: goal is practical automation that helps cash move faster and admin drag stay under control. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3
+- `app/marine-service-automation/page.tsx:59` href: `tel:+16179586372`
+  - context: 3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800" > See pricing </Link> <a href="tel:+16179586372" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-
+- `app/marine-service-automation/page.tsx:122` href: `page.href`
+  - context: ice handoff problems", href: "/office-handoff-problems-in-field-service-businesses" }, ].map((page) => ( <Link key={`${page.href}-${page.title}`} href={page.href} className="rounded-[1.4rem] border border-[#e8dfd0] bg-[#fbfaf7] px-5 py-5 text-slate-900 transit
+- `app/checkout/cancel/page.tsx:27` href: `/pricing`
+  - context: You can return to pricing, or buy the Workflow Audit if you want the paid diagnostic first. </p> <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row"> <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center rounded-ful
+- `app/checkout/cancel/page.tsx:35` href: `workflowAuditPricingPackage.stripePaymentLink.url`
+  - context: us:ring-offset-2" data-cta-label="Return to Pricing" data-cta-location="checkout_cancel_primary" > Return to Pricing </Link> <a href={workflowAuditPricingPackage.stripePaymentLink.url} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-cent
+- `app/checkout/success/page.tsx:49` href: `/checkout/onboarding`
+  - context: ms can review your tools, access, fit, and implementation scope before setup begins. </p> <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row"> <Link href="/checkout/onboarding" className="inline-flex min-h-12 items-center justify-center rounde
+- `app/checkout/success/page.tsx:59` href: `https://calendly.com/stanleysystems/30min`
+  - context: data-cta-label="Complete onboarding" data-cta-location="checkout_success_primary" > Fill Out Onboarding Form </Link> <a href="https://calendly.com/stanleysystems/30min" target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-cente
+- `app/field-service-automation/page.tsx:53` href: `/pricing`
+  - context: goal is cleaner operations that the team can actually follow under real working conditions. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3
+- `app/field-service-automation/page.tsx:59` href: `tel:+16179586372`
+  - context: 3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800" > See pricing </Link> <a href="tel:+16179586372" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-
+- `app/field-service-automation/page.tsx:122` href: `page.href`
+  - context: ice handoff problems", href: "/office-handoff-problems-in-field-service-businesses" }, ].map((page) => ( <Link key={`${page.href}-${page.title}`} href={page.href} className="rounded-[1.4rem] border border-[#e8dfd0] bg-[#fbfaf7] px-5 py-5 text-slate-900 transit
+- `app/service-business-billing-process-fix/page.tsx:43` href: `/pricing`
+  - context: is still missing what the office needs to move billing forward cleanly. Stanley Systems helps fix that path. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-sl
+- `app/service-business-billing-process-fix/page.tsx:46` href: `tel:+16179586372`
+  - context: rounded-full bg-slate-950 px-6 py-3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800"> See pricing </Link> <a href="tel:+16179586372" className="inline-flex items-center justify-center rounded-full bor
+- `app/service-business-billing-process-fix/page.tsx:104` href: `/invoicing-delay-cash-flow-calculator`
+  - context: cash-flow impact. Then decide whether the problem starts in job closeout, office handoff, or billing cleanup. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/invoicing-delay-cash-flow-calculator" className="inline-flex items-center jus
+- `app/service-business-billing-process-fix/page.tsx:108` href: `/speed-up-invoicing-for-service-businesses`
+  - context: -base font-semibold text-white transition hover:bg-[#166534]"> Use the invoicing delay calculator <ArrowRight className="ml-2 h-4 w-4" /> </Link> <Link href="/speed-up-invoicing-for-service-businesses" className="inline-flex items-center justify-center rounded
+- `app/how-stanley-systems-works/page.tsx:103` href: `/stanley-systems-case-study`
+  - context: usion. Faster handoff. Better visibility. More trust in the process. </p> </div> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/stanley-systems-case-study" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 p
+- `app/how-stanley-systems-works/page.tsx:110` href: `/pricing`
+  - context: sition hover:bg-slate-800" > See proof and case-study direction <ArrowRight className="ml-2 h-4 w-4" /> </Link> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-base font-se
+- `app/about/page.tsx:101` href: `workflowAuditHref`
+  - context: the leak that is costing the business cash first, inside the tools your team already uses. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href={workflowAuditHref} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#
+- `app/about/page.tsx:108` href: `phoneHref`
+  - context: :ring-offset-2" > Start with the Workflow Audit <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /> </Link> <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-6 py-3.5 text-ba
+- `app/about/page.tsx:228` href: `workflowAuditHref`
+  - context: and office hours are getting lost before you pay for the wrong fix. You leave knowing what is leaking, what it costs, and what to fix first. </p> </div> <Link href={workflowAuditHref} className="inline-flex min-h-12 items-center justify-center rounded-full bg-
+- `app/about/page.tsx:276` href: `workflowAuditHref`
+  - context: gets stuck</h2> <p className="mt-2 text-sm leading-6 text-slate-600">If you want to find the first cash leak in your business, start with the Workflow Audit.</p> </div> <Link href={workflowAuditHref} className="inline-flex items-center text-sm font-semibold te
+- `app/about/page.tsx:285` href: `page.href`
+  - context: > </div> <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"> {internalPageLinks.map((page) => ( <Link key={page.href} href={page.href} className="rounded-[1.1rem] border border-[#e8dfd0] bg-[#fbfaf7] px-4 py-4 text-slate-900 transition hover:bg-whi
+- `app/blog/page.tsx:19` href: `/about`
+  - context: e drag is coming from and what a clean fix actually looks like. </p> <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-slate-700"> <Link href="/about" className="rounded-full border border-[#e8dfd0] bg-white px-4 py
+- `app/blog/page.tsx:20` href: `/who-stanley-systems-helps`
+  - context: text-sm font-medium text-slate-700"> <Link href="/about" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">About Stanley Systems</Link> <Link href="/who-stanley-systems-helps" className="rounded-full border bor
+- `app/blog/page.tsx:21` href: `/how-stanley-systems-works`
+  - context: stems</Link> <Link href="/who-stanley-systems-helps" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Who Stanley Systems helps</Link> <Link href="/how-stanley-systems-works" className="rounded-full border bor
+- `app/blog/page.tsx:22` href: `/stanley-systems-case-study`
+  - context: helps</Link> <Link href="/how-stanley-systems-works" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">How Stanley Systems works</Link> <Link href="/stanley-systems-case-study" className="rounded-full border bo
+- `app/blog/page.tsx:23` href: `/missed-estimate-follow-up-for-service-businesses`
+  - context: ms works</Link> <Link href="/stanley-systems-case-study" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Stanley Systems proof</Link> <Link href="/missed-estimate-follow-up-for-service-businesses" className="
+- `app/blog/page.tsx:24` href: `/office-handoff-problems-in-field-service-businesses`
+  - context: <Link href="/missed-estimate-follow-up-for-service-businesses" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Missed estimate follow-up</Link> <Link href="/office-handoff-problems-in-field-service-businesses
+- `app/blog/page.tsx:25` href: `/marine-service-automation`
+  - context: <Link href="/office-handoff-problems-in-field-service-businesses" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Office handoff problems</Link> <Link href="/marine-service-automation" className="rounded-full
+- `app/blog/page.tsx:26` href: `/field-service-automation`
+  - context: blems</Link> <Link href="/marine-service-automation" className="rounded-full border border-[#e8dfd0] bg-white px-4 py-2.5 transition hover:bg-[#f8f4ee]">Marine service automation</Link> <Link href="/field-service-automation" className="rounded-full border bord
+- `app/blog/page.tsx:47` href: ``/blog/${post.slug`
+  - context: >{post.title}</h2> <p className="mt-4 text-base leading-7 text-slate-600">{post.excerpt}</p> <div className="mt-auto flex justify-center pt-8"> <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-900 trans
+- `app/blog/[slug]/page.tsx:39` href: `/blog`
+  - context: params.slug) if (!post) { notFound() } return ( <MarketingPageShell> <article className="px-4 pb-16 pt-28 sm:pt-32 lg:pt-36"> <div className="mx-auto max-w-4xl"> <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 tr
+- `app/blog/[slug]/page.tsx:95` href: `/pricing`
+  - context: sName="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">{post.ctaTitle}</h2> <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">{post.ctaBody}</p> <Link href="/pricing" className="mt-6 inline-flex items-center gap-2 rounded-full bg
+- `app/stanley-systems-case-study/page.tsx:260` href: `/pricing#workflow-audit`
+  - context: -slate-400">Find where cash, customers, and office hours are slipping through the cracks.</p> </div> <div className="flex flex-col gap-3 lg:items-end"> <Link href="/pricing#workflow-audit" className="inline-flex items-center justify-center rounded-full bg-whit
+- `app/stanley-systems-case-study/page.tsx:267` href: `/marine-service-automation`
+  - context: transition hover:bg-slate-100" > Start with the Workflow Audit <ArrowRight className="ml-2 h-4 w-4" /> </Link> <Link href="/marine-service-automation" className="inline-flex items-center justify-center rounded-full border border-slate-700 px-6 py-3.5 text-base
+- `app/remotion/page.tsx:34` href: `/`
+  - context: our private entry point for the Remotion video project. Edit the composition files, rerender, and review outputs without exposing the route publicly. </p> </div> <Link href="/" className="rounded-full border border-[#e8dfd0] px-4 py-2 text-sm font-semibold tex
+- `app/remotion/login/page.tsx:31` href: `/remotion`
+  - context: ntent-Type": "application/json" }, body: JSON.stringify({ token }), }) if (!response.ok) { setError("That access token did not work.") setLoading(false) return } router.push("/remotion") router.refresh() } catch { setError("Login failed. Try again in a moment.
+- `app/systems/repeat-revenue/page.tsx:119` href: `monthlyPlan.stripePaymentLink.url`
+  - context: [#536173] sm:text-lg">{copy}</p> </div> ) } function PrimaryCTACluster({ location }: { location: string }) { return ( <div className="flex flex-col gap-3 sm:flex-row sm:items-center"> <CTALink href={monthlyPlan.stripePaymentLink.url} kind="checkout" location={
+- `app/systems/repeat-revenue/page.tsx:136` href: `workflowAudit.stripePaymentLink.url`
+  - context: ext-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]" > Buy Repeat Revenue <ArrowRight className="h-4 w-4" aria-hidden="true" /> </CTALink> <CTALink href={workflowAudit.stripePaymentLink.url} kind="checkout" location={`${location}_
+- `app/systems/repeat-revenue/page.tsx:296` href: `/pricing#compare-systems`
+  - context: p> </article> ))} </div> </section> <div className="text-center text-sm font-semibold text-[#607080]"> Need to compare both systems first? <Link href="/pricing#compare-systems" className="font-bold text-[#116832] underline underline-offset-4">Compare systems o
+- `app/systems/cashflow-control/page.tsx:108` href: `monthlyPlan.stripePaymentLink.url`
+  - context: [#536173] sm:text-lg">{copy}</p> </div> ) } function PrimaryCTACluster({ location }: { location: string }) { return ( <div className="flex flex-col gap-3 sm:flex-row sm:items-center"> <CTALink href={monthlyPlan.stripePaymentLink.url} kind="checkout" location={
+- `app/systems/cashflow-control/page.tsx:125` href: `workflowAudit.stripePaymentLink.url`
+  - context: t-white shadow-[0_16px_34px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]" > Buy Cashflow Control <ArrowRight className="h-4 w-4" aria-hidden="true" /> </CTALink> <CTALink href={workflowAudit.stripePaymentLink.url} kind="checkout" location={`${location}_
+- `app/systems/cashflow-control/page.tsx:273` href: `/pricing#compare-systems`
+  - context: p> </article> ))} </div> </section> <div className="text-center text-sm font-semibold text-[#607080]"> Need to compare both systems first? <Link href="/pricing#compare-systems" className="font-bold text-[#116832] underline underline-offset-4">Compare systems o
+- `app/missed-estimate-follow-up-for-service-businesses/page.tsx:53` href: `/pricing`
+  - context: time. When that step depends on memory, the next busy day wins. Good jobs go cold quietly. </p> <div className="mt-8 flex flex-col gap-3 sm:flex-row"> <Link href="/pricing" className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.
+- `app/missed-estimate-follow-up-for-service-businesses/page.tsx:59` href: `tel:+16179586372`
+  - context: 3.5 text-base font-semibold text-white shadow-[0_12px_30px_rgba(15,23,42,0.15)] transition hover:bg-slate-800" > See pricing </Link> <a href="tel:+16179586372" className="inline-flex items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-
+- `app/missed-estimate-follow-up-for-service-businesses/page.tsx:122` href: `page.href`
+  - context: mate follow-up article", href: "/blog/the-estimate-that-went-cold-and-the-4000-job" }, ].map((page) => ( <Link key={`${page.href}-${page.title}`} href={page.href} className="rounded-[1.4rem] border border-[#e8dfd0] bg-[#fbfaf7] px-5 py-5 text-slate-900 transit
+- `components/glassmorphism-nav.tsx:107` href: ``${basePath || "/"`
+  - context: x_50px_rgba(15,23,42,0.08)] backdrop-blur-xl md:block md:px-5 md:py-3"> <div className="flex items-center justify-between gap-3"> <div className="hidden min-w-[150px] md:block"> <Link href={`${basePath || "/"}`} className="text-[15px] font-semibold tracking-[-
+- `components/glassmorphism-nav.tsx:116` href: `item.href`
+  - context: </div> <div className="hidden flex-1 items-center justify-center gap-0.5 md:flex"> {navigation.map((item) => ( <Link key={item.name} href={item.href} className="whitespace-nowrap rounded-full px-3 py-2.5 text-[14px] font-medium text-slate-600 transition-colors
+- `components/glassmorphism-nav.tsx:126` href: `tel:+16179586372`
+  - context: > {item.name} </Link> ))} </div> <div className="hidden min-w-[390px] items-center justify-end gap-2 md:flex"> <a href="tel:+16179586372" className="inline-flex whitespace-nowrap items-center rounded-full border border-[#d8d1c4] bg-white px-4 py-2.5 text-[13px
+- `components/glassmorphism-nav.tsx:133` href: `auditHref`
+  - context: -slate-900 transition-all duration-200 hover:bg-[#f4efe6]" > <Phone size={15} className="mr-2" /> Call: +1 (617) 958-6372 </a> <a href={auditHref} target="_blank" rel="noopener noreferrer" data-analytics-event="audit_checkout_clicked" data-analytics-source="si
+- `components/glassmorphism-nav.tsx:172` href: `item.href`
+  - context: x_rgba(15,23,42,0.12)] backdrop-blur-xl"> <div className="flex flex-col gap-1.5"> {navigation.map((item) => ( <Link key={item.name} href={item.href} className="rounded-2xl px-4 py-3.5 text-base font-medium text-slate-700 transition-colors duration-200 hover:bg
+- `components/glassmorphism-nav.tsx:181` href: `tel:+16179586372`
+  - context: ={() => setIsOpen(false)} > {item.name} </Link> ))} <div className="my-2 h-px bg-[#ebe5db]" /> <a href="tel:+16179586372" className="inline-flex w-full items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-5 py-3.5 text-base font-semibol
+- `components/glassmorphism-nav.tsx:188` href: `auditHref`
+  - context: ext-slate-900 transition-all duration-200 hover:bg-[#f4efe6]" > <Phone size={17} className="mr-2" /> Call now </a> <a href={auditHref} target="_blank" rel="noopener noreferrer" data-analytics-event="audit_checkout_clicked" data-analytics-source="site_nav" data
+- `components/not-found-content.tsx:22` href: `/`
+  - context: s, the best next step is to head back to the homepage, read the blog, or go straight to the contact page. </p> <div className="mt-10 flex flex-col gap-4 sm:flex-row"> <Link href="/" className="inline-flex items-center justify-center rounded-full bg-slate-900 p
+- `components/not-found-content.tsx:28` href: `/contact`
+  - context: ms-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-800" > Back to homepage </Link> <Link href="/contact" className="inline-flex items-center justify-center rounded-full border border-[#e8dfd0]
+- `components/not-found-content.tsx:34` href: `/blog`
+  - context: d-full border border-[#e8dfd0] bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-[#faf7f2]" > Contact Stanley Systems </Link> <Link href="/blog" className="inline-flex items-center justify-center gap-2 rounded-full border border-transpa
+- `components/pricing-section.tsx:133` href: `primaryHref`
+  - context: aryHref: string location: string packageId: string packageName: string }) { return ( <div className="mt-5 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"> <CTALink href={primaryHref} kind="systems" location={location} analyticsEve
+- `components/pricing-section.tsx:147` href: `auditHref`
+  - context: text-white shadow-[0_16px_34px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] sm:px-8" > {primary} <ArrowRight className="h-4 w-4" aria-hidden="true" /> </CTALink> <CTALink href={auditHref} kind="checkout" location={`${location}_audit`} analyticsEvent="aud
+- `components/footer.tsx:83` href: `tel:+16179586372`
+  - context: border-[#dfe7ee] bg-[#f8fbfc] px-5 py-4 text-center shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:block sm:px-6"> <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"> <a href="tel:+16179586372" className="inline-flex items-cente
+- `components/footer.tsx:88` href: `auditHref`
+  - context: te px-5 py-3 text-sm font-semibold text-slate-900 transition-all duration-200 hover:bg-[#f4efe6] sm:text-base"> <Phone className="mr-2 h-4 w-4" /> Call now </a> <a href={auditHref} target="_blank" rel="noopener noreferrer" data-analytics-event="audit_checkout_
+- `components/footer.tsx:131` href: `link.href`
+  - context: assName="mt-3 space-y-1.5 text-sm leading-6 text-slate-600"> {section.links.map((link) => ( <li key={link.title}> {link.external ? ( <a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="inline-flex max-w-
+- `components/footer.tsx:136` href: `link.href`
+  - context: link.icon && <link.icon className="me-1 size-4 shrink-0" />} <span className="min-w-0">{link.title}</span> </a> ) : ( <Link href={link.href} className="inline-flex max-w-full items-center break-words transition-all duration-300 hover:text-slate-900"> {link.ico
+- `components/cta-phone-link.tsx:41` href: `href`
+  - context: xport function CTAPhoneLink({ href, location, children, className, ...rest }: CTAPhoneLinkProps) { function handleClick(_event: MouseEvent<HTMLAnchorElement>) { trackPhoneCTA(location, href) } return ( <a href={href} className={className} onClick={handleClick}
+- `components/cta-link.tsx:107` href: `href`
+  - context: ent>) { trackCTA({ analyticsEvent, analyticsSource, billingPeriod, ctaLabel, href, kind, location, packageId, packageName, }) } return ( <Link href={href} className={className} onClick={handleClick} data-stanley-cta-tracked="true" data-analytics-event={analyti
+- `components/mobile-sticky-cta.tsx:60` href: `tel:+16179586372`
+  - context: t-x-0 bottom-0 z-50 border-t border-[#e8e1d3] bg-white/96 px-4 py-3 shadow-[0_-10px_30px_rgba(15,23,42,0.12)] backdrop-blur md:hidden"> <div className="mx-auto flex max-w-md gap-3"> <CTAPhoneLink href="tel:+16179586372" location="mobile_sticky_secondary" class
+- `components/mobile-sticky-cta.tsx:67` href: `auditHref`
+  - context: nline-flex flex-1 items-center justify-center rounded-full border border-[#d8d1c4] bg-white px-4 py-3 text-sm font-semibold text-slate-900" > Call now </CTAPhoneLink> <CTALink href={auditHref} kind="checkout" location="mobile_sticky_primary" analyticsEvent="au
+- `components/marine-example-section.tsx:15` href: `/pricing#workflow-audit`
+  - context: ine shop does not need a whole new system to get cleaner billing, handoffs, and follow-up. It needs the tools it already has to pass the right work to the next step faster. </p> <a href="/pricing#workflow-audit" className="mt-7 inline-flex items-center justify
+- `components/contact-section.tsx:146` href: `card.href`
+  - context: lassName={card.compact ? "mt-2 max-w-[15rem] text-sm leading-6 text-slate-600 sm:text-[15px]" : "mt-3 text-sm leading-6 text-slate-600 sm:text-[15px]"}>{card.description}</p> <a href={card.href} className={card.compact ? "mt-3 block whitespace-nowrap text-cent
+- `components/contact-section.tsx:318` href: `/privacy-policy`
+  - context: ervice updates, billing, and account follow-up. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. {" "} <Link href="/privacy-policy" className="font-medium text-slate-900
+- `components/contact-section.tsx:322` href: `/terms-and-conditions`
+  - context: k href="/privacy-policy" className="font-medium text-slate-900 underline underline-offset-4"> Privacy Policy </Link>{" "} and {" "} <Link href="/terms-and-conditions" className="font-medium text-slate-900 underline underline-offset-4"> Terms and Conditions </L
+- `components/contact-section.tsx:330` href: `/privacy-policy`
+  - context: . </span> </label> <p className="mt-3 text-sm leading-6 text-slate-600"> By submitting this form, you agree to our {" "} <Link href="/privacy-policy" className="font-medium text-slate-900 underline underline-offset-4"> Privacy Policy </Link>{" "} and {" "} <Li
+- `components/contact-section.tsx:334` href: `/terms-and-conditions`
+  - context: <Link href="/privacy-policy" className="font-medium text-slate-900 underline underline-offset-4"> Privacy Policy </Link>{" "} and {" "} <Link href="/terms-and-conditions" className="font-medium text-slate-900 underline underline-offset-4"> Terms and Conditions
+- `components/how-it-works-section.tsx:91` href: `auditHref`
+  - context: me="mt-0.5 text-sm leading-5 text-[#536174]">{body}</p> </div> </article> ))} </div> <div className="mt-5"> <CTALink href={auditHref} kind="checkout" location="workflow_audit_section" analyticsEvent="audit_checkout_clicked" analyticsSource="homepage_workflow_a
+- `components/how-it-works-section.tsx:112` href: `/terms-and-conditions#audit-guarantee-terms`
+  - context: 0 text-[#15803D]" stroke={2} aria-hidden /> <span> If Stanley Systems cannot find one clear money leak we can fix, qualified businesses get the audit fee back.{" "} <a href="/terms-and-conditions#audit-guarantee-terms" className="font-semibold text-[#102033] u
+- `components/hero-section.tsx:83` href: `auditHref`
+  - context: adline} </p> <div className="mt-5 flex w-full max-w-[47rem] flex-col items-stretch gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-3"> <CTALink href={auditHref} kind="checkout" location="home_hero_primary" analyticsEvent="audit_checkout_cl
+- `components/hero-section.tsx:100` href: `/invoicing-delay-cash-flow-calculator`
+  - context: -h-12 sm:px-6 sm:py-3 sm:text-base" > {primaryCta} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /> </CTALink> <CTALink href="/invoicing-delay-cash-flow-calculator" kind="calculator" location="home_hero_secondary" className="inline-flex min-h-11 item
+- `components/final-cta-section.tsx:38` href: `auditHref`
+  - context: real enough to fix, Stanley Systems will tell you before you buy a system. </p> <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row"> <CTALink href={auditHref} kind="checkout" location="final_cta_primary" analyticsEvent="a
+- `components/final-cta-section.tsx:56` href: `tel:+16179586372`
+  - context: g:py-5" > Buy the Workflow Audit <ArrowRight className="h-6 w-6 transition-transform duration-200 group-hover:translate-x-1" /> </CTALink> <CTAPhoneLink href="tel:+16179586372" location="final_cta_secondary" className="inline-flex items-center gap-3 rounded-fu
+- `components/calculator-path-section.tsx:93` href: `calculatorHref`
+  - context: nt-semibold leading-5 text-[#102033]">{label}</span> </div> ))} </div> <div className="mt-7 flex flex-col gap-3 sm:flex-row"> <CTALink href={calculatorHref} kind="calculator" location="homepage_calculator_primary" analyticsEvent="calculator_cta_clicked" analyt
+- `components/calculator-path-section.tsx:105` href: `auditHref`
+  - context: whitespace-nowrap" > Use the Revenue Calculator <IconArrowRight className="h-4 w-4" stroke={2} aria-hidden /> </CTALink> <CTALink href={auditHref} kind="book_meeting" location="homepage_calculator_secondary" analyticsEvent="audit_checkout_clicked" analyticsSou
+- `components/pain-points-section.tsx:65` href: `/pricing`
+  - context: ase leading-8 text-slate-700 sm:text-lg">{point.description}</p> </div> ) })} </div> <div className="mt-8 flex justify-center"> <a href="/pricing" className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold
+- `components/proof-strip-section.tsx:94` href: `auditHref`
+  - context: <AuditPathCard key={path.title} path={path} index={index} /> ))} </div> <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center"> <CTALink href={auditHref} kind="checkout" location="workflow_audit_paths_primary" analyticsEvent="a
+- `components/proof-strip-section.tsx:111` href: `/pricing#compare-systems`
+  - context: x_34px_rgba(21,128,61,0.2)] transition hover:bg-[#116832] sm:px-8" > Buy the Workflow Audit <ArrowRight className="h-4 w-4" aria-hidden="true" /> </CTALink> <CTALink href="/pricing#compare-systems" kind="systems" location="workflow_audit_paths_secondary" analy
+- `components/pricing/PricingHero.tsx:21` href: `offer.cta.href`
+  - context: ontrol System, the Repeat Revenue System, Both Systems, or neither. </p> <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"> <CTALink href={offer.cta.href} kind="book_meeting" location="pricing_hero_primary" anal
+- `components/pricing/PricingHero.tsx:36` href: `/invoicing-delay-cash-flow-calculator`
+  - context: e:outline-offset-4 focus-visible:outline-[#15803D] sm:px-8" > {offer.cta.label} <ArrowRight className="h-4 w-4" aria-hidden="true" /> </CTALink> <CTALink href="/invoicing-delay-cash-flow-calculator" kind="calculator" location="pricing_hero_secondary" className
+- `components/pricing/PricingCTA.tsx:17` href: `primaryOffer.cta.href`
+  - context: udit. Stanley Systems will show you which money leak is worth fixing first. </p> <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"> <CTALink href={primaryOffer.cta.href} kind="book_meeting" location="pricing_fin
+- `components/pricing/PricingCTA.tsx:32` href: `/invoicing-delay-cash-flow-calculator`
+  - context: _38px_rgba(21,128,61,0.24)] transition hover:bg-[#116832] sm:px-8" > Buy the Workflow Audit <ArrowRight className="h-4 w-4" aria-hidden="true" /> </CTALink> <CTALink href="/invoicing-delay-cash-flow-calculator" kind="calculator" location="pricing_final_seconda
+- `components/pricing/PricingPage.tsx:117` href: `system.href`
+  - context: dy name. If you are not sure, start with the Workflow Audit." /> <div className="mt-7 grid gap-4 lg:grid-cols-3"> {systems.map((system) => ( <Link key={system.title} href={system.href} className={`rounded-2xl border p-5 transition hover:border-[#15803D] hover:
+- `components/pricing/PlanCard.tsx:64` href: `plan.cta.href`
+  - context: Name="mt-auto pt-5 text-sm font-semibold leading-6 text-[#5f6e7d]">{plan.scopeNote}</p> ) : null} <div className="mt-5 grid gap-2.5 sm:grid-cols-2"> {plan.cta.href ? ( <CTALink href={plan.cta.href} kind="checkout" location={`pricing_${plan.id}`} analyticsEvent
+- `components/pricing/PlanCard.tsx:93` href: `plan.secondaryCta.href`
+  - context: unavailable</span> {plan.cta.disabledReason ? <span className="mt-1 block">{plan.cta.disabledReason}</span> : null} </div> )} {plan.secondaryCta ? ( <CTALink href={plan.secondaryCta.href} kind={plan.secondaryCta.action === "systems" ? "systems" : "internal_pag
+- `components/checkout/BuyerOnboardingForm.tsx:327` href: `/privacy-policy`
+  - context: s, service updates, billing, and account follow-up. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. {" "} <Link href="/privacy-policy" className="inline-flex min-h-7 it
+- `components/checkout/BuyerOnboardingForm.tsx:331` href: `/terms-and-conditions`
+  - context: policy" className="inline-flex min-h-7 items-center font-medium text-[#102033] underline underline-offset-4"> Privacy Policy </Link>{" "} and {" "} <Link href="/terms-and-conditions" className="inline-flex min-h-7 items-center font-medium text-[#102033] underl
+- `components/sections/customer-revenue-system-v3.tsx:143` href: `/pricing#workflow-audit`
+  - context: omers back, collect proof, create referrals, and recover calls before the owner has to chase them. </p> <div className="flex shrink-0 flex-col gap-3 sm:flex-row"> <a href="/pricing#workflow-audit" className="inline-flex items-center justify-center rounded-full
+- `components/sections/customer-revenue-system-v3.tsx:149` href: `#customer-revenue-system-v3-flow`
+  - context: text-sm font-semibold text-white shadow-[0_14px_30px_rgba(12,175,88,0.24)] transition hover:bg-[#098f49]" > Start with the Workflow Audit </a> <a href="#customer-revenue-system-v3-flow" className="inline-flex items-center justify-center rounded-full border bor
+- `components/sections/customer-revenue-system-v2.tsx:119` href: `/pricing#workflow-audit`
+  - context: calls, and book the next job. </p> </div> </div> <div className="mt-7 flex w-full min-w-0 flex-col gap-3 sm:flex-row"> <a href="/pricing#workflow-audit" className="inline-flex items-center justify-center rounded-full bg-[#0caf58] px-6 py-3 text-sm font-semibol
+- `components/sections/customer-revenue-system-v2.tsx:125` href: `/invoicing-delay-cash-flow-calculator`
+  - context: nt-semibold text-white shadow-[0_14px_30px_rgba(12,175,88,0.24)] transition hover:bg-[#098f49]" > Start with the Workflow Audit </a> <a href="/invoicing-delay-cash-flow-calculator" className="inline-flex items-center justify-center rounded-full border border-s
+- `components/sections/customer-revenue-system-v4.tsx:73` href: `/pricing#workflow-audit`
+  - context: mers the business already earned, then turns good work into proof, referrals, and recovered calls. </p> <div className="flex shrink-0 flex-col gap-3 sm:flex-row"> <a href="/pricing#workflow-audit" className="inline-flex min-h-11 items-center justify-center rou
+- `components/sections/customer-revenue-system-v4.tsx:79` href: `#customer-revenue-system-v4-flow`
+  - context: text-sm font-semibold text-white shadow-[0_14px_30px_rgba(21,128,61,0.22)] transition hover:bg-[#116832]" > Start with the Workflow Audit </a> <a href="#customer-revenue-system-v4-flow" className="inline-flex min-h-11 items-center justify-center rounded-full b
+- `components/visual-primitives/CTAGroup.tsx:16` href: `primary.href`
+  - context: s) { return ( <div className={cn('flex flex-col gap-3 sm:flex-row sm:items-center', className)} {...props}> <Button asChild size="lg" className="bg-emerald-700 text-white hover:bg-emerald-800"> <Link href={primary.href}>{primary.label}</Link> </Button> {second
+- `components/visual-primitives/CTAGroup.tsx:20` href: `secondary.href`
+  - context: <Link href={primary.href}>{primary.label}</Link> </Button> {secondary && ( <Button asChild size="lg" variant="outline" className="border-slate-300 text-slate-900 hover:bg-slate-50"> <Link href={secondary.href}>{secondary.label}</Link> </Button> )} </div> ) }

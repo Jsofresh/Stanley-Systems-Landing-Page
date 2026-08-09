@@ -1,0 +1,1 @@
+Integration/automation logo assets used in the Stanley Systems hero conveyor. Simple Icons SVGs were fetched from jsDelivr; field-service app marks use Google favicon service plus visible text labels in the component.

@@ -1,108 +1,173 @@
-import SlideIn from "@/components/SlideIn"
-import { ArrowRight } from "lucide-react"
+import type { ComponentType } from "react"
+import { CTALink } from "@/components/cta-link"
+import { IconArrowRight, IconShieldCheck } from "@tabler/icons-react"
+import {
+  DelayedInvoiceDisplayAsset,
+  FirstFixWrenchDisplayAsset,
+  InactiveCustomersDisplayAsset,
+  InvoiceApprovedDisplayAsset,
+  OfficeReworkDisplayAsset,
+  type DisplayAssetProps,
+} from "@/components/visual-kit/display-assets"
 
-const steps = [
+type DisplayPrimitive = ComponentType<DisplayAssetProps>
+
+const calculatorHref = "/invoicing-delay-cash-flow-calculator"
+
+const auditSteps: Array<{
+  number: string
+  title: string
+  body: string
+}> = [
   {
-    number: "01",
-    title: "See where the work is getting stuck",
-    description:
-      "Stanley Systems looks at how jobs, billing, follow-up, and office handoffs actually move through the business now. That makes it easier to spot where time, cash, and attention are getting lost.",
-    points: [
-      "Review where billing slows down",
-      "See where follow-up is being missed",
-      "Find where the same information is getting entered twice",
-    ],
+    number: "1",
+    title: "Confirm the leak",
+    body: "Find where cash, calls, and office time get stuck.",
   },
   {
-    number: "02",
-    title: "Stanley Systems shows you the first few fixes worth making",
-    description:
-      "The first fixes are picked based on what will make the clearest difference fastest. The goal is not to create a big project. The goal is to fix the first few leaks that are hurting the business most.",
-    points: [
-      "Start with cash flow, follow-up, and admin drag",
-      "Keep the rollout narrow enough to be easy to trust",
-      "Focus on fixes the team can actually use",
-    ],
+    number: "2",
+    title: "Show what it costs",
+    body: "Put delayed cash and payroll hours in plain numbers.",
   },
   {
-    number: "03",
-    title: "Stanley Systems fixes the workflow inside the tools you already use",
-    description:
-      "Stanley Systems puts the fix into the tools your team already works in, tests the handoff, and documents it clearly so the business is not left depending on memory.",
-    points: [
-      "Use the systems already in place whenever possible",
-      "Make the next step clear for the office and field",
-      "Document what happens so the team can keep using it",
-    ],
+    number: "3",
+    title: "Start with the leak that pays back fastest",
+    body: "Leave with the first workflow gap Stanley Systems should fix.",
   },
 ]
 
-function StepConnector() {
-  return (
-    <div className="flex items-center justify-center">
-      <div className="flex items-center gap-2">
-        <span className="h-[2px] w-6 bg-gradient-to-r from-[#93c5fd] to-[#3b82f6]" />
-        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#bfdbfe] bg-white text-[#2563eb] shadow-[0_10px_24px_rgba(59,130,246,0.16)]">
-          <ArrowRight className="h-5 w-5" strokeWidth={2.4} />
-        </span>
-        <span className="h-[2px] w-6 bg-gradient-to-r from-[#3b82f6] to-[#93c5fd]" />
-      </div>
-    </div>
-  )
-}
+const leakMetrics: Array<{
+  label: string
+  value: string
+  suffix: string
+  Icon: DisplayPrimitive
+}> = [
+  { label: "Delayed invoices", value: "Ready", suffix: "to bill", Icon: DelayedInvoiceDisplayAsset },
+  { label: "Open estimates", value: "Open", suffix: "next step", Icon: InvoiceApprovedDisplayAsset },
+  { label: "Office rework", value: "30+", suffix: "hrs/mo", Icon: OfficeReworkDisplayAsset },
+  { label: "Inactive customers", value: "12+", suffix: "months", Icon: InactiveCustomersDisplayAsset },
+]
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="relative z-10 px-4 py-12 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-[1480px]">
-        <div className="mx-auto max-w-3xl text-center">
-          <SlideIn direction="up">
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              How Stanley Systems fixes the problem
+    <section
+      id="audit"
+      data-section="audit-output-preview"
+      data-audit-page="/"
+      data-audit-section="home.workflow-audit"
+      data-audit-priority="5"
+      data-audit-offer="AI Profit Map"
+      data-audit-purpose="Show that the AI Profit Map finds admin drags hiding inside the office workflow."
+      className="relative z-10 scroll-mt-28 px-4 py-8 sm:scroll-mt-32 sm:py-10 lg:scroll-mt-36 lg:py-8"
+    >
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-[#d9e4d0] bg-[linear-gradient(180deg,#f4faef_0%,#fbfaf4_68%,#fffefa_100%)] p-4 shadow-[0_20px_58px_rgba(16,32,51,0.08)] sm:rounded-[2rem] sm:p-5 lg:p-6">
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,0.45fr)_minmax(0,0.55fr)] lg:items-center lg:gap-6">
+          <div className="min-w-0">
+            <h2 className="max-w-[35rem] text-[1.95rem] font-semibold leading-[1.03] text-[#102033] sm:text-[2.65rem] lg:text-[2.8rem]">
+              The calculator shows the leak. The AI Profit Map finds the source.
             </h2>
-          </SlideIn>
-        </div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-[minmax(0,1.22fr)_auto_minmax(0,1.22fr)_auto_minmax(0,1.22fr)] lg:items-stretch lg:gap-3">
-          {steps.map((step, index) => (
-            <div key={step.number} className="contents">
-              <SlideIn direction="up" delay={index * 110} className="h-full">
-                <div className="flex h-full min-h-[29rem] flex-col rounded-[1rem] border border-[#e7e1d6] bg-white p-7 shadow-[0_18px_42px_rgba(15,23,42,0.07)] sm:min-h-[30rem] sm:p-8">
-                  <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563eb]">Step {step.number}</div>
-                  <h3 className="mt-5 text-2xl font-semibold leading-9 text-slate-900 sm:text-[1.85rem] sm:leading-[1.25]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-5 text-base leading-8 text-slate-700 sm:text-lg">
-                    {step.description}
-                  </p>
-                  <ul className="mt-6 space-y-3">
-                    {step.points.map((point) => (
-                      <li key={point} className="flex items-start gap-3 text-[15px] leading-7 text-slate-700 sm:text-base">
-                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#2563eb]" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </SlideIn>
+            <p className="mt-3 max-w-[35rem] text-base leading-7 text-[#48576C] sm:text-[1.05rem] sm:leading-7">
+              The AI Profit Map turns the calculator range into a clear action report: which invoices, estimates, calls, and follow-ups are holding money back, and what to fix first.
+            </p>
 
-              {index < steps.length - 1 && (
-                <div className="hidden items-center justify-center lg:flex">
-                  <StepConnector />
-                </div>
-              )}
+            <div className="mt-4 grid gap-2.5">
+              {auditSteps.map(({ number, title, body }) => (
+                <article key={title} className="flex gap-3 rounded-[1rem] border border-[#e1dacd] bg-white/95 p-3 shadow-[0_9px_20px_rgba(16,32,51,0.04)]">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#15803D] text-xs font-bold leading-none text-white">
+                    {number}
+                  </span>
+                  <div>
+                    <h3 className="text-[0.95rem] font-bold leading-tight text-[#102033]">{title}</h3>
+                    <p className="mt-0.5 text-sm leading-5 text-[#536174]">{body}</p>
+                  </div>
+                </article>
+              ))}
             </div>
-          ))}
-        </div>
 
-      <div className="mt-10 flex justify-center">
-        <a
-          href="/contact"
-          className="inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-[#166534]"
-        >
-          See what's worth fixing first
-        </a>
-      </div>
+            <div className="mt-5">
+              <div className="flex flex-col gap-3 sm:flex-row">
+              <CTALink
+                href={calculatorHref}
+                kind="calculator"
+                location="workflow_audit_section"
+                analyticsEvent="calculator_cta_clicked"
+                analyticsSource="homepage_workflow_audit_section"
+                ctaLabel="Calculate Your Admin Drag"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#15803D] px-6 py-3 text-sm font-semibold text-white shadow-[0_16px_34px_rgba(21,128,61,0.24)] ring-1 ring-[#15803D]/15 transition hover:bg-[#116832] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:w-auto"
+              >
+                Calculate Your Admin Drag
+                <IconArrowRight className="h-4 w-4" stroke={2} aria-hidden />
+              </CTALink>
+              <CTALink
+                href="#systems"
+                kind="systems"
+                location="workflow_audit_section_secondary"
+                analyticsEvent="package_compare_clicked"
+                analyticsSource="homepage_workflow_audit_section"
+                ctaLabel="See the two systems"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#CFE0C5] bg-white px-6 py-3 text-sm font-semibold text-[#102033] shadow-[0_10px_22px_rgba(16,32,51,0.05)] transition hover:border-[#15803D]/40 hover:bg-[#F2FBF5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#15803D] sm:w-auto"
+              >
+                See the two systems
+              </CTALink>
+              </div>
+
+              <p className="mt-3 flex max-w-[34rem] items-start gap-2.5 rounded-[1rem] border border-[#cfe8d5] bg-[#edf9f1] px-3.5 py-2.5 text-sm leading-6 text-[#34465B] shadow-[0_10px_24px_rgba(21,128,61,0.07)]">
+                <IconShieldCheck className="mt-0.5 h-4.5 w-4.5 shrink-0 text-[#15803D]" stroke={2} aria-hidden />
+                <span>
+                  If Stanley Systems cannot find one clear admin drag we can fix, qualified businesses get the AI Profit Map fee back.{" "}
+                  <a href="/terms-and-conditions#audit-guarantee-terms" className="font-semibold text-[#102033] underline decoration-[#15803D]/35 underline-offset-4 transition hover:text-[#15803D]">
+                    See guarantee terms.
+                  </a>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div className="min-w-0 overflow-hidden rounded-[1.25rem] border border-[#e1dacd] bg-white p-3.5 shadow-[0_20px_54px_rgba(16,32,51,0.095)] sm:p-4 lg:p-5">
+            <div className="border-b border-[#ece4d8] pb-3 text-center">
+              <div className="mx-auto max-w-[34rem]">
+                <h3 className="mt-1.5 text-2xl font-semibold leading-tight text-[#102033] sm:text-[1.85rem]">
+                  AI Profit Map
+                </h3>
+                <p className="mt-1 text-sm leading-6 text-[#667085]">
+                  Example assessment snapshot: where money is stuck and which fix should move first.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
+              {leakMetrics.map(({ label, value, suffix, Icon }) => (
+                <article key={label} className="rounded-[1rem] border border-[#dce9d8] bg-[#fbfefa] p-3 shadow-[0_10px_22px_rgba(16,32,51,0.045)]">
+                  <div className="flex items-start gap-2.5">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[0.8rem] bg-[#E7F8ED] shadow-[0_7px_16px_rgba(21,128,61,0.08)] ring-1 ring-[#cfe8d5]">
+                      <Icon size={46} decorative />
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-sm font-bold leading-tight text-[#102033]">{label}</div>
+                      <div className="mt-0.5 text-[1.55rem] font-extrabold leading-none text-[#15803D]">{value}</div>
+                      <div className="mt-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#3F4E62]">{suffix}</div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-3 rounded-[1rem] border border-[#cfe8d5] bg-[#effaf2] p-3">
+              <div className="flex items-start gap-2.5">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[0.8rem] bg-white ring-1 ring-[#cfe8d5]">
+                  <FirstFixWrenchDisplayAsset size={46} decorative />
+                </span>
+                <div>
+                  <p className="mt-1 text-base font-bold leading-tight text-[#102033]">Invoice-ready check</p>
+                  <p className="mt-1 text-sm leading-5 text-[#4d5a68]">
+                    Confirm job details before billing so finished work can move to invoice without office cleanup.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

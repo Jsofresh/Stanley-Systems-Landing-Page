@@ -1,0 +1,15 @@
+{
+  "viewportWidth": 390,
+  "scrollWidth": 390,
+  "noHorizontalOverflow": true,
+  "exampleReportAbsent": true,
+  "exampleCaptionAbsent": true,
+  "followUpPresent": true,
+  "valueText": "$50K-$300K",
+  "valueInsideCard": true,
+  "valueLeft": 46,
+  "valueRight": 336,
+  "cardLeft": 33,
+  "cardRight": 357,
+  "valueRightPadding": 21
+}

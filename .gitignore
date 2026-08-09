@@ -2,9 +2,15 @@
 
 # dependencies
 /node_modules
+/remotion/node_modules
+/remotion/.remotion
+/remotion/.next
+/remotion/out
 
 # next.js
 /.next/
+/.next-dev/
+/.next-build-check/
 /out/
 
 # production
@@ -25,3 +31,60 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# === Added by recovery cleanup ===
+# Build artifacts and backups
+.next/
+.next.bak-*/
+.next.failed-*/
+.next.pre-*/
+pages.bak-*/
+out/
+
+# Agent runtime state
+.hermes/
+.openclaw/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Agent QA artifacts (regenerable, large)
+artifacts/
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Local environment files
+.env.local
+.env.*.local
+*.env
+
+# Content System secrets / OAuth token state
+.openclaw/secrets/content-system/*
+oauth-states.json
+oauth-tokens.json
+
+# Google credential JSON files
+*service-account*.json
+*service_account*.json
+*google-credentials*.json
+*google_credentials*.json
+*google-service-account*.json
+*google_service_account*.json
+
+# Reference materials (often copyrighted)
+references/
+
+# Local build snapshots and generated Company Brain stress evidence; retained on disk, not source
+/.next*/
+/tmp/
+/test-artifacts/company-brain-live-ui-stress*/
+
+# Mobile QA evidence screenshots are regenerable and large; keep CSV/report canonical.
+qa/browser-screenshots/

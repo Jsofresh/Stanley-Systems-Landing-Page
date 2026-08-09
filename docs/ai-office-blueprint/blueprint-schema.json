@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stanley-systems.com/schemas/ai-office-blueprint-2026-06-12.json",
+  "title": "AI Office Blueprint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "blueprintId",
+    "generatedDate",
+    "businessName",
+    "industry",
+    "primaryBottleneck",
+    "highestDragArea",
+    "bestFirstAiUseCase",
+    "quickCapacityWin",
+    "toolsMentioned",
+    "plays",
+    "quickWinChecklist",
+    "recommendedWorkflow",
+    "recommendedWorkflowReason",
+    "whatMapWouldReveal",
+    "bookingUrl"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2026-06-12"
+    },
+    "blueprintId": {
+      "type": "string",
+      "minLength": 6
+    },
+    "generatedDate": {
+      "type": "string"
+    },
+    "businessName": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "primaryBottleneck": {
+      "type": "string"
+    },
+    "highestDragArea": {
+      "type": "string"
+    },
+    "bestFirstAiUseCase": {
+      "type": "string"
+    },
+    "quickCapacityWin": {
+      "type": "string"
+    },
+    "toolsMentioned": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "plays": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "useWhen",
+          "staffInput",
+          "aiOutput",
+          "staffRule",
+          "expectedImpact",
+          "prompt"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "useWhen": {
+            "type": "string"
+          },
+          "staffInput": {
+            "type": "string"
+          },
+          "aiOutput": {
+            "type": "string"
+          },
+          "staffRule": {
+            "type": "string"
+          },
+          "expectedImpact": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "quickWinChecklist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3,
+      "maxItems": 6
+    },
+    "recommendedWorkflow": {
+      "type": "string"
+    },
+    "recommendedWorkflowReason": {
+      "type": "string"
+    },
+    "whatMapWouldReveal": {
+      "type": "string"
+    },
+    "bookingUrl": {
+      "type": "string"
+    }
+  }
+}

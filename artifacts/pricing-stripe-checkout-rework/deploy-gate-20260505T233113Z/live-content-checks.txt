@@ -1,0 +1,13 @@
+pricing contains Workflow Audit: PASS
+pricing contains Cashflow Control System: PASS
+pricing contains Repeat Revenue System: PASS
+pricing contains Both Systems: PASS
+success payment received copy: FAIL
+cancel payment not completed copy: PASS
+onboarding page rendered: PASS
+terms scope/refund copy: PASS
+forbidden absent: Customer Revenue System: PASS
+forbidden absent: Follow-Up System: PASS
+forbidden absent: Cash Collection System: PASS
+forbidden absent: Cash Flow Collection System: PASS
+Both monthly active link absent while Stripe mismatch observed: PASS

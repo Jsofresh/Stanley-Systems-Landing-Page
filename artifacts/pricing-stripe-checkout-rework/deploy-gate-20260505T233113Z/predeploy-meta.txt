@@ -1,0 +1,5 @@
+timestamp=2026-05-05T23:31:13Z
+branch=design-loop/20260429T211436Z-3xfco
+head=52481195ff7123d95bc15cb5f0a7c79d62f04bf6
+pm2_process=stanley-landing
+note=User approved Stripe copy/naming and requested checkout redirect pages live. Public Stripe check still shows Both Systems Monthly 95 install, so code should not enable that checkout unless fixed separately.

@@ -1,0 +1,5 @@
+{
+  "note": "Superseded by rendered-approval-checks.json. Initial broad source grep was intentionally replaced because it counted unmounted dev previews, generic UI state names, API route terms, and allowed calculator dollar estimates as false positives.",
+  "use_instead": "rendered-approval-checks.json",
+  "status": "superseded"
+}

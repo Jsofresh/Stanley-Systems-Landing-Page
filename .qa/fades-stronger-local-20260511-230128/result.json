@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "removedCalcSub": true,
+    "removedSystemsSub": true,
+    "systemsTitle": true,
+    "annualLoaded": true,
+    "overflow": 0
+  },
+  "bad": [],
+  "errs": [],
+  "failures": []
+}

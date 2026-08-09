@@ -1,29 +1,175 @@
 import { NextResponse } from "next/server"
 
 const WEBHOOK_URL = process.env.STANLEY_CONTACT_WEBHOOK_URL
-const FALLBACK_EMAIL = "hello@stanley-systems.com"
+const FALLBACK_EMAIL = "jaden@stanley-systems.com"
 
 function clean(value: unknown) {
   return typeof value === "string" ? value.trim() : ""
+}
+
+function cleanBoolean(value: unknown) {
+  return value === true
+}
+
+function isEmailLike(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
+
+function getNestedClean(source: unknown, key: string) {
+  if (!source || typeof source !== "object") return ""
+  return clean((source as Record<string, unknown>)[key])
+}
+
+function cleanAlertType(body: Record<string, unknown>) {
+  return clean(body?.telegram_alert_type) || clean(body?.form_type) || clean(body?.status) || "contact_form"
+}
+
+function yesNo(value: boolean) {
+  return value ? "Yes" : "No"
+}
+
+function buildTelegramMessage(payload: Record<string, unknown>) {
+  const formType = clean(payload.form_type) || clean(payload.form_name) || clean(payload.telegram_alert_type) || "contact_routing_request"
+  const title = formType === "ai_office_map_info"
+    ? "🗺️ AI Profit Map info request"
+    : formType === "start_sprint_contact"
+      ? "🛠️ Start Sprint contact request"
+      : "📬 Stanley Systems website contact"
+  const lines = [
+    title,
+    `Type: ${formType}`,
+    `Name: ${clean(payload.name) || "Not provided"}`,
+    `Company: ${clean(payload.company) || clean(payload.business) || "Not provided"}`,
+    `Email: ${clean(payload.email) || "Not provided"}`,
+    `Phone: ${clean(payload.phone) || "Not provided"}`,
+    `Business type: ${clean(payload.businessType) || clean(payload.business_type) || "Not provided"}`,
+    `Bottleneck: ${clean(payload.bottleneck) || clean(payload.main_issue) || "Not provided"}`,
+    `Invoice delay: ${clean(payload.invoiceDelay) || "Not provided"}`,
+    `Current process: ${clean(payload.currentProcess) || "Not provided"}`,
+    `Workflow to install first: ${clean(payload.workflow_to_install_first) || clean(payload.problem) || clean(payload.message) || "Not provided"}`,
+    `Problem: ${clean(payload.problem) || clean(payload.message) || "Not provided"}`,
+    `SMS consent: ${yesNo(payload.smsConsent === true || payload.sms_consent === true)}`,
+    `Page: ${clean(payload.page_url) || clean(payload.page) || clean(payload.source_page) || "/contact"}`,
+    `Source: ${clean(payload.source) || "website-contact-form"}`,
+    `Submitted: ${clean(payload.submitted_at) || clean(payload.submittedAt) || new Date().toISOString()}`,
+  ]
+
+  return lines.join("\n")
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
 
+    const submittedAt = clean(body?.submitted_at) || new Date().toISOString()
+    const nestedUtm = body?.utm
+    const nestedContext = body?.context
+    const workflowToInstallFirst = clean(body?.workflow_to_install_first) || clean(body?.main_issue) || clean(body?.problem) || clean(body?.message)
+    const formName = clean(body?.form_name) || clean(body?.form_type) || "contact_form"
+
     const payload = {
+      source: clean(body?.source) || "website-contact-form",
+      form_name: formName,
+      form_type: clean(body?.form_type) || formName,
+      offer: clean(body?.offer),
+      intent: clean(body?.intent) || clean(body?.form_type),
+      page_url: clean(body?.page_url),
+      telegram_alert_type: cleanAlertType(body ?? {}),
       name: clean(body?.name),
       email: clean(body?.email),
       phone: clean(body?.phone),
-      company: clean(body?.company),
+      business: clean(body?.business) || clean(body?.company),
+      company: clean(body?.company) || clean(body?.business),
       location: clean(body?.location),
-      problem: clean(body?.problem),
-      source: clean(body?.source) || "website-contact-form",
+      business_type: clean(body?.business_type) || clean(body?.businessType),
+      workflow_to_install_first: workflowToInstallFirst,
+      main_issue: workflowToInstallFirst,
+      message: clean(body?.message) || workflowToInstallFirst,
+      problem: clean(body?.problem) || workflowToInstallFirst,
+      question: clean(body?.question) || clean(body?.message),
+      current_system: clean(body?.current_system),
+      consent: clean(body?.consent),
+      timestamp: clean(body?.timestamp) || submittedAt,
+      website: clean(body?.website),
+      page_source: clean(body?.page_source),
+      source_page: clean(body?.source_page) || clean(body?.page) || clean(body?.current_path),
+      source_section: clean(body?.source_section) || clean(body?.source),
+      current_path: clean(body?.current_path),
+      businessType: clean(body?.businessType) || clean(body?.business_type),
+      bottleneck: clean(body?.bottleneck),
+      invoiceDelay: clean(body?.invoiceDelay),
+      currentProcess: clean(body?.currentProcess),
+      smsConsent: cleanBoolean(body?.smsConsent) || cleanBoolean(body?.sms_consent),
+      sms_consent: cleanBoolean(body?.sms_consent) || cleanBoolean(body?.smsConsent),
+      status: clean(body?.status) || "contact_request",
+      utm_source: clean(body?.utm_source) || getNestedClean(nestedUtm, "source"),
+      utm_medium: clean(body?.utm_medium) || getNestedClean(nestedUtm, "medium"),
+      utm_campaign: clean(body?.utm_campaign) || getNestedClean(nestedUtm, "campaign"),
+      utm_content: clean(body?.utm_content) || getNestedClean(nestedUtm, "content"),
+      utm_term: clean(body?.utm_term) || getNestedClean(nestedUtm, "term"),
+      utm: {
+        source: clean(body?.utm_source) || getNestedClean(nestedUtm, "source"),
+        medium: clean(body?.utm_medium) || getNestedClean(nestedUtm, "medium"),
+        campaign: clean(body?.utm_campaign) || getNestedClean(nestedUtm, "campaign"),
+        term: clean(body?.utm_term) || getNestedClean(nestedUtm, "term"),
+        content: clean(body?.utm_content) || getNestedClean(nestedUtm, "content"),
+      },
+      context: {
+        section: getNestedClean(nestedContext, "section") || clean(body?.source_section),
+        cta_text: getNestedClean(nestedContext, "cta_text"),
+      },
+      referrer: clean(body?.referrer),
       page: clean(body?.page) || "/contact",
+      submitted_at: submittedAt,
       submittedAt: new Date().toISOString(),
     }
 
-    if (!payload.name || !payload.email || !payload.problem) {
+    const telegram_message = buildTelegramMessage(payload)
+    const webhookPayload = {
+      ...payload,
+      telegram_message,
+    }
+
+    if (payload.website) {
+      return NextResponse.json({ ok: true, message: "Thanks. Stanley Systems received your note.", delivery: "filtered" })
+    }
+
+    if (payload.form_type === "assessment_intake") {
+      if (!payload.name || !payload.email || !payload.phone || !payload.company || !payload.problem || !payload.currentProcess) {
+        return NextResponse.json(
+          { ok: false, error: "Missing required fields." },
+          { status: 400 },
+        )
+      }
+    } else if (payload.form_type === "pre_buy_question") {
+      if (!payload.name || !payload.email || !payload.company || !payload.problem) {
+        return NextResponse.json(
+          { ok: false, error: "Missing required fields." },
+          { status: 400 },
+        )
+      }
+    } else if (payload.form_type === "money_leak_checks") {
+      if (!payload.email) {
+        return NextResponse.json(
+          { ok: false, error: "Email is required for leak checks." },
+          { status: 400 },
+        )
+      }
+    } else if (payload.form_type === "installation_sprint_contact" || payload.form_type === "start_sprint_contact" || payload.form_name === "start_sprint_contact") {
+      if (!payload.name || !payload.email || !isEmailLike(payload.email) || !payload.company || !payload.businessType || !payload.workflow_to_install_first || !payload.smsConsent) {
+        return NextResponse.json(
+          { ok: false, error: "Missing required fields." },
+          { status: 400 },
+        )
+      }
+    } else if (payload.form_type === "ai_office_map_info") {
+      if (!payload.name || !payload.email || !payload.company || !payload.businessType || !payload.problem) {
+        return NextResponse.json(
+          { ok: false, error: "Missing required fields." },
+          { status: 400 },
+        )
+      }
+    } else if (!payload.name || !payload.email || !payload.company || !payload.businessType || !payload.bottleneck || !payload.currentProcess || !payload.problem) {
       return NextResponse.json(
         { ok: false, error: "Missing required fields." },
         { status: 400 },
@@ -36,7 +182,8 @@ export async function POST(request: Request) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(webhookPayload),
+        signal: AbortSignal.timeout(8000),
       })
 
       if (!webhookResponse.ok) {
@@ -55,7 +202,9 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: true,
       message: WEBHOOK_URL
-        ? "Thanks. Stanley Systems received your note and will reply soon."
+        ? (payload.form_name === "start_sprint_contact" || payload.form_type === "start_sprint_contact"
+          ? "Got it. Stanley Systems will review this and reply with the next step for starting the Sprint."
+          : "Thanks. Stanley Systems received your note and will reply soon.")
         : `Thanks. Stanley Systems saved your message path, but STANLEY_CONTACT_WEBHOOK_URL is not set yet. For now, email ${FALLBACK_EMAIL}.`,
       delivery: WEBHOOK_URL ? "webhook" : "not-configured",
     })

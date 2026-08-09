@@ -1,0 +1,1765 @@
+{
+  "baseUrl": "http://127.0.0.1:3107",
+  "checkedAt": "2026-05-05T23:37:37.714Z",
+  "status": "fail",
+  "failures": [
+    "/checkout/success: missing required text: Payment received. Next, complete onboarding.",
+    "/checkout/success: missing required text: fit, access, and scope",
+    "/checkout/success: missing required text: refund before implementation begins"
+  ],
+  "routes": [
+    {
+      "route": "/pricing",
+      "status": 200,
+      "textLength": 8104,
+      "anchors": [
+        {
+          "text": "Stanley Systems",
+          "href": "http://127.0.0.1:3107/",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "Calculator",
+          "href": "http://127.0.0.1:3107/#calculator",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/#proof",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": ""
+        },
+        {
+          "text": "Calculate Your Revenue Leak",
+          "href": "http://127.0.0.1:3107/invoicing-delay-cash-flow-calculator",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": ""
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "href": "https://buy.stripe.com/28E7sKdM38Yb2vTaxcg7e03",
+          "target": ""
+        },
+        {
+          "text": "Learn More",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "href": "https://buy.stripe.com/cNi7sK5fxgqD5I534Kg7e04",
+          "target": ""
+        },
+        {
+          "text": "Learn More",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Compare Both Systems",
+          "href": "http://127.0.0.1:3107/pricing#compare-systems",
+          "target": ""
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "href": "https://buy.stripe.com/aFa3cu5fxa2f3zX7l0g7e07",
+          "target": ""
+        },
+        {
+          "text": "Learn More",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "href": "https://buy.stripe.com/6oUaEW0Zh7U72vTcFkg7e06",
+          "target": ""
+        },
+        {
+          "text": "Learn More",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Buy Both Systems",
+          "href": "https://buy.stripe.com/eVq3cu9vN5LZgmJfRwg7e08",
+          "target": ""
+        },
+        {
+          "text": "Compare Both Systems",
+          "href": "http://127.0.0.1:3107/pricing#compare-systems",
+          "target": ""
+        },
+        {
+          "text": "Cashflow Control System\n\nBest first when finished work is getting stuck before billing, follow-up, or collected cash.\n\nView Cashflow Control",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System\n\nBest first when past customers, review requests, referrals, missed calls, or repeat work are slipping.\n\nView Repeat Revenue",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Both Systems\n\nBest when the office needs the billing path and the repeat-revenue path fixed in the same rollout.\n\nCompare Both Systems",
+          "href": "http://127.0.0.1:3107/pricing#yearly-plans-heading",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": ""
+        },
+        {
+          "text": "Calculate Your Revenue Leak",
+          "href": "http://127.0.0.1:3107/invoicing-delay-cash-flow-calculator",
+          "target": ""
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Cashflow Control System",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Speed up invoicing",
+          "href": "http://127.0.0.1:3107/speed-up-invoicing-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Missed estimate follow-up",
+          "href": "http://127.0.0.1:3107/missed-estimate-follow-up-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Office handoff problems",
+          "href": "http://127.0.0.1:3107/office-handoff-problems-in-field-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Marine service businesses",
+          "href": "http://127.0.0.1:3107/marine-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Field service businesses",
+          "href": "http://127.0.0.1:3107/field-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "How we work",
+          "href": "http://127.0.0.1:3107/how-stanley-systems-works",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/stanley-systems-case-study",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Safety",
+          "href": "http://127.0.0.1:3107/safety",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "hello@stanley-systems.com",
+          "href": "mailto:hello@stanley-systems.com",
+          "target": ""
+        },
+        {
+          "text": "Facebook",
+          "href": "https://www.facebook.com/stanleysystems/",
+          "target": "_blank"
+        },
+        {
+          "text": "LinkedIn",
+          "href": "https://www.linkedin.com/company/stanley-systems/",
+          "target": "_blank"
+        }
+      ],
+      "scroll": {
+        "bodyScrollWidth": 1440,
+        "docScrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "failures": []
+    },
+    {
+      "route": "/systems/cashflow-control",
+      "status": 200,
+      "textLength": 5431,
+      "anchors": [
+        {
+          "text": "Stanley Systems",
+          "href": "http://127.0.0.1:3107/",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "Calculator",
+          "href": "http://127.0.0.1:3107/#calculator",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/#proof",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "href": "https://buy.stripe.com/28E7sKdM38Yb2vTaxcg7e03",
+          "target": "_blank"
+        },
+        {
+          "text": "Start with Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "href": "https://buy.stripe.com/28E7sKdM38Yb2vTaxcg7e03",
+          "target": "_blank"
+        },
+        {
+          "text": "Start with Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Compare systems on pricing",
+          "href": "http://127.0.0.1:3107/pricing#compare-systems",
+          "target": ""
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Cashflow Control System",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Speed up invoicing",
+          "href": "http://127.0.0.1:3107/speed-up-invoicing-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Missed estimate follow-up",
+          "href": "http://127.0.0.1:3107/missed-estimate-follow-up-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Office handoff problems",
+          "href": "http://127.0.0.1:3107/office-handoff-problems-in-field-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Marine service businesses",
+          "href": "http://127.0.0.1:3107/marine-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Field service businesses",
+          "href": "http://127.0.0.1:3107/field-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "How we work",
+          "href": "http://127.0.0.1:3107/how-stanley-systems-works",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/stanley-systems-case-study",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Safety",
+          "href": "http://127.0.0.1:3107/safety",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "hello@stanley-systems.com",
+          "href": "mailto:hello@stanley-systems.com",
+          "target": ""
+        },
+        {
+          "text": "Facebook",
+          "href": "https://www.facebook.com/stanleysystems/",
+          "target": "_blank"
+        },
+        {
+          "text": "LinkedIn",
+          "href": "https://www.linkedin.com/company/stanley-systems/",
+          "target": "_blank"
+        }
+      ],
+      "scroll": {
+        "bodyScrollWidth": 1440,
+        "docScrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "failures": []
+    },
+    {
+      "route": "/systems/repeat-revenue",
+      "status": 200,
+      "textLength": 6791,
+      "anchors": [
+        {
+          "text": "Stanley Systems",
+          "href": "http://127.0.0.1:3107/",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "Calculator",
+          "href": "http://127.0.0.1:3107/#calculator",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/#proof",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "href": "https://buy.stripe.com/cNi7sK5fxgqD5I534Kg7e04",
+          "target": "_blank"
+        },
+        {
+          "text": "Start with Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "href": "https://buy.stripe.com/cNi7sK5fxgqD5I534Kg7e04",
+          "target": "_blank"
+        },
+        {
+          "text": "Start with Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Compare systems on pricing",
+          "href": "http://127.0.0.1:3107/pricing#compare-systems",
+          "target": ""
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Cashflow Control System",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Speed up invoicing",
+          "href": "http://127.0.0.1:3107/speed-up-invoicing-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Missed estimate follow-up",
+          "href": "http://127.0.0.1:3107/missed-estimate-follow-up-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Office handoff problems",
+          "href": "http://127.0.0.1:3107/office-handoff-problems-in-field-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Marine service businesses",
+          "href": "http://127.0.0.1:3107/marine-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Field service businesses",
+          "href": "http://127.0.0.1:3107/field-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "How we work",
+          "href": "http://127.0.0.1:3107/how-stanley-systems-works",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/stanley-systems-case-study",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Safety",
+          "href": "http://127.0.0.1:3107/safety",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "hello@stanley-systems.com",
+          "href": "mailto:hello@stanley-systems.com",
+          "target": ""
+        },
+        {
+          "text": "Facebook",
+          "href": "https://www.facebook.com/stanleysystems/",
+          "target": "_blank"
+        },
+        {
+          "text": "LinkedIn",
+          "href": "https://www.linkedin.com/company/stanley-systems/",
+          "target": "_blank"
+        }
+      ],
+      "scroll": {
+        "bodyScrollWidth": 1440,
+        "docScrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "failures": []
+    },
+    {
+      "route": "/checkout/success",
+      "status": 200,
+      "textLength": 1811,
+      "anchors": [
+        {
+          "text": "Stanley Systems",
+          "href": "http://127.0.0.1:3107/",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "Calculator",
+          "href": "http://127.0.0.1:3107/#calculator",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/#proof",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Fill Out Onboarding Form",
+          "href": "http://127.0.0.1:3107/checkout/onboarding",
+          "target": ""
+        },
+        {
+          "text": "Book Your Call",
+          "href": "https://calendly.com/stanleysystems/30min",
+          "target": "_blank"
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Cashflow Control System",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Speed up invoicing",
+          "href": "http://127.0.0.1:3107/speed-up-invoicing-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Missed estimate follow-up",
+          "href": "http://127.0.0.1:3107/missed-estimate-follow-up-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Office handoff problems",
+          "href": "http://127.0.0.1:3107/office-handoff-problems-in-field-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Marine service businesses",
+          "href": "http://127.0.0.1:3107/marine-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Field service businesses",
+          "href": "http://127.0.0.1:3107/field-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "How we work",
+          "href": "http://127.0.0.1:3107/how-stanley-systems-works",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/stanley-systems-case-study",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Safety",
+          "href": "http://127.0.0.1:3107/safety",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "hello@stanley-systems.com",
+          "href": "mailto:hello@stanley-systems.com",
+          "target": ""
+        },
+        {
+          "text": "Facebook",
+          "href": "https://www.facebook.com/stanleysystems/",
+          "target": "_blank"
+        },
+        {
+          "text": "LinkedIn",
+          "href": "https://www.linkedin.com/company/stanley-systems/",
+          "target": "_blank"
+        }
+      ],
+      "scroll": {
+        "bodyScrollWidth": 1440,
+        "docScrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "failures": [
+        "missing required text: Payment received. Next, complete onboarding.",
+        "missing required text: fit, access, and scope",
+        "missing required text: refund before implementation begins"
+      ]
+    },
+    {
+      "route": "/checkout/cancel",
+      "status": 200,
+      "textLength": 1112,
+      "anchors": [
+        {
+          "text": "Stanley Systems",
+          "href": "http://127.0.0.1:3107/",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "Calculator",
+          "href": "http://127.0.0.1:3107/#calculator",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/#proof",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Return to Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Buy Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Cashflow Control System",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Speed up invoicing",
+          "href": "http://127.0.0.1:3107/speed-up-invoicing-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Missed estimate follow-up",
+          "href": "http://127.0.0.1:3107/missed-estimate-follow-up-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Office handoff problems",
+          "href": "http://127.0.0.1:3107/office-handoff-problems-in-field-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Marine service businesses",
+          "href": "http://127.0.0.1:3107/marine-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Field service businesses",
+          "href": "http://127.0.0.1:3107/field-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "How we work",
+          "href": "http://127.0.0.1:3107/how-stanley-systems-works",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/stanley-systems-case-study",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Safety",
+          "href": "http://127.0.0.1:3107/safety",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "hello@stanley-systems.com",
+          "href": "mailto:hello@stanley-systems.com",
+          "target": ""
+        },
+        {
+          "text": "Facebook",
+          "href": "https://www.facebook.com/stanleysystems/",
+          "target": "_blank"
+        },
+        {
+          "text": "LinkedIn",
+          "href": "https://www.linkedin.com/company/stanley-systems/",
+          "target": "_blank"
+        }
+      ],
+      "scroll": {
+        "bodyScrollWidth": 1440,
+        "docScrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "failures": []
+    },
+    {
+      "route": "/checkout/onboarding",
+      "status": 200,
+      "textLength": 2560,
+      "anchors": [
+        {
+          "text": "Stanley Systems",
+          "href": "http://127.0.0.1:3107/",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "Calculator",
+          "href": "http://127.0.0.1:3107/#calculator",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/#proof",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Cashflow Control System",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Speed up invoicing",
+          "href": "http://127.0.0.1:3107/speed-up-invoicing-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Missed estimate follow-up",
+          "href": "http://127.0.0.1:3107/missed-estimate-follow-up-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Office handoff problems",
+          "href": "http://127.0.0.1:3107/office-handoff-problems-in-field-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Marine service businesses",
+          "href": "http://127.0.0.1:3107/marine-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Field service businesses",
+          "href": "http://127.0.0.1:3107/field-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "How we work",
+          "href": "http://127.0.0.1:3107/how-stanley-systems-works",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/stanley-systems-case-study",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Safety",
+          "href": "http://127.0.0.1:3107/safety",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "hello@stanley-systems.com",
+          "href": "mailto:hello@stanley-systems.com",
+          "target": ""
+        },
+        {
+          "text": "Facebook",
+          "href": "https://www.facebook.com/stanleysystems/",
+          "target": "_blank"
+        },
+        {
+          "text": "LinkedIn",
+          "href": "https://www.linkedin.com/company/stanley-systems/",
+          "target": "_blank"
+        }
+      ],
+      "scroll": {
+        "bodyScrollWidth": 1440,
+        "docScrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "failures": []
+    },
+    {
+      "route": "/terms-and-conditions",
+      "status": 200,
+      "textLength": 11811,
+      "anchors": [
+        {
+          "text": "Stanley Systems",
+          "href": "http://127.0.0.1:3107/",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "Calculator",
+          "href": "http://127.0.0.1:3107/#calculator",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/#proof",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Cashflow Control System",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Speed up invoicing",
+          "href": "http://127.0.0.1:3107/speed-up-invoicing-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Missed estimate follow-up",
+          "href": "http://127.0.0.1:3107/missed-estimate-follow-up-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Office handoff problems",
+          "href": "http://127.0.0.1:3107/office-handoff-problems-in-field-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Marine service businesses",
+          "href": "http://127.0.0.1:3107/marine-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Field service businesses",
+          "href": "http://127.0.0.1:3107/field-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "How we work",
+          "href": "http://127.0.0.1:3107/how-stanley-systems-works",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/stanley-systems-case-study",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Safety",
+          "href": "http://127.0.0.1:3107/safety",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "hello@stanley-systems.com",
+          "href": "mailto:hello@stanley-systems.com",
+          "target": ""
+        },
+        {
+          "text": "Facebook",
+          "href": "https://www.facebook.com/stanleysystems/",
+          "target": "_blank"
+        },
+        {
+          "text": "LinkedIn",
+          "href": "https://www.linkedin.com/company/stanley-systems/",
+          "target": "_blank"
+        }
+      ],
+      "scroll": {
+        "bodyScrollWidth": 1440,
+        "docScrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "failures": []
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "textLength": 12312,
+      "anchors": [
+        {
+          "text": "Stanley Systems",
+          "href": "http://127.0.0.1:3107/",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "Calculator",
+          "href": "http://127.0.0.1:3107/#calculator",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/#proof",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Calculate your revenue leak",
+          "href": "http://127.0.0.1:3107/invoicing-delay-cash-flow-calculator",
+          "target": ""
+        },
+        {
+          "text": "Use the Revenue Calculator",
+          "href": "http://127.0.0.1:3107/invoicing-delay-cash-flow-calculator",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "See guarantee terms.",
+          "href": "http://127.0.0.1:3107/terms-and-conditions#audit-guarantee-terms",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Compare systems",
+          "href": "http://127.0.0.1:3107/pricing#compare-systems",
+          "target": ""
+        },
+        {
+          "text": "View Cashflow Control",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "View Repeat Revenue",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Call now",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "Buy the Workflow Audit",
+          "href": "https://buy.stripe.com/4gM7sKgYffmz7Qd8p4g7e02",
+          "target": "_blank"
+        },
+        {
+          "text": "Cashflow Control System",
+          "href": "http://127.0.0.1:3107/systems/cashflow-control",
+          "target": ""
+        },
+        {
+          "text": "Repeat Revenue System",
+          "href": "http://127.0.0.1:3107/systems/repeat-revenue",
+          "target": ""
+        },
+        {
+          "text": "Speed up invoicing",
+          "href": "http://127.0.0.1:3107/speed-up-invoicing-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Missed estimate follow-up",
+          "href": "http://127.0.0.1:3107/missed-estimate-follow-up-for-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Office handoff problems",
+          "href": "http://127.0.0.1:3107/office-handoff-problems-in-field-service-businesses",
+          "target": ""
+        },
+        {
+          "text": "Marine service businesses",
+          "href": "http://127.0.0.1:3107/marine-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Field service businesses",
+          "href": "http://127.0.0.1:3107/field-service-automation",
+          "target": ""
+        },
+        {
+          "text": "Who we help",
+          "href": "http://127.0.0.1:3107/who-stanley-systems-helps",
+          "target": ""
+        },
+        {
+          "text": "About",
+          "href": "http://127.0.0.1:3107/about",
+          "target": ""
+        },
+        {
+          "text": "How we work",
+          "href": "http://127.0.0.1:3107/how-stanley-systems-works",
+          "target": ""
+        },
+        {
+          "text": "Pricing",
+          "href": "http://127.0.0.1:3107/pricing",
+          "target": ""
+        },
+        {
+          "text": "Systems",
+          "href": "http://127.0.0.1:3107/#systems",
+          "target": ""
+        },
+        {
+          "text": "Proof",
+          "href": "http://127.0.0.1:3107/stanley-systems-case-study",
+          "target": ""
+        },
+        {
+          "text": "Blog",
+          "href": "http://127.0.0.1:3107/blog",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Privacy Policy",
+          "href": "http://127.0.0.1:3107/privacy-policy",
+          "target": ""
+        },
+        {
+          "text": "Terms and Conditions",
+          "href": "http://127.0.0.1:3107/terms-and-conditions",
+          "target": ""
+        },
+        {
+          "text": "Safety",
+          "href": "http://127.0.0.1:3107/safety",
+          "target": ""
+        },
+        {
+          "text": "Contact",
+          "href": "http://127.0.0.1:3107/contact",
+          "target": ""
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "href": "tel:+16179586372",
+          "target": ""
+        },
+        {
+          "text": "hello@stanley-systems.com",
+          "href": "mailto:hello@stanley-systems.com",
+          "target": ""
+        },
+        {
+          "text": "Facebook",
+          "href": "https://www.facebook.com/stanleysystems/",
+          "target": "_blank"
+        },
+        {
+          "text": "LinkedIn",
+          "href": "https://www.linkedin.com/company/stanley-systems/",
+          "target": "_blank"
+        }
+      ],
+      "scroll": {
+        "bodyScrollWidth": 1440,
+        "docScrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      "failures": []
+    }
+  ]
+}

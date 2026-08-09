@@ -1,0 +1,5907 @@
+[
+  {
+    "viewport": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 950,
+      "isMobile": false
+    },
+    "route": {
+      "name": "home",
+      "path": "/"
+    },
+    "url": "http://127.0.0.1:3227/",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-home-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-home-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Stanley Systems | Find and Stop Cash Flow Leaks",
+      "scrollHeight": 6286,
+      "viewportHeight": 950,
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Calculate the money left on the table",
+          "top": 1042,
+          "left": 40,
+          "w": 329,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1042,
+          "left": 381,
+          "w": 280,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the calculator",
+          "top": 1654,
+          "left": 40,
+          "w": 210,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1654,
+          "left": 262,
+          "w": 283,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 2969,
+          "left": 40,
+          "w": 305,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 2969,
+          "left": 357,
+          "w": 178,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 4003,
+          "left": 61,
+          "w": 398,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 4003,
+          "left": 521,
+          "w": 398,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 4003,
+          "left": 981,
+          "w": 398,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 5515,
+          "left": 472,
+          "w": 305,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 5515,
+          "left": 789,
+          "w": 178,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 5689,
+          "left": 516,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 5690,
+          "left": 659,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 6050,
+          "left": 424,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Your service business is dropping money in places nobody checks.",
+          "top": 150
+        },
+        {
+          "tag": "H2",
+          "text": "See how much money is being left on the table.",
+          "top": 1309
+        },
+        {
+          "tag": "H2",
+          "text": "The leaks are usually boring. That is why they get missed.",
+          "top": 1940
+        },
+        {
+          "tag": "H3",
+          "text": "Missed calls",
+          "top": 2323
+        },
+        {
+          "tag": "H3",
+          "text": "Late invoices",
+          "top": 2323
+        },
+        {
+          "tag": "H3",
+          "text": "Forgotten follow-ups",
+          "top": 2323
+        },
+        {
+          "tag": "H3",
+          "text": "Past customers nobody contacts again",
+          "top": 2323
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the Cash Flow Assessment.",
+          "top": 2717
+        },
+        {
+          "tag": "H2",
+          "text": "Pick the system that stops the leak.",
+          "top": 3235
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 3423
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 3423
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 3423
+        },
+        {
+          "tag": "H2",
+          "text": "What changes after the leak is fixed.",
+          "top": 4282
+        },
+        {
+          "tag": "H2",
+          "text": "Built for service businesses with real office drag.",
+          "top": 4791
+        },
+        {
+          "tag": "H2",
+          "text": "Stop letting finished work and good customers slip away.",
+          "top": 5153
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 5780
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 5780
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 5780
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 5780
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 6022
+        }
+      ],
+      "imgs": [],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\nYour service business is dropping money in places nobody checks.\n\nMissed calls. Late invoices. Forgotten follow-ups. Past customers nobody contacts again. Stanley Systems finds the leak and builds the system that stops it.\n\nIf the work is getting done but the cash is not moving fast enough, the leak is probably in the office "
+    }
+  },
+  {
+    "viewport": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 950,
+      "isMobile": false
+    },
+    "route": {
+      "name": "calculator",
+      "path": "/invoicing-delay-cash-flow-calculator"
+    },
+    "url": "http://127.0.0.1:3227/invoicing-delay-cash-flow-calculator",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-calculator-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-calculator-fold.png",
+    "consoleMessages": [
+      "warning: [.WebGL-0x11ac0013ce00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x11ac0013ce00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x11ac0013ce00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x11ac0013ce00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    ],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Revenue Leak Calculator | Stanley Systems",
+      "scrollHeight": 966,
+      "viewportHeight": 950,
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Start the calculator",
+          "top": 678,
+          "left": 666,
+          "w": 517,
+          "h": 44,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Start the calculator",
+          "top": 678,
+          "left": 666,
+          "w": 517,
+          "h": 44,
+          "visible": true
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Find the money left on the table in your business.",
+          "top": 276
+        }
+      ],
+      "imgs": [],
+      "textSample": "Find the money left on the table in your business.\nEstimated monthly money worth checking\n$3,000 to $25,000+\n\nThe calculator shows which leak is costing the business first: collected cash, follow-up, or both.\n\nCashflow Control System: turn finished work into collected cash faster.\nRepeat Revenue System: get more money from customers already earned.\nStart the calculator\nBack to site"
+    }
+  },
+  {
+    "viewport": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 950,
+      "isMobile": false
+    },
+    "route": {
+      "name": "pricing",
+      "path": "/pricing"
+    },
+    "url": "http://127.0.0.1:3227/pricing",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-pricing-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-pricing-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Pricing | Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 6310,
+      "viewportHeight": 950,
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 477,
+          "left": 444,
+          "w": 321,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 476,
+          "left": 777,
+          "w": 218,
+          "h": 50,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 477,
+          "left": 444,
+          "w": 321,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 476,
+          "left": 777,
+          "w": 218,
+          "h": 50,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1160,
+          "left": 293,
+          "w": 854,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "top": 2258,
+          "left": 133,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 2342,
+          "left": 545,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Both Systems",
+          "top": 2331,
+          "left": 957,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "top": 3629,
+          "left": 133,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 3669,
+          "left": 545,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Both Systems",
+          "top": 3605,
+          "left": 957,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Cashflow Control System\n\nCalls and billing leak: customer recorded, job moves, invoice and payment follow-up happen.\n\nView Cashflow Control",
+          "top": 4083,
+          "left": 141,
+          "w": 375,
+          "h": 167,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 5501,
+          "left": 444,
+          "w": 321,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 5500,
+          "left": 777,
+          "w": 218,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 5713,
+          "left": 516,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 5714,
+          "left": 659,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 6074,
+          "left": 424,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Choose the system that stops the money leak.",
+          "top": 185
+        },
+        {
+          "tag": "H2",
+          "text": "Cash Flow Assessment",
+          "top": 720
+        },
+        {
+          "tag": "H2",
+          "text": "Monthly systems",
+          "top": 1277
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 1454
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 1454
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 1454
+        },
+        {
+          "tag": "H2",
+          "text": "Yearly systems",
+          "top": 2571
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 2748
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 2748
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 2748
+        },
+        {
+          "tag": "H2",
+          "text": "Which leak are you trying to stop?",
+          "top": 3927
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 4104
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 4104
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 4104
+        },
+        {
+          "tag": "H2",
+          "text": "Pricing questions, answered before checkout.",
+          "top": 4371
+        },
+        {
+          "tag": "H2",
+          "text": "Find the leak before you pay for the fix.",
+          "top": 5328
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 5804
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 5804
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 5804
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 5804
+        }
+      ],
+      "imgs": [],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\nChoose the system that stops the money leak.\n\nStart with the Cash Flow Assessment if you are not sure where money is being dropped. If the leak is already clear, pick the system that fixes it.\n\nLate invoices. Missed calls. Forgotten follow-ups. Past customers nobody contacts again. Or all of it at once.\n\nStart the Cash Flow A"
+    }
+  },
+  {
+    "viewport": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 950,
+      "isMobile": false
+    },
+    "route": {
+      "name": "assessment",
+      "path": "/workflow-audit"
+    },
+    "url": "http://127.0.0.1:3227/workflow-audit",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-assessment-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-assessment-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 6984,
+      "viewportHeight": 950,
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "text": "CASH FLOW ASSESSMENT\n\nFind the money leaks hiding inside your office handoffs.\n\n",
+          "scrollWidth": 1338,
+          "clientWidth": 1294
+        },
+        {
+          "tag": "ASIDE",
+          "text": "",
+          "scrollWidth": 735,
+          "clientWidth": 691
+        }
+      ],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 441,
+          "left": 73,
+          "w": 252,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "See assessment details",
+          "top": 441,
+          "left": 337,
+          "w": 223,
+          "h": 48,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 441,
+          "left": 73,
+          "w": 252,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "See assessment details",
+          "top": 441,
+          "left": 337,
+          "w": 223,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Use the Money Leak Calculator",
+          "top": 2187,
+          "left": 130,
+          "w": 268,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 2187,
+          "left": 410,
+          "w": 252,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 3030,
+          "left": 583,
+          "w": 706,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4216,
+          "left": 172,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4216,
+          "left": 558,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4216,
+          "left": 944,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5210,
+          "left": 172,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5210,
+          "left": 558,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5210,
+          "left": 944,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 6387,
+          "left": 516,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 6388,
+          "left": 659,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 6748,
+          "left": 424,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Find the money leaks hiding inside your office handoffs.",
+          "top": 235
+        },
+        {
+          "tag": "H2",
+          "text": "The software is not always broken. The handoff around it is.",
+          "top": 921
+        },
+        {
+          "tag": "H2",
+          "text": "A 30-minute walkthrough, then a money leak map from your records.",
+          "top": 1510
+        },
+        {
+          "tag": "H2",
+          "text": "A few stuck jobs can cost more than the assessment.",
+          "top": 1999
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the Cash Flow Assessment. Build the system that stops the leak.",
+          "top": 2397
+        },
+        {
+          "tag": "H3",
+          "text": "Cash Flow Assessment",
+          "top": 2616
+        },
+        {
+          "tag": "H3",
+          "text": "Pick the system that stops the leak.",
+          "top": 3152
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 3341
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System Yearly",
+          "top": 3343
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 3341
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System Yearly",
+          "top": 4356
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 4354
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems Yearly",
+          "top": 4356
+        },
+        {
+          "tag": "H2",
+          "text": "Questions owners ask before buying the assessment",
+          "top": 5472
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 6478
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 6478
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 6478
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 6478
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 6720
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Money Leak Map preview showing job finished, office check, invoice sent, and cash collected.",
+          "w": 1280,
+          "h": 720,
+          "top": 199,
+          "visible": true
+        },
+        {
+          "alt": "Money Leak Map showing the workflow Stanley Systems automates.",
+          "w": 1280,
+          "h": 720,
+          "top": 828,
+          "visible": true
+        },
+        {
+          "alt": "Three step Cash Flow Assessment process: walkthrough, data review, and Money Leak Map.",
+          "w": 1280,
+          "h": 960,
+          "top": 1365,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\n\nCASH FLOW ASSESSMENT\n\nFind the money leaks hiding inside your office handoffs.\n\nA $97 paid first step that shows where cash, customers, and office time are slipping before you buy the wrong system.\n\nStart the Cash Flow Assessment\nSee assessment details\n\nASSESSMENT CREDIT\n\nThe $97 assessment credits toward Cashflow Control Sy"
+    }
+  },
+  {
+    "viewport": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 950,
+      "isMobile": false
+    },
+    "route": {
+      "name": "how-it-works",
+      "path": "/how-stanley-systems-works"
+    },
+    "url": "http://127.0.0.1:3227/how-stanley-systems-works",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-how-it-works-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-how-it-works-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "How Stanley Systems Works | Cash Flow Assessment First",
+      "scrollHeight": 1977,
+      "viewportHeight": 950,
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 582,
+          "left": 144,
+          "w": 305,
+          "h": 54,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 582,
+          "left": 144,
+          "w": 305,
+          "h": 54,
+          "visible": true
+        },
+        {
+          "text": "Call now",
+          "top": 1380,
+          "left": 516,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 1381,
+          "left": 659,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 1741,
+          "left": 424,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Stanley Systems starts with the money leak, not a pile of software.",
+          "top": 244
+        },
+        {
+          "tag": "H2",
+          "text": "The sequence",
+          "top": 273
+        },
+        {
+          "tag": "H3",
+          "text": "Start with the paid assessment",
+          "top": 329
+        },
+        {
+          "tag": "H3",
+          "text": "Name the leak that costs money",
+          "top": 497
+        },
+        {
+          "tag": "H3",
+          "text": "Build the system that stops it",
+          "top": 665
+        },
+        {
+          "tag": "H2",
+          "text": "The assessment decides the first build path.",
+          "top": 984
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 1471
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 1471
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 1471
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 1471
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 1713
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Stanley Systems logo",
+          "w": 1280,
+          "h": 853,
+          "top": 1471,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\nStanley Systems starts with the money leak, not a pile of software.\n\nService businesses usually do not need another disconnected tool. They need to know where revenue is slipping, which workflow is causing it, and what system should get built first.\n\nStart the Cash Flow Assessment\nSee systems and pricing\nThe sequence\n1\nStart "
+    }
+  },
+  {
+    "viewport": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 950,
+      "isMobile": false
+    },
+    "route": {
+      "name": "cashflow-control",
+      "path": "/systems/cashflow-control"
+    },
+    "url": "http://127.0.0.1:3227/systems/cashflow-control",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-cashflow-control-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-cashflow-control-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Cashflow Control System | Stanley Systems",
+      "scrollHeight": 7220,
+      "viewportHeight": 950,
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start Cashflow Control",
+          "top": 474,
+          "left": 112,
+          "w": 248,
+          "h": 58,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 474,
+          "left": 372,
+          "w": 325,
+          "h": 58,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start Cashflow Control",
+          "top": 474,
+          "left": 112,
+          "w": 248,
+          "h": 58,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 474,
+          "left": 372,
+          "w": 325,
+          "h": 58,
+          "visible": true
+        },
+        {
+          "text": "Use the Money Leak Calculator",
+          "top": 2456,
+          "left": 803,
+          "w": 269,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start Cashflow Control",
+          "top": 2456,
+          "left": 1083,
+          "w": 216,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy monthly",
+          "top": 3793,
+          "left": 133,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4218,
+          "left": 133,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy yearly",
+          "top": 3795,
+          "left": 442,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4218,
+          "left": 442,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both monthly",
+          "top": 3818,
+          "left": 751,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4218,
+          "left": 751,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both yearly",
+          "top": 3820,
+          "left": 1060,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4218,
+          "left": 1060,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 4895,
+          "left": 818,
+          "w": 484,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 5560,
+          "left": 317,
+          "w": 286,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 6623,
+          "left": 516,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 6624,
+          "left": 659,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 6984,
+          "left": 424,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Automate the path from customer intake to final bill.",
+          "top": 144
+        },
+        {
+          "tag": "H2",
+          "text": "Your tools hold the pieces. Stanley Systems automates the path between them.",
+          "top": 752
+        },
+        {
+          "tag": "H2",
+          "text": "Customer intake to final bill gets handled automatically.",
+          "top": 1237
+        },
+        {
+          "tag": "H2",
+          "text": "Manual handoffs turn completed work into delayed cash.",
+          "top": 2114
+        },
+        {
+          "tag": "H2",
+          "text": "Stanley Systems adds the workflow your software still makes people carry.",
+          "top": 2637
+        },
+        {
+          "tag": "H2",
+          "text": "Pick your cashflow fix.",
+          "top": 3384
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control Monthly",
+          "top": 3675
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control Yearly",
+          "top": 3677
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Monthly",
+          "top": 3675
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Yearly",
+          "top": 3677
+        },
+        {
+          "tag": "H2",
+          "text": "Buy the assessment first. Let the numbers choose the system.",
+          "top": 4538
+        },
+        {
+          "tag": "H3",
+          "text": "Your assessment credit is visible before you buy.",
+          "top": 4611
+        },
+        {
+          "tag": "H2",
+          "text": "See the cashflow path before you buy.",
+          "top": 5249
+        },
+        {
+          "tag": "H3",
+          "text": "Billing path shown",
+          "top": 5678
+        },
+        {
+          "tag": "H3",
+          "text": "Missing details routed",
+          "top": 5678
+        },
+        {
+          "tag": "H3",
+          "text": "Invoice blockers visible",
+          "top": 5678
+        },
+        {
+          "tag": "H3",
+          "text": "Cash follow-up clear",
+          "top": 5678
+        },
+        {
+          "tag": "H2",
+          "text": "Plain answers before you buy.",
+          "top": 5868
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 6714
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 6714
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Money leak examples showing delayed billing, office time, quiet estimates, and missed review and referral flow.",
+          "w": 960,
+          "h": 1280,
+          "top": 80,
+          "visible": true
+        },
+        {
+          "alt": "Cashflow Control automates the workflow and flags missing billing details before cash gets stuck.",
+          "w": 1280,
+          "h": 720,
+          "top": 752,
+          "visible": true
+        },
+        {
+          "alt": "Stanley Systems automates the entire billing lifecycle from customer intake to cash collected.",
+          "w": 1280,
+          "h": 720,
+          "top": 1350,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\n\nCASHFLOW CONTROL SYSTEM\n\nAutomate the path from customer intake to final bill.\n\nStop letting finished work wait on re-entry, missing billing details, and office handoffs. Cashflow Control gives the path from request to paid bill one owner: the system.\n\nBuilt around the tools service businesses already use for field work, acc"
+    }
+  },
+  {
+    "viewport": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 950,
+      "isMobile": false
+    },
+    "route": {
+      "name": "repeat-revenue",
+      "path": "/systems/repeat-revenue"
+    },
+    "url": "http://127.0.0.1:3227/systems/repeat-revenue",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-repeat-revenue-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/desktop-repeat-revenue-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Repeat Revenue System | Stanley Systems",
+      "scrollHeight": 7187,
+      "viewportHeight": 950,
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 492,
+          "left": 80,
+          "w": 211,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 492,
+          "left": 303,
+          "w": 294,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Missed calls go cold\n\nA buyer reaches out, nobody gets back fast enough, and the job disappears.",
+          "top": 935,
+          "left": 1017,
+          "w": 279,
+          "h": 174,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1288,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 599,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 1038,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1185,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 492,
+          "left": 80,
+          "w": 211,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 492,
+          "left": 303,
+          "w": 294,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Missed calls go cold\n\nA buyer reaches out, nobody gets back fast enough, and the job disappears.",
+          "top": 935,
+          "left": 1017,
+          "w": 279,
+          "h": 174,
+          "visible": true
+        },
+        {
+          "text": "See Repeat Revenue packages",
+          "top": 1509,
+          "left": 786,
+          "w": 552,
+          "h": 40,
+          "visible": false
+        },
+        {
+          "text": "Run the Cash Flow Assessment",
+          "top": 2268,
+          "left": 121,
+          "w": 277,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy monthly",
+          "top": 3703,
+          "left": 101,
+          "w": 263,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4126,
+          "left": 101,
+          "w": 263,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy yearly",
+          "top": 3703,
+          "left": 426,
+          "w": 263,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4126,
+          "left": 426,
+          "w": 263,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both monthly",
+          "top": 3728,
+          "left": 751,
+          "w": 263,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4126,
+          "left": 751,
+          "w": 263,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both yearly",
+          "top": 3728,
+          "left": 1076,
+          "w": 263,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4126,
+          "left": 1076,
+          "w": 263,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 4692,
+          "left": 818,
+          "w": 484,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 5378,
+          "left": 315,
+          "w": 276,
+          "h": 68,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 5896,
+          "left": 80,
+          "w": 484,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 5956,
+          "left": 80,
+          "w": 484,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 6590,
+          "left": 516,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 6591,
+          "left": 659,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 6951,
+          "left": 424,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Get more money from the customers you already earned.",
+          "top": 164
+        },
+        {
+          "tag": "H2",
+          "text": "Which revenue leak should Stanley Systems fix first?",
+          "top": 774
+        },
+        {
+          "tag": "H3",
+          "text": "Past customers go quiet",
+          "top": 1002
+        },
+        {
+          "tag": "H3",
+          "text": "Happy customers never get asked",
+          "top": 988
+        },
+        {
+          "tag": "H3",
+          "text": "Referrals depend on memory",
+          "top": 1002
+        },
+        {
+          "tag": "H3",
+          "text": "Missed calls go cold",
+          "top": 1002
+        },
+        {
+          "tag": "H3",
+          "text": "Quiet customer lists become booked jobs.",
+          "top": 1193
+        },
+        {
+          "tag": "H2",
+          "text": "A quiet customer list can hide a month of work.",
+          "top": 1760
+        },
+        {
+          "tag": "H2",
+          "text": "Every good job should create the next opportunity.",
+          "top": 2501
+        },
+        {
+          "tag": "H3",
+          "text": "A job or customer record creates the trigger",
+          "top": 2737
+        },
+        {
+          "tag": "H3",
+          "text": "The right ask goes out at the right time",
+          "top": 2737
+        },
+        {
+          "tag": "H3",
+          "text": "Replies become office action",
+          "top": 2931
+        },
+        {
+          "tag": "H3",
+          "text": "The loop keeps feeding itself",
+          "top": 2931
+        },
+        {
+          "tag": "H2",
+          "text": "Choose the path that matches the leak.",
+          "top": 3318
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue Monthly",
+          "top": 3585
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue Yearly",
+          "top": 3585
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Monthly",
+          "top": 3585
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Yearly",
+          "top": 3585
+        },
+        {
+          "tag": "H2",
+          "text": "Buy the assessment first. Let the numbers choose the system.",
+          "top": 4336
+        },
+        {
+          "tag": "H3",
+          "text": "Your assessment credit is visible before you buy.",
+          "top": 4408
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Repeat Revenue loop visual showing past customers, five-star reviews, referrals, and captured calls feeding more repeat revenue.",
+          "w": 1280,
+          "h": 960,
+          "top": 113,
+          "visible": true
+        },
+        {
+          "alt": "Quiet customer lists become booked jobs.",
+          "w": 1536,
+          "h": 1024,
+          "top": 1130,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\nSystems/Repeat Revenue System\nGet more money from the customers you already earned.\n\nRepeat Revenue System brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they turn into cold leads.\n\nBuy Repeat Revenue\nStart with the Cash Flow Assessment\n\nAssessment credit: $97 off m"
+    }
+  },
+  {
+    "viewport": {
+      "name": "laptop",
+      "width": 1280,
+      "height": 720,
+      "isMobile": false
+    },
+    "route": {
+      "name": "home",
+      "path": "/"
+    },
+    "url": "http://127.0.0.1:3227/",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-home-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-home-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Stanley Systems | Find and Stop Cash Flow Leaks",
+      "scrollHeight": 6122,
+      "viewportHeight": 720,
+      "bodyWidth": 1280,
+      "viewportWidth": 1280,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Calculate the money left on the table",
+          "top": 969,
+          "left": 40,
+          "w": 287,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 969,
+          "left": 339,
+          "w": 246,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the calculator",
+          "top": 1560,
+          "left": 40,
+          "w": 190,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1560,
+          "left": 242,
+          "w": 254,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 2868,
+          "left": 40,
+          "w": 305,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 2868,
+          "left": 357,
+          "w": 178,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 3928,
+          "left": 61,
+          "w": 345,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 3928,
+          "left": 468,
+          "w": 345,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 3928,
+          "left": 874,
+          "w": 345,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 5351,
+          "left": 392,
+          "w": 305,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 5351,
+          "left": 709,
+          "w": 178,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 5525,
+          "left": 436,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 5526,
+          "left": 579,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 5886,
+          "left": 382,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Your service business is dropping money in places nobody checks.",
+          "top": 150
+        },
+        {
+          "tag": "H2",
+          "text": "See how much money is being left on the table.",
+          "top": 1238
+        },
+        {
+          "tag": "H2",
+          "text": "The leaks are usually boring. That is why they get missed.",
+          "top": 1848
+        },
+        {
+          "tag": "H3",
+          "text": "Missed calls",
+          "top": 2202
+        },
+        {
+          "tag": "H3",
+          "text": "Late invoices",
+          "top": 2202
+        },
+        {
+          "tag": "H3",
+          "text": "Forgotten follow-ups",
+          "top": 2202
+        },
+        {
+          "tag": "H3",
+          "text": "Past customers nobody contacts again",
+          "top": 2202
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the Cash Flow Assessment.",
+          "top": 2632
+        },
+        {
+          "tag": "H2",
+          "text": "Pick the system that stops the leak.",
+          "top": 3142
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 3316
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 3316
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 3316
+        },
+        {
+          "tag": "H2",
+          "text": "What changes after the leak is fixed.",
+          "top": 4218
+        },
+        {
+          "tag": "H2",
+          "text": "Built for service businesses with real office drag.",
+          "top": 4716
+        },
+        {
+          "tag": "H2",
+          "text": "Stop letting finished work and good customers slip away.",
+          "top": 5015
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 5616
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 5616
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 5616
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 5616
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 5858
+        }
+      ],
+      "imgs": [],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\nYour service business is dropping money in places nobody checks.\n\nMissed calls. Late invoices. Forgotten follow-ups. Past customers nobody contacts again. Stanley Systems finds the leak and builds the system that stops it.\n\nIf the work is getting done but the cash is not moving fast enough, the leak is probably in the office "
+    }
+  },
+  {
+    "viewport": {
+      "name": "laptop",
+      "width": 1280,
+      "height": 720,
+      "isMobile": false
+    },
+    "route": {
+      "name": "calculator",
+      "path": "/invoicing-delay-cash-flow-calculator"
+    },
+    "url": "http://127.0.0.1:3227/invoicing-delay-cash-flow-calculator",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-calculator-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-calculator-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Revenue Leak Calculator | Stanley Systems",
+      "scrollHeight": 736,
+      "viewportHeight": 720,
+      "bodyWidth": 1280,
+      "viewportWidth": 1280,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Start the calculator",
+          "top": 563,
+          "left": 586,
+          "w": 505,
+          "h": 44,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Start the calculator",
+          "top": 563,
+          "left": 586,
+          "w": 505,
+          "h": 44,
+          "visible": true
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Find the money left on the table in your business.",
+          "top": 161
+        }
+      ],
+      "imgs": [],
+      "textSample": "Find the money left on the table in your business.\nEstimated monthly money worth checking\n$3,000 to $25,000+\n\nThe calculator shows which leak is costing the business first: collected cash, follow-up, or both.\n\nCashflow Control System: turn finished work into collected cash faster.\nRepeat Revenue System: get more money from customers already earned.\nStart the calculator\nBack to site"
+    }
+  },
+  {
+    "viewport": {
+      "name": "laptop",
+      "width": 1280,
+      "height": 720,
+      "isMobile": false
+    },
+    "route": {
+      "name": "pricing",
+      "path": "/pricing"
+    },
+    "url": "http://127.0.0.1:3227/pricing",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-pricing-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-pricing-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Pricing | Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 6310,
+      "viewportHeight": 720,
+      "bodyWidth": 1280,
+      "viewportWidth": 1280,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 477,
+          "left": 364,
+          "w": 321,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 476,
+          "left": 697,
+          "w": 218,
+          "h": 50,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 477,
+          "left": 364,
+          "w": 321,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 476,
+          "left": 697,
+          "w": 218,
+          "h": 50,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1160,
+          "left": 213,
+          "w": 854,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "top": 2258,
+          "left": 53,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 2342,
+          "left": 465,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Both Systems",
+          "top": 2331,
+          "left": 877,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "top": 3629,
+          "left": 53,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 3669,
+          "left": 465,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Buy Both Systems",
+          "top": 3605,
+          "left": 877,
+          "w": 171,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Cashflow Control System\n\nCalls and billing leak: customer recorded, job moves, invoice and payment follow-up happen.\n\nView Cashflow Control",
+          "top": 4083,
+          "left": 61,
+          "w": 375,
+          "h": 167,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 5501,
+          "left": 364,
+          "w": 321,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 5500,
+          "left": 697,
+          "w": 218,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 5713,
+          "left": 436,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 5714,
+          "left": 579,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 6074,
+          "left": 382,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Choose the system that stops the money leak.",
+          "top": 185
+        },
+        {
+          "tag": "H2",
+          "text": "Cash Flow Assessment",
+          "top": 720
+        },
+        {
+          "tag": "H2",
+          "text": "Monthly systems",
+          "top": 1277
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 1454
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 1454
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 1454
+        },
+        {
+          "tag": "H2",
+          "text": "Yearly systems",
+          "top": 2571
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 2748
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 2748
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 2748
+        },
+        {
+          "tag": "H2",
+          "text": "Which leak are you trying to stop?",
+          "top": 3927
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 4104
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 4104
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 4104
+        },
+        {
+          "tag": "H2",
+          "text": "Pricing questions, answered before checkout.",
+          "top": 4371
+        },
+        {
+          "tag": "H2",
+          "text": "Find the leak before you pay for the fix.",
+          "top": 5328
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 5804
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 5804
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 5804
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 5804
+        }
+      ],
+      "imgs": [],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\nChoose the system that stops the money leak.\n\nStart with the Cash Flow Assessment if you are not sure where money is being dropped. If the leak is already clear, pick the system that fixes it.\n\nLate invoices. Missed calls. Forgotten follow-ups. Past customers nobody contacts again. Or all of it at once.\n\nStart the Cash Flow A"
+    }
+  },
+  {
+    "viewport": {
+      "name": "laptop",
+      "width": 1280,
+      "height": 720,
+      "isMobile": false
+    },
+    "route": {
+      "name": "assessment",
+      "path": "/workflow-audit"
+    },
+    "url": "http://127.0.0.1:3227/workflow-audit",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-assessment-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-assessment-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 6984,
+      "viewportHeight": 720,
+      "bodyWidth": 1280,
+      "viewportWidth": 1280,
+      "hasHorizontalOverflow": false,
+      "overflowing": [
+        {
+          "tag": "DIV",
+          "text": "CASH FLOW ASSESSMENT\n\nFind the money leaks hiding inside your office handoffs.\n\n",
+          "scrollWidth": 1194,
+          "clientWidth": 1150
+        },
+        {
+          "tag": "ASIDE",
+          "text": "",
+          "scrollWidth": 656,
+          "clientWidth": 612
+        }
+      ],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 436,
+          "left": 65,
+          "w": 252,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "See assessment details",
+          "top": 436,
+          "left": 329,
+          "w": 223,
+          "h": 48,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 436,
+          "left": 65,
+          "w": 252,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "See assessment details",
+          "top": 436,
+          "left": 329,
+          "w": 223,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Use the Money Leak Calculator",
+          "top": 2187,
+          "left": 50,
+          "w": 268,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 2187,
+          "left": 330,
+          "w": 252,
+          "h": 66,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 3030,
+          "left": 503,
+          "w": 706,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4216,
+          "left": 92,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4216,
+          "left": 478,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4216,
+          "left": 864,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5210,
+          "left": 92,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5210,
+          "left": 478,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5210,
+          "left": 864,
+          "w": 324,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 6387,
+          "left": 436,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 6388,
+          "left": 579,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 6748,
+          "left": 382,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Find the money leaks hiding inside your office handoffs.",
+          "top": 240
+        },
+        {
+          "tag": "H2",
+          "text": "The software is not always broken. The handoff around it is.",
+          "top": 921
+        },
+        {
+          "tag": "H2",
+          "text": "A 30-minute walkthrough, then a money leak map from your records.",
+          "top": 1510
+        },
+        {
+          "tag": "H2",
+          "text": "A few stuck jobs can cost more than the assessment.",
+          "top": 1999
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the Cash Flow Assessment. Build the system that stops the leak.",
+          "top": 2397
+        },
+        {
+          "tag": "H3",
+          "text": "Cash Flow Assessment",
+          "top": 2616
+        },
+        {
+          "tag": "H3",
+          "text": "Pick the system that stops the leak.",
+          "top": 3152
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 3341
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System Yearly",
+          "top": 3343
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 3341
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System Yearly",
+          "top": 4356
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 4354
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems Yearly",
+          "top": 4356
+        },
+        {
+          "tag": "H2",
+          "text": "Questions owners ask before buying the assessment",
+          "top": 5472
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 6478
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 6478
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 6478
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 6478
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 6720
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Money Leak Map preview showing job finished, office check, invoice sent, and cash collected.",
+          "w": 1280,
+          "h": 720,
+          "top": 224,
+          "visible": true
+        },
+        {
+          "alt": "Money Leak Map showing the workflow Stanley Systems automates.",
+          "w": 1280,
+          "h": 720,
+          "top": 828,
+          "visible": false
+        },
+        {
+          "alt": "Three step Cash Flow Assessment process: walkthrough, data review, and Money Leak Map.",
+          "w": 1280,
+          "h": 960,
+          "top": 1365,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\n\nCASH FLOW ASSESSMENT\n\nFind the money leaks hiding inside your office handoffs.\n\nA $97 paid first step that shows where cash, customers, and office time are slipping before you buy the wrong system.\n\nStart the Cash Flow Assessment\nSee assessment details\n\nASSESSMENT CREDIT\n\nThe $97 assessment credits toward Cashflow Control Sy"
+    }
+  },
+  {
+    "viewport": {
+      "name": "laptop",
+      "width": 1280,
+      "height": 720,
+      "isMobile": false
+    },
+    "route": {
+      "name": "how-it-works",
+      "path": "/how-stanley-systems-works"
+    },
+    "url": "http://127.0.0.1:3227/how-stanley-systems-works",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-how-it-works-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-how-it-works-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "How Stanley Systems Works | Cash Flow Assessment First",
+      "scrollHeight": 1977,
+      "viewportHeight": 720,
+      "bodyWidth": 1280,
+      "viewportWidth": 1280,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 582,
+          "left": 64,
+          "w": 305,
+          "h": 54,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 582,
+          "left": 64,
+          "w": 305,
+          "h": 54,
+          "visible": true
+        },
+        {
+          "text": "Call now",
+          "top": 1380,
+          "left": 436,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 1381,
+          "left": 579,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 1741,
+          "left": 382,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Stanley Systems starts with the money leak, not a pile of software.",
+          "top": 244
+        },
+        {
+          "tag": "H2",
+          "text": "The sequence",
+          "top": 273
+        },
+        {
+          "tag": "H3",
+          "text": "Start with the paid assessment",
+          "top": 329
+        },
+        {
+          "tag": "H3",
+          "text": "Name the leak that costs money",
+          "top": 497
+        },
+        {
+          "tag": "H3",
+          "text": "Build the system that stops it",
+          "top": 665
+        },
+        {
+          "tag": "H2",
+          "text": "The assessment decides the first build path.",
+          "top": 984
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 1471
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 1471
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 1471
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 1471
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 1713
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Stanley Systems logo",
+          "w": 1280,
+          "h": 853,
+          "top": 1471,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\nStanley Systems starts with the money leak, not a pile of software.\n\nService businesses usually do not need another disconnected tool. They need to know where revenue is slipping, which workflow is causing it, and what system should get built first.\n\nStart the Cash Flow Assessment\nSee systems and pricing\nThe sequence\n1\nStart "
+    }
+  },
+  {
+    "viewport": {
+      "name": "laptop",
+      "width": 1280,
+      "height": 720,
+      "isMobile": false
+    },
+    "route": {
+      "name": "cashflow-control",
+      "path": "/systems/cashflow-control"
+    },
+    "url": "http://127.0.0.1:3227/systems/cashflow-control",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-cashflow-control-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-cashflow-control-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Cashflow Control System | Stanley Systems",
+      "scrollHeight": 7309,
+      "viewportHeight": 720,
+      "bodyWidth": 1280,
+      "viewportWidth": 1280,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start Cashflow Control",
+          "top": 474,
+          "left": 32,
+          "w": 248,
+          "h": 58,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 474,
+          "left": 292,
+          "w": 325,
+          "h": 58,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start Cashflow Control",
+          "top": 474,
+          "left": 32,
+          "w": 248,
+          "h": 58,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 474,
+          "left": 292,
+          "w": 325,
+          "h": 58,
+          "visible": true
+        },
+        {
+          "text": "Use the Money Leak Calculator",
+          "top": 2456,
+          "left": 723,
+          "w": 269,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start Cashflow Control",
+          "top": 2456,
+          "left": 1003,
+          "w": 216,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy monthly",
+          "top": 3793,
+          "left": 53,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4218,
+          "left": 53,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy yearly",
+          "top": 3795,
+          "left": 362,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4218,
+          "left": 362,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both monthly",
+          "top": 3818,
+          "left": 671,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4218,
+          "left": 671,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both yearly",
+          "top": 3820,
+          "left": 980,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4218,
+          "left": 980,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 4929,
+          "left": 734,
+          "w": 456,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 5629,
+          "left": 265,
+          "w": 279,
+          "h": 68,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 6712,
+          "left": 436,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 6713,
+          "left": 579,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 7073,
+          "left": 382,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Automate the path from customer intake to final bill.",
+          "top": 144
+        },
+        {
+          "tag": "H2",
+          "text": "Your tools hold the pieces. Stanley Systems automates the path between them.",
+          "top": 752
+        },
+        {
+          "tag": "H2",
+          "text": "Customer intake to final bill gets handled automatically.",
+          "top": 1237
+        },
+        {
+          "tag": "H2",
+          "text": "Manual handoffs turn completed work into delayed cash.",
+          "top": 2114
+        },
+        {
+          "tag": "H2",
+          "text": "Stanley Systems adds the workflow your software still makes people carry.",
+          "top": 2637
+        },
+        {
+          "tag": "H2",
+          "text": "Pick your cashflow fix.",
+          "top": 3384
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control Monthly",
+          "top": 3675
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control Yearly",
+          "top": 3677
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Monthly",
+          "top": 3675
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Yearly",
+          "top": 3677
+        },
+        {
+          "tag": "H2",
+          "text": "Buy the assessment first. Let the numbers choose the system.",
+          "top": 4538
+        },
+        {
+          "tag": "H3",
+          "text": "Your assessment credit is visible before you buy.",
+          "top": 4645
+        },
+        {
+          "tag": "H2",
+          "text": "See the cashflow path before you buy.",
+          "top": 5318
+        },
+        {
+          "tag": "H3",
+          "text": "Billing path shown",
+          "top": 5767
+        },
+        {
+          "tag": "H3",
+          "text": "Missing details routed",
+          "top": 5767
+        },
+        {
+          "tag": "H3",
+          "text": "Invoice blockers visible",
+          "top": 5767
+        },
+        {
+          "tag": "H3",
+          "text": "Cash follow-up clear",
+          "top": 5767
+        },
+        {
+          "tag": "H2",
+          "text": "Plain answers before you buy.",
+          "top": 5957
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 6803
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 6803
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Money leak examples showing delayed billing, office time, quiet estimates, and missed review and referral flow.",
+          "w": 960,
+          "h": 1280,
+          "top": 80,
+          "visible": true
+        },
+        {
+          "alt": "Cashflow Control automates the workflow and flags missing billing details before cash gets stuck.",
+          "w": 1280,
+          "h": 720,
+          "top": 752,
+          "visible": false
+        },
+        {
+          "alt": "Stanley Systems automates the entire billing lifecycle from customer intake to cash collected.",
+          "w": 1280,
+          "h": 720,
+          "top": 1350,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\n\nCASHFLOW CONTROL SYSTEM\n\nAutomate the path from customer intake to final bill.\n\nStop letting finished work wait on re-entry, missing billing details, and office handoffs. Cashflow Control gives the path from request to paid bill one owner: the system.\n\nBuilt around the tools service businesses already use for field work, acc"
+    }
+  },
+  {
+    "viewport": {
+      "name": "laptop",
+      "width": 1280,
+      "height": 720,
+      "isMobile": false
+    },
+    "route": {
+      "name": "repeat-revenue",
+      "path": "/systems/repeat-revenue"
+    },
+    "url": "http://127.0.0.1:3227/systems/repeat-revenue",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-repeat-revenue-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/laptop-repeat-revenue-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Repeat Revenue System | Stanley Systems",
+      "scrollHeight": 7430,
+      "viewportHeight": 720,
+      "bodyWidth": 1280,
+      "viewportWidth": 1280,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 492,
+          "left": 32,
+          "w": 211,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 492,
+          "left": 255,
+          "w": 294,
+          "h": 48,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 9,
+          "left": 1128,
+          "w": 56,
+          "h": 18,
+          "visible": true
+        },
+        {
+          "text": "Assessment",
+          "top": 51,
+          "left": 519,
+          "w": 123,
+          "h": 36,
+          "visible": true
+        },
+        {
+          "text": "See the packages",
+          "top": 49,
+          "left": 878,
+          "w": 138,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 49,
+          "left": 1025,
+          "w": 223,
+          "h": 40,
+          "visible": true
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 492,
+          "left": 32,
+          "w": 211,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 492,
+          "left": 255,
+          "w": 294,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Missed calls go cold\n\nA buyer reaches out, nobody gets back fast enough, and the job disappears.",
+          "top": 935,
+          "left": 937,
+          "w": 279,
+          "h": 174,
+          "visible": false
+        },
+        {
+          "text": "See Repeat Revenue packages",
+          "top": 1509,
+          "left": 702,
+          "w": 524,
+          "h": 40,
+          "visible": false
+        },
+        {
+          "text": "Run the Cash Flow Assessment",
+          "top": 2341,
+          "left": 73,
+          "w": 277,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy monthly",
+          "top": 3877,
+          "left": 53,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4300,
+          "left": 53,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy yearly",
+          "top": 3877,
+          "left": 362,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4300,
+          "left": 362,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both monthly",
+          "top": 3902,
+          "left": 671,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4300,
+          "left": 671,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both yearly",
+          "top": 3902,
+          "left": 980,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4300,
+          "left": 980,
+          "w": 247,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 4901,
+          "left": 734,
+          "w": 456,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 5621,
+          "left": 257,
+          "w": 258,
+          "h": 68,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 6140,
+          "left": 32,
+          "w": 459,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 6200,
+          "left": 32,
+          "w": 459,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 6833,
+          "left": 436,
+          "w": 127,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 6834,
+          "left": 579,
+          "w": 265,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 7194,
+          "left": 382,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Get more money from the customers you already earned.",
+          "top": 164
+        },
+        {
+          "tag": "H2",
+          "text": "Which revenue leak should Stanley Systems fix first?",
+          "top": 774
+        },
+        {
+          "tag": "H3",
+          "text": "Past customers go quiet",
+          "top": 1002
+        },
+        {
+          "tag": "H3",
+          "text": "Happy customers never get asked",
+          "top": 988
+        },
+        {
+          "tag": "H3",
+          "text": "Referrals depend on memory",
+          "top": 1002
+        },
+        {
+          "tag": "H3",
+          "text": "Missed calls go cold",
+          "top": 1002
+        },
+        {
+          "tag": "H3",
+          "text": "Quiet customer lists become booked jobs.",
+          "top": 1193
+        },
+        {
+          "tag": "H2",
+          "text": "A quiet customer list can hide a month of work.",
+          "top": 1760
+        },
+        {
+          "tag": "H2",
+          "text": "Every good job should create the next opportunity.",
+          "top": 2574
+        },
+        {
+          "tag": "H3",
+          "text": "A job or customer record creates the trigger",
+          "top": 2888
+        },
+        {
+          "tag": "H3",
+          "text": "The right ask goes out at the right time",
+          "top": 2888
+        },
+        {
+          "tag": "H3",
+          "text": "Replies become office action",
+          "top": 3082
+        },
+        {
+          "tag": "H3",
+          "text": "The loop keeps feeding itself",
+          "top": 3082
+        },
+        {
+          "tag": "H2",
+          "text": "Choose the path that matches the leak.",
+          "top": 3493
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue Monthly",
+          "top": 3759
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue Yearly",
+          "top": 3759
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Monthly",
+          "top": 3759
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Yearly",
+          "top": 3759
+        },
+        {
+          "tag": "H2",
+          "text": "Buy the assessment first. Let the numbers choose the system.",
+          "top": 4510
+        },
+        {
+          "tag": "H3",
+          "text": "Your assessment credit is visible before you buy.",
+          "top": 4617
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Repeat Revenue loop visual showing past customers, five-star reviews, referrals, and captured calls feeding more repeat revenue.",
+          "w": 1280,
+          "h": 960,
+          "top": 113,
+          "visible": true
+        },
+        {
+          "alt": "Quiet customer lists become booked jobs.",
+          "w": 1536,
+          "h": 1024,
+          "top": 1130,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nCashflow Control\nRepeat Revenue\nCalculator\nContact\nStanley Systems\nSystems\nIndustries\nAssessment\nResources\nSee the packages\nStart the Cash Flow Assessment\nSystems/Repeat Revenue System\nGet more money from the customers you already earned.\n\nRepeat Revenue System brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they turn into cold leads.\n\nBuy Repeat Revenue\nStart with the Cash Flow Assessment\n\nAssessment credit: $97 off m"
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "isMobile": true
+    },
+    "route": {
+      "name": "home",
+      "path": "/"
+    },
+    "url": "http://127.0.0.1:3227/",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-home-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-home-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Stanley Systems | Find and Stop Cash Flow Leaks",
+      "scrollHeight": 10542,
+      "viewportHeight": 844,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Calculate the money left on the table",
+          "top": 643,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 707,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "See the packages",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Calculate the money left on the table",
+          "top": 643,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 707,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": true
+        },
+        {
+          "text": "Start the calculator",
+          "top": 1567,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1631,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 4223,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 4287,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 5891,
+          "left": 41,
+          "w": 308,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 6601,
+          "left": 41,
+          "w": 308,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with assessment",
+          "top": 7279,
+          "left": 41,
+          "w": 308,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 9414,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 9478,
+          "left": 20,
+          "w": 350,
+          "h": 52,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 10355,
+          "left": 36,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Your service business is dropping money in places nobody checks.",
+          "top": 132
+        },
+        {
+          "tag": "H2",
+          "text": "See how much money is being left on the table.",
+          "top": 1284
+        },
+        {
+          "tag": "H2",
+          "text": "The leaks are usually boring. That is why they get missed.",
+          "top": 2621
+        },
+        {
+          "tag": "H3",
+          "text": "Missed calls",
+          "top": 2962
+        },
+        {
+          "tag": "H3",
+          "text": "Late invoices",
+          "top": 3216
+        },
+        {
+          "tag": "H3",
+          "text": "Forgotten follow-ups",
+          "top": 3442
+        },
+        {
+          "tag": "H3",
+          "text": "Past customers nobody contacts again",
+          "top": 3668
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the Cash Flow Assessment.",
+          "top": 3977
+        },
+        {
+          "tag": "H2",
+          "text": "Pick the system that stops the leak.",
+          "top": 5014
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 5255
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 6053
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 6763
+        },
+        {
+          "tag": "H2",
+          "text": "What changes after the leak is fixed.",
+          "top": 7528
+        },
+        {
+          "tag": "H2",
+          "text": "Built for service businesses with real office drag.",
+          "top": 8629
+        },
+        {
+          "tag": "H2",
+          "text": "Stop letting finished work and good customers slip away.",
+          "top": 9120
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 9619
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 9811
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 9943
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 10165
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 10327
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Stanley Systems logo",
+          "w": 1280,
+          "h": 853,
+          "top": 0,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nStanley Systems\nYour service business is dropping money in places nobody checks.\n\nMissed calls. Late invoices. Forgotten follow-ups. Past customers nobody contacts again. Stanley Systems finds the leak and builds the system that stops it.\n\nIf the work is getting done but the cash is not moving fast enough, the leak is probably in the office handoff.\n\nCalculate the money left on the table\nStart the Cash Flow Assessment\n\nExample money left on the table\n\nleak estimate\n\n$180K\n\nMiss"
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "isMobile": true
+    },
+    "route": {
+      "name": "calculator",
+      "path": "/invoicing-delay-cash-flow-calculator"
+    },
+    "url": "http://127.0.0.1:3227/invoicing-delay-cash-flow-calculator",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-calculator-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-calculator-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Revenue Leak Calculator | Stanley Systems",
+      "scrollHeight": 844,
+      "viewportHeight": 844,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Start the calculator",
+          "top": 642,
+          "left": 29,
+          "w": 332,
+          "h": 44,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Start the calculator",
+          "top": 642,
+          "left": 29,
+          "w": 332,
+          "h": 44,
+          "visible": true
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Find the money left on the table in your business.",
+          "top": 132
+        }
+      ],
+      "imgs": [],
+      "textSample": "Find the money left on the table in your business.\nEstimated monthly money worth checking\n$3,000 to $25,000+\n\nThe calculator shows which leak is costing the business first: collected cash, follow-up, or both.\n\nCashflow Control System: turn finished work into collected cash faster.\nRepeat Revenue System: get more money from customers already earned.\nStart the calculator\nBack to site"
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "isMobile": true
+    },
+    "route": {
+      "name": "pricing",
+      "path": "/pricing"
+    },
+    "url": "http://127.0.0.1:3227/pricing",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-pricing-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-pricing-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Pricing | Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 12386,
+      "viewportHeight": 844,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 508,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 568,
+          "left": 37,
+          "w": 316,
+          "h": 50,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "See the packages",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 508,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 568,
+          "left": 37,
+          "w": 316,
+          "h": 50,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1320,
+          "left": 33,
+          "w": 324,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "top": 2610,
+          "left": 33,
+          "w": 324,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 3740,
+          "left": 33,
+          "w": 324,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Both Systems",
+          "top": 4899,
+          "left": 33,
+          "w": 324,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Cashflow Control",
+          "top": 6376,
+          "left": 33,
+          "w": 324,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 7519,
+          "left": 33,
+          "w": 324,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Both Systems",
+          "top": 8638,
+          "left": 33,
+          "w": 324,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Cashflow Control System\n\nCalls and billing leak: customer recorded, job moves, invoice and payment follow-up happen.\n\nView Cashflow Control",
+          "top": 9174,
+          "left": 37,
+          "w": 316,
+          "h": 167,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 11235,
+          "left": 45,
+          "w": 300,
+          "h": 72,
+          "visible": false
+        },
+        {
+          "text": "Calculate the leak",
+          "top": 11319,
+          "left": 45,
+          "w": 300,
+          "h": 50,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 12199,
+          "left": 36,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Choose the system that stops the money leak.",
+          "top": 145
+        },
+        {
+          "tag": "H2",
+          "text": "Cash Flow Assessment",
+          "top": 800
+        },
+        {
+          "tag": "H2",
+          "text": "Monthly systems",
+          "top": 1433
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 1642
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 2768
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 3898
+        },
+        {
+          "tag": "H2",
+          "text": "Yearly systems",
+          "top": 5210
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 5391
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 6534
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 7677
+        },
+        {
+          "tag": "H2",
+          "text": "Which leak are you trying to stop?",
+          "top": 8970
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 9195
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 9378
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 9561
+        },
+        {
+          "tag": "H2",
+          "text": "Pricing questions, answered before checkout.",
+          "top": 9868
+        },
+        {
+          "tag": "H2",
+          "text": "Find the leak before you pay for the fix.",
+          "top": 11005
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 11463
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 11655
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 11787
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 12009
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Stanley Systems logo",
+          "w": 1280,
+          "h": 853,
+          "top": 0,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nStanley Systems\nChoose the system that stops the money leak.\n\nStart with the Cash Flow Assessment if you are not sure where money is being dropped. If the leak is already clear, pick the system that fixes it.\n\nLate invoices. Missed calls. Forgotten follow-ups. Past customers nobody contacts again. Or all of it at once.\n\nStart the Cash Flow Assessment\nCalculate the leak\n\nThe assessment comes first when the leak is not clear. Build work follows the leak Stanley Systems can actual"
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "isMobile": true
+    },
+    "route": {
+      "name": "assessment",
+      "path": "/workflow-audit"
+    },
+    "url": "http://127.0.0.1:3227/workflow-audit",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-assessment-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-assessment-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 13390,
+      "viewportHeight": 844,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 354,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "See assessment details",
+          "top": 414,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "See the packages",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 354,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "See assessment details",
+          "top": 414,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Use the Money Leak Calculator",
+          "top": 2392,
+          "left": 16,
+          "w": 358,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 2452,
+          "left": 16,
+          "w": 358,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 4190,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5509,
+          "left": 58,
+          "w": 274,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 6626,
+          "left": 58,
+          "w": 274,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 7684,
+          "left": 58,
+          "w": 274,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 8802,
+          "left": 58,
+          "w": 274,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 9918,
+          "left": 58,
+          "w": 274,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 11035,
+          "left": 58,
+          "w": 274,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 13203,
+          "left": 36,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Find the money leaks hiding inside your office handoffs.",
+          "top": 127
+        },
+        {
+          "tag": "H2",
+          "text": "The software is not always broken. The handoff around it is.",
+          "top": 1335
+        },
+        {
+          "tag": "H2",
+          "text": "A 30-minute walkthrough, then a money leak map from your records.",
+          "top": 1742
+        },
+        {
+          "tag": "H2",
+          "text": "A few stuck jobs can cost more than the assessment.",
+          "top": 2258
+        },
+        {
+          "tag": "H2",
+          "text": "Start with the Cash Flow Assessment. Build the system that stops the leak.",
+          "top": 2809
+        },
+        {
+          "tag": "H3",
+          "text": "Cash Flow Assessment",
+          "top": 3620
+        },
+        {
+          "tag": "H3",
+          "text": "Pick the system that stops the leak.",
+          "top": 4312
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System",
+          "top": 4589
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control System Yearly",
+          "top": 5649
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System",
+          "top": 6764
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue System Yearly",
+          "top": 7824
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems",
+          "top": 8940
+        },
+        {
+          "tag": "H3",
+          "text": "Both Systems Yearly",
+          "top": 10058
+        },
+        {
+          "tag": "H2",
+          "text": "Questions owners ask before buying the assessment",
+          "top": 11353
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 12467
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 12659
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 12791
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 13013
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 13175
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Money Leak Map preview showing job finished, office check, invoice sent, and cash collected.",
+          "w": 1280,
+          "h": 720,
+          "top": 901,
+          "visible": false
+        },
+        {
+          "alt": "Money Leak Map showing the workflow Stanley Systems automates.",
+          "w": 1280,
+          "h": 720,
+          "top": 1473,
+          "visible": false
+        },
+        {
+          "alt": "Stanley Systems logo",
+          "w": 1280,
+          "h": 853,
+          "top": 0,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nStanley Systems\n\nCASH FLOW ASSESSMENT\n\nFind the money leaks hiding inside your office handoffs.\n\nA $97 paid first step that shows where cash, customers, and office time are slipping before you buy the wrong system.\n\nStart the Cash Flow Assessment\nSee assessment details\n\nASSESSMENT CREDIT\n\nThe $97 assessment credits toward Cashflow Control System or Repeat Revenue System.\n\nYEARLY BONUS\n\nBuy yearly after the assessment and the credit doubles to $194.\n\nThe software is not always b"
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "isMobile": true
+    },
+    "route": {
+      "name": "how-it-works",
+      "path": "/how-stanley-systems-works"
+    },
+    "url": "http://127.0.0.1:3227/how-stanley-systems-works",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-how-it-works-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-how-it-works-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "How Stanley Systems Works | Cash Flow Assessment First",
+      "scrollHeight": 3352,
+      "viewportHeight": 844,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 548,
+          "left": 16,
+          "w": 358,
+          "h": 52,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "See the packages",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 548,
+          "left": 16,
+          "w": 358,
+          "h": 52,
+          "visible": true
+        },
+        {
+          "text": "Call now",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 3165,
+          "left": 36,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Stanley Systems starts with the money leak, not a pile of software.",
+          "top": 212
+        },
+        {
+          "tag": "H2",
+          "text": "The sequence",
+          "top": 735
+        },
+        {
+          "tag": "H3",
+          "text": "Start with the paid assessment",
+          "top": 843
+        },
+        {
+          "tag": "H3",
+          "text": "Name the leak that costs money",
+          "top": 1063
+        },
+        {
+          "tag": "H3",
+          "text": "Build the system that stops it",
+          "top": 1311
+        },
+        {
+          "tag": "H2",
+          "text": "The assessment decides the first build path.",
+          "top": 1597
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 2429
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 2621
+        },
+        {
+          "tag": "H3",
+          "text": "COMPANY",
+          "top": 2753
+        },
+        {
+          "tag": "H3",
+          "text": "LEGAL",
+          "top": 2975
+        },
+        {
+          "tag": "H3",
+          "text": "CONNECT",
+          "top": 3137
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Stanley Systems logo",
+          "w": 1280,
+          "h": 853,
+          "top": 0,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nStanley Systems\nStanley Systems starts with the money leak, not a pile of software.\n\nService businesses usually do not need another disconnected tool. They need to know where revenue is slipping, which workflow is causing it, and what system should get built first.\n\nStart the Cash Flow Assessment\nSee systems and pricing\nThe sequence\n1\nStart with the paid assessment\n\nThe Cash Flow Assessment reviews the way calls, estimates, invoices, follow-up, and past customers move through t"
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "isMobile": true
+    },
+    "route": {
+      "name": "cashflow-control",
+      "path": "/systems/cashflow-control"
+    },
+    "url": "http://127.0.0.1:3227/systems/cashflow-control",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-cashflow-control-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-cashflow-control-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Cashflow Control System | Stanley Systems",
+      "scrollHeight": 11764,
+      "viewportHeight": 844,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Start Cashflow Control",
+          "top": 467,
+          "left": 16,
+          "w": 358,
+          "h": 56,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 535,
+          "left": 16,
+          "w": 358,
+          "h": 58,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "See the packages",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start Cashflow Control",
+          "top": 467,
+          "left": 16,
+          "w": 358,
+          "h": 56,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 535,
+          "left": 16,
+          "w": 358,
+          "h": 58,
+          "visible": true
+        },
+        {
+          "text": "Use the Money Leak Calculator",
+          "top": 2936,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start Cashflow Control",
+          "top": 2996,
+          "left": 37,
+          "w": 316,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy monthly",
+          "top": 4224,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 4564,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy yearly",
+          "top": 4822,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5200,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both monthly",
+          "top": 5456,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 5776,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both yearly",
+          "top": 6034,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 6412,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 8294,
+          "left": 62,
+          "w": 266,
+          "h": 64,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 9004,
+          "left": 41,
+          "w": 308,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 11577,
+          "left": 36,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Automate the path from customer intake to final bill.",
+          "top": 124
+        },
+        {
+          "tag": "H2",
+          "text": "Your tools hold the pieces. Stanley Systems automates the path between them.",
+          "top": 1303
+        },
+        {
+          "tag": "H2",
+          "text": "Customer intake to final bill gets handled automatically.",
+          "top": 2052
+        },
+        {
+          "tag": "H2",
+          "text": "Manual handoffs turn completed work into delayed cash.",
+          "top": 2420
+        },
+        {
+          "tag": "H2",
+          "text": "Stanley Systems adds the workflow your software still makes people carry.",
+          "top": 3145
+        },
+        {
+          "tag": "H2",
+          "text": "Pick your cashflow fix.",
+          "top": 3749
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control Monthly",
+          "top": 4106
+        },
+        {
+          "tag": "H3",
+          "text": "Cashflow Control Yearly",
+          "top": 4704
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Monthly",
+          "top": 5338
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Yearly",
+          "top": 5916
+        },
+        {
+          "tag": "H2",
+          "text": "Buy the assessment first. Let the numbers choose the system.",
+          "top": 6780
+        },
+        {
+          "tag": "H3",
+          "text": "Your assessment credit is visible before you buy.",
+          "top": 7828
+        },
+        {
+          "tag": "H2",
+          "text": "See the cashflow path before you buy.",
+          "top": 8577
+        },
+        {
+          "tag": "H3",
+          "text": "Billing path shown",
+          "top": 9395
+        },
+        {
+          "tag": "H3",
+          "text": "Missing details routed",
+          "top": 9549
+        },
+        {
+          "tag": "H3",
+          "text": "Invoice blockers visible",
+          "top": 9703
+        },
+        {
+          "tag": "H3",
+          "text": "Cash follow-up clear",
+          "top": 9857
+        },
+        {
+          "tag": "H2",
+          "text": "Plain answers before you buy.",
+          "top": 10039
+        },
+        {
+          "tag": "H3",
+          "text": "SOLUTIONS",
+          "top": 10841
+        },
+        {
+          "tag": "H3",
+          "text": "INDUSTRIES",
+          "top": 11033
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Money leak examples showing delayed billing, office time, quiet estimates, and missed review and referral flow.",
+          "w": 960,
+          "h": 1280,
+          "top": 689,
+          "visible": true
+        },
+        {
+          "alt": "Stanley Systems logo",
+          "w": 1280,
+          "h": 853,
+          "top": 0,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nStanley Systems\n\nCASHFLOW CONTROL SYSTEM\n\nAutomate the path from customer intake to final bill.\n\nStop letting finished work wait on re-entry, missing billing details, and office handoffs. Cashflow Control gives the path from request to paid bill one owner: the system.\n\nBuilt around the tools service businesses already use for field work, accounting, invoices, payments, customer records, and scheduling.\n\nStart Cashflow Control\nStart with the Cash Flow Assessment\n\nYour assessment"
+    }
+  },
+  {
+    "viewport": {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "isMobile": true
+    },
+    "route": {
+      "name": "repeat-revenue",
+      "path": "/systems/repeat-revenue"
+    },
+    "url": "http://127.0.0.1:3227/systems/repeat-revenue",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-repeat-revenue-full.png",
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12-screenshots/mobile-repeat-revenue-fold.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": [],
+    "metrics": {
+      "title": "Repeat Revenue System | Stanley Systems",
+      "scrollHeight": 14042,
+      "viewportHeight": 844,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "overflowing": [],
+      "firstViewportCtas": [
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 439,
+          "left": 16,
+          "w": 358,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 499,
+          "left": 16,
+          "w": 358,
+          "h": 48,
+          "visible": true
+        }
+      ],
+      "allCtas": [
+        {
+          "text": "Calculator",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "See the packages",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 439,
+          "left": 16,
+          "w": 358,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 499,
+          "left": 16,
+          "w": 358,
+          "h": 48,
+          "visible": true
+        },
+        {
+          "text": "Missed calls go cold\n\nA buyer reaches out, nobody gets back fast enough, and the job disappears.",
+          "top": 1970,
+          "left": 16,
+          "w": 358,
+          "h": 146,
+          "visible": false
+        },
+        {
+          "text": "See Repeat Revenue packages",
+          "top": 2893,
+          "left": 37,
+          "w": 316,
+          "h": 40,
+          "visible": false
+        },
+        {
+          "text": "Run the Cash Flow Assessment",
+          "top": 3750,
+          "left": 41,
+          "w": 277,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy monthly",
+          "top": 6215,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 6535,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy yearly",
+          "top": 6791,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 7169,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both monthly",
+          "top": 7425,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 7745,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy both yearly",
+          "top": 8001,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Start with the assessment",
+          "top": 8379,
+          "left": 37,
+          "w": 316,
+          "h": 44,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 10079,
+          "left": 62,
+          "w": 266,
+          "h": 64,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 10780,
+          "left": 41,
+          "w": 308,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Start with the Cash Flow Assessment",
+          "top": 11924,
+          "left": 16,
+          "w": 358,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Buy Repeat Revenue",
+          "top": 11984,
+          "left": 16,
+          "w": 358,
+          "h": 48,
+          "visible": false
+        },
+        {
+          "text": "Call now",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Buy the Cash Flow Assessment",
+          "top": 0,
+          "left": 0,
+          "w": 0,
+          "h": 0,
+          "visible": false
+        },
+        {
+          "text": "Call: +1 (617) 958-6372",
+          "top": 13855,
+          "left": 36,
+          "w": 154,
+          "h": 24,
+          "visible": false
+        }
+      ],
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Get more money from the customers you already earned.",
+          "top": 140
+        },
+        {
+          "tag": "H2",
+          "text": "Which revenue leak should Stanley Systems fix first?",
+          "top": 1316
+        },
+        {
+          "tag": "H3",
+          "text": "Past customers go quiet",
+          "top": 1569
+        },
+        {
+          "tag": "H3",
+          "text": "Happy customers never get asked",
+          "top": 1727
+        },
+        {
+          "tag": "H3",
+          "text": "Referrals depend on memory",
+          "top": 1865
+        },
+        {
+          "tag": "H3",
+          "text": "Missed calls go cold",
+          "top": 2023
+        },
+        {
+          "tag": "H3",
+          "text": "Quiet customer lists become booked jobs.",
+          "top": 2459
+        },
+        {
+          "tag": "H2",
+          "text": "A quiet customer list can hide a month of work.",
+          "top": 3091
+        },
+        {
+          "tag": "H2",
+          "text": "Every good job should create the next opportunity.",
+          "top": 4271
+        },
+        {
+          "tag": "H3",
+          "text": "A job or customer record creates the trigger",
+          "top": 4573
+        },
+        {
+          "tag": "H3",
+          "text": "The right ask goes out at the right time",
+          "top": 4743
+        },
+        {
+          "tag": "H3",
+          "text": "Replies become office action",
+          "top": 4889
+        },
+        {
+          "tag": "H3",
+          "text": "The loop keeps feeding itself",
+          "top": 5011
+        },
+        {
+          "tag": "H2",
+          "text": "Choose the path that matches the leak.",
+          "top": 5738
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue Monthly",
+          "top": 6098
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue Yearly",
+          "top": 6673
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Monthly",
+          "top": 7307
+        },
+        {
+          "tag": "H3",
+          "text": "Repeat Revenue + Cashflow Yearly",
+          "top": 7883
+        },
+        {
+          "tag": "H2",
+          "text": "Buy the assessment first. Let the numbers choose the system.",
+          "top": 8565
+        },
+        {
+          "tag": "H3",
+          "text": "Your assessment credit is visible before you buy.",
+          "top": 9613
+        }
+      ],
+      "imgs": [
+        {
+          "alt": "Repeat Revenue loop visual showing past customers, five-star reviews, referrals, and captured calls feeding more repeat revenue.",
+          "w": 1280,
+          "h": 960,
+          "top": 648,
+          "visible": true
+        },
+        {
+          "alt": "Stanley Systems logo",
+          "w": 1280,
+          "h": 853,
+          "top": 0,
+          "visible": false
+        }
+      ],
+      "textSample": "+1 (617) 958-6372\nStanley Systems\nSystems/Repeat Revenue System\nGet more money from the customers you already earned.\n\nRepeat Revenue System brings past customers back, asks happy customers for reviews and referrals, and catches missed calls before they turn into cold leads.\n\nBuy Repeat Revenue\nStart with the Cash Flow Assessment\n\nAssessment credit: $97 off monthly or $194 off yearly. Yearly saves 20% and waives installation.\n\nPast customers return\n\nReviews get asked for\n\nReferrals get asked for"
+    }
+  }
+]

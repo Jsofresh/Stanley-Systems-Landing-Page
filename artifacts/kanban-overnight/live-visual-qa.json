@@ -1,0 +1,147 @@
+{
+  "generatedAt": "2026-05-05T01:43:28.265Z",
+  "results": [
+    {
+      "name": "home-desktop",
+      "url": "https://stanley-systems.com/?qa=overnight-live-visual",
+      "width": 1440,
+      "height": 1200,
+      "status": 200,
+      "finalUrl": "https://stanley-systems.com/?qa=overnight-live-visual",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-overnight/screenshots/home-desktop.png",
+      "data": {
+        "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+        "viewport": {
+          "width": 1440,
+          "height": 1200
+        },
+        "scroll": {
+          "documentElement": 1440,
+          "body": 1440,
+          "overflowPx": 0
+        },
+        "bodyTextStart": "Stanley Systems About Calculator Pricing Systems Who we help Proof Blog Call: +1 (617) 958-6372 Workflow Audit Make your business more money with less office work. Stanley Systems helps service-business owners get paid faster, recover office time, and stop revenue from slipping through missed calls and delayed follow-up. Book the Workflow Audit Calculate your revenue leak Find the money already sitting inside your business. Stanley Systems checks the places service businesses lose money after the lead, job, or customer already exists: slow invoices, open estimates, missed calls, and saved cust",
+        "visualKitImageCount": 32,
+        "visibleImageCount": 33,
+        "failedVisibleImages": [],
+        "failedVisualKitImages": [],
+        "wideElements": [
+          {
+            "tag": "div",
+            "cls": "pointer-events-none absolute -inset-10 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_28%,rgba(148,163,184,0.22),t",
+            "text": "",
+            "x": -7,
+            "y": 169,
+            "width": 1454,
+            "height": 894,
+            "display": "block"
+          }
+        ],
+        "hasApplicationErrorText": false,
+        "hasPricingCopy": true,
+        "hasHomepageCopy": true
+      }
+    },
+    {
+      "name": "home-mobile",
+      "url": "https://stanley-systems.com/?qa=overnight-live-visual-mobile",
+      "width": 390,
+      "height": 1200,
+      "status": 200,
+      "finalUrl": "https://stanley-systems.com/?qa=overnight-live-visual-mobile",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-overnight/screenshots/home-mobile.png",
+      "data": {
+        "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+        "viewport": {
+          "width": 390,
+          "height": 1200
+        },
+        "scroll": {
+          "documentElement": 390,
+          "body": 390,
+          "overflowPx": 0
+        },
+        "bodyTextStart": "Make your business more money with less office work. Stanley Systems helps service-business owners get paid faster, recover office time, and stop revenue from slipping through missed calls and delayed follow-up. Book the Workflow Audit Calculate your revenue leak Find the money already sitting inside your business. Stanley Systems checks the places service businesses lose money after the lead, job, or customer already exists: slow invoices, open estimates, missed calls, and saved customers nobody is following up with. Use the Revenue Calculator Book the Workflow Audit Repeat customers cost abo",
+        "visualKitImageCount": 32,
+        "visibleImageCount": 32,
+        "failedVisibleImages": [],
+        "failedVisualKitImages": [],
+        "wideElements": [
+          {
+            "tag": "div",
+            "cls": "pointer-events-none absolute -inset-10 rounded-[inherit] bg-[radial-gradient(ellipse_at_16%_28%,rgba(148,163,184,0.22),t",
+            "text": "",
+            "x": -23,
+            "y": 17,
+            "width": 436,
+            "height": 502,
+            "display": "block"
+          }
+        ],
+        "hasApplicationErrorText": false,
+        "hasPricingCopy": true,
+        "hasHomepageCopy": true
+      }
+    },
+    {
+      "name": "pricing-desktop",
+      "url": "https://stanley-systems.com/pricing?qa=overnight-live-visual",
+      "width": 1440,
+      "height": 1200,
+      "status": 200,
+      "finalUrl": "https://stanley-systems.com/pricing?qa=overnight-live-visual",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-overnight/screenshots/pricing-desktop.png",
+      "data": {
+        "title": "Pricing | Workflow Audit | Stanley Systems",
+        "viewport": {
+          "width": 1440,
+          "height": 1200
+        },
+        "scroll": {
+          "documentElement": 1440,
+          "body": 1440,
+          "overflowPx": 0
+        },
+        "bodyTextStart": "Stanley Systems About Calculator Pricing Systems Who we help Proof Blog Call: +1 (617) 958-6372 Workflow Audit Find where cash, customers, and office time are leaking. The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that brings past customers, reviews, referrals, and missed calls back into view. You leave with a clear money leak map, the first fix to make, and a straight answer on whether Stanley Systems should build the Cash Flow Collection System, the Repeat Revenue System, both, or neither. Apply for the Workflow Audi",
+        "visualKitImageCount": 0,
+        "visibleImageCount": 1,
+        "failedVisibleImages": [],
+        "failedVisualKitImages": [],
+        "wideElements": [],
+        "hasApplicationErrorText": false,
+        "hasPricingCopy": true,
+        "hasHomepageCopy": true
+      }
+    },
+    {
+      "name": "pricing-mobile",
+      "url": "https://stanley-systems.com/pricing?qa=overnight-live-visual-mobile",
+      "width": 390,
+      "height": 1200,
+      "status": 200,
+      "finalUrl": "https://stanley-systems.com/pricing?qa=overnight-live-visual-mobile",
+      "screenshot": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/kanban-overnight/screenshots/pricing-mobile.png",
+      "data": {
+        "title": "Pricing | Workflow Audit | Stanley Systems",
+        "viewport": {
+          "width": 390,
+          "height": 1200
+        },
+        "scroll": {
+          "documentElement": 390,
+          "body": 390,
+          "overflowPx": 0
+        },
+        "bodyTextStart": "Find where cash, customers, and office time are leaking. The Workflow Audit is the paid first step from Stanley Systems. We inspect finished work to collected cash, plus Repeat Revenue System that brings past customers, reviews, referrals, and missed calls back into view. You leave with a clear money leak map, the first fix to make, and a straight answer on whether Stanley Systems should build the Cash Flow Collection System, the Repeat Revenue System, both, or neither. Apply for the Workflow Audit Calculate Your Revenue Leak The audit comes first. Build work is recommended only after the leak is clear. Wo",
+        "visualKitImageCount": 0,
+        "visibleImageCount": 0,
+        "failedVisibleImages": [],
+        "failedVisualKitImages": [],
+        "wideElements": [],
+        "hasApplicationErrorText": false,
+        "hasPricingCopy": true,
+        "hasHomepageCopy": true
+      }
+    }
+  ]
+}

@@ -52,7 +52,7 @@ export const posts: BlogPost[] = [
           "change orders are approved verbally but not recorded cleanly",
           "materials and labor notes arrive late or in inconsistent formats",
           "the office has to chase the field team to fill in gaps",
-          "owners end up acting as the backup system"
+          "normal office processes quietly cost more than they look like"
         ],
       },
       {
@@ -73,7 +73,7 @@ export const posts: BlogPost[] = [
       {
         heading: "The outcome owners actually feel",
         paragraphs: [
-          "Faster invoicing is not just cash flow. It is fewer interruptions, fewer follow up calls, and fewer nights doing detective work.",
+          "Faster invoicing is not just office workflow. It is fewer interruptions, fewer follow up calls, and fewer nights doing detective work.",
           "You stop carrying finished work like a silent liability. The office gets a rhythm again. The owner gets breathing room."
         ],
       },
@@ -86,7 +86,7 @@ export const posts: BlogPost[] = [
     slug: "the-estimate-that-went-cold-and-the-4000-job",
     title: "The estimate that went cold (and the $4,000 job that went with it)",
     excerpt:
-      "A quote goes out on Friday. Monday gets slammed. By Wednesday, the lead has hired someone else. This is rarely a sales problem. It is a follow-up system problem.",
+      "A quote goes out on Friday. Monday gets slammed. By Wednesday, the lead has hired someone else. This is rarely a sales problem. It is an office follow-up workflow problem.",
     category: "Follow-up",
     readTime: "6 min read",
     seoTitle: "The Estimate That Went Cold and the $4,000 Job | Stanley Systems",
@@ -156,10 +156,10 @@ export const posts: BlogPost[] = [
     readTime: "4 min read",
     seoTitle: "The Real Cost of Slow Invoicing in a Service Business | Stanley Systems",
     metaDescription:
-      "A plain-English breakdown of how slow invoicing hurts cash flow, adds admin drag, and creates avoidable owner stress in service businesses.",
+      "A plain-English breakdown of how slow invoicing hurts cashflow, adds admin drag, and creates avoidable owner stress in service businesses.",
     publishedLabel: "March 18, 2026",
     intro:
-      "Slow invoicing usually gets treated like a small office problem. It is not. In a service business, delayed billing quietly hits cash flow, creates extra admin work, and forces the owner to spend time chasing details that should have been captured the first time.",
+      "Slow invoicing usually gets treated like a small office problem. It is not. In a service business, delayed billing quietly hits cashflow, creates extra admin work, and forces the owner to spend time chasing details that should have been captured the first time.",
     sections: [
       {
         heading: "Why slow invoicing becomes a business problem fast",
@@ -175,7 +175,7 @@ export const posts: BlogPost[] = [
           "The third cost is the stress tax on the owner. Once invoicing gets unreliable, leadership stops trusting the system and starts checking everything manually. That turns billing into a recurring management burden instead of a simple operational handoff."
         ],
         bullets: [
-          "cash flow gets pushed out even though the work is already done",
+          "office workflow gets pushed out even though the work is already done",
           "office staff spend time reconstructing job details from texts, calls, and memory",
           "billing errors become more likely because details are entered late",
           "customers get invoices later, which can slow collections even more",
@@ -231,7 +231,7 @@ export const posts: BlogPost[] = [
       {
         heading: "Automation does not fix unclear ownership",
         paragraphs: [
-          "If a team does not know who owns the next step, where information is supposed to live, or what counts as complete, adding automation usually creates a sharper version of the same confusion. Notifications fire. Records move. People assume the system handled it. Then work gets missed because nobody actually owns the handoff.",
+          "If a team does not know who owns the next step, where information is supposed to live, or what counts as complete, adding automation usually creates a sharper version of the same confusion. Alerts fire. Records move. People assume the system handled it. Then work gets missed because nobody actually owns the handoff.",
           "That is why an automation can look great in a demo and still disappoint in real operations. Demos usually show the happy path. Real businesses live in the exceptions, missing information, special cases, and rushed handoffs that happen every day."
         ],
       },
@@ -271,10 +271,10 @@ export const posts: BlogPost[] = [
         ],
       },
       {
-        heading: "Why this topic is strong for SEO and AI search",
+        heading: "Why this topic is strong for buyers and search",
         paragraphs: [
           "This is the kind of article that aligns with real buying intent. Owners and managers search for failed automation projects, workflow bottlenecks, broken handoffs, admin overload, and service-business process problems. Writing directly to those searches makes the site useful to the right audience instead of just sounding polished.",
-          "It also helps AI systems place Stanley Systems correctly. The message becomes clear: this is not generic tech consulting. Stanley Systems helps service businesses clean up the workflow first and automate the version the team can actually follow."
+          "It also helps public search surfaces place Stanley Systems correctly. The message becomes clear: this is not generic tech consulting. Stanley Systems helps service businesses clean up the workflow first and automate the version the team can actually follow."
         ],
       },
     ],

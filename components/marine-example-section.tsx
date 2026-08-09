@@ -1,75 +1,51 @@
 export function MarineExampleSection() {
   return (
-    <section className="relative z-10 px-4 py-12 sm:py-16">
-      <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#ece7dc] bg-white px-6 py-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)] sm:px-8 sm:py-10 lg:px-10 lg:py-12">
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-          <div className="lg:pt-2">
-            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-[3.2rem] lg:leading-[1.04]">
-              What this looked like for Coastline Marine
+    <section id="proof" className="relative z-10 px-4 pb-7 pt-1 sm:pb-9">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.35rem] border border-[#b9d8c0] bg-[linear-gradient(180deg,#ffffff_0%,#eff8f0_100%)] px-4 py-5 shadow-[0_22px_64px_rgba(16,32,51,0.12)] sm:rounded-[1.75rem] sm:px-6 sm:py-6 lg:px-7">
+        <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+          <div className="lg:pt-1">
+            <h2 className="mt-2 text-2xl font-semibold leading-tight text-[#071421] sm:text-3xl lg:text-[2.45rem] lg:leading-[1.04]">
+              10+ hours/week back. Same-day invoicing. Fewer office errors.
             </h2>
-            <p className="mt-4 max-w-xl text-xl leading-9 text-slate-600 sm:text-[1.24rem] lg:text-[1.32rem] lg:leading-10">
-              Coastline Marine is proof this works in a real service business. Billing, handoffs, and follow-up moved faster without forcing the team into a whole new system.
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[#44556B] sm:text-base sm:leading-7">
+              A marine service shop had finished work getting slowed by repeated data entry and job-to-billing handoffs. Stanley Systems cleaned up the path so billing moved faster and the office stopped retyping the same details.
             </p>
 
-            <a
-              href="/contact"
-              className="mt-7 inline-flex items-center justify-center rounded-full bg-[#15803D] px-7 py-3.5 text-base font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-all duration-200 hover:bg-[#166534]"
-            >
-              Get the same audit for your business
-            </a>
-
-            <div className="mt-8 rounded-[1.5rem] border border-[#e8e1d3] bg-[#fbfaf7] p-5 shadow-[0_10px_24px_rgba(15,23,42,0.04)] sm:p-6">
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-1.5 text-lg leading-none text-[#15803D]">
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                  <span>★</span>
-                </div>
-                <div className="rounded-full border border-[#d9e7d2] bg-[#eff9ee] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#166534] sm:text-[12px]">
-                  TRUSTED SERVICE
-                </div>
-              </div>
-              <p className="mt-4 text-[1.02rem] leading-7 text-slate-700 sm:text-[1.08rem]">
-                “Stanley Systems helped us save 10+ hours a week of manual data entry and cut down the kind of human errors that were slowing the business down. The workflow is cleaner, billing moves faster, and the team is not stuck retyping the same information all day.”
-              </p>
-              <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Jessica — Coastline Marine</div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {["Plumbing", "HVAC", "Electrical", "Marine", "Field service"].map((trade) => (
+                <span key={trade} className="rounded-full border border-[#cfe5d1] bg-white px-3 py-1.5 text-xs font-bold text-[#102033]">
+                  {trade}
+                </span>
+              ))}
             </div>
           </div>
 
-          <div className="grid gap-4 sm:auto-rows-fr sm:grid-cols-2">
-            <div className="rounded-[1.5rem] border border-[#edd6d8] bg-[linear-gradient(180deg,#fff7f7_0%,#fdf0f1_100%)] p-5 shadow-[0_10px_24px_rgba(127,29,29,0.05)] sm:h-full">
-              <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#b91c1c]">Before</div>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700 sm:text-[15px]">
-                <li>Job info lived in too many places</li>
-                <li>The office re-entered the same details by hand</li>
-                <li>Completed work took too long to reach billing</li>
-              </ul>
+          <div className="grid gap-3">
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                ["10+ hours/week", "saved from admin handoffs and repeated data entry"],
+                ["Same-day invoicing", "billing got what it needed faster after the job"],
+                ["Fewer errors", "less retyping meant fewer avoidable office mistakes"],
+              ].map(([value, label]) => (
+                <div key={value} className="rounded-[1rem] border border-white/12 bg-white px-4 py-4 shadow-[0_12px_30px_rgba(0,0,0,0.12)]">
+                  <div className="text-xl font-black leading-tight text-[#15803D]">{value}</div>
+                  <div className="mt-2 text-sm font-semibold leading-5 text-[#102033]">{label}</div>
+                </div>
+              ))}
             </div>
-            <div className="rounded-[1.5rem] border border-[#d9e7d2] bg-[#f3f8ef] p-5 shadow-[0_10px_24px_rgba(21,128,61,0.05)] sm:h-full">
-              <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#15803D]">After</div>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700 sm:text-[15px]">
-                <li>Information moved cleanly into the next step</li>
-                <li>Staff reviewed exceptions instead of retyping everything</li>
-                <li>Billing got what it needed faster</li>
-              </ul>
-            </div>
-            <div className="flex h-full flex-col rounded-[1.5rem] border border-[#e8e1d3] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:col-span-2">
-              <div className="text-base font-semibold uppercase tracking-[0.12em] text-slate-900 sm:text-[1.02rem]">Coastline Marine results</div>
-              <div className="mt-4 grid flex-1 gap-3 sm:grid-cols-3">
-                <div className="flex h-full flex-col rounded-2xl border border-[#e8e1d3] bg-[#fbfaf7] px-4 py-5">
-                  <div className="text-xl font-semibold text-slate-900">10+ hours/week</div>
-                  <div className="mt-2 text-sm leading-6 text-slate-600">saved from admin handoffs and repeated data entry</div>
-                </div>
-                <div className="flex h-full flex-col rounded-2xl border border-[#e8e1d3] bg-[#fbfaf7] px-4 py-5">
-                  <div className="text-xl font-semibold text-slate-900">Same-day invoicing</div>
-                  <div className="mt-2 text-sm leading-6 text-slate-600">instead of billing sitting for days after the job</div>
-                </div>
-                <div className="flex h-full flex-col rounded-2xl border border-[#e8e1d3] bg-[#fbfaf7] px-4 py-5">
-                  <div className="text-xl font-semibold text-slate-900">Fewer office errors</div>
-                  <div className="mt-2 text-sm leading-6 text-slate-600">because the team stopped retyping the same details</div>
-                </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-[1rem] border border-[#F2C8CE]/35 bg-[#fff7f7] p-4">
+                <div className="text-xs font-black uppercase tracking-[0.14em] text-[#B42318]">Before</div>
+                <p className="mt-2 text-sm font-semibold leading-6 text-[#102033]">
+                  Job details lived across notes, calls, and software. The office rebuilt the story before billing.
+                </p>
+              </div>
+              <div className="rounded-[1rem] border border-[#9BE7B2]/45 bg-[#EAF8EF] p-4">
+                <div className="text-xs font-black uppercase tracking-[0.14em] text-[#116832]">After</div>
+                <p className="mt-2 text-sm font-semibold leading-6 text-[#102033]">
+                  The job-to-billing handoff got cleaner, exceptions stood out, and invoices moved faster.
+                </p>
               </div>
             </div>
           </div>

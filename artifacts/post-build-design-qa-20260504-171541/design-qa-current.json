@@ -1,0 +1,140 @@
+[
+  {
+    "name": "home-desktop",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-171541/home-desktop.png",
+    "url": "/",
+    "status": 200,
+    "viewport": "1440x1600",
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "noHorizontalOverflow": false,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": false,
+      "finalCta": true,
+      "founder": true,
+      "bestFit": true,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [],
+      "orangeYellow": [],
+      "possibleEyebrow": []
+    }
+  },
+  {
+    "name": "home-mobile",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-171541/home-mobile.png",
+    "url": "/",
+    "status": 200,
+    "viewport": "390x1200",
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "noHorizontalOverflow": false,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": false,
+      "finalCta": true,
+      "founder": true,
+      "bestFit": true,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [],
+      "orangeYellow": [],
+      "possibleEyebrow": []
+    }
+  },
+  {
+    "name": "pricing-desktop",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-171541/pricing-desktop.png",
+    "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "status": 200,
+    "viewport": "1440x1600",
+    "title": "Pricing | Workflow Audit | Stanley Systems",
+    "noHorizontalOverflow": true,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": true,
+      "finalCta": false,
+      "founder": false,
+      "bestFit": false,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [],
+      "orangeYellow": [],
+      "possibleEyebrow": []
+    }
+  },
+  {
+    "name": "pricing-mobile",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-171541/pricing-mobile.png",
+    "url": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "status": 200,
+    "viewport": "390x1200",
+    "title": "Pricing | Workflow Audit | Stanley Systems",
+    "noHorizontalOverflow": true,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": true,
+      "finalCta": false,
+      "founder": false,
+      "bestFit": false,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [],
+      "orangeYellow": [],
+      "possibleEyebrow": []
+    }
+  },
+  {
+    "name": "contact-mobile",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-171541/contact-mobile.png",
+    "url": "/contact",
+    "status": 200,
+    "viewport": "390x1200",
+    "title": "Stanley Systems | Backend Bottleneck Removal for Service Businesses",
+    "noHorizontalOverflow": false,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": false,
+      "finalCta": false,
+      "founder": false,
+      "bestFit": false,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [],
+      "orangeYellow": [],
+      "possibleEyebrow": []
+    }
+  },
+  {
+    "name": "who-helps-mobile",
+    "file": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/artifacts/post-build-design-qa-20260504-171541/who-helps-mobile.png",
+    "url": "/who-stanley-systems-helps",
+    "status": 200,
+    "viewport": "390x1200",
+    "title": "Who Stanley Systems Helps | Service Business Workflows",
+    "noHorizontalOverflow": false,
+    "forbiddenTextHits": [],
+    "requiredCopy": {
+      "workflowAudit": true,
+      "auditCredit": false,
+      "finalCta": false,
+      "founder": false,
+      "bestFit": true,
+      "contactPath": true
+    },
+    "domChecks": {
+      "largeDark": [],
+      "orangeYellow": [],
+      "possibleEyebrow": []
+    }
+  }
+]

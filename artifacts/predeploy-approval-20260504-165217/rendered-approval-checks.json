@@ -1,0 +1,68 @@
+{
+  "home": {
+    "route": "/",
+    "status": 200,
+    "noHorizontalOverflow": true,
+    "checks": {
+      "applicationErrorAbsent": true,
+      "noCashflowControlSystem": true,
+      "noCustomerRevenueSystem": true,
+      "noNoCostOrFreeSystemGuarantee": true,
+      "noStripeOrCheckoutLanguage": true,
+      "noOldTestPrices": true,
+      "noEmOrEnDash": true,
+      "noStandaloneStanley": true,
+      "contactPathAvailable": true,
+      "pricingAuditCreditWording": true,
+      "pricingNoPublicPackagePrices": true,
+      "pricingSafeCTAs": true,
+      "homeBestFit": true,
+      "homeFinalCTA": true,
+      "homeFounder": true
+    }
+  },
+  "pricing": {
+    "route": "/pricing?source=calculator&recommended=both&annual_leak=%24120K&monthly_leak=%2410K",
+    "status": 200,
+    "noHorizontalOverflow": true,
+    "checks": {
+      "applicationErrorAbsent": true,
+      "noCashflowControlSystem": true,
+      "noCustomerRevenueSystem": true,
+      "noNoCostOrFreeSystemGuarantee": true,
+      "noStripeOrCheckoutLanguage": true,
+      "noOldTestPrices": true,
+      "noEmOrEnDash": true,
+      "noStandaloneStanley": true,
+      "contactPathAvailable": true,
+      "pricingAuditCreditWording": true,
+      "pricingNoPublicPackagePrices": true,
+      "pricingSafeCTAs": true,
+      "homeBestFit": true,
+      "homeFinalCTA": true,
+      "homeFounder": true
+    }
+  },
+  "contact": {
+    "route": "/contact",
+    "status": 200,
+    "noHorizontalOverflow": true,
+    "checks": {
+      "applicationErrorAbsent": true,
+      "noCashflowControlSystem": true,
+      "noCustomerRevenueSystem": true,
+      "noNoCostOrFreeSystemGuarantee": true,
+      "noStripeOrCheckoutLanguage": true,
+      "noOldTestPrices": true,
+      "noEmOrEnDash": true,
+      "noStandaloneStanley": true,
+      "contactPathAvailable": true,
+      "pricingAuditCreditWording": true,
+      "pricingNoPublicPackagePrices": true,
+      "pricingSafeCTAs": true,
+      "homeBestFit": true,
+      "homeFinalCTA": true,
+      "homeFounder": true
+    }
+  }
+}

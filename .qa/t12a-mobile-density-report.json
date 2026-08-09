@@ -1,0 +1,766 @@
+[
+  {
+    "viewport": {
+      "name": "mobile390",
+      "width": 390,
+      "height": 844
+    },
+    "route": {
+      "name": "home",
+      "path": "/"
+    },
+    "metrics": {
+      "title": "Stanley Systems | Find and Stop Cash Flow Leaks",
+      "scrollHeight": 8646,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "stickyOrPrimaryCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "bottom": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 707,
+          "bottom": 759,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1611,
+          "bottom": 1663,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 4123,
+          "bottom": 4175,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 7538,
+          "bottom": 7590,
+          "visible": false
+        }
+      ],
+      "collapsedDetails": []
+    },
+    "afterScrollSticky": [
+      {
+        "text": "Start $97 Assessment",
+        "top": 768,
+        "bottom": 832,
+        "visible": true
+      }
+    ],
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile390-home-fold.png",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile390-home-full.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  },
+  {
+    "viewport": {
+      "name": "mobile390",
+      "width": 390,
+      "height": 844
+    },
+    "route": {
+      "name": "pricing",
+      "path": "/pricing"
+    },
+    "metrics": {
+      "title": "Pricing | Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 5128,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "stickyOrPrimaryCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "bottom": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 508,
+          "bottom": 556,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1320,
+          "bottom": 1368,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 3977,
+          "bottom": 4049,
+          "visible": false
+        }
+      ],
+      "collapsedDetails": [
+        {
+          "summary": "System pricing after the assessmentCollapsed on mobile so the $97 Cash Flow Assessment stays the first move. Open this o",
+          "open": false,
+          "top": 1433
+        },
+        {
+          "summary": "Best for: Jobs are getting done before the office gets the bill out.Tap for before/after details.",
+          "open": false,
+          "top": 1942
+        },
+        {
+          "summary": "Best for: Past customers are not being contacted again.Tap for before/after details.",
+          "open": false,
+          "top": 2752
+        },
+        {
+          "summary": "Best for: Money is leaking before and after the job.Tap for before/after details.",
+          "open": false,
+          "top": 3542
+        },
+        {
+          "summary": "Best for: Jobs are getting done before the office gets the bill out.Tap for before/after details.",
+          "open": false,
+          "top": 4501
+        },
+        {
+          "summary": "Best for: Past customers are not being contacted again.Tap for before/after details.",
+          "open": false,
+          "top": 5264
+        },
+        {
+          "summary": "Best for: Money is leaking before and after the job.Tap for before/after details.",
+          "open": false,
+          "top": 6027
+        },
+        {
+          "summary": "Best for: Jobs are getting done before the office gets the bill out.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Past customers are not being contacted again.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Money is leaking before and after the job.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Jobs are getting done before the office gets the bill out.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Past customers are not being contacted again.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Money is leaking before and after the job.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Is the Cash Flow Assessment required before buying a package?+",
+          "open": false,
+          "top": 2774
+        },
+        {
+          "summary": "How does the Cash Flow Assessment credit work?+",
+          "open": false,
+          "top": 2868
+        },
+        {
+          "summary": "What does the Cash Flow Assessment guarantee mean?+",
+          "open": false,
+          "top": 2962
+        },
+        {
+          "summary": "Who qualifies for the Cash Flow Assessment guarantee?+",
+          "open": false,
+          "top": 3056
+        },
+        {
+          "summary": "Can I buy Cashflow Control System or Repeat Revenue System directly?+",
+          "open": false,
+          "top": 3150
+        },
+        {
+          "summary": "What happens after I buy a package?+",
+          "open": false,
+          "top": 3244
+        },
+        {
+          "summary": "What if I buy the wrong package?+",
+          "open": false,
+          "top": 3322
+        }
+      ]
+    },
+    "afterScrollSticky": [
+      {
+        "text": "Start $97 Assessment",
+        "top": 768,
+        "bottom": 832,
+        "visible": true
+      }
+    ],
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile390-pricing-fold.png",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile390-pricing-full.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  },
+  {
+    "viewport": {
+      "name": "mobile390",
+      "width": 390,
+      "height": 844
+    },
+    "route": {
+      "name": "assessment",
+      "path": "/workflow-audit"
+    },
+    "metrics": {
+      "title": "Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 6209,
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "hasHorizontalOverflow": false,
+      "stickyOrPrimaryCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "bottom": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 354,
+          "bottom": 402,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 2417,
+          "bottom": 2465,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 3544,
+          "bottom": 3592,
+          "visible": false
+        }
+      ],
+      "collapsedDetails": [
+        {
+          "summary": "Direct system options+",
+          "open": false,
+          "top": 3854
+        },
+        {
+          "summary": "Jobs are getting done before the office gets the bill out.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 4235
+        },
+        {
+          "summary": "Jobs are getting done before the office gets the bill out.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 4743
+        },
+        {
+          "summary": "Past customers are not being contacted again.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 5225
+        },
+        {
+          "summary": "Past customers are not being contacted again.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 5754
+        },
+        {
+          "summary": "Money is leaking before and after the job.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 6236
+        },
+        {
+          "summary": "Money is leaking before and after the job.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 6700
+        },
+        {
+          "summary": "Jobs are getting done before the office gets the bill out.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Jobs are getting done before the office gets the bill out.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Past customers are not being contacted again.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Past customers are not being contacted again.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Money is leaking before and after the job.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Money is leaking before and after the job.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Is this a sales call?+",
+          "open": false,
+          "top": 4311
+        },
+        {
+          "summary": "Do I have to give Stanley Systems my password?+",
+          "open": false,
+          "top": 4393
+        },
+        {
+          "summary": "What systems might Stanley Systems review?+",
+          "open": false,
+          "top": 4495
+        },
+        {
+          "summary": "What if I already have reminders turned on?+",
+          "open": false,
+          "top": 4597
+        },
+        {
+          "summary": "What is the Transaction Pattern Review?+",
+          "open": false,
+          "top": 4699
+        },
+        {
+          "summary": "Can I buy Cashflow Control System or Repeat Revenue System without the assessment?+",
+          "open": false,
+          "top": 4801
+        },
+        {
+          "summary": "How does the assessment credit work?+",
+          "open": false,
+          "top": 4927
+        }
+      ]
+    },
+    "afterScrollSticky": [
+      {
+        "text": "Start $97 Assessment",
+        "top": 768,
+        "bottom": 832,
+        "visible": true
+      }
+    ],
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile390-assessment-fold.png",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile390-assessment-full.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  },
+  {
+    "viewport": {
+      "name": "mobile320",
+      "width": 320,
+      "height": 720
+    },
+    "route": {
+      "name": "home",
+      "path": "/"
+    },
+    "metrics": {
+      "title": "Stanley Systems | Find and Stop Cash Flow Leaks",
+      "scrollHeight": 9507,
+      "bodyWidth": 320,
+      "viewportWidth": 320,
+      "hasHorizontalOverflow": false,
+      "stickyOrPrimaryCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "bottom": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 825,
+          "bottom": 877,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1761,
+          "bottom": 1813,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 4558,
+          "bottom": 4610,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 8379,
+          "bottom": 8431,
+          "visible": false
+        }
+      ],
+      "collapsedDetails": []
+    },
+    "afterScrollSticky": [
+      {
+        "text": "Start $97 Assessment",
+        "top": 644,
+        "bottom": 708,
+        "visible": true
+      }
+    ],
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile320-home-fold.png",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile320-home-full.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  },
+  {
+    "viewport": {
+      "name": "mobile320",
+      "width": 320,
+      "height": 720
+    },
+    "route": {
+      "name": "pricing",
+      "path": "/pricing"
+    },
+    "metrics": {
+      "title": "Pricing | Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 5773,
+      "bodyWidth": 320,
+      "viewportWidth": 320,
+      "hasHorizontalOverflow": false,
+      "stickyOrPrimaryCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "bottom": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 574,
+          "bottom": 646,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 1474,
+          "bottom": 1538,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 4602,
+          "bottom": 4674,
+          "visible": false
+        }
+      ],
+      "collapsedDetails": [
+        {
+          "summary": "System pricing after the assessmentCollapsed on mobile so the $97 Cash Flow Assessment stays the first move. Open this o",
+          "open": false,
+          "top": 1603
+        },
+        {
+          "summary": "Best for: Jobs are getting done before the office gets the bill out.Tap for before/after details.",
+          "open": false,
+          "top": 2212
+        },
+        {
+          "summary": "Best for: Past customers are not being contacted again.Tap for before/after details.",
+          "open": false,
+          "top": 3126
+        },
+        {
+          "summary": "Best for: Money is leaking before and after the job.Tap for before/after details.",
+          "open": false,
+          "top": 3976
+        },
+        {
+          "summary": "Best for: Jobs are getting done before the office gets the bill out.Tap for before/after details.",
+          "open": false,
+          "top": 5067
+        },
+        {
+          "summary": "Best for: Past customers are not being contacted again.Tap for before/after details.",
+          "open": false,
+          "top": 6014
+        },
+        {
+          "summary": "Best for: Money is leaking before and after the job.Tap for before/after details.",
+          "open": false,
+          "top": 6933
+        },
+        {
+          "summary": "Best for: Jobs are getting done before the office gets the bill out.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Past customers are not being contacted again.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Money is leaking before and after the job.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Jobs are getting done before the office gets the bill out.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Past customers are not being contacted again.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Best for: Money is leaking before and after the job.Tap for before/after details.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Is the Cash Flow Assessment required before buying a package?+",
+          "open": false,
+          "top": 3172
+        },
+        {
+          "summary": "How does the Cash Flow Assessment credit work?+",
+          "open": false,
+          "top": 3290
+        },
+        {
+          "summary": "What does the Cash Flow Assessment guarantee mean?+",
+          "open": false,
+          "top": 3384
+        },
+        {
+          "summary": "Who qualifies for the Cash Flow Assessment guarantee?+",
+          "open": false,
+          "top": 3502
+        },
+        {
+          "summary": "Can I buy Cashflow Control System or Repeat Revenue System directly?+",
+          "open": false,
+          "top": 3620
+        },
+        {
+          "summary": "What happens after I buy a package?+",
+          "open": false,
+          "top": 3738
+        },
+        {
+          "summary": "What if I buy the wrong package?+",
+          "open": false,
+          "top": 3832
+        }
+      ]
+    },
+    "afterScrollSticky": [
+      {
+        "text": "Start $97 Assessment",
+        "top": 644,
+        "bottom": 708,
+        "visible": true
+      }
+    ],
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile320-pricing-fold.png",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile320-pricing-full.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  },
+  {
+    "viewport": {
+      "name": "mobile320",
+      "width": 320,
+      "height": 720
+    },
+    "route": {
+      "name": "assessment",
+      "path": "/workflow-audit"
+    },
+    "metrics": {
+      "title": "Cash Flow Assessment | Stanley Systems",
+      "scrollHeight": 6471,
+      "bodyWidth": 320,
+      "viewportWidth": 320,
+      "hasHorizontalOverflow": false,
+      "stickyOrPrimaryCtas": [
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 0,
+          "bottom": 0,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 413,
+          "bottom": 477,
+          "visible": true
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 2454,
+          "bottom": 2502,
+          "visible": false
+        },
+        {
+          "text": "Start the Cash Flow Assessment",
+          "top": 3658,
+          "bottom": 3722,
+          "visible": false
+        }
+      ],
+      "collapsedDetails": [
+        {
+          "summary": "Direct system options+",
+          "open": false,
+          "top": 4048
+        },
+        {
+          "summary": "Jobs are getting done before the office gets the bill out.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 4473
+        },
+        {
+          "summary": "Jobs are getting done before the office gets the bill out.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 5058
+        },
+        {
+          "summary": "Past customers are not being contacted again.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 5645
+        },
+        {
+          "summary": "Past customers are not being contacted again.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 6230
+        },
+        {
+          "summary": "Money is leaking before and after the job.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 6768
+        },
+        {
+          "summary": "Money is leaking before and after the job.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 7307
+        },
+        {
+          "summary": "Jobs are getting done before the office gets the bill out.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Jobs are getting done before the office gets the bill out.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Past customers are not being contacted again.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Past customers are not being contacted again.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Money is leaking before and after the job.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Money is leaking before and after the job.Open for before/after, fees, and included pieces.",
+          "open": false,
+          "top": 0
+        },
+        {
+          "summary": "Is this a sales call?+",
+          "open": false,
+          "top": 4529
+        },
+        {
+          "summary": "Do I have to give Stanley Systems my password?+",
+          "open": false,
+          "top": 4611
+        },
+        {
+          "summary": "What systems might Stanley Systems review?+",
+          "open": false,
+          "top": 4713
+        },
+        {
+          "summary": "What if I already have reminders turned on?+",
+          "open": false,
+          "top": 4815
+        },
+        {
+          "summary": "What is the Transaction Pattern Review?+",
+          "open": false,
+          "top": 4917
+        },
+        {
+          "summary": "Can I buy Cashflow Control System or Repeat Revenue System without the assessment?+",
+          "open": false,
+          "top": 5019
+        },
+        {
+          "summary": "How does the assessment credit work?+",
+          "open": false,
+          "top": 5169
+        }
+      ]
+    },
+    "afterScrollSticky": [
+      {
+        "text": "Start $97 Assessment",
+        "top": 644,
+        "bottom": 708,
+        "visible": true
+      }
+    ],
+    "foldPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile320-assessment-fold.png",
+    "fullPath": "/home/jaden/.openclaw/workspace/Stanley-Systems-Landing-Page/.qa/t12a-screenshots/mobile320-assessment-full.png",
+    "consoleMessages": [],
+    "badResponses": [],
+    "pageErrors": []
+  }
+]

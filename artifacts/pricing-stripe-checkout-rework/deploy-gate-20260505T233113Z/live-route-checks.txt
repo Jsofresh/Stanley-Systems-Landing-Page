@@ -1,0 +1,9 @@
+/ attempt_1=200
+/pricing attempt_1=200
+/systems/cashflow-control attempt_1=200
+/systems/repeat-revenue attempt_1=200
+/checkout/success attempt_1=200
+/checkout/cancel attempt_1=200
+/checkout/onboarding attempt_1=200
+/terms-and-conditions attempt_1=200
+/sitemap.xml attempt_1=200

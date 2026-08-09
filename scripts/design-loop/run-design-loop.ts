@@ -1,0 +1,204 @@
+import { existsSync, readFileSync } from "node:fs"
+import { join } from "node:path"
+import { pathToFileURL } from "node:url"
+import { createManifest, loadManifest, main, toBool, updateStatus, writeJson, writeManifest, writeText } from "./_lib.ts"
+import { shouldRetryCodexPatch, type VerificationDecision } from "./retry-policy.ts"
+
+async function runStep(script: string, args: string[]) {
+  const originalArgv = process.argv
+  const originalExitCode = process.exitCode
+  const scriptPath = join(process.cwd(), "scripts", "design-loop", script)
+  let stdout = ""
+  let stderr = ""
+  const originalLog = console.log
+  const originalError = console.error
+
+  process.argv = [process.execPath, scriptPath, ...args]
+  process.exitCode = 0
+  console.log = (...values: unknown[]) => {
+    stdout += `${values.map(String).join(" ")}\n`
+    originalLog(...values)
+  }
+  console.error = (...values: unknown[]) => {
+    stderr += `${values.map(String).join(" ")}\n`
+    originalError(...values)
+  }
+
+  try {
+    await import(`${pathToFileURL(scriptPath).href}?run=${Date.now()}-${Math.random()}`)
+  } catch (error) {
+    stderr += `${error instanceof Error ? error.message : String(error)}\n`
+    process.exitCode = 1
+  } finally {
+    process.argv = originalArgv
+    console.log = originalLog
+    console.error = originalError
+  }
+
+  const status = Number(process.exitCode || 0)
+  process.exitCode = originalExitCode
+  return {
+    command: `in-process ${script} ${args.join(" ")}`,
+    status,
+    stdout,
+    stderr,
+  }
+}
+
+function saveStep(manifestRunDir: string, name: string, result: Awaited<ReturnType<typeof runStep>>) {
+  const path = join(manifestRunDir, "build-reports", `${name}.json`)
+  writeJson(path, {
+    command: result.command,
+    status: result.status,
+    stdout_tail: result.stdout.slice(-4000),
+    stderr_tail: result.stderr.slice(-4000),
+  })
+  writeText(path.replace(".json", ".stdout.txt"), result.stdout)
+  writeText(path.replace(".json", ".stderr.txt"), result.stderr)
+}
+
+await main(async (args) => {
+  const dryRun = !toBool(args.auto_deploy, false)
+  let manifest = createManifest(args)
+  const baseArgs = ["--run-id", manifest.run_id]
+  const urlArgs = args.url ? ["--url", String(args.url)] : []
+
+  const steps: Array<[string, string, string[]]> = [
+    ["init-backup", "init-backup.ts", [...baseArgs, "--dry-run", String(dryRun)]],
+    ["capture-before", "capture-sections.ts", [...baseArgs, "--phase", "before", ...urlArgs]],
+    ["make-prompts", "make-audit-prompts.ts", baseArgs],
+    ["hermes-audit", "run-hermes-audit.ts", baseArgs],
+    ["higgsfield-assets", "run-higgsfield-assets.ts", baseArgs],
+    ["ingest-assets", "ingest-assets.ts", baseArgs],
+    ["dispatch-codex", "dispatch-codex-patch.ts", baseArgs],
+  ]
+
+  for (const [name, script, stepArgs] of steps) {
+    const result = await runStep(script, stepArgs)
+    saveStep(manifest.run_dir, name, result)
+    manifest = loadManifest(manifest.run_id)
+    const bridgeBlocked = manifest.status === "blocked_bridge_missing"
+    const backupBlocked = manifest.status === "blocked_bridge_or_backup"
+    if (backupBlocked && !dryRun) {
+      updateStatus(manifest, "blocked_bridge_or_backup")
+      break
+    }
+    if (bridgeBlocked && name === "hermes-audit") {
+      continue
+    }
+    if (bridgeBlocked && name === "higgsfield-assets") {
+      continue
+    }
+    if (bridgeBlocked && name === "dispatch-codex") {
+      break
+    }
+    if (result.status !== 0 && !dryRun) {
+      updateStatus(manifest, "blocked")
+      break
+    }
+  }
+
+  manifest = loadManifest(manifest.run_id)
+
+  if (!process.env.CODEX_PATCH_COMMAND) {
+    writeJson(join(manifest.run_dir, "verification", "dry-run-verification-placeholder.json"), {
+      run_id: manifest.run_id,
+      status: "not_run",
+      reason: "CODEX_PATCH_COMMAND missing, no patch applied.",
+    })
+    ensureEmptyAfterFolders(manifest.run_dir)
+    await runStep("log-to-stanley-os.ts", baseArgs)
+    return
+  }
+
+  const maxVisualPatchAttempts = Math.min(manifest.max_iterations, 2)
+  for (let attempt = 1; attempt <= maxVisualPatchAttempts; attempt += 1) {
+    ;(manifest as unknown as Record<string, unknown>).critical_visual_review_attempt = attempt
+    writeManifest(manifest)
+    saveStep(manifest.run_dir, `codex-attempt-${attempt}`, await runStep("apply-patch-or-run-codex.ts", baseArgs))
+    saveStep(manifest.run_dir, `capture-after-${attempt}`, await runStep("capture-sections.ts", [...baseArgs, "--phase", "after", ...urlArgs]))
+    saveStep(manifest.run_dir, `verify-${attempt}`, await runStep("run-verification.ts", baseArgs))
+    manifest = loadManifest(manifest.run_id)
+    const verificationDecision = readVerificationDecision(manifest.run_dir)
+    if (verificationDecision.finalGateDecision === "verified_pending_deploy") break
+    if (!shouldRetryCodexPatch(verificationDecision)) {
+      writeControllerBlockerReport(manifest.run_dir, attempt, verificationDecision)
+      updateStatus(manifest, "blocked")
+      break
+    }
+    if (attempt < maxVisualPatchAttempts) updateStatus(manifest, "needs_patch_2")
+  }
+
+  manifest = loadManifest(manifest.run_id)
+  if (manifest.status !== "verified_pending_deploy") {
+    await runStep("log-to-stanley-os.ts", baseArgs)
+    return
+  }
+
+  saveStep(manifest.run_dir, "deploy", await runStep("deploy-if-verified.ts", [...baseArgs, "--auto-deploy", String(toBool(args.auto_deploy, false))]))
+  manifest = loadManifest(manifest.run_id)
+  if (manifest.status === "live_verification_running") {
+    saveStep(manifest.run_dir, "live-smoke", await runStep("live-smoke-check.ts", baseArgs))
+    manifest = loadManifest(manifest.run_id)
+    if (manifest.status === "blocked" && toBool(args.rollback_on_live_smoke_failure, true)) {
+      saveStep(manifest.run_dir, "rollback", await runStep("rollback-site.ts", baseArgs))
+    }
+  }
+  saveStep(manifest.run_dir, "log-to-stanley-os", await runStep("log-to-stanley-os.ts", baseArgs))
+})
+
+function ensureEmptyAfterFolders(runDir: string) {
+  for (const dir of ["screenshots/after/desktop", "screenshots/after/mobile", "verification"]) {
+    if (!existsSync(join(runDir, dir))) {
+      writeJson(join(runDir, dir, ".keep.json"), { created: true })
+    }
+  }
+}
+
+function readVerificationDecision(runDir: string): {
+  failureClass: string | null
+  finalGateDecision: string
+  reason: string
+  inScopeFindings: unknown[]
+  criticalVisualReviewNextStatus?: string
+  criticalVisualReviewSections?: Array<{ final_decision?: string }>
+} & VerificationDecision {
+  const reportPath = join(runDir, "verification", "verification-report.json")
+  if (!existsSync(reportPath)) {
+    return {
+      failureClass: "infrastructure_verification_bug",
+      finalGateDecision: "blocked",
+      reason: `Missing verification report at ${reportPath}`,
+      inScopeFindings: [],
+    }
+  }
+  const report = JSON.parse(readFileSync(reportPath, "utf8"))
+  return {
+    failureClass: report.failure_class || null,
+    finalGateDecision: report.final_gate_decision || report.next_status || "blocked",
+    reason: report.reason_for_block_if_blocked || report.blocker_reason || "",
+    inScopeFindings: report.in_scope_findings || [],
+    criticalVisualReviewNextStatus: report.critical_visual_review_next_status,
+    criticalVisualReviewSections: Array.isArray(report.critical_visual_review_sections)
+      ? report.critical_visual_review_sections
+      : [],
+  }
+}
+
+function writeControllerBlockerReport(
+  runDir: string,
+  attempt: number,
+  decision: ReturnType<typeof readVerificationDecision>,
+) {
+  writeJson(join(runDir, "verification", "controller-blocker-report.json"), {
+    attempt,
+    status: "blocked",
+    retry_stopped: true,
+    failure_class: decision.failureClass,
+    final_gate_decision: decision.finalGateDecision,
+    blocker_reason: decision.reason || "Controller stopped because the failure is not a retryable section patch failure.",
+    retry_policy:
+      "Retry only design_verification_failed, critical_visual_review_failed with fail_codex_patch_needed, in-scope copy_guardrail_failed, or in-scope offer_guardrail_failed. Do not retry infrastructure, bridge, capture, backup, deploy, live smoke, protected path, missing asset, revert, missing screenshot, validation, or build failures.",
+    written_at: new Date().toISOString(),
+  })
+}
