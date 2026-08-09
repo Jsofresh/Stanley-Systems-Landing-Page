@@ -5,12 +5,17 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
   ArrowUp,
+  Check,
+  CircleAlert,
+  CircleCheck,
+  CircleDashed,
   FileText,
   Menu,
   MessageSquare,
   MessageSquarePlus,
   Paperclip,
   Search,
+  Save,
   Settings,
   Sheet,
   Sparkles,
@@ -36,6 +41,14 @@ import {
   type BrainSummary,
   type NativeCompletion,
 } from "@/lib/company-brain/live"
+import {
+  applyWorkflowCommand,
+  canSaveWorkflowAsRoutine,
+  completionToWorkflowReceipt,
+  createWorkflowAdapterState,
+  safeWorkflowText,
+  type WorkflowAdapterCommand,
+} from "@/lib/company-brain/workflow"
 import type {
   Artifact,
   CompanyBrainAttachment,
@@ -43,6 +56,8 @@ import type {
   CompanyBrainMessage,
   SourceChip,
   TablePreview,
+  WorkflowAdapterState,
+  WorkflowReceipt,
 } from "@/lib/company-brain/types"
 
 type RecentConversation = {
@@ -76,6 +91,11 @@ const sensitiveDisplayPatterns = [
   /\/opt\/company-brain-runtime(?:\/[^\s]*)?/gi,
   /\/secrets(?:\/[^\s]*)?/gi,
   /secrets\/(?:[^\s]*)?/gi,
+  /\bHermes\b/gi,
+  /\bCodex\b/gi,
+  /\bOpenClaw\b/gi,
+  /\bn8n\b/gi,
+  /\bHCP\b/gi,
 ]
 
 function sanitizePortalDisplayText(value: string) {
@@ -134,7 +154,7 @@ function nativeArtifactBlock(value: unknown, index: number): Extract<CompanyBrai
   }
 }
 
-function nativeCompletionBlocks(response: NativeCompletion): CompanyBrainBlock[] {
+function nativeCompletionBlocks(response: NativeCompletion, receipt?: WorkflowReceipt): CompanyBrainBlock[] {
   const blocks: CompanyBrainBlock[] = []
   const seenArtifactIds = new Set<string>()
   const rawBlocks = Array.isArray(response.blocks) ? response.blocks : []
@@ -210,6 +230,7 @@ function nativeCompletionBlocks(response: NativeCompletion): CompanyBrainBlock[]
     const block = nativeArtifactBlock(artifact, index)
     if (block) blocks.push(block)
   })
+  if (receipt) blocks.push({ type: "workflow", id: `workflow-${receipt.workflowId}`, receipt })
   return blocks.length
     ? blocks
     : [{
@@ -234,8 +255,7 @@ export function PortalApp() {
   const [summary, setSummary] = useState<BrainSummary | null>(null)
   const [statusError, setStatusError] = useState<string | null>(null)
   const [activityLabel, setActivityLabel] = useState("Stanley is working…")
-  const [approvalChoices, setApprovalChoices] = useState<string[]>([])
-  const [approvalConversationId, setApprovalConversationId] = useState<string | null>(null)
+  const [workflowState, setWorkflowState] = useState<WorkflowAdapterState | null>(null)
   const [currentConversationId, setCurrentConversationId] = useState(() => `conversation-${Date.now()}`)
   const [recentConversations, setRecentConversations] = useState<RecentConversation[]>([])
   const [historyReady, setHistoryReady] = useState(false)
@@ -244,6 +264,7 @@ export function PortalApp() {
   const isSendingRef = useRef(false)
   const historyLoadedRef = useRef(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
+  const workflowSequenceRef = useRef(0)
 
   const hasMessages = messages.length > 0
 
@@ -390,6 +411,37 @@ export function PortalApp() {
     const originTitle = hasText
       ? rawMessage.trim().slice(0, 54)
       : messageAttachments[0]?.name.slice(0, 54) || "New conversation"
+    const existingApproval = workflowState?.conversationId === originConversationId ? workflowState.approval : undefined
+    const approvalDecision = existingApproval && (rawMessage === "Approve" || rawMessage === "Cancel") ? rawMessage : undefined
+    const nextSequence = () => {
+      workflowSequenceRef.current += 1
+      return workflowSequenceRef.current
+    }
+    const applyWorkflowUpdate = (command: WorkflowAdapterCommand) => {
+      setWorkflowState((current) => applyWorkflowCommand(
+        current?.conversationId === originConversationId
+          ? current
+          : createWorkflowAdapterState(originConversationId, session?.companyId ?? "", command.at),
+        command,
+      ))
+    }
+    if (approvalDecision && existingApproval) {
+      applyWorkflowUpdate({
+        operation: "approve",
+        sequence: nextSequence(),
+        at: new Date().toISOString(),
+        approval: existingApproval,
+        decision: approvalDecision,
+      })
+    } else {
+      workflowSequenceRef.current = 0
+      const initial = createWorkflowAdapterState(originConversationId, session?.companyId ?? "")
+      setWorkflowState(applyWorkflowCommand(initial, {
+        operation: "start_work",
+        sequence: nextSequence(),
+        at: new Date().toISOString(),
+      }))
+    }
 
     const userMessage: CompanyBrainMessage = {
       id: `user-${Date.now()}`,
@@ -412,8 +464,6 @@ export function PortalApp() {
     ].slice(0, 8))
     setInput("")
     setAttachments([])
-    setApprovalChoices([])
-    setApprovalConversationId(null)
     setIsSending(true)
 
     const streamingMessageId = `assistant-stream-${Date.now()}`
@@ -437,18 +487,32 @@ export function PortalApp() {
         message: rawMessage,
         attachments: messageAttachments,
       }, (event) => {
-        if (event.event === "run.started") setActivityLabel("Stanley is working…")
+        if (event.event === "run.started") {
+          setActivityLabel("Stanley is working…")
+          applyWorkflowUpdate({ operation: "get_status", sequence: nextSequence(), at: new Date().toISOString(), phase: "running", label: approvalDecision === "Approve" ? "Approved work started" : "Plan ready. Work started" })
+        }
         if (event.event === "tool.progress") {
           const state = typeof event.data.state === "string" ? event.data.state : ""
-          setActivityLabel(state.includes("completed") ? "Stanley is verifying the result…" : "Stanley is checking the connected records…")
+          const label = state.includes("completed") ? "Verifying the result" : state.includes("failed") ? "Checking an exception" : "Checking connected records"
+          setActivityLabel(`${label}…`)
+          applyWorkflowUpdate({ operation: "get_status", sequence: nextSequence(), at: new Date().toISOString(), phase: "running", label })
         }
         if (event.event === "approval.request") {
           const choices = Array.isArray(event.data.choices)
             ? event.data.choices.filter((choice): choice is string => typeof choice === "string").slice(0, 8)
             : []
-          if (currentConversationIdRef.current === originConversationId && choices.length) {
-            setApprovalChoices(choices)
-            setApprovalConversationId(originConversationId)
+          const approvalRef = typeof event.data.approval_ref === "string" ? event.data.approval_ref : ""
+          const actionCount = typeof event.data.action_count === "number" ? event.data.action_count : 0
+          const systems = Array.isArray(event.data.connectors)
+            ? event.data.connectors.filter((system): system is string => typeof system === "string").map((system) => system === "quickbooks" ? "QuickBooks" : system === "jobber" ? "Jobber" : "Connected records")
+            : []
+          if (currentConversationIdRef.current === originConversationId && approvalRef && actionCount > 0 && choices[0] === "Approve" && choices[1] === "Cancel") {
+            applyWorkflowUpdate({
+              operation: "approve",
+              sequence: nextSequence(),
+              at: new Date().toISOString(),
+              approval: { approvalRef, actionCount, systems, choices: ["Approve", "Cancel"] },
+            })
           }
         }
         if (event.event === "assistant.delta" && typeof event.data.delta === "string") {
@@ -456,16 +520,24 @@ export function PortalApp() {
           updateStreamingMessage(streamedText)
         }
       })
-      if (response.status && response.status !== "completed") {
-        throw new Error(response.status === "cancelled"
-          ? "The request was stopped. Check the conversation before retrying."
-          : "Company Brain could not complete that request. Check recent activity before trying again.")
+      const receipt = response.workflow_receipt ?? completionToWorkflowReceipt(response, {
+        workflowId: originConversationId,
+        tenantId: session?.companyId ?? "",
+      })
+      if (response.work_result?.status !== "approval_required") {
+        applyWorkflowUpdate({
+          operation: "get_result",
+          sequence: nextSequence(),
+          at: new Date().toISOString(),
+          receipt,
+          error: receipt ? undefined : "The structured result was missing or malformed. No success is being claimed.",
+        })
       }
       const assistantMessage: CompanyBrainMessage = {
         id: `assistant-${Date.now()}`,
         role: "assistant",
         createdAt: new Date().toISOString(),
-        blocks: nativeCompletionBlocks(response),
+        blocks: nativeCompletionBlocks(response, receipt),
       }
       const completedMessages = [...originMessages, assistantMessage]
       setRecentConversations((current) => [
@@ -476,6 +548,12 @@ export function PortalApp() {
         setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), assistantMessage])
       }
     } catch (error) {
+      applyWorkflowUpdate({
+        operation: "get_result",
+        sequence: nextSequence(),
+        at: new Date().toISOString(),
+        error: error instanceof Error ? error.message : "The outcome could not be confirmed.",
+      })
       const errorMessage: CompanyBrainMessage = {
         id: `assistant-error-${Date.now()}`,
         role: "assistant",
@@ -509,6 +587,9 @@ export function PortalApp() {
   async function handleCancel() {
     const conversationId = activeConversationIdRef.current
     if (!conversationId) return
+    workflowSequenceRef.current += 1
+    const command: WorkflowAdapterCommand = { operation: "cancel", sequence: workflowSequenceRef.current, at: new Date().toISOString(), confirmed: false }
+    setWorkflowState((current) => current ? applyWorkflowCommand(current, command) : current)
     try {
       await cancelCompanyBrainSession(conversationId)
       setStatusError("Stopping that request…")
@@ -547,6 +628,8 @@ export function PortalApp() {
         }
         currentConversationIdRef.current = conversation.id
         setCurrentConversationId(conversation.id)
+        workflowSequenceRef.current = 0
+        setWorkflowState(null)
         setMessages([])
         void getCompanyBrainSessionMessages(conversation.id).then((history) => {
           if (currentConversationIdRef.current !== conversation.id) return
@@ -575,6 +658,8 @@ export function PortalApp() {
         const nextConversationId = `conversation-${Date.now()}`
         currentConversationIdRef.current = nextConversationId
         setCurrentConversationId(nextConversationId)
+        workflowSequenceRef.current = 0
+        setWorkflowState(null)
         setMessages([])
         setInput("")
         setAttachments([])
@@ -671,26 +756,13 @@ export function PortalApp() {
                   <EmptyState summary={summary} statusError={statusError} />
                 )}
               </div>
-              {approvalConversationId === currentConversationId && approvalChoices.length ? (
-                <div className="mb-3 rounded-xl border border-[#d9eadf] bg-[#f5fbf7] p-3">
-                  <p className="text-xs font-bold uppercase tracking-wide text-[#667085]">Stanley is waiting for your choice</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {approvalChoices.map((choice) => (
-                      <button
-                        key={choice}
-                        type="button"
-                        className="rounded-full border border-[#cfe6d7] bg-white px-3 py-1.5 text-xs font-bold text-[#15803d] hover:bg-[#eef9f2]"
-                        onClick={() => {
-                          setApprovalChoices([])
-                          setApprovalConversationId(null)
-                          void sendMessage(choice, [])
-                        }}
-                      >
-                        {choice}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+              {workflowState?.conversationId === currentConversationId && workflowState.phase !== "idle" ? (
+                <WorkflowStatusPanel
+                  state={workflowState}
+                  tenantId={session.companyId}
+                  onDecision={(decision) => void sendMessage(decision, [])}
+                  onSaveRoutine={() => void sendMessage("Save this completed workflow as a routine for this company.", [])}
+                />
               ) : null}
               <ChatComposer
                 input={input}
@@ -972,6 +1044,10 @@ function MessageBlock({
     )
   }
 
+  if (block.type === "workflow") {
+    return <WorkflowReceiptCard receipt={block.receipt} />
+  }
+
   if (block.type === "error" && "title" in block && "message" in block) {
     return (
       <div className="rounded-lg border border-[#f0c6c0] bg-[#fff7f5] p-4">
@@ -982,6 +1058,142 @@ function MessageBlock({
   }
 
   return null
+}
+
+function workflowTone(phase: WorkflowAdapterState["phase"]) {
+  if (phase === "completed") return { border: "border-[#cfe6d7]", background: "bg-[#f5fbf7]", ink: "text-[#116832]" }
+  if (phase === "failed" || phase === "unknown_outcome") return { border: "border-[#f0c6c0]", background: "bg-[#fff7f5]", ink: "text-[#9c2f24]" }
+  if (phase === "partial" || phase === "reconciliation_required" || phase === "approval_required") return { border: "border-[#ead9ad]", background: "bg-[#fffbeb]", ink: "text-[#7a5b12]" }
+  return { border: "border-[#d9e2ea]", background: "bg-white", ink: "text-[#36536b]" }
+}
+
+function workflowPhaseLabel(phase: WorkflowAdapterState["phase"]) {
+  const labels: Record<WorkflowAdapterState["phase"], string> = {
+    idle: "Ready",
+    planning: "Planning",
+    running: "In progress",
+    approval_required: "Approval required",
+    cancelling: "Stopping",
+    cancelled: "Cancelled",
+    completed: "Completed",
+    partial: "Completed with exceptions",
+    failed: "Not completed",
+    reconciliation_required: "Reconciliation required",
+    unknown_outcome: "Outcome unknown",
+  }
+  return labels[phase]
+}
+
+function WorkflowStatusPanel({
+  state,
+  tenantId,
+  onDecision,
+  onSaveRoutine,
+}: {
+  state: WorkflowAdapterState
+  tenantId: string
+  onDecision: (decision: "Approve" | "Cancel") => void
+  onSaveRoutine: () => void
+}) {
+  const tone = workflowTone(state.phase)
+  const recentHistory = state.history.slice(-4)
+  const saveEligible = canSaveWorkflowAsRoutine(state.receipt, tenantId)
+  const active = ["planning", "running", "cancelling"].includes(state.phase)
+  return (
+    <section
+      data-testid="workflow-status"
+      aria-live="polite"
+      className={cn("mb-3 overflow-hidden rounded-2xl border shadow-sm", tone.border, tone.background)}
+    >
+      <div className="flex items-center justify-between gap-3 px-4 py-3">
+        <div className="flex min-w-0 items-center gap-2.5">
+          {state.phase === "completed" ? <CircleCheck className="h-5 w-5 shrink-0 text-[#15803d]" /> : state.phase === "failed" || state.phase === "unknown_outcome" ? <CircleAlert className="h-5 w-5 shrink-0 text-[#b42318]" /> : <CircleDashed className={cn("h-5 w-5 shrink-0", active && "motion-safe:animate-spin", tone.ink)} />}
+          <div className="min-w-0">
+            <p className={cn("text-sm font-bold", tone.ink)}>{workflowPhaseLabel(state.phase)}</p>
+            <p className="truncate text-xs text-[#667085]">{state.history.at(-1)?.label ?? "Workflow update"}</p>
+          </div>
+        </div>
+        <span className="rounded-full border border-black/10 bg-white/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-[#667085]">
+          {state.operation.replace("_", " ")}
+        </span>
+      </div>
+
+      {recentHistory.length ? (
+        <ol className="border-t border-black/5 px-4 py-3" aria-label="Workflow history">
+          {recentHistory.map((item, index) => (
+            <li key={item.id} className="flex gap-3 pb-2 last:pb-0">
+              <span className={cn("mt-1.5 h-2 w-2 shrink-0 rounded-full", index === recentHistory.length - 1 ? "bg-[#15803d]" : "bg-[#b8c3bd]")} />
+              <div className="min-w-0">
+                <p className="text-xs font-semibold text-[#344054]">{item.label}</p>
+                {item.detail ? <p className="mt-0.5 text-xs leading-5 text-[#667085]">{item.detail}</p> : null}
+              </div>
+            </li>
+          ))}
+        </ol>
+      ) : null}
+
+      {state.approval ? (
+        <div className="border-t border-[#ead9ad] bg-white/55 px-4 py-3">
+          <p className="text-sm font-bold text-[#4d3b10]">
+            Review {state.approval.actionCount} action{state.approval.actionCount === 1 ? "" : "s"} for {state.approval.systems.join(" and ")}.
+          </p>
+          <p className="mt-1 text-xs leading-5 text-[#6b5a2f]">Approval applies only to the actions shown in this request.</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Button type="button" className="h-9 rounded-full bg-[#15803d] px-4 text-white hover:bg-[#116832]" onClick={() => onDecision("Approve")}>
+              <Check className="mr-1.5 h-4 w-4" /> Approve
+            </Button>
+            <Button type="button" variant="outline" className="h-9 rounded-full border-[#d1c6aa] bg-white px-4 text-[#694e0e]" onClick={() => onDecision("Cancel")}>
+              Cancel
+            </Button>
+          </div>
+        </div>
+      ) : null}
+
+      {saveEligible ? (
+        <div className="border-t border-[#d9eadf] bg-white/55 px-4 py-3">
+          <button type="button" onClick={onSaveRoutine} className="inline-flex items-center gap-2 rounded-full border border-[#cfe6d7] bg-white px-3 py-2 text-xs font-bold text-[#15803d] transition hover:bg-[#eef9f2] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#15803d]">
+            <Save className="h-4 w-4" /> Save as routine
+          </button>
+        </div>
+      ) : null}
+    </section>
+  )
+}
+
+function WorkflowReceiptCard({ receipt }: { receipt: WorkflowReceipt }) {
+  const success = receipt.resultSummary.status === "completed" && receipt.reconciliationStatus === "reconciled"
+  const partial = receipt.resultSummary.status === "partial" || receipt.reconciliationStatus === "reconciled_with_exceptions"
+  return (
+    <section data-testid="workflow-receipt" className={cn("overflow-hidden rounded-xl border bg-white shadow-sm", success ? "border-[#cfe6d7]" : partial ? "border-[#ead9ad]" : "border-[#f0c6c0]") }>
+      <div className="flex items-start gap-3 p-4">
+        {success ? <CircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#15803d]" /> : <CircleAlert className={cn("mt-0.5 h-5 w-5 shrink-0", partial ? "text-[#8a681b]" : "text-[#b42318]")} />}
+        <div className="min-w-0">
+          <p className="font-bold text-[#102033]">{receipt.resultSummary.title}</p>
+          <p className="mt-1 text-sm leading-6 text-[#5f6d7a]">{receipt.resultSummary.detail}</p>
+        </div>
+      </div>
+      <div className="border-t border-[#eceae5] px-4 py-3">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#667085]">Provider readback</p>
+        {receipt.providerReadback.length ? (
+          <div className="mt-2 space-y-2">
+            {receipt.providerReadback.map((readback, index) => (
+              <div key={`${readback.system}-${index}`} className="flex items-start justify-between gap-3 text-xs">
+                <div>
+                  <p className="font-bold text-[#344054]">{safeWorkflowText(readback.system, "Connected records", 80)}</p>
+                  <p className="mt-0.5 leading-5 text-[#667085]">{safeWorkflowText(readback.summary, "Readback unavailable", 300)}</p>
+                </div>
+                <span className={cn("shrink-0 rounded-full px-2 py-1 font-bold", readback.status === "verified" ? "bg-[#e9f8ed] text-[#116832]" : readback.status === "rejected" ? "bg-[#fff1ef] text-[#9c2f24]" : "bg-[#f3f4f6] text-[#667085]")}>{readback.status.replace("_", " ")}</span>
+              </div>
+            ))}
+          </div>
+        ) : <p className="mt-2 text-xs leading-5 text-[#667085]">No provider readback was included. The result is not treated as reconciled.</p>}
+      </div>
+      <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[#eceae5] bg-[#fbfbf9] px-4 py-3 text-xs">
+        <span className="font-semibold text-[#667085]">Reconciliation: {receipt.reconciliationStatus.replaceAll("_", " ")}</span>
+        {receipt.artifacts.length ? <span className="font-semibold text-[#344054]">{receipt.artifacts.length} artifact{receipt.artifacts.length === 1 ? "" : "s"}</span> : null}
+      </div>
+    </section>
+  )
 }
 
 function ArtifactCard({ artifact, onPreview }: { artifact: Artifact; onPreview: () => void }) {

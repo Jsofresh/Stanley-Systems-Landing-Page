@@ -62,6 +62,75 @@ export type TablePreview = {
   rowCount: number
 }
 
+export type WorkflowPhase =
+  | "idle"
+  | "planning"
+  | "running"
+  | "approval_required"
+  | "cancelling"
+  | "cancelled"
+  | "completed"
+  | "partial"
+  | "failed"
+  | "reconciliation_required"
+  | "unknown_outcome"
+
+export type WorkflowAdapterOperation = "start_work" | "get_status" | "approve" | "cancel" | "get_result"
+
+export type WorkflowHistoryItem = {
+  id: string
+  sequence: number
+  at: string
+  phase: WorkflowPhase
+  label: string
+  detail?: string
+}
+
+export type WorkflowApproval = {
+  approvalRef: string
+  actionCount: number
+  systems: string[]
+  choices: ["Approve", "Cancel"]
+}
+
+export type WorkflowProviderReadback = {
+  system: string
+  status: "verified" | "rejected" | "unknown" | "not_applicable"
+  summary: string
+}
+
+export type WorkflowReceipt = {
+  schema: "stanley.workflow.receipt.v1"
+  workflowId: string
+  tenantId: string
+  resultSummary: {
+    status: "completed" | "partial" | "failed" | "cancelled" | "unknown_outcome"
+    title: string
+    detail: string
+    completedUnits: number
+    totalUnits: number
+  }
+  providerReadback: WorkflowProviderReadback[]
+  reconciliationStatus: "reconciled" | "reconciled_with_exceptions" | "reconciliation_required" | "failed" | "not_applicable"
+  artifacts: Artifact[]
+  explanation?: string
+}
+
+export type WorkflowAdapterState = {
+  schema: "stanley.workflow.adapter.v1"
+  workflowId: string
+  conversationId: string
+  tenantId: string
+  operation: WorkflowAdapterOperation
+  phase: WorkflowPhase
+  sequence: number
+  updatedAt: string
+  history: WorkflowHistoryItem[]
+  approval?: WorkflowApproval
+  receipt?: WorkflowReceipt
+  notice?: string
+}
+
 export type CompanyBrainBlock =
   | {
       type: "text"
@@ -94,6 +163,11 @@ export type CompanyBrainBlock =
       id: string
       question: string
       options: string[]
+    }
+  | {
+      type: "workflow"
+      id: string
+      receipt: WorkflowReceipt
     }
   | {
       type: "error"

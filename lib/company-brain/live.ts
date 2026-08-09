@@ -6,6 +6,8 @@ import {
   userSafeErrorMessage,
   type BrainChatResponse,
 } from "@/lib/company-brain/response-mapper"
+import { completionToWorkflowReceipt } from "@/lib/company-brain/workflow"
+import type { WorkflowProviderReadback, WorkflowReceipt } from "@/lib/company-brain/types"
 
 const BRAIN_BASE_URL = "/api/company-brain"
 
@@ -101,6 +103,11 @@ export type NativeCompletion = BrainChatResponse & {
   status?: "completed" | "failed" | "cancelled"
   usage?: Record<string, unknown>
   conversation_id?: string
+  result_summary?: WorkflowReceipt["resultSummary"]
+  provider_readback?: WorkflowProviderReadback[]
+  reconciliation_status?: WorkflowReceipt["reconciliationStatus"]
+  explanation?: string
+  workflow_receipt?: WorkflowReceipt
 }
 
 export async function streamCompanyBrainMessage(
@@ -175,7 +182,19 @@ export async function streamCompanyBrainMessage(
   if (!completion || !sawDone) {
     throw new Error("Company Brain could not finish that request. Check recent activity before trying again.")
   }
-  return completion
+  const completed = completion as NativeCompletion
+  const workflowReceipt = completionToWorkflowReceipt(completed, {
+    workflowId: input.conversationId,
+    tenantId: input.companyId,
+  })
+  return {
+    ...completed,
+    result_summary: workflowReceipt?.resultSummary,
+    provider_readback: workflowReceipt?.providerReadback,
+    reconciliation_status: workflowReceipt?.reconciliationStatus,
+    explanation: workflowReceipt?.explanation,
+    workflow_receipt: workflowReceipt,
+  }
 }
 
 

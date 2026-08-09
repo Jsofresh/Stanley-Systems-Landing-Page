@@ -7,20 +7,226 @@ const { isPermissionDenied } = require('./company-brain-denial-contract.cjs')
 
 const BASE_URL = process.env.COMPANY_BRAIN_BASE_URL || 'https://stanley-systems.com'
 const PASSWORD = process.env.COMPANY_BRAIN_TEST_PASSWORD
-if (!PASSWORD) {
-  console.error(JSON.stringify({ ok: false, error: 'COMPANY_BRAIN_TEST_PASSWORD is required' }))
-  process.exit(2)
-}
-
 const CHROMIUM_PATH = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || '/usr/bin/chromium'
 const OUT_DIR = process.env.COMPANY_BRAIN_REGRESSION_OUT || path.join(__dirname, '..', 'company-brain-regression-artifacts')
 const ALL_PERSONAS_DIAGNOSTIC_FLAG = '--all-personas-diagnostic'
-const unknownArguments = process.argv.slice(2).filter(argument => argument !== ALL_PERSONAS_DIAGNOSTIC_FLAG)
+const WORKFLOW_FIXTURES_FLAG = '--workflow-fixtures'
+const workflowFixtures = process.argv.includes(WORKFLOW_FIXTURES_FLAG)
+const unknownArguments = process.argv.slice(2).filter(argument => argument !== ALL_PERSONAS_DIAGNOSTIC_FLAG && argument !== WORKFLOW_FIXTURES_FLAG)
 if (unknownArguments.length) {
   console.error(JSON.stringify({ ok: false, error: 'unsupported browser regression argument' }))
   process.exit(2)
 }
+if (!workflowFixtures && !PASSWORD) {
+  console.error(JSON.stringify({ ok: false, error: 'COMPANY_BRAIN_TEST_PASSWORD is required' }))
+  process.exit(2)
+}
 const allPersonasDiagnostic = process.argv.includes(ALL_PERSONAS_DIAGNOSTIC_FLAG)
+
+// TEST FIXTURES ONLY. This mode intercepts local browser requests and must
+// never be represented as provider, customer, staging, or production proof.
+const WORKFLOW_FIXTURE_LABEL = 'TEST FIXTURE ONLY'
+const WORKFLOW_FIXTURE_PASSWORD = process.env.COMPANY_BRAIN_WORKFLOW_FIXTURE_PASSWORD || 'workflow-fixture-password'
+
+function workflowUnit(outcome, system = 'jobber', operation = 'clientEdit') {
+  return {
+    kind: 'provider_action', entity_code: 'customer', operation,
+    disposition: outcome === 'executed_verified' ? 'updated_existing' : 'unspecified',
+    outcome, system, claims: [], omissions: [], omissions_complete: true,
+    failures: outcome === 'failed' ? [{ reason_code: 'provider_rejected' }] : [],
+  }
+}
+
+function workflowResult(status, units) {
+  const verified = new Set(['read_verified', 'executed_verified', 'source_verified', 'nonfactual'])
+  return {
+    schema: 'company_brain.work_result.v1', status, unit_count: units.length,
+    verified_unit_count: units.filter(unit => verified.has(unit.outcome)).length,
+    omissions_complete: true, units,
+  }
+}
+
+function providerVerification(status, connectors, verifiedActionCount = 0) {
+  return {
+    status, source: 'server_turn_receipt', connectors, action_count: connectors.length,
+    verified_action_count: verifiedActionCount, completed_batch_replay: true,
+    mutation_dispatch_count: connectors.length,
+  }
+}
+
+function workflowSse(data, before = []) {
+  const frames = [
+    ['run.started', { status: 'running' }],
+    ...before,
+    ['stanley.completed', data],
+    ['done', {}],
+  ]
+  return frames.map(([event, payload]) => `event: ${event}\ndata: ${JSON.stringify(payload)}\n\n`).join('')
+}
+
+const workflowFixtureScenarios = [
+  {
+    label: 'success', expected: ['Work completed', 'Provider readback', 'verified', 'Save as routine'],
+    completion: {
+      status: 'completed', answer: `${WORKFLOW_FIXTURE_LABEL}: customer update completed.`, artifacts: [],
+      work_result: workflowResult('verified', [workflowUnit('executed_verified')]),
+      provider_verification: providerVerification('verified', ['jobber'], 1),
+    },
+  },
+  {
+    label: 'approval-required', expected: ['Approval required', 'Approve', 'Cancel'],
+    before: [['approval.request', { schema: 'company_brain.approval_request.v1', state: 'pending_approval', approval_ref: 'approval_1234567890abcdef12345678', action_count: 1, connectors: ['jobber'], choices: ['Approve', 'Cancel'] }]],
+    completion: {
+      status: 'completed', answer: `${WORKFLOW_FIXTURE_LABEL}: approval required.`, artifacts: [],
+      work_result: workflowResult('approval_required', [workflowUnit('pending_approval')]),
+    },
+  },
+  {
+    label: 'cancellation', expected: ['Request cancelled', 'Reconciliation: reconciliation required'],
+    completion: { status: 'cancelled', answer: `${WORKFLOW_FIXTURE_LABEL}: request stopped.`, artifacts: [] },
+  },
+  {
+    label: 'provider-rejection', expected: ['Work was not completed', 'rejected', 'Reconciliation: failed'],
+    completion: {
+      status: 'failed', answer: `${WORKFLOW_FIXTURE_LABEL}: provider rejected the update.`, artifacts: [],
+      work_result: workflowResult('failed', [workflowUnit('failed')]),
+      provider_verification: providerVerification('invalid', ['jobber']),
+    },
+  },
+  {
+    label: 'partial-completion', expected: ['Completed with exceptions', '1 of 2 results verified', 'reconciled with exceptions'],
+    completion: {
+      status: 'completed', answer: `${WORKFLOW_FIXTURE_LABEL}: one action completed and one was rejected.`, artifacts: [],
+      work_result: workflowResult('partial', [workflowUnit('executed_verified'), workflowUnit('failed', 'quickbooks', 'invoiceCreate')]),
+      provider_verification: providerVerification('invalid', ['jobber', 'quickbooks'], 1),
+    },
+  },
+  {
+    label: 'reconciliation-required', expected: ['Outcome needs confirmation', 'reconciliation required'],
+    completion: {
+      status: 'completed', answer: `${WORKFLOW_FIXTURE_LABEL}: final state is unknown.`, artifacts: [],
+      work_result: workflowResult('reconciliation_required', [workflowUnit('unknown_outcome')]),
+      provider_verification: providerVerification('invalid', ['jobber']),
+    },
+  },
+  {
+    label: 'malformed-payload', expected: ['Outcome unknown', 'No success is being claimed'],
+    completion: { status: 'completed', answer: `${WORKFLOW_FIXTURE_LABEL}: malformed result omitted.`, artifacts: [] },
+  },
+]
+
+async function installWorkflowFixtureRoutes(context, scenario, reconnect = false) {
+  await context.route('**/api/**', async route => {
+    const requestUrl = new URL(route.request().url())
+    const pathname = requestUrl.pathname
+    if (pathname === '/api/portal/session') {
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ session: { actorId: 'fixture-actor', name: 'Fixture Owner', email: 'fixture@example.test', role: 'owner', roleLabel: 'Owner', companyId: 'fixture-tenant', companyName: 'Fixture Company', loginSessionId: 'fixture-session' } }) })
+    }
+    if (pathname.endsWith('/control/summary')) return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ runtime_status: 'fixture', runtime_version: WORKFLOW_FIXTURE_LABEL }) })
+    if (pathname.endsWith('/brain/sessions')) {
+      const sessions = reconnect ? [{ id: 'conversation-reconnect', title: 'Restored fixture conversation', message_count: 1, preview: `${WORKFLOW_FIXTURE_LABEL}: restored history` }] : []
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data: sessions }) })
+    }
+    if (pathname.endsWith('/messages')) {
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data: [{ id: 'restored-message', role: 'assistant', content: `${WORKFLOW_FIXTURE_LABEL}: restored history`, timestamp: 1786312800 }] }) })
+    }
+    if (pathname.endsWith('/chat/stream')) {
+      return route.fulfill({ status: 200, contentType: 'text/event-stream', body: workflowSse(scenario.completion, scenario.before) })
+    }
+    if (pathname.endsWith('/cancel')) return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ status: 'cancelling' }) })
+    return route.fulfill({ status: 404, contentType: 'application/json', body: '{}' })
+  })
+}
+
+async function runWorkflowFixtureRegression(browser) {
+  fs.mkdirSync(OUT_DIR, { recursive: true })
+  const authContext = await browser.newContext()
+  const fixtureLogin = await authContext.request.post(`${BASE_URL}/api/portal/login`, { data: { email: 'sarah.owner@bayview.test', password: WORKFLOW_FIXTURE_PASSWORD } })
+  assertFixture(fixtureLogin.ok(), `workflow fixtures: local login failed (${fixtureLogin.status()})`)
+  const fixtureStorageState = await authContext.storageState()
+  await authContext.close()
+  const results = []
+  for (const scenario of workflowFixtureScenarios) {
+    const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, storageState: fixtureStorageState })
+    await installWorkflowFixtureRoutes(context, scenario)
+    const page = await context.newPage()
+    const consoleErrors = []
+    page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()) })
+    const result = { label: scenario.label, fixture_label: WORKFLOW_FIXTURE_LABEL, ok: false }
+    try {
+      await page.goto(`${BASE_URL}/portal`, { waitUntil: 'domcontentloaded', timeout: 60000 })
+      const composer = page.getByPlaceholder('Message Company Brain')
+      await composer.waitFor({ state: 'visible', timeout: 15000 })
+      await composer.fill(`${WORKFLOW_FIXTURE_LABEL}: run ${scenario.label}`)
+      await composer.press('Enter')
+      await page.locator('[data-testid="workflow-status"]').waitFor({ state: 'visible', timeout: 15000 })
+      await page.waitForFunction(() => !document.querySelector('textarea[placeholder="Message Company Brain"]')?.disabled, null, { timeout: 15000 })
+      for (const expected of scenario.expected) {
+        result.waiting_for = expected
+        await page.waitForFunction(value => document.body.innerText.toLowerCase().includes(value.toLowerCase()), expected, { timeout: 15000 })
+      }
+      delete result.waiting_for
+      const text = await page.locator('body').innerText()
+      for (const expected of scenario.expected) assertFixture(text.toLowerCase().includes(expected.toLowerCase()), `${scenario.label}: missing ${expected}`)
+      assertFixture(!/Hermes|Codex|OpenClaw|\bn8n\b|\bHCP\b|\bQBO\b/i.test(text), `${scenario.label}: internal implementation label leaked`)
+      assertFixture(consoleErrors.length === 0, `${scenario.label}: console errors: ${consoleErrors.join('; ')}`)
+      const scenarioDir = path.join(OUT_DIR, 'workflow-fixtures', scenario.label)
+      fs.mkdirSync(scenarioDir, { recursive: true })
+      if (scenario.label === 'success') await page.screenshot({ path: path.join(scenarioDir, 'desktop.png'), fullPage: true })
+      result.ok = true
+    } catch (error) {
+      result.error = String(error.message).slice(0, 500)
+      result.body_excerpt = page ? (await page.locator('body').innerText().catch(() => '')).slice(0, 2_000) : ''
+    } finally {
+      result.console_error_count = consoleErrors.length
+      await context.close()
+    }
+    results.push(result)
+  }
+
+  const reconnectContext = await browser.newContext({ viewport: { width: 390, height: 844 }, storageState: fixtureStorageState })
+  await installWorkflowFixtureRoutes(reconnectContext, workflowFixtureScenarios[0], true)
+  const reconnectPage = await reconnectContext.newPage()
+  const reconnectConsoleErrors = []
+  reconnectPage.on('console', message => { if (message.type() === 'error') reconnectConsoleErrors.push(message.text()) })
+  const reconnect = { label: 'reconnect-replay', fixture_label: WORKFLOW_FIXTURE_LABEL, ok: false }
+  try {
+    await reconnectPage.goto(`${BASE_URL}/portal`, { waitUntil: 'domcontentloaded', timeout: 60000 })
+    await reconnectPage.getByText(`${WORKFLOW_FIXTURE_LABEL}: restored history`).waitFor({ state: 'visible', timeout: 15000 })
+    await reconnectPage.reload({ waitUntil: 'domcontentloaded' })
+    await reconnectPage.getByText(`${WORKFLOW_FIXTURE_LABEL}: restored history`).waitFor({ state: 'visible', timeout: 15000 })
+    assertFixture(await reconnectPage.getByText(`${WORKFLOW_FIXTURE_LABEL}: restored history`).count() === 1, 'reconnect replay duplicated history')
+    const mobileDir = path.join(OUT_DIR, 'workflow-fixtures', 'reconnect-replay')
+    fs.mkdirSync(mobileDir, { recursive: true })
+    await reconnectPage.screenshot({ path: path.join(mobileDir, 'mobile.png'), fullPage: true })
+    await reconnectPage.getByRole('button', { name: 'Open sidebar' }).click()
+    await reconnectPage.getByRole('button', { name: 'New chat' }).click()
+    const mobileComposer = reconnectPage.getByPlaceholder('Message Company Brain')
+    await mobileComposer.fill(`${WORKFLOW_FIXTURE_LABEL}: mobile success`)
+    await mobileComposer.press('Enter')
+    await reconnectPage.locator('[data-testid="workflow-receipt"]').waitFor({ state: 'visible', timeout: 15000 })
+    await reconnectPage.getByRole('button', { name: /Save as routine/i }).waitFor({ state: 'visible', timeout: 15000 })
+    const mobileSuccessDir = path.join(OUT_DIR, 'workflow-fixtures', 'success')
+    fs.mkdirSync(mobileSuccessDir, { recursive: true })
+    await reconnectPage.screenshot({ path: path.join(mobileSuccessDir, 'mobile.png'), fullPage: true })
+    assertFixture(reconnectConsoleErrors.length === 0, `reconnect-replay: console errors: ${reconnectConsoleErrors.join('; ')}`)
+    reconnect.ok = true
+  } catch (error) {
+    reconnect.error = String(error.message).slice(0, 500)
+  } finally {
+    reconnect.console_error_count = reconnectConsoleErrors.length
+    await reconnectContext.close()
+  }
+  results.push(reconnect)
+  const summary = { ok: results.every(result => result.ok), mode: 'workflow_test_fixtures_only', fixture_label: WORKFLOW_FIXTURE_LABEL, base_url: BASE_URL, results, secrets_printed: false, provider_calls: 0, customer_mutations: 0 }
+  fs.writeFileSync(path.join(OUT_DIR, 'workflow-fixture-summary.json'), JSON.stringify(summary, null, 2))
+  console.log(JSON.stringify(summary, null, 2))
+  return summary.ok
+}
+
+function assertFixture(condition, message) {
+  if (!condition) throw new Error(message)
+}
 
 // Sarah is the canonical live smoke identity. Other identities remain available
 // only for explicit diagnostics; role denial belongs in deterministic tests.
@@ -227,6 +433,15 @@ async function runPersona(browser, persona, personaDir) {
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true })
   const browser = await chromium.launch({ executablePath: CHROMIUM_PATH, headless: true, args: ['--no-sandbox'] })
+  if (workflowFixtures) {
+    try {
+      const ok = await runWorkflowFixtureRegression(browser)
+      process.exitCode = ok ? 0 : 1
+    } finally {
+      await browser.close()
+    }
+    return
+  }
   const results = []
   let ok = true
   try {
