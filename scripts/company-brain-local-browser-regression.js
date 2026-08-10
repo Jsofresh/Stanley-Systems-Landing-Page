@@ -54,15 +54,25 @@ function providerVerification(status, connectors, verifiedActionCount = 0) {
   }
 }
 
-function workflowSse(data, before = []) {
+function workflowSse(data, before = [], workflowId = 'conversation-fixture') {
   const frames = [
     ['run.started', { status: 'running' }],
     ...before,
     ['stanley.completed', data],
     ['done', {}],
   ]
-  return frames.map(([event, payload]) => `event: ${event}\ndata: ${JSON.stringify(payload)}\n\n`).join('')
+  return frames.map(([event, payload], index) => {
+    const identified = ['done', 'error'].includes(event) ? payload : {
+      ...payload,
+      workflow_id: payload.workflow_id || workflowId,
+      server_sequence: payload.server_sequence || index + 1,
+      event_id: payload.event_id || `event-${index + 1}`,
+    }
+    return `event: ${event}\ndata: ${JSON.stringify(identified)}\n\n`
+  }).join('')
 }
+
+const exactApprovalFixture = { schema: 'company_brain.approval_request.v1', state: 'pending_approval', approval_ref: 'approval_1234567890abcdef12345678', approval_version: 1, binding: 'binding_1234567890abcdef12345678', action_count: 1, connectors: ['jobber'], actions: [{ order: 1, action_summary: 'Update customer status', target: 'Customer C-104', consequence_class: 'record_update', approval_class: 'explicit', step_scope: 'step-1' }], choices: ['Approve', 'Cancel'] }
 
 const workflowFixtureScenarios = [
   {
@@ -75,7 +85,7 @@ const workflowFixtureScenarios = [
   },
   {
     label: 'approval-required', expected: ['Approval required', 'Approve', 'Cancel'],
-    before: [['approval.request', { schema: 'company_brain.approval_request.v1', state: 'pending_approval', approval_ref: 'approval_1234567890abcdef12345678', action_count: 1, connectors: ['jobber'], choices: ['Approve', 'Cancel'] }]],
+    before: [['approval.request', exactApprovalFixture]],
     completion: {
       status: 'completed', answer: `${WORKFLOW_FIXTURE_LABEL}: approval required.`, artifacts: [],
       work_result: workflowResult('approval_required', [workflowUnit('pending_approval')]),
@@ -113,9 +123,38 @@ const workflowFixtureScenarios = [
     label: 'malformed-payload', expected: ['Outcome unknown', 'No success is being claimed'],
     completion: { status: 'completed', answer: `${WORKFLOW_FIXTURE_LABEL}: malformed result omitted.`, artifacts: [] },
   },
+  {
+    label: 'server-replay-defense', expected: ['Approval required', 'Current target', 'Approve', 'Cancel'], forbidden: ['Stale target', 'Wrong workflow target'],
+    before: [
+      ['tool.progress', { state: 'tool.progress', label: 'working', server_sequence: 3, event_id: 'event-fresh' }],
+      ['tool.progress', { state: 'tool.progress', label: 'working', server_sequence: 3, event_id: 'event-fresh' }],
+      ['approval.request', { ...exactApprovalFixture, actions: [{ ...exactApprovalFixture.actions[0], target: 'Stale target' }], server_sequence: 2, event_id: 'event-reversed' }],
+      ['approval.request', { ...exactApprovalFixture, approval_ref: 'approval_aaaaaaaaaaaaaaaaaaaaaaaa', binding: 'binding_aaaaaaaaaaaaaaaaaaaaaaaa', actions: [{ ...exactApprovalFixture.actions[0], target: 'Wrong workflow target' }], workflow_id: 'conversation-wrong', server_sequence: 4, event_id: 'event-wrong-workflow' }],
+      ['approval.request', { ...exactApprovalFixture, actions: [{ ...exactApprovalFixture.actions[0], target: 'Current target' }], server_sequence: 4, event_id: 'event-current-approval' }],
+    ],
+    completion: {
+      status: 'completed', answer: `${WORKFLOW_FIXTURE_LABEL}: approval required after replay filtering.`, artifacts: [],
+      work_result: workflowResult('approval_required', [workflowUnit('pending_approval')]),
+    },
+  },
 ]
 
-async function installWorkflowFixtureRoutes(context, scenario, reconnect = false) {
+const durableReloadScenarios = [
+  { phase: 'approval_required', expected: 'Approval required', approval: workflowFixtureScenarios[1].before[0][1] },
+  { phase: 'cancelling', expected: 'Stopping' },
+  { phase: 'reconciliation_required', expected: 'Reconciliation required', completion: workflowFixtureScenarios[5].completion },
+  { phase: 'completed', expected: 'Completed', completion: workflowFixtureScenarios[0].completion },
+  { phase: 'unknown_outcome', expected: 'Outcome unknown', completion: workflowFixtureScenarios[5].completion },
+]
+
+const matrixStateScenarios = [
+  { state: 'unavailable', expected: 'Supported workflows are unavailable' },
+  { state: 'denied', expected: 'do not have permission to view supported workflows' },
+  { state: 'stale_version', expected: 'stale for this runtime version' },
+  { state: 'error', expected: 'could not be verified' },
+]
+
+async function installWorkflowFixtureRoutes(context, scenario, reconnect = false, durable = durableReloadScenarios[3], matrixMode = 'ready') {
   await context.route('**/api/**', async route => {
     const requestUrl = new URL(route.request().url())
     const pathname = requestUrl.pathname
@@ -123,6 +162,12 @@ async function installWorkflowFixtureRoutes(context, scenario, reconnect = false
       return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ session: { actorId: 'fixture-actor', name: 'Fixture Owner', email: 'fixture@example.test', role: 'owner', roleLabel: 'Owner', companyId: 'fixture-tenant', companyName: 'Fixture Company', loginSessionId: 'fixture-session' } }) })
     }
     if (pathname.endsWith('/control/summary')) return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ runtime_status: 'fixture', runtime_version: WORKFLOW_FIXTURE_LABEL }) })
+    if (pathname.endsWith('/brain/supported-actions')) {
+      const matrix = matrixMode === 'error'
+        ? { schema: 'invalid.fixture', state: 'ready', runtime_version: WORKFLOW_FIXTURE_LABEL, matrix_version: 'fixture-matrix-v1', actions: [] }
+        : { schema: 'stanley.supported_actions.v1', state: matrixMode === 'stale_version' ? 'ready' : matrixMode, runtime_version: matrixMode === 'stale_version' ? 'different-runtime-version' : WORKFLOW_FIXTURE_LABEL, matrix_version: 'fixture-matrix-v1', actions: matrixMode === 'ready' ? [{ action: 'client_update', workflow: 'customer_sync', system: 'jobber', approval: 'explicit', readback: 'required' }] : [] }
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(matrix) })
+    }
     if (pathname.endsWith('/brain/sessions')) {
       const sessions = reconnect ? [{ id: 'conversation-reconnect', title: 'Restored fixture conversation', message_count: 1, preview: `${WORKFLOW_FIXTURE_LABEL}: restored history` }] : []
       return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data: sessions }) })
@@ -130,8 +175,17 @@ async function installWorkflowFixtureRoutes(context, scenario, reconnect = false
     if (pathname.endsWith('/messages')) {
       return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data: [{ id: 'restored-message', role: 'assistant', content: `${WORKFLOW_FIXTURE_LABEL}: restored history`, timestamp: 1786312800 }] }) })
     }
+    if (pathname.endsWith('/workflow/status')) {
+      const approval = durable.approval ? { ...durable.approval } : undefined
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ schema: 'stanley.workflow.hydration.v1', workflow_id: 'conversation-reconnect', conversation_id: 'conversation-reconnect', server_sequence: 8, event_id: `hydrate-${durable.phase}`, phase: durable.phase, operation: durable.phase === 'approval_required' ? 'approve' : durable.phase === 'cancelling' ? 'cancel' : 'get_result', updated_at: '2026-08-10T02:00:00Z', history: [{ server_sequence: 8, at: '2026-08-10T02:00:00Z', phase: durable.phase, label: `${WORKFLOW_FIXTURE_LABEL}: ${durable.expected}` }], approval, supported_next_actions: durable.phase === 'approval_required' ? ['approve', 'cancel'] : ['get_status'] }) })
+    }
+    if (pathname.endsWith('/workflow/result')) {
+      const completion = durable.completion || scenario.completion
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ schema: 'stanley.workflow.hydration.v1', workflow_id: 'conversation-reconnect', conversation_id: 'conversation-reconnect', server_sequence: 9, event_id: `result-${durable.phase}`, phase: durable.phase, operation: 'get_result', updated_at: '2026-08-10T02:00:01Z', history: [], ...completion }) })
+    }
     if (pathname.endsWith('/chat/stream')) {
-      return route.fulfill({ status: 200, contentType: 'text/event-stream', body: workflowSse(scenario.completion, scenario.before) })
+      const workflowId = pathname.split('/').at(-3) || 'conversation-fixture'
+      return route.fulfill({ status: 200, contentType: 'text/event-stream', body: workflowSse(scenario.completion, scenario.before, workflowId) })
     }
     if (pathname.endsWith('/cancel')) return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ status: 'cancelling' }) })
     return route.fulfill({ status: 404, contentType: 'application/json', body: '{}' })
@@ -168,6 +222,7 @@ async function runWorkflowFixtureRegression(browser) {
       delete result.waiting_for
       const text = await page.locator('body').innerText()
       for (const expected of scenario.expected) assertFixture(text.toLowerCase().includes(expected.toLowerCase()), `${scenario.label}: missing ${expected}`)
+      for (const forbidden of scenario.forbidden || []) assertFixture(!text.toLowerCase().includes(forbidden.toLowerCase()), `${scenario.label}: accepted stale or wrong-workflow frame ${forbidden}`)
       assertFixture(!/Hermes|Codex|OpenClaw|\bn8n\b|\bHCP\b|\bQBO\b/i.test(text), `${scenario.label}: internal implementation label leaked`)
       assertFixture(consoleErrors.length === 0, `${scenario.label}: console errors: ${consoleErrors.join('; ')}`)
       const scenarioDir = path.join(OUT_DIR, 'workflow-fixtures', scenario.label)
@@ -218,6 +273,40 @@ async function runWorkflowFixtureRegression(browser) {
     await reconnectContext.close()
   }
   results.push(reconnect)
+  for (const durable of durableReloadScenarios) {
+    const context = await browser.newContext({ viewport: { width: 900, height: 800 }, storageState: fixtureStorageState })
+    await installWorkflowFixtureRoutes(context, workflowFixtureScenarios[0], true, durable)
+    const page = await context.newPage()
+    const result = { label: `durable-reload-${durable.phase}`, fixture_label: WORKFLOW_FIXTURE_LABEL, ok: false }
+    try {
+      await page.goto(`${BASE_URL}/portal`, { waitUntil: 'domcontentloaded', timeout: 60000 })
+      await page.getByText(durable.expected, { exact: false }).first().waitFor({ state: 'visible', timeout: 15000 })
+      await page.reload({ waitUntil: 'domcontentloaded' })
+      await page.getByText(durable.expected, { exact: false }).first().waitFor({ state: 'visible', timeout: 15000 })
+      result.ok = true
+    } catch (error) {
+      result.error = String(error.message).slice(0, 500)
+    } finally {
+      await context.close()
+    }
+    results.push(result)
+  }
+  for (const matrix of matrixStateScenarios) {
+    const context = await browser.newContext({ viewport: { width: 900, height: 800 }, storageState: fixtureStorageState })
+    await installWorkflowFixtureRoutes(context, workflowFixtureScenarios[0], false, durableReloadScenarios[3], matrix.state)
+    const page = await context.newPage()
+    const result = { label: `matrix-${matrix.state}`, fixture_label: WORKFLOW_FIXTURE_LABEL, ok: false }
+    try {
+      await page.goto(`${BASE_URL}/portal`, { waitUntil: 'domcontentloaded', timeout: 60000 })
+      await page.getByText(matrix.expected, { exact: false }).first().waitFor({ state: 'visible', timeout: 15000 })
+      result.ok = true
+    } catch (error) {
+      result.error = String(error.message).slice(0, 500)
+    } finally {
+      await context.close()
+    }
+    results.push(result)
+  }
   const summary = { ok: results.every(result => result.ok), mode: 'workflow_test_fixtures_only', fixture_label: WORKFLOW_FIXTURE_LABEL, base_url: BASE_URL, results, secrets_printed: false, provider_calls: 0, customer_mutations: 0 }
   fs.writeFileSync(path.join(OUT_DIR, 'workflow-fixture-summary.json'), JSON.stringify(summary, null, 2))
   console.log(JSON.stringify(summary, null, 2))
