@@ -35,6 +35,8 @@ import {
   getCompanyBrainSessionMessages,
   getCompanyBrainSessions,
   getCompanyBrainSummary,
+  getCompanyBrainSupportedActions,
+  hydrateCompanyBrainWorkflow,
   streamCompanyBrainMessage,
   cancelCompanyBrainSession,
   uploadCompanyBrainFiles,
@@ -58,6 +60,8 @@ import type {
   TablePreview,
   WorkflowAdapterState,
   WorkflowReceipt,
+  SupportedActionMatrix as SupportedActionMatrixContract,
+  SupportedActionMatrixState,
 } from "@/lib/company-brain/types"
 
 type RecentConversation = {
@@ -256,6 +260,8 @@ export function PortalApp() {
   const [statusError, setStatusError] = useState<string | null>(null)
   const [activityLabel, setActivityLabel] = useState("Stanley is working…")
   const [workflowState, setWorkflowState] = useState<WorkflowAdapterState | null>(null)
+  const [supportedActionMatrix, setSupportedActionMatrix] = useState<SupportedActionMatrixContract | null>(null)
+  const [supportedActionState, setSupportedActionState] = useState<SupportedActionMatrixState>("loading")
   const [currentConversationId, setCurrentConversationId] = useState(() => `conversation-${Date.now()}`)
   const [recentConversations, setRecentConversations] = useState<RecentConversation[]>([])
   const [historyReady, setHistoryReady] = useState(false)
@@ -265,6 +271,7 @@ export function PortalApp() {
   const historyLoadedRef = useRef(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
   const workflowSequenceRef = useRef(0)
+  const workflowIdentityRef = useRef(new Map<string, { sequence: number; eventId: string }>())
 
   const hasMessages = messages.length > 0
 
@@ -301,6 +308,17 @@ export function PortalApp() {
         const summaryResponse = await getCompanyBrainSummary()
         if (cancelled) return
         setSummary(summaryResponse)
+        setSupportedActionState("loading")
+        try {
+          const matrix = await getCompanyBrainSupportedActions(summaryResponse.runtime_version)
+          if (cancelled) return
+          setSupportedActionMatrix(matrix)
+          setSupportedActionState(matrix.state)
+        } catch (error) {
+          if (cancelled) return
+          const message = error instanceof Error ? error.message : ""
+          setSupportedActionState(/permission/i.test(message) ? "denied" : /unavailable/i.test(message) ? "unavailable" : "error")
+        }
         setStatusError(null)
       } catch (error) {
         if (cancelled) return
@@ -312,6 +330,14 @@ export function PortalApp() {
       cancelled = true
     }
   }, [session])
+
+  async function restoreWorkflow(conversationId: string) {
+    if (!session) return
+    const restored = await hydrateCompanyBrainWorkflow(conversationId, session.companyId)
+    workflowIdentityRef.current.set(restored.workflowId, { sequence: restored.sequence, eventId: restored.eventId ?? "" })
+    workflowSequenceRef.current = restored.sequence
+    if (currentConversationIdRef.current === conversationId) setWorkflowState(restored)
+  }
 
   useEffect(() => {
     if (!session) return
@@ -340,6 +366,7 @@ export function PortalApp() {
             createdAt: message.timestamp ? new Date(message.timestamp * 1000).toISOString() : new Date().toISOString(),
             blocks: [{ type: "text", id: `${message.id}-text`, text: message.content }],
           })))
+          await restoreWorkflow(activeId).catch(() => undefined)
         } else {
           setRecentConversations([])
           setMessages([])
@@ -363,6 +390,26 @@ export function PortalApp() {
       cancelled = true
     }
   }, [session])
+
+  useEffect(() => {
+    if (!session || !workflowState || !["planning", "running", "approval_required", "cancelling", "reconciliation_required", "unknown_outcome"].includes(workflowState.phase)) return
+    let stopped = false
+    let attempts = 0
+    const timer = window.setInterval(() => {
+      if (stopped || attempts >= 15) return
+      attempts += 1
+      void hydrateCompanyBrainWorkflow(workflowState.conversationId, session.companyId).then((restored) => {
+        if (stopped || currentConversationIdRef.current !== restored.conversationId) return
+        setWorkflowState((current) => {
+          if (current && restored.sequence <= current.sequence) return current
+          workflowIdentityRef.current.set(restored.workflowId, { sequence: restored.sequence, eventId: restored.eventId ?? "" })
+          workflowSequenceRef.current = restored.sequence
+          return restored
+        })
+      }).catch(() => undefined)
+    }, 4000)
+    return () => { stopped = true; window.clearInterval(timer) }
+  }, [session, workflowState?.conversationId, workflowState?.phase])
 
 
   useEffect(() => {
@@ -413,10 +460,6 @@ export function PortalApp() {
       : messageAttachments[0]?.name.slice(0, 54) || "New conversation"
     const existingApproval = workflowState?.conversationId === originConversationId ? workflowState.approval : undefined
     const approvalDecision = existingApproval && (rawMessage === "Approve" || rawMessage === "Cancel") ? rawMessage : undefined
-    const nextSequence = () => {
-      workflowSequenceRef.current += 1
-      return workflowSequenceRef.current
-    }
     const applyWorkflowUpdate = (command: WorkflowAdapterCommand) => {
       setWorkflowState((current) => applyWorkflowCommand(
         current?.conversationId === originConversationId
@@ -425,22 +468,11 @@ export function PortalApp() {
         command,
       ))
     }
-    if (approvalDecision && existingApproval) {
-      applyWorkflowUpdate({
-        operation: "approve",
-        sequence: nextSequence(),
-        at: new Date().toISOString(),
-        approval: existingApproval,
-        decision: approvalDecision,
-      })
-    } else {
+    if (!approvalDecision) {
       workflowSequenceRef.current = 0
+      workflowIdentityRef.current.delete(originConversationId)
       const initial = createWorkflowAdapterState(originConversationId, session?.companyId ?? "")
-      setWorkflowState(applyWorkflowCommand(initial, {
-        operation: "start_work",
-        sequence: nextSequence(),
-        at: new Date().toISOString(),
-      }))
+      setWorkflowState({ ...initial, operation: "start_work", phase: "planning", updatedAt: new Date().toISOString() })
     }
 
     const userMessage: CompanyBrainMessage = {
@@ -486,16 +518,33 @@ export function PortalApp() {
         conversationId: originConversationId,
         message: rawMessage,
         attachments: messageAttachments,
+        approvalDecision: approvalDecision && existingApproval ? {
+          decision: approvalDecision,
+          approvalRef: existingApproval.approvalRef,
+          approvalVersion: existingApproval.approvalVersion,
+          approvalBinding: existingApproval.binding,
+        } : undefined,
+        lastServerSequence: approvalDecision ? workflowState?.sequence : 0,
+        lastEventId: approvalDecision ? workflowState?.eventId : undefined,
       }, (event) => {
+        const workflowId = typeof event.data.workflow_id === "string" ? event.data.workflow_id : ""
+        const serverSequence = typeof event.data.server_sequence === "number" && Number.isSafeInteger(event.data.server_sequence) ? event.data.server_sequence : 0
+        const eventId = typeof event.data.event_id === "string" ? event.data.event_id : ""
+        if (!["done", "error"].includes(event.event)) {
+          const accepted = workflowIdentityRef.current.get(originConversationId)
+          if (workflowId !== originConversationId || serverSequence < 1 || !eventId || (accepted && (serverSequence <= accepted.sequence || eventId === accepted.eventId))) return
+          workflowIdentityRef.current.set(originConversationId, { sequence: serverSequence, eventId })
+          workflowSequenceRef.current = serverSequence
+        }
         if (event.event === "run.started") {
           setActivityLabel("Stanley is working…")
-          applyWorkflowUpdate({ operation: "get_status", sequence: nextSequence(), at: new Date().toISOString(), phase: "running", label: approvalDecision === "Approve" ? "Approved work started" : "Plan ready. Work started" })
+          applyWorkflowUpdate({ operation: "get_status", workflowId, eventId, sequence: serverSequence, at: new Date().toISOString(), phase: "running", label: approvalDecision === "Approve" ? "Approved work started" : "Plan ready. Work started" })
         }
         if (event.event === "tool.progress") {
           const state = typeof event.data.state === "string" ? event.data.state : ""
           const label = state.includes("completed") ? "Verifying the result" : state.includes("failed") ? "Checking an exception" : "Checking connected records"
           setActivityLabel(`${label}…`)
-          applyWorkflowUpdate({ operation: "get_status", sequence: nextSequence(), at: new Date().toISOString(), phase: "running", label })
+          applyWorkflowUpdate({ operation: "get_status", workflowId, eventId, sequence: serverSequence, at: new Date().toISOString(), phase: "running", label })
         }
         if (event.event === "approval.request") {
           const choices = Array.isArray(event.data.choices)
@@ -503,15 +552,26 @@ export function PortalApp() {
             : []
           const approvalRef = typeof event.data.approval_ref === "string" ? event.data.approval_ref : ""
           const actionCount = typeof event.data.action_count === "number" ? event.data.action_count : 0
+          const approvalVersion = typeof event.data.approval_version === "number" ? event.data.approval_version : 0
+          const approvalBinding = typeof event.data.binding === "string" ? event.data.binding : ""
           const systems = Array.isArray(event.data.connectors)
             ? event.data.connectors.filter((system): system is string => typeof system === "string").map((system) => system === "quickbooks" ? "QuickBooks" : system === "jobber" ? "Jobber" : "Connected records")
             : []
-          if (currentConversationIdRef.current === originConversationId && approvalRef && actionCount > 0 && choices[0] === "Approve" && choices[1] === "Cancel") {
+          const actions = Array.isArray(event.data.actions) ? event.data.actions.flatMap((value) => {
+            if (!value || typeof value !== "object" || Array.isArray(value)) return []
+            const action = value as Record<string, unknown>
+            return typeof action.order === "number" && typeof action.action_summary === "string" && typeof action.target === "string" && typeof action.consequence_class === "string" && typeof action.approval_class === "string" && typeof action.step_scope === "string"
+              ? [{ order: action.order, summary: action.action_summary, target: action.target, consequenceClass: action.consequence_class, approvalClass: action.approval_class, stepScope: action.step_scope }]
+              : []
+          }) : []
+          if (currentConversationIdRef.current === originConversationId && approvalRef && approvalVersion > 0 && approvalBinding && actionCount > 0 && actions.length === actionCount && choices[0] === "Approve" && choices[1] === "Cancel") {
             applyWorkflowUpdate({
               operation: "approve",
-              sequence: nextSequence(),
+              workflowId,
+              eventId,
+              sequence: serverSequence,
               at: new Date().toISOString(),
-              approval: { approvalRef, actionCount, systems, choices: ["Approve", "Cancel"] },
+              approval: { approvalRef, approvalVersion, binding: approvalBinding, actionCount, systems, actions, choices: ["Approve", "Cancel"] },
             })
           }
         }
@@ -525,9 +585,14 @@ export function PortalApp() {
         tenantId: session?.companyId ?? "",
       })
       if (response.work_result?.status !== "approval_required") {
+        const resultWorkflowId = typeof response.workflow_id === "string" ? response.workflow_id : originConversationId
+        const resultSequence = typeof response.server_sequence === "number" ? response.server_sequence : workflowSequenceRef.current
+        const resultEventId = typeof response.event_id === "string" ? response.event_id : undefined
         applyWorkflowUpdate({
           operation: "get_result",
-          sequence: nextSequence(),
+          workflowId: resultWorkflowId,
+          eventId: resultEventId,
+          sequence: resultSequence,
           at: new Date().toISOString(),
           receipt,
           error: receipt ? undefined : "The structured result was missing or malformed. No success is being claimed.",
@@ -548,12 +613,18 @@ export function PortalApp() {
         setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), assistantMessage])
       }
     } catch (error) {
-      applyWorkflowUpdate({
+      const at = new Date().toISOString()
+      const notice = error instanceof Error ? error.message : "The outcome could not be confirmed."
+      setWorkflowState((current) => current?.conversationId === originConversationId ? {
+        ...current,
         operation: "get_result",
-        sequence: nextSequence(),
-        at: new Date().toISOString(),
-        error: error instanceof Error ? error.message : "The outcome could not be confirmed.",
-      })
+        phase: "unknown_outcome",
+        updatedAt: at,
+        approval: undefined,
+        receipt: undefined,
+        notice,
+        history: [...current.history, { id: `local-unknown-${at}`, sequence: current.sequence, at, phase: "unknown_outcome" as const, label: "Outcome needs confirmation", detail: notice }].slice(-24),
+      } : current)
       const errorMessage: CompanyBrainMessage = {
         id: `assistant-error-${Date.now()}`,
         role: "assistant",
@@ -587,9 +658,15 @@ export function PortalApp() {
   async function handleCancel() {
     const conversationId = activeConversationIdRef.current
     if (!conversationId) return
-    workflowSequenceRef.current += 1
-    const command: WorkflowAdapterCommand = { operation: "cancel", sequence: workflowSequenceRef.current, at: new Date().toISOString(), confirmed: false }
-    setWorkflowState((current) => current ? applyWorkflowCommand(current, command) : current)
+    const at = new Date().toISOString()
+    setWorkflowState((current) => current?.conversationId === conversationId ? {
+      ...current,
+      operation: "cancel",
+      phase: "cancelling",
+      updatedAt: at,
+      approval: undefined,
+      history: [...current.history, { id: `local-cancel-${at}`, sequence: current.sequence, at, phase: "cancelling" as const, label: "Cancellation requested", detail: "The final outcome has not been confirmed yet." }].slice(-24),
+    } : current)
     try {
       await cancelCompanyBrainSession(conversationId)
       setStatusError("Stopping that request…")
@@ -631,7 +708,7 @@ export function PortalApp() {
         workflowSequenceRef.current = 0
         setWorkflowState(null)
         setMessages([])
-        void getCompanyBrainSessionMessages(conversation.id).then((history) => {
+        void Promise.all([getCompanyBrainSessionMessages(conversation.id), restoreWorkflow(conversation.id).catch(() => undefined)]).then(([history]) => {
           if (currentConversationIdRef.current !== conversation.id) return
           setMessages(history.map((message) => ({
             id: message.id,
@@ -764,6 +841,7 @@ export function PortalApp() {
                   onSaveRoutine={() => void sendMessage("Save this completed workflow as a routine for this company.", [])}
                 />
               ) : null}
+              <SupportedActionMatrix matrix={supportedActionMatrix} state={supportedActionState} />
               <ChatComposer
                 input={input}
                 attachments={attachments}
@@ -1138,6 +1216,15 @@ function WorkflowStatusPanel({
             Review {state.approval.actionCount} action{state.approval.actionCount === 1 ? "" : "s"} for {state.approval.systems.join(" and ")}.
           </p>
           <p className="mt-1 text-xs leading-5 text-[#6b5a2f]">Approval applies only to the actions shown in this request.</p>
+          <ol className="mt-3 space-y-2" aria-label="Exact actions requiring approval">
+            {state.approval.actions.map((action) => (
+              <li key={`${state.approval?.binding}-${action.order}`} className="rounded-xl border border-[#ead9ad] bg-white px-3 py-2">
+                <p className="text-xs font-bold text-[#4d3b10]">{action.order}. {safeWorkflowText(action.summary, "Consequential action", 240)}</p>
+                <p className="mt-1 text-xs text-[#6b5a2f]">Target: {safeWorkflowText(action.target, "Specified record", 160)}</p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.06em] text-[#7b6a42]">{action.consequenceClass.replaceAll("_", " ")} · {action.approvalClass.replaceAll("_", " ")} · {action.stepScope.replaceAll("_", " ")}</p>
+              </li>
+            ))}
+          </ol>
           <div className="mt-3 flex flex-wrap gap-2">
             <Button type="button" className="h-9 rounded-full bg-[#15803d] px-4 text-white hover:bg-[#116832]" onClick={() => onDecision("Approve")}>
               <Check className="mr-1.5 h-4 w-4" /> Approve
@@ -1157,6 +1244,32 @@ function WorkflowStatusPanel({
         </div>
       ) : null}
     </section>
+  )
+}
+
+function SupportedActionMatrix({ matrix, state }: { matrix: SupportedActionMatrixContract | null; state: SupportedActionMatrixState }) {
+  const stateMessages: Record<Exclude<SupportedActionMatrixState, "ready">, string> = {
+    loading: "Loading supported workflows…",
+    unavailable: "Supported workflows are unavailable. No provider support is being inferred.",
+    stale_version: "Supported workflows are stale for this runtime version.",
+    denied: "You do not have permission to view supported workflows.",
+    error: "Supported workflows could not be verified.",
+  }
+  if (state !== "ready" || !matrix) {
+    return <div data-testid="supported-action-matrix" className="mb-3 rounded-xl border border-[#deded9] bg-white px-3 py-2 text-xs text-[#667085]">{stateMessages[state === "ready" ? "error" : state]}</div>
+  }
+  return (
+    <details data-testid="supported-action-matrix" className="mb-3 rounded-xl border border-[#deded9] bg-white px-3 py-2 text-xs text-[#344054]">
+      <summary className="cursor-pointer font-bold">Supported workflows ({matrix.actions.length})</summary>
+      <div className="mt-2 space-y-1.5">
+        {matrix.actions.map((action) => (
+          <div key={`${matrix.matrixVersion}-${action.workflow}-${action.action}`} className="flex flex-wrap justify-between gap-2 border-t border-[#eceae5] pt-1.5">
+            <span>{safeWorkflowText(action.action, "Action", 80)} · {safeWorkflowText(action.system, "system", 80)}</span>
+            <span className="text-[#667085]">Approval: {action.approval} · Readback: {action.readback}</span>
+          </div>
+        ))}
+      </div>
+    </details>
   )
 }
 

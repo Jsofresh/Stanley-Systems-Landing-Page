@@ -69,6 +69,42 @@ test("success produces reconciled provider readback and same-tenant routine elig
   assert.equal(canSaveWorkflowAsRoutine({ ...receipt, providerReadback: [] }, "tenant-test"), false)
 })
 
+test("provider mutations without native readback never reconcile or enable routines", () => {
+  const receipt = completionToWorkflowReceipt({
+    status: "completed",
+    work_result: result("verified", [unit("executed_verified")]),
+    provider_verification: {
+      ...verification("not_applicable", ["jobber"]),
+      action_count: 1,
+      verified_action_count: 0,
+      mutation_dispatch_count: 1,
+    },
+  }, context)
+  assert.ok(receipt)
+  assert.equal(receipt.reconciliationStatus, "reconciliation_required")
+  assert.notEqual(receipt.resultSummary.status, "completed")
+  assert.equal(canSaveWorkflowAsRoutine(receipt, context.tenantId), false)
+})
+
+test("mixed-provider verification counts fail closed", () => {
+  const receipt = completionToWorkflowReceipt({
+    status: "completed",
+    work_result: result("verified", [
+      unit("executed_verified", "jobber"),
+      unit("executed_verified", "quickbooks", "invoiceCreate"),
+    ]),
+    provider_verification: {
+      ...verification("verified", ["jobber", "quickbooks"], 1),
+      action_count: 2,
+      mutation_dispatch_count: 2,
+    },
+  }, context)
+  assert.ok(receipt)
+  assert.equal(receipt.reconciliationStatus, "reconciliation_required")
+  assert.equal(receipt.providerReadback.some((item) => item.status !== "verified"), true)
+  assert.equal(canSaveWorkflowAsRoutine(receipt, context.tenantId), false)
+})
+
 test("approval-required state preserves exact approval scope", () => {
   const initial = createWorkflowAdapterState(context.workflowId, context.tenantId, at)
   const state = applyWorkflowCommand(initial, {
@@ -128,6 +164,42 @@ test("stale updates and replayed events cannot overwrite newer state", () => {
   const replay = applyWorkflowCommand(running, { operation: "get_status", sequence: 2, at, phase: "planning", label: "replay" })
   assert.equal(stale, running)
   assert.equal(replay, running)
+})
+
+test("wrong-workflow events and stale approval replacements are rejected", () => {
+  const initial = createWorkflowAdapterState(context.workflowId, context.tenantId, at)
+  const current = applyWorkflowCommand(initial, {
+    operation: "approve",
+    workflowId: context.workflowId,
+    sequence: 4,
+    at,
+    approval: {
+      approvalRef: "approval_1234567890abcdef12345678",
+      approvalVersion: 2,
+      binding: "binding_1234567890abcdef12345678",
+      actionCount: 1,
+      systems: ["Jobber"],
+      actions: [{ order: 1, summary: "Update customer status", target: "Customer C-104", consequenceClass: "record_update", approvalClass: "explicit", stepScope: "step-2" }],
+      choices: ["Approve", "Cancel"],
+    },
+  })
+  const wrongWorkflow = applyWorkflowCommand(current, {
+    operation: "get_status",
+    workflowId: "conversation-other",
+    sequence: 5,
+    at,
+    phase: "running",
+    label: "wrong workflow replay",
+  })
+  const staleReplacement = applyWorkflowCommand(current, {
+    operation: "approve",
+    workflowId: context.workflowId,
+    sequence: 5,
+    at,
+    approval: { ...current.approval, approvalRef: "approval_aaaaaaaaaaaaaaaaaaaaaaaa", approvalVersion: 1 },
+  })
+  assert.equal(wrongWorkflow, current)
+  assert.equal(staleReplacement, current)
 })
 
 test("malformed completion fails closed", () => {

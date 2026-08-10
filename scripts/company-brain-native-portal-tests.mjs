@@ -66,8 +66,47 @@ test("native approval projection preserves only an exact deterministic binding",
   assert.match(route, /new Set\(connectors\)\.size !== connectors\.length/)
   assert.match(route, /choices\[0\] !== "Approve"/)
   assert.match(route, /choices\[1\] !== "Cancel"/)
-  assert.match(route, /data: request/)
+  assert.match(route, /data: \{ \.\.\.identity, \.\.\.request \}/)
+  assert.match(route, /approval_version/)
+  assert.match(route, /binding/)
+  assert.match(route, /action_summary/)
+  assert.match(route, /target/)
+  assert.match(route, /consequence_class/)
+  assert.match(route, /approval_class/)
+  assert.match(route, /step_scope/)
+  assert.match(portal, /approval\.actions\.map/)
+  assert.match(portal, /approvalVersion/)
+  assert.match(portal, /approvalBinding/)
   assert.doesNotMatch(route, /data: \{ choices \}/)
+})
+
+test("durable workflow status and result hydrate every reconnectable state", () => {
+  assert.match(live, /getCompanyBrainWorkflowStatus/)
+  assert.match(live, /getCompanyBrainWorkflowResult/)
+  assert.match(route, /workflow\\\/\(\?:status\|result\)/)
+  assert.match(portal, /hydrateCompanyBrainWorkflow/)
+  assert.match(portal, /approval_required/)
+  assert.match(portal, /reconciliation_required/)
+  assert.match(portal, /unknown_outcome/)
+})
+
+test("native SSE preserves durable server identity for replay defense", () => {
+  assert.match(route, /workflow_id/)
+  assert.match(route, /server_sequence/)
+  assert.match(route, /event_id/)
+  assert.match(live, /server_sequence/)
+  assert.match(portal, /event\.data\.server_sequence/)
+  assert.match(portal, /event\.data\.workflow_id/)
+})
+
+test("runtime-sourced supported action matrix has explicit trust states", () => {
+  assert.match(live, /getCompanyBrainSupportedActions/)
+  assert.match(route, /supported-actions/)
+  assert.match(portal, /SupportedActionMatrix/)
+  for (const state of ["loading", "unavailable", "stale_version", "denied", "error"]) {
+    assert.match(portal, new RegExp(state))
+  }
+  assert.doesNotMatch(portal, /fake-live/i)
 })
 
 test("authenticated proxy binds actor identity and authorizes native artifacts", () => {

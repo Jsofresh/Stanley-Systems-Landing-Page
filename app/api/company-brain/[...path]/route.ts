@@ -8,6 +8,7 @@ const ALLOWED_PATHS = new Set([
   "brain/chat",
   "brain/uploads",
   "health",
+  "brain/supported-actions",
 ])
 const MAX_UPLOAD_FILES = 5
 const MAX_UPLOAD_BYTES = 20 * 1024 * 1024
@@ -38,7 +39,7 @@ const ARTIFACT_EXTENSIONS: Record<string, string> = {
 function isAllowedPath(path: string) {
   return ALLOWED_PATHS.has(path)
     || /^artifacts\/artifact_[A-Za-z0-9_-]+$/.test(path)
-    || /^brain\/sessions(?:\/[A-Za-z0-9_.:-]+(?:\/messages|\/chat\/stream|\/cancel))?$/.test(path)
+    || /^brain\/sessions(?:\/[A-Za-z0-9_.:-]+(?:\/messages|\/chat\/stream|\/cancel|\/workflow\/(?:status|result)))?$/.test(path)
 }
 
 type RouteContext = {
@@ -398,7 +399,7 @@ function publicWorkResult(value: unknown) {
 function publicApprovalRequest(value: unknown) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
   const source = value as Record<string, unknown>
-  const allowed = new Set(["schema", "state", "approval_ref", "action_count", "connectors", "choices"])
+  const allowed = new Set(["schema", "state", "approval_ref", "approval_version", "binding", "action_count", "connectors", "actions", "choices"])
   const keys = Object.keys(source)
   if (keys.length !== allowed.size || keys.some((key) => !allowed.has(key))) return undefined
   const actionCount = typeof source.action_count === "number"
@@ -411,11 +412,39 @@ function publicApprovalRequest(value: unknown) {
     ? source.connectors.filter((item): item is string => typeof item === "string")
     : []
   const choices = Array.isArray(source.choices) ? source.choices : []
+  const actions = Array.isArray(source.actions) ? source.actions.flatMap((value, index) => {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return []
+    const action = value as Record<string, unknown>
+    const actionAllowed = new Set(["order", "action_summary", "target", "consequence_class", "approval_class", "step_scope"])
+    if (Object.keys(action).some((key) => !actionAllowed.has(key))) return []
+    const safeCode = (item: unknown) => typeof item === "string" && /^[a-z][a-z0-9_.:-]{0,79}$/.test(item) ? item : ""
+    const safeApprovalText = (item: unknown, limit: number) => {
+      const text = publicStreamText(item, limit)
+      return text
+        && !/[\r\n{}]/.test(text)
+        && !/\b(?:access[_ -]?token|refresh[_ -]?token|client[_ -]?secret|authorization[_ -]?code|bearer\s+[a-z0-9._~-]+|provider:ref_|ref_[0-9a-f]{16,})/i.test(text)
+        && !/\/(?:opt|home|root|run)\/[a-z0-9_./-]+/i.test(text)
+        ? text
+        : ""
+    }
+    const summary = safeApprovalText(action.action_summary, 240)
+    const target = safeApprovalText(action.target, 160)
+    const consequenceClass = safeCode(action.consequence_class)
+    const approvalClass = safeCode(action.approval_class)
+    const stepScope = safeCode(action.step_scope)
+    if (action.order !== index + 1 || !summary || !target || !consequenceClass || !approvalClass || !stepScope) return []
+    return [{ order: index + 1, action_summary: summary, target, consequence_class: consequenceClass, approval_class: approvalClass, step_scope: stepScope }]
+  }) : []
   if (
     source.schema !== "company_brain.approval_request.v1"
     || source.state !== "pending_approval"
     || typeof source.approval_ref !== "string"
     || !/^approval_[0-9a-f]{24}$/.test(source.approval_ref)
+    || !Number.isSafeInteger(source.approval_version)
+    || Number(source.approval_version) < 1
+    || Number(source.approval_version) > 1_000_000
+    || typeof source.binding !== "string"
+    || !/^binding_[0-9a-f]{24}$/.test(source.binding)
     || actionCount === undefined
     || connectors.length < 1
     || connectors.length > 3
@@ -426,40 +455,57 @@ function publicApprovalRequest(value: unknown) {
     || choices.length !== 2
     || choices[0] !== "Approve"
     || choices[1] !== "Cancel"
+    || actions.length !== actionCount
   ) return undefined
   return {
     schema: source.schema,
     state: source.state,
     approval_ref: source.approval_ref,
+    approval_version: source.approval_version,
+    binding: source.binding,
     action_count: actionCount,
     connectors,
+    actions,
     choices: ["Approve", "Cancel"],
   }
 }
 
+function publicEventIdentity(source: Record<string, unknown>) {
+  const workflowId = safeConversationId(source.workflow_id)
+  const serverSequence = typeof source.server_sequence === "number" && Number.isSafeInteger(source.server_sequence) && source.server_sequence > 0
+    ? source.server_sequence
+    : 0
+  const eventId = typeof source.event_id === "string" && /^[A-Za-z0-9_.:-]{1,160}$/.test(source.event_id) ? source.event_id : ""
+  return workflowId && serverSequence && eventId ? { workflow_id: workflowId, server_sequence: serverSequence, event_id: eventId } : null
+}
+
 function projectNativeEvent(eventName: string, value: unknown) {
   const source = value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}
-  if (eventName === "run.started") return { event: "run.started", data: { status: "running" } }
-  if (eventName === "message.started") return { event: "message.started", data: {} }
+  const identity = publicEventIdentity(source)
+  if (!["done", "error"].includes(eventName) && !identity) return null
+  if (eventName === "run.started") return { event: "run.started", data: { ...identity, status: "running" } }
+  if (eventName === "message.started") return { event: "message.started", data: { ...identity } }
   if (eventName === "assistant.delta") {
     const delta = publicStreamText(source.delta, 4000)
-    return delta ? { event: "assistant.delta", data: { delta } } : null
+    return delta ? { event: "assistant.delta", data: { ...identity, delta } } : null
   }
   if (eventName === "assistant.completed") {
-    return { event: "assistant.completed", data: { content: publicStreamText(source.content), completed: true } }
+    return { event: "assistant.completed", data: { ...identity, content: publicStreamText(source.content), completed: true } }
   }
   if (["tool.started", "tool.completed", "tool.failed", "tool.progress", "reasoning.available"].includes(eventName)) {
     return {
       event: "tool.progress",
       data: {
+        ...identity,
         state: eventName,
         label: eventName === "tool.completed" ? "verifying" : eventName === "tool.failed" ? "failed" : "working",
       },
     }
   }
   if (eventName === "approval.request") {
-    const request = publicApprovalRequest(source)
-    return request ? { event: "approval.request", data: request } : null
+    const { workflow_id: _workflowId, server_sequence: _serverSequence, event_id: _eventId, ...approvalSource } = source
+    const request = publicApprovalRequest(approvalSource)
+    return request ? { event: "approval.request", data: { ...identity, ...request } } : null
   }
   if (eventName === "stanley.completed") {
     const artifacts = Array.isArray(source.artifacts) ? source.artifacts.map(publicArtifact).filter(Boolean).slice(0, 20) : []
@@ -483,6 +529,7 @@ function projectNativeEvent(eventName: string, value: unknown) {
     return {
       event: "stanley.completed",
       data: {
+        ...identity,
         object: "hermes.portal.completion",
         status,
         answer: publicStreamText(source.answer),
@@ -498,6 +545,58 @@ function projectNativeEvent(eventName: string, value: unknown) {
   if (eventName === "error") return { event: "error", data: { message: "Company Brain could not finish that request." } }
   if (eventName === "done") return { event: "done", data: {} }
   return null
+}
+
+function publicDurableWorkflowResponse(path: string, responseBody: string) {
+  const workflowResponse = /\/workflow\/(?:status|result)$/.test(path)
+  const matrixResponse = path === "brain/supported-actions"
+  if (!workflowResponse && !matrixResponse) return responseBody
+  try {
+    const source = JSON.parse(responseBody) as Record<string, unknown>
+    if (!source || Array.isArray(source)) throw new Error("invalid")
+    if (matrixResponse) {
+      const actions = Array.isArray(source.actions) ? source.actions.flatMap((value) => {
+        if (!value || typeof value !== "object" || Array.isArray(value)) return []
+        const action = value as Record<string, unknown>
+        const code = (item: unknown) => typeof item === "string" && /^[a-z][a-z0-9_.:-]{0,79}$/.test(item) ? item : ""
+        const projected = {
+          action: code(action.action), workflow: code(action.workflow), system: code(action.system),
+          approval: action.approval === "none" || action.approval === "explicit" ? action.approval : "",
+          readback: action.readback === "required" || action.readback === "not_applicable" ? action.readback : "",
+        }
+        return Object.values(projected).every(Boolean) ? [projected] : []
+      }).slice(0, 64) : []
+      const state = ["ready", "unavailable", "stale_version", "denied"].includes(String(source.state)) ? source.state : "unavailable"
+      return JSON.stringify({
+        schema: "stanley.supported_actions.v1", state,
+        runtime_version: publicStreamText(source.runtime_version, 80), matrix_version: publicStreamText(source.matrix_version, 80), actions,
+      })
+    }
+    const identity = publicEventIdentity(source)
+    if (!identity) throw new Error("invalid")
+    const phases = ["idle", "planning", "running", "approval_required", "cancelling", "cancelled", "completed", "partial", "failed", "reconciliation_required", "unknown_outcome"]
+    const operations = ["start_work", "get_status", "approve", "cancel", "get_result"]
+    const phase = phases.includes(String(source.phase)) ? source.phase : "unknown_outcome"
+    const operation = operations.includes(String(source.operation)) ? source.operation : "get_status"
+    const history = Array.isArray(source.history) ? source.history.flatMap((value) => {
+      if (!value || typeof value !== "object" || Array.isArray(value)) return []
+      const item = value as Record<string, unknown>
+      if (!Number.isSafeInteger(item.server_sequence) || Number(item.server_sequence) < 1) return []
+      return [{ server_sequence: item.server_sequence, at: publicStreamText(item.at, 64), phase: phases.includes(String(item.phase)) ? item.phase : "unknown_outcome", label: publicStreamText(item.label, 180), detail: publicStreamText(item.detail, 500) || undefined }]
+    }).slice(-24) : []
+    return JSON.stringify({
+      schema: "stanley.workflow.hydration.v1", ...identity,
+      conversation_id: safeConversationId(source.conversation_id), phase, operation,
+      updated_at: publicStreamText(source.updated_at, 64), history,
+      approval: publicApprovalRequest(source.approval),
+      supported_next_actions: Array.isArray(source.supported_next_actions) ? source.supported_next_actions.filter((item) => operations.includes(String(item))).slice(0, 5) : [],
+      status: source.status === "completed" || source.status === "failed" || source.status === "cancelled" ? source.status : undefined,
+      answer: publicStreamText(source.answer), artifacts: Array.isArray(source.artifacts) ? source.artifacts.map(publicArtifact).filter(Boolean).slice(0, 20) : [],
+      provider_verification: publicProviderVerification(source.provider_verification), work_result: publicWorkResult(source.work_result),
+    })
+  } catch {
+    return JSON.stringify({ error: "invalid_upstream_response" })
+  }
 }
 
 async function authorizedNativeStream(response: Response, sessionKey: string) {
@@ -611,7 +710,7 @@ async function forward(request: NextRequest, context: RouteContext) {
   const upstreamPath = path.startsWith("artifacts/") ? `brain/${path}` : path
   const target = new URL(upstreamPath, baseUrl)
   const artifactRequest = path.startsWith("artifacts/")
-  const nativeSessionRequest = /^brain\/sessions(?:\/[^/]+(?:\/messages|\/chat\/stream|\/cancel))?$/.test(path)
+  const nativeSessionRequest = /^brain\/sessions(?:\/[^/]+(?:\/messages|\/chat\/stream|\/cancel|\/workflow\/(?:status|result)))?$/.test(path)
   const nativeStreamRequest = /^brain\/sessions\/[^/]+\/chat\/stream$/.test(path)
   const headers: Record<string, string> = {
     accept: artifactRequest ? "application/octet-stream" : nativeStreamRequest ? "text/event-stream" : "application/json",
@@ -701,11 +800,21 @@ async function forward(request: NextRequest, context: RouteContext) {
         } else if (path.endsWith("/chat/stream")) {
           const message = typeof incoming.message === "string" ? incoming.message.trim().slice(0, 20_000) : ""
           if (!conversationId || (!message && !Array.isArray(incoming.attachments))) return jsonError("invalid_message", 400)
+          const approvalRef = typeof incoming.approval_ref === "string" && /^approval_[0-9a-f]{24}$/.test(incoming.approval_ref) ? incoming.approval_ref : undefined
+          const approvalVersion = typeof incoming.approval_version === "number" && Number.isSafeInteger(incoming.approval_version) && incoming.approval_version > 0 ? incoming.approval_version : undefined
+          const approvalBinding = typeof incoming.approval_binding === "string" && /^binding_[0-9a-f]{24}$/.test(incoming.approval_binding) ? incoming.approval_binding : undefined
+          const approvalDecision = incoming.approval_decision === "Approve" || incoming.approval_decision === "Cancel" ? incoming.approval_decision : undefined
+          const hasApproval = approvalRef !== undefined || approvalVersion !== undefined || approvalBinding !== undefined || approvalDecision !== undefined
+          if (hasApproval && (!approvalRef || !approvalVersion || !approvalBinding || !approvalDecision)) return jsonError("stale_approval", 409)
           body = JSON.stringify({
             conversation_id: conversationId,
             message,
             attachments: sanitizedAttachments(incoming.attachments),
             title: typeof incoming.title === "string" ? incoming.title.slice(0, 160) : "New conversation",
+            approval_ref: approvalRef,
+            approval_version: approvalVersion,
+            approval_binding: approvalBinding,
+            approval_decision: approvalDecision,
           })
         } else {
           if (!conversationId) return jsonError("invalid_conversation", 400)
@@ -779,7 +888,7 @@ async function forward(request: NextRequest, context: RouteContext) {
       }
     }
   }
-  const publicBody = publicControlResponse(path, responseBody)
+  const publicBody = publicDurableWorkflowResponse(path, publicControlResponse(path, responseBody))
   return new NextResponse(publicBody, {
     status: response.status,
     headers: securityHeaders({ "content-type": "application/json" }),

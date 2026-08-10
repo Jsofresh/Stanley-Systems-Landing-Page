@@ -88,8 +88,18 @@ export type WorkflowHistoryItem = {
 
 export type WorkflowApproval = {
   approvalRef: string
+  approvalVersion: number
+  binding: string
   actionCount: number
   systems: string[]
+  actions: Array<{
+    order: number
+    summary: string
+    target: string
+    consequenceClass: string
+    approvalClass: string
+    stepScope: string
+  }>
   choices: ["Approve", "Cancel"]
 }
 
@@ -124,11 +134,29 @@ export type WorkflowAdapterState = {
   operation: WorkflowAdapterOperation
   phase: WorkflowPhase
   sequence: number
+  eventId?: string
   updatedAt: string
   history: WorkflowHistoryItem[]
   approval?: WorkflowApproval
   receipt?: WorkflowReceipt
   notice?: string
+  supportedNextActions?: WorkflowAdapterOperation[]
+}
+
+export type SupportedActionMatrixState = "loading" | "ready" | "unavailable" | "stale_version" | "denied" | "error"
+
+export type SupportedActionMatrix = {
+  schema: "stanley.supported_actions.v1"
+  state: Exclude<SupportedActionMatrixState, "loading" | "error">
+  runtimeVersion: string
+  matrixVersion: string
+  actions: Array<{
+    action: string
+    workflow: string
+    system: string
+    approval: "none" | "explicit"
+    readback: "required" | "not_applicable"
+  }>
 }
 
 export type CompanyBrainBlock =
@@ -188,6 +216,14 @@ export type SendCompanyBrainMessageInput = {
   conversationId: string
   message: string
   attachments?: CompanyBrainAttachment[]
+  approvalDecision?: {
+    decision: "Approve" | "Cancel"
+    approvalRef: string
+    approvalVersion: number
+    approvalBinding: string
+  }
+  lastServerSequence?: number
+  lastEventId?: string
 }
 
 export type SendCompanyBrainMessageResponse = {

@@ -1,6 +1,10 @@
 import type {
   CompanyBrainAttachment,
   SendCompanyBrainMessageInput,
+  SupportedActionMatrix,
+  WorkflowAdapterOperation,
+  WorkflowAdapterState,
+  WorkflowApproval,
 } from "@/lib/company-brain/types"
 import {
   userSafeErrorMessage,
@@ -81,6 +85,33 @@ export type NativeStreamEvent = {
   data: Record<string, unknown>
 }
 
+type DurableWorkflowPayload = {
+  schema: "stanley.workflow.hydration.v1"
+  workflow_id: string
+  conversation_id: string
+  server_sequence: number
+  event_id: string
+  phase: WorkflowAdapterState["phase"]
+  operation: WorkflowAdapterOperation
+  updated_at: string
+  history: Array<{ server_sequence: number; at: string; phase: WorkflowAdapterState["phase"]; label: string; detail?: string }>
+  approval?: {
+    approval_ref: string
+    approval_version: number
+    binding: string
+    action_count: number
+    connectors: string[]
+    actions: Array<{ order: number; action_summary: string; target: string; consequence_class: string; approval_class: string; step_scope: string }>
+    choices: ["Approve", "Cancel"]
+  }
+  supported_next_actions?: WorkflowAdapterOperation[]
+  status?: "completed" | "failed" | "cancelled"
+  answer?: string
+  artifacts?: BrainChatResponse["artifacts"]
+  provider_verification?: BrainChatResponse["provider_verification"]
+  work_result?: BrainChatResponse["work_result"]
+}
+
 export async function getCompanyBrainSessions(): Promise<NativeSessionSummary[]> {
   const data = await fetchJson<{ data?: NativeSessionSummary[] }>("/brain/sessions")
   return Array.isArray(data.data) ? data.data : []
@@ -89,6 +120,78 @@ export async function getCompanyBrainSessions(): Promise<NativeSessionSummary[]>
 export async function getCompanyBrainSessionMessages(conversationId: string): Promise<NativeSessionMessage[]> {
   const data = await fetchJson<{ data?: NativeSessionMessage[] }>(`/brain/sessions/${encodeURIComponent(conversationId)}/messages`)
   return Array.isArray(data.data) ? data.data : []
+}
+
+export async function getCompanyBrainWorkflowStatus(conversationId: string) {
+  return fetchJson<DurableWorkflowPayload>(`/brain/sessions/${encodeURIComponent(conversationId)}/workflow/status`)
+}
+
+export async function getCompanyBrainWorkflowResult(conversationId: string) {
+  return fetchJson<DurableWorkflowPayload>(`/brain/sessions/${encodeURIComponent(conversationId)}/workflow/result`)
+}
+
+function approvalFromPayload(value: DurableWorkflowPayload["approval"]): WorkflowApproval | undefined {
+  if (!value || value.actions.length !== value.action_count) return undefined
+  return {
+    approvalRef: value.approval_ref,
+    approvalVersion: value.approval_version,
+    binding: value.binding,
+    actionCount: value.action_count,
+    systems: value.connectors.map((system) => system === "quickbooks" ? "QuickBooks" : system === "jobber" ? "Jobber" : "Connected records"),
+    actions: value.actions.map((action) => ({ order: action.order, summary: action.action_summary, target: action.target, consequenceClass: action.consequence_class, approvalClass: action.approval_class, stepScope: action.step_scope })),
+    choices: ["Approve", "Cancel"],
+  }
+}
+
+export async function hydrateCompanyBrainWorkflow(conversationId: string, tenantId: string): Promise<WorkflowAdapterState> {
+  const status = await getCompanyBrainWorkflowStatus(conversationId)
+  const historyCoherent = Array.isArray(status.history) && status.history.every((item, index) => Number.isSafeInteger(item.server_sequence)
+    && item.server_sequence <= status.server_sequence
+    && (index === 0 || item.server_sequence > status.history[index - 1].server_sequence))
+  if (status.schema !== "stanley.workflow.hydration.v1" || status.workflow_id !== conversationId || status.conversation_id !== conversationId || !Number.isSafeInteger(status.server_sequence) || status.server_sequence < 1 || !status.event_id || !historyCoherent) {
+    throw new Error("The durable workflow status was invalid.")
+  }
+  let receipt: WorkflowReceipt | undefined
+  if (["completed", "partial", "failed", "cancelled", "reconciliation_required", "unknown_outcome"].includes(status.phase)) {
+    try {
+      const result = await getCompanyBrainWorkflowResult(conversationId)
+      if (result.schema !== "stanley.workflow.hydration.v1" || result.workflow_id !== status.workflow_id || result.conversation_id !== conversationId || result.server_sequence < status.server_sequence || !result.event_id) throw new Error("stale result")
+      receipt = completionToWorkflowReceipt(result, { workflowId: conversationId, tenantId })
+    } catch {
+      receipt = undefined
+    }
+  }
+  const approval = approvalFromPayload(status.approval)
+  const terminalWithoutReceipt = ["completed", "partial", "failed", "cancelled"].includes(status.phase) && !receipt
+  const approvalWithoutDisclosure = status.phase === "approval_required" && !approval
+  return {
+    schema: "stanley.workflow.adapter.v1",
+    workflowId: status.workflow_id,
+    conversationId: status.conversation_id,
+    tenantId,
+    operation: status.operation,
+    phase: receipt?.resultSummary.status === "unknown_outcome" || terminalWithoutReceipt || approvalWithoutDisclosure ? "unknown_outcome" : status.phase,
+    sequence: status.server_sequence,
+    eventId: status.event_id,
+    updatedAt: status.updated_at,
+    history: status.history.map((item) => ({ id: `server-${item.server_sequence}`, sequence: item.server_sequence, at: item.at, phase: item.phase, label: item.label, detail: item.detail })),
+    approval,
+    receipt,
+    notice: !receipt && ["completed", "partial", "failed", "reconciliation_required", "unknown_outcome"].includes(status.phase) ? "The final result still needs confirmation." : undefined,
+    supportedNextActions: status.supported_next_actions,
+  }
+}
+
+export async function getCompanyBrainSupportedActions(runtimeVersion: string): Promise<SupportedActionMatrix> {
+  const value = await fetchJson<{ schema: string; state: SupportedActionMatrix["state"]; runtime_version: string; matrix_version: string; actions: SupportedActionMatrix["actions"] }>("/brain/supported-actions")
+  if (value.schema !== "stanley.supported_actions.v1" || !value.matrix_version || !Array.isArray(value.actions)) throw new Error("Supported workflows could not be verified.")
+  return {
+    schema: "stanley.supported_actions.v1",
+    state: value.runtime_version && value.runtime_version === runtimeVersion ? value.state : "stale_version",
+    runtimeVersion: value.runtime_version,
+    matrixVersion: value.matrix_version,
+    actions: value.actions,
+  }
 }
 
 export async function cancelCompanyBrainSession(conversationId: string) {
@@ -108,6 +211,9 @@ export type NativeCompletion = BrainChatResponse & {
   reconciliation_status?: WorkflowReceipt["reconciliationStatus"]
   explanation?: string
   workflow_receipt?: WorkflowReceipt
+  workflow_id?: string
+  server_sequence?: number
+  event_id?: string
 }
 
 export async function streamCompanyBrainMessage(
@@ -127,6 +233,10 @@ export async function streamCompanyBrainMessage(
         conversation_id: input.conversationId,
         message: input.message,
         attachments: input.attachments ?? [],
+        approval_ref: input.approvalDecision?.approvalRef,
+        approval_version: input.approvalDecision?.approvalVersion,
+        approval_binding: input.approvalDecision?.approvalBinding,
+        approval_decision: input.approvalDecision?.decision,
       }),
     })
   } catch {
@@ -144,6 +254,8 @@ export async function streamCompanyBrainMessage(
   let answer = ""
   let completion: BrainChatResponse | null = null
   let sawDone = false
+  let lastServerSequence = input.lastServerSequence ?? 0
+  let lastEventId = input.lastEventId ?? ""
   const consume = (chunk: string) => {
     buffer += chunk
     const frames = buffer.split(/\r?\n\r?\n/)
@@ -161,6 +273,14 @@ export async function streamCompanyBrainMessage(
         data = JSON.parse(dataLines.join("\n")) as Record<string, unknown>
       } catch {
         continue
+      }
+      if (!["done", "error"].includes(eventName)) {
+        const workflowId = typeof data.workflow_id === "string" ? data.workflow_id : ""
+        const serverSequence = typeof data.server_sequence === "number" && Number.isSafeInteger(data.server_sequence) ? data.server_sequence : 0
+        const eventId = typeof data.event_id === "string" ? data.event_id : ""
+        if (workflowId !== input.conversationId || serverSequence <= lastServerSequence || !eventId || eventId === lastEventId) continue
+        lastServerSequence = serverSequence
+        lastEventId = eventId
       }
       onEvent?.({ event: eventName, data })
       if (eventName === "assistant.delta") answer += typeof data.delta === "string" ? data.delta : ""
