@@ -24,6 +24,7 @@ export type AttributionProperties = {
   monthly_leak_estimate?: string
   form_id?: string
   form_location?: string
+  hero_variant?: string
 }
 
 type PostHogClient = unknown[] & {
@@ -130,8 +131,8 @@ export function trackPricingViewed() {
 export function trackCheckoutOutcomeViewed(eventName: "checkout_success_viewed" | "checkout_cancel_viewed") {
   trackStanleyEvent(eventName, {
     event_source: safeSearchParam("source") || "stripe_redirect",
-    package_id: safeSearchParam("package") || safeSearchParam("package_id") || "workflow_audit",
-    package_name: safeSearchParam("package_name") || "AI Profit Map",
+    package_id: safeSearchParam("package") || safeSearchParam("package_id") || "ai_office_command_map",
+    package_name: safeSearchParam("package_name") || "AI Office Command Map",
   })
 }
 
@@ -144,9 +145,9 @@ export function trackCalculatorCtaClicked(properties: AttributionProperties = {}
 }
 
 export function trackAuditCheckoutClicked(properties: AttributionProperties = {}) {
-  trackStanleyEvent("audit_checkout_clicked", {
-    package_id: "workflow_audit",
-    package_name: "AI Profit Map",
+  trackStanleyEvent("command_map_checkout_clicked", {
+    package_id: "ai_office_command_map",
+    package_name: "AI Office Command Map",
     ...properties,
   })
 }
@@ -165,16 +166,16 @@ export function trackPackageCompareClicked(properties: AttributionProperties = {
 
 export function trackOnboardingFormStarted(properties: AttributionProperties = {}) {
   trackStanleyEvent("onboarding_form_started", {
-    form_id: "workflow_audit_application",
-    form_location: "contact_page",
+    form_id: "command_map_onboarding",
+    form_location: "checkout_onboarding",
     ...properties,
   })
 }
 
 export function trackOnboardingFormSubmitted(properties: AttributionProperties = {}) {
   trackStanleyEvent("onboarding_form_submitted", {
-    form_id: "workflow_audit_application",
-    form_location: "contact_page",
+    form_id: "command_map_onboarding",
+    form_location: "checkout_onboarding",
     ...properties,
   })
 }

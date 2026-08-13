@@ -17,6 +17,25 @@ shell: false
 
 Do not use shell command strings for normal runs. A legacy shell fallback exists only when both `HERMES_CRITICAL_VISUAL_REVIEW_ALLOW_LEGACY_SHELL=1` and `HERMES_CRITICAL_VISUAL_REVIEW_COMMAND` are set; reports mark that as `legacy_shell`.
 
+## Current Visual Authority
+
+Every new Stanley Systems website review must use `/home/jaden/stanley-landing/DESIGN.md` as the visual standard.
+
+The live site at `https://stanley-systems.com/` is evidence for style, color, formatting, moving imagery, text-over-image composition, interactive buttons, and visual pop-ups only. Its current words, offers, product names, pricing, claims, CTA labels, navigation, routes, and funnel order are not content authority.
+
+The reviewer must fail a new section when:
+
+- a bento grid or repeated equal card wall is the dominant layout
+- generic AI/SaaS widgets replace one strong image or mechanism
+- a slide or display image contains extensive text instead of a title and CTA
+- text-over-media lacks a deliberate readability wash or quiet zone
+- interactions are ornamental, hover-only on mobile, or lack a visible trigger
+- buttons have no useful hover, focus, tap, or directional feedback
+- imagery is reduced to tiny thumbnails inside oversized boxes
+- the implementation preserves obsolete live-site content merely because its styling is preserved
+
+Historical redesign north stars, Refero summaries, generated review bundles, component foundries, and old package mockups are not current design authority.
+
 ## Fail-Closed Rules
 
 The gate blocks on missing, unreadable, stale, or hash-mismatched screenshots; malformed reviewer JSON; missing schema fields; section mismatch; reviewed path/hash mismatch; protected public-copy terms; and reviewer command failure.

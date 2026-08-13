@@ -1,5 +1,7 @@
 # Post-deploy feedback notes — do not implement yet
 
+> **DEPRECATED DESIGN SOURCE — HISTORICAL ONLY.** The liquid-glass and unified-background notes below are not current Stanley Systems direction. Do not implement them. Use `/home/jaden/stanley-landing/DESIGN.md` and `/home/jaden/stanley-landing/docs/design/active-and-retired-design-sources.md`.
+
 Captured from Jaden after deploy. These are notes only; no implementation should happen until explicitly requested.
 
 ## Global visual/background direction

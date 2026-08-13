@@ -6,9 +6,9 @@ import { MobileStickyCTA } from "@/components/mobile-sticky-cta"
 import { PricingPage } from "@/components/pricing"
 
 export const metadata: Metadata = {
-  title: "Pricing | AI Profit Map | Stanley Systems",
+  title: "AI Office Pricing | Stanley Systems",
   description:
-    "Start with the paid AI Profit Map from Stanley Systems. Find where calls, invoices, follow-ups, and past customers are leaking before choosing a build path.",
+    "See the $197 AI Office Command Map and the two-company Founding Partner installation at $3,500 setup and $500 per month.",
 }
 
 type PricingRouteProps = {

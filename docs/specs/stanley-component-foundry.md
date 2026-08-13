@@ -1,5 +1,7 @@
 # Stanley Component Foundry
 
+> **LEGACY COMPONENT API — NOT DESIGN AUTHORITY.** This file documents historical components tied to obsolete package pages. Do not use its card-first grammar, old offer names, shadows, medallions, or page compositions as current style direction. Current visual authority is `/home/jaden/stanley-landing/DESIGN.md`. Existing components may remain for compatibility until a scoped implementation replaces them.
+
 Scope: Homepage Section 5, Cashflow Control System page, and Repeat Revenue System page.
 
 This document locks the shared component API for the Stanley Systems package/page foundry. Page files should compose these components and tokens instead of inventing new page-specific card shadows, buttons, medallions, underlines, headline styles, or diagram chrome.

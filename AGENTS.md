@@ -1,11 +1,22 @@
 # Stanley Systems Site Instructions
 
-Codex builds from approved specs. Codex does not own public-site strategy, invent services, rename offers, add unapproved pricing, or make AI the public hero.
+Codex builds from approved specs. Codex does not own public-site strategy, invent services, rename offers, add unapproved pricing, or preserve old public copy merely because its visual treatment is being preserved.
 
-Use only approved public offers unless a spec explicitly says otherwise:
-- Workflow Audit
-- Cash Flow Collection System
-- Repeat Revenue System
+## Current design and content authority
+
+For public website work, use this order:
+
+1. The current approved task brief for public copy, offers, product names, pricing, claims, guarantees, navigation, routes, and funnel logic.
+2. `/home/jaden/stanley-landing/DESIGN.md` for visual style, color, formatting, layout, imagery, and interaction.
+3. The current live website at `https://stanley-systems.com/` as a visual comparison only.
+
+The live website's style, colors, formatting, moving imagery, text-over-image sections, interactive buttons, and visual pop-ups are approved visual references. Its current words, offer names, product names, prices, claims, CTAs, navigation labels, routes, and funnel order are not approved content sources.
+
+Do not use bento grids, interchangeable feature-card walls, generic AI dashboards, excessive floating panels, or vibe-coded SaaS decoration as the page structure. Prefer one dominant image, moving scene, or interactive mechanism per major section, with a short title and clear CTA.
+
+Never render a section eyebrow, kicker, category tag, or decorative pre-title above a public `h1` or `h2`. Start the section with its real headline. Functional form labels, workflow stages, statuses, table headings, metric labels, and approval states are not eyebrows and remain allowed.
+
+Historical redesign north stars, generated review context, old taste-site summaries, legacy component foundries, old build prompts, and obsolete offer documents are not active design authority unless the current task explicitly names one as a historical reference.
 
 Do not use public site copy that mentions Hermes, Codex, Stanley H, OpenClaw, internal agents, n8n, QBO internals, HCP internals, secrets, or private implementation tools.
 

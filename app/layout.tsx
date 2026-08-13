@@ -40,9 +40,9 @@ const fontAliases = {
   "--font-work-sans": "var(--font-neue-montreal)",
 } as React.CSSProperties
 
-const siteTitle = "Stanley Systems | AI Profit Map"
+const siteTitle = "Stanley Systems AI Office"
 const siteDescription =
-  "Stanley Systems offers the AI Profit Map and installs AI office workflows for service businesses where office process is costing time, cash, customer follow-up, and profit."
+  "Stanley Systems installs a connected AI office around supported CRM, accounting, documents, and company knowledge so the current team can handle more office work."
 const siteLogoPath = "/stanley-systems-logo-reference.jpg"
 const siteLogoUrl = `https://stanley-systems.com${siteLogoPath}`
 
@@ -94,10 +94,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What is the AI Profit Map?",
+        name: "What is the AI Office Command Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "It is a $197 AI office diagnostic where Stanley Systems finds where office work is costing time, cash, and customer follow-up, then gives you an AI fix plan and $194 Installation Sprint credit if you move forward within 14 days.",
+          text: "It is a $197 practical first step with one standardized starter automation installed with the buyer, two do-it-yourself automation kits, and three personalized office-action blueprints.",
         },
       },
       {
@@ -110,10 +110,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What if we are not sure where the real leak is?",
+        name: "What if we are not sure which office work to start with?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "That is exactly what the AI Profit Map is for: it turns office drag into a Priority Fix List, AI Opportunity Map, Quick-Win AI Assets, and a Profit Implementation Plan.",
+          text: "The AI Office Command Map identifies practical opportunities and helps select a bounded starter automation.",
         },
       },
       {
@@ -126,10 +126,10 @@ export default function RootLayout({
       },
       {
         "@type": "Question",
-        name: "What happens after the AI Profit Map?",
+        name: "What happens after the AI Office Command Map?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Stanley Systems shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first, then turns that plan into systems your business can use.",
+          text: "A qualified company can apply for a connected Stanley Systems AI Office installation.",
         },
       },
     ],

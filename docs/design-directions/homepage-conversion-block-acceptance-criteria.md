@@ -1,5 +1,7 @@
 # Homepage conversion block acceptance criteria
 
+> **DEPRECATED TASK-SPECIFIC DESIGN SOURCE — HISTORICAL ONLY.** The absolute paths, copy, CTA order, and visual direction below were tied to an earlier homepage task. Use `/home/jaden/stanley-landing/DESIGN.md` for current visual style and a current approved brief for content.
+
 Source inputs:
 - Kanban task t_faa052ed
 - Jaden prompt: /home/jaden/.hermes/cache/documents/doc_5e9952a578d4_Untitled document (79).txt

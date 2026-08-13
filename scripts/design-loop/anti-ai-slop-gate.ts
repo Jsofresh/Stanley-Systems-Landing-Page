@@ -511,8 +511,9 @@ function renderMarkdown(report: GateReport): string {
 
 function humanSectionName(value: string): string {
   const normalized = value.replace(/[-_.]+/g, " ").trim()
-  if (/cashflow/i.test(normalized)) return "Cash Flow Collection System"
-  if (/customer revenue/i.test(normalized)) return "Repeat Revenue System"
+  if (/office map/i.test(normalized)) return "AI Office Map"
+  if (/installation|sprint/i.test(normalized)) return "AI Office Installation"
+  if (/office ops|managed operation/i.test(normalized)) return "AI Office Ops"
   if (/hero/i.test(normalized)) return "Hero"
   return normalized.replace(/\b\w/g, (letter) => letter.toUpperCase())
 }
@@ -526,32 +527,32 @@ function fixtureSections(): SectionEvidence[] {
     },
     {
       section_name: "Hero",
-      text: "Turn finished work into collected cash faster.",
+      text: "Current task-approved outcome headline.",
       visual_summary: "brand pill above headline, bottom support box, extra filler badge",
     },
     {
-      section_name: "Cash Flow Collection System",
-      text: "Turn finished work into collected cash faster.",
-      visual_summary: "four generic icon cards in an icon grid instead of a left-to-right pipeline",
+      section_name: "Workflow proof",
+      text: "Show one approved office action moving from source to result.",
+      visual_summary: "four generic icon cards in an icon grid instead of one image-led workflow mechanism",
       generated_asset_status: "approved",
     },
     {
-      section_name: "Repeat Revenue System",
-      text: "Get more money from the customers you already earned.",
-      visual_summary: "orbiting pill checklist assembly with no true wheel or flywheel",
+      section_name: "Office continuity",
+      text: "Show office work continuing through one clear visual path.",
+      visual_summary: "orbiting pill checklist assembly with no true path or meaningful sequence",
       generated_asset_status: "approved",
     },
     {
-      section_name: "Office Process Assessment",
+      section_name: "Final CTA",
       asset_strategy_hint: "code_only",
-      code_only_justification: "Simple CTA section with direct offer copy and no process visual need.",
-      text: "Office Process Assessment. Find where finished work is not turning into collected cash.",
+      code_only_justification: "Simple CTA section with current task-approved copy and no process visual need.",
+      text: "Current task-approved CTA.",
       visual_summary: "plain typography, CTA, and restrained layout",
     },
     {
-      section_name: "Cash Flow Collection System",
-      text: "Finished work should move left-to-right through invoice follow-up to collected cash.",
-      visual_summary: "required generated pipeline visual route unavailable",
+      section_name: "Workflow proof",
+      text: "A real office action should move from source through approval to a proof receipt.",
+      visual_summary: "required image-led workflow visual route unavailable",
       generated_asset_status: "missing",
       generated_asset_route_available: false,
     },

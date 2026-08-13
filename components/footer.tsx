@@ -28,11 +28,18 @@ const footerLinks: FooterSection[] = [
   {
     label: "Solutions",
     links: [
-      { title: "AI Profit Map", href: "/ai-profit-map" },
-      { title: "Free AI Office Blueprint", href: "/ai-office-blueprint" },
-      { title: "AI Office Installation Sprint", href: "/systems-installation-sprint" },
-      { title: "AI Office Ops", href: "/pricing" },
+      { title: "Stanley Systems AI Office", href: "/#one-message-demo" },
+      { title: "AI Office Command Map", href: "/ai-office-command-map" },
+      { title: "Founding Partner Installation", href: "/systems-installation-sprint" },
+      { title: "Pricing", href: "/pricing" },
       { title: "Who We Help", href: "/who-stanley-systems-helps" },
+    ],
+  },
+  {
+    label: "Resources",
+    links: [
+      { title: "AI Office Capacity Calculator", href: "/ai-office-capacity-calculator" },
+      { title: "Blog", href: "/blog" },
     ],
   },
   {
@@ -50,6 +57,7 @@ const footerLinks: FooterSection[] = [
       { title: "Pricing", href: "/pricing" },
       { title: "Proof", href: "/stanley-systems-case-study" },
       { title: "Blog", href: "/blog" },
+      { title: "Client Login", href: "/login" },
     ],
   },
   {
@@ -99,7 +107,7 @@ export function Footer() {
           </div>
         </AnimatedContainer>
 
-        <div className="mt-0 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2 md:mt-4 md:grid-cols-4 md:gap-10 xl:mt-0 xl:justify-between">
+        <div className="mt-0 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2 md:mt-4 md:grid-cols-3 md:gap-10 xl:mt-0 xl:grid-cols-6 xl:justify-between">
           {footerLinks.map((section, index) => (
             <AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
               <div className="mb-0">

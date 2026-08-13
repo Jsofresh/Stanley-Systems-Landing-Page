@@ -32,8 +32,8 @@ function buildTelegramMessage(payload: Record<string, unknown>) {
   const formType = clean(payload.form_type) || clean(payload.form_name) || clean(payload.telegram_alert_type) || "contact_routing_request"
   const title = formType === "ai_office_map_info"
     ? "🗺️ AI Profit Map info request"
-    : formType === "start_sprint_contact"
-      ? "🛠️ Start Sprint contact request"
+    : formType === "founding_partner_installation"
+      ? "Founding Partner installation application"
       : "📬 Stanley Systems website contact"
   const lines = [
     title,
@@ -47,6 +47,13 @@ function buildTelegramMessage(payload: Record<string, unknown>) {
     `Invoice delay: ${clean(payload.invoiceDelay) || "Not provided"}`,
     `Current process: ${clean(payload.currentProcess) || "Not provided"}`,
     `Workflow to install first: ${clean(payload.workflow_to_install_first) || clean(payload.problem) || clean(payload.message) || "Not provided"}`,
+    `Company size: ${clean(payload.company_size) || "Not provided"}`,
+    `Office team size: ${clean(payload.office_team_size) || "Not provided"}`,
+    `Software stack: ${clean(payload.software_stack) || "Not provided"}`,
+    `Considering admin hire: ${clean(payload.considering_admin_hire) || "Not provided"}`,
+    `Decision-maker role: ${clean(payload.decision_maker_role) || "Not provided"}`,
+    `Readiness timeline: ${clean(payload.readiness_timeline) || "Not provided"}`,
+    `Preferred fit-call time: ${clean(payload.preferred_demo_time) || "Not provided"}`,
     `Problem: ${clean(payload.problem) || clean(payload.message) || "Not provided"}`,
     `SMS consent: ${yesNo(payload.smsConsent === true || payload.sms_consent === true)}`,
     `Page: ${clean(payload.page_url) || clean(payload.page) || clean(payload.source_page) || "/contact"}`,
@@ -83,6 +90,13 @@ export async function POST(request: Request) {
       location: clean(body?.location),
       business_type: clean(body?.business_type) || clean(body?.businessType),
       workflow_to_install_first: workflowToInstallFirst,
+      company_size: clean(body?.company_size),
+      office_team_size: clean(body?.office_team_size),
+      software_stack: clean(body?.software_stack),
+      considering_admin_hire: clean(body?.considering_admin_hire),
+      decision_maker_role: clean(body?.decision_maker_role),
+      readiness_timeline: clean(body?.readiness_timeline),
+      preferred_demo_time: clean(body?.preferred_demo_time),
       main_issue: workflowToInstallFirst,
       message: clean(body?.message) || workflowToInstallFirst,
       problem: clean(body?.problem) || workflowToInstallFirst,
@@ -155,6 +169,10 @@ export async function POST(request: Request) {
           { status: 400 },
         )
       }
+    } else if (payload.form_type === "founding_partner_installation" || payload.form_name === "founding_partner_installation") {
+      if (!payload.name || !payload.email || !isEmailLike(payload.email) || !payload.company || !payload.businessType || !payload.workflow_to_install_first || !payload.company_size || !payload.office_team_size || !payload.software_stack || !payload.considering_admin_hire || !payload.decision_maker_role || !payload.readiness_timeline || !payload.preferred_demo_time || !payload.smsConsent) {
+        return NextResponse.json({ ok: false, error: "Missing required fields." }, { status: 400 })
+      }
     } else if (payload.form_type === "installation_sprint_contact" || payload.form_type === "start_sprint_contact" || payload.form_name === "start_sprint_contact") {
       if (!payload.name || !payload.email || !isEmailLike(payload.email) || !payload.company || !payload.businessType || !payload.workflow_to_install_first || !payload.smsConsent) {
         return NextResponse.json(
@@ -202,8 +220,8 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: true,
       message: WEBHOOK_URL
-        ? (payload.form_name === "start_sprint_contact" || payload.form_type === "start_sprint_contact"
-          ? "Got it. Stanley Systems will review this and reply with the next step for starting the Sprint."
+        ? (payload.form_name === "founding_partner_installation" || payload.form_type === "founding_partner_installation"
+          ? "Got it. Stanley Systems will review fit and reply with the next step for the Founding Partner installation."
           : "Thanks. Stanley Systems received your note and will reply soon.")
         : `Thanks. Stanley Systems saved your message path, but STANLEY_CONTACT_WEBHOOK_URL is not set yet. For now, email ${FALLBACK_EMAIL}.`,
       delivery: WEBHOOK_URL ? "webhook" : "not-configured",

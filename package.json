@@ -36,6 +36,7 @@
     "stanley:preview:fast": "bash scripts/stanley-start-fast-preview.sh",
     "stanley:preview:fast:stop": "bash scripts/stanley-stop-fast-preview.sh",
     "stanley:qa:home": "node scripts/stanley-fast-homepage-qa.js",
+    "stanley:qa:ai-office": "node scripts/ai-office-release-smoke.mjs",
     "company-brain:browser-regression": "node scripts/company-brain-local-browser-regression.js",
     "company-brain:browser-regression:all-personas-diagnostic": "node scripts/company-brain-local-browser-regression.js --all-personas-diagnostic",
     "company-brain:test-auth": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test scripts/company-brain-portal-auth-tests.mjs",

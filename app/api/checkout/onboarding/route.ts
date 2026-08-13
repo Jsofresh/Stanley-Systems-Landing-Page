@@ -29,6 +29,9 @@ export async function POST(request: Request) {
       accessReadiness: clean(body?.accessReadiness),
       preferredCallTime: clean(body?.preferredCallTime),
       notes: clean(body?.notes),
+      desiredStarter: clean(body?.desiredStarter),
+      staffRoles: clean(body?.staffRoles),
+      decisionMaker: clean(body?.decisionMaker),
       smsConsent: cleanBoolean(body?.smsConsent),
       source: clean(body?.source) || "paid-buyer-onboarding-form",
       page: clean(body?.page) || "/checkout/onboarding",
@@ -47,6 +50,9 @@ export async function POST(request: Request) {
       !payload.biggestLeak ||
       !payload.accessReadiness ||
       !payload.preferredCallTime
+      || !payload.desiredStarter
+      || !payload.staffRoles
+      || !payload.decisionMaker
     ) {
       return NextResponse.json(
         { ok: false, error: "Missing required onboarding fields." },

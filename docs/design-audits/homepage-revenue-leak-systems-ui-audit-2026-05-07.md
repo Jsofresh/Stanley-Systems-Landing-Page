@@ -1,5 +1,7 @@
 # Homepage Revenue Leak + Systems UI Reference Audit
 
+> **DEPRECATED DESIGN AUDIT — HISTORICAL ONLY.** This audit predates the current image-first live-site design direction and includes old product-card architecture. Do not use it as a current layout or offer source. Use `/home/jaden/stanley-landing/DESIGN.md`.
+
 Scope: audit strong public-site sections before rebuilding the Stanley Systems homepage Revenue Leak CTA/report preview and Systems that Move Money product-suite section. Reference screenshots are local evidence only; implementation is custom Stanley Systems copy, colors, icons, and offer logic.
 
 ## 1. ServiceTitan — product-suite cards

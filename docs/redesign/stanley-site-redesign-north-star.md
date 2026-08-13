@@ -1,5 +1,7 @@
 # Stanley Systems Skeptical-Buyer Redesign North Star
 
+> **DEPRECATED DESIGN SOURCE — HISTORICAL ONLY.** Do not use this file for current style, copy, offers, routes, or funnel structure. Its skeptical-mobile-buyer lesson may be cited as historical reasoning, but current visual authority is `/home/jaden/stanley-landing/DESIGN.md` and current content must come from the approved task brief. See `/home/jaden/stanley-landing/docs/design/active-and-retired-design-sources.md`.
+
 ## Operating rule
 
 Stanley H runs this redesign loop until the site is fixed or a real blocker appears. Do not ask Jaden for approval unless something violates scope, safety, pricing/legal truth, secrets, protected systems, or production risk. After build/QA/commit/push pass, stop and ask for deploy approval.

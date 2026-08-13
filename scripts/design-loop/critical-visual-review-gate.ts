@@ -61,7 +61,7 @@ export type CriticalSectionReview = {
   path_traceability_score?: number
   approved_reference_fidelity_score?: number
   mockup_fidelity_score?: number
-  refero_style_alignment_score?: number
+  stanley_design_alignment_score?: number
   codex_translation_quality_score?: number
   real_product_design_quality_score?: number
   generic_ai_ui_risk_score?: number
@@ -283,7 +283,7 @@ export const DEFAULT_THRESHOLDS = {
   visual_metaphor_coherence_score: 8,
   path_traceability_score: 8,
   mockup_fidelity_score: 8,
-  refero_style_alignment_score: 8,
+  stanley_design_alignment_score: 8,
   codex_translation_quality_score: 8,
   real_product_design_quality_score: 8,
   generic_ai_ui_risk_score_max: 3,
@@ -327,7 +327,7 @@ const REQUIRED_FIELDS = [
   "path_traceability_score",
   "approved_reference_fidelity_score",
   "mockup_fidelity_score",
-  "refero_style_alignment_score",
+  "stanley_design_alignment_score",
   "codex_translation_quality_score",
   "real_product_design_quality_score",
   "generic_ai_ui_risk_score",
@@ -539,7 +539,7 @@ export function validateCriticalSectionReview(value: unknown, expectedSectionIdO
   for (const field of ["desktop_pass", "mobile_pass"] as const) {
     if (typeof review[field] !== "boolean") throw new Error(`${field} must be boolean`)
   }
-  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "mockup_fidelity_score", "refero_style_alignment_score", "codex_translation_quality_score", "real_product_design_quality_score", "generic_ai_ui_risk_score", "visual_taste_preservation_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality"] as const) {
+  for (const field of ["visual_quality_score", "ai_slop_score", "clarity_score", "mobile_score", "visual_richness_score", "imagery_strength_score", "visual_anchor_score", "memorability_score", "visual_semantic_clarity_score", "visual_metaphor_coherence_score", "path_traceability_score", "approved_reference_fidelity_score", "mockup_fidelity_score", "stanley_design_alignment_score", "codex_translation_quality_score", "real_product_design_quality_score", "generic_ai_ui_risk_score", "visual_taste_preservation_score", "stanley_specificity_score", "diagram_aesthetic_quality_score", "diagram_geometry_quality_score", "diagram_spacing_quality_score", "main_visual_premium_quality_score", "main_visual_hero_worthiness_score", "mobile_diagram_quality_score", "generated_asset_scaling_quality"] as const) {
     if (typeof review[field] !== "number" || !Number.isFinite(review[field])) throw new Error(`${field} must be a finite number`)
     if (review[field] < 1 || review[field] > 10) throw new Error(`${field} must be between 1 and 10`)
   }
@@ -713,11 +713,10 @@ function buildPacket(manifest: Manifest, entry: SectionRegistryEntry): CriticalR
       ],
       approved_offer_copy_guardrails: [
         "Use Stanley Systems, not public-facing Stanley shorthand.",
-        "Public first step is the paid Office Process Assessment.",
-        "Office Process Assessment: Find the money leaks hiding inside your office workflow.",
-        "Cash Flow Collection System: Turn finished work into paid invoices without the chase.",
-        "Repeat Revenue System: Get more money from the customers you already earned.",
-        "Avoid public/internal process-heavy language such as bottlenecks.",
+        "Use the current approved task brief and current shared offer/copy sources for public words, product names, offers, pricing, claims, CTA labels, routes, and funnel order.",
+        "Treat the live Stanley Systems website as visual evidence only, never as content authority.",
+        "Do not preserve obsolete offer names merely because their visual treatment is approved.",
+        "Use approved office actions rather than universal-action language.",
         "Do not make AI, Hermes, Codex, OpenClaw, automation tooling, QBO API, HCP API, n8n, or internals the public star.",
       ],
     },
@@ -854,7 +853,7 @@ function thresholdFailureReasons(review: CriticalSectionReview): string[] {
   if (typeof review.visual_metaphor_coherence_score === "number" && review.visual_metaphor_coherence_score < DEFAULT_THRESHOLDS.visual_metaphor_coherence_score) failures.push(`visual_metaphor_coherence_score ${review.visual_metaphor_coherence_score} is below ${DEFAULT_THRESHOLDS.visual_metaphor_coherence_score}`)
   if (typeof review.path_traceability_score === "number" && review.path_traceability_score < DEFAULT_THRESHOLDS.path_traceability_score) failures.push(`path_traceability_score ${review.path_traceability_score} is below ${DEFAULT_THRESHOLDS.path_traceability_score}`)
   if (typeof review.mockup_fidelity_score === "number" && review.mockup_fidelity_score < DEFAULT_THRESHOLDS.mockup_fidelity_score) failures.push(`mockup_fidelity_score ${review.mockup_fidelity_score} is below ${DEFAULT_THRESHOLDS.mockup_fidelity_score}`)
-  if (typeof review.refero_style_alignment_score === "number" && review.refero_style_alignment_score < DEFAULT_THRESHOLDS.refero_style_alignment_score) failures.push(`refero_style_alignment_score ${review.refero_style_alignment_score} is below ${DEFAULT_THRESHOLDS.refero_style_alignment_score}`)
+  if (typeof review.stanley_design_alignment_score === "number" && review.stanley_design_alignment_score < DEFAULT_THRESHOLDS.stanley_design_alignment_score) failures.push(`stanley_design_alignment_score ${review.stanley_design_alignment_score} is below ${DEFAULT_THRESHOLDS.stanley_design_alignment_score}`)
   if (typeof review.codex_translation_quality_score === "number" && review.codex_translation_quality_score < DEFAULT_THRESHOLDS.codex_translation_quality_score) failures.push(`codex_translation_quality_score ${review.codex_translation_quality_score} is below ${DEFAULT_THRESHOLDS.codex_translation_quality_score}`)
   if (typeof review.real_product_design_quality_score === "number" && review.real_product_design_quality_score < DEFAULT_THRESHOLDS.real_product_design_quality_score) failures.push(`real_product_design_quality_score ${review.real_product_design_quality_score} is below ${DEFAULT_THRESHOLDS.real_product_design_quality_score}`)
   if (typeof review.generic_ai_ui_risk_score === "number" && review.generic_ai_ui_risk_score > DEFAULT_THRESHOLDS.generic_ai_ui_risk_score_max) failures.push(`generic_ai_ui_risk_score ${review.generic_ai_ui_risk_score} is above ${DEFAULT_THRESHOLDS.generic_ai_ui_risk_score_max}`)
