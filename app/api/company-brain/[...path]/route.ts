@@ -614,7 +614,6 @@ async function forward(request: NextRequest, context: RouteContext) {
             conversation_id: conversationId,
             message,
             attachments: sanitizedAttachments(incoming.attachments),
-            title: typeof incoming.title === "string" ? incoming.title.slice(0, 160) : "New conversation",
           })
         } else {
           if (!conversationId) return jsonError("invalid_conversation", 400)

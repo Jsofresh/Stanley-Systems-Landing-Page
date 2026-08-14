@@ -41,6 +41,13 @@ test("native stream accepts every versioned terminal result and requires its don
   assert.doesNotMatch(route, /\\\\n/)
 })
 
+test("native stream forwards only the runtime request contract", () => {
+  const streamForwarding = route.match(/else if \(path\.endsWith\("\/chat\/stream"\)\) \{([\s\S]*?)\n        \} else \{/)
+  assert.ok(streamForwarding)
+  assert.match(streamForwarding[1], /body = JSON\.stringify\(\{\s*conversation_id: conversationId,\s*message,\s*attachments: sanitizedAttachments\(incoming\.attachments\),\s*\}\)/)
+  assert.doesNotMatch(streamForwarding[1], /\btitle\s*:/)
+})
+
 test("terminal receipt retains the complete public contract including batch references", () => {
   assert.match(route, /company_brain\.portal_result\.v1/)
   assert.match(route, /company_brain\.public_turn_receipt\.v1/)
