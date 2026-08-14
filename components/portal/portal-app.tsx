@@ -641,7 +641,7 @@ export function PortalApp() {
                 aria-label="Settings"
                 title={`${session.name} settings`}
               >
-                {session.companyName.slice(0, 1) || "B"}
+                {session.companyName.slice(0, 1)}
               </Link>
             </div>
           </header>
@@ -663,7 +663,7 @@ export function PortalApp() {
                     <div ref={messagesEndRef} aria-hidden="true" />
                   </div>
                 ) : (
-                  <EmptyState summary={summary} statusError={statusError} />
+                  <EmptyState companyName={session.companyName} summary={summary} statusError={statusError} />
                 )}
               </div>
               {approvalConversationId === currentConversationId && approvalChoices.length ? (
@@ -793,7 +793,7 @@ function PortalSidebar({
           Settings
         </Link>
         <div className="mt-2 flex items-center gap-2 rounded-xl px-2 py-2">
-          <div className="grid h-8 w-8 place-items-center rounded-full bg-[#0f1720] text-xs font-bold text-white">{session.companyName.slice(0, 1) || "B"}</div>
+          <div className="grid h-8 w-8 place-items-center rounded-full bg-[#0f1720] text-xs font-bold text-white">{session.companyName.slice(0, 1)}</div>
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-[#111827]">{session.companyName}</p>
             <p className="truncate text-xs text-[#737373]">{session.name} · {session.roleLabel}</p>
@@ -812,16 +812,18 @@ function PortalSidebar({
 }
 
 function EmptyState({
+  companyName,
   summary,
   statusError,
 }: {
+  companyName: string
   summary: BrainSummary | null
   statusError: string | null
 }) {
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-10">
       <div className="w-full max-w-3xl text-center">
-        <p className="mb-4 text-xs font-medium text-[#737373]">{summary ? "Bayview records connected" : "Connecting records"}</p>
+        <p className="mb-4 text-xs font-medium text-[#737373]">{summary ? `${companyName} records connected` : "Connecting records"}</p>
         <h1 className="text-[34px] font-semibold tracking-[-0.04em] text-[#111827] md:text-[44px]">
           How can I help?
         </h1>

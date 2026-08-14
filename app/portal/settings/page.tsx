@@ -4,11 +4,11 @@ import { requirePortalSession } from "@/lib/portal/session"
 
 export const dynamic = "force-dynamic"
 
-const settings = [
+const settings = (companyName: string) => [
   {
     icon: Building2,
     title: "Company",
-    value: "Bayview Service Co.",
+    value: companyName,
     description: "Fixed test company for the brain-test Company Brain runtime.",
   },
   {
@@ -56,7 +56,7 @@ const settings = [
 ]
 
 export default function PortalSettingsPage() {
-  requirePortalSession()
+  const session = requirePortalSession()
   return (
     <main className="min-h-screen bg-[#f7f2ea] px-4 py-6 text-[#102033] sm:px-6">
       <div className="mx-auto w-full max-w-4xl">
@@ -78,7 +78,7 @@ export default function PortalSettingsPage() {
         </header>
 
         <section className="mt-8 grid gap-3 sm:grid-cols-2">
-          {settings.map((item) => {
+          {settings(session.companyName).map((item) => {
             const Icon = item.icon
             return (
               <article key={item.title} className="rounded-lg border border-[#ded6c8] bg-white p-5 shadow-sm">
