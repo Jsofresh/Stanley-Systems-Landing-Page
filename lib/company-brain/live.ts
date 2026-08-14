@@ -97,10 +97,30 @@ export async function cancelCompanyBrainSession(conversationId: string) {
 }
 
 export type NativeCompletion = BrainChatResponse & {
-  object?: string
-  status?: "completed" | "failed" | "cancelled"
-  usage?: Record<string, unknown>
-  conversation_id?: string
+  schema: "company_brain.portal_result.v1"
+  company_id: string
+  conversation_id: string
+  workflow_id: string
+  server_sequence: 3
+  event_id: string
+  status: "completed" | "partial" | "failed" | "cancelled" | "unknown_outcome"
+  receipt: NativeTerminalReceipt
+}
+
+export type NativeTerminalReceipt = {
+  schema: "company_brain.public_turn_receipt.v1"
+  binding: { company_id: string; conversation_id: string }
+  source: "conversation" | "provider_action_batch"
+  status: "not_applicable" | "read_verified" | "executed_verified" | "already_completed" | "partial" | "failed_before_dispatch" | "failed" | "unknown_outcome_reconciliation_required"
+  connectors: Array<"jobber" | "quickbooks">
+  action_count: number
+  verified_action_count: number
+  mutation_dispatch_count: number
+  completed_batch_replay: boolean
+  provider_readback_status: "verified" | "unavailable" | "not_required"
+  provider_write_claimed: boolean
+  safe_summary: string[]
+  action_reference?: string
 }
 
 export async function streamCompanyBrainMessage(
@@ -134,8 +154,8 @@ export async function streamCompanyBrainMessage(
   const reader = response.body.getReader()
   const decoder = new TextDecoder()
   let buffer = ""
-  let answer = ""
-  let completion: BrainChatResponse | null = null
+  let completion: NativeCompletion | null = null
+  let terminalIdentity: Pick<NativeCompletion, "company_id" | "conversation_id" | "workflow_id" | "server_sequence" | "event_id"> | null = null
   let sawDone = false
   const consume = (chunk: string) => {
     buffer += chunk
@@ -155,10 +175,28 @@ export async function streamCompanyBrainMessage(
       } catch {
         continue
       }
+      if (sawDone) throw new Error("Company Brain returned an event after its completion marker.")
+      if (["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(eventName)) {
+        if (completion || data.company_id !== input.companyId || data.conversation_id !== input.conversationId
+          || data.workflow_id !== input.conversationId || data.server_sequence !== 3 || typeof data.event_id !== "string") {
+          throw new Error("Company Brain returned a mismatched terminal event.")
+        }
+        const validStatus = eventName === "stanley.completed" ? data.status === "completed"
+          : eventName === "stanley.failed" ? data.status === "failed" || data.status === "partial"
+            : eventName === "stanley.cancelled" ? data.status === "cancelled" : data.status === "unknown_outcome"
+        if (!validStatus) throw new Error("Company Brain returned a mismatched terminal status.")
+        completion = data as unknown as NativeCompletion
+        terminalIdentity = completion
+      }
+      if (eventName === "done") {
+        const keys = ["company_id", "conversation_id", "workflow_id", "server_sequence", "event_id"]
+        if (!terminalIdentity || Object.keys(data).length !== keys.length || Object.keys(data).some((key) => !keys.includes(key))
+          || keys.some((key) => data[key] !== terminalIdentity?.[key as keyof typeof terminalIdentity])) {
+          throw new Error("Company Brain returned a stale or mismatched completion marker.")
+        }
+        sawDone = true
+      }
       onEvent?.({ event: eventName, data })
-      if (eventName === "assistant.delta") answer += typeof data.delta === "string" ? data.delta : ""
-      if (eventName === "stanley.completed") completion = data as unknown as BrainChatResponse
-      if (eventName === "done") sawDone = true
       if (eventName === "error") throw new Error(userSafeErrorMessage("runtime_failed", typeof data.message === "string" ? data.message : undefined))
     }
   }

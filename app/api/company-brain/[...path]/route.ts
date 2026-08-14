@@ -211,21 +211,6 @@ function publicControlResponse(path: string, responseBody: string) {
   }
 }
 
-function nativeCompletionArtifactIds(frame: string) {
-  const eventMatch = frame.match(/(?:^|\n)event:\s*([^\r\n]+)/)
-  if (eventMatch?.[1]?.trim() !== "stanley.completed") return []
-  const data = frame
-    .split("\n")
-    .filter((line) => line.startsWith("data:"))
-    .map((line) => line.slice(5).trimStart())
-    .join("\n")
-  try {
-    return artifactIdsFromChatResponse(JSON.parse(data))
-  } catch {
-    return []
-  }
-}
-
 function publicStreamText(value: unknown, limit = 12000) {
   if (typeof value !== "string") return ""
   return value.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "").slice(0, limit)
@@ -251,6 +236,106 @@ function publicArtifact(value: unknown) {
     downloadUrl,
     preview: publicStreamText(artifact.preview, 4000) || undefined,
   }
+}
+
+type PublicEventIdentity = { company_id: string; conversation_id: string; workflow_id: string; server_sequence: 3; event_id: string }
+
+function exactObjectKeys(value: Record<string, unknown>, keys: readonly string[]) {
+  const actual = Object.keys(value)
+  return actual.length === keys.length && actual.every((key) => keys.includes(key))
+}
+
+function publicEventIdentity(value: Record<string, unknown>, companyId: string, conversationId: string): PublicEventIdentity | null {
+  const workflowId = typeof value.workflow_id === "string" && /^[A-Za-z0-9_.:-]{1,160}$/.test(value.workflow_id) ? value.workflow_id : ""
+  const eventId = typeof value.event_id === "string" && /^evt_[0-9a-f]{32}$/.test(value.event_id) ? value.event_id : ""
+  return value.company_id === companyId && value.conversation_id === conversationId && workflowId === conversationId && value.server_sequence === 3 && eventId
+    ? { company_id: companyId, conversation_id: conversationId, workflow_id: workflowId, server_sequence: 3, event_id: eventId }
+    : null
+}
+
+function publicTerminalReceipt(value: unknown, companyId: string, conversationId: string) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
+  const source = value as Record<string, unknown>
+  const keys = ["schema", "binding", "source", "status", "connectors", "action_count", "verified_action_count", "mutation_dispatch_count", "completed_batch_replay", "provider_readback_status", "provider_write_claimed", "safe_summary"]
+  const hasActionReference = Object.hasOwn(source, "action_reference")
+  const binding = source.binding && typeof source.binding === "object" && !Array.isArray(source.binding) ? source.binding as Record<string, unknown> : null
+  const connectors = Array.isArray(source.connectors) ? source.connectors : []
+  const safeSummary = Array.isArray(source.safe_summary) ? source.safe_summary : []
+  const [actionCount, verifiedCount, dispatchCount] = [source.action_count, source.verified_action_count, source.mutation_dispatch_count]
+  if (!exactObjectKeys(source, hasActionReference ? [...keys, "action_reference"] : keys)
+    || !binding || !exactObjectKeys(binding, ["company_id", "conversation_id"])
+    || binding.company_id !== companyId || binding.conversation_id !== conversationId
+    || source.schema !== "company_brain.public_turn_receipt.v1"
+    || !["conversation", "provider_action_batch"].includes(String(source.source))
+    || !["not_applicable", "read_verified", "executed_verified", "already_completed", "partial", "failed_before_dispatch", "failed", "unknown_outcome_reconciliation_required"].includes(String(source.status))
+    || connectors.some((item) => item !== "jobber" && item !== "quickbooks")
+    || connectors.length !== new Set(connectors).size
+    || connectors.some((item, index) => index > 0 && String(connectors[index - 1]) >= String(item))
+    || ![actionCount, verifiedCount, dispatchCount].every((item) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 100)
+    || (verifiedCount as number) > (actionCount as number) || (dispatchCount as number) > (actionCount as number)
+    || typeof source.completed_batch_replay !== "boolean"
+    || !["verified", "unavailable", "not_required"].includes(String(source.provider_readback_status))
+    || typeof source.provider_write_claimed !== "boolean"
+    || safeSummary.length > 16 || safeSummary.some((item) => typeof item !== "string" || item !== publicStreamText(item, 240))
+    || hasActionReference && (typeof source.action_reference !== "string" || !/^actref_[A-Za-z0-9_-]{32,128}$/.test(source.action_reference))) return undefined
+
+  const actions = actionCount as number, verified = verifiedCount as number, dispatched = dispatchCount as number
+  const replay = source.completed_batch_replay as boolean, writeClaimed = source.provider_write_claimed as boolean
+  const conversation = source.source === "conversation" && source.status === "not_applicable" && connectors.length === 0
+    && actions === 0 && verified === 0 && dispatched === 0 && !replay && source.provider_readback_status === "not_required" && !writeClaimed
+  const provider = source.source === "provider_action_batch" && connectors.length > 0 && actions > 0
+  const coherent = conversation
+    || provider && source.status === "executed_verified" && verified === actions && !replay && source.provider_readback_status === "verified" && writeClaimed
+    || provider && source.status === "already_completed" && verified === actions && dispatched === 0 && replay && source.provider_readback_status === "verified" && writeClaimed
+    || provider && source.status === "read_verified" && verified === actions && dispatched === 0 && !replay && source.provider_readback_status === "verified" && !writeClaimed
+    || provider && source.status === "partial" && verified > 0 && verified < actions && dispatched >= verified && !replay && source.provider_readback_status === "unavailable" && writeClaimed
+    || provider && source.status === "failed_before_dispatch" && verified === 0 && dispatched === 0 && !replay && source.provider_readback_status === "not_required" && !writeClaimed
+    || provider && source.status === "failed" && verified === 0 && dispatched > 0 && !replay && source.provider_readback_status === "unavailable" && !writeClaimed
+    || provider && source.status === "unknown_outcome_reconciliation_required" && !replay && source.provider_readback_status === "unavailable"
+  if (!coherent || hasActionReference && !(provider && verified === actions && source.provider_readback_status === "verified" && writeClaimed)) return undefined
+  return {
+    schema: source.schema,
+    binding: { company_id: companyId, conversation_id: conversationId },
+    source: source.source,
+    status: source.status,
+    connectors,
+    action_count: actions,
+    verified_action_count: verified,
+    mutation_dispatch_count: dispatched,
+    completed_batch_replay: replay,
+    provider_readback_status: source.provider_readback_status,
+    provider_write_claimed: writeClaimed,
+    safe_summary: safeSummary,
+    ...(hasActionReference ? { action_reference: source.action_reference } : {}),
+  }
+}
+
+function publicPortalResult(value: unknown, companyId: string, conversationId: string) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
+  const source = value as Record<string, unknown>
+  const identity = publicEventIdentity(source, companyId, conversationId)
+  const keys = ["schema", "company_id", "conversation_id", "workflow_id", "server_sequence", "event_id", "status", "answer", "blocks", "artifacts", "receipt"]
+  if (!exactObjectKeys(source, keys) || !identity || source.schema !== "company_brain.portal_result.v1"
+    || !["completed", "partial", "failed", "cancelled", "unknown_outcome"].includes(String(source.status))
+    || typeof source.answer !== "string" || source.answer !== publicStreamText(source.answer)
+    || !Array.isArray(source.blocks) || source.blocks.length > 24 || !Array.isArray(source.artifacts) || source.artifacts.length > 20) return undefined
+  const artifacts = source.artifacts.map(publicArtifact)
+  const blocks: Array<Record<string, unknown>> = []
+  if (artifacts.some((item) => !item)) return undefined
+  for (const raw of source.blocks) {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return undefined
+    const block = raw as Record<string, unknown>
+    if (exactObjectKeys(block, ["type", "text"]) && block.type === "text" && typeof block.text === "string" && block.text === publicStreamText(block.text)) blocks.push({ type: "text", text: block.text })
+    else if (exactObjectKeys(block, ["type", "artifact"]) && block.type === "artifact" && publicArtifact(block.artifact)) blocks.push({ type: "artifact", artifact: publicArtifact(block.artifact) })
+    else return undefined
+  }
+  const receipt = publicTerminalReceipt(source.receipt, companyId, conversationId)
+  const coherent = source.status === "completed" ? ["not_applicable", "read_verified", "executed_verified", "already_completed"].includes(String(receipt?.status))
+    : source.status === "partial" ? receipt?.status === "partial"
+      : source.status === "failed" ? receipt?.status === "failed_before_dispatch" || receipt?.status === "failed"
+        : source.status === "cancelled" ? receipt?.status === "failed_before_dispatch"
+          : receipt?.status === "unknown_outcome_reconciliation_required"
+  return receipt && coherent ? { schema: source.schema, ...identity, status: source.status, answer: source.answer, blocks, artifacts, receipt } : undefined
 }
 
 function publicProviderVerification(value: unknown) {
@@ -437,7 +522,7 @@ function publicApprovalRequest(value: unknown) {
   }
 }
 
-function projectNativeEvent(eventName: string, value: unknown) {
+function projectNativeEvent(eventName: string, value: unknown, expectedCompanyId: string, expectedConversationId: string) {
   const source = value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}
   if (eventName === "run.started") return { event: "run.started", data: { status: "running" } }
   if (eventName === "message.started") return { event: "message.started", data: {} }
@@ -461,69 +546,69 @@ function projectNativeEvent(eventName: string, value: unknown) {
     const request = publicApprovalRequest(source)
     return request ? { event: "approval.request", data: request } : null
   }
-  if (eventName === "stanley.completed") {
-    const artifacts = Array.isArray(source.artifacts) ? source.artifacts.map(publicArtifact).filter(Boolean).slice(0, 20) : []
-    const blocks: Array<Record<string, unknown>> = []
-    if (Array.isArray(source.blocks)) {
-      for (const block of source.blocks.slice(0, 24)) {
-        if (!block || typeof block !== "object" || Array.isArray(block)) continue
-        const item = block as Record<string, unknown>
-        if (item.type === "text") {
-          const text = publicStreamText(item.text)
-          if (text) blocks.push({ type: "text", text })
-        } else if (item.type === "artifact") {
-          const artifact = publicArtifact(item.artifact)
-          if (artifact) blocks.push({ type: "artifact", artifact })
-        }
-      }
-    }
-    const status = source.status === "completed" || source.status === "failed" || source.status === "cancelled" ? source.status : "failed"
-    const usageSource = source.usage && typeof source.usage === "object" && !Array.isArray(source.usage) ? source.usage as Record<string, unknown> : {}
-    const usage = Object.fromEntries(Object.entries(usageSource).filter(([key, item]) => /^(input_tokens|output_tokens|total_tokens)$/.test(key) && typeof item === "number"))
-    return {
-      event: "stanley.completed",
-      data: {
-        object: "hermes.portal.completion",
-        status,
-        answer: publicStreamText(source.answer),
-        blocks,
-        artifacts,
-        usage,
-        conversation_id: publicStreamText(source.conversation_id, 160),
-        provider_verification: publicProviderVerification(source.provider_verification),
-        work_result: publicWorkResult(source.work_result),
-      },
-    }
+  if (["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(eventName)) {
+    const result = publicPortalResult(source, expectedCompanyId, expectedConversationId)
+    const validStatus = eventName === "stanley.completed"
+      ? result?.status === "completed"
+      : eventName === "stanley.failed"
+        ? result?.status === "failed" || result?.status === "partial"
+        : eventName === "stanley.cancelled"
+          ? result?.status === "cancelled"
+          : result?.status === "unknown_outcome"
+    return result && validStatus ? { event: eventName, data: result } : null
   }
   if (eventName === "error") return { event: "error", data: { message: "Company Brain could not finish that request." } }
-  if (eventName === "done") return { event: "done", data: {} }
+  if (eventName === "done") {
+    const identity = publicEventIdentity(source, expectedCompanyId, expectedConversationId)
+    if (identity && exactObjectKeys(source, ["company_id", "conversation_id", "workflow_id", "server_sequence", "event_id"])) return { event: "done", data: identity }
+    return exactObjectKeys(source, []) ? { event: "done", data: {} } : null
+  }
   return null
 }
 
-async function authorizedNativeStream(response: Response, sessionKey: string) {
+type ProjectedNativeEvent = { event: string; data: Record<string, unknown> }
+type NativeStreamAdmissionState = { terminal: PublicEventIdentity | null; done: boolean }
+
+function sameEventIdentity(left: Record<string, unknown>, right: PublicEventIdentity) {
+  return left.company_id === right.company_id
+    && left.conversation_id === right.conversation_id
+    && left.workflow_id === right.workflow_id
+    && left.server_sequence === right.server_sequence
+    && left.event_id === right.event_id
+}
+
+function admitProjectedNativeEvent(state: NativeStreamAdmissionState, projected: ProjectedNativeEvent) {
+  if (state.done) return false
+  const terminalEvent = ["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(projected.event)
+  if (projected.event === "done") {
+    if (state.terminal ? !sameEventIdentity(projected.data, state.terminal) : Object.keys(projected.data).length !== 0) return false
+    state.done = true
+    return true
+  }
+  if (state.terminal) return false
+  if (terminalEvent) {
+    state.terminal = {
+      company_id: String(projected.data.company_id),
+      conversation_id: String(projected.data.conversation_id),
+      workflow_id: String(projected.data.workflow_id),
+      server_sequence: 3,
+      event_id: String(projected.data.event_id),
+    }
+  }
+  return true
+}
+
+async function authorizedNativeStream(response: Response, sessionKey: string, companyId: string, conversationId: string) {
   if (!response.body) return null
   const reader = response.body.getReader()
   const decoder = new TextDecoder()
   const encoder = new TextEncoder()
   const stream = new TransformStream<Uint8Array, Uint8Array>()
   const writer = stream.writable.getWriter()
-  let sawDone = false
+  const admissionState: NativeStreamAdmissionState = { terminal: null, done: false }
 
   const writeFrame = async (frame: string) => {
     if (!frame.trim()) return
-    const artifactIds = nativeCompletionArtifactIds(frame)
-    if (artifactIds.length) {
-      try {
-        grantPortalArtifactAccess(portalSessionStoreDir(), sessionKey, artifactIds)
-      } catch {
-        sawDone = true
-        await writer.write(encoder.encode(
-          `event: error\ndata: ${JSON.stringify({ message: "The completed artifact could not be authorized." })}\n\nevent: done\ndata: {}\n\n`,
-        ))
-        await reader.cancel()
-        return
-      }
-    }
     const eventMatch = frame.match(/(?:^|\n)event:\s*([^\r\n]+)/)
     const dataLines = frame.split(/\r?\n/).filter((line) => line.startsWith("data:")).map((line) => line.slice(5).trimStart())
     if (!eventMatch || !dataLines.length) return
@@ -533,9 +618,19 @@ async function authorizedNativeStream(response: Response, sessionKey: string) {
     } catch {
       return
     }
-    const projected = projectNativeEvent(eventMatch[1].trim(), payload)
-    if (!projected) return
-    if (projected.event === "done") sawDone = true
+    const projected = projectNativeEvent(eventMatch[1].trim(), payload, companyId, conversationId)
+    if (!projected || !admitProjectedNativeEvent(admissionState, projected)) return
+    if (["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(projected.event)) {
+      const artifactIds = artifactIdsFromChatResponse(projected.data)
+      if (artifactIds.length) {
+        try {
+          grantPortalArtifactAccess(portalSessionStoreDir(), sessionKey, artifactIds)
+        } catch {
+          await reader.cancel()
+          return
+        }
+      }
+    }
     await writer.write(encoder.encode(`event: ${projected.event}\ndata: ${JSON.stringify(projected.data)}\n\n`))
   }
 
@@ -547,12 +642,6 @@ async function authorizedNativeStream(response: Response, sessionKey: string) {
         if (next.done) {
           buffer += decoder.decode()
           if (buffer.trim()) await writeFrame(buffer)
-          if (!sawDone) {
-            sawDone = true
-            await writer.write(encoder.encode(
-              `event: error\ndata: ${JSON.stringify({ message: "Company Brain stream ended before completion." })}\n\nevent: done\ndata: {}\n\n`,
-            ))
-          }
           break
         }
         buffer += decoder.decode(next.value, { stream: true })
@@ -561,11 +650,10 @@ async function authorizedNativeStream(response: Response, sessionKey: string) {
         for (const frame of frames) await writeFrame(frame)
       }
     } catch {
-      if (!sawDone) {
+      if (!admissionState.done) {
         try {
-          sawDone = true
           await writer.write(encoder.encode(
-            `event: error\ndata: ${JSON.stringify({ message: "Company Brain stream was interrupted. Check recent activity before trying again." })}\n\nevent: done\ndata: {}\n\n`,
+            `event: error\ndata: ${JSON.stringify({ message: "Company Brain stream was interrupted. Check recent activity before trying again." })}\n\n`,
           ))
         } catch {
           // The browser may have disconnected during cancellation.
@@ -739,7 +827,8 @@ async function forward(request: NextRequest, context: RouteContext) {
 
   if (response.status >= 500) return unavailableResponse(path)
   if (nativeStreamRequest && response.ok && response.body) {
-    const readable = await authorizedNativeStream(response, session.sessionKey)
+    const conversationId = safeConversationId(path.split("/")[2] ?? "")
+    const readable = conversationId ? await authorizedNativeStream(response, session.sessionKey, session.companyId, conversationId) : null
     return new NextResponse(readable ?? response.body, {
       status: response.status,
       headers: securityHeaders({

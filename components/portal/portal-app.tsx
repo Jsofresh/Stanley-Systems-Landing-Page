@@ -456,11 +456,6 @@ export function PortalApp() {
           updateStreamingMessage(streamedText)
         }
       })
-      if (response.status && response.status !== "completed") {
-        throw new Error(response.status === "cancelled"
-          ? "The request was stopped. Check the conversation before retrying."
-          : "Company Brain could not complete that request. Check recent activity before trying again.")
-      }
       const assistantMessage: CompanyBrainMessage = {
         id: `assistant-${Date.now()}`,
         role: "assistant",
