@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url"
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const route = readFileSync(resolve(repoRoot, "app/api/company-brain/[...path]/route.ts"), "utf8")
+const receiptProjection = route.slice(route.indexOf("function publicTerminalReceipt"), route.indexOf("function publicPortalResult"))
 
 test("proxy upstream is protected configuration rather than a hardcoded deployment", () => {
   assert.equal(route.includes('const BRAIN_BASE_URL = "https://brain-test.stanley-systems.com"'), false)
@@ -62,16 +63,15 @@ test("proxy preserves complete receipts for every exact terminal variant", () =>
     assert.match(route, new RegExp(event.replace(".", "\\.")))
     assert.match(route, new RegExp(`status === \\\"${status}\\\"`))
   }
-  for (const status of ["already_completed", "partial", "failed_before_dispatch", "failed", "unknown_outcome_reconciliation_required"]) {
-    assert.match(route, new RegExp(`source.status === \\\"${status}\\\"`))
-  }
   for (const field of ["source", "provider_write_claimed", "safe_summary", "action_reference"]) {
-    assert.match(route, new RegExp(`${field}:`))
+    assert.match(receiptProjection, new RegExp(`\\"${field}\\"`))
   }
   assert.match(route, /company_brain\.portal_result\.v1/)
   assert.match(route, /company_brain\.public_turn_receipt\.v1/)
   assert.match(route, /sameEventIdentity\(projected\.data, state\.terminal\)/)
-  assert.doesNotMatch(route, /actions === 1/)
+  assert.match(receiptProjection, /return source/)
+  assert.doesNotMatch(receiptProjection, /coherent|new Set|verified ===|dispatched|writeClaimed|source\.status ===/)
+  assert.doesNotMatch(route, /exactObjectKeys\(source, \[\]\)/)
   assert.doesNotMatch(route, /provider_verification: publicProviderVerification/)
   assert.doesNotMatch(route, /work_result: publicWorkResult/)
 })

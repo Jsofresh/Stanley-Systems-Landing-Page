@@ -261,53 +261,20 @@ function publicTerminalReceipt(value: unknown, companyId: string, conversationId
   const binding = source.binding && typeof source.binding === "object" && !Array.isArray(source.binding) ? source.binding as Record<string, unknown> : null
   const connectors = Array.isArray(source.connectors) ? source.connectors : []
   const safeSummary = Array.isArray(source.safe_summary) ? source.safe_summary : []
-  const [actionCount, verifiedCount, dispatchCount] = [source.action_count, source.verified_action_count, source.mutation_dispatch_count]
   if (!exactObjectKeys(source, hasActionReference ? [...keys, "action_reference"] : keys)
     || !binding || !exactObjectKeys(binding, ["company_id", "conversation_id"])
     || binding.company_id !== companyId || binding.conversation_id !== conversationId
     || source.schema !== "company_brain.public_turn_receipt.v1"
     || !["conversation", "provider_action_batch"].includes(String(source.source))
     || !["not_applicable", "read_verified", "executed_verified", "already_completed", "partial", "failed_before_dispatch", "failed", "unknown_outcome_reconciliation_required"].includes(String(source.status))
-    || connectors.some((item) => item !== "jobber" && item !== "quickbooks")
-    || connectors.length !== new Set(connectors).size
-    || connectors.some((item, index) => index > 0 && String(connectors[index - 1]) >= String(item))
-    || ![actionCount, verifiedCount, dispatchCount].every((item) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 100)
-    || (verifiedCount as number) > (actionCount as number) || (dispatchCount as number) > (actionCount as number)
+    || connectors.length > 100 || connectors.some((item) => item !== "jobber" && item !== "quickbooks")
+    || ![source.action_count, source.verified_action_count, source.mutation_dispatch_count].every((item) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 100)
     || typeof source.completed_batch_replay !== "boolean"
     || !["verified", "unavailable", "not_required"].includes(String(source.provider_readback_status))
     || typeof source.provider_write_claimed !== "boolean"
     || safeSummary.length > 16 || safeSummary.some((item) => typeof item !== "string" || item !== publicStreamText(item, 240))
     || hasActionReference && (typeof source.action_reference !== "string" || !/^actref_[A-Za-z0-9_-]{32,128}$/.test(source.action_reference))) return undefined
-
-  const actions = actionCount as number, verified = verifiedCount as number, dispatched = dispatchCount as number
-  const replay = source.completed_batch_replay as boolean, writeClaimed = source.provider_write_claimed as boolean
-  const conversation = source.source === "conversation" && source.status === "not_applicable" && connectors.length === 0
-    && actions === 0 && verified === 0 && dispatched === 0 && !replay && source.provider_readback_status === "not_required" && !writeClaimed
-  const provider = source.source === "provider_action_batch" && connectors.length > 0 && actions > 0
-  const coherent = conversation
-    || provider && source.status === "executed_verified" && verified === actions && !replay && source.provider_readback_status === "verified" && writeClaimed
-    || provider && source.status === "already_completed" && verified === actions && dispatched === 0 && replay && source.provider_readback_status === "verified" && writeClaimed
-    || provider && source.status === "read_verified" && verified === actions && dispatched === 0 && !replay && source.provider_readback_status === "verified" && !writeClaimed
-    || provider && source.status === "partial" && verified > 0 && verified < actions && dispatched >= verified && !replay && source.provider_readback_status === "unavailable" && writeClaimed
-    || provider && source.status === "failed_before_dispatch" && verified === 0 && dispatched === 0 && !replay && source.provider_readback_status === "not_required" && !writeClaimed
-    || provider && source.status === "failed" && verified === 0 && dispatched > 0 && !replay && source.provider_readback_status === "unavailable" && !writeClaimed
-    || provider && source.status === "unknown_outcome_reconciliation_required" && !replay && source.provider_readback_status === "unavailable"
-  if (!coherent || hasActionReference && !(provider && verified === actions && source.provider_readback_status === "verified" && writeClaimed)) return undefined
-  return {
-    schema: source.schema,
-    binding: { company_id: companyId, conversation_id: conversationId },
-    source: source.source,
-    status: source.status,
-    connectors,
-    action_count: actions,
-    verified_action_count: verified,
-    mutation_dispatch_count: dispatched,
-    completed_batch_replay: replay,
-    provider_readback_status: source.provider_readback_status,
-    provider_write_claimed: writeClaimed,
-    safe_summary: safeSummary,
-    ...(hasActionReference ? { action_reference: source.action_reference } : {}),
-  }
+  return source
 }
 
 function publicPortalResult(value: unknown, companyId: string, conversationId: string) {
@@ -330,12 +297,7 @@ function publicPortalResult(value: unknown, companyId: string, conversationId: s
     else return undefined
   }
   const receipt = publicTerminalReceipt(source.receipt, companyId, conversationId)
-  const coherent = source.status === "completed" ? ["not_applicable", "read_verified", "executed_verified", "already_completed"].includes(String(receipt?.status))
-    : source.status === "partial" ? receipt?.status === "partial"
-      : source.status === "failed" ? receipt?.status === "failed_before_dispatch" || receipt?.status === "failed"
-        : source.status === "cancelled" ? receipt?.status === "failed_before_dispatch"
-          : receipt?.status === "unknown_outcome_reconciliation_required"
-  return receipt && coherent ? { schema: source.schema, ...identity, status: source.status, answer: source.answer, blocks, artifacts, receipt } : undefined
+  return receipt ? { schema: source.schema, ...identity, status: source.status, answer: source.answer, blocks, artifacts, receipt } : undefined
 }
 
 function publicProviderVerification(value: unknown) {
@@ -560,8 +522,9 @@ function projectNativeEvent(eventName: string, value: unknown, expectedCompanyId
   if (eventName === "error") return { event: "error", data: { message: "Company Brain could not finish that request." } }
   if (eventName === "done") {
     const identity = publicEventIdentity(source, expectedCompanyId, expectedConversationId)
-    if (identity && exactObjectKeys(source, ["company_id", "conversation_id", "workflow_id", "server_sequence", "event_id"])) return { event: "done", data: identity }
-    return exactObjectKeys(source, []) ? { event: "done", data: {} } : null
+    return identity && exactObjectKeys(source, ["company_id", "conversation_id", "workflow_id", "server_sequence", "event_id"])
+      ? { event: "done", data: identity }
+      : null
   }
   return null
 }
@@ -581,7 +544,7 @@ function admitProjectedNativeEvent(state: NativeStreamAdmissionState, projected:
   if (state.done) return false
   const terminalEvent = ["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(projected.event)
   if (projected.event === "done") {
-    if (state.terminal ? !sameEventIdentity(projected.data, state.terminal) : Object.keys(projected.data).length !== 0) return false
+    if (!state.terminal || !sameEventIdentity(projected.data, state.terminal)) return false
     state.done = true
     return true
   }

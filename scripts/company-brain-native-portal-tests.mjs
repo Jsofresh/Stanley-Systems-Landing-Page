@@ -45,10 +45,10 @@ test("terminal receipt retains the complete public contract including batch refe
   assert.match(route, /company_brain\.portal_result\.v1/)
   assert.match(route, /company_brain\.public_turn_receipt\.v1/)
   for (const field of ["source", "provider_write_claimed", "safe_summary", "action_reference"]) {
-    assert.match(route, new RegExp(`${field}:`))
+    assert.match(route, new RegExp(`\\"${field}\\"`))
     assert.match(live, new RegExp(`${field}\\??:`))
   }
-  assert.match(route, /verified === actions/)
+  assert.match(route, /return source/)
   assert.doesNotMatch(route, /object: \"hermes\.portal\.completion\"/)
   assert.doesNotMatch(route, /provider_verification: publicProviderVerification/)
   assert.doesNotMatch(route, /work_result: publicWorkResult/)
