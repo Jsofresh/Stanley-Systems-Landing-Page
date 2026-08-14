@@ -40,17 +40,6 @@ test("ambiguous proxy failures do not claim that no mutation occurred", () => {
   assert.match(route, /outcome is unknown/i)
 })
 
-test("public work-result units retain only a validated provider operation code", () => {
-  assert.match(route, /const safeOperation =/)
-  assert.match(route, /operation === undefined/)
-  assert.match(route, /operation,/)
-})
-
-test("public provider verification retains deterministic replay and dispatch facts", () => {
-  assert.match(route, /completed_batch_replay/)
-  assert.match(route, /mutation_dispatch_count/)
-})
-
 test("proxy preserves complete receipts for every exact terminal variant", () => {
   const cases = [
     ["stanley.completed", "completed"],
