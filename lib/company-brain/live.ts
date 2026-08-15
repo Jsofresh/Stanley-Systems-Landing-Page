@@ -107,6 +107,21 @@ export type NativeCompletion = BrainChatResponse & {
   receipt: NativeTerminalReceipt
 }
 
+export type NativePendingApproval = BrainChatResponse & {
+  schema: "company_brain.portal_approval.v1"
+  company_id: string
+  conversation_id: string
+  workflow_id: string
+  server_sequence: 3
+  event_id: string
+  phase: "approval_required"
+  action_count: number
+  connectors: string[]
+  choices: ["Approve", "Cancel"]
+}
+
+export type NativeStreamResult = NativeCompletion | NativePendingApproval
+
 export type NativeTerminalReceipt = {
   schema: "company_brain.public_turn_receipt.v1"
   binding: { company_id: string; conversation_id: string }
@@ -126,7 +141,7 @@ export type NativeTerminalReceipt = {
 export async function streamCompanyBrainMessage(
   input: SendCompanyBrainMessageInput,
   onEvent?: (event: NativeStreamEvent) => void,
-): Promise<NativeCompletion> {
+): Promise<NativeStreamResult> {
   const controller = new AbortController()
   const timeout = window.setTimeout(() => controller.abort(), 900000)
   let response: Response
@@ -154,7 +169,7 @@ export async function streamCompanyBrainMessage(
   const reader = response.body.getReader()
   const decoder = new TextDecoder()
   let buffer = ""
-  let completion: NativeCompletion | null = null
+  let completion: NativeStreamResult | null = null
   let terminalIdentity: Pick<NativeCompletion, "company_id" | "conversation_id" | "workflow_id" | "server_sequence" | "event_id"> | null = null
   let sawDone = false
   const consume = (chunk: string) => {
@@ -176,6 +191,21 @@ export async function streamCompanyBrainMessage(
         continue
       }
       if (sawDone) throw new Error("Company Brain returned an event after its completion marker.")
+      if (eventName === "approval.request") {
+        const keys = ["schema", "company_id", "conversation_id", "workflow_id", "server_sequence", "event_id", "phase", "answer", "action_count", "connectors", "choices"]
+        if (completion || Object.keys(data).length !== keys.length || Object.keys(data).some((key) => !keys.includes(key))
+          || data.schema !== "company_brain.portal_approval.v1" || data.company_id !== input.companyId
+          || data.conversation_id !== input.conversationId || data.workflow_id !== input.conversationId
+          || data.server_sequence !== 3 || typeof data.event_id !== "string" || data.phase !== "approval_required"
+          || typeof data.answer !== "string" || !data.answer.trim()
+          || typeof data.action_count !== "number" || !Number.isSafeInteger(data.action_count) || data.action_count < 1 || data.action_count > 8
+          || !Array.isArray(data.connectors) || data.connectors.length < 1 || data.connectors.some((connector) => typeof connector !== "string")
+          || !Array.isArray(data.choices) || data.choices.length !== 2 || data.choices[0] !== "Approve" || data.choices[1] !== "Cancel") {
+          throw new Error("Company Brain returned a mismatched approval event.")
+        }
+        completion = data as unknown as NativePendingApproval
+        terminalIdentity = completion
+      }
       if (["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(eventName)) {
         if (completion || data.company_id !== input.companyId || data.conversation_id !== input.conversationId
           || data.workflow_id !== input.conversationId || data.server_sequence !== 3 || typeof data.event_id !== "string") {

@@ -300,12 +300,11 @@ function publicPortalResult(value: unknown, companyId: string, conversationId: s
   return receipt ? { schema: source.schema, ...identity, status: source.status, answer: source.answer, blocks, artifacts, receipt } : undefined
 }
 
-function publicApprovalRequest(value: unknown) {
+function publicApprovalRequest(value: unknown, companyId: string, conversationId: string) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
   const source = value as Record<string, unknown>
-  const allowed = new Set(["schema", "state", "approval_ref", "action_count", "connectors", "choices"])
-  const keys = Object.keys(source)
-  if (keys.length !== allowed.size || keys.some((key) => !allowed.has(key))) return undefined
+  const identity = publicEventIdentity(source, companyId, conversationId)
+  const keys = ["schema", "company_id", "conversation_id", "workflow_id", "server_sequence", "event_id", "phase", "answer", "blocks", "action_reference", "action_count", "connectors", "actions", "approval_summary", "choices"]
   const actionCount = typeof source.action_count === "number"
     && Number.isSafeInteger(source.action_count)
     && source.action_count >= 1
@@ -316,28 +315,50 @@ function publicApprovalRequest(value: unknown) {
     ? source.connectors.filter((item): item is string => typeof item === "string")
     : []
   const choices = Array.isArray(source.choices) ? source.choices : []
+  const actions = Array.isArray(source.actions) ? source.actions : []
+  const actionConnectors = actions.map((action) => action && typeof action === "object" && !Array.isArray(action)
+    && typeof (action as Record<string, unknown>).connector === "string"
+    ? String((action as Record<string, unknown>).connector)
+    : "")
+  const projectedConnectors = [...new Set(actionConnectors)]
+  const connectorsMatchActions = connectors.length === actionConnectors.length
+    && connectors.every((connector, index) => connector === actionConnectors[index])
+  const connectorsMatchCollapsedSingleProvider = projectedConnectors.length === 1
+    && connectors.length === 1
+    && connectors[0] === projectedConnectors[0]
+  const approvalSummary = source.approval_summary && typeof source.approval_summary === "object" && !Array.isArray(source.approval_summary)
   if (
-    source.schema !== "company_brain.approval_request.v1"
-    || source.state !== "pending_approval"
-    || typeof source.approval_ref !== "string"
-    || !/^approval_[0-9a-f]{24}$/.test(source.approval_ref)
+    !exactObjectKeys(source, keys)
+    || !identity
+    || source.schema !== "company_brain.portal_approval.v1"
+    || source.phase !== "approval_required"
+    || typeof source.answer !== "string"
+    || !source.answer.trim()
+    || source.answer !== publicStreamText(source.answer)
+    || !Array.isArray(source.blocks)
+    || source.blocks.length !== 0
+    || typeof source.action_reference !== "string"
+    || !/^actref_[A-Za-z0-9_-]{32,128}$/.test(source.action_reference)
     || actionCount === undefined
     || connectors.length < 1
     || connectors.length > 3
     || connectors.length !== (source.connectors as unknown[]).length
-    || new Set(connectors).size !== connectors.length
     || connectors.some((connector) => !/^[a-z][a-z0-9_]{0,31}$/.test(connector))
-    || connectors.some((connector, index) => index > 0 && connectors[index - 1].localeCompare(connector) >= 0)
+    || actions.length !== actionCount
+    || actionConnectors.some((connector) => !/^[a-z][a-z0-9_]{0,31}$/.test(connector))
+    || (!connectorsMatchActions && !connectorsMatchCollapsedSingleProvider)
+    || !approvalSummary
     || choices.length !== 2
     || choices[0] !== "Approve"
     || choices[1] !== "Cancel"
   ) return undefined
   return {
     schema: source.schema,
-    state: source.state,
-    approval_ref: source.approval_ref,
+    ...identity,
+    phase: source.phase,
+    answer: source.answer,
     action_count: actionCount,
-    connectors,
+    connectors: projectedConnectors,
     choices: ["Approve", "Cancel"],
   }
 }
@@ -363,7 +384,7 @@ function projectNativeEvent(eventName: string, value: unknown, expectedCompanyId
     }
   }
   if (eventName === "approval.request") {
-    const request = publicApprovalRequest(source)
+    const request = publicApprovalRequest(source, expectedCompanyId, expectedConversationId)
     return request ? { event: "approval.request", data: request } : null
   }
   if (["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(eventName)) {
@@ -400,7 +421,8 @@ function sameEventIdentity(left: Record<string, unknown>, right: PublicEventIden
 
 function admitProjectedNativeEvent(state: NativeStreamAdmissionState, projected: ProjectedNativeEvent) {
   if (state.done) return false
-  const terminalEvent = ["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(projected.event)
+  const terminalEvent = projected.event === "approval.request"
+    || ["stanley.completed", "stanley.failed", "stanley.cancelled", "stanley.unknown"].includes(projected.event)
   if (projected.event === "done") {
     if (!state.terminal || !sameEventIdentity(projected.data, state.terminal)) return false
     state.done = true

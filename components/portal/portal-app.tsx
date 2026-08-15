@@ -34,7 +34,7 @@ import {
   cancelCompanyBrainSession,
   uploadCompanyBrainFiles,
   type BrainSummary,
-  type NativeCompletion,
+  type NativeStreamResult,
 } from "@/lib/company-brain/live"
 import type {
   Artifact,
@@ -134,7 +134,7 @@ function nativeArtifactBlock(value: unknown, index: number): Extract<CompanyBrai
   }
 }
 
-function nativeCompletionBlocks(response: NativeCompletion): CompanyBrainBlock[] {
+function nativeCompletionBlocks(response: NativeStreamResult): CompanyBrainBlock[] {
   const blocks: CompanyBrainBlock[] = []
   const seenArtifactIds = new Set<string>()
   const rawBlocks = Array.isArray(response.blocks) ? response.blocks : []
