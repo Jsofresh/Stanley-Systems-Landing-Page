@@ -11,6 +11,8 @@ export type PortalTestUser = {
 
 export const PORTAL_TEST_COMPANY_ID = "bayview_test"
 export const PORTAL_TEST_COMPANY_NAME = "Bayview Service Co."
+export const STANLEY_TEST_OFFICE_COMPANY_ID = "stanley_test_office"
+export const STANLEY_TEST_OFFICE_COMPANY_NAME = "Stanley Systems Test Office"
 
 export const PORTAL_TEST_USERS: PortalTestUser[] = [
   {
@@ -62,6 +64,16 @@ export const PORTAL_TEST_USERS: PortalTestUser[] = [
     companyId: PORTAL_TEST_COMPANY_ID,
     companyName: PORTAL_TEST_COMPANY_NAME,
     sessionPrefix: "outsider",
+  },
+  {
+    actorId: "alex-owner",
+    name: "Alex Owner",
+    email: "alex.owner@stanley.test",
+    role: "owner",
+    roleLabel: "Owner",
+    companyId: STANLEY_TEST_OFFICE_COMPANY_ID,
+    companyName: STANLEY_TEST_OFFICE_COMPANY_NAME,
+    sessionPrefix: "alex",
   },
 ]
 

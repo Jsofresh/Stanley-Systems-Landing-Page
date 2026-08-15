@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getPortalSession, portalSessionStoreDir } from "@/lib/portal/session"
+import {
+  PORTAL_TEST_COMPANY_ID,
+  STANLEY_TEST_OFFICE_COMPANY_ID,
+} from "@/lib/portal/test-users"
 import { grantPortalArtifactAccess, portalArtifactAccessAllowed } from "@/lib/portal/artifact-grants"
 
 const ALLOWED_PATHS = new Set([
@@ -102,8 +106,12 @@ function resolvedPath(parts?: string[]) {
   return (parts ?? []).join("/").replace(/^\/+/, "")
 }
 
-function upstreamBaseUrl() {
-  const raw = process.env.COMPANY_BRAIN_UPSTREAM_URL
+function upstreamBaseUrl(companyId: string) {
+  const raw = companyId === PORTAL_TEST_COMPANY_ID
+    ? process.env.COMPANY_BRAIN_UPSTREAM_URL
+    : companyId === STANLEY_TEST_OFFICE_COMPANY_ID
+      ? process.env.COMPANY_BRAIN_STANLEY_TEST_OFFICE_UPSTREAM_URL
+      : undefined
   if (!raw) return null
   try {
     const url = new URL(raw)
@@ -535,7 +543,7 @@ async function forward(request: NextRequest, context: RouteContext) {
       { status: 403, headers: securityHeaders() },
     )
   }
-  const baseUrl = upstreamBaseUrl()
+  const baseUrl = upstreamBaseUrl(session.companyId)
   const proxyKey = process.env.COMPANY_BRAIN_PROXY_KEY
   if (!baseUrl || !proxyKey) return jsonError("company_brain_proxy_not_configured", 503)
 

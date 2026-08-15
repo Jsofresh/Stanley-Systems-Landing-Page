@@ -13,6 +13,13 @@ test("proxy upstream is protected configuration rather than a hardcoded deployme
   assert.match(route, /COMPANY_BRAIN_UPSTREAM_URL/)
 })
 
+test("proxy selects only the fixed upstream bound to the signed session company", () => {
+  assert.match(route, /companyId === PORTAL_TEST_COMPANY_ID[\s\S]*COMPANY_BRAIN_UPSTREAM_URL/)
+  assert.match(route, /companyId === STANLEY_TEST_OFFICE_COMPANY_ID[\s\S]*COMPANY_BRAIN_STANLEY_TEST_OFFICE_UPSTREAM_URL/)
+  assert.match(route, /upstreamBaseUrl\(session\.companyId\)/)
+  assert.doesNotMatch(route, /upstreamBaseUrl\((?:incoming|request|body)\./)
+})
+
 test("clients cannot attest or reconstruct provider actions outside Hermes conversation turns", () => {
   assert.equal(route.includes('"actions/confirm"'), false)
   assert.equal(route.includes("brain/actions/confirm"), false)
@@ -73,7 +80,10 @@ test("degraded control responses fail HTTP readiness instead of reporting health
 test("signed outsider brain requests fail closed before upstream access", () => {
   const guardNeedle = 'session.role === "outsider" && path.startsWith("brain/")'
   const guardIndex = route.indexOf(guardNeedle)
-  const upstreamConfigIndex = route.indexOf("const baseUrl = upstreamBaseUrl()", guardIndex)
+  const upstreamConfigIndex = route.indexOf(
+    "const baseUrl = upstreamBaseUrl(session.companyId)",
+    guardIndex,
+  )
   const fetchIndex = route.indexOf("response = await fetch(target", guardIndex)
   assert.ok(guardIndex >= 0, "outsider brain guard must exist")
   assert.ok(upstreamConfigIndex > guardIndex, "guard must precede upstream configuration")

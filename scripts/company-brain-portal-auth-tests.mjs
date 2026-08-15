@@ -29,6 +29,7 @@ import {
   decodePortalSessionToken,
   encodePortalSessionToken,
 } from "../lib/portal/session-token.ts"
+import { findPortalUserByEmail } from "../lib/portal/test-users.ts"
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 
@@ -68,6 +69,19 @@ test("same actor receives a cryptographically distinct login session each time",
   assert.match(first.sessionKey, /^ui:bayview_test:sarah:/)
   assert.equal(first.actorId, user.actorId)
   assert.equal(first.companyId, user.companyId)
+})
+
+test("second company owner login binds the signed session to its fixed company", () => {
+  const owner = findPortalUserByEmail(" ALEX.OWNER@STANLEY.TEST ")
+  assert.ok(owner)
+  assert.equal(owner.actorId, "alex-owner")
+  assert.equal(owner.role, "owner")
+  assert.equal(owner.companyId, "stanley_test_office")
+  assert.equal(owner.companyName, "Stanley Systems Test Office")
+  const session = createPortalSessionCore(owner, new Date("2026-08-15T00:00:00Z"))
+  assert.equal(session.companyId, owner.companyId)
+  assert.equal(session.companyName, owner.companyName)
+  assert.match(session.sessionKey, /^ui:stanley_test_office:alex:/)
 })
 
 test("file-backed session registry persists activation without storing raw session keys", () => {
