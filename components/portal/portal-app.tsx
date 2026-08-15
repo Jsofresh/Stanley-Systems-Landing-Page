@@ -442,15 +442,6 @@ export function PortalApp() {
           const state = typeof event.data.state === "string" ? event.data.state : ""
           setActivityLabel(state.includes("completed") ? "Stanley is verifying the result…" : "Stanley is checking the connected records…")
         }
-        if (event.event === "approval.request") {
-          const choices = Array.isArray(event.data.choices)
-            ? event.data.choices.filter((choice): choice is string => typeof choice === "string").slice(0, 8)
-            : []
-          if (currentConversationIdRef.current === originConversationId && choices.length) {
-            setApprovalChoices(choices)
-            setApprovalConversationId(originConversationId)
-          }
-        }
         if (event.event === "assistant.delta" && typeof event.data.delta === "string") {
           streamedText += event.data.delta
           updateStreamingMessage(streamedText)
@@ -469,6 +460,10 @@ export function PortalApp() {
       ].slice(0, 8))
       if (currentConversationIdRef.current === originConversationId) {
         setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), assistantMessage])
+        if (response.schema === "company_brain.portal_approval.v1") {
+          setApprovalChoices(response.choices)
+          setApprovalConversationId(originConversationId)
+        }
       }
     } catch (error) {
       const errorMessage: CompanyBrainMessage = {
@@ -490,6 +485,8 @@ export function PortalApp() {
         ...current.filter((item) => item.id !== originConversationId),
       ].slice(0, 8))
       if (currentConversationIdRef.current === originConversationId) {
+        setApprovalChoices([])
+        setApprovalConversationId(null)
         setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), errorMessage])
       }
     } finally {
