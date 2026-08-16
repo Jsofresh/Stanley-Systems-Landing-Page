@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 import {
+  getCompanyBrainPendingApproval,
   getCompanyBrainSessionMessages,
   getCompanyBrainSessions,
   getCompanyBrainSummary,
@@ -295,6 +296,7 @@ export function PortalApp() {
 
   useEffect(() => {
     if (!session) return
+    const companyId = session.companyId
     let cancelled = false
     async function loadRemoteHistory() {
       try {
@@ -312,7 +314,10 @@ export function PortalApp() {
           currentConversationIdRef.current = activeId
           setCurrentConversationId(activeId)
           setRecentConversations(summaries.slice(0, 8))
-          const history = await getCompanyBrainSessionMessages(activeId)
+          const [history, approval] = await Promise.all([
+            getCompanyBrainSessionMessages(activeId),
+            getCompanyBrainPendingApproval(companyId, activeId),
+          ])
           if (cancelled) return
           setMessages(history.map((message) => ({
             id: message.id,
@@ -320,9 +325,11 @@ export function PortalApp() {
             createdAt: message.timestamp ? new Date(message.timestamp * 1000).toISOString() : new Date().toISOString(),
             blocks: [{ type: "text", id: `${message.id}-text`, text: message.content }],
           })))
+          setPendingApproval(approval)
         } else {
           setRecentConversations([])
           setMessages([])
+          setPendingApproval(null)
         }
       } catch {
         // Do not restore a stale browser-owned transcript or sidebar index.
@@ -543,7 +550,11 @@ export function PortalApp() {
         currentConversationIdRef.current = conversation.id
         setCurrentConversationId(conversation.id)
         setMessages([])
-        void getCompanyBrainSessionMessages(conversation.id).then((history) => {
+        setPendingApproval(null)
+        void Promise.all([
+          getCompanyBrainSessionMessages(conversation.id),
+          getCompanyBrainPendingApproval(session?.companyId ?? "", conversation.id),
+        ]).then(([history, approval]) => {
           if (currentConversationIdRef.current !== conversation.id) return
           setMessages(history.map((message) => ({
             id: message.id,
@@ -551,6 +562,7 @@ export function PortalApp() {
             createdAt: message.timestamp ? new Date(message.timestamp * 1000).toISOString() : new Date().toISOString(),
             blocks: [{ type: "text" as const, id: `${message.id}-text`, text: message.content }],
           })))
+          setPendingApproval(approval)
         }).catch(() => {
           setStatusError("That conversation could not be loaded right now.")
         })
@@ -571,6 +583,7 @@ export function PortalApp() {
         currentConversationIdRef.current = nextConversationId
         setCurrentConversationId(nextConversationId)
         setMessages([])
+        setPendingApproval(null)
         setInput("")
         setAttachments([])
         setSidebarOpen(false)

@@ -135,6 +135,20 @@ test("native approval projection preserves only an exact deterministic binding",
   assert.match(live, /Company Brain returned a mismatched approval event/)
 })
 
+test("pending approval reload reuses the sealed server projection", () => {
+  assert.match(route, /\/messages\|\\\/chat\\\/stream\|\\\/cancel\|\\\/approval/)
+  assert.match(route, /path\.endsWith\("\/approval"\) && response\.ok/)
+  assert.match(route, /publicApprovalRequest\(parsed, session\.companyId, conversationId\)/)
+  assert.match(route, /if \(!approval\) return jsonError\("invalid_upstream_response", 502\)/)
+  assert.match(live, /getCompanyBrainPendingApproval/)
+  assert.match(live, /if \(response\.status === 404\) return null/)
+  assert.match(live, /isCompanyBrainApprovalEvent\(data as Record<string, unknown>, companyId, conversationId\)/)
+  assert.match(portal, /getCompanyBrainPendingApproval\(companyId, activeId\)/)
+  assert.match(portal, /getCompanyBrainPendingApproval\(session\?\.companyId \?\? "", conversation\.id\)/)
+  assert.match(portal, /setPendingApproval\(approval\)/)
+  assert.match(portal, /setPendingApproval\(null\)/)
+})
+
 test("authenticated proxy binds actor identity and authorizes native artifacts", () => {
   assert.match(route, /x-stanley-actor-name/) 
   assert.match(route, /x-stanley-actor-email/)

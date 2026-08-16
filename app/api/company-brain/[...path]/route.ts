@@ -42,7 +42,7 @@ const ARTIFACT_EXTENSIONS: Record<string, string> = {
 function isAllowedPath(path: string) {
   return ALLOWED_PATHS.has(path)
     || /^artifacts\/artifact_[A-Za-z0-9_-]+$/.test(path)
-    || /^brain\/sessions(?:\/[A-Za-z0-9_.:-]+(?:\/messages|\/chat\/stream|\/cancel))?$/.test(path)
+    || /^brain\/sessions(?:\/[A-Za-z0-9_.:-]+(?:\/messages|\/chat\/stream|\/cancel|\/approval))?$/.test(path)
 }
 
 type RouteContext = {
@@ -551,7 +551,7 @@ async function forward(request: NextRequest, context: RouteContext) {
   const upstreamPath = path.startsWith("artifacts/") ? `brain/${path}` : path
   const target = new URL(upstreamPath, baseUrl)
   const artifactRequest = path.startsWith("artifacts/")
-  const nativeSessionRequest = /^brain\/sessions(?:\/[^/]+(?:\/messages|\/chat\/stream|\/cancel))?$/.test(path)
+  const nativeSessionRequest = /^brain\/sessions(?:\/[^/]+(?:\/messages|\/chat\/stream|\/cancel|\/approval))?$/.test(path)
   const nativeStreamRequest = /^brain\/sessions\/[^/]+\/chat\/stream$/.test(path)
   const headers: Record<string, string> = {
     accept: artifactRequest ? "application/octet-stream" : nativeStreamRequest ? "text/event-stream" : "application/json",
@@ -705,8 +705,26 @@ async function forward(request: NextRequest, context: RouteContext) {
 
   const responseLength = Number(response.headers.get("content-length") ?? "0")
   if (Number.isFinite(responseLength) && responseLength > MAX_JSON_BYTES) return jsonError("upstream_response_too_large", 502)
-  const responseBody = await response.text()
+  let responseBody = await response.text()
   if (Buffer.byteLength(responseBody, "utf8") > MAX_JSON_BYTES) return jsonError("upstream_response_too_large", 502)
+  if (path.endsWith("/approval") && response.ok) {
+    const pathConversation = path.split("/")[2] ?? ""
+    let conversationId = ""
+    try {
+      conversationId = safeConversationId(decodeURIComponent(pathConversation))
+    } catch {
+      return jsonError("invalid_conversation", 400)
+    }
+    let parsed: unknown
+    try {
+      parsed = JSON.parse(responseBody)
+    } catch {
+      return jsonError("invalid_upstream_response", 502)
+    }
+    const approval = conversationId ? publicApprovalRequest(parsed, session.companyId, conversationId) : undefined
+    if (!approval) return jsonError("invalid_upstream_response", 502)
+    responseBody = JSON.stringify(approval)
+  }
   if (path === "brain/chat" && response.ok) {
     let parsed: unknown
     try {

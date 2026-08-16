@@ -91,6 +91,26 @@ export async function getCompanyBrainSessionMessages(conversationId: string): Pr
   return Array.isArray(data.data) ? data.data : []
 }
 
+export async function getCompanyBrainPendingApproval(
+  companyId: string,
+  conversationId: string,
+): Promise<NativePendingApproval | null> {
+  const response = await fetch(`${BRAIN_BASE_URL}/brain/sessions/${encodeURIComponent(conversationId)}/approval`, {
+    cache: "no-store",
+  })
+  if (response.status === 404) return null
+  if (!response.ok) {
+    const body = await response.json().catch(() => null) as { errorCode?: string; error?: string } | null
+    throw new Error(userSafeErrorMessage(body?.errorCode, body?.error))
+  }
+  const data = await response.json().catch(() => null)
+  if (!data || typeof data !== "object" || Array.isArray(data)
+    || !isCompanyBrainApprovalEvent(data as Record<string, unknown>, companyId, conversationId)) {
+    throw new Error("Company Brain returned a mismatched approval event.")
+  }
+  return data as NativePendingApproval
+}
+
 export async function cancelCompanyBrainSession(conversationId: string) {
   return fetchJson<{ status: string }>(`/brain/sessions/${encodeURIComponent(conversationId)}/cancel`, {
     method: "POST",
