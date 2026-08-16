@@ -1,5 +1,6 @@
 import {
   companyBrainStreamRequestBody,
+  isCompanyBrainApprovalEvent,
   type CompanyBrainAttachment,
   type SendCompanyBrainMessageInput,
 } from "@/lib/company-brain/types"
@@ -190,15 +191,7 @@ export async function streamCompanyBrainMessage(
       }
       if (sawDone) throw new Error("Company Brain returned an event after its completion marker.")
       if (eventName === "approval.request") {
-        const keys = ["schema", "company_id", "conversation_id", "workflow_id", "server_sequence", "event_id", "phase", "answer", "action_count", "connectors", "choices"]
-        if (completion || Object.keys(data).length !== keys.length || Object.keys(data).some((key) => !keys.includes(key))
-          || data.schema !== "company_brain.portal_approval.v1" || data.company_id !== input.companyId
-          || data.conversation_id !== input.conversationId || data.workflow_id !== input.conversationId
-          || data.server_sequence !== 3 || typeof data.event_id !== "string" || data.phase !== "approval_required"
-          || typeof data.answer !== "string" || !data.answer.trim()
-          || typeof data.action_count !== "number" || !Number.isSafeInteger(data.action_count) || data.action_count < 1 || data.action_count > 8
-          || !Array.isArray(data.connectors) || data.connectors.length < 1 || data.connectors.some((connector) => typeof connector !== "string")
-          || !Array.isArray(data.choices) || data.choices.length !== 2 || data.choices[0] !== "Approve" || data.choices[1] !== "Cancel") {
+        if (completion || !isCompanyBrainApprovalEvent(data, input.companyId, input.conversationId)) {
           throw new Error("Company Brain returned a mismatched approval event.")
         }
         completion = data as unknown as NativePendingApproval

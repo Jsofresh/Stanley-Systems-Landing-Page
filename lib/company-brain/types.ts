@@ -140,6 +140,24 @@ export function companyBrainStreamRequestBody(input: SendCompanyBrainMessageInpu
   }
 }
 
+export function isCompanyBrainApprovalEvent(
+  data: Record<string, unknown>,
+  companyId: string,
+  conversationId: string,
+) {
+  const keys = ["schema", "company_id", "conversation_id", "workflow_id", "server_sequence", "event_id", "phase", "answer", "action_reference", "action_count", "connectors", "choices"]
+  return Object.keys(data).length === keys.length
+    && Object.keys(data).every((key) => keys.includes(key))
+    && data.schema === "company_brain.portal_approval.v1" && data.company_id === companyId
+    && data.conversation_id === conversationId && data.workflow_id === conversationId
+    && data.server_sequence === 3 && typeof data.event_id === "string" && data.phase === "approval_required"
+    && typeof data.answer === "string" && Boolean(data.answer.trim())
+    && typeof data.action_reference === "string" && Boolean(data.action_reference.trim())
+    && typeof data.action_count === "number" && Number.isSafeInteger(data.action_count) && data.action_count >= 1 && data.action_count <= 8
+    && Array.isArray(data.connectors) && data.connectors.length >= 1 && data.connectors.every((connector) => typeof connector === "string")
+    && Array.isArray(data.choices) && data.choices.length === 2 && data.choices[0] === "Approve" && data.choices[1] === "Cancel"
+}
+
 export type SendCompanyBrainMessageResponse = {
   conversationId: string
   message: CompanyBrainMessage

@@ -2,7 +2,7 @@ import test from "node:test"
 import assert from "node:assert/strict"
 import fs from "node:fs"
 import path from "node:path"
-import { companyBrainStreamRequestBody } from "../lib/company-brain/types.ts"
+import { companyBrainStreamRequestBody, isCompanyBrainApprovalEvent } from "../lib/company-brain/types.ts"
 
 const root = process.cwd()
 const portal = fs.readFileSync(path.join(root, "components/portal/portal-app.tsx"), "utf8")
@@ -40,6 +40,25 @@ test("native stream accepts every versioned terminal result and requires its don
   assert.match(route, /sameEventIdentity\(projected\.data, state\.terminal\)/)
   assert.match(route, /projected\.event === "approval\.request"/)
   assert.match(live, /completion = data as unknown as NativePendingApproval/)
+  const approvalEvent = {
+    schema: "company_brain.portal_approval.v1",
+    company_id: "company-test",
+    conversation_id: "conversation-test",
+    workflow_id: "conversation-test",
+    server_sequence: 3,
+    event_id: "event-test",
+    phase: "approval_required",
+    answer: "Approve this action?",
+    action_reference: `actref_${"a".repeat(32)}`,
+    action_count: 1,
+    connectors: ["jobber"],
+    choices: ["Approve", "Cancel"],
+  }
+  assert.equal(isCompanyBrainApprovalEvent(approvalEvent, "company-test", "conversation-test"), true)
+  const missingReference = { ...approvalEvent }
+  delete missingReference.action_reference
+  assert.equal(isCompanyBrainApprovalEvent(missingReference, "company-test", "conversation-test"), false)
+  assert.equal(isCompanyBrainApprovalEvent({ ...approvalEvent, action_reference: " " }, "company-test", "conversation-test"), false)
   const eventCallback = portal.match(/}, \(event\) => \{([\s\S]*?)\n      \}\)/)
   assert.ok(eventCallback)
   assert.doesNotMatch(eventCallback[1], /setPendingApproval/)
