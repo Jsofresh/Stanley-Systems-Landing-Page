@@ -299,6 +299,7 @@ export function PortalApp() {
     const companyId = session.companyId
     let cancelled = false
     async function loadRemoteHistory() {
+      let activeId: string | null = null
       try {
         const remote = await getCompanyBrainSessions()
         if (cancelled) return
@@ -310,7 +311,7 @@ export function PortalApp() {
           preview: conversation.preview,
         }))
         if (summaries.length) {
-          const activeId = summaries[0].id
+          activeId = summaries[0].id
           currentConversationIdRef.current = activeId
           setCurrentConversationId(activeId)
           setRecentConversations(summaries.slice(0, 8))
@@ -334,7 +335,7 @@ export function PortalApp() {
       } catch {
         // Do not restore a stale browser-owned transcript or sidebar index.
         // Hermes history is the only authoritative reload source.
-        if (!cancelled) {
+        if (!cancelled && (!activeId || currentConversationIdRef.current === activeId)) {
           setRecentConversations([])
           setMessages([])
           setPendingApproval(null)

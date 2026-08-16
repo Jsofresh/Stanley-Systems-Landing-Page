@@ -159,6 +159,10 @@ test("approval reload is GET-only and stale hydration cannot overwrite a switche
   assert.ok(hydration)
   assert.match(hydration[0], /currentConversationIdRef\.current !== activeId/)
   assert.ok(hydration[0].indexOf("currentConversationIdRef.current !== activeId") < hydration[0].indexOf("setMessages"))
+
+  const hydrationError = portal.match(/catch \{[\s\S]*?currentConversationIdRef\.current === activeId[\s\S]*?setPendingApproval\(null\)/)
+  assert.ok(hydrationError)
+  assert.match(hydrationError[0], /!activeId \|\| currentConversationIdRef\.current === activeId/)
 })
 
 test("authenticated proxy binds actor identity and authorizes native artifacts", () => {
