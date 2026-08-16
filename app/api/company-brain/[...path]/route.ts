@@ -644,6 +644,10 @@ async function forward(request: NextRequest, context: RouteContext) {
             conversation_id: conversationId,
             message,
             attachments: sanitizedAttachments(incoming.attachments),
+            approval_decision: incoming.approval_decision,
+            action_reference: incoming.action_reference,
+            last_server_sequence: incoming.last_server_sequence,
+            last_event_id: incoming.last_event_id,
           })
         } else {
           if (!conversationId) return jsonError("invalid_conversation", 400)

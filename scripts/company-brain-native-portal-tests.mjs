@@ -51,7 +51,7 @@ test("native stream accepts every versioned terminal result and requires its don
 test("native stream forwards only the runtime request contract", () => {
   const streamForwarding = route.match(/else if \(path\.endsWith\("\/chat\/stream"\)\) \{([\s\S]*?)\n        \} else \{/)
   assert.ok(streamForwarding)
-  assert.match(streamForwarding[1], /body = JSON\.stringify\(\{\s*conversation_id: conversationId,\s*message,\s*attachments: sanitizedAttachments\(incoming\.attachments\),\s*\}\)/)
+  assert.match(streamForwarding[1], /body = JSON\.stringify\(\{\s*conversation_id: conversationId,\s*message,\s*attachments: sanitizedAttachments\(incoming\.attachments\),\s*approval_decision: incoming\.approval_decision,\s*action_reference: incoming\.action_reference,\s*last_server_sequence: incoming\.last_server_sequence,\s*last_event_id: incoming\.last_event_id,\s*\}\)/)
   assert.doesNotMatch(streamForwarding[1], /\btitle\s*:/)
 })
 
