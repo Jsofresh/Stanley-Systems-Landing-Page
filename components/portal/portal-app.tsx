@@ -34,10 +34,12 @@ import {
   cancelCompanyBrainSession,
   uploadCompanyBrainFiles,
   type BrainSummary,
+  type NativePendingApproval,
   type NativeStreamResult,
 } from "@/lib/company-brain/live"
 import type {
   Artifact,
+  CompanyBrainApprovalContinuation,
   CompanyBrainAttachment,
   CompanyBrainBlock,
   CompanyBrainMessage,
@@ -234,8 +236,7 @@ export function PortalApp() {
   const [summary, setSummary] = useState<BrainSummary | null>(null)
   const [statusError, setStatusError] = useState<string | null>(null)
   const [activityLabel, setActivityLabel] = useState("Stanley is working…")
-  const [approvalChoices, setApprovalChoices] = useState<string[]>([])
-  const [approvalConversationId, setApprovalConversationId] = useState<string | null>(null)
+  const [pendingApproval, setPendingApproval] = useState<NativePendingApproval | null>(null)
   const [currentConversationId, setCurrentConversationId] = useState(() => `conversation-${Date.now()}`)
   const [recentConversations, setRecentConversations] = useState<RecentConversation[]>([])
   const [historyReady, setHistoryReady] = useState(false)
@@ -375,7 +376,11 @@ export function PortalApp() {
     router.replace("/login")
   }
 
-  async function sendMessage(messageText = input, messageAttachments = attachments) {
+  async function sendMessage(
+    messageText = input,
+    messageAttachments = attachments,
+    approvalContinuation?: CompanyBrainApprovalContinuation,
+  ) {
     const rawMessage = messageText
     const hasText = rawMessage.trim().length > 0
     const hasUnreadyAttachment = messageAttachments.some((attachment) => attachment.status !== "ready" || attachment.extractionStatus !== "ready")
@@ -412,8 +417,7 @@ export function PortalApp() {
     ].slice(0, 8))
     setInput("")
     setAttachments([])
-    setApprovalChoices([])
-    setApprovalConversationId(null)
+    setPendingApproval(null)
     setIsSending(true)
 
     const streamingMessageId = `assistant-stream-${Date.now()}`
@@ -436,6 +440,7 @@ export function PortalApp() {
         conversationId: originConversationId,
         message: rawMessage,
         attachments: messageAttachments,
+        approvalContinuation,
       }, (event) => {
         if (event.event === "run.started") setActivityLabel("Stanley is working…")
         if (event.event === "tool.progress") {
@@ -461,8 +466,7 @@ export function PortalApp() {
       if (currentConversationIdRef.current === originConversationId) {
         setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), assistantMessage])
         if (response.schema === "company_brain.portal_approval.v1") {
-          setApprovalChoices(response.choices)
-          setApprovalConversationId(originConversationId)
+          setPendingApproval(response)
         }
       }
     } catch (error) {
@@ -485,8 +489,7 @@ export function PortalApp() {
         ...current.filter((item) => item.id !== originConversationId),
       ].slice(0, 8))
       if (currentConversationIdRef.current === originConversationId) {
-        setApprovalChoices([])
-        setApprovalConversationId(null)
+        setPendingApproval(null)
         setMessages((current) => [...current.filter((message) => message.id !== streamingMessageId), errorMessage])
       }
     } finally {
@@ -663,20 +666,21 @@ export function PortalApp() {
                   <EmptyState companyName={session.companyName} summary={summary} statusError={statusError} />
                 )}
               </div>
-              {approvalConversationId === currentConversationId && approvalChoices.length ? (
+              {pendingApproval?.conversation_id === currentConversationId && pendingApproval.choices.length ? (
                 <div className="mb-3 rounded-xl border border-[#d9eadf] bg-[#f5fbf7] p-3">
                   <p className="text-xs font-bold uppercase tracking-wide text-[#667085]">Stanley is waiting for your choice</p>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    {approvalChoices.map((choice) => (
+                    {pendingApproval.choices.map((choice) => (
                       <button
                         key={choice}
                         type="button"
                         className="rounded-full border border-[#cfe6d7] bg-white px-3 py-1.5 text-xs font-bold text-[#15803d] hover:bg-[#eef9f2]"
-                        onClick={() => {
-                          setApprovalChoices([])
-                          setApprovalConversationId(null)
-                          void sendMessage(choice, [])
-                        }}
+                        onClick={() => void sendMessage(choice, [], {
+                          decision: choice,
+                          actionReference: pendingApproval.action_reference,
+                          serverSequence: pendingApproval.server_sequence,
+                          eventId: pendingApproval.event_id,
+                        })}
                       >
                         {choice}
                       </button>

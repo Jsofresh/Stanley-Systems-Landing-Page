@@ -2,6 +2,7 @@ import test from "node:test"
 import assert from "node:assert/strict"
 import fs from "node:fs"
 import path from "node:path"
+import { companyBrainStreamRequestBody } from "../lib/company-brain/types.ts"
 
 const root = process.cwd()
 const portal = fs.readFileSync(path.join(root, "components/portal/portal-app.tsx"), "utf8")
@@ -41,9 +42,9 @@ test("native stream accepts every versioned terminal result and requires its don
   assert.match(live, /completion = data as unknown as NativePendingApproval/)
   const eventCallback = portal.match(/}, \(event\) => \{([\s\S]*?)\n      \}\)/)
   assert.ok(eventCallback)
-  assert.doesNotMatch(eventCallback[1], /setApprovalChoices|setApprovalConversationId/)
-  assert.match(portal, /setMessages\([\s\S]*?response\.schema === "company_brain\.portal_approval\.v1"[\s\S]*?setApprovalChoices\(response\.choices\)[\s\S]*?setApprovalConversationId\(originConversationId\)/)
-  assert.match(portal, /catch \(error\)[\s\S]*?setApprovalChoices\(\[\]\)[\s\S]*?setApprovalConversationId\(null\)/)
+  assert.doesNotMatch(eventCallback[1], /setPendingApproval/)
+  assert.match(portal, /setMessages\([\s\S]*?response\.schema === "company_brain\.portal_approval\.v1"[\s\S]*?setPendingApproval\(response\)/)
+  assert.match(portal, /catch \(error\)[\s\S]*?setPendingApproval\(null\)/)
   assert.doesNotMatch(live, /Company Brain could not finish that request\.\",\n    blocks:/)
   assert.doesNotMatch(route, /\\\\n/)
 })
@@ -53,6 +54,31 @@ test("native stream forwards only the runtime request contract", () => {
   assert.ok(streamForwarding)
   assert.match(streamForwarding[1], /body = JSON\.stringify\(\{\s*conversation_id: conversationId,\s*message,\s*attachments: sanitizedAttachments\(incoming\.attachments\),\s*approval_decision: incoming\.approval_decision,\s*action_reference: incoming\.action_reference,\s*last_server_sequence: incoming\.last_server_sequence,\s*last_event_id: incoming\.last_event_id,\s*\}\)/)
   assert.doesNotMatch(streamForwarding[1], /\btitle\s*:/)
+})
+
+test("approval button builds the sealed continuation accepted by the proxy contract", () => {
+  const request = companyBrainStreamRequestBody({
+    companyId: "company-test",
+    conversationId: "conversation-test",
+    message: "Approve",
+    attachments: [],
+    approvalContinuation: {
+      decision: "Approve",
+      actionReference: `actref_${"a".repeat(32)}`,
+      serverSequence: 3,
+      eventId: "event-test",
+    },
+  })
+  assert.deepEqual(request, {
+    conversation_id: "conversation-test",
+    message: "Approve",
+    attachments: [],
+    approval_decision: "Approve",
+    action_reference: `actref_${"a".repeat(32)}`,
+    last_server_sequence: 3,
+    last_event_id: "event-test",
+  })
+  assert.match(portal, /onClick=\{\(\) => void sendMessage\(choice, \[\], \{\s*decision: choice,\s*actionReference: pendingApproval\.action_reference,\s*serverSequence: pendingApproval\.server_sequence,\s*eventId: pendingApproval\.event_id,/)
 })
 
 test("terminal receipt retains the complete public contract including batch references", () => {
@@ -78,6 +104,7 @@ test("native approval projection preserves only an exact deterministic binding",
   assert.match(route, /actions\.length !== actionCount/)
   assert.match(route, /connectorsMatchActions/)
   assert.match(route, /connectorsMatchCollapsedSingleProvider/)
+  assert.match(route, /action_reference: source\.action_reference/)
   assert.match(route, /connectors: projectedConnectors/)
   assert.match(route, /!approvalSummary/)
   assert.match(route, /choices\[0\] !== "Approve"/)
@@ -85,7 +112,7 @@ test("native approval projection preserves only an exact deterministic binding",
   assert.match(route, /data: request/)
   const projected = route.match(/return \{\s*schema: source\.schema,[\s\S]*?choices: \["Approve", "Cancel"\],[\s\S]*?\n  \}/)
   assert.ok(projected)
-  assert.doesNotMatch(projected[0], /actions|approval_summary|action_reference/)
+  assert.doesNotMatch(projected[0], /actions|approval_summary/)
   assert.match(live, /Company Brain returned a mismatched approval event/)
 })
 

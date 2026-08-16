@@ -365,6 +365,7 @@ function publicApprovalRequest(value: unknown, companyId: string, conversationId
     ...identity,
     phase: source.phase,
     answer: source.answer,
+    action_reference: source.action_reference,
     action_count: actionCount,
     connectors: projectedConnectors,
     choices: ["Approve", "Cancel"],

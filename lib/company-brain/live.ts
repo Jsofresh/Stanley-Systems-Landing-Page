@@ -1,6 +1,7 @@
-import type {
-  CompanyBrainAttachment,
-  SendCompanyBrainMessageInput,
+import {
+  companyBrainStreamRequestBody,
+  type CompanyBrainAttachment,
+  type SendCompanyBrainMessageInput,
 } from "@/lib/company-brain/types"
 import {
   userSafeErrorMessage,
@@ -115,6 +116,7 @@ export type NativePendingApproval = BrainChatResponse & {
   server_sequence: 3
   event_id: string
   phase: "approval_required"
+  action_reference: string
   action_count: number
   connectors: string[]
   choices: ["Approve", "Cancel"]
@@ -151,11 +153,7 @@ export async function streamCompanyBrainMessage(
       cache: "no-store",
       signal: controller.signal,
       headers: { "content-type": "application/json", accept: "text/event-stream" },
-      body: JSON.stringify({
-        conversation_id: input.conversationId,
-        message: input.message,
-        attachments: input.attachments ?? [],
-      }),
+      body: JSON.stringify(companyBrainStreamRequestBody(input)),
     })
   } catch {
     window.clearTimeout(timeout)

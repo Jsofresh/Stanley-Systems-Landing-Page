@@ -114,6 +114,30 @@ export type SendCompanyBrainMessageInput = {
   conversationId: string
   message: string
   attachments?: CompanyBrainAttachment[]
+  approvalContinuation?: CompanyBrainApprovalContinuation
+}
+
+export type CompanyBrainApprovalContinuation = {
+  decision: "Approve" | "Cancel"
+  actionReference: string
+  serverSequence: number
+  eventId: string
+}
+
+export function companyBrainStreamRequestBody(input: SendCompanyBrainMessageInput) {
+  const request = {
+    conversation_id: input.conversationId,
+    message: input.message,
+    attachments: input.attachments ?? [],
+  }
+  if (!input.approvalContinuation) return request
+  return {
+    ...request,
+    approval_decision: input.approvalContinuation.decision,
+    action_reference: input.approvalContinuation.actionReference,
+    last_server_sequence: input.approvalContinuation.serverSequence,
+    last_event_id: input.approvalContinuation.eventId,
+  }
 }
 
 export type SendCompanyBrainMessageResponse = {
