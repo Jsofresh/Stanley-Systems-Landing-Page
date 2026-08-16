@@ -530,6 +530,7 @@ async function forward(request: NextRequest, context: RouteContext) {
 
   const path = resolvedPath(context.params.path)
   if (!isAllowedPath(path)) return jsonError("company_brain_path_not_allowed", 404)
+  if (path.endsWith("/approval") && request.method !== "GET") return jsonError("method_not_allowed", 405)
   if (path.startsWith("artifacts/")) {
     const artifactId = path.split("/").at(-1) ?? ""
     try {

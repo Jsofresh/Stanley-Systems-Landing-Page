@@ -149,6 +149,18 @@ test("pending approval reload reuses the sealed server projection", () => {
   assert.match(portal, /setPendingApproval\(null\)/)
 })
 
+test("approval reload is GET-only and stale hydration cannot overwrite a switched conversation", () => {
+  const approvalMethodGuard = route.indexOf('path.endsWith("/approval") && request.method !== "GET"')
+  const upstreamFetch = route.indexOf("response = await fetch(target")
+  assert.ok(approvalMethodGuard >= 0 && upstreamFetch > approvalMethodGuard)
+  assert.match(route.slice(approvalMethodGuard, upstreamFetch), /method_not_allowed.*405/)
+
+  const hydration = portal.match(/const \[history, approval\] = await Promise\.all\([\s\S]*?setPendingApproval\(approval\)/)
+  assert.ok(hydration)
+  assert.match(hydration[0], /currentConversationIdRef\.current !== activeId/)
+  assert.ok(hydration[0].indexOf("currentConversationIdRef.current !== activeId") < hydration[0].indexOf("setMessages"))
+})
+
 test("authenticated proxy binds actor identity and authorizes native artifacts", () => {
   assert.match(route, /x-stanley-actor-name/) 
   assert.match(route, /x-stanley-actor-email/)

@@ -318,7 +318,7 @@ export function PortalApp() {
             getCompanyBrainSessionMessages(activeId),
             getCompanyBrainPendingApproval(companyId, activeId),
           ])
-          if (cancelled) return
+          if (cancelled || currentConversationIdRef.current !== activeId) return
           setMessages(history.map((message) => ({
             id: message.id,
             role: message.role,
@@ -337,6 +337,7 @@ export function PortalApp() {
         if (!cancelled) {
           setRecentConversations([])
           setMessages([])
+          setPendingApproval(null)
         }
       } finally {
         if (!cancelled) {
