@@ -33,7 +33,7 @@ export function AiOfficeHero() {
   const copy = HERO_VARIANTS[variant]
 
   return (
-    <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-nav-theme="dark" data-hero-variant={variant} className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-[#071422] px-5 pb-28 pt-40 text-white sm:items-center sm:px-8 sm:pb-36 lg:px-10">
+    <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-audit-purpose="Lead with annual office time reclaimed and show that Stanley Systems multiplies the current team rather than replacing it." data-audit-offer="AI Office Installation" data-nav-theme="dark" data-hero-variant={variant} className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-[#071422] px-5 pb-28 pt-40 text-white sm:items-center sm:px-8 sm:pb-36 lg:px-10">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 bg-[#071422]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden lg:hidden">
         {mobileImages.map((image, index) => <Image key={image.src} src={image.src} alt="" fill priority={index === 0} sizes="100vw" className="stanley-hero-slideshow-image stanley-hero-slideshow-image--mobile object-cover" style={{ animationDelay: `${index * 6}s`, objectPosition: image.position }} />)}
