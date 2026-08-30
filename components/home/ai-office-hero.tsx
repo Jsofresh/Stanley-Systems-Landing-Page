@@ -14,8 +14,8 @@ const desktopImages = [
 ]
 
 const mobileImages = [
-  { src: "/images/uploaded/homepage/mobile-hero-slideshow/field-service-owner-by-van-with-tablet.jpg", position: "58% center" },
-  { src: "/images/uploaded/homepage/mobile-hero-slideshow/service-owner-in-office-checking-payments.jpg", position: "54% center" },
+  { src: "/images/uploaded/homepage/mobile-hero-slideshow/field-service-owner-by-van-with-tablet.jpg", position: "70% top" },
+  { src: "/images/uploaded/homepage/mobile-hero-slideshow/service-owner-in-office-checking-payments.jpg", position: "65% top" },
 ]
 
 export function AiOfficeHero() {
@@ -32,11 +32,11 @@ export function AiOfficeHero() {
   const copy = HERO_VARIANTS[variant]
 
   return (
-    <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-audit-purpose="Approved reference inspected before build: the previously approved full-bleed Stanley Systems hero preview. Canonical DESIGN.md research applied. Approved reference structure and pre-build design interpretation: preserve one full-bleed field-service photograph, a dark readability wash, oversized outcome-first type, brand-green emphasis, and two plain next-step CTAs. Lead with the approved qualified capacity illustration and show that Stanley Systems multiplies the current office team rather than replacing it." data-audit-offer="AI Office Installation Sprint" data-nav-theme="dark" data-hero-variant={variant} className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-[#071422] px-5 pb-14 pt-32 text-white sm:items-center sm:px-8 sm:py-28 lg:px-10">
+    <section id="hero" data-audit-page="/" data-audit-section="home.hero" data-audit-purpose="Approved reference inspected before build: the previously approved full-bleed Stanley Systems hero preview. Canonical DESIGN.md research applied. Approved reference structure and pre-build design interpretation: preserve one full-bleed field-service photograph, a dark readability wash, oversized outcome-first type, brand-green emphasis, and two plain next-step CTAs. On mobile, keep the outcome and primary next step inside the first phone viewport. Lead with the approved qualified capacity illustration and show that Stanley Systems multiplies the current office team rather than replacing it." data-audit-offer="AI Office Installation Sprint" data-nav-theme="dark" data-hero-variant={variant} className="relative isolate flex min-h-[100svh] items-start overflow-hidden bg-[#071422] px-5 pb-12 pt-[20rem] text-white sm:items-center sm:px-8 sm:py-28 lg:px-10">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 bg-[#071422]" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden lg:hidden">
         {mobileImages.map((image, index) => <Image key={image.src} src={image.src} alt="" fill priority={index === 0} sizes="100vw" className="stanley-hero-slideshow-image stanley-hero-slideshow-image--mobile object-cover" style={{ animationDelay: `${index * 6}s`, objectPosition: image.position }} />)}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,.88)_44%,rgba(7,20,34,.35)_100%),linear-gradient(180deg,rgba(7,20,34,.65)_0%,rgba(7,20,34,.12)_45%,#071422_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#071422_0%,rgba(7,20,34,.84)_48%,rgba(7,20,34,.22)_100%),linear-gradient(180deg,rgba(7,20,34,.28)_0%,rgba(7,20,34,.34)_32%,rgba(7,20,34,.9)_56%,#071422_100%)]" />
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[72%] overflow-hidden lg:block">
         {desktopImages.map((image, index) => <Image key={`${image.src}-${index}`} src={image.src} alt="" fill priority={index === 0} sizes="72vw" className="stanley-hero-slideshow-image object-cover" style={{ animationDelay: `${index * 5}s`, objectPosition: image.position }} />)}
@@ -50,7 +50,7 @@ export function AiOfficeHero() {
             <span className="block">every year.</span>
           </h1>
           <p className="mt-7 max-w-3xl text-lg font-medium leading-relaxed text-white/82 sm:text-xl lg:text-2xl">
-            More jobs processed. Cleaner records. Faster follow-up. Same office team.
+            Stanley Systems installs AI office workflows around your current tools, so the same team processes more jobs, keeps cleaner records, and follows up faster.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <CTALink href="/systems-installation-sprint" kind="systems" location="home_hero_primary" analyticsEvent="hero_primary_cta_clicked" ctaLabel="View Installation Sprint" className="inline-flex min-h-[64px] items-center justify-center whitespace-nowrap rounded-full bg-[#15803D] px-9 py-[1.125rem] text-lg font-extrabold leading-none text-white shadow-[0_22px_52px_rgba(10,85,38,.4)] transition hover:-translate-y-1 hover:bg-[#116832] hover:shadow-[0_28px_64px_rgba(10,85,38,.5)] focus:outline-none focus:ring-2 focus:ring-[#53D986] focus:ring-offset-2 focus:ring-offset-[#071422]">View Installation Sprint<ArrowRight className="ml-2 h-5 w-5 shrink-0" /></CTALink>
