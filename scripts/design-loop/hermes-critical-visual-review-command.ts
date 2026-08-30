@@ -625,9 +625,9 @@ function runContextProof(context: StanleyWebsiteReviewContext): ContextProof {
     JSON.stringify({
       answers: {
         icp: "the ideal customer profile",
-        public_first_step: "the public first step",
-        package_1: "Package 1 name",
-        package_2: "Package 2 name",
+        public_first_step: "the free public entry point",
+        package_1: "the paid diagnostic offer name",
+        package_2: "the implementation offer name",
         main_copy_standard: "main copy standard",
         public_language_rule: "one public-language rule",
       },
@@ -653,7 +653,7 @@ function runContextProof(context: StanleyWebsiteReviewContext): ContextProof {
     if (typeof answers[key] !== "string" || !answers[key].trim()) throw new Error(`Context proof missing answer: ${key}`)
   }
   const proofText = [parsed.failure_reason, ...required.map((key) => answers[key])].join(" ").toLowerCase()
-  const expectedSignals = ["cash flow assessment", "cash flow collection system", "repeat revenue system"]
+  const expectedSignals = ["admin drag calculator", "ai office map", "ai office installation sprint"]
   const missingSignal = expectedSignals.find((signal) => !proofText.includes(signal))
   const publicRuleText = answers.public_language_rule.toLowerCase()
   const hasRecognizedPublicLanguageRule = ["stanley systems", "not stanley", "ai", "automation", "hermes", "codex", "openclaw", "twilio", "n8n", "qbo", "hcp", "clear", "clever", "business result", "result", "stack", "money", "owner", "plain"].some((signal) => publicRuleText.includes(signal))
