@@ -40,7 +40,8 @@
     ".next-production-release/types/**/*.ts",
     ".next-production-final/types/**/*.ts",
     ".next-production-deploy/types/**/*.ts",
-    ".next-production-final2/types/**/*.ts"
+    ".next-production-final2/types/**/*.ts",
+    ".next-production-final3/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
