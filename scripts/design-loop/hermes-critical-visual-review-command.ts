@@ -653,7 +653,7 @@ function runContextProof(context: StanleyWebsiteReviewContext): ContextProof {
     if (typeof answers[key] !== "string" || !answers[key].trim()) throw new Error(`Context proof missing answer: ${key}`)
   }
   const proofText = [parsed.failure_reason, ...required.map((key) => answers[key])].join(" ").toLowerCase()
-  const expectedSignals = ["admin drag calculator", "ai office map", "ai office installation sprint"]
+  const expectedSignals = ["admin drag calculator", "ai office command map", "ai office installation sprint"]
   const missingSignal = expectedSignals.find((signal) => !proofText.includes(signal))
   const publicRuleText = answers.public_language_rule.toLowerCase()
   const hasRecognizedPublicLanguageRule = ["stanley systems", "not stanley", "ai", "automation", "hermes", "codex", "openclaw", "twilio", "n8n", "qbo", "hcp", "clear", "clever", "business result", "result", "stack", "money", "owner", "plain"].some((signal) => publicRuleText.includes(signal))
