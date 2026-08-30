@@ -10,6 +10,7 @@ type AnalyticsEvent =
   | "package_checkout_clicked"
   | "package_learn_more_clicked"
   | "package_compare_clicked"
+  | "hero_primary_cta_clicked"
 
 type CTALinkProps = {
   href: string

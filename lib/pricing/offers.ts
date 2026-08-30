@@ -90,6 +90,9 @@ export type PricingCalculatorContext = {
 }
 
 const directPurchasePromises: Record<PricingPackageId, string> = {
+  ai_office_command_map: "Install one bounded starter, build two guided kits, and map three personalized office actions.",
+  founding_ai_office_installation: "Install one connected AI office around the company’s supported systems.",
+  founding_ai_office_ops: "Keep the accepted founding-plan scope monitored, tuned, and improving.",
   workflow_audit: "Find the office work AI should remove first, then leave with the fixes to start removing it.",
   cashflow_control_monthly: "Turn your AI Profit Map into staff training, a company playbook, and practical office workflows.",
   repeat_revenue_monthly: "Keep installed workflows monitored, fixed, improved, and useful to staff.",
@@ -100,6 +103,9 @@ const directPurchasePromises: Record<PricingPackageId, string> = {
 }
 
 const directPurchaseDescriptions: Record<PricingPackageId, string> = {
+  ai_office_command_map: "A practical $197 first step with one installed starter, two DIY kits, and three personalized blueprints.",
+  founding_ai_office_installation: "Application-first installation with staff training and 30 included days of managed operation.",
+  founding_ai_office_ops: "Ongoing operation at the locked $500 monthly founding-plan base rate.",
   workflow_audit:
     "Stanley Systems traces office drag just far enough to give you practical fixes, staff AI prompts, workflow tips, tool guidance, and the first AI-guided workflow worth installing.",
   cashflow_control_monthly:
@@ -117,6 +123,9 @@ const directPurchaseDescriptions: Record<PricingPackageId, string> = {
 }
 
 const directPurchaseChecklists: Record<PricingPackageId, string[]> = {
+  ai_office_command_map: ["One standardized installed starter.", "Two DIY automation kits.", "Three personalized office-action blueprints."],
+  founding_ai_office_installation: ["Dedicated workspace.", "Supported source connections.", "Staff training and 30 included days of managed operation."],
+  founding_ai_office_ops: ["Monitoring and tuning.", "Playbook updates.", "Accepted-scope support."],
   workflow_audit: [
     "Office work AI should remove first.",
     "Staff prompts and AI plays your team can use now.",

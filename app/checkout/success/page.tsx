@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 const nextSteps = [
   {
     title: "Fill out the onboarding form",
-    copy: "Tell Stanley Systems about your shop, your tools, and the leak you want fixed first.",
+    copy: "Tell Stanley Systems about your software stack, repeated office work, desired starter, staff roles, and access readiness.",
   },
   {
-    title: "Book your kickoff or assessment call",
+    title: "Choose the Command Map working time",
     copy: "Choose a time so Stanley Systems can review the right workflow with you.",
   },
   {
@@ -25,7 +25,7 @@ const nextSteps = [
   },
   {
     title: "We begin setup or assessment",
-    copy: "If you bought the AI Profit Map, Stanley Systems starts the Map process. If you bought a system, Stanley Systems starts onboarding and implementation.",
+    copy: "For the AI Office Command Map, Stanley Systems confirms a bounded starter before any setup work begins.",
   },
 ]
 
@@ -42,7 +42,7 @@ export default function CheckoutSuccessPage() {
               Payment received. Here is what happens next.
             </h1>
             <p className="mt-5 text-lg leading-8 text-[#536173] sm:text-xl">
-              Stanley Systems has received your purchase. Complete onboarding and book your call so Stanley Systems can review your tools, access, fit, and implementation scope before setup begins.
+              Stanley Systems has received your AI Office Command Map purchase. Complete onboarding so Stanley Systems can review your tools, access readiness, and bounded starter choice before setup begins.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link

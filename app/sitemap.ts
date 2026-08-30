@@ -7,11 +7,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/ai-office-blueprint",
-    "/ai-profit-map",
+    "/ai-office-command-map",
+    "/ai-office-capacity-calculator",
     "/blog",
     "/contact",
     "/field-service-automation",
-    "/invoicing-delay-cash-flow-calculator",
     "/marine-service-automation",
     "/missed-estimate-follow-up-for-service-businesses",
     "/office-handoff-problems-in-field-service-businesses",
@@ -25,7 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/llms.txt",
     "/llms-full.txt",
     "/ai-office-blueprint.md",
-    "/ai-profit-map.md",
     "/pricing.md",
     "/systems-installation-sprint.md",
     "/contact.md",
@@ -35,7 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date(),
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : 0.7,
   }))

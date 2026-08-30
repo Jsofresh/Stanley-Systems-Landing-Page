@@ -7,32 +7,27 @@ import { ArrowRight, CalendarDays, CheckCircle2, ClipboardCheck, Mail, ShieldChe
 import { trackOnboardingFormStarted, trackOnboardingFormSubmitted } from "@/components/posthog-provider"
 
 const whatBoughtOptions = [
-  "AI Profit Map",
-  "AI Office Installation Sprint — monthly",
-  "AI Office Installation Sprint — yearly",
-  "AI Office Ops — monthly",
-  "AI Office Ops — yearly",
-  "AI Office Installation Sprint + Ops — yearly",
-  "AI Office Installation Sprint + Ops",
+  "AI Office Command Map",
   "Not sure / Stripe receipt says something else",
 ]
 
 const accessReadinessOptions = [
-  "Ready now — I can provide access before the call",
-  "Mostly ready — I need to confirm one or two logins",
-  "Not ready yet — tell me exactly what to prepare",
+  "Ready now. I can provide access before the call",
+  "Mostly ready. I need to confirm one or two logins",
+  "Not ready yet. Tell me exactly what to prepare",
   "Someone else on my team controls access",
 ]
 
 const boughtPrefillMap: Record<string, string> = {
-  workflow_audit: "AI Profit Map",
-  audit: "AI Profit Map",
-  cashflow_control_monthly: "AI Office Installation Sprint — monthly",
-  cashflow_control_yearly: "AI Office Installation Sprint — yearly",
-  repeat_revenue_monthly: "AI Office Ops — monthly",
-  repeat_revenue_yearly: "AI Office Ops — yearly",
-  both_systems_yearly: "AI Office Installation Sprint + Ops — yearly",
-  both_systems: "AI Office Installation Sprint + Ops",
+  ai_office_command_map: "AI Office Command Map",
+  workflow_audit: "AI Office Command Map",
+  audit: "AI Office Command Map",
+  cashflow_control_monthly: "Not sure / Stripe receipt says something else",
+  cashflow_control_yearly: "Not sure / Stripe receipt says something else",
+  repeat_revenue_monthly: "Not sure / Stripe receipt says something else",
+  repeat_revenue_yearly: "Not sure / Stripe receipt says something else",
+  both_systems_yearly: "Not sure / Stripe receipt says something else",
+  both_systems: "Not sure / Stripe receipt says something else",
 }
 
 type FormData = {
@@ -47,6 +42,9 @@ type FormData = {
   accessReadiness: string
   preferredCallTime: string
   notes: string
+  desiredStarter: string
+  staffRoles: string
+  decisionMaker: string
   smsConsent: boolean
 }
 
@@ -129,19 +127,22 @@ function SelectField({
 export function BuyerOnboardingForm() {
   const searchParams = useSearchParams()
   const initialFormData = useMemo<FormData>(() => {
-    const boughtQuery = cleanPrefill(searchParams.get("bought") || searchParams.get("package") || searchParams.get("plan"))
+    const boughtQuery = cleanPrefill(searchParams?.get("bought") || searchParams?.get("package") || searchParams?.get("plan") || null)
     return {
-      name: cleanPrefill(searchParams.get("name")),
-      business: cleanPrefill(searchParams.get("business") || searchParams.get("company")),
-      email: cleanPrefill(searchParams.get("email")),
-      phone: cleanPrefill(searchParams.get("phone")),
+      name: cleanPrefill(searchParams?.get("name") ?? null),
+      business: cleanPrefill(searchParams?.get("business") || searchParams?.get("company") || null),
+      email: cleanPrefill(searchParams?.get("email") ?? null),
+      phone: cleanPrefill(searchParams?.get("phone") ?? null),
       whatBought: boughtPrefillMap[boughtQuery] || (whatBoughtOptions.includes(boughtQuery) ? boughtQuery : ""),
       fieldJobDispatchSystem: "",
       accountingBillingSystem: "",
-      biggestLeak: cleanPrefill(searchParams.get("leak")),
+      biggestLeak: cleanPrefill(searchParams?.get("leak") ?? null),
       accessReadiness: "",
-      preferredCallTime: cleanPrefill(searchParams.get("call_time")),
+      preferredCallTime: cleanPrefill(searchParams?.get("call_time") ?? null),
       notes: "",
+      desiredStarter: "",
+      staffRoles: "",
+      decisionMaker: "",
       smsConsent: false,
     }
   }, [searchParams])
@@ -211,10 +212,10 @@ export function BuyerOnboardingForm() {
           <ClipboardCheck className="h-6 w-6" />
         </div>
         <h1 className="mt-6 text-4xl font-semibold tracking-[-0.04em] text-[#102033] sm:text-5xl">
-          Paid buyer onboarding
+          AI Office Command Map onboarding
         </h1>
         <p className="mt-5 text-lg leading-8 text-[#536173]">
-          Use this after checkout so Stanley Systems can confirm what you bought, which tools you use, what access is ready, and where the first leak needs review.
+          Use this after checkout so Stanley Systems can confirm your tools, repeated office work, desired bounded starter, staff roles, and access readiness.
         </p>
 
         <div className="mt-8 space-y-3 text-sm leading-6 text-[#536173]">
@@ -268,6 +269,12 @@ export function BuyerOnboardingForm() {
             <InputField label="Email*" name="email" type="email" value={formData.email} placeholder="jane@company.com" onChange={updateField} />
             <InputField label="Phone*" name="phone" type="tel" value={formData.phone} placeholder="+1 (555) 123-4567" onChange={updateField} />
           </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <InputField label="Desired starter automation*" name="desiredStarter" value={formData.desiredStarter} placeholder="Report, document, spreadsheet, or draft" helper="Choose a bounded read, report, document, or draft-preparation outcome." onChange={updateField} />
+            <InputField label="Decision-maker*" name="decisionMaker" value={formData.decisionMaker} placeholder="Name and role" onChange={updateField} />
+          </div>
+          <InputField label="Staff roles involved*" name="staffRoles" value={formData.staffRoles} placeholder="Owner, office manager, dispatcher, bookkeeper" helper="Roles only. Do not include passwords, tokens, API keys, or private customer records." onChange={updateField} />
 
           <SelectField label="What did you buy?*" name="whatBought" value={formData.whatBought} placeholder="Select the checkout item" options={whatBoughtOptions} onChange={updateField} />
 

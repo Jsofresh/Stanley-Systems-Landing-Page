@@ -37,11 +37,13 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-      <label className="block">
+      <label htmlFor="portal-email" className="block">
         <span className="text-sm font-bold text-[#102033]">Email</span>
         <span className="mt-2 flex h-12 items-center gap-3 rounded-lg border border-[#ded6c8] bg-white px-3">
           <Mail className="h-4 w-4 text-[#15803d]" />
           <input
+            id="portal-email"
+            name="email"
             type="email"
             autoComplete="username"
             required
@@ -51,11 +53,13 @@ export function LoginForm() {
           />
         </span>
       </label>
-      <label className="block">
+      <label htmlFor="portal-password" className="block">
         <span className="text-sm font-bold text-[#102033]">Password</span>
         <span className="mt-2 flex h-12 items-center gap-3 rounded-lg border border-[#ded6c8] bg-white px-3">
           <LockKeyhole className="h-4 w-4 text-[#15803d]" />
           <input
+            id="portal-password"
+            name="password"
             type="password"
             autoComplete="current-password"
             required
@@ -65,7 +69,7 @@ export function LoginForm() {
           />
         </span>
       </label>
-      {error ? <p className="rounded-lg bg-red-50 px-3 py-2 text-sm font-semibold text-red-700">{error}</p> : null}
+      {error ? <p role="alert" aria-live="assertive" className="rounded-lg bg-red-50 px-3 py-2 text-sm font-semibold text-red-700">{error}</p> : null}
       <Button
         type="submit"
         disabled={loading}

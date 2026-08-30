@@ -4,8 +4,8 @@ import { MarketingPageShell } from "@/components/marketing-page-shell"
 import { BuyerOnboardingForm } from "@/components/checkout/BuyerOnboardingForm"
 
 export const metadata: Metadata = {
-  title: "Paid buyer onboarding | Stanley Systems",
-  description: "Complete paid buyer onboarding after checkout so Stanley Systems can review what you bought, access readiness, current tools, biggest leak, and preferred call time.",
+  title: "AI Office Command Map onboarding | Stanley Systems",
+  description: "Complete AI Office Command Map onboarding after checkout without submitting passwords, tokens, or private customer records.",
   alternates: {
     canonical: "/checkout/onboarding",
   },

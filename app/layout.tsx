@@ -40,9 +40,9 @@ const fontAliases = {
   "--font-work-sans": "var(--font-neue-montreal)",
 } as React.CSSProperties
 
-const siteTitle = "Stanley Systems | AI Profit Map"
+const siteTitle = "Stanley Systems AI Office"
 const siteDescription =
-  "Stanley Systems offers the AI Profit Map and installs AI office workflows for service businesses where office process is costing time, cash, customer follow-up, and profit."
+  "Stanley Systems installs a connected AI office around supported CRM, accounting, documents, and company knowledge so the current team can handle more office work."
 const siteLogoPath = "/stanley-systems-logo-reference.jpg"
 const siteLogoUrl = `https://stanley-systems.com${siteLogoPath}`
 
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     url: "https://stanley-systems.com",
     siteName: "Stanley Systems",
-    images: [{ url: siteLogoPath, width: 1024, height: 1024, alt: "Stanley Systems logo" }],
+    images: [{ url: siteLogoUrl, width: 1024, height: 1024, alt: "Stanley Systems logo" }],
     locale: "en_US",
     type: "website",
   },
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [siteLogoPath],
+    images: [siteLogoUrl],
   },
   icons: {
     icon: "/favicon.ico",
@@ -72,7 +72,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://stanley-systems.com",
   },
-  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -80,61 +79,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do we need to switch software?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. Stanley Systems works inside the tools the team already uses whenever possible.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is the AI Profit Map?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "It is a $197 AI office diagnostic where Stanley Systems finds where office work is costing time, cash, and customer follow-up, then gives you an AI fix plan and $194 Installation Sprint credit if you move forward within 14 days.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Who is this best for?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Owner-led service businesses where cash is being lost in day-to-day gaps like billing delays, missed callbacks, weak follow-up, or dormant customer lists.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What if we are not sure where the real leak is?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "That is exactly what the AI Profit Map is for: it turns office drag into a Priority Fix List, AI Opportunity Map, Quick-Win AI Assets, and a Profit Implementation Plan.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Will my team still control the process?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Your team stays in control, and you own what gets built.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What happens after the AI Profit Map?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Stanley Systems shows which billing, follow-up, review, referral, or repeat-customer systems should be installed first, then turns that plan into systems your business can use.",
-        },
-      },
-    ],
-  }
-
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -164,10 +108,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

@@ -5,7 +5,7 @@ import { workflowAuditPricingPackage } from "@/lib/pricing/source-of-truth"
 
 export const metadata: Metadata = {
   title: "Payment was not completed | Stanley Systems",
-  description: "Your checkout was canceled or not completed. Return to pricing or buy the AI Profit Map when you are ready.",
+  description: "Your checkout was canceled or not completed. Return to the AI Office Command Map when you are ready.",
   alternates: {
     canonical: "/checkout/cancel",
   },
@@ -20,7 +20,7 @@ export default function CheckoutCancelPage() {
             Payment was not completed.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#536173] sm:text-xl">
-            No Stanley Systems payment was completed from this checkout. You can return to pricing, or buy the AI Profit Map if you want the paid diagnostic first.
+            No Stanley Systems payment was completed from this checkout. You can return to pricing or retry the $197 AI Office Command Map checkout.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
@@ -41,14 +41,14 @@ export default function CheckoutCancelPage() {
               data-package-id={workflowAuditPricingPackage.analyticsPackageId}
               data-package-name={workflowAuditPricingPackage.publicName}
               data-billing-period={workflowAuditPricingPackage.billingPeriod}
-              data-cta-label="Buy AI Profit Map"
+              data-cta-label="Get AI Office Command Map"
               data-cta-location="checkout_cancel_secondary"
             >
-              Buy AI Profit Map
+              Get AI Office Command Map
             </a>
           </div>
           <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[#bfe4c8] bg-[#f4fbf5] p-5 text-left text-sm leading-7 text-[#335244]">
-            If you meant to buy a package but need a different path, return to pricing and choose the system that fits the leak you can name. If you are not sure yet, the AI Profit Map is the safest first step.
+            If you need a different path, return to pricing. The Founding Partner installation remains application-first and is not sold through a direct checkout.
           </div>
         </section>
       </main>
