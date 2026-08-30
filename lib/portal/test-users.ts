@@ -13,6 +13,8 @@ export const PORTAL_TEST_COMPANY_ID = "bayview_test"
 export const PORTAL_TEST_COMPANY_NAME = "Bayview Service Co."
 export const STANLEY_TEST_OFFICE_COMPANY_ID = "stanley_test_office"
 export const STANLEY_TEST_OFFICE_COMPANY_NAME = "Stanley Systems Test Office"
+export const STANLEY_SIMULATION_COMPANY_ID = "stanley_simulation"
+export const STANLEY_SIMULATION_COMPANY_NAME = "Meridian Climate & Plumbing"
 
 export const PORTAL_TEST_USERS: PortalTestUser[] = [
   {
@@ -74,6 +76,16 @@ export const PORTAL_TEST_USERS: PortalTestUser[] = [
     companyId: STANLEY_TEST_OFFICE_COMPANY_ID,
     companyName: STANLEY_TEST_OFFICE_COMPANY_NAME,
     sessionPrefix: "alex",
+  },
+  {
+    actorId: "evelyn-owner",
+    name: "Evelyn Hart",
+    email: "evelyn.owner@meridian.test",
+    role: "owner",
+    roleLabel: "Owner",
+    companyId: STANLEY_SIMULATION_COMPANY_ID,
+    companyName: STANLEY_SIMULATION_COMPANY_NAME,
+    sessionPrefix: "evelyn",
   },
 ]
 

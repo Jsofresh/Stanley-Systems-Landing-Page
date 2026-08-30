@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server"
 import { getPortalSession, portalSessionStoreDir } from "@/lib/portal/session"
 import {
   PORTAL_TEST_COMPANY_ID,
+  STANLEY_SIMULATION_COMPANY_ID,
   STANLEY_TEST_OFFICE_COMPANY_ID,
 } from "@/lib/portal/test-users"
 import { grantPortalArtifactAccess, portalArtifactAccessAllowed } from "@/lib/portal/artifact-grants"
+import { publicTerminalReceipt } from "@/lib/company-brain/receipt-contract"
 
 const ALLOWED_PATHS = new Set([
   "control/summary",
@@ -109,6 +111,8 @@ function resolvedPath(parts?: string[]) {
 function upstreamBaseUrl(companyId: string) {
   const raw = companyId === PORTAL_TEST_COMPANY_ID
     ? process.env.COMPANY_BRAIN_UPSTREAM_URL
+    : companyId === STANLEY_SIMULATION_COMPANY_ID
+      ? process.env.COMPANY_BRAIN_STANLEY_SIMULATION_UPSTREAM_URL
     : companyId === STANLEY_TEST_OFFICE_COMPANY_ID
       ? process.env.COMPANY_BRAIN_STANLEY_TEST_OFFICE_UPSTREAM_URL
       : undefined
@@ -123,6 +127,16 @@ function upstreamBaseUrl(companyId: string) {
   } catch {
     return null
   }
+}
+
+function upstreamProxyKey(companyId: string) {
+  if (companyId === STANLEY_SIMULATION_COMPANY_ID) {
+    return process.env.COMPANY_BRAIN_STANLEY_SIMULATION_PROXY_KEY ?? null
+  }
+  if (companyId === PORTAL_TEST_COMPANY_ID || companyId === STANLEY_TEST_OFFICE_COMPANY_ID) {
+    return process.env.COMPANY_BRAIN_PROXY_KEY ?? null
+  }
+  return null
 }
 
 function safeConversationId(value: unknown) {
@@ -261,30 +275,6 @@ function publicEventIdentity(value: Record<string, unknown>, companyId: string, 
     : null
 }
 
-function publicTerminalReceipt(value: unknown, companyId: string, conversationId: string) {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
-  const source = value as Record<string, unknown>
-  const keys = ["schema", "binding", "source", "status", "connectors", "action_count", "verified_action_count", "mutation_dispatch_count", "completed_batch_replay", "provider_readback_status", "provider_write_claimed", "safe_summary"]
-  const hasActionReference = Object.hasOwn(source, "action_reference")
-  const binding = source.binding && typeof source.binding === "object" && !Array.isArray(source.binding) ? source.binding as Record<string, unknown> : null
-  const connectors = Array.isArray(source.connectors) ? source.connectors : []
-  const safeSummary = Array.isArray(source.safe_summary) ? source.safe_summary : []
-  if (!exactObjectKeys(source, hasActionReference ? [...keys, "action_reference"] : keys)
-    || !binding || !exactObjectKeys(binding, ["company_id", "conversation_id"])
-    || binding.company_id !== companyId || binding.conversation_id !== conversationId
-    || source.schema !== "company_brain.public_turn_receipt.v1"
-    || !["conversation", "provider_action_batch"].includes(String(source.source))
-    || !["not_applicable", "read_verified", "executed_verified", "already_completed", "partial", "failed_before_dispatch", "failed", "unknown_outcome_reconciliation_required"].includes(String(source.status))
-    || connectors.length > 100 || connectors.some((item) => item !== "jobber" && item !== "quickbooks")
-    || ![source.action_count, source.verified_action_count, source.mutation_dispatch_count].every((item) => typeof item === "number" && Number.isSafeInteger(item) && item >= 0 && item <= 100)
-    || typeof source.completed_batch_replay !== "boolean"
-    || !["verified", "unavailable", "not_required"].includes(String(source.provider_readback_status))
-    || typeof source.provider_write_claimed !== "boolean"
-    || safeSummary.length > 16 || safeSummary.some((item) => typeof item !== "string" || item !== publicStreamText(item, 240))
-    || hasActionReference && (typeof source.action_reference !== "string" || !/^actref_[A-Za-z0-9_-]{32,128}$/.test(source.action_reference))) return undefined
-  return source
-}
-
 function publicPortalResult(value: unknown, companyId: string, conversationId: string) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return undefined
   const source = value as Record<string, unknown>
@@ -334,7 +324,27 @@ function publicApprovalRequest(value: unknown, companyId: string, conversationId
   const connectorsMatchCollapsedSingleProvider = projectedConnectors.length === 1
     && connectors.length === 1
     && connectors[0] === projectedConnectors[0]
-  const approvalSummary = source.approval_summary && typeof source.approval_summary === "object" && !Array.isArray(source.approval_summary)
+  const approvalSummary = source.approval_summary
+    && typeof source.approval_summary === "object"
+    && !Array.isArray(source.approval_summary)
+    ? source.approval_summary as Record<string, unknown>
+    : undefined
+  const layerDConnectorValues = approvalSummary?.kind === "dynamic_layer_d_frozen_scope"
+    && Array.isArray(approvalSummary.connectors)
+    ? approvalSummary.connectors
+    : []
+  const layerDConnectors = layerDConnectorValues.filter(
+    (connector): connector is string => typeof connector === "string",
+  )
+  const connectorsMatchLayerDScope = approvalSummary?.kind === "dynamic_layer_d_frozen_scope"
+    && layerDConnectors.length === layerDConnectorValues.length
+    && layerDConnectors.length === connectors.length
+    && new Set(layerDConnectors).size === layerDConnectors.length
+    && layerDConnectors.every((connector, index) => connector === connectors[index])
+    && actionConnectors.every((connector) => layerDConnectors.includes(connector))
+  const projectedApprovalConnectors = connectorsMatchLayerDScope
+    ? layerDConnectors
+    : projectedConnectors
   if (
     !exactObjectKeys(source, keys)
     || !identity
@@ -354,7 +364,7 @@ function publicApprovalRequest(value: unknown, companyId: string, conversationId
     || connectors.some((connector) => !/^[a-z][a-z0-9_]{0,31}$/.test(connector))
     || actions.length !== actionCount
     || actionConnectors.some((connector) => !/^[a-z][a-z0-9_]{0,31}$/.test(connector))
-    || (!connectorsMatchActions && !connectorsMatchCollapsedSingleProvider)
+    || (!connectorsMatchActions && !connectorsMatchCollapsedSingleProvider && !connectorsMatchLayerDScope)
     || !approvalSummary
     || choices.length !== 2
     || choices[0] !== "Approve"
@@ -367,7 +377,7 @@ function publicApprovalRequest(value: unknown, companyId: string, conversationId
     answer: source.answer,
     action_reference: source.action_reference,
     action_count: actionCount,
-    connectors: projectedConnectors,
+    connectors: projectedApprovalConnectors,
     choices: ["Approve", "Cancel"],
   }
 }
@@ -546,7 +556,7 @@ async function forward(request: NextRequest, context: RouteContext) {
     )
   }
   const baseUrl = upstreamBaseUrl(session.companyId)
-  const proxyKey = process.env.COMPANY_BRAIN_PROXY_KEY
+  const proxyKey = upstreamProxyKey(session.companyId)
   if (!baseUrl || !proxyKey) return jsonError("company_brain_proxy_not_configured", 503)
 
   const upstreamPath = path.startsWith("artifacts/") ? `brain/${path}` : path
