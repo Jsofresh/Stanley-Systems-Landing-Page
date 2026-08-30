@@ -656,7 +656,7 @@ function runContextProof(context: StanleyWebsiteReviewContext): ContextProof {
   const expectedSignals = ["admin drag calculator", "ai office command map", "ai office installation sprint"]
   const missingSignal = expectedSignals.find((signal) => !proofText.includes(signal))
   const publicRuleText = answers.public_language_rule.toLowerCase()
-  const hasRecognizedPublicLanguageRule = ["stanley systems", "not stanley", "ai", "automation", "hermes", "codex", "openclaw", "twilio", "n8n", "qbo", "hcp", "clear", "clever", "business result", "result", "stack", "money", "owner", "plain"].some((signal) => publicRuleText.includes(signal))
+  const hasRecognizedPublicLanguageRule = ["stanley systems", "not stanley", "ai", "automation", "hermes", "codex", "openclaw", "twilio", "n8n", "qbo", "hcp", "clear", "clever", "business result", "result", "stack", "money", "owner", "plain", "avoid", "frame"].some((signal) => publicRuleText.includes(signal))
   const cannotAnswer = /cannot (determine|answer)|can't (determine|answer)|unable to (determine|answer)|missing context|not provided/.test(proofText)
   return {
     reviewer_model: result.model,
