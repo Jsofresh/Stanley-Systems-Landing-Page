@@ -37,7 +37,8 @@
     ".next-production/types/**/*.ts",
     ".next-production-candidate/types/**/*.ts",
     ".next-production-candidate2/types/**/*.ts",
-    ".next-production-release/types/**/*.ts"
+    ".next-production-release/types/**/*.ts",
+    ".next-production-final/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
