@@ -46,11 +46,14 @@ export function AiOfficeHero() {
       <div className="mx-auto w-full max-w-[96rem]">
         <div className="relative z-10 max-w-[1360px]">
           <h1 className="text-[clamp(3.35rem,7.35vw,6.65rem)] font-bold leading-[0.93] tracking-[-0.025em] lg:origin-left lg:text-[clamp(3.015rem,6.615vw,5.985rem)] lg:[transform:scaleX(1.025)]">
-            <span className="block">Stanley Systems makes</span>
-            <span className="block">your office <span className="text-[#53D986]">faster</span>, <span className="text-[#53D986]">sharper</span>,</span>
-            <span className="block">and <span className="text-[#53D986]">more profitable.</span></span>
+            <span className="block">Give your office team</span>
+            <span className="block"><span className="text-[#53D986]">520 hours back</span></span>
+            <span className="block">every year.</span>
           </h1>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <p className="mt-7 max-w-3xl text-lg font-medium leading-relaxed text-white/82 sm:text-xl lg:text-2xl">
+            More jobs processed. Cleaner records. Faster follow-up. Same office team.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <CTALink href="/systems-installation-sprint" kind="systems" location="home_hero_primary" analyticsEvent="hero_primary_cta_clicked" ctaLabel="View Installation" className="inline-flex min-h-[64px] items-center justify-center whitespace-nowrap rounded-full bg-[#15803D] px-9 py-[1.125rem] text-lg font-extrabold leading-none text-white shadow-[0_22px_52px_rgba(10,85,38,.4)] transition hover:-translate-y-1 hover:bg-[#116832] hover:shadow-[0_28px_64px_rgba(10,85,38,.5)] focus:outline-none focus:ring-2 focus:ring-[#53D986] focus:ring-offset-2 focus:ring-offset-[#071422]">View Installation<ArrowRight className="ml-2 h-5 w-5 shrink-0" /></CTALink>
             <CTALink href="/ai-office-capacity-calculator" kind="systems" location="home_hero_secondary" analyticsSource={HERO_EXPERIMENT_KEY} ctaLabel={copy.cta} className="inline-flex min-h-[64px] items-center justify-center whitespace-nowrap rounded-full border border-white/25 bg-white/8 px-9 py-[1.125rem] text-lg font-extrabold leading-none text-white transition hover:-translate-y-1 hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-white">{copy.cta}</CTALink>
           </div>
