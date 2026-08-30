@@ -6,11 +6,11 @@ export type HeroLanguageVariant = "prompt" | "message"
 export const HERO_VARIANTS: Record<HeroLanguageVariant, { headline: string; cta: string }> = {
   prompt: {
     headline: "More jobs processed. Cleaner records. Faster follow-up. Same office team.",
-    cta: "Calculate Admin Drag",
+    cta: "Calculate Your Admin Drag",
   },
   message: {
     headline: "More jobs processed. Cleaner records. Faster follow-up. Same office team.",
-    cta: "Calculate Admin Drag",
+    cta: "Calculate Your Admin Drag",
   },
 }
 
