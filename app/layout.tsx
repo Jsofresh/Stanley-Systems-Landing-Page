@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     url: "https://stanley-systems.com",
     siteName: "Stanley Systems",
-    images: [{ url: siteLogoPath, width: 1024, height: 1024, alt: "Stanley Systems logo" }],
+    images: [{ url: siteLogoUrl, width: 1024, height: 1024, alt: "Stanley Systems logo" }],
     locale: "en_US",
     type: "website",
   },
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [siteLogoPath],
+    images: [siteLogoUrl],
   },
   icons: {
     icon: "/favicon.ico",
@@ -72,7 +72,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://stanley-systems.com",
   },
-  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -80,61 +79,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do we need to switch software?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. Stanley Systems works inside the tools the team already uses whenever possible.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is the AI Office Command Map?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "It is a $197 practical first step with one standardized starter automation installed with the buyer, two do-it-yourself automation kits, and three personalized office-action blueprints.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Who is this best for?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Owner-led service businesses where cash is being lost in day-to-day gaps like billing delays, missed callbacks, weak follow-up, or dormant customer lists.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What if we are not sure which office work to start with?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "The AI Office Command Map identifies practical opportunities and helps select a bounded starter automation.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Will my team still control the process?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Your team stays in control, and you own what gets built.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What happens after the AI Office Command Map?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "A qualified company can apply for a connected Stanley Systems AI Office installation.",
-        },
-      },
-    ],
-  }
-
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -164,10 +108,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

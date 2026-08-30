@@ -28,7 +28,7 @@ const footerLinks: FooterSection[] = [
   {
     label: "Solutions",
     links: [
-      { title: "Stanley Systems AI Office", href: "/#one-message-demo" },
+      { title: "How Stanley AI Office Works", href: "/systems-installation-sprint#how-it-works" },
       { title: "AI Office Command Map", href: "/ai-office-command-map" },
       { title: "Founding Partner Installation", href: "/systems-installation-sprint" },
       { title: "Pricing", href: "/pricing" },
